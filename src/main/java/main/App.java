@@ -1,4 +1,4 @@
-package GreenTech;
+package main;
 
 /**
  * Hello world!
