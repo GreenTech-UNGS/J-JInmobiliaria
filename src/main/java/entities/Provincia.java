@@ -7,7 +7,7 @@ public enum Provincia {
 	Chubut,
 	Cordoba,
 	Corrientes,
-	Entre_Ríos,
+	Entre_Rios,
 	Formosa,
 	Jujuy,
 	La_Pampa,
