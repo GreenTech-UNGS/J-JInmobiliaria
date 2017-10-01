@@ -1,6 +1,5 @@
 package vista;
 
-import java.awt.EventQueue;
 import java.awt.Image;
 
 import javax.swing.JFrame;
@@ -17,47 +16,42 @@ import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import java.awt.CardLayout;
 import javax.swing.JTextField;
+
 import java.awt.SystemColor;
 import javax.swing.JLabel;
 
-public class Vista {
+public class MainView {
 
+	private static MainView instance;
+	
 	private JFrame frmLpezLpez;
 	private JTextField txtContratos;
 	private JTextField txtInquilinos;
+	
+	JButton btnPropiedades;
+	JButton btnContratos;
+	JButton btnInquilinos;
+	JButton btnAgregarPropiedad;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Vista window = new Vista();
-					window.frmLpezLpez.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	
+	public static MainView getView(){
+		if(instance == null)
+			instance = new MainView();
+		return instance;
+
 	}
-
-	/**
-	 * Create the application.
-	 */
-	public Vista() {
+	
+	public MainView() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	private void initialize() {
 		frmLpezLpez = new JFrame();
 		frmLpezLpez.setBackground(new Color(255, 255, 255));
 		frmLpezLpez.setTitle("L\u00F3pez & L\u00F3pez");
 		frmLpezLpez.setResizable(false);
-		frmLpezLpez.setBounds(100, 100, 964, 484);
+		frmLpezLpez.setBounds(100, 100, 964, 546);
 		frmLpezLpez.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmLpezLpez.getContentPane().setLayout(null);
 		
@@ -85,11 +79,11 @@ public class Vista {
 		panelMenu.setMaximumSize(new Dimension(100, 100));
 		panelMenu.setMinimumSize(new Dimension(100, 100));
 		panelMenu.setBackground(new Color(0, 0, 51));
-		panelMenu.setBounds(10, 30, 118, 414);
+		panelMenu.setBounds(10, 30, 118, 476);
 		frmLpezLpez.getContentPane().add(panelMenu);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(138, 32, 557, 412);
+		panel_1.setBounds(138, 32, 557, 474);
 		frmLpezLpez.getContentPane().add(panel_1);
 		panel_1.setLayout(new CardLayout(0, 0));
 		
@@ -97,7 +91,7 @@ public class Vista {
 		panel_1.add(panelPropiedades, "name_1084621145273363");
 		panelPropiedades.setLayout(null);
 		
-		JButton btnAgregarPropiedad = new JButton("Agregar Propiedad");
+		btnAgregarPropiedad = new JButton("Agregar Propiedad");
 		btnAgregarPropiedad.setBounds(10, 11, 149, 32);
 		panelPropiedades.add(btnAgregarPropiedad);
 		
@@ -119,7 +113,7 @@ public class Vista {
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(0, 0, 51));
-		panel_2.setBounds(0, 21, 958, 434);
+		panel_2.setBounds(0, 21, 958, 496);
 		frmLpezLpez.getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -133,7 +127,7 @@ public class Vista {
 		lblLabel.setBounds(706, 11, 242, 172);
 		panel_2.add(lblLabel);
 		
-		JButton btnPropiedades = new JButton("Propiedades");
+		btnPropiedades = new JButton("Propiedades");
 		btnPropiedades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panel_1.removeAll();
@@ -151,7 +145,7 @@ public class Vista {
 		btnPropiedades.setBackground(SystemColor.inactiveCaptionBorder);
 		panelMenu.add(btnPropiedades);
 		
-		JButton btnContratos = new JButton("Contratos");
+		btnContratos = new JButton("Contratos");
 		btnContratos.setPreferredSize(new Dimension(120, 30));
 		btnContratos.setBackground(SystemColor.inactiveCaptionBorder);
 		btnContratos.addActionListener(new ActionListener() {
@@ -167,7 +161,7 @@ public class Vista {
 		});
 		panelMenu.add(btnContratos);
 		
-		JButton btnInquilinos = new JButton("Inquilinos");
+		btnInquilinos = new JButton("Inquilinos");
 		btnInquilinos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panel_1.removeAll();
@@ -182,5 +176,14 @@ public class Vista {
 		btnInquilinos.setPreferredSize(new Dimension(120, 30));
 		btnInquilinos.setBackground(SystemColor.inactiveCaptionBorder);
 		panelMenu.add(btnInquilinos);
+	}
+	
+	public void show()
+	{
+		this.frmLpezLpez.setVisible(true);
+	}
+	
+	public  JButton getBtnPropiedades(){
+		return this.btnAgregarPropiedad;
 	}
 }
