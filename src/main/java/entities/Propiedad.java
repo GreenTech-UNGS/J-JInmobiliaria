@@ -14,7 +14,7 @@ public class Propiedad {
 	private String obsPublicas;
 	private String obsPrivadas;
 	
-	private HistoriaEstado estado;
+	private HistoriaEstadoProp estado;
 	private List<Foto> fotos;
 	private Set<TipoOfrecimiento> tiposOfrecimiento;
 	private Precio precioTentativo;
