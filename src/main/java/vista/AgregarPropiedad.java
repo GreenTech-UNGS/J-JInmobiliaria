@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import com.google.inject.Inject;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -32,8 +33,8 @@ public class AgregarPropiedad extends JDialog{
 	private JTextField textField_7;
 	private JTextField textField_8;
 
-
-	public AgregarPropiedad() {
+	@Inject
+	private AgregarPropiedad() {
 		super();
 		
 		setTitle("Agregar Propiedad");

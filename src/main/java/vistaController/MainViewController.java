@@ -1,32 +1,47 @@
 package vistaController;
 
+import com.google.inject.Inject;
+
 import vista.MainView;
 
 public class MainViewController {
 	
-	private MainView view = MainView.getView();
+	private MainView view;
 	
-	AddPropiedadesController propiedadesController = AddPropiedadesController.getController();
-	AddContratoController contratoController = AddContratoController.getController();
+	AddPropiedadesController propiedadesController;
+	AddContratoController contratoController;
+	AgregarClienteController clienteController;
 	
-	public MainViewController(MainView vista){
+	@Inject
+	private MainViewController(MainView view, AddPropiedadesController propiedadesController,
+			AddContratoController contratoController, AgregarClienteController clienteController){
 		
-		this.view = vista;
+		this.view = view;
+		this.propiedadesController = propiedadesController;
+		this.contratoController = contratoController;
+		this.clienteController = clienteController;
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
 		this.view.getBtnContrato().addActionListener(e -> agregarContrato());
+		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());
 	}
+
 
 	public void showView(){
 		this.view.show();
 	}
 
 	private void agregarPropiedad(){
-		this.propiedadesController.showView();;
+		this.propiedadesController.showView();
 	}
 	
-	private Object agregarContrato() {
+	private void agregarContrato() {
 		this.contratoController.showView();
-		return null;
+	}
+	
+	private void agregarCliente() {
+		
+		
+		
 	}
 }

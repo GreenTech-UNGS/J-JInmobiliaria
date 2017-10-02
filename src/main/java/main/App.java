@@ -1,5 +1,9 @@
 package main;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
+import misc.ProdModule;
 import vista.MainView;
 import vistaController.MainViewController;
 
@@ -16,8 +20,10 @@ public class App
     }
     
     private static void showMainView(){
-		MainView vista = MainView.getView();
-		MainViewController controlador = new MainViewController(vista);
+    	Injector injector = Guice.createInjector(new ProdModule());
+    	
+    	
+    	MainViewController controlador = injector.getInstance(MainViewController.class);
 		controlador.showView();
 	}
 }

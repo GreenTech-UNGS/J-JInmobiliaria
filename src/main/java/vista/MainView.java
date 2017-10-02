@@ -23,12 +23,13 @@ import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.border.TitledBorder;
+
+import com.google.inject.Inject;
+
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
 public class MainView {
-
-	private static MainView instance;
 	
 	private JFrame frmLpezLpez;
 	private JTextField txtInquilinos;
@@ -38,16 +39,10 @@ public class MainView {
 	JButton btnInquilinos;
 	JButton btnAgregarPropiedad;
 	JButton btnAgregarContrato;
+	private JButton btnAgregarCliente;
 
-	
-	public static MainView getView(){
-		if(instance == null)
-			instance = new MainView();
-		return instance;
-
-	}
-	
-	public MainView() {
+	@Inject
+	private MainView() {
 		initialize();
 	}
 
@@ -117,6 +112,9 @@ public class MainView {
 		
 		JPanel panelInquilinos = new JPanel();
 		panel_1.add(panelInquilinos, "name_1084846370736461");
+		
+		btnAgregarCliente = new JButton("Agregar cliente");
+		panelInquilinos.add(btnAgregarCliente);
 		
 		txtInquilinos = new JTextField();
 		txtInquilinos.setText("Inquilinos");
@@ -246,6 +244,11 @@ public class MainView {
 		panelMenu.add(btnReportes);
 	}
 	
+	public JButton getBtnAgregarCliente() {
+		return btnAgregarCliente;
+	}
+
+
 	public void show()
 	{
 		this.frmLpezLpez.setVisible(true);

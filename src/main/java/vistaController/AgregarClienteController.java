@@ -1,5 +1,7 @@
 package vistaController;
 
+import com.google.inject.Inject;
+
 import vista.AgregarCliente;
 
 public class AgregarClienteController {
@@ -7,15 +9,9 @@ public class AgregarClienteController {
 	public static AgregarClienteController instance;
 	private AgregarCliente view;
 	
-	public static AgregarClienteController getController(){
-		if(instance == null)
-			instance = new AgregarClienteController();
-		return instance;
-	}
-	
-	public AgregarClienteController(){
-		
-		view = new AgregarCliente();
+	@Inject
+	private AgregarClienteController(AgregarCliente view){
+		this.view = view;
 	}
 	
 	public void showView(){

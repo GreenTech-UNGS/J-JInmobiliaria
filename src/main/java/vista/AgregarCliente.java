@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import com.google.inject.Inject;
+
 import entities.Telefono;
 
 import javax.swing.JLabel;
@@ -23,11 +25,11 @@ public class AgregarCliente extends JDialog{
 	private JButton btnGuardar, btnCancelar, btnBuscar;
 	private JTextField textTelefono1, textTelefono2, textTelefono3;
 
-
-	public AgregarCliente() {
+	@Inject
+	private AgregarCliente() {
 		super();
 		
-		setTitle("Agregar Propiedad");
+		setTitle("Agregar Cliente");
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setModal(true);

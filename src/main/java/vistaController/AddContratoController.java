@@ -1,5 +1,7 @@
 package vistaController;
 
+import com.google.inject.Inject;
+
 import vista.AddContratoAlq;
 
 public class AddContratoController {
@@ -7,15 +9,10 @@ public class AddContratoController {
 	public static AddContratoController instance;
 	private AddContratoAlq view;
 	
-	public static AddContratoController getController(){
-		if(instance == null)
-			instance = new AddContratoController();
-		return instance;
-	}
-	
-	public AddContratoController(){
+	@Inject
+	private AddContratoController(AddContratoAlq view){
 		
-		view = new AddContratoAlq();
+		this.view = view;
 	}
 	
 	public void showView(){
