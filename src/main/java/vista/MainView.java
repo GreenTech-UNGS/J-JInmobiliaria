@@ -163,7 +163,7 @@ public class MainView {
 		
 		btnPropiedades = new JButton("");
 		btnPropiedades.setToolTipText("Propiedades");
-		Image imgProp = new ImageIcon(this.getClass().getResource("/skylin.png")).getImage();
+		Image imgProp = new ImageIcon(this.getClass().getResource("/propiedades.png")).getImage();
 		btnPropiedades.setIcon(new ImageIcon(imgProp));
 		btnPropiedades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -184,7 +184,7 @@ public class MainView {
 		
 		btnContratos = new JButton("");
 		btnContratos.setToolTipText("Contratos");
-		Image imgCon = new ImageIcon(this.getClass().getResource("/contract.png")).getImage();
+		Image imgCon = new ImageIcon(this.getClass().getResource("/contratos.png")).getImage();
 		btnContratos.setIcon(new ImageIcon(imgCon));
 		
 		btnContratos.setPreferredSize(new Dimension(70, 70));
@@ -205,7 +205,7 @@ public class MainView {
 		btnInquilinos = new JButton("");
 		btnInquilinos.setToolTipText("Inquilinos");
 		
-		Image imgInq = new ImageIcon(this.getClass().getResource("/user.png")).getImage();
+		Image imgInq = new ImageIcon(this.getClass().getResource("/inquilinos.png")).getImage();
 		btnInquilinos.setIcon(new ImageIcon(imgInq));
 		
 		btnInquilinos.addActionListener(new ActionListener() {
@@ -226,7 +226,7 @@ public class MainView {
 		JButton btnPagos = new JButton("");
 		btnPagos.setToolTipText("Pagos");
 		
-		Image imgPago = new ImageIcon(this.getClass().getResource("/change.png")).getImage();
+		Image imgPago = new ImageIcon(this.getClass().getResource("/pagos.png")).getImage();
 		btnPagos.setIcon(new ImageIcon(imgPago));
 		
 		btnPagos.addActionListener(new ActionListener() {
@@ -239,7 +239,7 @@ public class MainView {
 		
 		JButton btnReportes = new JButton("");
 		btnReportes.setToolTipText("Reportes");
-		Image imgRep = new ImageIcon(this.getClass().getResource("/clipboard.png")).getImage();
+		Image imgRep = new ImageIcon(this.getClass().getResource("/reportes.png")).getImage();
 		btnReportes.setIcon(new ImageIcon(imgRep));
 		btnReportes.setPreferredSize(new Dimension(70, 70));
 		btnReportes.setBackground(new Color(0, 51, 51));
