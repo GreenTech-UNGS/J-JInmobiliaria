@@ -1,9 +1,23 @@
 package entities;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "precios")
 public class Precio {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int ID;
 	private float monto;
+	
+	@Enumerated(EnumType.ORDINAL)
 	private Moneda moneda;
 	
 	private Precio() {
