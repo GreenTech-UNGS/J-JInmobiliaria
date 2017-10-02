@@ -2,10 +2,10 @@ package entities;
 
 import org.joda.time.DateTime;
 
-public class HistoriaEstado {
-
+public class HitoriaEstadoCuota {
+	
 	private int ID;
 	private DateTime fecha;
-	private EstadoProp estado;
+	private EstadoCuota estado;
 	
 }
