@@ -135,6 +135,7 @@ public class AgregarCliente extends JDialog{
 	
 	private void fillTipoTel(JComboBox<String> comboBox){
 		
+		//TODO: Pasar al Controlador
 		Object[] tiposTel = Telefono.Tipo.values();
 		for(int i = 0 ; i < tiposTel.length ; i ++){
 			comboBox.addItem(tiposTel[i].toString());

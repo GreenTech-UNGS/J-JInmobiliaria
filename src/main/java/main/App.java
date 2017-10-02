@@ -19,6 +19,5 @@ public class App
 		MainView vista = MainView.getView();
 		MainViewController controlador = new MainViewController(vista);
 		controlador.showView();
-		
 	}
 }
