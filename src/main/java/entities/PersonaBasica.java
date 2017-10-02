@@ -24,7 +24,7 @@ import javax.persistence.Table;
 public class PersonaBasica {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int ID;
 	
 	private String nombre;

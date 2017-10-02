@@ -1,8 +1,8 @@
-package vistaController;
+package presentacion.controller;
 
 import com.google.inject.Inject;
 
-import vista.AddContratoAlq;
+import presentacion.vista.AddContratoAlq;
 
 public class AddContratoController {
 	

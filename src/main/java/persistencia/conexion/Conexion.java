@@ -6,6 +6,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.google.inject.Inject;
+
 public class Conexion {
 	
     private SessionFactory factory;
@@ -13,18 +15,19 @@ public class Conexion {
     
     private DBCredentialsEditor dbProps = DBCredentialsEditor.getEditor();
 	
-	public Conexion(){
+    @Inject
+	private Conexion(){
 
 		Configuration c = new Configuration();
 		c.configure(configuration);
 		
-		String url = "jdbc:mysql://" + dbProps.getIP() + ":" + dbProps.getPuerto() + "/tpi_g7";
+		String url = "jdbc:mariadb://" + dbProps.getIP() + ":" + dbProps.getPuerto() + "/inmobiliaria";
 		
 		c.setProperty("hibernate.connection.url", url);
 		c.setProperty("hibernate.connection.username", dbProps.getUsuario());
 		c.setProperty("hibernate.connection.password", dbProps.getPass());
 		
-	
+		System.out.println("asd");
     	factory = c.buildSessionFactory();
 	}
 	/*

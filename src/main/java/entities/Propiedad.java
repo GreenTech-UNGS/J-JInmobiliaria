@@ -24,7 +24,7 @@ import javax.persistence.Table;
 public class Propiedad {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID;
 	private String identificador;
 	private String calle;
@@ -34,7 +34,7 @@ public class Propiedad {
 	private String obsPublicas;
 	private String obsPrivadas;
 	
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@OneToMany(cascade = {CascadeType.ALL})
 	private List<HistoriaEstadoProp> estados;
 	
 	@OneToMany(cascade = {CascadeType.ALL})

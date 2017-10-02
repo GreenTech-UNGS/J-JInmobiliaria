@@ -1,8 +1,8 @@
-package vistaController;
+package presentacion.controller;
 
 import com.google.inject.Inject;
 
-import vista.MainView;
+import presentacion.vista.MainView;
 
 public class MainViewController {
 	
@@ -40,8 +40,8 @@ public class MainViewController {
 	}
 	
 	private void agregarCliente() {
-		
-		
+		this.clienteController.setModeNew();
+		this.clienteController.showView();
 		
 	}
 }

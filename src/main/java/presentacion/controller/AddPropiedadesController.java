@@ -1,8 +1,8 @@
-package vistaController;
+package presentacion.controller;
 
 import com.google.inject.Inject;
 
-import vista.AgregarPropiedad;
+import presentacion.vista.AgregarPropiedad;
 
 public class AddPropiedadesController {
 	

@@ -4,8 +4,8 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import misc.ProdModule;
-import vista.MainView;
-import vistaController.MainViewController;
+import presentacion.controller.MainViewController;
+import presentacion.vista.MainView;
 
 /**
  * Hello world!

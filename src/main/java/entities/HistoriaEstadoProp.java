@@ -14,7 +14,7 @@ import org.joda.time.DateTime;
 public class HistoriaEstadoProp {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID;
 	
 	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")

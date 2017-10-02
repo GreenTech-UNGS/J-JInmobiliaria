@@ -15,10 +15,10 @@ import javax.persistence.Table;
 public class Localidad {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID;
 	private String nombre;
-	@ManyToOne(cascade = {CascadeType.MERGE})
+	
 	@Enumerated(EnumType.STRING)
 	private Provincia provincia;
 	

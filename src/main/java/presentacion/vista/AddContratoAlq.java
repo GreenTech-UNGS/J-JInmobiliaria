@@ -1,4 +1,4 @@
-package vista;
+package presentacion.vista;
 
 import java.awt.Dimension;
 

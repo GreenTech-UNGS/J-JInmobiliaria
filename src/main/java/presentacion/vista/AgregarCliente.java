@@ -1,4 +1,4 @@
-package vista;
+package presentacion.vista;
 
 import java.awt.Dimension;
 
@@ -20,7 +20,7 @@ public class AgregarCliente extends JDialog{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
-	private JTextField textNombre, textApellido, textMail;
+	private JTextField textNombre, textApellido, textMail, textCredencial;
 	private JComboBox<String> comboCredencial, comboTel1, comboTel2, comboTel3;
 	private JButton btnGuardar, btnCancelar, btnBuscar;
 	private JTextField textTelefono1, textTelefono2, textTelefono3;
@@ -51,12 +51,8 @@ public class AgregarCliente extends JDialog{
 		panel.add(lblApellido);
 		
 		JLabel lblMail = new JLabel("Email:");
-		lblMail.setBounds(20, 120, 80, 20);
+		lblMail.setBounds(20, 145, 80, 20);
 		panel.add(lblMail);
-		
-		JLabel lblCredencial = new JLabel("Tipo Credencial:");
-		lblCredencial.setBounds(20, 160, 100, 20);
-		panel.add(lblCredencial);
 		
 		JLabel lblTelefono1 = new JLabel("Telefono 1:");
 		lblTelefono1.setBounds(20, 210, 80, 20);
@@ -81,7 +77,7 @@ public class AgregarCliente extends JDialog{
 		textApellido.setColumns(10);
 		
 		textMail = new JTextField();
-		textMail.setBounds(100, 120, 200, 20);
+		textMail.setBounds(100, 145, 200, 20);
 		panel.add(textMail);
 		textMail.setColumns(10);
 		
@@ -101,7 +97,7 @@ public class AgregarCliente extends JDialog{
 		panel.add(textTelefono3);
 		
 		comboCredencial = new JComboBox<String>();
-		comboCredencial.setBounds(140, 160, 80, 20);
+		comboCredencial.setBounds(20, 114, 61, 20);
 		panel.add(comboCredencial);
 		comboCredencial.addItem("DNI");
 		comboCredencial.addItem("CUIT");
@@ -130,11 +126,16 @@ public class AgregarCliente extends JDialog{
 		panel.add(btnCancelar);
 		
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(230, 160, 70, 20);
+		btnBuscar.setBounds(230, 9, 70, 20);
 		panel.add(btnBuscar);
+		
+		textCredencial = new JTextField();
+		textCredencial.setBounds(100, 114, 200, 20);
+		panel.add(textCredencial);
+		textCredencial.setColumns(10);
 
 	}
-	
+
 	private void fillTipoTel(JComboBox<String> comboBox){
 		
 		//TODO: Pasar al Controlador
@@ -142,6 +143,10 @@ public class AgregarCliente extends JDialog{
 		for(int i = 0 ; i < tiposTel.length ; i ++){
 			comboBox.addItem(tiposTel[i].toString());
 		}
+	}
+	
+	public JTextField getTextCredencial() {
+		return textCredencial;
 	}
 	
 	public JPanel getPanel() {

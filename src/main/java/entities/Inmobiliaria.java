@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Inmobiliaria {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID;
 	private String CUIT;
 	private String calle;
