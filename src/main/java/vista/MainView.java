@@ -22,6 +22,9 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 
 public class MainView {
 
@@ -79,7 +82,8 @@ public class MainView {
 		mnItem_1.add(mntmAlgo_2);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(138, 32, 623, 474);
+		panel_1.setBorder(null);
+		panel_1.setBounds(93, 32, 668, 474);
 		frmLpezLpez.getContentPane().add(panel_1);
 		panel_1.setLayout(new CardLayout(0, 0));
 		
@@ -120,7 +124,8 @@ public class MainView {
 		panelInquilinos.add(txtInquilinos);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(0, 0, 51));
+		panel_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBackground(new Color(47, 79, 79));
 		panel_2.setBounds(0, 21, 1016, 496);
 		frmLpezLpez.getContentPane().add(panel_2);
 		panel_2.setLayout(null);
@@ -132,11 +137,11 @@ public class MainView {
 		JLabel lblLabel = new JLabel("Label");
 		Image img = new ImageIcon(this.getClass().getResource("/calen.png")).getImage();
 		lblLabel.setIcon(new ImageIcon(img));
-		lblLabel.setBounds(769, 14, 237, 172);
+		lblLabel.setBounds(769, 11, 237, 175);
 		panel_2.add(lblLabel);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(769, 197, 237, 288);
+		panel.setBounds(769, 193, 237, 292);
 		panel_2.add(panel);
 		panel.setLayout(null);
 		
@@ -150,13 +155,16 @@ public class MainView {
 		panel.add(separator);
 		
 		JPanel panelMenu = new JPanel();
-		panelMenu.setBounds(10, 9, 118, 476);
+		panelMenu.setBounds(10, 9, 74, 476);
 		panel_2.add(panelMenu);
 		panelMenu.setMaximumSize(new Dimension(100, 100));
 		panelMenu.setMinimumSize(new Dimension(100, 100));
-		panelMenu.setBackground(new Color(0, 0, 51));
+		panelMenu.setBackground(new Color(47, 79, 79));
 		
-		btnPropiedades = new JButton("Propiedades");
+		btnPropiedades = new JButton("");
+		btnPropiedades.setToolTipText("Propiedades");
+		Image imgProp = new ImageIcon(this.getClass().getResource("/skylin.png")).getImage();
+		btnPropiedades.setIcon(new ImageIcon(imgProp));
 		btnPropiedades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panel_1.removeAll();
@@ -168,15 +176,19 @@ public class MainView {
 				panel_1.repaint();
 			}
 		});
-		btnPropiedades.setPreferredSize(new Dimension(120, 30));
+		btnPropiedades.setPreferredSize(new Dimension(70, 70));
 		btnPropiedades.setMaximumSize(new Dimension(100, 100));
 		btnPropiedades.setMinimumSize(new Dimension(100, 100));
-		btnPropiedades.setBackground(SystemColor.inactiveCaptionBorder);
+		btnPropiedades.setBackground(new Color(0, 51, 51));
 		panelMenu.add(btnPropiedades);
 		
-		btnContratos = new JButton("Contratos");
-		btnContratos.setPreferredSize(new Dimension(120, 30));
-		btnContratos.setBackground(SystemColor.inactiveCaptionBorder);
+		btnContratos = new JButton("");
+		btnContratos.setToolTipText("Contratos");
+		Image imgCon = new ImageIcon(this.getClass().getResource("/contract.png")).getImage();
+		btnContratos.setIcon(new ImageIcon(imgCon));
+		
+		btnContratos.setPreferredSize(new Dimension(70, 70));
+		btnContratos.setBackground(new Color(0, 51, 51));
 		btnContratos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panel_1.removeAll();
@@ -190,7 +202,12 @@ public class MainView {
 		});
 		panelMenu.add(btnContratos);
 		
-		btnInquilinos = new JButton("Inquilinos");
+		btnInquilinos = new JButton("");
+		btnInquilinos.setToolTipText("Inquilinos");
+		
+		Image imgInq = new ImageIcon(this.getClass().getResource("/user.png")).getImage();
+		btnInquilinos.setIcon(new ImageIcon(imgInq));
+		
 		btnInquilinos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panel_1.removeAll();
@@ -202,18 +219,31 @@ public class MainView {
 				panel_1.repaint();
 			}
 		});
-		btnInquilinos.setPreferredSize(new Dimension(120, 30));
-		btnInquilinos.setBackground(SystemColor.inactiveCaptionBorder);
+		btnInquilinos.setPreferredSize(new Dimension(70, 70));
+		btnInquilinos.setBackground(new Color(0, 51, 51));
 		panelMenu.add(btnInquilinos);
 		
-		JButton btnPagos = new JButton("Pagos");
+		JButton btnPagos = new JButton("");
+		btnPagos.setToolTipText("Pagos");
+		
+		Image imgPago = new ImageIcon(this.getClass().getResource("/change.png")).getImage();
+		btnPagos.setIcon(new ImageIcon(imgPago));
+		
 		btnPagos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnPagos.setPreferredSize(new Dimension(120, 30));
-		btnPagos.setBackground(SystemColor.inactiveCaptionBorder);
+		btnPagos.setPreferredSize(new Dimension(70, 70));
+		btnPagos.setBackground(new Color(0, 51, 51));
 		panelMenu.add(btnPagos);
+		
+		JButton btnReportes = new JButton("");
+		btnReportes.setToolTipText("Reportes");
+		Image imgRep = new ImageIcon(this.getClass().getResource("/clipboard.png")).getImage();
+		btnReportes.setIcon(new ImageIcon(imgRep));
+		btnReportes.setPreferredSize(new Dimension(70, 70));
+		btnReportes.setBackground(new Color(0, 51, 51));
+		panelMenu.add(btnReportes);
 	}
 	
 	public void show()
