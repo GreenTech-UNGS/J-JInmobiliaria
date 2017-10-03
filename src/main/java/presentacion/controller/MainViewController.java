@@ -21,9 +21,9 @@ public class MainViewController {
 		this.contratoController = contratoController;
 		this.clienteController = clienteController;
 		
-		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
-		this.view.getBtnContrato().addActionListener(e -> agregarContrato());
-		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());
+//		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
+//		this.view.getBtnContrato().addActionListener(e -> agregarContrato());
+//		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());
 	}
 
 
