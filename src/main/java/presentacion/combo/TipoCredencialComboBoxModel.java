@@ -28,4 +28,11 @@ public class TipoCredencialComboBoxModel extends BaseComboBoxModel<TipoCredencia
 		}
 	}
 
+	@Override
+	public void agregaElemento(TipoCredencial element) {
+		this.addElement(element.toString());
+		values.put(element.toString(), element);
+		
+	}
+
 }

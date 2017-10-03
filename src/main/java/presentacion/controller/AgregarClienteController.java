@@ -36,8 +36,9 @@ public class AgregarClienteController {
 		binder.bind("persona.apellido", view.getTextApellido());
 		binder.bind("persona.credencial", view.getTextCredencial());
 		binder.bind("persona.email", view.getTextMail());
-		binder.bind("persona.tipoCred", () -> TipoCredencial.valueOf(tipoCredencialModel.getSelected().toString()),
-				t -> tipoCredencialModel.setSelected(TipoCredencial.valueOf((String)t)));
+		binder.bind("persona.tipoCred",
+				tipoCredencialModel::getSelected,
+				t -> tipoCredencialModel.setSelected((TipoCredencial)t));
 		
 		fillCombos();
 		
@@ -49,13 +50,16 @@ public class AgregarClienteController {
 	}
 	
 	private void fillCombos() {
-		tipoCredencialModel.addElement(TipoCredencial.DNI.toString());
-		tipoCredencialModel.addElement(TipoCredencial.CUIT.toString());
+		tipoCredencialModel.agregaElemento(TipoCredencial.DNI);
+		tipoCredencialModel.agregaElemento(TipoCredencial.CUIT);
+		tipoCredencialModel.setSelected(TipoCredencial.DNI);
 		view.getComboCredencial().setModel(tipoCredencialModel);
 	}
 	
 	private void saveCurrentCliente() {
 		binder.fillBean();
+		System.out.println(currentCliente.getPersona().getTipoCred());
+		System.out.println(tipoCredencialModel.getSelected());
 		clienteService.saveCliente(currentCliente);
 	}
 	
