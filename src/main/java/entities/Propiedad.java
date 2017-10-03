@@ -62,5 +62,55 @@ public class Propiedad {
 		this.estados = new ArrayList<>();
 		this.tiposOfrecimiento = new HashSet<>();
 	}
+
+	public String getIdentificador() {
+		return identificador;
+	}
+
+	public void setIdentificador(String identificador) {
+		this.identificador = identificador;
+	}
+
+	public String getCalle() {
+		return calle;
+	}
+
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
+
+	public int getAltura() {
+		return altura;
+	}
+
+	public void setAltura(int altura) {
+		this.altura = altura;
+	}
+
+	public int getPiso() {
+		return piso;
+	}
+
+	public void setPiso(int piso) {
+		this.piso = piso;
+	}
+
+	public int getDpto() {
+		return dpto;
+	}
+
+	public void setDpto(int dpto) {
+		this.dpto = dpto;
+	}
+
+	public Precio getPrecioTentativo() {
+		return precioTentativo;
+	}
+
+	public void setPrecioTentativo(Precio precioTentativo) {
+		this.precioTentativo = precioTentativo;
+	}
+	
+	
 	
 }

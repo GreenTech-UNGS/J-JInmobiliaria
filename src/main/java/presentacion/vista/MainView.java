@@ -108,25 +108,36 @@ public class MainView {
 		
 		JPanel panelPagos = new JPanel();
 		panelContainer.add(panelPagos, "name_1283035568116550");
+		panelPagos.setLayout(null);
 		
-		JLabel lblPagos = new JLabel("Pagos");
-		panelPagos.add(lblPagos);
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(0, 0, 668, 474);
+		panelPagos.add(tabbedPane);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2.setBackground(new Color(47, 79, 79));
-		panel_2.setBounds(0, 21, 1016, 496);
-		frmLpezLpez.getContentPane().add(panel_2);
-		panel_2.setLayout(null);
+		JPanel panelPagoAlq = new JPanel();
+		tabbedPane.addTab("Pagos de alquileres", null, panelPagoAlq, null);
+		
+		JPanel panelPagoVen = new JPanel();
+		tabbedPane.addTab("Pagos de ventas", null, panelPagoVen, null);
+		
+		JPanel panelPagoProp = new JPanel();
+		tabbedPane.addTab("Pagos a propietarios", null, panelPagoProp, null);
+		
+		JPanel panelPrincipal = new JPanel();
+		panelPrincipal.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelPrincipal.setBackground(new Color(47, 79, 79));
+		panelPrincipal.setBounds(0, 21, 1016, 496);
+		frmLpezLpez.getContentPane().add(panelPrincipal);
+		panelPrincipal.setLayout(null);
 		
 		JPanel panelNotif = new JPanel();
 		panelNotif.setBounds(769, 193, 237, 292);
-		panel_2.add(panelNotif);
+		panelPrincipal.add(panelNotif);
 		panelNotif.setLayout(null);
 		
 		JPanel panelMenu = new JPanel();
 		panelMenu.setBounds(10, 9, 74, 476);
-		panel_2.add(panelMenu);
+		panelPrincipal.add(panelMenu);
 		panelMenu.setMaximumSize(new Dimension(100, 100));
 		panelMenu.setMinimumSize(new Dimension(100, 100));
 		panelMenu.setBackground(new Color(47, 79, 79));
@@ -156,13 +167,13 @@ public class MainView {
 		
 		JLabel label = new JLabel("New label");
 		label.setBounds(396, 5, 46, 14);
-		panel_2.add(label);
+		panelPrincipal.add(label);
 		
 		JLabel lblCalendario = new JLabel("Label");
 		Image img = new ImageIcon(this.getClass().getResource("/calen.png")).getImage();
 		lblCalendario.setIcon(new ImageIcon(img));
 		lblCalendario.setBounds(769, 11, 237, 175);
-		panel_2.add(lblCalendario);
+		panelPrincipal.add(lblCalendario);
 		
 		JLabel lblNotificaciones = new JLabel("Notificaciones:");
 		lblNotificaciones.setFont(new Font("Tahoma", Font.BOLD, 12));

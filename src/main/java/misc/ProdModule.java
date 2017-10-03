@@ -10,6 +10,7 @@ import persistencia.dao.hibernate.DaoHibernate;
 import persistencia.dao.iface.ClienteDao;
 import persistencia.dao.iface.Dao;
 import presentacion.controller.AddContAlqController;
+import presentacion.controller.AddContVenController;
 import presentacion.controller.AddPropiedadesController;
 import presentacion.controller.AgregarClienteController;
 import presentacion.vista.AddContratoAlq;
@@ -30,6 +31,7 @@ public class ProdModule implements Module{
 		binder.bind(MainView.class).in(Singleton.class);
 		binder.bind(AddPropiedadesController.class).in(Singleton.class);
 		binder.bind(AddContAlqController.class).in(Singleton.class);
+		binder.bind(AddContVenController.class).in(Singleton.class);
 		binder.bind(AgregarClienteController.class).in(Singleton.class);
 		
 		binder.bind(Conexion.class).in(Singleton.class);
