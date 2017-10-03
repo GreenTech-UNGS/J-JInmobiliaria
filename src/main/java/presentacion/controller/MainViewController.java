@@ -11,12 +11,12 @@ public class MainViewController {
 	AddPropiedadesController propiedadesController;
 	AddContAlqController contratoAlqController;
 	AddContVenController contratoVenController;
-	AgregarClienteController clienteController;
+	AddClienteController clienteController;
 	
 	@Inject
 	private MainViewController(MainView view, AddPropiedadesController propiedadesController,
 			AddContAlqController contratoAlqController, AddContVenController contratoVenController,
-			AgregarClienteController clienteController){
+			AddClienteController clienteController){
 		
 		this.view = view;
 		this.propiedadesController = propiedadesController;

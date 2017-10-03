@@ -12,7 +12,7 @@ import presentacion.combo.TipoTelefonoComboBoxModel;
 import presentacion.vista.AgregaTelefonoView;
 
 @Singleton
-public class AgregaTelefonoController {
+public class AddTelefonoController {
 	
 	AgregaTelefonoView view;
 	TipoTelefonoComboBoxModel comboModel;
@@ -21,8 +21,8 @@ public class AgregaTelefonoController {
 	Binder<Telefono> binder;
 	
 	@Inject
-	private AgregaTelefonoController(AgregaTelefonoView view,
-			TipoTelefonoComboBoxModel comboModel) {
+	private AddTelefonoController(AgregaTelefonoView view,
+                                  TipoTelefonoComboBoxModel comboModel) {
 		
 		this.view = view;
 		this.comboModel = comboModel;

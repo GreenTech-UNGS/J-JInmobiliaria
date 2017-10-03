@@ -20,6 +20,7 @@ public class ClienteService {
 		
 		Cliente toRet = new Cliente();
 		Persona p = new Persona();
+		p.setTipoCred(Persona.TipoCredencial.DNI);
 		toRet.setHabilitado(true);
 		
 		toRet.setPersona(p);
