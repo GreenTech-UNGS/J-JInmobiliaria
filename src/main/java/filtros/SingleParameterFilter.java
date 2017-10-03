@@ -14,7 +14,8 @@ public class SingleParameterFilter<T> {
 		GREATERTHAN,
 		GREATEREQUALTHAN,
 		LOWERTHAN,
-		LOWEREQUALTHAN
+		LOWEREQUALTHAN,
+		LIKE
 	}
 	
 	public SingleParameterFilter(String campo, Supplier<T> getter, Tipo t) {
