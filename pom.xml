@@ -5,7 +5,8 @@
   <groupId>GreenTech</groupId>
   <artifactId>J-JInmobiliaria</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+
+    <packaging>jar</packaging>
 
   <name>J-JInmobiliaria</name>
   <url>http://maven.apache.org</url>
@@ -100,7 +101,7 @@
     </dependency>
 
   </dependencies>
-  
+
   <build>
     <plugins>
       <plugin>

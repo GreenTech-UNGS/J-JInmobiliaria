@@ -11,21 +11,18 @@ public class MainViewController {
 	
 	private MainView view;
 	
-	private AddPropiedadesController propiedadesController;
-	private AddContAlqController contratoAlqController;
-	private AddContVenController contratoVenController;
-	private AgregarClienteController clienteController;
-	
-	//falta propiedadesservice para pedirle getAll
-	
 	private PropiedadesTableModel tableModel;
 	private List<Propiedad> TablaPropiedades; 
 	
+	AddPropiedadesController propiedadesController;
+	AddContAlqController contratoAlqController;
+	AddContVenController contratoVenController;
+	AddClienteController clienteController;	
 	
 	@Inject
 	private MainViewController(MainView view, AddPropiedadesController propiedadesController,
 			AddContAlqController contratoAlqController, AddContVenController contratoVenController,
-			AgregarClienteController clienteController){
+			AddClienteController clienteController){
 		
 		this.view = view;
 		this.tableModel = new PropiedadesTableModel();
