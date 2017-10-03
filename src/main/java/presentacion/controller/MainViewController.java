@@ -9,20 +9,24 @@ public class MainViewController {
 	private MainView view;
 	
 	AddPropiedadesController propiedadesController;
-	AddContratoController contratoController;
+	AddContAlqController contratoAlqController;
+	AddContVenController contratoVenController;
 	AgregarClienteController clienteController;
 	
 	@Inject
 	private MainViewController(MainView view, AddPropiedadesController propiedadesController,
-			AddContratoController contratoController, AgregarClienteController clienteController){
+			AddContAlqController contratoAlqController, AddContVenController contratoVenController,
+			AgregarClienteController clienteController){
 		
 		this.view = view;
 		this.propiedadesController = propiedadesController;
-		this.contratoController = contratoController;
+		this.contratoAlqController = contratoAlqController;
+		this.contratoVenController = contratoVenController;
 		this.clienteController = clienteController;
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
-		this.view.getBtnContrato().addActionListener(e -> agregarContrato());
+		this.view.getBtnContratoAlq().addActionListener(e -> agregarContratoAlq());
+		this.view.getBtnContratoVen().addActionListener(e -> agregarContratoVen());
 		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());
 	}
 
@@ -35,8 +39,12 @@ public class MainViewController {
 		this.propiedadesController.showView();
 	}
 	
-	private void agregarContrato() {
-		this.contratoController.showView();
+	private void agregarContratoAlq() {
+		this.contratoAlqController.showView();
+	}
+	
+	private void agregarContratoVen() {
+		this.contratoVenController.showView();
 	}
 	
 	private void agregarCliente() {

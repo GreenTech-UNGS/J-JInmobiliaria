@@ -4,13 +4,13 @@ import com.google.inject.Inject;
 
 import presentacion.vista.AddContratoAlq;
 
-public class AddContratoController {
+public class AddContAlqController {
 	
-	public static AddContratoController instance;
+	public static AddContAlqController instance;
 	private AddContratoAlq view;
 	
 	@Inject
-	private AddContratoController(AddContratoAlq view){
+	private AddContAlqController(AddContratoAlq view){
 		
 		this.view = view;
 	}

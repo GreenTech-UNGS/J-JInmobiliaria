@@ -24,30 +24,38 @@ import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.border.TitledBorder;
 
-import com.google.inject.Inject;
-
-import javax.swing.border.LineBorder;
-import javax.swing.border.MatteBorder;
-
 public class MainView {
+
+	private static MainView instance;
 	
 	private JFrame frmLpezLpez;
 	private JTextField txtInquilinos;
+	private JPanel panelReportes;
 	
-	JButton btnPropiedades;
-	JButton btnContratos;
-	JButton btnInquilinos;
-	JButton btnAgregarPropiedad;
-	JButton btnAgregarContrato;
+	private JButton btnPropiedades;
+	private JButton btnContratos;
+	private JButton btnInquilinos;
+	private JButton btnAgregarPropiedad;
+	private JButton btnAgregarContratoAlq;
+	private JButton btnAgregarContratoVen;
+	private JButton btnPagos;
 	private JButton btnAgregarCliente;
 
-	@Inject
-	private MainView() {
+	
+	public static MainView getView(){
+		if(instance == null)
+			instance = new MainView();
+		return instance;
+
+	}
+	
+	public MainView() {
 		initialize();
 	}
 
 
 	private void initialize() {
+		
 		frmLpezLpez = new JFrame();
 		frmLpezLpez.setBackground(new Color(255, 255, 255));
 		frmLpezLpez.setTitle("L\u00F3pez & L\u00F3pez");
@@ -55,6 +63,76 @@ public class MainView {
 		frmLpezLpez.setBounds(100, 100, 1022, 546);
 		frmLpezLpez.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmLpezLpez.getContentPane().setLayout(null);
+		frmLpezLpez.setLocationRelativeTo(null);
+		
+		JPanel panelContainer = new JPanel();
+		panelContainer.setBorder(null);
+		panelContainer.setBounds(93, 32, 668, 474);
+		frmLpezLpez.getContentPane().add(panelContainer);
+		panelContainer.setLayout(new CardLayout(0, 0));
+		
+		JPanel panelPropiedades = new JPanel();
+		panelContainer.add(panelPropiedades, "name_1084621145273363");
+		panelPropiedades.setLayout(null);
+		
+		JPanel panelContratos = new JPanel();
+		panelContainer.add(panelContratos, "name_1084753155363088");
+		panelContratos.setLayout(new CardLayout(0, 0));
+		
+		JTabbedPane PanelTablas = new JTabbedPane(JTabbedPane.TOP);
+		panelContratos.add(PanelTablas, "name_1165565257819909");
+		
+		JPanel contratoAlquiler = new JPanel();
+		PanelTablas.addTab("Contratos de alquiler", null, contratoAlquiler, null);
+		
+		JPanel contratoVenta = new JPanel();
+		PanelTablas.addTab("Contratos de venta", null, contratoVenta, null);
+		
+		this.btnAgregarContratoVen = new JButton("Agregar contrato de venta");
+		contratoVenta.add(btnAgregarContratoVen);
+		
+		btnAgregarContratoAlq = new JButton("Agregar contrato de aquiler");
+		btnAgregarContratoAlq.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		contratoAlquiler.add(btnAgregarContratoAlq);
+		
+		JPanel panelInquilinos = new JPanel();
+		panelContainer.add(panelInquilinos, "name_1084846370736461");
+		
+		txtInquilinos = new JTextField();
+		txtInquilinos.setText("Inquilinos");
+		txtInquilinos.setColumns(10);
+		panelInquilinos.add(txtInquilinos);
+		
+		JPanel panelPagos = new JPanel();
+		panelContainer.add(panelPagos, "name_1283035568116550");
+		
+		JLabel lblPagos = new JLabel("Pagos");
+		panelPagos.add(lblPagos);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBackground(new Color(47, 79, 79));
+		panel_2.setBounds(0, 21, 1016, 496);
+		frmLpezLpez.getContentPane().add(panel_2);
+		panel_2.setLayout(null);
+		
+		JPanel panelNotif = new JPanel();
+		panelNotif.setBounds(769, 193, 237, 292);
+		panel_2.add(panelNotif);
+		panelNotif.setLayout(null);
+		
+		JPanel panelMenu = new JPanel();
+		panelMenu.setBounds(10, 9, 74, 476);
+		panel_2.add(panelMenu);
+		panelMenu.setMaximumSize(new Dimension(100, 100));
+		panelMenu.setMinimumSize(new Dimension(100, 100));
+		panelMenu.setBackground(new Color(47, 79, 79));
+		
+		this.panelReportes = new JPanel();
+		panelContainer.add(panelReportes, "name_1283074869718816");
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBackground(SystemColor.inactiveCaption);
@@ -76,88 +154,27 @@ public class MainView {
 		JMenuItem mntmAlgo_2 = new JMenuItem("Algo3");
 		mnItem_1.add(mntmAlgo_2);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(null);
-		panel_1.setBounds(93, 32, 668, 474);
-		frmLpezLpez.getContentPane().add(panel_1);
-		panel_1.setLayout(new CardLayout(0, 0));
-		
-		JPanel panelPropiedades = new JPanel();
-		panel_1.add(panelPropiedades, "name_1084621145273363");
-		panelPropiedades.setLayout(null);
-		
-		btnAgregarPropiedad = new JButton("Agregar Propiedad");
-		btnAgregarPropiedad.setBounds(10, 11, 149, 32);
-		panelPropiedades.add(btnAgregarPropiedad);
-		
-		JPanel panelContratos = new JPanel();
-		panel_1.add(panelContratos, "name_1084753155363088");
-		panelContratos.setLayout(new CardLayout(0, 0));
-		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		panelContratos.add(tabbedPane, "name_1165565257819909");
-		
-		JPanel contratoAlquiler = new JPanel();
-		tabbedPane.addTab("Contratos de alquiler", null, contratoAlquiler, null);
-		
-		btnAgregarContrato = new JButton("Agregar contrato de aquiler");
-		btnAgregarContrato.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		contratoAlquiler.add(btnAgregarContrato);
-		
-		JPanel contratoVenta = new JPanel();
-		tabbedPane.addTab("Contratos de venta", null, contratoVenta, null);
-		
-		JPanel panelInquilinos = new JPanel();
-		panel_1.add(panelInquilinos, "name_1084846370736461");
-		
-		btnAgregarCliente = new JButton("Agregar cliente");
-		panelInquilinos.add(btnAgregarCliente);
-		
-		txtInquilinos = new JTextField();
-		txtInquilinos.setText("Inquilinos");
-		txtInquilinos.setColumns(10);
-		panelInquilinos.add(txtInquilinos);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2.setBackground(new Color(47, 79, 79));
-		panel_2.setBounds(0, 21, 1016, 496);
-		frmLpezLpez.getContentPane().add(panel_2);
-		panel_2.setLayout(null);
-		
 		JLabel label = new JLabel("New label");
 		label.setBounds(396, 5, 46, 14);
 		panel_2.add(label);
 		
-		JLabel lblLabel = new JLabel("Label");
+		JLabel lblCalendario = new JLabel("Label");
 		Image img = new ImageIcon(this.getClass().getResource("/calen.png")).getImage();
-		lblLabel.setIcon(new ImageIcon(img));
-		lblLabel.setBounds(769, 11, 237, 175);
-		panel_2.add(lblLabel);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(769, 193, 237, 292);
-		panel_2.add(panel);
-		panel.setLayout(null);
+		lblCalendario.setIcon(new ImageIcon(img));
+		lblCalendario.setBounds(769, 11, 237, 175);
+		panel_2.add(lblCalendario);
 		
 		JLabel lblNotificaciones = new JLabel("Notificaciones:");
 		lblNotificaciones.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNotificaciones.setBounds(75, 11, 104, 14);
-		panel.add(lblNotificaciones);
+		panelNotif.add(lblNotificaciones);
+		
+		JLabel lblReportes = new JLabel("Reportes");
+		panelReportes.add(lblReportes);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 37, 217, 14);
-		panel.add(separator);
-		
-		JPanel panelMenu = new JPanel();
-		panelMenu.setBounds(10, 9, 74, 476);
-		panel_2.add(panelMenu);
-		panelMenu.setMaximumSize(new Dimension(100, 100));
-		panelMenu.setMinimumSize(new Dimension(100, 100));
-		panelMenu.setBackground(new Color(47, 79, 79));
+		panelNotif.add(separator);
 		
 		btnPropiedades = new JButton("");
 		btnPropiedades.setToolTipText("Propiedades");
@@ -165,13 +182,13 @@ public class MainView {
 		btnPropiedades.setIcon(new ImageIcon(imgProp));
 		btnPropiedades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panel_1.removeAll();
-				panel_1.repaint();
-				panel_1.revalidate();
+				panelContainer.removeAll();
+				panelContainer.repaint();
+				panelContainer.revalidate();
 				
-				panel_1.add(panelPropiedades);
-				panel_1.repaint();
-				panel_1.repaint();
+				panelContainer.add(panelPropiedades);
+				panelContainer.repaint();
+				panelContainer.repaint();
 			}
 		});
 		btnPropiedades.setPreferredSize(new Dimension(70, 70));
@@ -189,13 +206,13 @@ public class MainView {
 		btnContratos.setBackground(new Color(0, 51, 51));
 		btnContratos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				panel_1.removeAll();
-				panel_1.repaint();
-				panel_1.revalidate();
+				panelContainer.removeAll();
+				panelContainer.repaint();
+				panelContainer.revalidate();
 				
-				panel_1.add(panelContratos);
-				panel_1.repaint();
-				panel_1.repaint();
+				panelContainer.add(panelContratos);
+				panelContainer.repaint();
+				panelContainer.repaint();
 			}
 		});
 		panelMenu.add(btnContratos);
@@ -208,20 +225,20 @@ public class MainView {
 		
 		btnInquilinos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panel_1.removeAll();
-				panel_1.repaint();
-				panel_1.revalidate();
+				panelContainer.removeAll();
+				panelContainer.repaint();
+				panelContainer.revalidate();
 				
-				panel_1.add(panelInquilinos);
-				panel_1.repaint();
-				panel_1.repaint();
+				panelContainer.add(panelInquilinos);
+				panelContainer.repaint();
+				panelContainer.repaint();
 			}
 		});
 		btnInquilinos.setPreferredSize(new Dimension(70, 70));
 		btnInquilinos.setBackground(new Color(0, 51, 51));
 		panelMenu.add(btnInquilinos);
 		
-		JButton btnPagos = new JButton("");
+		this.btnPagos = new JButton("");
 		btnPagos.setToolTipText("Pagos");
 		
 		Image imgPago = new ImageIcon(this.getClass().getResource("/pagos.png")).getImage();
@@ -229,6 +246,13 @@ public class MainView {
 		
 		btnPagos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				panelContainer.removeAll();
+				panelContainer.repaint();
+				panelContainer.revalidate();
+				
+				panelContainer.add(panelPagos);
+				panelContainer.repaint();
+				panelContainer.repaint();
 			}
 		});
 		btnPagos.setPreferredSize(new Dimension(70, 70));
@@ -236,19 +260,32 @@ public class MainView {
 		panelMenu.add(btnPagos);
 		
 		JButton btnReportes = new JButton("");
+		btnReportes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelContainer.removeAll();
+				panelContainer.repaint();
+				panelContainer.revalidate();
+				
+				panelContainer.add(panelReportes);
+				panelContainer.repaint();
+				panelContainer.repaint();
+			}
+		});
 		btnReportes.setToolTipText("Reportes");
 		Image imgRep = new ImageIcon(this.getClass().getResource("/reportes.png")).getImage();
 		btnReportes.setIcon(new ImageIcon(imgRep));
 		btnReportes.setPreferredSize(new Dimension(70, 70));
 		btnReportes.setBackground(new Color(0, 51, 51));
 		panelMenu.add(btnReportes);
+		
+		btnAgregarPropiedad = new JButton("Agregar Propiedad");
+		btnAgregarPropiedad.setBounds(10, 11, 149, 32);
+		panelPropiedades.add(btnAgregarPropiedad);
+		
+		btnAgregarCliente = new JButton("Agregar cliente");
+		panelInquilinos.add(btnAgregarCliente);
 	}
 	
-	public JButton getBtnAgregarCliente() {
-		return btnAgregarCliente;
-	}
-
-
 	public void show()
 	{
 		this.frmLpezLpez.setVisible(true);
@@ -258,7 +295,14 @@ public class MainView {
 		return this.btnAgregarPropiedad;
 	}
 	
-	public  JButton getBtnContrato(){
-		return this.btnAgregarContrato;
+	public  JButton getBtnContratoAlq(){
+		return this.btnAgregarContratoAlq;
+	}
+	public  JButton getBtnContratoVen(){
+		return this.btnAgregarContratoVen;
+	}
+	
+	public JButton getBtnAgregarCliente() {
+		return btnAgregarCliente;
 	}
 }

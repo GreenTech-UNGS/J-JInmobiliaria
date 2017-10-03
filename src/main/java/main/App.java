@@ -5,7 +5,6 @@ import com.google.inject.Injector;
 
 import misc.ProdModule;
 import presentacion.controller.MainViewController;
-import presentacion.vista.MainView;
 
 /**
  * Hello world!
