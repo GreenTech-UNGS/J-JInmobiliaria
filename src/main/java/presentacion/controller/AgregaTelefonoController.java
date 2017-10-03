@@ -73,15 +73,13 @@ public class AgregaTelefonoController {
 	}
 	
 	private void cambiaOpcion() {
-		if(comboModel.getSelected().equals(Tipo.OTRO)) {
-			view.getLblNotas().setVisible(true);
-			view.getTextDescr().setVisible(true);
-		}
-		else {
-			view.getLblNotas().setVisible(false);
-			view.getTextDescr().setVisible(false);
+		boolean otroSelected = comboModel.getSelected().equals(Tipo.OTRO); 
+		view.getLblNotas().setVisible(otroSelected);
+		view.getTextDescr().setVisible(otroSelected);
+		view.getTextDescr().setEnabled(otroSelected);		
+		if (! otroSelected)
 			view.getTextDescr().setText("");
-		}
+		
 	}
 	
 }
