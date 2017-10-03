@@ -134,6 +134,11 @@ public class AgregaTelefonoView extends JDialog{
 		panel.add(btnCancelar);
 	}
 
+
+	public JLabel getLblNotas() {
+		return lblNotas;
+	}
+	
 	public JTextField getTextTelefono() {
 		return textTelefono;
 	}

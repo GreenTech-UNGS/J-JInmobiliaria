@@ -38,8 +38,6 @@ public class AgregaTelefonoController {
 		view.getBtnOk().addActionListener(e -> aceptar());
 		view.getBtnCancelar().addActionListener(e -> cancelar());
 		view.getComboTipo().addActionListener(e -> cambiaOpcion());
-		
-		
 	}
 	
 	public Telefono getTelefono() {
@@ -76,10 +74,12 @@ public class AgregaTelefonoController {
 	
 	private void cambiaOpcion() {
 		if(comboModel.getSelected().equals(Tipo.OTRO)) {
-			view.getTextDescr().setEnabled(true);
+			view.getLblNotas().setVisible(true);
+			view.getTextDescr().setVisible(true);
 		}
 		else {
-			view.getTextDescr().setEnabled(false);
+			view.getLblNotas().setVisible(false);
+			view.getTextDescr().setVisible(false);
 			view.getTextDescr().setText("");
 		}
 	}
