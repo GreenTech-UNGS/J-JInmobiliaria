@@ -25,13 +25,17 @@ import javax.swing.JTabbedPane;
 import javax.swing.border.TitledBorder;
 
 import com.google.inject.Inject;
+import javax.swing.BoxLayout;
+import javax.swing.JScrollPane;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.JTable;
 
 public class MainView {
 
 	private static MainView instance;
 	
 	private JFrame frmLpezLpez;
-	private JTextField txtInquilinos;
 	private JPanel panelReportes;
 	
 	private JButton btnPropiedades;
@@ -42,6 +46,7 @@ public class MainView {
 	private JButton btnAgregarContratoVen;
 	private JButton btnPagos;
 	private JButton btnAgregarCliente;
+	private JTable tablePropiedades;
 
 	@Inject
 	public MainView() {
@@ -68,7 +73,6 @@ public class MainView {
 		
 		JPanel panelPropiedades = new JPanel();
 		panelContainer.add(panelPropiedades, "name_1084621145273363");
-		panelPropiedades.setLayout(null);
 		
 		JPanel panelContratos = new JPanel();
 		panelContainer.add(panelContratos, "name_1084753155363088");
@@ -95,11 +99,20 @@ public class MainView {
 		
 		JPanel panelInquilinos = new JPanel();
 		panelContainer.add(panelInquilinos, "name_1084846370736461");
+		panelInquilinos.setLayout(null);
 		
-		txtInquilinos = new JTextField();
-		txtInquilinos.setText("Inquilinos");
-		txtInquilinos.setColumns(10);
-		panelInquilinos.add(txtInquilinos);
+		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane_2.setBounds(0, 0, 668, 474);
+		panelInquilinos.add(tabbedPane_2);
+		
+		JPanel TabCliente = new JPanel();
+		tabbedPane_2.addTab("Clientes", null, TabCliente, null);
+		
+		btnAgregarCliente = new JButton("Agregar cliente");
+		TabCliente.add(btnAgregarCliente);
+		
+		JPanel TabPropietarios = new JPanel();
+		tabbedPane_2.addTab("Propietarios", null, TabPropietarios, null);
 		
 		JPanel panelPagos = new JPanel();
 		panelContainer.add(panelPagos, "name_1283035568116550");
@@ -283,15 +296,39 @@ public class MainView {
 		btnReportes.setPreferredSize(new Dimension(70, 70));
 		btnReportes.setBackground(new Color(0, 51, 51));
 		panelMenu.add(btnReportes);
+		panelPropiedades.setLayout(new BoxLayout(panelPropiedades, BoxLayout.Y_AXIS));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		panelPropiedades.add(scrollPane);
+		
+		tablePropiedades = new JTable();
+		scrollPane.setViewportView(tablePropiedades);
+		
+		JPanel panelButtons = new JPanel();
+		panelPropiedades.add(panelButtons);
+		panelButtons.setLayout(new BoxLayout(panelButtons, BoxLayout.X_AXIS));
+		
+		Component horizontalGlue = Box.createHorizontalGlue();
+		panelButtons.add(horizontalGlue);
 		
 		btnAgregarPropiedad = new JButton("Agregar Propiedad");
-		btnAgregarPropiedad.setBounds(10, 11, 149, 32);
-		panelPropiedades.add(btnAgregarPropiedad);
+		panelButtons.add(btnAgregarPropiedad);
 		
-		btnAgregarCliente = new JButton("Agregar cliente");
-		panelInquilinos.add(btnAgregarCliente);
+		Component horizontalGlue_1 = Box.createHorizontalGlue();
+		panelButtons.add(horizontalGlue_1);
+		
+		JButton btnBorrarPropiedad = new JButton("Borrar Propiedad");
+		panelButtons.add(btnBorrarPropiedad);
+		
+		Component horizontalGlue_2 = Box.createHorizontalGlue();
+		panelButtons.add(horizontalGlue_2);
 	}
 	
+	public JTable getTablePropiedades() {
+		return tablePropiedades;
+	}
+
+
 	public void show()
 	{
 		this.frmLpezLpez.setVisible(true);

@@ -11,12 +11,16 @@ public class MainViewController {
 	
 	private MainView view;
 	
-	AddPropiedadesController propiedadesController;
-	AddContAlqController contratoAlqController;
-	AddContVenController contratoVenController;
-	AgregarClienteController clienteController;
+	private AddPropiedadesController propiedadesController;
+	private AddContAlqController contratoAlqController;
+	private AddContVenController contratoVenController;
+	private AgregarClienteController clienteController;
+	
+	//falta propiedadesservice para pedirle getAll
+	
 	private PropiedadesTableModel tableModel;
-	private List<Propiedad> propiedadesTabla; 
+	private List<Propiedad> TablaPropiedades; 
+	
 	
 	@Inject
 	private MainViewController(MainView view, AddPropiedadesController propiedadesController,
@@ -35,6 +39,15 @@ public class MainViewController {
 		this.view.getBtnContratoAlq().addActionListener(e -> agregarContratoAlq());
 		this.view.getBtnContratoVen().addActionListener(e -> agregarContratoVen());
 		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());
+		
+		fillTable();
+	}
+
+
+	private void fillTable() {
+		
+		this.view.getTablePropiedades().setModel(tableModel);
+		
 	}
 
 

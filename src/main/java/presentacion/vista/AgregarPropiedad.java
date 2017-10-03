@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import com.google.inject.Inject;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -32,6 +33,7 @@ public class AgregarPropiedad extends JDialog{
 	private JTextField textField_6;
 	private JTextField textField_7;
 	private JTextField textField_8;
+	private JTextField textField_9;
 
 	@Inject
 	private AgregarPropiedad() {
@@ -110,11 +112,6 @@ public class AgregarPropiedad extends JDialog{
 		comboBox.setBounds(395, 59, 149, 20);
 		AgregarPropiedad.add(comboBox);
 		
-		@SuppressWarnings("rawtypes")
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(395, 87, 149, 20);
-		AgregarPropiedad.add(comboBox_1);
-		
 		textField_4 = new JTextField();
 		textField_4.setBounds(92, 87, 149, 20);
 		AgregarPropiedad.add(textField_4);
@@ -136,10 +133,10 @@ public class AgregarPropiedad extends JDialog{
 		btnCancelar.setBounds(293, 563, 123, 42);
 		AgregarPropiedad.add(btnCancelar);
 		
-		JLabel lblTipoDeMoneda = new JLabel("Tipo de moneda:");
-		lblTipoDeMoneda.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblTipoDeMoneda.setBounds(6, 112, 85, 14);
-		AgregarPropiedad.add(lblTipoDeMoneda);
+		JLabel lblMoneda = new JLabel("Moneda:");
+		lblMoneda.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblMoneda.setBounds(6, 112, 85, 14);
+		AgregarPropiedad.add(lblMoneda);
 		
 		@SuppressWarnings("rawtypes")
 		JComboBox comboBox_2 = new JComboBox();
@@ -238,5 +235,23 @@ public class AgregarPropiedad extends JDialog{
 		JTextArea textArea_1 = new JTextArea();
 		textArea_1.setBounds(20, 480, 524, 53);
 		AgregarPropiedad.add(textArea_1);
+		
+		textField_9 = new JTextField();
+		textField_9.setBounds(395, 84, 96, 20);
+		AgregarPropiedad.add(textField_9);
+		textField_9.setColumns(10);
+		
+		JButton btnOjito = new JButton("New button");
+		btnOjito.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(btnOjito, "Propietarios");
+			}
+		});
+		btnOjito.setBounds(493, 83, 26, 23);
+		AgregarPropiedad.add(btnOjito);
+		
+		JButton btnLupita = new JButton("New button");
+		btnLupita.setBounds(518, 83, 26, 23);
+		AgregarPropiedad.add(btnLupita);
 	}
 }
