@@ -25,7 +25,9 @@ public class AgregarCliente extends JDialog{
 	private JTextField textNombre, textApellido, textMail, textCredencial;
 	private JComboBox<String> comboCredencial;
 	private JButton btnGuardar, btnCancelar, btnBuscar;
-	private JTable table;
+	private JTable tableTelefono;
+	private JButton btnAgregarTelefono;
+	private JButton btnBorrarTelefono;
 
 	@Inject
 	private AgregarCliente() {
@@ -37,6 +39,7 @@ public class AgregarCliente extends JDialog{
 		setModal(true);
 		setSize(new Dimension(350, 420));
 		setResizable(false);
+		setLocationRelativeTo(null);
 		
 		panel = new JPanel();
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -98,12 +101,16 @@ public class AgregarCliente extends JDialog{
 		tablePanel.setBounds(20, 201, 304, 83);
 		panel.add(tablePanel);
 		
-		table = new JTable();
-		tablePanel.setViewportView(table);
+		tableTelefono = new JTable();
+		tablePanel.setViewportView(tableTelefono);
 		
-		JButton btnAgregarTelefono = new JButton("Agregar Telefono");
+		btnAgregarTelefono = new JButton("Agregar Telefono");
 		btnAgregarTelefono.setBounds(189, 295, 123, 23);
 		panel.add(btnAgregarTelefono);
+		
+		btnBorrarTelefono = new JButton("Borrar Telefono");
+		btnBorrarTelefono.setBounds(20, 296, 135, 23);
+		panel.add(btnBorrarTelefono);
 
 	}
 	
@@ -142,6 +149,18 @@ public class AgregarCliente extends JDialog{
 
 	public JButton getBtnBuscar() {
 		return btnBuscar;
+	}
+
+	public JButton getBtnAgregarTelefono() {
+		return btnAgregarTelefono;
+	}
+
+	public JTable getTableTelefono() {
+		return tableTelefono;
+	}
+
+	public JButton getBtnBorrarTelefono() {
+		return btnBorrarTelefono;
 	}
 
 }
