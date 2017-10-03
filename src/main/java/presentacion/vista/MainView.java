@@ -24,6 +24,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.border.TitledBorder;
 
+import com.google.inject.Inject;
+
 public class MainView {
 
 	private static MainView instance;
@@ -41,14 +43,7 @@ public class MainView {
 	private JButton btnPagos;
 	private JButton btnAgregarCliente;
 
-	
-	public static MainView getView(){
-		if(instance == null)
-			instance = new MainView();
-		return instance;
-
-	}
-	
+	@Inject
 	public MainView() {
 		initialize();
 	}

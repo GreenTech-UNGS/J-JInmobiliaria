@@ -1,6 +1,8 @@
 package misc;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,10 +79,20 @@ public class Binder<T> {
 
 		Field f = null;
 		Class<?> cAux = o.getClass();
-		while(f == null | cAux != null) {
-			f = o.getClass().getDeclaredField(fields[i]);
+		
+		while(cAux != null && f == null) {
+			Field[] declaredFields = cAux.getDeclaredFields();
+			for(int j = 0; j < declaredFields.length; j++)
+				if(fields[i].equals(declaredFields[j].getName())){
+					f = declaredFields[j];
+					break;
+			}
+			
 			cAux = cAux.getSuperclass();
 		}
+		
+		if(f == null) throw new RuntimeException("Propiedad no encontrada " + fields[i]);
+		
 		if(!f.isAccessible()) f.setAccessible(true);
 
 		if(fields.length == i + 1){
@@ -118,7 +130,24 @@ public class Binder<T> {
 	
 	private void setFormFields(String key, String[] fields, Object o, int i) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException{
 		
-		Field f = o.getClass().getDeclaredField(fields[i]);
+		Field f = null;
+		Class<?> cAux = o.getClass();
+		
+		while(cAux != null && f == null) {
+			Field[] declaredFields = cAux.getDeclaredFields();
+			for(int j = 0; j < declaredFields.length; j++)
+				if(fields[i].equals(declaredFields[j].getName())){
+					f = declaredFields[j];
+					break;
+				
+			}
+			
+			cAux = cAux.getSuperclass();
+			
+		}
+		
+		if(f == null) throw new RuntimeException("Propiedad no encontrada " + fields[i]);
+		
 		if(!f.isAccessible()) f.setAccessible(true);
 
 		if(fields.length == i + 1){

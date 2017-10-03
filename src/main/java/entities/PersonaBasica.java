@@ -68,6 +68,10 @@ public class PersonaBasica {
 	public void insertTelefono(Telefono t) {
 		this.telefonos.add(t);
 	}
+
+	public int getID() {
+		return ID;
+	}
 	
 	
 }

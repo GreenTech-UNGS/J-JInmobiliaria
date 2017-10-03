@@ -4,21 +4,27 @@ import java.util.List;
 
 import com.google.inject.Singleton;
 
-import entities.Persona.TipoCredencial;
+import entities.Telefono;
+import entities.Telefono.Tipo;
 
 @Singleton
-public class TipoCredencialComboBoxModel extends BaseComboBoxModel<TipoCredencial>{
+public class TipoTelefonoComboBoxModel extends BaseComboBoxModel<Telefono.Tipo>{
 
 	@Override
-	public void actualize(List<TipoCredencial> list) {
-		
+	public void actualize(List<Tipo> list) {
 		list.forEach(e -> this.addElement(e.toString()));
 		list.forEach(e -> values.put(e.toString(), e));
+	}
+
+	@Override
+	public void agregaElemento(Tipo element) {
+		this.addElement(element.toString());
+		values.put(element.toString(), element);
 		
 	}
 
 	@Override
-	public void setSelected(TipoCredencial toSelect) {
+	public void setSelected(Tipo toSelect) {
 		if(toSelect == null){
 			this.setSelectedItem(null);
 		}
@@ -29,13 +35,9 @@ public class TipoCredencialComboBoxModel extends BaseComboBoxModel<TipoCredencia
 		this.setSelectedItem(nombre);
 		
 		}
-	}
-
-	@Override
-	public void agregaElemento(TipoCredencial element) {
-		this.addElement(element.toString());
-		values.put(element.toString(), element);
 		
 	}
 
+	
+	
 }

@@ -22,7 +22,7 @@ public class Telefono {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID;
-	private long numero;
+	private String numero;
 	
 	@Enumerated(EnumType.ORDINAL)
 	private Tipo tipo;
@@ -32,11 +32,11 @@ public class Telefono {
 		// TODO Auto-generated constructor stub
 	}
 
-	public long getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(long numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
