@@ -17,6 +17,7 @@ import entities.TipoOfrecimiento;
 import misc.Binder;
 import model.LocalidadService;
 import model.PropiedadService;
+import model.PropietarioService;
 import presentacion.combo.LocalidadComboBoxModel;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.ProvinciaComboBoxModel;
@@ -31,6 +32,7 @@ public class AddPropiedadesController {
 	private TipoOfrecimientoComboBoxModel tipoOfrCombo;
 	private LocalidadComboBoxModel localidadCombo;
 	private PropiedadService propiedadService;
+	private PropietarioService propietarioService;
 	private LocalidadService localidadService;
 	
 	Propiedad currentPropiedad;
@@ -39,11 +41,13 @@ public class AddPropiedadesController {
 	@Inject
 	private AddPropiedadesController(AgregarPropiedad view,
 									PropiedadService propiedadService,
+									PropietarioService propietarioService,
 									LocalidadService localidadService){
 		
 		this.view = view;
 		this.propiedadService = propiedadService;
 		this.localidadService = localidadService;
+		this.propietarioService = propietarioService;
 		this.binder = new Binder<>();
 		
 		this.provCombo = new ProvinciaComboBoxModel();
@@ -81,6 +85,7 @@ public class AddPropiedadesController {
 		
 		view.getBtnGuardar().addActionListener(e -> savePropiedad());
 		view.getBttAddLoc().addActionListener(e -> agregaLocalidad());
+		view.getBttAddPropietario().addActionListener(e -> agregaPropietario());
 		view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
 		
 		
@@ -117,6 +122,12 @@ public class AddPropiedadesController {
 		localidadService.addNewLocalidad(nombreLoc, provCombo.getSelected());
 		
 		cambiaLocalidades();
+	}
+	
+	private void agregaPropietario() {
+		String propietarioCuit = JOptionPane.showInputDialog(this.view, "Ingrese el cuit del nuevo propietario: ", "Nuevo propietario", JOptionPane.INFORMATION_MESSAGE);
+		
+		propietarioService.addNewPropietario(propietarioCuit);
 	}
 	
 	private void savePropiedad() {
