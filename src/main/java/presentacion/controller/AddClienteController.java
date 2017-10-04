@@ -45,10 +45,20 @@ public class AddClienteController {
 		
 		this.binder = new Binder<Cliente>();
 		
-		binder.bind("persona.nombre", view.getTextNombre());
-		binder.bind("persona.apellido", view.getTextApellido());
-		binder.bind("persona.credencial", view.getTextCredencial());
-		binder.bind("persona.email", view.getTextMail());
+		binder.bind("persona.nombre",
+				view.getTextNombre()::getText,
+				s -> view.getTextNombre().setText((String)s),
+				n -> (n != "" || n!= null), "En nombre debe llenarse");
+		binder.bind("persona.apellido",
+				view.getTextApellido()::getText,
+				s -> view.getTextApellido().setText((String)s));
+		binder.bind("persona.credencial",
+				view.getTextCredencial()::getText,
+				s -> view.getTextCredencial().setText((String)s));
+		binder.bind("persona.email",
+				view.getTextMail()::getText,
+				s -> view.getTextMail().setText((String)s));
+				
 		binder.bind("persona.tipoCred",
 				tipoCredencialModel::getSelected,
 				t -> tipoCredencialModel.setSelected((TipoCredencial)t));
@@ -83,12 +93,11 @@ public class AddClienteController {
 	}
 	
 	private void saveCurrentCliente() {
-		binder.fillBean();
-		System.out.println(currentCliente.getPersona().getTipoCred());
-		System.out.println(tipoCredencialModel.getSelected());
-		clienteService.saveCliente(currentCliente);
+		if(binder.fillBean()){
+			clienteService.saveCliente(currentCliente);
 
-		view.setVisible(false);
+			view.setVisible(false);
+		}
 	}
 	
 	private void agregaTelefono() {
