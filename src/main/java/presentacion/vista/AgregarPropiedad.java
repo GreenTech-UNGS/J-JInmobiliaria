@@ -34,10 +34,12 @@ public class AgregarPropiedad extends JDialog{
 	private JTextField tfDepto;
 	private JTextField tfPropietario;
 	private JComboBox<String> comboProvincia;
-	private JComboBox comboMoneda;
-	private JComboBox comboTipoOfre;
+	private JComboBox<String> comboMoneda;
+	private JComboBox<String> comboTipoOfre;
 	private JTextArea taDescPubl;
 	private JTextArea taDescPriv;
+	private JButton btnGuardar;
+	private JButton btnCancelar;
 
 	@Inject
 	private AgregarPropiedad() {
@@ -107,7 +109,7 @@ public class AgregarPropiedad extends JDialog{
 		AgregarPropiedad.add(tfCalle);
 		tfCalle.setColumns(10);
 		
-		comboTipoOfre = new JComboBox();
+		comboTipoOfre = new JComboBox<>();
 		comboTipoOfre.setBounds(395, 59, 149, 20);
 		AgregarPropiedad.add(comboTipoOfre);
 		
@@ -116,7 +118,7 @@ public class AgregarPropiedad extends JDialog{
 		AgregarPropiedad.add(tfPrecio);
 		tfPrecio.setColumns(10);
 		
-		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -124,7 +126,7 @@ public class AgregarPropiedad extends JDialog{
 		btnGuardar.setBounds(149, 563, 135, 42);
 		AgregarPropiedad.add(btnGuardar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -137,7 +139,7 @@ public class AgregarPropiedad extends JDialog{
 		lblMoneda.setBounds(41, 112, 54, 14);
 		AgregarPropiedad.add(lblMoneda);
 		
-		comboMoneda = new JComboBox();
+		comboMoneda = new JComboBox<>();
 		comboMoneda.setBounds(92, 112, 149, 20);
 		AgregarPropiedad.add(comboMoneda);
 		
@@ -297,11 +299,11 @@ public class AgregarPropiedad extends JDialog{
 		return comboProvincia;
 	}
 
-	public JComboBox getComboMoneda() {
+	public JComboBox<String> getComboMoneda() {
 		return comboMoneda;
 	}
 
-	public JComboBox getComboTipoOfre() {
+	public JComboBox<String> getComboTipoOfre() {
 		return comboTipoOfre;
 	}
 
@@ -311,5 +313,13 @@ public class AgregarPropiedad extends JDialog{
 
 	public JTextArea getTaDescPriv() {
 		return taDescPriv;
+	}
+
+	public JButton getBtnGuardar() {
+		return btnGuardar;
+	}
+
+	public JButton getBtnCancelar() {
+		return btnCancelar;
 	}
 }
