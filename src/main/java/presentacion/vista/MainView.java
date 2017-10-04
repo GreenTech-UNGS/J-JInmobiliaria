@@ -64,6 +64,9 @@ public class MainView {
 		frmLpezLpez.getContentPane().setLayout(null);
 		frmLpezLpez.setLocationRelativeTo(null);
 		
+		Image imgVentana = new ImageIcon(this.getClass().getResource("/cityscape.png")).getImage();
+		frmLpezLpez.setIconImage(imgVentana);
+		
 		JPanel panelContainer = new JPanel();
 		panelContainer.setBorder(null);
 		panelContainer.setBounds(93, 32, 668, 474);

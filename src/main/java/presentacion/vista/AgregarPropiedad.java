@@ -38,6 +38,9 @@ public class AgregarPropiedad extends JDialog{
 	private JComboBox comboTipoOfre;
 	private JTextArea taDescPubl;
 	private JTextArea taDescPriv;
+	
+	private JButton btnGuardar;
+	private JButton btnCancelar;
 
 	@Inject
 	private AgregarPropiedad() {
@@ -116,7 +119,7 @@ public class AgregarPropiedad extends JDialog{
 		AgregarPropiedad.add(tfPrecio);
 		tfPrecio.setColumns(10);
 		
-		JButton btnGuardar = new JButton("Guardar");
+		this.btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -124,7 +127,7 @@ public class AgregarPropiedad extends JDialog{
 		btnGuardar.setBounds(149, 563, 135, 42);
 		AgregarPropiedad.add(btnGuardar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		this.btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -312,4 +315,22 @@ public class AgregarPropiedad extends JDialog{
 	public JTextArea getTaDescPriv() {
 		return taDescPriv;
 	}
+
+	public JButton getBtnGuardar() {
+		return btnGuardar;
+	}
+
+	public void setBtnGuardar(JButton btnGuardar) {
+		this.btnGuardar = btnGuardar;
+	}
+
+	public JButton getBtnCancelar() {
+		return btnCancelar;
+	}
+
+	public void setBtnCancelar(JButton btnCancelar) {
+		this.btnCancelar = btnCancelar;
+	}
+	
+	
 }
