@@ -31,7 +31,6 @@ public class AgregarPropiedad extends JDialog{
 	private JTextField tfEntrecalles;
 	private JTextField tfPiso;
 	private JTextField tfDepto;
-	private JTextField tfPropietario;
 	private JComboBox<String> comboProvincia;
 	private JComboBox<String> comboMoneda;
 	private JComboBox<String> comboTipoOfre;
@@ -41,6 +40,8 @@ public class AgregarPropiedad extends JDialog{
 	private JButton btnCancelar;
 	private JComboBox<String> comboLocalidad;
 	private JButton bttAddLoc;
+	private JComboBox comboPropietario;
+	private JButton bttAddPropietario;
 
 	@Inject
 	private AgregarPropiedad() {
@@ -232,24 +233,6 @@ public class AgregarPropiedad extends JDialog{
 		taDescPriv.setBounds(20, 480, 524, 53);
 		AgregarPropiedad.add(taDescPriv);
 		
-		tfPropietario = new JTextField();
-		tfPropietario.setBounds(395, 84, 96, 20);
-		AgregarPropiedad.add(tfPropietario);
-		tfPropietario.setColumns(10);
-		
-		JButton btnOjito = new JButton("O");
-		btnOjito.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(btnOjito, "Propietarios");
-			}
-		});
-		btnOjito.setBounds(493, 83, 26, 23);
-		AgregarPropiedad.add(btnOjito);
-		
-		JButton btnLupita = new JButton("L");
-		btnLupita.setBounds(518, 83, 26, 23);
-		AgregarPropiedad.add(btnLupita);
-		
 		comboProvincia = new JComboBox<>();
 		comboProvincia.setBounds(395, 206, 149, 20);
 		AgregarPropiedad.add(comboProvincia);
@@ -261,6 +244,14 @@ public class AgregarPropiedad extends JDialog{
 		bttAddLoc = new JButton("+");
 		bttAddLoc.setBounds(503, 230, 41, 23);
 		AgregarPropiedad.add(bttAddLoc);
+		
+		comboPropietario = new JComboBox();
+		comboPropietario.setBounds(395, 84, 103, 20);
+		AgregarPropiedad.add(comboPropietario);
+		
+		bttAddPropietario = new JButton("+");
+		bttAddPropietario.setBounds(507, 83, 41, 23);
+		AgregarPropiedad.add(bttAddPropietario);
 	}
 
 	public JTextField getTfAltura() {
@@ -289,10 +280,6 @@ public class AgregarPropiedad extends JDialog{
 
 	public JTextField getTfDepto() {
 		return tfDepto;
-	}
-
-	public JTextField getTfPropietario() {
-		return tfPropietario;
 	}
 
 	public JComboBox<String> getComboProvincia() {
@@ -329,5 +316,13 @@ public class AgregarPropiedad extends JDialog{
 
 	public JButton getBttAddLoc() {
 		return bttAddLoc;
+	}
+
+	public JComboBox getComboPropietario() {
+		return comboPropietario;
+	}
+
+	public JButton getBttAddPropietario() {
+		return bttAddPropietario;
 	}
 }
