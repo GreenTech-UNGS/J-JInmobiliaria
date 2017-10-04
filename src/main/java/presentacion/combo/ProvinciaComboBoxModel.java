@@ -32,7 +32,7 @@ public class ProvinciaComboBoxModel extends BaseComboBoxModel<Provincia>{
 	@Override
 	public void agregaElemento(Provincia element) {
 		this.addElement(element.toString().replaceAll("_", " "));
-		values.put(element.toString(), element);
+		values.put(element.toString().replaceAll("_", " "), element);
 		
 	}
 

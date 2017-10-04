@@ -1,17 +1,23 @@
 package presentacion.controller;
 
+import java.awt.event.ActionEvent;
 import java.util.Arrays;
+
+import javax.swing.JOptionPane;
 
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import com.google.inject.Inject;
 
+import entities.Localidad;
 import entities.Moneda;
 import entities.Propiedad;
 import entities.Provincia;
 import entities.TipoOfrecimiento;
 import misc.Binder;
+import model.LocalidadService;
 import model.PropiedadService;
+import presentacion.combo.LocalidadComboBoxModel;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.ProvinciaComboBoxModel;
 import presentacion.combo.TipoOfrecimientoComboBoxModel;
@@ -23,22 +29,29 @@ public class AddPropiedadesController {
 	private ProvinciaComboBoxModel provCombo;
 	private MonedaComboBoxModel monedaCombo;
 	private TipoOfrecimientoComboBoxModel tipoOfrCombo;
+	private LocalidadComboBoxModel localidadCombo;
 	private PropiedadService propiedadService;
+	private LocalidadService localidadService;
 	
 	Propiedad currentPropiedad;
 	Binder<Propiedad> binder;
 	
 	@Inject
 	private AddPropiedadesController(AgregarPropiedad view,
-									PropiedadService propiedadService){
+									PropiedadService propiedadService,
+									LocalidadService localidadService){
 		
 		this.view = view;
 		this.propiedadService = propiedadService;
+		this.localidadService = localidadService;
 		this.binder = new Binder<>();
 		
 		this.provCombo = new ProvinciaComboBoxModel();
 		this.monedaCombo = new MonedaComboBoxModel();
 		this.tipoOfrCombo = new TipoOfrecimientoComboBoxModel();
+		this.localidadCombo = new LocalidadComboBoxModel();
+		
+		fillCombos();
 		
 		binder.bind("identificador", view.getTfIdentificador()::getText, t -> view.getTfIdentificador().setText((String)t));
 		
@@ -63,12 +76,15 @@ public class AddPropiedadesController {
 				t -> view.getTfPrecio().setText(t.toString()));
 
 		binder.bind("tipoOfrecimiento", tipoOfrCombo::getSelected, t -> tipoOfrCombo.setSelected((TipoOfrecimiento)t));
+
+		binder.bind("localidad", localidadCombo::getSelected, t -> localidadCombo.setSelected((Localidad)t));
 		
 		view.getBtnGuardar().addActionListener(e -> savePropiedad());
+		view.getBttAddLoc().addActionListener(e -> agregaLocalidad());
+		view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
 		
-		fillCombos();
+		
 	}
-
 
 	private void fillCombos() {
 		
@@ -82,6 +98,25 @@ public class AddPropiedadesController {
 		this.view.getComboMoneda().setModel(monedaCombo);
 		monedaCombo.actualize(Arrays.asList(Moneda.values()));
 		
+		this.view.getComboLocalidad().setModel(localidadCombo);
+		AutoCompleteDecorator.decorate(view.getComboLocalidad());
+		cambiaLocalidades();
+		
+	}
+	
+	private void cambiaLocalidades() {
+		
+		localidadCombo.removeAllElements();
+		localidadCombo.actualize(localidadService.getAllOf(provCombo.getSelected()));
+		
+	}
+	
+	private void agregaLocalidad() {
+		String nombreLoc = JOptionPane.showInputDialog(this.view, "Ingrese nombre de la nueva localidad: ", "Nueva localidad", JOptionPane.INFORMATION_MESSAGE);
+		
+		localidadService.addNewLocalidad(nombreLoc, provCombo.getSelected());
+		
+		cambiaLocalidades();
 	}
 	
 	private void savePropiedad() {

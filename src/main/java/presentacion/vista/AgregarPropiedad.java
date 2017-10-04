@@ -24,7 +24,6 @@ import java.awt.event.ActionEvent;
 public class AgregarPropiedad extends JDialog{
 
 	private JPanel AgregarPropiedad;
-	private JTextField tfLoc;
 	private JTextField tfAltura;
 	private JTextField tfCalle;
 	private JTextField tfPrecio;
@@ -40,6 +39,8 @@ public class AgregarPropiedad extends JDialog{
 	private JTextArea taDescPriv;
 	private JButton btnGuardar;
 	private JButton btnCancelar;
+	private JComboBox<String> comboLocalidad;
+	private JButton bttAddLoc;
 
 	@Inject
 	private AgregarPropiedad() {
@@ -93,11 +94,6 @@ public class AgregarPropiedad extends JDialog{
 		lblPrecio.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblPrecio.setBounds(54, 87, 46, 14);
 		AgregarPropiedad.add(lblPrecio);
-		
-		tfLoc = new JTextField();
-		tfLoc.setBounds(395, 234, 149, 20);
-		AgregarPropiedad.add(tfLoc);
-		tfLoc.setColumns(10);
 		
 		tfAltura = new JTextField();
 		tfAltura.setBounds(92, 234, 149, 20);
@@ -257,10 +253,14 @@ public class AgregarPropiedad extends JDialog{
 		comboProvincia = new JComboBox<>();
 		comboProvincia.setBounds(395, 206, 149, 20);
 		AgregarPropiedad.add(comboProvincia);
-	}
-
-	public JTextField getTfLoc() {
-		return tfLoc;
+		
+		comboLocalidad = new JComboBox<>();
+		comboLocalidad.setBounds(396, 231, 102, 20);
+		AgregarPropiedad.add(comboLocalidad);
+		
+		bttAddLoc = new JButton("+");
+		bttAddLoc.setBounds(503, 230, 41, 23);
+		AgregarPropiedad.add(bttAddLoc);
 	}
 
 	public JTextField getTfAltura() {
@@ -321,5 +321,13 @@ public class AgregarPropiedad extends JDialog{
 
 	public JButton getBtnCancelar() {
 		return btnCancelar;
+	}
+
+	public JComboBox<String> getComboLocalidad() {
+		return comboLocalidad;
+	}
+
+	public JButton getBttAddLoc() {
+		return bttAddLoc;
 	}
 }
