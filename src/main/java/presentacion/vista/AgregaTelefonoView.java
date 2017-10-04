@@ -19,6 +19,7 @@ import javax.swing.BoxLayout;
 import java.awt.Component;
 import javax.swing.Box;
 
+@SuppressWarnings("serial")
 @Singleton
 public class AgregaTelefonoView extends JDialog{
 	private JTextField textTelefono;
@@ -34,6 +35,7 @@ public class AgregaTelefonoView extends JDialog{
 	private Component verticalStrut;
 	private Component horizontalStrut;
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Inject
 	private AgregaTelefonoView() {
 		setResizable(false);

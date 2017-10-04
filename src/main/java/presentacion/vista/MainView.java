@@ -15,8 +15,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import java.awt.CardLayout;
-import javax.swing.JTextField;
-
 import java.awt.SystemColor;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -33,6 +31,7 @@ import javax.swing.JTable;
 
 public class MainView {
 
+	@SuppressWarnings("unused")
 	private static MainView instance;
 	
 	private JFrame frmLpezLpez;

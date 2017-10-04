@@ -1,7 +1,6 @@
 package presentacion.vista;
 
 import javax.swing.JDialog;
-import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -12,6 +11,7 @@ import javax.swing.JLabel;
 import java.awt.Component;
 import javax.swing.Box;
 
+@SuppressWarnings("serial")
 public class BuscaClienteView extends JDialog{
 	private JTable tablePersonas;
 	private JTextField textCredencial;

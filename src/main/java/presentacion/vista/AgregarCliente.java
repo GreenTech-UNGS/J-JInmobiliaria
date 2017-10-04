@@ -8,8 +8,6 @@ import javax.swing.border.EmptyBorder;
 
 import com.google.inject.Inject;
 
-import entities.Telefono;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
