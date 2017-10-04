@@ -36,18 +36,13 @@ public class AgregarPropiedad extends JDialog{
 	private JComboBox<String> comboTipoOfre;
 	private JTextArea taDescPubl;
 	private JTextArea taDescPriv;
-<<<<<<< HEAD
-	
-	private JButton btnGuardar;
-	private JButton btnCancelar;
-=======
+
 	private JButton btnGuardar;
 	private JButton btnCancelar;
 	private JComboBox<String> comboLocalidad;
 	private JButton bttAddLoc;
 	private JComboBox comboPropietario;
 	private JButton bttAddPropietario;
->>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
 
 	@Inject
 	private AgregarPropiedad() {
@@ -121,11 +116,7 @@ public class AgregarPropiedad extends JDialog{
 		AgregarPropiedad.add(tfPrecio);
 		tfPrecio.setColumns(10);
 		
-<<<<<<< HEAD
-		this.btnGuardar = new JButton("Guardar");
-=======
 		btnGuardar = new JButton("Guardar");
->>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -133,11 +124,8 @@ public class AgregarPropiedad extends JDialog{
 		btnGuardar.setBounds(149, 563, 135, 42);
 		AgregarPropiedad.add(btnGuardar);
 		
-<<<<<<< HEAD
-		this.btnCancelar = new JButton("Cancelar");
-=======
+
 		btnCancelar = new JButton("Cancelar");
->>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -320,21 +308,7 @@ public class AgregarPropiedad extends JDialog{
 		return btnGuardar;
 	}
 
-<<<<<<< HEAD
-	public void setBtnGuardar(JButton btnGuardar) {
-		this.btnGuardar = btnGuardar;
-	}
 
-	public JButton getBtnCancelar() {
-		return btnCancelar;
-	}
-
-	public void setBtnCancelar(JButton btnCancelar) {
-		this.btnCancelar = btnCancelar;
-	}
-	
-	
-=======
 	public JButton getBtnCancelar() {
 		return btnCancelar;
 	}
@@ -354,5 +328,5 @@ public class AgregarPropiedad extends JDialog{
 	public JButton getBttAddPropietario() {
 		return bttAddPropietario;
 	}
->>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
+
 }

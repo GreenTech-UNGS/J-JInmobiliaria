@@ -1,9 +1,12 @@
 package model;
 
+import java.util.List;
+
 import com.google.inject.Inject;
 
 import entities.Cliente;
 import entities.Persona;
+import entities.Propiedad;
 import persistencia.dao.iface.ClienteDao;
 
 public class ClienteService {
@@ -31,4 +34,7 @@ public class ClienteService {
 		clienteDao.save(toSave);
 	}
 	
+	public List<Cliente> getAll(){
+		return clienteDao.getAll();
+	}
 }
