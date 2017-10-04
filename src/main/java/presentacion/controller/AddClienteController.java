@@ -10,6 +10,7 @@ import model.ClienteService;
 import model.PersonaService;
 import presentacion.combo.TipoCredencialComboBoxModel;
 import presentacion.table.TelefonoTableModel;
+import presentacion.validators.PersonaValidator;
 import presentacion.vista.AgregarCliente;
 
 public class AddClienteController {
@@ -17,6 +18,9 @@ public class AddClienteController {
 	private AgregarCliente view;
 	PersonaService personaService;
 	private ClienteService clienteService;
+	
+	@Inject
+	private PersonaValidator personaValidator;
 	
 	private TipoCredencialComboBoxModel tipoCredencialModel;
 	private TelefonoTableModel telTable;
@@ -45,10 +49,19 @@ public class AddClienteController {
 		
 		this.binder = new Binder<Cliente>();
 		
-		binder.bind("persona.nombre", view.getTextNombre());
-		binder.bind("persona.apellido", view.getTextApellido());
-		binder.bind("persona.credencial", view.getTextCredencial());
-		binder.bind("persona.email", view.getTextMail());
+		binder.bind("persona.nombre",
+				view.getTextNombre()::getText,
+				s -> view.getTextNombre().setText((String)s));
+		binder.bind("persona.apellido",
+				view.getTextApellido()::getText,
+				s -> view.getTextApellido().setText((String)s));
+		binder.bind("persona.credencial",
+				view.getTextCredencial()::getText,
+				s -> view.getTextCredencial().setText((String)s));
+		binder.bind("persona.email",
+				view.getTextMail()::getText,
+				s -> view.getTextMail().setText((String)s));
+				
 		binder.bind("persona.tipoCred",
 				tipoCredencialModel::getSelected,
 				t -> tipoCredencialModel.setSelected((TipoCredencial)t));
@@ -84,11 +97,12 @@ public class AddClienteController {
 	
 	private void saveCurrentCliente() {
 		binder.fillBean();
-		System.out.println(currentCliente.getPersona().getTipoCred());
-		System.out.println(tipoCredencialModel.getSelected());
-		clienteService.saveCliente(currentCliente);
+		
+		if(personaValidator.isValid(currentCliente.getPersona())) {
+			clienteService.saveCliente(currentCliente);
 
-		view.setVisible(false);
+			view.setVisible(false);
+		}
 	}
 	
 	private void agregaTelefono() {

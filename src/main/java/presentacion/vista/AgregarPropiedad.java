@@ -25,7 +25,6 @@ public class AgregarPropiedad extends JDialog{
 
 	private JPanel AgregarPropiedad;
 	private JTextField tfLoc;
-	private JTextField tfProvincia;
 	private JTextField tfAltura;
 	private JTextField tfCalle;
 	private JTextField tfPrecio;
@@ -34,6 +33,11 @@ public class AgregarPropiedad extends JDialog{
 	private JTextField tfPiso;
 	private JTextField tfDepto;
 	private JTextField tfPropietario;
+	private JComboBox<String> comboProvincia;
+	private JComboBox comboMoneda;
+	private JComboBox comboTipoOfre;
+	private JTextArea taDescPubl;
+	private JTextArea taDescPriv;
 
 	@Inject
 	private AgregarPropiedad() {
@@ -45,6 +49,7 @@ public class AgregarPropiedad extends JDialog{
 		setModal(true);
 		setSize(new Dimension(574, 660));
 		setResizable(false);
+		setLocationRelativeTo(null);
 		
 		AgregarPropiedad = new JPanel();
 		AgregarPropiedad.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -69,12 +74,12 @@ public class AgregarPropiedad extends JDialog{
 		
 		JLabel lblNewLabel_1 = new JLabel("Localidad:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_1.setBounds(331, 209, 61, 14);
+		lblNewLabel_1.setBounds(331, 234, 61, 14);
 		AgregarPropiedad.add(lblNewLabel_1);
 		
 		JLabel lblProvincia = new JLabel("Provincia:");
 		lblProvincia.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblProvincia.setBounds(331, 237, 61, 14);
+		lblProvincia.setBounds(331, 209, 61, 14);
 		AgregarPropiedad.add(lblProvincia);
 		
 		JLabel lblAltura = new JLabel("Altura:");
@@ -88,14 +93,9 @@ public class AgregarPropiedad extends JDialog{
 		AgregarPropiedad.add(lblPrecio);
 		
 		tfLoc = new JTextField();
-		tfLoc.setBounds(395, 206, 149, 20);
+		tfLoc.setBounds(395, 234, 149, 20);
 		AgregarPropiedad.add(tfLoc);
 		tfLoc.setColumns(10);
-		
-		tfProvincia = new JTextField();
-		tfProvincia.setBounds(395, 234, 149, 20);
-		AgregarPropiedad.add(tfProvincia);
-		tfProvincia.setColumns(10);
 		
 		tfAltura = new JTextField();
 		tfAltura.setBounds(92, 234, 149, 20);
@@ -107,10 +107,9 @@ public class AgregarPropiedad extends JDialog{
 		AgregarPropiedad.add(tfCalle);
 		tfCalle.setColumns(10);
 		
-		@SuppressWarnings("rawtypes")
-		JComboBox cbTipoOfrec = new JComboBox();
-		cbTipoOfrec.setBounds(395, 59, 149, 20);
-		AgregarPropiedad.add(cbTipoOfrec);
+		comboTipoOfre = new JComboBox();
+		comboTipoOfre.setBounds(395, 59, 149, 20);
+		AgregarPropiedad.add(comboTipoOfre);
 		
 		tfPrecio = new JTextField();
 		tfPrecio.setBounds(92, 87, 149, 20);
@@ -138,17 +137,16 @@ public class AgregarPropiedad extends JDialog{
 		lblMoneda.setBounds(41, 112, 54, 14);
 		AgregarPropiedad.add(lblMoneda);
 		
-		@SuppressWarnings("rawtypes")
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(92, 112, 149, 20);
-		AgregarPropiedad.add(comboBox_2);
+		comboMoneda = new JComboBox();
+		comboMoneda.setBounds(92, 112, 149, 20);
+		AgregarPropiedad.add(comboMoneda);
 		
 		JLabel lblDescripcin = new JLabel("Descripci\u00F3n privada:");
 		lblDescripcin.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblDescripcin.setBounds(20, 458, 110, 14);
 		AgregarPropiedad.add(lblDescripcin);
 		
-		JTextArea taDescPubl = new JTextArea();
+		taDescPubl = new JTextArea();
 		taDescPubl.setBounds(20, 394, 524, 53);
 		AgregarPropiedad.add(taDescPubl);
 		
@@ -180,7 +178,7 @@ public class AgregarPropiedad extends JDialog{
 		separator_1.setBounds(20, 196, 524, 2);
 		AgregarPropiedad.add(separator_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Entrecalles:");
+		JLabel lblNewLabel_2 = new JLabel("Entre calles:");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_2.setBounds(331, 262, 61, 14);
 		AgregarPropiedad.add(lblNewLabel_2);
@@ -209,8 +207,8 @@ public class AgregarPropiedad extends JDialog{
 		tfPiso.setBounds(92, 259, 149, 20);
 		AgregarPropiedad.add(tfPiso);
 		
-		JLabel lblDepartamento = new JLabel("Departamento:");
-		lblDepartamento.setBounds(20, 287, 75, 14);
+		JLabel lblDepartamento = new JLabel("Dpto.:");
+		lblDepartamento.setBounds(49, 287, 46, 14);
 		AgregarPropiedad.add(lblDepartamento);
 		
 		tfDepto = new JTextField();
@@ -232,7 +230,7 @@ public class AgregarPropiedad extends JDialog{
 		lblDescripcinPblica.setBounds(20, 374, 96, 14);
 		AgregarPropiedad.add(lblDescripcinPblica);
 		
-		JTextArea taDescPriv = new JTextArea();
+		taDescPriv = new JTextArea();
 		taDescPriv.setBounds(20, 480, 524, 53);
 		AgregarPropiedad.add(taDescPriv);
 		
@@ -241,7 +239,7 @@ public class AgregarPropiedad extends JDialog{
 		AgregarPropiedad.add(tfPropietario);
 		tfPropietario.setColumns(10);
 		
-		JButton btnOjito = new JButton("New button");
+		JButton btnOjito = new JButton("O");
 		btnOjito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(btnOjito, "Propietarios");
@@ -250,8 +248,68 @@ public class AgregarPropiedad extends JDialog{
 		btnOjito.setBounds(493, 83, 26, 23);
 		AgregarPropiedad.add(btnOjito);
 		
-		JButton btnLupita = new JButton("New button");
+		JButton btnLupita = new JButton("L");
 		btnLupita.setBounds(518, 83, 26, 23);
 		AgregarPropiedad.add(btnLupita);
+		
+		comboProvincia = new JComboBox<>();
+		comboProvincia.setBounds(395, 206, 149, 20);
+		AgregarPropiedad.add(comboProvincia);
+	}
+
+	public JTextField getTfLoc() {
+		return tfLoc;
+	}
+
+	public JTextField getTfAltura() {
+		return tfAltura;
+	}
+
+	public JTextField getTfCalle() {
+		return tfCalle;
+	}
+
+	public JTextField getTfPrecio() {
+		return tfPrecio;
+	}
+
+	public JTextField getTfIdentificador() {
+		return tfIdentificador;
+	}
+
+	public JTextField getTfEntrecalles() {
+		return tfEntrecalles;
+	}
+
+	public JTextField getTfPiso() {
+		return tfPiso;
+	}
+
+	public JTextField getTfDepto() {
+		return tfDepto;
+	}
+
+	public JTextField getTfPropietario() {
+		return tfPropietario;
+	}
+
+	public JComboBox<String> getComboProvincia() {
+		return comboProvincia;
+	}
+
+	public JComboBox getComboMoneda() {
+		return comboMoneda;
+	}
+
+	public JComboBox getComboTipoOfre() {
+		return comboTipoOfre;
+	}
+
+	public JTextArea getTaDescPubl() {
+		return taDescPubl;
+	}
+
+	public JTextArea getTaDescPriv() {
+		return taDescPriv;
 	}
 }

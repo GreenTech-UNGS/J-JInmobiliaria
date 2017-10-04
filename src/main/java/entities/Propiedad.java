@@ -41,9 +41,9 @@ public class Propiedad {
 	private List<Foto> fotos;
 	
 	@Column(nullable = true, insertable = true, updatable = true)
-	@ElementCollection
+
 	@Enumerated(EnumType.ORDINAL)
-	private Set<TipoOfrecimiento> tiposOfrecimiento;
+	private TipoOfrecimiento tipoOfrecimiento;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
 	private Precio precioTentativo;
@@ -60,7 +60,6 @@ public class Propiedad {
 	public Propiedad() {
 		this.fotos = new ArrayList<>();
 		this.estados = new ArrayList<>();
-		this.tiposOfrecimiento = new HashSet<>();
 	}
 
 	public String getIdentificador() {
@@ -109,6 +108,74 @@ public class Propiedad {
 
 	public void setPrecioTentativo(Precio precioTentativo) {
 		this.precioTentativo = precioTentativo;
+	}
+
+	public String getObsPublicas() {
+		return obsPublicas;
+	}
+
+	public void setObsPublicas(String obsPublicas) {
+		this.obsPublicas = obsPublicas;
+	}
+
+	public String getObsPrivadas() {
+		return obsPrivadas;
+	}
+
+	public void setObsPrivadas(String obsPrivadas) {
+		this.obsPrivadas = obsPrivadas;
+	}
+
+	public List<HistoriaEstadoProp> getEstados() {
+		return estados;
+	}
+
+	public void setEstados(List<HistoriaEstadoProp> estados) {
+		this.estados = estados;
+	}
+
+	public List<Foto> getFotos() {
+		return fotos;
+	}
+
+	public void setFotos(List<Foto> fotos) {
+		this.fotos = fotos;
+	}
+
+	public TipoOfrecimiento getTipoOfrecimiento() {
+		return tipoOfrecimiento;
+	}
+
+	public void setTipoOfrecimiento(TipoOfrecimiento tipoOfrecimiento) {
+		this.tipoOfrecimiento = tipoOfrecimiento;
+	}
+
+	public Localidad getLocalidad() {
+		return localidad;
+	}
+
+	public void setLocalidad(Localidad localidad) {
+		this.localidad = localidad;
+	}
+
+	public Inmobiliaria getInmobiliaria() {
+		return inmobiliaria;
+	}
+
+	public void setInmobiliaria(Inmobiliaria inmobiliaria) {
+		this.inmobiliaria = inmobiliaria;
+	}
+
+	public Propietario getPropietario() {
+		return propietario;
+	}
+
+	public void setPropietario(Propietario propietario) {
+		this.propietario = propietario;
+	}
+
+	public int getID() {
+		return ID;
 	}
 	
 	
