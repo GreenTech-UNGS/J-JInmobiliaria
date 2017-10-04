@@ -24,16 +24,16 @@ import java.awt.event.ActionEvent;
 public class AgregarPropiedad extends JDialog{
 
 	private JPanel AgregarPropiedad;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
+	private JTextField tfLoc;
+	private JTextField tfProvincia;
+	private JTextField tfAltura;
+	private JTextField tfCalle;
+	private JTextField tfPrecio;
+	private JTextField tfIdentificador;
+	private JTextField tfEntrecalles;
+	private JTextField tfPiso;
+	private JTextField tfDepto;
+	private JTextField tfPropietario;
 
 	@Inject
 	private AgregarPropiedad() {
@@ -87,35 +87,35 @@ public class AgregarPropiedad extends JDialog{
 		lblPrecio.setBounds(54, 87, 46, 14);
 		AgregarPropiedad.add(lblPrecio);
 		
-		textField = new JTextField();
-		textField.setBounds(395, 206, 149, 20);
-		AgregarPropiedad.add(textField);
-		textField.setColumns(10);
+		tfLoc = new JTextField();
+		tfLoc.setBounds(395, 206, 149, 20);
+		AgregarPropiedad.add(tfLoc);
+		tfLoc.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(395, 234, 149, 20);
-		AgregarPropiedad.add(textField_1);
-		textField_1.setColumns(10);
+		tfProvincia = new JTextField();
+		tfProvincia.setBounds(395, 234, 149, 20);
+		AgregarPropiedad.add(tfProvincia);
+		tfProvincia.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(92, 234, 149, 20);
-		AgregarPropiedad.add(textField_2);
-		textField_2.setColumns(10);
+		tfAltura = new JTextField();
+		tfAltura.setBounds(92, 234, 149, 20);
+		AgregarPropiedad.add(tfAltura);
+		tfAltura.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(92, 206, 149, 20);
-		AgregarPropiedad.add(textField_3);
-		textField_3.setColumns(10);
+		tfCalle = new JTextField();
+		tfCalle.setBounds(92, 206, 149, 20);
+		AgregarPropiedad.add(tfCalle);
+		tfCalle.setColumns(10);
 		
 		@SuppressWarnings("rawtypes")
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(395, 59, 149, 20);
-		AgregarPropiedad.add(comboBox);
+		JComboBox cbTipoOfrec = new JComboBox();
+		cbTipoOfrec.setBounds(395, 59, 149, 20);
+		AgregarPropiedad.add(cbTipoOfrec);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(92, 87, 149, 20);
-		AgregarPropiedad.add(textField_4);
-		textField_4.setColumns(10);
+		tfPrecio = new JTextField();
+		tfPrecio.setBounds(92, 87, 149, 20);
+		AgregarPropiedad.add(tfPrecio);
+		tfPrecio.setColumns(10);
 		
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
@@ -135,7 +135,7 @@ public class AgregarPropiedad extends JDialog{
 		
 		JLabel lblMoneda = new JLabel("Moneda:");
 		lblMoneda.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblMoneda.setBounds(6, 112, 85, 14);
+		lblMoneda.setBounds(41, 112, 54, 14);
 		AgregarPropiedad.add(lblMoneda);
 		
 		@SuppressWarnings("rawtypes")
@@ -148,9 +148,9 @@ public class AgregarPropiedad extends JDialog{
 		lblDescripcin.setBounds(20, 458, 110, 14);
 		AgregarPropiedad.add(lblDescripcin);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(20, 394, 524, 53);
-		AgregarPropiedad.add(textArea);
+		JTextArea taDescPubl = new JTextArea();
+		taDescPubl.setBounds(20, 394, 524, 53);
+		AgregarPropiedad.add(taDescPubl);
 		
 		JLabel lblDatosGenerales = new JLabel("Datos generales");
 		lblDatosGenerales.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -161,15 +161,15 @@ public class AgregarPropiedad extends JDialog{
 		separator.setBounds(20, 49, 524, 2);
 		AgregarPropiedad.add(separator);
 		
-		JLabel lblIdPropiedad = new JLabel("Id propiedad:");
+		JLabel lblIdPropiedad = new JLabel("Identificador:");
 		lblIdPropiedad.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblIdPropiedad.setBounds(20, 62, 80, 14);
 		AgregarPropiedad.add(lblIdPropiedad);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(92, 62, 149, 20);
-		AgregarPropiedad.add(textField_5);
+		tfIdentificador = new JTextField();
+		tfIdentificador.setColumns(10);
+		tfIdentificador.setBounds(92, 62, 149, 20);
+		AgregarPropiedad.add(tfIdentificador);
 		
 		JLabel lblDatosUbicacionales = new JLabel("Datos ubicacionales:");
 		lblDatosUbicacionales.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -185,10 +185,10 @@ public class AgregarPropiedad extends JDialog{
 		lblNewLabel_2.setBounds(331, 262, 61, 14);
 		AgregarPropiedad.add(lblNewLabel_2);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(395, 259, 149, 20);
-		AgregarPropiedad.add(textField_6);
+		tfEntrecalles = new JTextField();
+		tfEntrecalles.setColumns(10);
+		tfEntrecalles.setBounds(395, 259, 149, 20);
+		AgregarPropiedad.add(tfEntrecalles);
 		
 		JLabel lblInmobiliariaAmiga = new JLabel("Inmobiliaria amiga:");
 		lblInmobiliariaAmiga.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -204,19 +204,19 @@ public class AgregarPropiedad extends JDialog{
 		lblPiso.setBounds(54, 262, 31, 14);
 		AgregarPropiedad.add(lblPiso);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(92, 259, 149, 20);
-		AgregarPropiedad.add(textField_7);
+		tfPiso = new JTextField();
+		tfPiso.setColumns(10);
+		tfPiso.setBounds(92, 259, 149, 20);
+		AgregarPropiedad.add(tfPiso);
 		
 		JLabel lblDepartamento = new JLabel("Departamento:");
 		lblDepartamento.setBounds(20, 287, 75, 14);
 		AgregarPropiedad.add(lblDepartamento);
 		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(92, 284, 149, 20);
-		AgregarPropiedad.add(textField_8);
+		tfDepto = new JTextField();
+		tfDepto.setColumns(10);
+		tfDepto.setBounds(92, 284, 149, 20);
+		AgregarPropiedad.add(tfDepto);
 		
 		JLabel lblOtrosDatos = new JLabel("Otros datos");
 		lblOtrosDatos.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -232,14 +232,14 @@ public class AgregarPropiedad extends JDialog{
 		lblDescripcinPblica.setBounds(20, 374, 96, 14);
 		AgregarPropiedad.add(lblDescripcinPblica);
 		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBounds(20, 480, 524, 53);
-		AgregarPropiedad.add(textArea_1);
+		JTextArea taDescPriv = new JTextArea();
+		taDescPriv.setBounds(20, 480, 524, 53);
+		AgregarPropiedad.add(taDescPriv);
 		
-		textField_9 = new JTextField();
-		textField_9.setBounds(395, 84, 96, 20);
-		AgregarPropiedad.add(textField_9);
-		textField_9.setColumns(10);
+		tfPropietario = new JTextField();
+		tfPropietario.setBounds(395, 84, 96, 20);
+		AgregarPropiedad.add(tfPropietario);
+		tfPropietario.setColumns(10);
 		
 		JButton btnOjito = new JButton("New button");
 		btnOjito.addActionListener(new ActionListener() {
