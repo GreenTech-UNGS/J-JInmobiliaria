@@ -34,6 +34,10 @@ public class AgregarPropiedad extends JDialog{
 	private JTextField tfDepto;
 	private JTextField tfPropietario;
 	private JComboBox<String> comboProvincia;
+	private JComboBox comboMoneda;
+	private JComboBox comboTipoOfre;
+	private JTextArea taDescPubl;
+	private JTextArea taDescPriv;
 
 	@Inject
 	private AgregarPropiedad() {
@@ -103,10 +107,9 @@ public class AgregarPropiedad extends JDialog{
 		AgregarPropiedad.add(tfCalle);
 		tfCalle.setColumns(10);
 		
-		@SuppressWarnings("rawtypes")
-		JComboBox cbTipoOfrec = new JComboBox();
-		cbTipoOfrec.setBounds(395, 59, 149, 20);
-		AgregarPropiedad.add(cbTipoOfrec);
+		comboTipoOfre = new JComboBox();
+		comboTipoOfre.setBounds(395, 59, 149, 20);
+		AgregarPropiedad.add(comboTipoOfre);
 		
 		tfPrecio = new JTextField();
 		tfPrecio.setBounds(92, 87, 149, 20);
@@ -134,17 +137,16 @@ public class AgregarPropiedad extends JDialog{
 		lblMoneda.setBounds(41, 112, 54, 14);
 		AgregarPropiedad.add(lblMoneda);
 		
-		@SuppressWarnings("rawtypes")
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(92, 112, 149, 20);
-		AgregarPropiedad.add(comboBox_2);
+		comboMoneda = new JComboBox();
+		comboMoneda.setBounds(92, 112, 149, 20);
+		AgregarPropiedad.add(comboMoneda);
 		
 		JLabel lblDescripcin = new JLabel("Descripci\u00F3n privada:");
 		lblDescripcin.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblDescripcin.setBounds(20, 458, 110, 14);
 		AgregarPropiedad.add(lblDescripcin);
 		
-		JTextArea taDescPubl = new JTextArea();
+		taDescPubl = new JTextArea();
 		taDescPubl.setBounds(20, 394, 524, 53);
 		AgregarPropiedad.add(taDescPubl);
 		
@@ -193,7 +195,6 @@ public class AgregarPropiedad extends JDialog{
 		
 		@SuppressWarnings("rawtypes")
 		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setEditable(true);
 		comboBox_3.setBounds(395, 118, 149, 20);
 		AgregarPropiedad.add(comboBox_3);
 		
@@ -229,7 +230,7 @@ public class AgregarPropiedad extends JDialog{
 		lblDescripcinPblica.setBounds(20, 374, 96, 14);
 		AgregarPropiedad.add(lblDescripcinPblica);
 		
-		JTextArea taDescPriv = new JTextArea();
+		taDescPriv = new JTextArea();
 		taDescPriv.setBounds(20, 480, 524, 53);
 		AgregarPropiedad.add(taDescPriv);
 		
@@ -252,7 +253,6 @@ public class AgregarPropiedad extends JDialog{
 		AgregarPropiedad.add(btnLupita);
 		
 		comboProvincia = new JComboBox<>();
-		comboProvincia.setEditable(true);
 		comboProvincia.setBounds(395, 206, 149, 20);
 		AgregarPropiedad.add(comboProvincia);
 	}
@@ -295,5 +295,21 @@ public class AgregarPropiedad extends JDialog{
 
 	public JComboBox<String> getComboProvincia() {
 		return comboProvincia;
+	}
+
+	public JComboBox getComboMoneda() {
+		return comboMoneda;
+	}
+
+	public JComboBox getComboTipoOfre() {
+		return comboTipoOfre;
+	}
+
+	public JTextArea getTaDescPubl() {
+		return taDescPubl;
+	}
+
+	public JTextArea getTaDescPriv() {
+		return taDescPriv;
 	}
 }
