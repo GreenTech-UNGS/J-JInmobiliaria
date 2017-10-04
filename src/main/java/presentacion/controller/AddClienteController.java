@@ -10,6 +10,7 @@ import model.ClienteService;
 import model.PersonaService;
 import presentacion.combo.TipoCredencialComboBoxModel;
 import presentacion.table.TelefonoTableModel;
+import presentacion.validators.PersonaValidator;
 import presentacion.vista.AgregarCliente;
 
 public class AddClienteController {
@@ -17,6 +18,9 @@ public class AddClienteController {
 	private AgregarCliente view;
 	PersonaService personaService;
 	private ClienteService clienteService;
+	
+	@Inject
+	private PersonaValidator personaValidator;
 	
 	private TipoCredencialComboBoxModel tipoCredencialModel;
 	private TelefonoTableModel telTable;
@@ -47,8 +51,7 @@ public class AddClienteController {
 		
 		binder.bind("persona.nombre",
 				view.getTextNombre()::getText,
-				s -> view.getTextNombre().setText((String)s),
-				n -> (n != "" || n!= null), "En nombre debe llenarse");
+				s -> view.getTextNombre().setText((String)s));
 		binder.bind("persona.apellido",
 				view.getTextApellido()::getText,
 				s -> view.getTextApellido().setText((String)s));
@@ -93,7 +96,9 @@ public class AddClienteController {
 	}
 	
 	private void saveCurrentCliente() {
-		if(binder.fillBean()){
+		binder.fillBean();
+		
+		if(personaValidator.isValid(currentCliente.getPersona())) {
 			clienteService.saveCliente(currentCliente);
 
 			view.setVisible(false);
