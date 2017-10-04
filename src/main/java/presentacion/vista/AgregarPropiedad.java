@@ -24,7 +24,6 @@ import java.awt.event.ActionEvent;
 public class AgregarPropiedad extends JDialog{
 
 	private JPanel AgregarPropiedad;
-	private JTextField tfLoc;
 	private JTextField tfAltura;
 	private JTextField tfCalle;
 	private JTextField tfPrecio;
@@ -32,15 +31,23 @@ public class AgregarPropiedad extends JDialog{
 	private JTextField tfEntrecalles;
 	private JTextField tfPiso;
 	private JTextField tfDepto;
-	private JTextField tfPropietario;
 	private JComboBox<String> comboProvincia;
-	private JComboBox comboMoneda;
-	private JComboBox comboTipoOfre;
+	private JComboBox<String> comboMoneda;
+	private JComboBox<String> comboTipoOfre;
 	private JTextArea taDescPubl;
 	private JTextArea taDescPriv;
+<<<<<<< HEAD
 	
 	private JButton btnGuardar;
 	private JButton btnCancelar;
+=======
+	private JButton btnGuardar;
+	private JButton btnCancelar;
+	private JComboBox<String> comboLocalidad;
+	private JButton bttAddLoc;
+	private JComboBox comboPropietario;
+	private JButton bttAddPropietario;
+>>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
 
 	@Inject
 	private AgregarPropiedad() {
@@ -95,11 +102,6 @@ public class AgregarPropiedad extends JDialog{
 		lblPrecio.setBounds(54, 87, 46, 14);
 		AgregarPropiedad.add(lblPrecio);
 		
-		tfLoc = new JTextField();
-		tfLoc.setBounds(395, 234, 149, 20);
-		AgregarPropiedad.add(tfLoc);
-		tfLoc.setColumns(10);
-		
 		tfAltura = new JTextField();
 		tfAltura.setBounds(92, 234, 149, 20);
 		AgregarPropiedad.add(tfAltura);
@@ -110,7 +112,7 @@ public class AgregarPropiedad extends JDialog{
 		AgregarPropiedad.add(tfCalle);
 		tfCalle.setColumns(10);
 		
-		comboTipoOfre = new JComboBox();
+		comboTipoOfre = new JComboBox<>();
 		comboTipoOfre.setBounds(395, 59, 149, 20);
 		AgregarPropiedad.add(comboTipoOfre);
 		
@@ -119,7 +121,11 @@ public class AgregarPropiedad extends JDialog{
 		AgregarPropiedad.add(tfPrecio);
 		tfPrecio.setColumns(10);
 		
+<<<<<<< HEAD
 		this.btnGuardar = new JButton("Guardar");
+=======
+		btnGuardar = new JButton("Guardar");
+>>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -127,7 +133,11 @@ public class AgregarPropiedad extends JDialog{
 		btnGuardar.setBounds(149, 563, 135, 42);
 		AgregarPropiedad.add(btnGuardar);
 		
+<<<<<<< HEAD
 		this.btnCancelar = new JButton("Cancelar");
+=======
+		btnCancelar = new JButton("Cancelar");
+>>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -140,7 +150,7 @@ public class AgregarPropiedad extends JDialog{
 		lblMoneda.setBounds(41, 112, 54, 14);
 		AgregarPropiedad.add(lblMoneda);
 		
-		comboMoneda = new JComboBox();
+		comboMoneda = new JComboBox<>();
 		comboMoneda.setBounds(92, 112, 149, 20);
 		AgregarPropiedad.add(comboMoneda);
 		
@@ -237,31 +247,25 @@ public class AgregarPropiedad extends JDialog{
 		taDescPriv.setBounds(20, 480, 524, 53);
 		AgregarPropiedad.add(taDescPriv);
 		
-		tfPropietario = new JTextField();
-		tfPropietario.setBounds(395, 84, 96, 20);
-		AgregarPropiedad.add(tfPropietario);
-		tfPropietario.setColumns(10);
-		
-		JButton btnOjito = new JButton("O");
-		btnOjito.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(btnOjito, "Propietarios");
-			}
-		});
-		btnOjito.setBounds(493, 83, 26, 23);
-		AgregarPropiedad.add(btnOjito);
-		
-		JButton btnLupita = new JButton("L");
-		btnLupita.setBounds(518, 83, 26, 23);
-		AgregarPropiedad.add(btnLupita);
-		
 		comboProvincia = new JComboBox<>();
 		comboProvincia.setBounds(395, 206, 149, 20);
 		AgregarPropiedad.add(comboProvincia);
-	}
-
-	public JTextField getTfLoc() {
-		return tfLoc;
+		
+		comboLocalidad = new JComboBox<>();
+		comboLocalidad.setBounds(396, 231, 102, 20);
+		AgregarPropiedad.add(comboLocalidad);
+		
+		bttAddLoc = new JButton("+");
+		bttAddLoc.setBounds(503, 230, 41, 23);
+		AgregarPropiedad.add(bttAddLoc);
+		
+		comboPropietario = new JComboBox();
+		comboPropietario.setBounds(395, 84, 103, 20);
+		AgregarPropiedad.add(comboPropietario);
+		
+		bttAddPropietario = new JButton("+");
+		bttAddPropietario.setBounds(507, 83, 41, 23);
+		AgregarPropiedad.add(bttAddPropietario);
 	}
 
 	public JTextField getTfAltura() {
@@ -292,19 +296,15 @@ public class AgregarPropiedad extends JDialog{
 		return tfDepto;
 	}
 
-	public JTextField getTfPropietario() {
-		return tfPropietario;
-	}
-
 	public JComboBox<String> getComboProvincia() {
 		return comboProvincia;
 	}
 
-	public JComboBox getComboMoneda() {
+	public JComboBox<String> getComboMoneda() {
 		return comboMoneda;
 	}
 
-	public JComboBox getComboTipoOfre() {
+	public JComboBox<String> getComboTipoOfre() {
 		return comboTipoOfre;
 	}
 
@@ -320,6 +320,7 @@ public class AgregarPropiedad extends JDialog{
 		return btnGuardar;
 	}
 
+<<<<<<< HEAD
 	public void setBtnGuardar(JButton btnGuardar) {
 		this.btnGuardar = btnGuardar;
 	}
@@ -333,4 +334,25 @@ public class AgregarPropiedad extends JDialog{
 	}
 	
 	
+=======
+	public JButton getBtnCancelar() {
+		return btnCancelar;
+	}
+
+	public JComboBox<String> getComboLocalidad() {
+		return comboLocalidad;
+	}
+
+	public JButton getBttAddLoc() {
+		return bttAddLoc;
+	}
+
+	public JComboBox getComboPropietario() {
+		return comboPropietario;
+	}
+
+	public JButton getBttAddPropietario() {
+		return bttAddPropietario;
+	}
+>>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
 }

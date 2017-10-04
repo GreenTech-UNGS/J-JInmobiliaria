@@ -62,6 +62,7 @@ public class MainViewController {
 	}
 
 	private void agregarPropiedad(){
+		this.propiedadesController.setModeNew();
 		this.propiedadesController.showView();
 	}
 	

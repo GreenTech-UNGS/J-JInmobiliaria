@@ -35,8 +35,8 @@ public class PersonaValidator implements Validator<Persona>{
 	
 	private boolean isCredentialValid(Persona p) {
 		if(p.getTipoCred().equals(TipoCredencial.DNI)) {
-			return p.getCredencial().matches("[1-9][0-9]{7}") ||
-					p.getCredencial().matches("[1-9][0-9]\\.[0-9]{3}\\.[0-9]{3}");
+			return p.getCredencial().matches(Regex.DNI()) ||
+					p.getCredencial().matches(Regex.OnlyNumbersDNI());
 		}
 		else if(p.getTipoCred().equals(TipoCredencial.CUIT)) {
 			return isCuitValid(p);
@@ -45,8 +45,8 @@ public class PersonaValidator implements Validator<Persona>{
 	}
 	
 	private boolean isCuitValid(Persona p) {
-		boolean checkSintaxis = p.getCredencial().matches("(20|23|24|27|30|33|34)[1-9][0-9]{7}[1-9]") ||
-								p.getCredencial().matches("(20|23|24|27|30|33|34)-[1-9][0-9]{7}-[1-9]");
+		boolean checkSintaxis = p.getCredencial().matches(Regex.CUIT()) ||
+								p.getCredencial().matches(Regex.onlyNumbersCUIT());
 		
 		String cuit = p.getCredencial();
 		

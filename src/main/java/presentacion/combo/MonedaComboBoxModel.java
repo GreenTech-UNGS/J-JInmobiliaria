@@ -2,21 +2,20 @@ package presentacion.combo;
 
 import java.util.List;
 
-import entities.Persona.TipoCredencial;
+import entities.Moneda;
 import entities.Provincia;
 
-public class ProvinciaComboBoxModel extends BaseComboBoxModel<Provincia>{
+public class MonedaComboBoxModel extends BaseComboBoxModel<Moneda>{
 
-	
 	@Override
-	public void actualize(List<Provincia> list) {
+	public void actualize(List<Moneda> list) {
 		
 		list.forEach(e -> agregaElemento(e));
 		
 	}
 
 	@Override
-	public void setSelected(Provincia toSelect) {
+	public void setSelected(Moneda toSelect) {
 		if(toSelect == null){
 			this.setSelectedItem(null);
 		}
@@ -30,9 +29,9 @@ public class ProvinciaComboBoxModel extends BaseComboBoxModel<Provincia>{
 	}
 
 	@Override
-	public void agregaElemento(Provincia element) {
+	public void agregaElemento(Moneda element) {
 		this.addElement(element.toString().replaceAll("_", " "));
-		values.put(element.toString().replaceAll("_", " "), element);
+		values.put(element.toString(), element);
 		
 	}
 

@@ -18,10 +18,12 @@ public class PropiedadesTableModel extends BaseTableModel<Propiedad>{
 	@Override
 	protected Object[] toRow(Propiedad t) {
 		
+		String precio = t.getPrecioTentativo().getMonto() + " " + t.getPrecioTentativo().getMoneda();
+		
 		Object[] fila = {t.getIdentificador(),
 						t.getCalle(),
 						t.getAltura(),
-						t.getPrecioTentativo()};
+						precio};
 		
 		return fila;
 	}
