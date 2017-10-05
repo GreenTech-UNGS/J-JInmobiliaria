@@ -47,6 +47,7 @@ public class MainView {
 	private JButton btnAgregarCliente;
 	private JTable tablePropiedades;
 	private JTable tableClientes;
+	private JTable tablePropietarios;
 
 	@Inject
 	public MainView() {
@@ -125,6 +126,12 @@ public class MainView {
 		
 		JPanel TabPropietarios = new JPanel();
 		tabbedPane_2.addTab("Propietarios", null, TabPropietarios, null);
+		
+		tablePropietarios = new JTable();
+		TabPropietarios.add(tablePropietarios);
+		
+		JScrollPane scrollPane_2 = new JScrollPane(tablePropietarios);
+		TabPropietarios.add(scrollPane_2);
 		
 		JPanel panelPagos = new JPanel();
 		panelContainer.add(panelPagos, "name_1283035568116550");
@@ -369,6 +376,11 @@ public class MainView {
 
 	public void setTableClientes(JTable tableClientes) {
 		this.tableClientes = tableClientes;
+	}
+
+
+	public JTable getTablePropietarios() {
+		return tablePropietarios;
 	}
 	
 	
