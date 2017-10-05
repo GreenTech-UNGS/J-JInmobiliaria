@@ -25,6 +25,23 @@
 		<mapping class="entities.Foto" />
 		<mapping class="entities.Telefono" />
 		<mapping class="entities.Cliente" />
+		
+		<mapping class="entities.AvisoNotificacion" />
+		<mapping class="entities.Contrato" />
+		<mapping class="entities.ContratoAlquiler" />
+		<mapping class="entities.ContratoVenta" />
+		<mapping class="entities.CuotaAlquiler" />
+		<mapping class="entities.DatosActualizacionContrato" />
+		<mapping class="entities.DatosPunitorioContrato" />
+		<mapping class="entities.HistoriaEstadoContrato" />
+		<mapping class="entities.HistoriaEstadoCuota" />
+		<mapping class="entities.Ingreso" />
+		<mapping class="entities.IngresoAlquiler" />
+		<mapping class="entities.IngresoVenta" />
+		<mapping class="entities.InteresPunitorioCuota" />
+		<mapping class="entities.PagoPropietario" />
+		<mapping class="entities.Reserva" />
+		<mapping class="entities.Usuario" />
 				
     </session-factory>
 </hibernate-configuration>

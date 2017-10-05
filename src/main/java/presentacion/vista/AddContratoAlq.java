@@ -259,10 +259,12 @@ public class AddContratoAlq extends JDialog {
 		
 		spinnerActualizaContrato = new JSpinner();
 		spinnerActualizaContrato.setBounds(102, 315, 45, 20);
+		spinnerActualizaContrato.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
 		agregarContrato.add(spinnerActualizaContrato);
 		
 		spinnerPorcenajeActualiza = new JSpinner();
 		spinnerPorcenajeActualiza.setBounds(102, 345, 45, 20);
+		spinnerPorcenajeActualiza.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(100), new Float(0.1)));
 		agregarContrato.add(spinnerPorcenajeActualiza);
 		
 		JLabel label_1 = new JLabel("%");
@@ -276,6 +278,7 @@ public class AddContratoAlq extends JDialog {
 		
 		spinnerDuracionContrato = new JSpinner();
 		spinnerDuracionContrato.setBounds(102, 102, 45, 20);
+		spinnerDuracionContrato.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
 		agregarContrato.add(spinnerDuracionContrato);
 		
 		JLabel label_2 = new JLabel("Meses");
@@ -289,6 +292,7 @@ public class AddContratoAlq extends JDialog {
 		
 		spinnerPorcentajePunitorio = new JSpinner();
 		spinnerPorcentajePunitorio.setBounds(142, 461, 46, 20);
+		spinnerPorcentajePunitorio.setModel(new SpinnerNumberModel(new Float(0.5), new Float(0), new Float(100), new Float(0.1)));
 		agregarContrato.add(spinnerPorcentajePunitorio);
 		
 		JLabel label_3 = new JLabel("%");
@@ -323,6 +327,7 @@ public class AddContratoAlq extends JDialog {
 		
 		spinnerVencimientoEmail = new JSpinner();
 		spinnerVencimientoEmail.setBounds(89, 572, 45, 20);
+		spinnerVencimientoEmail.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
 		agregarContrato.add(spinnerVencimientoEmail);
 		
 		JLabel label_4 = new JLabel("Meses");
@@ -332,6 +337,7 @@ public class AddContratoAlq extends JDialog {
 		
 		spinnerInformacionEmail = new JSpinner();
 		spinnerInformacionEmail.setBounds(412, 572, 45, 20);
+		spinnerInformacionEmail.setModel(new SpinnerNumberModel(0, 0, 28, 1));
 		agregarContrato.add(spinnerInformacionEmail);
 		
 		JLabel label_5 = new JLabel("Dias");
