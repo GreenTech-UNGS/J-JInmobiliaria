@@ -50,6 +50,7 @@ public class AddClienteController {
 		this.telTable = new TelefonoTableModel();
 		
 		view.getBtnGuardar().addActionListener(e -> saveCurrentCliente());
+		view.getBtnCancelar().addActionListener(e -> closeView());
 		view.getBtnAgregarTelefono().addActionListener(e -> agregaTelefono());
 		view.getBtnBorrarTelefono().addActionListener(e -> borrarTelefono());
 		
@@ -139,6 +140,9 @@ public class AddClienteController {
 		view.setVisible(true);
 	}
 	
+	public void closeView() {
+		view.setVisible(false);
+	}
 	
 
 }
