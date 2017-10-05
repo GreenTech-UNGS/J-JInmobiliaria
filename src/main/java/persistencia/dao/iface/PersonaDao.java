@@ -12,5 +12,6 @@ public interface PersonaDao extends Dao<Persona>{
 	
 	List<Telefono> getAllTelefonosOf(PersonaBasica pb);
 	boolean existePersonaConCredencial (String credencial, TipoCredencial tipo);
+	Persona getPersonaWith(int ID);
 	
 }

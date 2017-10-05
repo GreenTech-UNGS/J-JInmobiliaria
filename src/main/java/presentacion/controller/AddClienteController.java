@@ -5,6 +5,7 @@ import org.quartz.impl.jdbcjobstore.MSSQLDelegate;
 import com.google.inject.Inject;
 
 import entities.Cliente;
+import entities.Persona;
 import entities.Persona.TipoCredencial;
 import entities.Telefono;
 import misc.Binder;
@@ -32,6 +33,7 @@ public class AddClienteController {
 	private TelefonoTableModel telTable;
 	
 	private AddTelefonoController telefonoController;
+	private ElegirPersonaController elegirPersona;
 	private Cliente currentCliente;
 	private Binder<Cliente> binder;
 	
@@ -39,18 +41,21 @@ public class AddClienteController {
 	private AddClienteController(AgregarCliente view,
 								 ClienteService clienteService,
 								 PersonaService personaService,
-								 AddTelefonoController telefonoController){
+								 AddTelefonoController telefonoController,
+								 ElegirPersonaController elegirPersona){
 		
 		this.view = view;
 		this.clienteService = clienteService;
 		this.telefonoController = telefonoController;
 		this.personaService = personaService;
+		this.elegirPersona = elegirPersona;
 		
 		this.tipoCredencialModel = new TipoCredencialComboBoxModel();
 		this.telTable = new TelefonoTableModel();
 		
 		view.getBtnGuardar().addActionListener(e -> saveCurrentCliente());
 		view.getBtnCancelar().addActionListener(e -> closeView());
+		view.getBtnBuscar().addActionListener(e -> eligePersona());
 		view.getBtnAgregarTelefono().addActionListener(e -> agregaTelefono());
 		view.getBtnBorrarTelefono().addActionListener(e -> borrarTelefono());
 		
@@ -83,6 +88,8 @@ public class AddClienteController {
 		binder.setObjective(currentCliente);
 		binder.fillFields();
 		telTable.clean();
+		
+		setEditCampos(true);
 	}
 	
 	private void fillCombos() {
@@ -122,6 +129,35 @@ public class AddClienteController {
 			telTable.addRow(nuevoTel);
 			currentCliente.getPersona().insertTelefono(nuevoTel);
 		}
+		
+	}
+	
+	private void eligePersona() {
+		
+		elegirPersona.showView();
+		Persona p = elegirPersona.getPersona();
+		
+		if(p != null) {
+			currentCliente = clienteService.getNewClienteFrom(p);
+			binder.setObjective(currentCliente);
+			binder.fillFields();
+			
+			setEditCampos(false);
+			
+		}
+		
+	}
+	
+	private void setEditCampos(boolean b) {
+		
+		view.getTextCredencial().setEditable(b);
+		view.getTextApellido().setEditable(b);
+		view.getTextNombre().setEditable(b);
+		view.getTextMail().setEditable(b);
+		view.getComboCredencial().setEnabled(b);
+		
+		view.getBtnAgregarTelefono().setEnabled(b);
+		view.getBtnBorrarTelefono().setEnabled(b);
 		
 	}
 	

@@ -19,7 +19,7 @@ public class ClientesTableModel extends BaseTableModel<Cliente> {
 				t.getPersona().getNombre(),
 				t.getPersona().getApellido()};
 
-return fila;
+		return fila;
 	}
 
 }

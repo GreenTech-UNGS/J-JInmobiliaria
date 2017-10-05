@@ -7,6 +7,7 @@ import com.google.inject.Singleton;
 
 import entities.Persona;
 import entities.Persona.TipoCredencial;
+import model.ClienteService;
 import model.PersonaService;
 
 @Singleton
@@ -15,15 +16,18 @@ public class PersonaValidator implements Validator<Persona>{
 	PersonaBasicaValidator pbValidator;
 	MessageShow msgShw;
 	PersonaService personaService;
+	ClienteService clienteService;
 	
 	@Inject
 	private PersonaValidator(PersonaBasicaValidator pbValidator, 
 			MessageShow msgShw, 
-			PersonaService personaService) {
+			PersonaService personaService,
+			ClienteService clienteService) {
 		
 		this.pbValidator = pbValidator;
 		this.msgShw = msgShw;
 		this.personaService = personaService;
+		this.clienteService = clienteService;
 	}
 	
 	@Override
@@ -35,10 +39,15 @@ public class PersonaValidator implements Validator<Persona>{
 			msgShw.showErrorMessage("El DNI/CUIT es invalido", "Error");
 			return false;
 		}
-		else if(personaService.existePersonaConCredencial(t)) {
+		else if(personaService.existePersonaConCredencial(t) && !personaService.existePersona(t)) {
 			msgShw.showErrorMessage("El " + t.getTipoCred().toString() 
 					+ " está repetido. \n"
 					+ "Si requiere ingresar a alguien existente utilize el botón buscar", "Error");
+			return false;
+		}
+		else if(clienteService.existeClienteCon(t)) {
+			msgShw.showErrorMessage("El cliente ya está agregado", "Error");
+			
 			return false;
 		}
 		

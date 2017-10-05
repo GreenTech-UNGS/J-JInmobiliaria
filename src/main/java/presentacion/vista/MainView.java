@@ -112,11 +112,10 @@ public class MainView {
 		tabbedPane_2.addTab("Clientes", null, TabCliente, null);
 		TabCliente.setLayout(new BoxLayout(TabCliente, BoxLayout.Y_AXIS));
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		TabCliente.add(scrollPane_1);
-		
 		tableClientes = new JTable();
-		scrollPane_1.setColumnHeaderView(tableClientes);
+		
+		JScrollPane scrollPane_1 = new JScrollPane(tableClientes);
+		TabCliente.add(scrollPane_1);
 		
 		JPanel panel = new JPanel();
 		TabCliente.add(panel);

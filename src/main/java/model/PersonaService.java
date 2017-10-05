@@ -33,4 +33,15 @@ public class PersonaService {
 		return personaDao.getAllTelefonosOf(pb);
 		
 	}
+	
+	public List<Persona> getAll(){
+		return personaDao.getAll();
+	}
+
+
+	public boolean existePersona(Persona t) {
+		Persona personaInDb = personaDao.getPersonaWith(t.getID());;
+		return t.equals(personaInDb);
+	}
+	
 }

@@ -64,4 +64,21 @@ public class PersonaDaoHibernate extends DaoHibernate<Persona> implements Person
 		
 	}
 
+	@Override
+	public Persona getPersonaWith(int ID) {
+		initTransaction();
+		
+		Criteria q = sesion.createCriteria(Persona.class).
+				add(Restrictions.eq("ID", ID));
+		
+		finishTransaction();
+		
+		List<Persona> res = q.list();
+		
+		if(res.isEmpty())
+			return null;
+		
+		return res.get(0);
+	}
+
 }

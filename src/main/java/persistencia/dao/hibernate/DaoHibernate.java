@@ -20,11 +20,11 @@ public abstract class DaoHibernate<T> implements Dao<T>{
 	protected Session sesion;
 	protected Transaction transaction;
 
+	@Inject
 	protected DaoHibernate(Conexion conexion){
 		this.conexion = conexion;
 
 		sesionFactory = conexion.getSessionFactory();
-		sesion = sesionFactory.openSession();
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public abstract class DaoHibernate<T> implements Dao<T>{
 		
 		initTransaction();
 		
-		sesion.save(toInsert);
+		sesion.merge(toInsert);
 		
 		finishTransaction();
 		
@@ -53,6 +53,7 @@ public abstract class DaoHibernate<T> implements Dao<T>{
 	
 	protected void initTransaction(){
 		
+		sesion = sesionFactory.openSession();
 		transaction = sesion.beginTransaction();
 		
 	}
