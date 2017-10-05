@@ -2,9 +2,13 @@ package model;
 
 import java.util.List;
 
+import org.joda.time.DateTime;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import entities.EstadoProp;
+import entities.HistoriaEstadoProp;
 import entities.Moneda;
 import entities.Precio;
 import entities.Propiedad;
@@ -27,6 +31,12 @@ public class PropiedadService {
 	}
 	
 	public void savePropiedad(Propiedad p) {
+		
+		HistoriaEstadoProp historia = new HistoriaEstadoProp();
+		historia.setEstado(EstadoProp.DISPONIBLE);
+		historia.setFecha(DateTime.now());
+		
+		p.getEstados().add(historia);
 		propiedadDao.save(p);
 	}
 	
@@ -38,6 +48,13 @@ public class PropiedadService {
 		toRet.setTipoOfrecimiento(TipoOfrecimiento.ALQUILER);
 		
 		return toRet;
+		
+	}
+	
+	public EstadoProp getCurrentEstado(Propiedad p) {
+		
+		p.getEstados().sort((h1, h2) -> h1.getFecha().compareTo(h2.getFecha()));
+		return p.getEstados().get(p.getEstados().size() - 1).getEstado();
 		
 	}
 	

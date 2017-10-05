@@ -61,14 +61,14 @@ public class AddPropiedadController {
 		
 		binder.bind("calle", view.getTfCalle()::getText, t -> view.getTfCalle().setText((String)t));
 		
-		binder.bind("altura", () -> Integer.parseInt(view.getTfAltura().getText()),
-				t -> view.getTfAltura().setText(t.toString()));
+		binder.bind("altura", () -> view.getTfAltura().getText(),
+				t -> view.getTfAltura().setText((String)t));
 		
-		binder.bind("piso", () -> Integer.parseInt(view.getTfPiso().getText()),
-				t -> view.getTfPiso().setText(t.toString()));
+		binder.bind("piso", () -> view.getTfPiso().getText(),
+				t -> view.getTfPiso().setText((String)t));
 		
-		binder.bind("dpto", () -> Integer.parseInt(view.getTfDepto().getText()),
-				t -> view.getTfDepto().setText(t.toString()));
+		binder.bind("dpto", () -> view.getTfDepto().getText(),
+				t -> view.getTfDepto().setText((String)t));
 		
 		binder.bind("obsPublicas", view.getTaDescPubl()::getText, t -> view.getTaDescPubl().setText((String)t));
 		

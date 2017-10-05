@@ -21,9 +21,9 @@ public class Inmobiliaria {
 	private int ID;
 	private String CUIT;
 	private String calle;
-	private int altura;
-	private int piso;
-	private int depto;
+	private String altura;
+	private String piso;
+	private String depto;
 	private String email;
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
@@ -60,19 +60,19 @@ public class Inmobiliaria {
 		this.calle = calle;
 	}
 
-	public int getPiso() {
+	public String getPiso() {
 		return piso;
 	}
 
-	public void setPiso(int piso) {
+	public void setPiso(String piso) {
 		this.piso = piso;
 	}
 
-	public int getDepto() {
+	public String getDepto() {
 		return depto;
 	}
 
-	public void setDepto(int depto) {
+	public void setDepto(String depto) {
 		this.depto = depto;
 	}
 
@@ -98,6 +98,14 @@ public class Inmobiliaria {
 	
 	public void addContacto(PersonaBasica p) {
 		this.contactos.add(p);
+	}
+
+	public String getAltura() {
+		return altura;
+	}
+
+	public void setAltura(String altura) {
+		this.altura = altura;
 	}
 	
 	
