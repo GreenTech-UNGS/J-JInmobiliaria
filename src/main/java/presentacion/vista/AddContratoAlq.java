@@ -13,32 +13,41 @@ import javax.swing.JSeparator;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.JCheckBox;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class AddContratoAlq extends JDialog {
 
 	private JPanel agregarContrato;
-	private JTextField tfIdContrato;
+	private JTextField textIdContrato;
 	private JTextField tfIdPropiedad;
 	private JTextField tfDniInquilino;
-	private JTextField tfGarantia;
-	private JTextField tfMontoPunitorio;
-	private JTextField tfPrecio;
-	private JTextField tfVencimiento;
-	private JTextField tfIntervaloAct;
-	private JTextField tfPorcenjateAct;
-	private JTextField tfPjeAcumulativo;
-	private JTextField tfGastos;
-	private JTextField tfMailIntimat;
-	private JTextField tfMailVenc;
-	
+	private JTextField textPrecio;
 	@SuppressWarnings("rawtypes")
-	private JComboBox cbMontoPunitorio;
-	@SuppressWarnings("rawtypes")
-	private JComboBox cbMoneda;
+	private JComboBox comboMoneda;
 	
 	private JButton btnGuardarContrato;
 	private JButton btnCancelarContrato;
+	private JButton btnLupaPropiedad;
+	private JSpinner spinnerDuracionContrato;
+	private JComboBox comboTipoContrato;
+	private JButton btnLupaCliente;
+	private JTextArea textGarantia;
+	private JSpinner spinnerGastosAdmin;
+	private JSpinner spinnerActualizaContrato;
+	private JSpinner spinnerPorcenajeActualiza;
+	private JCheckBox chckbxAcumulativoActualiza;
+	private JSpinner spinnerTiempoPago;
+	private JSpinner spinnerPorcentajePunitorio;
+	private JCheckBox chkbxAcumulativoPunitorio;
+	private JCheckBox chckbxVencimiento;
+	private JSpinner spinnerVencimientoEmail;
+	private JCheckBox chckbxIntimacion;
+	private JSpinner spinnerInformacionEmail;
 	
 	
 	@SuppressWarnings("rawtypes")
@@ -48,7 +57,7 @@ public class AddContratoAlq extends JDialog {
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setModal(true);
-		setSize(new Dimension(629, 554));
+		setSize(new Dimension(630, 700));
 		setResizable(false);
 		setLocationRelativeTo(null);
 		
@@ -57,45 +66,40 @@ public class AddContratoAlq extends JDialog {
 		setContentPane(agregarContrato);
 		agregarContrato.setLayout(null);
 		
-		JLabel lblIdContrato = new JLabel("Id contrato:");
+		JLabel lblIdContrato = new JLabel("Identifcador:");
 		lblIdContrato.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblIdContrato.setBounds(48, 50, 69, 14);
+		lblIdContrato.setBounds(22, 50, 75, 14);
 		agregarContrato.add(lblIdContrato);
 		
-		JLabel lblIdPropiedad = new JLabel("Id propiedad:");
+		JLabel lblIdPropiedad = new JLabel("Propiedad: ");
 		lblIdPropiedad.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblIdPropiedad.setBounds(48, 75, 75, 14);
+		lblIdPropiedad.setBounds(22, 76, 75, 14);
 		agregarContrato.add(lblIdPropiedad);
 		
-		JLabel lblDniInq = new JLabel("Dni inquilino:");
+		JLabel lblDniInq = new JLabel("Cliente:");
 		lblDniInq.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblDniInq.setBounds(386, 50, 75, 14);
+		lblDniInq.setBounds(350, 50, 75, 14);
 		agregarContrato.add(lblDniInq);
 		
-		JLabel lblPrecio = new JLabel("Precio alquiler:");
+		JLabel lblPrecio = new JLabel("Precio:");
 		lblPrecio.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPrecio.setBounds(42, 165, 75, 14);
+		lblPrecio.setBounds(22, 210, 75, 14);
 		agregarContrato.add(lblPrecio);
 		
 		JLabel lblMoneda = new JLabel("Moneda:");
 		lblMoneda.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblMoneda.setBounds(71, 215, 46, 14);
+		lblMoneda.setBounds(22, 236, 65, 14);
 		agregarContrato.add(lblMoneda);
 		
-		JLabel lblInvervaloAct = new JLabel("Invervalo actualizaci\u00F3n:");
+		JLabel lblInvervaloAct = new JLabel("Cada:");
 		lblInvervaloAct.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblInvervaloAct.setBounds(22, 240, 128, 14);
+		lblInvervaloAct.setBounds(22, 318, 75, 14);
 		agregarContrato.add(lblInvervaloAct);
 		
-		JLabel lblPjeAct = new JLabel("Porcentaje actualizaci\u00F3n:");
+		JLabel lblPjeAct = new JLabel("Porcentaje:");
 		lblPjeAct.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPjeAct.setBounds(22, 265, 128, 14);
+		lblPjeAct.setBounds(22, 344, 75, 14);
 		agregarContrato.add(lblPjeAct);
-		
-		JLabel lblPjeAcum = new JLabel("Porcentaje acumulativo:");
-		lblPjeAcum.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPjeAcum.setBounds(22, 290, 128, 14);
-		agregarContrato.add(lblPjeAcum);
 		
 		JLabel lblDatosGenerales = new JLabel("Datos generales:");
 		lblDatosGenerales.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -104,132 +108,80 @@ public class AddContratoAlq extends JDialog {
 		
 		JLabel lblDatosFinancieros = new JLabel("Datos financieros:");
 		lblDatosFinancieros.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDatosFinancieros.setBounds(22, 127, 142, 14);
+		lblDatosFinancieros.setBounds(22, 173, 142, 14);
 		agregarContrato.add(lblDatosFinancieros);
 		
-		JLabel lblDiaVenc = new JLabel("D\u00EDa de vencimiento:");
+		JLabel lblDiaVenc = new JLabel("Tiempo de pago:");
 		lblDiaVenc.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblDiaVenc.setBounds(22, 190, 95, 14);
+		lblDiaVenc.setBounds(22, 435, 128, 14);
 		agregarContrato.add(lblDiaVenc);
 		
-		JLabel lblPjeMontoPun = new JLabel("Porcentaje monto punitorio:");
+		JLabel lblPjeMontoPun = new JLabel("Monto punitorio:");
 		lblPjeMontoPun.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPjeMontoPun.setBounds(305, 190, 142, 14);
+		lblPjeMontoPun.setBounds(22, 466, 110, 14);
 		agregarContrato.add(lblPjeMontoPun);
-		
-		JLabel lblMontoPunitorio = new JLabel("Monto punitorio acumulativo:");
-		lblMontoPunitorio.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblMontoPunitorio.setBounds(305, 215, 142, 14);
-		agregarContrato.add(lblMontoPunitorio);
 		
 		JLabel lblGastos = new JLabel("Gastos administrativos:");
 		lblGastos.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblGastos.setBounds(329, 165, 120, 14);
+		lblGastos.setBounds(305, 211, 144, 14);
 		agregarContrato.add(lblGastos);
 		
-		JLabel lblGaranta = new JLabel("Garant\u00EDa de pago:");
+		JLabel lblGaranta = new JLabel("Garantia:");
 		lblGaranta.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblGaranta.setBounds(361, 75, 100, 14);
+		lblGaranta.setBounds(350, 76, 100, 14);
 		agregarContrato.add(lblGaranta);
 		
-		JLabel lblMailVenc = new JLabel("Mail de vencimiento:");
+		JLabel lblMailVenc = new JLabel("Antes de:");
 		lblMailVenc.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblMailVenc.setBounds(22, 376, 110, 14);
+		lblMailVenc.setBounds(22, 575, 65, 14);
 		agregarContrato.add(lblMailVenc);
 		
 		JLabel lblAvisos = new JLabel("Avisos");
 		lblAvisos.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblAvisos.setBounds(22, 335, 46, 14);
+		lblAvisos.setBounds(22, 507, 46, 14);
 		agregarContrato.add(lblAvisos);
 		
-		JLabel lblMailIntim = new JLabel("Mail intimaci\u00F3n por vencimiento:");
+		JLabel lblMailIntim = new JLabel("Antes de:");
 		lblMailIntim.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblMailIntim.setBounds(22, 401, 151, 14);
+		lblMailIntim.setBounds(350, 575, 85, 14);
 		agregarContrato.add(lblMailIntim);
 		
-		tfIdContrato = new JTextField();
-		tfIdContrato.setBounds(127, 48, 128, 17);
-		agregarContrato.add(tfIdContrato);
-		tfIdContrato.setColumns(10);
+		textIdContrato = new JTextField();
+		textIdContrato.setBounds(102, 48, 167, 17);
+		agregarContrato.add(textIdContrato);
+		textIdContrato.setColumns(10);
 		
 		tfIdPropiedad = new JTextField();
-		tfIdPropiedad.setBounds(127, 73, 128, 17);
+		tfIdPropiedad.setEditable(false);
+		tfIdPropiedad.setBounds(102, 74, 120, 17);
 		agregarContrato.add(tfIdPropiedad);
 		tfIdPropiedad.setColumns(10);
 		
 		tfDniInquilino = new JTextField();
-		tfDniInquilino.setBounds(461, 48, 135, 17);
+		tfDniInquilino.setEditable(false);
+		tfDniInquilino.setBounds(430, 48, 120, 17);
 		agregarContrato.add(tfDniInquilino);
 		tfDniInquilino.setColumns(10);
 		
-		tfGarantia = new JTextField();
-		tfGarantia.setBounds(461, 73, 135, 17);
-		agregarContrato.add(tfGarantia);
-		tfGarantia.setColumns(10);
+		textPrecio = new JTextField();
+		textPrecio.setBounds(127, 209, 128, 17);
+		agregarContrato.add(textPrecio);
+		textPrecio.setColumns(10);
 		
-		tfMontoPunitorio = new JTextField();
-		tfMontoPunitorio.setBounds(461, 188, 135, 17);
-		agregarContrato.add(tfMontoPunitorio);
-		tfMontoPunitorio.setColumns(10);
-		
-		tfPrecio = new JTextField();
-		tfPrecio.setBounds(127, 163, 128, 17);
-		agregarContrato.add(tfPrecio);
-		tfPrecio.setColumns(10);
-		
-		tfVencimiento = new JTextField();
-		tfVencimiento.setBounds(127, 188, 128, 17);
-		agregarContrato.add(tfVencimiento);
-		tfVencimiento.setColumns(10);
-		
-		tfIntervaloAct = new JTextField();
-		tfIntervaloAct.setBounds(145, 238, 110, 17);
-		agregarContrato.add(tfIntervaloAct);
-		tfIntervaloAct.setColumns(10);
-		
-		tfPorcenjateAct = new JTextField();
-		tfPorcenjateAct.setBounds(145, 263, 110, 17);
-		agregarContrato.add(tfPorcenjateAct);
-		tfPorcenjateAct.setColumns(10);
-		
-		tfPjeAcumulativo = new JTextField();
-		tfPjeAcumulativo.setColumns(10);
-		tfPjeAcumulativo.setBounds(145, 290, 110, 17);
-		agregarContrato.add(tfPjeAcumulativo);
-		
-		tfGastos = new JTextField();
-		tfGastos.setColumns(10);
-		tfGastos.setBounds(461, 163, 135, 17);
-		agregarContrato.add(tfGastos);
-		
-		tfMailIntimat = new JTextField();
-		tfMailIntimat.setColumns(10);
-		tfMailIntimat.setBounds(183, 399, 128, 17);
-		agregarContrato.add(tfMailIntimat);
-		
-		tfMailVenc = new JTextField();
-		tfMailVenc.setColumns(10);
-		tfMailVenc.setBounds(127, 373, 184, 17);
-		agregarContrato.add(tfMailVenc);
-		
-		this.cbMontoPunitorio = new JComboBox();
-		cbMontoPunitorio.setBounds(461, 214, 135, 17);
-		agregarContrato.add(cbMontoPunitorio);
-		
-		this.cbMoneda = new JComboBox();
-		cbMoneda.setBounds(127, 214, 128, 17);
-		agregarContrato.add(cbMoneda);
+		this.comboMoneda = new JComboBox();
+		comboMoneda.setBounds(127, 234, 128, 17);
+		agregarContrato.add(comboMoneda);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(22, 37, 574, 2);
 		agregarContrato.add(separator);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(22, 152, 574, 2);
+		separator_1.setBounds(22, 196, 574, 2);
 		agregarContrato.add(separator_1);
 		
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(22, 360, 574, 2);
+		separator_2.setBounds(22, 534, 574, 2);
 		agregarContrato.add(separator_2);
 		
 		this.btnGuardarContrato = new JButton("Guardar");
@@ -237,7 +189,7 @@ public class AddContratoAlq extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnGuardarContrato.setBounds(183, 453, 128, 38);
+		btnGuardarContrato.setBounds(183, 625, 128, 38);
 		agregarContrato.add(btnGuardarContrato);
 		
 		this.btnCancelarContrato = new JButton("Cancelar");
@@ -245,18 +197,157 @@ public class AddContratoAlq extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnCancelarContrato.setBounds(327, 453, 120, 38);
+		btnCancelarContrato.setBounds(329, 625, 120, 38);
 		agregarContrato.add(btnCancelarContrato);
+		
+		btnLupaPropiedad = new JButton("L");
+		btnLupaPropiedad.setBounds(234, 74, 35, 17);
+		agregarContrato.add(btnLupaPropiedad);
+		
+		textGarantia = new JTextArea();
+		textGarantia.setBounds(430, 75, 166, 38);
+		agregarContrato.add(textGarantia);
+		
+		btnLupaCliente = new JButton("L");
+		btnLupaCliente.setBounds(561, 48, 35, 16);
+		agregarContrato.add(btnLupaCliente);
+		
+		spinnerGastosAdmin = new JSpinner();
+		spinnerGastosAdmin.setModel(new SpinnerNumberModel(new Float(8), new Float(0), new Float(100), new Float(0.1)));
+		spinnerGastosAdmin.setBounds(461, 207, 46, 20);
+		agregarContrato.add(spinnerGastosAdmin);
+		
+		JLabel label = new JLabel("%");
+		label.setBounds(513, 209, 22, 15);
+		agregarContrato.add(label);
+		
+		JLabel lblTiempoDeAlquiler = new JLabel("Duracion:");
+		lblTiempoDeAlquiler.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblTiempoDeAlquiler.setBounds(22, 102, 75, 15);
+		agregarContrato.add(lblTiempoDeAlquiler);
+		
+		spinnerTiempoPago = new JSpinner();
+		spinnerTiempoPago.setModel(new SpinnerNumberModel(0, 0, 28, 1));
+		spinnerTiempoPago.setBounds(142, 432, 45, 20);
+		agregarContrato.add(spinnerTiempoPago);
+		
+		JLabel lblDias = new JLabel("Dias");
+		lblDias.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblDias.setBounds(205, 435, 70, 15);
+		agregarContrato.add(lblDias);
+		
+		JLabel lblDatosPunitorios = new JLabel("Datos punitorios:");
+		lblDatosPunitorios.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblDatosPunitorios.setBounds(22, 384, 142, 14);
+		agregarContrato.add(lblDatosPunitorios);
+		
+		JLabel lblDatosDeActualizacion = new JLabel("Datos de actualizacion del contrato:");
+		lblDatosDeActualizacion.setFont(new Font("Dialog", Font.BOLD, 11));
+		lblDatosDeActualizacion.setBounds(22, 278, 247, 14);
+		agregarContrato.add(lblDatosDeActualizacion);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBounds(22, 304, 574, 2);
+		agregarContrato.add(separator_3);
+		
+		chckbxAcumulativoActualiza = new JCheckBox("Acumulativo");
+		chckbxAcumulativoActualiza.setFont(new Font("Dialog", Font.PLAIN, 11));
+		chckbxAcumulativoActualiza.setVerticalAlignment(SwingConstants.TOP);
+		chckbxAcumulativoActualiza.setHorizontalAlignment(SwingConstants.LEFT);
+		chckbxAcumulativoActualiza.setBounds(350, 314, 129, 23);
+		agregarContrato.add(chckbxAcumulativoActualiza);
+		
+		spinnerActualizaContrato = new JSpinner();
+		spinnerActualizaContrato.setBounds(102, 315, 45, 20);
+		agregarContrato.add(spinnerActualizaContrato);
+		
+		spinnerPorcenajeActualiza = new JSpinner();
+		spinnerPorcenajeActualiza.setBounds(102, 345, 45, 20);
+		agregarContrato.add(spinnerPorcenajeActualiza);
+		
+		JLabel label_1 = new JLabel("%");
+		label_1.setBounds(165, 347, 22, 15);
+		agregarContrato.add(label_1);
+		
+		JLabel lblMeses = new JLabel("Meses");
+		lblMeses.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblMeses.setBounds(166, 318, 56, 15);
+		agregarContrato.add(lblMeses);
+		
+		spinnerDuracionContrato = new JSpinner();
+		spinnerDuracionContrato.setBounds(102, 102, 45, 20);
+		agregarContrato.add(spinnerDuracionContrato);
+		
+		JLabel label_2 = new JLabel("Meses");
+		label_2.setFont(new Font("Dialog", Font.PLAIN, 11));
+		label_2.setBounds(152, 107, 56, 15);
+		agregarContrato.add(label_2);
+		
+		JSeparator separator_4 = new JSeparator();
+		separator_4.setBounds(22, 410, 574, 2);
+		agregarContrato.add(separator_4);
+		
+		spinnerPorcentajePunitorio = new JSpinner();
+		spinnerPorcentajePunitorio.setBounds(142, 461, 46, 20);
+		agregarContrato.add(spinnerPorcentajePunitorio);
+		
+		JLabel label_3 = new JLabel("%");
+		label_3.setBounds(205, 465, 22, 15);
+		agregarContrato.add(label_3);
+		
+		chkbxAcumulativoPunitorio = new JCheckBox("Acumulativo");
+		chkbxAcumulativoPunitorio.setVerticalAlignment(SwingConstants.TOP);
+		chkbxAcumulativoPunitorio.setHorizontalAlignment(SwingConstants.LEFT);
+		chkbxAcumulativoPunitorio.setFont(new Font("Dialog", Font.PLAIN, 11));
+		chkbxAcumulativoPunitorio.setBounds(350, 430, 129, 23);
+		agregarContrato.add(chkbxAcumulativoPunitorio);
+		
+		comboTipoContrato = new JComboBox();
+		comboTipoContrato.setBounds(102, 129, 167, 18);
+		agregarContrato.add(comboTipoContrato);
+		
+		JLabel lblTipo = new JLabel("Tipo:");
+		lblTipo.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblTipo.setBounds(22, 129, 75, 15);
+		agregarContrato.add(lblTipo);
+		
+		chckbxVencimiento = new JCheckBox("Vencimiento");
+		chckbxVencimiento.setFont(new Font("Dialog", Font.PLAIN, 11));
+		chckbxVencimiento.setBounds(22, 541, 129, 23);
+		agregarContrato.add(chckbxVencimiento);
+		
+		chckbxIntimacion = new JCheckBox("Intimacion");
+		chckbxIntimacion.setFont(new Font("Dialog", Font.PLAIN, 11));
+		chckbxIntimacion.setBounds(350, 541, 129, 23);
+		agregarContrato.add(chckbxIntimacion);
+		
+		spinnerVencimientoEmail = new JSpinner();
+		spinnerVencimientoEmail.setBounds(89, 572, 45, 20);
+		agregarContrato.add(spinnerVencimientoEmail);
+		
+		JLabel label_4 = new JLabel("Meses");
+		label_4.setFont(new Font("Dialog", Font.PLAIN, 11));
+		label_4.setBounds(152, 574, 56, 15);
+		agregarContrato.add(label_4);
+		
+		spinnerInformacionEmail = new JSpinner();
+		spinnerInformacionEmail.setBounds(412, 572, 45, 20);
+		agregarContrato.add(spinnerInformacionEmail);
+		
+		JLabel label_5 = new JLabel("Dias");
+		label_5.setFont(new Font("Dialog", Font.PLAIN, 11));
+		label_5.setBounds(475, 574, 70, 15);
+		agregarContrato.add(label_5);
 	}
 
 
-	public JTextField getTfIdContrato() {
-		return tfIdContrato;
+	public JPanel getAgregarContrato() {
+		return agregarContrato;
 	}
 
 
-	public void setTfIdContrato(JTextField tfIdContrato) {
-		this.tfIdContrato = tfIdContrato;
+	public JTextField getTextIdContrato() {
+		return textIdContrato;
 	}
 
 
@@ -265,141 +356,18 @@ public class AddContratoAlq extends JDialog {
 	}
 
 
-	public void setTfIdPropiedad(JTextField tfIdPropiedad) {
-		this.tfIdPropiedad = tfIdPropiedad;
-	}
-
-
 	public JTextField getTfDniInquilino() {
 		return tfDniInquilino;
 	}
 
 
-	public void setTfDniInquilino(JTextField tfDniInquilino) {
-		this.tfDniInquilino = tfDniInquilino;
+	public JTextField getTextPrecio() {
+		return textPrecio;
 	}
 
 
-	public JTextField getTfGarantia() {
-		return tfGarantia;
-	}
-
-
-	public void setTfGarantia(JTextField tfGarantia) {
-		this.tfGarantia = tfGarantia;
-	}
-
-
-	public JTextField getTfMontoPunitorio() {
-		return tfMontoPunitorio;
-	}
-
-
-	public void setTfMontoPunitorio(JTextField tfMontoPunitorio) {
-		this.tfMontoPunitorio = tfMontoPunitorio;
-	}
-
-
-	public JTextField getTfPrecio() {
-		return tfPrecio;
-	}
-
-
-	public void setTfPrecio(JTextField tfPrecio) {
-		this.tfPrecio = tfPrecio;
-	}
-
-
-	public JTextField getTfVencimiento() {
-		return tfVencimiento;
-	}
-
-
-	public void setTfVencimiento(JTextField tfVencimiento) {
-		this.tfVencimiento = tfVencimiento;
-	}
-
-
-	public JTextField getTfIntervaloAct() {
-		return tfIntervaloAct;
-	}
-
-
-	public void setTfIntervaloAct(JTextField tfIntervaloAct) {
-		this.tfIntervaloAct = tfIntervaloAct;
-	}
-
-
-	public JTextField getTfPorcenjateAct() {
-		return tfPorcenjateAct;
-	}
-
-
-	public void setTfPorcenjateAct(JTextField tfPorcenjateAct) {
-		this.tfPorcenjateAct = tfPorcenjateAct;
-	}
-
-
-	public JTextField getTfPjeAcumulativo() {
-		return tfPjeAcumulativo;
-	}
-
-
-	public void setTfPjeAcumulativo(JTextField tfPjeAcumulativo) {
-		this.tfPjeAcumulativo = tfPjeAcumulativo;
-	}
-
-
-	public JTextField getTfGastos() {
-		return tfGastos;
-	}
-
-
-	public void setTfGastos(JTextField tfGastos) {
-		this.tfGastos = tfGastos;
-	}
-
-
-	public JTextField getTfMailIntimat() {
-		return tfMailIntimat;
-	}
-
-
-	public void setTfMailIntimat(JTextField tfMailIntimat) {
-		this.tfMailIntimat = tfMailIntimat;
-	}
-
-
-	public JTextField getTfMailVenc() {
-		return tfMailVenc;
-	}
-
-
-	public void setTfMailVenc(JTextField tfMailVenc) {
-		this.tfMailVenc = tfMailVenc;
-	}
-
-
-	@SuppressWarnings("rawtypes")
-	public JComboBox getCbMontoPunitorio() {
-		return cbMontoPunitorio;
-	}
-
-
-	@SuppressWarnings("rawtypes")
-	public void setCbMontoPunitorio(JComboBox cbMontoPunitorio) {
-		this.cbMontoPunitorio = cbMontoPunitorio;
-	}
-
-
-	@SuppressWarnings("rawtypes")
-	public JComboBox getCbMoneda() {
-		return cbMoneda;
-	}
-
-
-	public void setCbMoneda(@SuppressWarnings("rawtypes") JComboBox cbMoneda) {
-		this.cbMoneda = cbMoneda;
+	public JComboBox getComboMoneda() {
+		return comboMoneda;
 	}
 
 
@@ -408,19 +376,88 @@ public class AddContratoAlq extends JDialog {
 	}
 
 
-	public void setBtnGuardarContrato(JButton btnGuardarContrato) {
-		this.btnGuardarContrato = btnGuardarContrato;
-	}
-
-
 	public JButton getBtnCancelarContrato() {
 		return btnCancelarContrato;
 	}
 
 
-	public void setBtnCancelarContrato(JButton btnCancelarContrato) {
-		this.btnCancelarContrato = btnCancelarContrato;
+	public JButton getBtnLupaPropiedad() {
+		return btnLupaPropiedad;
 	}
-	
-	
+
+
+	public JSpinner getSpinnerDuracionContrato() {
+		return spinnerDuracionContrato;
+	}
+
+
+	public JComboBox getComboTipoContrato() {
+		return comboTipoContrato;
+	}
+
+
+	public JButton getBtnLupaCliente() {
+		return btnLupaCliente;
+	}
+
+
+	public JTextArea getTextGarantia() {
+		return textGarantia;
+	}
+
+
+	public JSpinner getSpinnerGastosAdmin() {
+		return spinnerGastosAdmin;
+	}
+
+
+	public JSpinner getSpinnerActualizaContrato() {
+		return spinnerActualizaContrato;
+	}
+
+
+	public JSpinner getSpinnerPorcenajeActualiza() {
+		return spinnerPorcenajeActualiza;
+	}
+
+
+	public JCheckBox getChckbxAcumulativoActualiza() {
+		return chckbxAcumulativoActualiza;
+	}
+
+
+	public JSpinner getSpinnerTiempoPago() {
+		return spinnerTiempoPago;
+	}
+
+
+	public JSpinner getSpinnerPorcentajePunitorio() {
+		return spinnerPorcentajePunitorio;
+	}
+
+
+	public JCheckBox getChkbxAcumulativoPunitorio() {
+		return chkbxAcumulativoPunitorio;
+	}
+
+
+	public JCheckBox getChckbxVencimiento() {
+		return chckbxVencimiento;
+	}
+
+
+	public JSpinner getSpinnerVencimientoEmail() {
+		return spinnerVencimientoEmail;
+	}
+
+
+	public JCheckBox getChckbxIntimacion() {
+		return chckbxIntimacion;
+	}
+
+
+	public JSpinner getSpinnerInformacionEmail() {
+		return spinnerInformacionEmail;
+	}
+
 }
