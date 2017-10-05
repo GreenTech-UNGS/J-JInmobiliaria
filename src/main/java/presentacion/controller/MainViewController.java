@@ -22,13 +22,13 @@ public class MainViewController {
 	AddContVenController contratoVenController;
 	
 	AddClienteController clienteController;	
-	AddPropiedadesController propiedadController;
+	AddPropiedadController propiedadController;
 	
 	PropiedadService propiedadService;
 	ClienteService clienteService;
 	
 	@Inject
-	private MainViewController(MainView view, AddPropiedadesController propiedadesController,
+	private MainViewController(MainView view, AddPropiedadController propiedadesController,
 			AddContAlqController contratoAlqController, AddContVenController contratoVenController,
 			AddClienteController clienteController,
 			PropiedadService propiedadService, ClienteService clienteService){

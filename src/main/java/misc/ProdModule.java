@@ -17,7 +17,7 @@ import persistencia.dao.iface.PropiedadDao;
 import persistencia.dao.iface.PropietarioDao;
 import presentacion.controller.AddContAlqController;
 import presentacion.controller.AddContVenController;
-import presentacion.controller.AddPropiedadesController;
+import presentacion.controller.AddPropiedadController;
 import presentacion.controller.AddClienteController;
 import presentacion.vista.AddContratoAlq;
 import presentacion.vista.AgregarCliente;
@@ -35,7 +35,7 @@ public class ProdModule implements Module{
 		binder.bind(AgregarPropiedad.class).in(Singleton.class);
 		binder.bind(MainView.class).in(Singleton.class);
 		binder.bind(MainView.class).in(Singleton.class);
-		binder.bind(AddPropiedadesController.class).in(Singleton.class);
+		binder.bind(AddPropiedadController.class).in(Singleton.class);
 		binder.bind(AddContAlqController.class).in(Singleton.class);
 		binder.bind(AddContVenController.class).in(Singleton.class);
 		binder.bind(AddClienteController.class).in(Singleton.class);
