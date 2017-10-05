@@ -18,10 +18,12 @@ import persistencia.dao.iface.PropietarioDao;
 import presentacion.controller.AddContAlqController;
 import presentacion.controller.AddContVenController;
 import presentacion.controller.AddPropiedadController;
+import presentacion.controller.ElegirPropietarioController;
 import presentacion.controller.AddClienteController;
 import presentacion.vista.AddContratoAlq;
 import presentacion.vista.AgregarCliente;
 import presentacion.vista.AgregarPropiedad;
+import presentacion.vista.ElegirPropietario;
 import presentacion.vista.MainView;
 
 public class ProdModule implements Module{

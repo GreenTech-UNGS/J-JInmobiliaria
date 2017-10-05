@@ -44,7 +44,7 @@ public class AgregarPropiedad extends JDialog{
 	private JComboBox<String> comboLocalidad;
 	private JButton bttAddLoc;
 	private JButton bttAddPropietario;
-	private JTextField textField;
+	private JTextField tfPropietario;
 	
 	private JButton btnOjito;
 	private JButton btnLupita;
@@ -102,7 +102,7 @@ public class AgregarPropiedad extends JDialog{
 		lblPrecio.setBounds(54, 87, 46, 14);
 		AgregarPropiedad.add(lblPrecio);
 		
-		tfAltura = new JTextField();
+		this.tfAltura = new JTextField();
 		tfAltura.setBounds(92, 234, 149, 20);
 		AgregarPropiedad.add(tfAltura);
 		tfAltura.setColumns(10);
@@ -256,18 +256,20 @@ public class AgregarPropiedad extends JDialog{
 		bttAddPropietario.setBounds(415, 167, 41, 23);
 		AgregarPropiedad.add(bttAddPropietario);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(395, 84, 103, 20);
-		AgregarPropiedad.add(textField);
+		tfPropietario = new JTextField();
+		tfPropietario.setColumns(10);
+		tfPropietario.setBounds(395, 84, 103, 20);
+		AgregarPropiedad.add(tfPropietario);
 		
 		btnOjito = new JButton("");
 		btnOjito.setBounds(502, 83, 22, 23);
-//		Image imgOjito = new ImageIcon(this.getClass().getResource("/.png")).getImage();
+//		Image imgOjito = new ImageIcon(this.getClass().getResource("/ver.png")).getImage();
 //		btnOjito.setIcon(new ImageIcon(imgOjito));
 		AgregarPropiedad.add(btnOjito);
 		
-		btnLupita = new JButton("New button");
+		this.btnLupita = new JButton("New button");
+//		Image imgLup = new ImageIcon(this.getClass().getResource("/buscar.png")).getImage();
+//		btnLupita.setIcon(new ImageIcon(imgLup));
 		btnLupita.setBounds(522, 83, 22, 23);
 		AgregarPropiedad.add(btnLupita);
 	}
@@ -340,4 +342,32 @@ public class AgregarPropiedad extends JDialog{
 	public JButton getBttAddPropietario() {
 		return bttAddPropietario;
 	}
+
+	public JButton getBtnOjito() {
+		return btnOjito;
+	}
+
+	public void setBtnOjito(JButton btnOjito) {
+		this.btnOjito = btnOjito;
+	}
+
+	public JButton getBtnLupita() {
+		return btnLupita;
+	}
+
+	public void setBtnLupita(JButton btnLupita) {
+		this.btnLupita = btnLupita;
+	}
+
+	public JTextField getTfPropietario() {
+		return tfPropietario;
+	}
+
+	public void setTfPropietario(JTextField tfPropietario) {
+		this.tfPropietario = tfPropietario;
+	}
+	
+	
+	
+	
 }

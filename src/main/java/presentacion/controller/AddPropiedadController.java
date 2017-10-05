@@ -12,6 +12,7 @@ import com.google.inject.Inject;
 import entities.Localidad;
 import entities.Moneda;
 import entities.Propiedad;
+import entities.Propietario;
 import entities.Provincia;
 import entities.TipoOfrecimiento;
 import misc.Binder;
@@ -34,21 +35,26 @@ public class AddPropiedadController {
 	private PropiedadService propiedadService;
 	private PropietarioService propietarioService;
 	private LocalidadService localidadService;
-	
+	private ElegirPropietarioController elegirPropController;
+		
 	Propiedad currentPropiedad;
+	Propietario currentPropietario;
 	Binder<Propiedad> binder;
+	Binder<Propiedad> binderP;
 	
 	@Inject
 	private AddPropiedadController(AgregarPropiedad view,
 									PropiedadService propiedadService,
 									PropietarioService propietarioService,
-									LocalidadService localidadService){
+									LocalidadService localidadService,
+									ElegirPropietarioController elegirPropController){
 		
 		this.view = view;
 		this.propiedadService = propiedadService;
 		this.localidadService = localidadService;
 		this.propietarioService = propietarioService;
 		this.binder = new Binder<>();
+		this.elegirPropController = elegirPropController;
 		
 		this.provCombo = new ProvinciaComboBoxModel();
 		this.monedaCombo = new MonedaComboBoxModel();
@@ -87,8 +93,23 @@ public class AddPropiedadController {
 		view.getBttAddLoc().addActionListener(e -> agregaLocalidad());
 		view.getBttAddPropietario().addActionListener(e -> agregaPropietario());
 		view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
+		view.getBtnLupita().addActionListener(e -> selectPropietario());
 		
 		
+	}
+
+	private void selectPropietario() {
+		this.elegirPropController.showView();
+		Propietario prop = elegirPropController.getPropietario();
+		
+		if(prop != null) {
+			currentPropietario = elegirPropController.getPropietario();
+			view.getTfPropietario().setText(currentPropietario.getPersona().getNombre());
+			//binder nosequé
+			
+			view.getTfPropietario().setEditable(false);
+			
+		}
 	}
 
 	private void fillCombos() {

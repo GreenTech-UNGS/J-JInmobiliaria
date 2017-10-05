@@ -10,10 +10,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JTable;
 
+import com.google.inject.Inject;
+
 @SuppressWarnings("serial")
 public class ElegirPropietario extends JDialog {
 	private JTable table;
+	private JButton btnAceptar;
 	
+	@Inject
 	private ElegirPropietario() {
 		super();
 		
@@ -35,8 +39,28 @@ public class ElegirPropietario extends JDialog {
 		getContentPane().add(panelBotones);
 		panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.X_AXIS));
 		
-		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar = new JButton("Aceptar");
 		panelBotones.add(btnAceptar);
 	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
+	public JButton getBtnAceptar() {
+		return btnAceptar;
+	}
+
+	public void setBtnAceptar(JButton btnAceptar) {
+		this.btnAceptar = btnAceptar;
+	}
+	
+	
+	
+	
 
 }
