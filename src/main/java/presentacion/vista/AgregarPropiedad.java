@@ -12,9 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -40,9 +43,11 @@ public class AgregarPropiedad extends JDialog{
 	private JButton btnCancelar;
 	private JComboBox<String> comboLocalidad;
 	private JButton bttAddLoc;
-	@SuppressWarnings("rawtypes")
-	private JComboBox comboPropietario;
 	private JButton bttAddPropietario;
+	private JTextField textField;
+	
+	private JButton btnOjito;
+	private JButton btnLupita;
 
 	@Inject
 	private AgregarPropiedad() {
@@ -247,13 +252,24 @@ public class AgregarPropiedad extends JDialog{
 		bttAddLoc.setBounds(503, 230, 41, 23);
 		AgregarPropiedad.add(bttAddLoc);
 		
-		comboPropietario = new JComboBox();
-		comboPropietario.setBounds(395, 84, 103, 20);
-		AgregarPropiedad.add(comboPropietario);
-		
 		bttAddPropietario = new JButton("+");
-		bttAddPropietario.setBounds(507, 83, 41, 23);
+		bttAddPropietario.setBounds(415, 167, 41, 23);
 		AgregarPropiedad.add(bttAddPropietario);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(395, 84, 103, 20);
+		AgregarPropiedad.add(textField);
+		
+		btnOjito = new JButton("");
+		btnOjito.setBounds(502, 83, 22, 23);
+//		Image imgOjito = new ImageIcon(this.getClass().getResource("/.png")).getImage();
+//		btnOjito.setIcon(new ImageIcon(imgOjito));
+		AgregarPropiedad.add(btnOjito);
+		
+		btnLupita = new JButton("New button");
+		btnLupita.setBounds(522, 83, 22, 23);
+		AgregarPropiedad.add(btnLupita);
 	}
 
 	public JTextField getTfAltura() {
@@ -321,12 +337,7 @@ public class AgregarPropiedad extends JDialog{
 		return bttAddLoc;
 	}
 
-	public JComboBox getComboPropietario() {
-		return comboPropietario;
-	}
-
 	public JButton getBttAddPropietario() {
 		return bttAddPropietario;
 	}
-
 }

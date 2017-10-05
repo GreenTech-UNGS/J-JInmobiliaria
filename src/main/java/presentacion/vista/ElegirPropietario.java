@@ -21,7 +21,7 @@ public class ElegirPropietario extends JDialog {
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setModal(true);
-		setSize(new Dimension(506, 397));
+		setSize(new Dimension(488, 397));
 		setResizable(false);
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		

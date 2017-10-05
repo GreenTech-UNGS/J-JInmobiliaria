@@ -157,7 +157,7 @@ public class MainView {
 		panelNotif.setLayout(null);
 		
 		JPanel panelMenu = new JPanel();
-		panelMenu.setBounds(10, 9, 74, 476);
+		panelMenu.setBounds(10, 5, 74, 480);
 		panelPrincipal.add(panelMenu);
 		panelMenu.setMaximumSize(new Dimension(100, 100));
 		panelMenu.setMinimumSize(new Dimension(100, 100));
