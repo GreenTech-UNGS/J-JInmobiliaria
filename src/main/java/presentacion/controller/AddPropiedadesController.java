@@ -133,6 +133,7 @@ public class AddPropiedadesController {
 	private void savePropiedad() {
 		binder.fillBean();
 		propiedadService.savePropiedad(currentPropiedad);
+		view.setVisible(false);
 	}
 	
 	public void setModeNew() {

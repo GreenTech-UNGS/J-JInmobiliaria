@@ -49,25 +49,30 @@ public class MainViewController {
 		this.view.getBtnContratoVen().addActionListener(e -> agregarContratoVen());
 		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());
 		
-		fillTable();
+		fillTableClientes();
+		fillTableProp();
 	}
 
 
-	private void fillTable() {
+	private void fillTableClientes() {
 		
+		this.tableModelClien.clean();
+		this.view.getTableClientes().setModel(tableModelClien);
+		tableModelClien.actualizeRows(clienteService.getAll());
+		
+		this.view.getTableClientes().setColumnModel(tableModelClien.getTableColumnModel());
+		this.view.getTableClientes().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTableProp(){
+		
+		this.tableModelProp.clean();
 		this.view.getTablePropiedades().setModel(tableModelProp);
 		tableModelProp.actualizeRows(propiedadService.getAll());
 		
 		this.view.getTablePropiedades().setColumnModel(tableModelProp.getTableColumnModel());
 		this.view.getTablePropiedades().getTableHeader().setReorderingAllowed(false);
 		
-		///////////
-		
-		this.view.getTableClientes().setModel(tableModelClien);
-		tableModelClien.actualizeRows(clienteService.getAll());
-		
-		this.view.getTableClientes().setColumnModel(tableModelClien.getTableColumnModel());
-		this.view.getTableClientes().getTableHeader().setReorderingAllowed(false);
 		
 	}
 
@@ -79,6 +84,7 @@ public class MainViewController {
 	private void agregarPropiedad(){
 		this.propiedadController.setModeNew();
 		this.propiedadController.showView();
+		fillTableProp();
 	}
 	
 	private void agregarContratoAlq() {
@@ -92,5 +98,6 @@ public class MainViewController {
 	private void agregarCliente() {
 		this.clienteController.setModeNew();
 		this.clienteController.showView();
+		fillTableClientes();
 	}
 }
