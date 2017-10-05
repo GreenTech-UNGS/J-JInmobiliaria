@@ -28,9 +28,9 @@ public class Propiedad {
 	private int ID;
 	private String identificador;
 	private String calle;
-	private int altura;
-	private int piso;
-	private int dpto;
+	private String altura;
+	private String piso;
+	private String dpto;
 	private String obsPublicas;
 	private String obsPrivadas;
 	
@@ -78,27 +78,27 @@ public class Propiedad {
 		this.calle = calle;
 	}
 
-	public int getAltura() {
+	public String getAltura() {
 		return altura;
 	}
 
-	public void setAltura(int altura) {
+	public void setAltura(String altura) {
 		this.altura = altura;
 	}
 
-	public int getPiso() {
+	public String getPiso() {
 		return piso;
 	}
 
-	public void setPiso(int piso) {
+	public void setPiso(String piso) {
 		this.piso = piso;
 	}
 
-	public int getDpto() {
+	public String getDpto() {
 		return dpto;
 	}
 
-	public void setDpto(int dpto) {
+	public void setDpto(String dpto) {
 		this.dpto = dpto;
 	}
 

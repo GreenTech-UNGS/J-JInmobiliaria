@@ -14,6 +14,7 @@ public class MainViewController {
 	
 	private MainView view;
 	
+	@Inject
 	private PropiedadesTableModel tableModelProp;
 	private List<Propiedad> TablaPropiedades; 
 	
@@ -31,11 +32,11 @@ public class MainViewController {
 	private MainViewController(MainView view, AddPropiedadController propiedadesController,
 			AddContAlqController contratoAlqController, AddContVenController contratoVenController,
 			AddClienteController clienteController,
-			PropiedadService propiedadService, ClienteService clienteService){
+			PropiedadService propiedadService, ClienteService clienteService,PropiedadesTableModel tableModelprop){
 		
 		this.view = view;
-		this.tableModelProp = new PropiedadesTableModel();
 		this.tableModelClien = new ClientesTableModel();
+		this.tableModelProp = tableModelprop;
 		this.propiedadController = propiedadesController;
 		this.contratoAlqController = contratoAlqController;
 		this.contratoVenController = contratoVenController;

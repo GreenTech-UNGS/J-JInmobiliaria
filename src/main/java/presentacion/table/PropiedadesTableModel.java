@@ -1,17 +1,26 @@
 package presentacion.table;
 
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+
 import entities.Propiedad;
+import model.PropiedadService;
 
 public class PropiedadesTableModel extends BaseTableModel<Propiedad>{
 
 	private static final long serialVersionUID = 1L;
 	
-	public PropiedadesTableModel() {
+	@Inject 
+	PropiedadService propService;
+	
+	@Inject
+	private PropiedadesTableModel() {
 		
 		super.addColumn("identificador", false, 100);
 		super.addColumn("calle", false, 100);
 		super.addColumn("altura", false, 100);
 		super.addColumn("precio", false, 100);
+		super.addColumn("estado", false, 100);
 		
 	}
 
@@ -23,7 +32,8 @@ public class PropiedadesTableModel extends BaseTableModel<Propiedad>{
 		Object[] fila = {t.getIdentificador(),
 						t.getCalle(),
 						t.getAltura(),
-						precio};
+						precio,
+						propService.getCurrentEstado(t).toString()};
 		
 		return fila;
 	}
