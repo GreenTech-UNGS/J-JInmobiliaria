@@ -1,5 +1,7 @@
 package presentacion.controller;
 
+import org.quartz.impl.jdbcjobstore.MSSQLDelegate;
+
 import com.google.inject.Inject;
 
 import entities.Cliente;
@@ -10,6 +12,7 @@ import model.ClienteService;
 import model.PersonaService;
 import presentacion.combo.TipoCredencialComboBoxModel;
 import presentacion.table.TelefonoTableModel;
+import presentacion.validators.MessageShow;
 import presentacion.validators.PersonaValidator;
 import presentacion.vista.AgregarCliente;
 
@@ -21,6 +24,9 @@ public class AddClienteController {
 	
 	@Inject
 	private PersonaValidator personaValidator;
+	
+	@Inject
+	private MessageShow msgShow;
 	
 	private TipoCredencialComboBoxModel tipoCredencialModel;
 	private TelefonoTableModel telTable;
@@ -98,9 +104,9 @@ public class AddClienteController {
 	private void saveCurrentCliente() {
 		binder.fillBean();
 		
+
 		if(personaValidator.isValid(currentCliente.getPersona())) {
 			clienteService.saveCliente(currentCliente);
-
 			view.setVisible(false);
 		}
 	}

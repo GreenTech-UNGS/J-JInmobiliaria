@@ -7,17 +7,23 @@ import com.google.inject.Singleton;
 
 import entities.Persona;
 import entities.Persona.TipoCredencial;
+import model.PersonaService;
 
 @Singleton
 public class PersonaValidator implements Validator<Persona>{
 
 	PersonaBasicaValidator pbValidator;
 	MessageShow msgShw;
+	PersonaService personaService;
 	
 	@Inject
-	private PersonaValidator(PersonaBasicaValidator pbValidator, MessageShow msgShw) {
+	private PersonaValidator(PersonaBasicaValidator pbValidator, 
+			MessageShow msgShw, 
+			PersonaService personaService) {
+		
 		this.pbValidator = pbValidator;
 		this.msgShw = msgShw;
+		this.personaService = personaService;
 	}
 	
 	@Override
@@ -27,6 +33,12 @@ public class PersonaValidator implements Validator<Persona>{
 		}
 		else if(isCredentialValid(t) == false) {
 			msgShw.showErrorMessage("El DNI/CUIT es invalido", "Error");
+			return false;
+		}
+		else if(personaService.existePersonaConCredencial(t)) {
+			msgShw.showErrorMessage("El " + t.getTipoCred().toString() 
+					+ " está repetido. \n"
+					+ "Si requiere ingresar a alguien existente utilize el botón buscar", "Error");
 			return false;
 		}
 		

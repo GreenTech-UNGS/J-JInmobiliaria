@@ -3,11 +3,13 @@ package persistencia.dao.hibernate;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.criterion.Restrictions;
 
 import com.google.inject.Inject;
 
 import entities.Persona;
+import entities.Persona.TipoCredencial;
 import entities.PersonaBasica;
 import entities.Telefono;
 import persistencia.conexion.Conexion;
@@ -44,6 +46,22 @@ public class PersonaDaoHibernate extends DaoHibernate<Persona> implements Person
 		finishTransaction();
 		
 		return ((PersonaBasica)(q.list().get(0))).getTelefonos();
+	}
+
+	@Override
+	public boolean existePersonaConCredencial(String credencial, TipoCredencial tipo) {
+		
+		initTransaction();
+		
+		Criteria q = sesion.createCriteria(Persona.class).
+				setFetchMode("persona", FetchMode.JOIN).
+				add(Restrictions.eq("credencial", credencial)).
+				add(Restrictions.eq("tipoCred", tipo));
+		
+		finishTransaction();
+		
+		return !q.list().isEmpty();
+		
 	}
 
 }
