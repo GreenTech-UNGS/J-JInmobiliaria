@@ -20,10 +20,10 @@ public class PersonaBasicaValidator implements Validator<PersonaBasica>{
 		if(hayCamposVacios(t)) {
 			msgShw.showErrorMessage("Hay Campos Vacios", "Error");
 			return false;
-		} else if(isNameValid(t)) {
+		} else if(!isNameValid(t)) {
 			msgShw.showErrorMessage("El nombre y el apellido solo pueden contener letras", "Error");
 			return false;
-		} else if(isEmailValid(t)) {
+		} else if(!isEmailValid(t)) {
 			msgShw.showErrorMessage("La direccion de mail es invalida", "Error");
 			return false;
 		}
