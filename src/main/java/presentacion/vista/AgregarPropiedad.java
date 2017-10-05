@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 import com.google.inject.Inject;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -41,6 +40,7 @@ public class AgregarPropiedad extends JDialog{
 	private JButton btnCancelar;
 	private JComboBox<String> comboLocalidad;
 	private JButton bttAddLoc;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboPropietario;
 	private JButton bttAddPropietario;
 

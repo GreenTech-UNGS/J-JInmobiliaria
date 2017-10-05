@@ -18,11 +18,11 @@ public class MainViewController {
 	private List<Propiedad> TablaPropiedades; 
 	
 	private ClientesTableModel tableModelClien;
-	
-	AddPropiedadesController propiedadesController;
 	AddContAlqController contratoAlqController;
 	AddContVenController contratoVenController;
+	
 	AddClienteController clienteController;	
+	AddPropiedadesController propiedadController;
 	
 	PropiedadService propiedadService;
 	ClienteService clienteService;
@@ -36,7 +36,7 @@ public class MainViewController {
 		this.view = view;
 		this.tableModelProp = new PropiedadesTableModel();
 		this.tableModelClien = new ClientesTableModel();
-		this.propiedadesController = propiedadesController;
+		this.propiedadController = propiedadesController;
 		this.contratoAlqController = contratoAlqController;
 		this.contratoVenController = contratoVenController;
 		this.clienteController = clienteController;
@@ -77,8 +77,8 @@ public class MainViewController {
 	}
 
 	private void agregarPropiedad(){
-		this.propiedadesController.setModeNew();
-		this.propiedadesController.showView();
+		this.propiedadController.setModeNew();
+		this.propiedadController.showView();
 	}
 	
 	private void agregarContratoAlq() {
@@ -93,5 +93,4 @@ public class MainViewController {
 		this.clienteController.setModeNew();
 		this.clienteController.showView();
 	}
-
 }

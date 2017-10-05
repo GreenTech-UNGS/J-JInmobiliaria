@@ -15,6 +15,7 @@ public class AddPropiedadController {
 	private AgregarPropiedad view;
 	private PropiedadService propiedadService;
 	private Binder<Propiedad> binder;
+	private Propiedad currentPropiedad;
 
 	
 	
@@ -23,19 +24,26 @@ public class AddPropiedadController {
 		
 		this.view = view;
 		this.propiedadService = propiedadService;
-		
-		view.getBtnGuardar().addActionListener(e -> guardarPropiedad());
+		this.binder = new Binder<Propiedad>();
+		view.getBtnGuardar().addActionListener(e -> saveCurrentPropiedad());
 		
 	}
+	
+	public void setModeNew() {
+		currentPropiedad = propiedadService.getEmptyPropiedad();
+		binder.setObjective(currentPropiedad);
+		binder.fillFields();
+	}
 
-
-
-	private Object guardarPropiedad() {
+	private void saveCurrentPropiedad() {
 		binder.fillBean();
-		//falta validador
-		//falta para guardar propiedades en el service...
+		propiedadService.savePropiedad(currentPropiedad);
+		view.setVisible(false);
+	}
+	
+	public void showView(){
 		
-		return null;
+		view.setVisible(true);
 	}
 	
 }
