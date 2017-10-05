@@ -47,6 +47,7 @@ public class MainView {
 	private JButton btnAgregarCliente;
 	private JTable tablePropiedades;
 	private JTable tableClientes;
+	private JTable tablePropietarios;
 
 	@Inject
 	public MainView() {
@@ -112,11 +113,10 @@ public class MainView {
 		tabbedPane_2.addTab("Clientes", null, TabCliente, null);
 		TabCliente.setLayout(new BoxLayout(TabCliente, BoxLayout.Y_AXIS));
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		TabCliente.add(scrollPane_1);
-		
 		tableClientes = new JTable();
-		scrollPane_1.setColumnHeaderView(tableClientes);
+		
+		JScrollPane scrollPane_1 = new JScrollPane(tableClientes);
+		TabCliente.add(scrollPane_1);
 		
 		JPanel panel = new JPanel();
 		TabCliente.add(panel);
@@ -126,6 +126,12 @@ public class MainView {
 		
 		JPanel TabPropietarios = new JPanel();
 		tabbedPane_2.addTab("Propietarios", null, TabPropietarios, null);
+		
+		tablePropietarios = new JTable();
+		TabPropietarios.add(tablePropietarios);
+		
+		JScrollPane scrollPane_2 = new JScrollPane(tablePropietarios);
+		TabPropietarios.add(scrollPane_2);
 		
 		JPanel panelPagos = new JPanel();
 		panelContainer.add(panelPagos, "name_1283035568116550");
@@ -370,6 +376,11 @@ public class MainView {
 
 	public void setTableClientes(JTable tableClientes) {
 		this.tableClientes = tableClientes;
+	}
+
+
+	public JTable getTablePropietarios() {
+		return tablePropietarios;
 	}
 	
 	

@@ -30,11 +30,26 @@ public class ClienteService {
 		return toRet;
 	}
 	
+	public Cliente getNewClienteFrom(Persona p) {
+		Cliente toRet = new Cliente();
+		toRet.setHabilitado(true);
+		toRet.setPersona(p);
+		
+		return toRet;
+	}
+	
 	public void saveCliente(Cliente toSave) {
+	
 		clienteDao.save(toSave);
 	}
 	
 	public List<Cliente> getAll(){
 		return clienteDao.getAll();
+	}
+
+	public boolean existeClienteCon(Persona t) {
+		
+		return clienteDao.existeClienteCon(t);
+		
 	}
 }

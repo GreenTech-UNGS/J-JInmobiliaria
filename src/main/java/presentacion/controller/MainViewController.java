@@ -6,7 +6,9 @@ import com.google.inject.Inject;
 import entities.Propiedad;
 import model.ClienteService;
 import model.PropiedadService;
+import model.PropietarioService;
 import presentacion.table.ClientesTableModel;
+import presentacion.table.PersonaTableModel;
 import presentacion.table.PropiedadesTableModel;
 import presentacion.vista.MainView;
 
@@ -16,6 +18,7 @@ public class MainViewController {
 	
 	@Inject
 	private PropiedadesTableModel tableModelProp;
+	private PersonaTableModel propietariosTable;
 	private List<Propiedad> TablaPropiedades; 
 	
 	private ClientesTableModel tableModelClien;
@@ -27,15 +30,18 @@ public class MainViewController {
 	
 	PropiedadService propiedadService;
 	ClienteService clienteService;
+	PropietarioService propietarioService;
 	
 	@Inject
 	private MainViewController(MainView view, AddPropiedadController propiedadesController,
 			AddContAlqController contratoAlqController, AddContVenController contratoVenController,
 			AddClienteController clienteController,
-			PropiedadService propiedadService, ClienteService clienteService,PropiedadesTableModel tableModelprop){
+			PropiedadService propiedadService, ClienteService clienteService,PropiedadesTableModel tableModelprop,
+			PropietarioService propietarioService){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
+		this.propietariosTable = new PersonaTableModel();
 		this.tableModelProp = tableModelprop;
 		this.propiedadController = propiedadesController;
 		this.contratoAlqController = contratoAlqController;
@@ -43,6 +49,7 @@ public class MainViewController {
 		this.clienteController = clienteController;
 		this.propiedadService = propiedadService;
 		this.clienteService = clienteService;
+		this.propietarioService = propietarioService;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
@@ -51,6 +58,7 @@ public class MainViewController {
 		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());
 		
 		fillTableClientes();
+		fillTablePropietarios();
 		fillTableProp();
 	}
 
@@ -63,6 +71,15 @@ public class MainViewController {
 		
 		this.view.getTableClientes().setColumnModel(tableModelClien.getTableColumnModel());
 		this.view.getTableClientes().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTablePropietarios() {
+		this.propietariosTable.clean();
+		this.view.getTablePropietarios().setModel(propietariosTable);
+		propietarioService.getAll().forEach(p -> propietariosTable.addRow(p.getPersona()));
+		
+		this.view.getTablePropietarios().setColumnModel(propietariosTable.getTableColumnModel());
+		this.view.getTablePropietarios().getTableHeader().setReorderingAllowed(false);
 	}
 	
 	private void fillTableProp(){

@@ -46,11 +46,11 @@ public class AgregarCliente extends JDialog{
 		
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(20, 40, 80, 20);
+		lblNombre.setBounds(20, 83, 80, 20);
 		panel.add(lblNombre);
 		
 		JLabel lblApellido = new JLabel("Apellido:");
-		lblApellido.setBounds(20, 80, 80, 20);
+		lblApellido.setBounds(20, 114, 80, 20);
 		panel.add(lblApellido);
 		
 		JLabel lblMail = new JLabel("Email:");
@@ -58,12 +58,12 @@ public class AgregarCliente extends JDialog{
 		panel.add(lblMail);
 
 		textNombre = new JTextField();
-		textNombre.setBounds(100, 40, 200, 20);
+		textNombre.setBounds(100, 83, 200, 20);
 		panel.add(textNombre);
 		textNombre.setColumns(10);
 		
 		textApellido = new JTextField();
-		textApellido.setBounds(100, 80, 200, 20);
+		textApellido.setBounds(100, 114, 200, 20);
 		panel.add(textApellido);
 		textApellido.setColumns(10);
 		
@@ -73,7 +73,7 @@ public class AgregarCliente extends JDialog{
 		textMail.setColumns(10);
 		
 		comboCredencial = new JComboBox<String>();
-		comboCredencial.setBounds(20, 114, 61, 20);
+		comboCredencial.setBounds(20, 52, 61, 20);
 		panel.add(comboCredencial);
 		comboCredencial.addItem("DNI");
 		comboCredencial.addItem("CUIT");
@@ -91,7 +91,7 @@ public class AgregarCliente extends JDialog{
 		panel.add(btnBuscar);
 		
 		textCredencial = new JTextField();
-		textCredencial.setBounds(100, 114, 200, 20);
+		textCredencial.setBounds(100, 52, 200, 20);
 		panel.add(textCredencial);
 		textCredencial.setColumns(10);
 		

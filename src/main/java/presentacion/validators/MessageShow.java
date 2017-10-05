@@ -17,4 +17,10 @@ public class MessageShow {
 		JOptionPane.showMessageDialog(null, msg, title, JOptionPane.ERROR_MESSAGE);
 	}
 	
+	public  String showInputMessage(String msg, String title) {
+		
+		return JOptionPane.showInputDialog(null, msg, title, JOptionPane.INFORMATION_MESSAGE);
+		
+	}
+	
 }

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -31,6 +33,10 @@ public class PropietarioService {
 		
 		propietarioDao.save(toAdd);
 		
+	}
+
+	public List<Propietario> getAll() {
+		return propietarioDao.getAll();
 	}
 	
 }
