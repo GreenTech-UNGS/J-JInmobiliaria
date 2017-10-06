@@ -26,6 +26,9 @@ public class ClienteValidator implements Validator<Cliente>{
 		if(t == null){
 			return false;
 		} else if(pValidator.isValid(t.getPersona()) == false) {
+=======
+		if(!pValidator.isValid(t.getPersona())) {
+>>>>>>> Stashed changes
 			return false;
 		}else if(clienteService.existeClienteCon(t.getPersona())) {
 				msgShw.showErrorMessage("El cliente ya est� agregado", "Error");
