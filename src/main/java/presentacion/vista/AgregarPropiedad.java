@@ -43,10 +43,7 @@ public class AgregarPropiedad extends JDialog{
 	private JButton btnCancelar;
 	private JComboBox<String> comboLocalidad;
 	private JButton bttAddLoc;
-	private JButton bttAddPropietario;
 	private JTextField tfPropietario;
-	
-	private JButton btnOjito;
 	private JButton btnLupita;
 
 	@Inject
@@ -252,20 +249,11 @@ public class AgregarPropiedad extends JDialog{
 		bttAddLoc.setBounds(503, 230, 41, 23);
 		AgregarPropiedad.add(bttAddLoc);
 		
-		bttAddPropietario = new JButton("+");
-		bttAddPropietario.setBounds(415, 167, 41, 23);
-		AgregarPropiedad.add(bttAddPropietario);
-		
 		tfPropietario = new JTextField();
+		tfPropietario.setEditable(false);
 		tfPropietario.setColumns(10);
-		tfPropietario.setBounds(395, 84, 103, 20);
+		tfPropietario.setBounds(395, 84, 123, 20);
 		AgregarPropiedad.add(tfPropietario);
-		
-		btnOjito = new JButton("");
-		btnOjito.setBounds(502, 83, 22, 23);
-//		Image imgOjito = new ImageIcon(this.getClass().getResource("/ver.png")).getImage();
-//		btnOjito.setIcon(new ImageIcon(imgOjito));
-		AgregarPropiedad.add(btnOjito);
 		
 		this.btnLupita = new JButton("New button");
 //		Image imgLup = new ImageIcon(this.getClass().getResource("/buscar.png")).getImage();
@@ -337,18 +325,6 @@ public class AgregarPropiedad extends JDialog{
 
 	public JButton getBttAddLoc() {
 		return bttAddLoc;
-	}
-
-	public JButton getBttAddPropietario() {
-		return bttAddPropietario;
-	}
-
-	public JButton getBtnOjito() {
-		return btnOjito;
-	}
-
-	public void setBtnOjito(JButton btnOjito) {
-		this.btnOjito = btnOjito;
 	}
 
 	public JButton getBtnLupita() {

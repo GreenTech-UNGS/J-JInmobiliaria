@@ -14,14 +14,17 @@ public class PropietariosTableModel extends BaseTableModel<Propietario>{
 	@Inject
 	public PropietariosTableModel() {
 		
-		super.addColumn("Identificador", false, 100);
+		super.addColumn("Credencial", false, 100);
 		super.addColumn("Nombre", false, 100);
 		super.addColumn("Apellido", false, 100);
 	}
 
 	@Override
 	protected Object[] toRow(Propietario t) {
-		Object[] fila = {t.getID(),
+		
+		String credencial = t.getPersona().getTipoCred().toString() + " " + t.getPersona().getCredencial();
+		
+		Object[] fila = {credencial,
 				t.getPersona().getNombre(),
 				t.getPersona().getApellido()};
 

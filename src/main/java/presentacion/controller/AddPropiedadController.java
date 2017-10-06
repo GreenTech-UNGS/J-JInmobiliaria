@@ -89,9 +89,9 @@ public class AddPropiedadController {
 
 		binder.bind("localidad", localidadCombo::getSelected, t -> localidadCombo.setSelected((Localidad)t));
 		
+		
 		view.getBtnGuardar().addActionListener(e -> savePropiedad());
 		view.getBttAddLoc().addActionListener(e -> agregaLocalidad());
-		view.getBttAddPropietario().addActionListener(e -> agregaPropietario());
 		view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
 		view.getBtnLupita().addActionListener(e -> selectPropietario());
 		
@@ -104,11 +104,9 @@ public class AddPropiedadController {
 		
 		if(prop != null) {
 			currentPropietario = elegirPropController.getPropietario();
-			view.getTfPropietario().setText(currentPropietario.getPersona().getNombre());
-			//binder nosequé
+			currentPropiedad.setPropietario(currentPropietario);
 			
-			view.getTfPropietario().setEditable(false);
-			
+			view.getTfPropietario().setText(currentPropietario.getPersona().getTipoCred() + " " +currentPropietario.getPersona().getCredencial());
 		}
 	}
 
@@ -145,12 +143,6 @@ public class AddPropiedadController {
 		cambiaLocalidades();
 	}
 	
-	private void agregaPropietario() {
-		String propietarioCuit = JOptionPane.showInputDialog(this.view, "Ingrese el cuit del nuevo propietario: ", "Nuevo propietario", JOptionPane.INFORMATION_MESSAGE);
-		
-		propietarioService.addNewPropietario(propietarioCuit);
-	}
-	
 	private void savePropiedad() {
 		binder.fillBean();
 		propiedadService.savePropiedad(currentPropiedad);
@@ -161,6 +153,8 @@ public class AddPropiedadController {
 		currentPropiedad = propiedadService.getEmptyPropiedad();
 		binder.setObjective(currentPropiedad);
 		binder.fillFields();
+		
+		view.getTfPropietario().setText("");
 	}
 
 	public void showView(){

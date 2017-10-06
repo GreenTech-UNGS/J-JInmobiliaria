@@ -12,6 +12,7 @@ import entities.HistoriaEstadoProp;
 import entities.Moneda;
 import entities.Precio;
 import entities.Propiedad;
+import entities.Propietario;
 import entities.TipoOfrecimiento;
 import persistencia.dao.iface.PropiedadDao;
 

@@ -10,6 +10,7 @@ import model.PropietarioService;
 import presentacion.table.ClientesTableModel;
 import presentacion.table.PersonaTableModel;
 import presentacion.table.PropiedadesTableModel;
+import presentacion.table.PropietariosTableModel;
 import presentacion.vista.MainView;
 
 public class MainViewController {
@@ -18,7 +19,7 @@ public class MainViewController {
 	
 	@Inject
 	private PropiedadesTableModel tableModelProp;
-	private PersonaTableModel propietariosTable;
+	private PropietariosTableModel propietariosTable;
 	private List<Propiedad> TablaPropiedades; 
 	
 	private ClientesTableModel tableModelClien;
@@ -41,7 +42,7 @@ public class MainViewController {
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
-		this.propietariosTable = new PersonaTableModel();
+		this.propietariosTable = new PropietariosTableModel();
 		this.tableModelProp = tableModelprop;
 		this.propiedadController = propiedadesController;
 		this.contratoAlqController = contratoAlqController;
@@ -76,7 +77,7 @@ public class MainViewController {
 	private void fillTablePropietarios() {
 		this.propietariosTable.clean();
 		this.view.getTablePropietarios().setModel(propietariosTable);
-		propietarioService.getAll().forEach(p -> propietariosTable.addRow(p.getPersona()));
+		propietarioService.getAll().forEach(p -> propietariosTable.addRow(p));
 		
 		this.view.getTablePropietarios().setColumnModel(propietariosTable.getTableColumnModel());
 		this.view.getTablePropietarios().getTableHeader().setReorderingAllowed(false);
