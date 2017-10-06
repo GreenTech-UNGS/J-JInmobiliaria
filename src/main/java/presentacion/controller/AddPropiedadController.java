@@ -61,7 +61,8 @@ public class AddPropiedadController {
 		this.monedaCombo = new MonedaComboBoxModel();
 		this.tipoOfrCombo = new TipoOfrecimientoComboBoxModel();
 		this.localidadCombo = new LocalidadComboBoxModel();
-		
+		this.localidadCombo = new LocalidadComboBoxModel();
+
 		fillCombos();
 		
 		initBinder();
@@ -170,11 +171,22 @@ public class AddPropiedadController {
 	}
 	
 	public void setModeNew() {
+		view.setTitle("Agregar Propiedad");
+
 		currentPropiedad = propiedadService.getEmptyPropiedad();
 		binder.setObjective(currentPropiedad);
 		binder.fillFields();
 		
 		view.getTfPropietario().setText("");
+	}
+
+	public void setModeView(Propiedad propiedad) {
+
+		view.setTitle("Detalle Propiedad");
+
+		currentPropiedad = propiedadService.getEmptyPropiedad();
+		binder.setObjective(currentPropiedad);
+		binder.fillFields();
 	}
 
 	public void showView(){

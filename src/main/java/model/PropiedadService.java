@@ -44,7 +44,6 @@ public class PropiedadService {
 	}
 	
 	public Propiedad getEmptyPropiedad() {
-		
 		Propiedad toRet = new Propiedad();
 		
 		toRet.setPrecioTentativo(new Precio(0, Moneda.PESOS));
