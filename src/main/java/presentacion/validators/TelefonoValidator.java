@@ -17,6 +17,11 @@ public class TelefonoValidator implements Validator<Telefono>{
 	
 	@Override
 	public boolean isValid(Telefono t) {
+		
+		if(t.getNumero() == null || t.getNumero().equals("")){
+			return false;
+		}
+		
 		if(t.getNumero().matches(Regex.onlyNumbers()) == false) {
 			msgShw.showErrorMessage("El numero de teléfono es invalido", "Error");
 			return false;
