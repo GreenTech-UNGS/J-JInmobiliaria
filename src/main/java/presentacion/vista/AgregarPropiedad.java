@@ -50,8 +50,6 @@ public class AgregarPropiedad extends JDialog{
 	private AgregarPropiedad() {
 		super();
 		
-		setTitle("Agregar Propiedad");
-		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setSize(new Dimension(574, 660));

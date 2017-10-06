@@ -17,8 +17,13 @@ public class PersonaBasicaValidator implements Validator<PersonaBasica>{
 	
 	@Override
 	public boolean isValid(PersonaBasica t) {
+		
+		if(t == null){
+			return false;
+		}
+		
 		if(hayCamposVacios(t)) {
-			msgShw.showErrorMessage("Hay Campos Vacios", "Error");
+			msgShw.showErrorMessage("Debe completar todos los campos obligatorios", "Error");
 			return false;
 		} else if(!isNameValid(t)) {
 			msgShw.showErrorMessage("El nombre y el apellido solo pueden contener letras", "Error");

@@ -17,7 +17,7 @@ public class PropietarioValidator implements Validator<Propietario>{
 	
 	@Override
 	public boolean isValid(Propietario t) {
-		return pValidator.isValid(t.getPersona());
+		return t != null && pValidator.isValid(t.getPersona());
 	}
 	
 }

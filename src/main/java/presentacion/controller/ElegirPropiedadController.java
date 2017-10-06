@@ -5,6 +5,7 @@ import javax.swing.ListSelectionModel;
 import com.google.inject.Inject;
 
 import entities.Cliente;
+import entities.EstadoProp;
 import entities.Propiedad;
 import entities.Propietario;
 import model.ClienteService;
@@ -43,7 +44,7 @@ public class ElegirPropiedadController {
 		
 		//TODO: parametrizar
 		this.tableModelPropiedad.clean();
-		tableModelPropiedad.actualizeRows(propiedadService.getDisponiblesAlquiler());
+		tableModelPropiedad.actualizeRows(propiedadService.getAlquilerBy(EstadoProp.DISPONIBLE));
 	}
 	public void showView(){
 		fillTableProp();
