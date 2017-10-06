@@ -24,6 +24,7 @@ import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.ProvinciaComboBoxModel;
 import presentacion.combo.TipoContratoAlqComboBoxModel;
 import presentacion.combo.TipoOfrecimientoComboBoxModel;
+import presentacion.validators.PropiedadValidator;
 import presentacion.vista.AgregarPropiedad;
 
 public class AddPropiedadController {
@@ -33,6 +34,7 @@ public class AddPropiedadController {
 	private MonedaComboBoxModel monedaCombo;
 	private TipoOfrecimientoComboBoxModel tipoOfrCombo;
 	private LocalidadComboBoxModel localidadCombo;
+	private PropiedadValidator propiedadValidator;
 	private PropiedadService propiedadService;
 	private PropietarioService propietarioService;
 	private LocalidadService localidadService;
@@ -45,12 +47,14 @@ public class AddPropiedadController {
 	
 	@Inject
 	private AddPropiedadController(AgregarPropiedad view,
+									PropiedadValidator propiedadValidator,
 									PropiedadService propiedadService,
 									PropietarioService propietarioService,
 									LocalidadService localidadService,
 									ElegirPropietarioController elegirPropController){
 		
 		this.view = view;
+		this.propiedadValidator = propiedadValidator;
 		this.propiedadService = propiedadService;
 		this.localidadService = localidadService;
 		this.propietarioService = propietarioService;
@@ -165,9 +169,13 @@ public class AddPropiedadController {
 	}
 	
 	private void savePropiedad() {
+		
 		binder.fillBean();
-		propiedadService.savePropiedad(currentPropiedad);
-		view.setVisible(false);
+		if(propiedadValidator.isValid(currentPropiedad)){		
+			
+			propiedadService.savePropiedad(currentPropiedad);
+			view.setVisible(false);
+		}
 	}
 	
 	public void setModeNew() {
