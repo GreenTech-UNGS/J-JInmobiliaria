@@ -32,6 +32,7 @@ public class ReservarPropiedadController {
         this.clienteBinder = new Binder<>();
         this.propiedadBinder = new Binder<>();
 
+        fillComboCliente();
         fillComboPropiedad();
     }
 
