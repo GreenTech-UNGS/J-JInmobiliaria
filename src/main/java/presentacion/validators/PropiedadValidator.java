@@ -43,10 +43,10 @@ public class PropiedadValidator implements Validator<Propiedad>{
 			return false;
 		}
 			
-		if(inmobiliariaValidator.isValid(t.getInmobiliaria()) == false) {
-			msgShw.showErrorMessage("La inmobiliaria asociada tiene datos incorrectos", "Error");
-			return false;
-		}
+//		if(inmobiliariaValidator.isValid(t.getInmobiliaria()) == false) {
+//			msgShw.showErrorMessage("La inmobiliaria asociada tiene datos incorrectos", "Error");
+//			return false;
+//		}
 
 		if(t.getPrecioTentativo().getMonto() <= 0){		
 			msgShw.showErrorMessage("Ingrese un precio valido", "Error");
