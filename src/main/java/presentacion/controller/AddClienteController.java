@@ -171,7 +171,6 @@ public class AddClienteController {
 		}
 	}
 
-	
 	public void showView(){
 			
 		view.setVisible(true);

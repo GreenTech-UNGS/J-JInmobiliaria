@@ -28,7 +28,9 @@ public class MainViewController {
 	
 	AddClienteController clienteController;	
 	AddPropiedadController propiedadController;
-	
+
+	ReservarPropiedadController reservaController;
+
 	PropiedadService propiedadService;
 	ClienteService clienteService;
 	PropietarioService propietarioService;
@@ -39,6 +41,7 @@ public class MainViewController {
 			AddContAlqController contratoAlqController,
 			AddContVenController contratoVenController,
 			AddClienteController clienteController,
+			ReservarPropiedadController reservaController,
 			PropiedadService propiedadService,
 			ClienteService clienteService,
 			PropiedadesTableModel tableModelprop,
@@ -52,12 +55,14 @@ public class MainViewController {
 		this.contratoAlqController = contratoAlqController;
 		this.contratoVenController = contratoVenController;
 		this.clienteController = clienteController;
+		this.reservaController = reservaController;
 		this.propiedadService = propiedadService;
 		this.clienteService = clienteService;
 		this.propietarioService = propietarioService;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
+		this.view.getBtnReservarPropiedad().addActionListener(e -> agregarReserva());
 		this.view.getBtnContratoAlq().addActionListener(e -> agregarContratoAlq());
 		this.view.getBtnContratoVen().addActionListener(e -> agregarContratoVen());
 		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());
@@ -99,7 +104,6 @@ public class MainViewController {
 		
 	}
 
-
 	public void showView(){
 		this.view.show();
 	}
@@ -109,7 +113,11 @@ public class MainViewController {
 		this.propiedadController.showView();
 		fillTableProp();
 	}
-	
+
+	private void agregarReserva(){
+		this.reservaController.showView();
+	}
+
 	private void agregarContratoAlq() {
 		this.contratoAlqController.setModeNew();
 		this.contratoAlqController.showView();
