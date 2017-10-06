@@ -12,10 +12,11 @@ public class ClienteComboBoxModel extends BaseComboBoxModel<Cliente> {
 
     @Override
     public void agregaElemento(Cliente element) {
-        String addedElement = element.getID()+ " - "
+        String addedElement = element.getPersona().getCredencial() + " - "
                 + element.getPersona().getNombre() + " " + element.getPersona().getApellido();
         addElement(addedElement);
         values.put(addedElement, element);
+
     }
 
     @Override
