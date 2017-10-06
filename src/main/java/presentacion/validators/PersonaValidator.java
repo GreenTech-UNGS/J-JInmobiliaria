@@ -32,6 +32,10 @@ public class PersonaValidator implements Validator<Persona>{
 	
 	@Override
 	public boolean isValid(Persona t) {
+		
+		if(t == null){
+			return false;
+		}
 		if(pbValidator.isValid(t) == false) {
 			return false;
 		}
@@ -41,8 +45,8 @@ public class PersonaValidator implements Validator<Persona>{
 		}
 		else if(personaService.existePersonaConCredencial(t) && !personaService.existePersona(t)) {
 			msgShw.showErrorMessage("El " + t.getTipoCred().toString() 
-					+ " está repetido. \n"
-					+ "Si requiere ingresar a alguien existente utilize el botón buscar", "Error");
+					+ " estï¿½ repetido. \n"
+					+ "Si requiere ingresar a alguien existente utilize el botï¿½n buscar", "Error");
 			return false;
 		}
 		
