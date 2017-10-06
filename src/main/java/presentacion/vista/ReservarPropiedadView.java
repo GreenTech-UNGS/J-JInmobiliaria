@@ -1,6 +1,7 @@
 package presentacion.vista;
 
 import com.google.inject.Inject;
+import presentacion.controller.ElegirClienteController;
 
 import java.awt.Dimension;
 
@@ -17,9 +18,10 @@ public class ReservarPropiedadView extends JDialog {
 	private JPanel panel;
 	private JButton btnGuardar;
 	private JButton btnCancelar;
-	
-	JComboBox<String> comboCliente;
-	JComboBox<String> comboPropiedad;
+    private ElegirClienteController clienteController;
+
+	JButton btnSelecCliente;
+	JButton btnSelecPropiedad;
 
 	@Inject
     private ReservarPropiedadView(){
@@ -53,14 +55,14 @@ public class ReservarPropiedadView extends JDialog {
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(189, 330, 123, 42);
 		panel.add(btnCancelar);
-		
-		comboCliente = new JComboBox<String>();
-		comboCliente.setBounds(110, 83, 160, 20);
-		panel.add(comboCliente);
-		
-		comboPropiedad = new JComboBox<String>();
-		comboPropiedad.setBounds(110, 145, 160, 20);
-		panel.add(comboPropiedad);
+
+		btnSelecCliente = new JButton("+");
+		btnSelecCliente.setBounds(110, 83, 40, 20);
+		panel.add(btnSelecCliente);
+
+		btnSelecPropiedad = new JButton("+");
+		btnSelecPropiedad.setBounds(110, 145, 40, 20);
+		panel.add(btnSelecPropiedad);
 	}
 
     public JButton getBtnGuardar() {
@@ -71,11 +73,12 @@ public class ReservarPropiedadView extends JDialog {
         return btnCancelar;
     }
 
-    public JComboBox<String> getComboCliente() {
-        return comboCliente;
+    public JButton getBtnSelecCliente() {
+        return btnSelecCliente;
     }
 
-    public JComboBox<String> getComboPropiedad() {
-        return comboPropiedad;
+    public JButton getBtnSelecPropiedad() {
+        return btnSelecPropiedad;
     }
+
 }

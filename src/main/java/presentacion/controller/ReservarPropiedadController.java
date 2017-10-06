@@ -8,6 +8,7 @@ import model.ClienteService;
 import model.PropiedadService;
 import presentacion.combo.ClienteComboBoxModel;
 import presentacion.combo.PropiedadComboBoxModel;
+import presentacion.vista.ElegirCliente;
 import presentacion.vista.ReservarPropiedadView;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public class ReservarPropiedadController {
     private PropiedadService propiedadService;
     private ClienteService clienteService;
 
+    private ElegirClienteController clienteController;
+
     private PropiedadComboBoxModel propiedadComboBoxModelModel;
     private ClienteComboBoxModel clienteComboBoxModel;
 
@@ -27,43 +30,36 @@ public class ReservarPropiedadController {
     @Inject
     public ReservarPropiedadController(ReservarPropiedadView view,
                                        PropiedadService propiedadService,
-                                       ClienteService clienteService) {
+                                       ClienteService clienteService,
+                                       ElegirClienteController clienteController) {
         this.view = view;
         this.propiedadService = propiedadService;
         this.clienteService = clienteService;
         this.propiedadComboBoxModelModel = new PropiedadComboBoxModel();
         this.clienteComboBoxModel = new ClienteComboBoxModel();
+        this.clienteController = clienteController;
 
         view.getBtnCancelar().addActionListener(e -> closeView());
+        view.getBtnSelecCliente().addActionListener(e -> selectCliente());
+        view.getBtnSelecCliente().addActionListener(e -> selectPropiedad());
+
 
         this.clienteBinder = new Binder<>();
         this.propiedadBinder = new Binder<>();
 
-        fillComboCliente();
-        fillComboPropiedad();
     }
 
-    void fillComboCliente() {
-        //TODO se conecta siempre a la base de datos. Es viable arreglarlo?
-        view.getComboCliente().removeAllItems();
+    private void selectPropiedad() {
 
-        List<Cliente> listCliente = clienteService.getAll();
-
-        clienteComboBoxModel.actualize(listCliente);
-        view.getComboCliente().setModel(clienteComboBoxModel);
-
-        clienteComboBoxModel.setSelected(null);
     }
 
-    void fillComboPropiedad() {
-        //TODO verificar que esto ande, no se ha probado aún
-        view.getComboPropiedad().removeAllItems();
-        List<Propiedad> listPropiedad = propiedadService.getAll();
+    private void selectCliente() {
+        this.clienteController.showView();
+        Cliente cliente = clienteController.getCliente();
 
-        propiedadComboBoxModelModel.actualize(listPropiedad);
-        view.getComboPropiedad().setModel(propiedadComboBoxModelModel);
-
-        propiedadComboBoxModelModel.setSelected(null);
+        if (cliente != null){
+            //Seleccioa
+        }
     }
 
     public void showView() {

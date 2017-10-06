@@ -29,6 +29,7 @@ public class ElegirClienteController {
 		fillTableProp();
 		
 	}
+
 	private void fillTableProp() {
 		
 		this.view.getTable().setModel(tableModelCliente);
@@ -39,6 +40,7 @@ public class ElegirClienteController {
 		tableModelCliente.actualizeRows(clienteServcie.getAll());
 		view.getBtnAceptar().addActionListener(e -> view.setVisible(false));
 	}
+
 	public void showView(){
 		
 		view.setVisible(true);

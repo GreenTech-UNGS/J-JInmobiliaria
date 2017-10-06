@@ -128,10 +128,7 @@ public class MainViewController {
 	}
 
 	private void agregarReserva(){
-	    /*FIXME siente que esto no está bien, cómo podríamos hacer
-	     que se actualicen los combo bos cada vez que se abre ña ventana de reserva?*/
-	    this.reservaController.fillComboCliente();
-	    this.reservaController.fillComboPropiedad();
+
 		this.reservaController.showView();
 	}
 
