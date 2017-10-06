@@ -1,26 +1,9 @@
 package presentacion.validators;
 
-import java.util.List;
-import java.util.Objects;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import entities.Foto;
-import entities.HistoriaEstadoProp;
-import entities.Inmobiliaria;
-import entities.Localidad;
-import entities.Precio;
 import entities.Propiedad;
-import entities.Propietario;
-import entities.TipoOfrecimiento;
 import model.ClienteService;
 import model.PropiedadService;
 
