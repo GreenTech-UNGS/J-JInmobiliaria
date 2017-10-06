@@ -32,7 +32,7 @@ public abstract class DaoHibernate<T> implements Dao<T>{
 		
 		initTransaction();
 		
-		sesion.saveOrUpdate(toInsert);
+		sesion.merge(toInsert);
 		
 		finishTransaction();
 		
