@@ -114,6 +114,19 @@ public class MainViewController {
 		fillTableProp();
 	}
 
+	private void viewPropiedad(){
+
+		Propiedad seleccionada;
+		int propRow = view.getTablePropiedades().getSelectedRow();
+		boolean isPropSelected =  propRow > 0;
+		if (isPropSelected) {
+			seleccionada = tableModelProp.getRow(propRow);
+			this.propiedadController.setModeView(seleccionada);
+			this.propiedadController.showView();
+		}
+
+	}
+
 	private void agregarReserva(){
 	    /*FIXME siente que esto no está bien, cómo podríamos hacer
 	     que se actualicen los combo bos cada vez que se abre ña ventana de reserva?*/
@@ -134,6 +147,7 @@ public class MainViewController {
 	private void agregarCliente() {
 		this.clienteController.setModeNew();
 		this.clienteController.showView();
+
 		fillTableClientes();
 	}
 }
