@@ -34,10 +34,7 @@ public class PropiedadValidator implements Validator<Propiedad>{
 	public boolean isValid(Propiedad t) {
 
 		if(hayCamposVacios(t)){
-			return false;
-		}
-		
-		if(t.getPrecioTentativo().getMonto() <= 0){			
+			msgShw.showErrorMessage("Debe completar todos los campos obligatorios", "Error");
 			return false;
 		}
 		
@@ -50,14 +47,22 @@ public class PropiedadValidator implements Validator<Propiedad>{
 			msgShw.showErrorMessage("La inmobiliaria asociada tiene datos incorrectos", "Error");
 			return false;
 		}
+
+		if(t.getPrecioTentativo().getMonto() <= 0){		
+			msgShw.showErrorMessage("Ingrese un precio valido", "Error");
+			return false;
+		}
+		
 		return true;
 	}
 	
 	private boolean hayCamposVacios(Propiedad t) {
+		
 		return 
-				t.getIdentificador().equals("") ||
-				t.getCalle().equals("") ||
-				t.getAltura().equals("");
+				t.getIdentificador().equals("") || 
+				t.getCalle().equals("") || 
+				t.getAltura().equals("") || 
+				t.getLocalidad().getNombre() == null;
 	}
 	
 }
