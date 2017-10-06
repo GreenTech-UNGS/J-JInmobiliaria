@@ -9,6 +9,7 @@ import entities.Telefono;
 import entities.Telefono.Tipo;
 import misc.Binder;
 import presentacion.combo.TipoTelefonoComboBoxModel;
+import presentacion.validators.TelefonoValidator;
 import presentacion.vista.AgregaTelefonoView;
 
 @Singleton
@@ -19,6 +20,9 @@ public class AddTelefonoController {
 	Telefono currentTelefono;
 	
 	Binder<Telefono> binder;
+	
+	@Inject
+	private TelefonoValidator telefonoValidator;
 	
 	@Inject
 	private AddTelefonoController(AgregaTelefonoView view,
@@ -80,6 +84,10 @@ public class AddTelefonoController {
 		if (! otroSelected)
 			view.getTextDescr().setText("");
 		
+	}
+	
+	public TelefonoValidator getTelefonoValidator(){
+		return telefonoValidator;
 	}
 	
 }

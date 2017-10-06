@@ -15,7 +15,6 @@ import presentacion.combo.TipoCredencialComboBoxModel;
 import presentacion.table.TelefonoTableModel;
 import presentacion.validators.ClienteValidator;
 import presentacion.validators.MessageShow;
-import presentacion.validators.PersonaValidator;
 import presentacion.vista.AgregarCliente;
 
 public class AddClienteController {
@@ -125,8 +124,8 @@ public class AddClienteController {
 		telefonoController.showView();
 		
 		Telefono nuevoTel = telefonoController.getTelefono();
-		
-		if(nuevoTel != null) {
+				
+		if(telefonoController.getTelefonoValidator().isValid(nuevoTel)) {
 			telTable.addRow(nuevoTel);
 			currentCliente.getPersona().insertTelefono(nuevoTel);
 		}
