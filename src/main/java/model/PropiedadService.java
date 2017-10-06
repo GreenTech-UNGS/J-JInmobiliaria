@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.joda.time.DateTime;
 
@@ -12,6 +13,7 @@ import entities.HistoriaEstadoProp;
 import entities.Moneda;
 import entities.Precio;
 import entities.Propiedad;
+import entities.Propietario;
 import entities.TipoOfrecimiento;
 import persistencia.dao.iface.PropiedadDao;
 
@@ -55,6 +57,20 @@ public class PropiedadService {
 		
 		p.getEstados().sort((h1, h2) -> h1.getFecha().compareTo(h2.getFecha()));
 		return p.getEstados().get(p.getEstados().size() - 1).getEstado();
+		
+	}
+
+	public List<Propiedad> getDisponiblesAlquiler() {
+		
+		List<Propiedad> allProps = getAll();
+		
+		List<Propiedad> toRet = allProps.stream().filter(p -> getCurrentEstado(p).equals(EstadoProp.DISPONIBLE) ||
+			getCurrentEstado(p).equals(EstadoProp.BORRADOR))
+						.filter(p -> p.getTipoOfrecimiento().equals(TipoOfrecimiento.ALQUILER) ||
+				p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA_Y_ALQUILER))
+						.collect(Collectors.toList());
+		
+		return toRet;
 		
 	}
 	

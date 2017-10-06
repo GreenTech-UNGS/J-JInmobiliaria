@@ -22,6 +22,7 @@ import model.PropietarioService;
 import presentacion.combo.LocalidadComboBoxModel;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.ProvinciaComboBoxModel;
+import presentacion.combo.TipoContratoAlqComboBoxModel;
 import presentacion.combo.TipoOfrecimientoComboBoxModel;
 import presentacion.vista.AgregarPropiedad;
 
@@ -63,9 +64,25 @@ public class AddPropiedadController {
 		
 		fillCombos();
 		
-		binder.bind("identificador", view.getTfIdentificador()::getText, t -> view.getTfIdentificador().setText((String)t));
+		initBinder();
 		
-		binder.bind("calle", view.getTfCalle()::getText, t -> view.getTfCalle().setText((String)t));
+		
+		view.getBtnGuardar().addActionListener(e -> savePropiedad());
+		view.getBttAddLoc().addActionListener(e -> agregaLocalidad());
+		view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
+		view.getBtnLupita().addActionListener(e -> selectPropietario());
+		
+		
+	}
+	
+	private void initBinder() {
+		binder.bind("identificador",
+				view.getTfIdentificador()::getText,
+				t -> view.getTfIdentificador().setText((String)t));
+		
+		binder.bind("calle",
+				view.getTfCalle()::getText,
+				t -> view.getTfCalle().setText((String)t));
 		
 		binder.bind("altura", () -> view.getTfAltura().getText(),
 				t -> view.getTfAltura().setText((String)t));
@@ -76,26 +93,29 @@ public class AddPropiedadController {
 		binder.bind("dpto", () -> view.getTfDepto().getText(),
 				t -> view.getTfDepto().setText((String)t));
 		
-		binder.bind("obsPublicas", view.getTaDescPubl()::getText, t -> view.getTaDescPubl().setText((String)t));
+		binder.bind("obsPublicas",
+				view.getTaDescPubl()::getText,
+				t -> view.getTaDescPubl().setText((String)t));
 		
-		binder.bind("obsPrivadas", view.getTaDescPriv()::getText, t -> view.getTaDescPriv().setText((String)t));
+		binder.bind("obsPrivadas",
+				view.getTaDescPriv()::getText,
+				t -> view.getTaDescPriv().setText((String)t));
 		
-		binder.bind("precioTentativo.moneda", monedaCombo::getSelected, t -> monedaCombo.setSelected((Moneda)t));
+		binder.bind("precioTentativo.moneda",
+				monedaCombo::getSelected,
+				t -> monedaCombo.setSelected((Moneda)t));
 		
-		binder.bind("precioTentativo.monto", () -> Float.parseFloat(view.getTfPrecio().getText()),
+		binder.bind("precioTentativo.monto",
+				() -> Float.parseFloat(view.getTfPrecio().getText()),
 				t -> view.getTfPrecio().setText(t.toString()));
 
-		binder.bind("tipoOfrecimiento", tipoOfrCombo::getSelected, t -> tipoOfrCombo.setSelected((TipoOfrecimiento)t));
+		binder.bind("tipoOfrecimiento",
+				tipoOfrCombo::getSelected,
+				t -> tipoOfrCombo.setSelected((TipoOfrecimiento)t));
 
-		binder.bind("localidad", localidadCombo::getSelected, t -> localidadCombo.setSelected((Localidad)t));
-		
-		view.getBtnGuardar().addActionListener(e -> savePropiedad());
-		view.getBttAddLoc().addActionListener(e -> agregaLocalidad());
-		view.getBttAddPropietario().addActionListener(e -> agregaPropietario());
-		view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
-		view.getBtnLupita().addActionListener(e -> selectPropietario());
-		
-		
+		binder.bind("localidad",
+				localidadCombo::getSelected,
+				t -> localidadCombo.setSelected((Localidad)t));
 	}
 
 	private void selectPropietario() {
@@ -104,11 +124,9 @@ public class AddPropiedadController {
 		
 		if(prop != null) {
 			currentPropietario = elegirPropController.getPropietario();
-			view.getTfPropietario().setText(currentPropietario.getPersona().getNombre());
-			//binder nosequé
+			currentPropiedad.setPropietario(currentPropietario);
 			
-			view.getTfPropietario().setEditable(false);
-			
+			view.getTfPropietario().setText(currentPropietario.getPersona().getTipoCred() + " " +currentPropietario.getPersona().getCredencial());
 		}
 	}
 
@@ -145,12 +163,6 @@ public class AddPropiedadController {
 		cambiaLocalidades();
 	}
 	
-	private void agregaPropietario() {
-		String propietarioCuit = JOptionPane.showInputDialog(this.view, "Ingrese el cuit del nuevo propietario: ", "Nuevo propietario", JOptionPane.INFORMATION_MESSAGE);
-		
-		propietarioService.addNewPropietario(propietarioCuit);
-	}
-	
 	private void savePropiedad() {
 		binder.fillBean();
 		propiedadService.savePropiedad(currentPropiedad);
@@ -161,6 +173,8 @@ public class AddPropiedadController {
 		currentPropiedad = propiedadService.getEmptyPropiedad();
 		binder.setObjective(currentPropiedad);
 		binder.fillFields();
+		
+		view.getTfPropietario().setText("");
 	}
 
 	public void showView(){

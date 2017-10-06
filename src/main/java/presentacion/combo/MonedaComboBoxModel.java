@@ -21,7 +21,7 @@ public class MonedaComboBoxModel extends BaseComboBoxModel<Moneda>{
 		}
 		else{
 			
-		String nombre = toSelect.toString();
+		String nombre = toSelect.toString().replaceAll("_", " ");
 		
 		this.setSelectedItem(nombre);
 		
@@ -31,7 +31,7 @@ public class MonedaComboBoxModel extends BaseComboBoxModel<Moneda>{
 	@Override
 	public void agregaElemento(Moneda element) {
 		this.addElement(element.toString().replaceAll("_", " "));
-		values.put(element.toString(), element);
+		values.put(element.toString().replaceAll("_", " "), element);
 		
 	}
 

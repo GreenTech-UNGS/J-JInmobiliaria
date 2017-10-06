@@ -13,6 +13,7 @@ import model.ClienteService;
 import model.PersonaService;
 import presentacion.combo.TipoCredencialComboBoxModel;
 import presentacion.table.TelefonoTableModel;
+import presentacion.validators.ClienteValidator;
 import presentacion.validators.MessageShow;
 import presentacion.validators.PersonaValidator;
 import presentacion.vista.AgregarCliente;
@@ -24,7 +25,7 @@ public class AddClienteController {
 	private ClienteService clienteService;
 	
 	@Inject
-	private PersonaValidator personaValidator;
+	private ClienteValidator clienteValidator;
 	
 	@Inject
 	private MessageShow msgShow;
@@ -113,7 +114,7 @@ public class AddClienteController {
 		binder.fillBean();
 		
 
-		if(personaValidator.isValid(currentCliente.getPersona())) {
+		if(clienteValidator.isValid(currentCliente)) {
 			clienteService.saveCliente(currentCliente);
 			view.setVisible(false);
 		}

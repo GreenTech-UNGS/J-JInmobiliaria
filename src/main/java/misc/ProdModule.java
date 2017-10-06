@@ -6,11 +6,13 @@ import com.google.inject.Singleton;
 
 import persistencia.conexion.Conexion;
 import persistencia.dao.hibernate.ClienteDaoHibernate;
+import persistencia.dao.hibernate.ContratoDaoHibernate;
 import persistencia.dao.hibernate.LocalidadDaoHibernate;
 import persistencia.dao.hibernate.PersonaDaoHibernate;
 import persistencia.dao.hibernate.PropiedadDaoHibernate;
 import persistencia.dao.hibernate.PropietarioDaoHibernate;
 import persistencia.dao.iface.ClienteDao;
+import persistencia.dao.iface.ContratoDao;
 import persistencia.dao.iface.LocalidadDao;
 import persistencia.dao.iface.PersonaDao;
 import persistencia.dao.iface.PropiedadDao;
@@ -48,6 +50,8 @@ public class ProdModule implements Module{
 		binder.bind(PropiedadDao.class).to(PropiedadDaoHibernate.class).in(Singleton.class);
 		binder.bind(LocalidadDao.class).to(LocalidadDaoHibernate.class).in(Singleton.class);
 		binder.bind(PropietarioDao.class).to(PropietarioDaoHibernate.class).in(Singleton.class);
+		binder.bind(ContratoDao.class).to(ContratoDaoHibernate.class).in(Singleton.class);
+		
 	}
 	
 
