@@ -8,14 +8,17 @@ import entities.Cliente;
 import entities.Persona;
 import entities.Propiedad;
 import persistencia.dao.iface.ClienteDao;
+import persistencia.dao.iface.PersonaDao;
 
 public class ClienteService {
 	
 	ClienteDao clienteDao;
+	PersonaDao personaDao;
 	
 	@Inject
-	private ClienteService(ClienteDao clienteDao) {
+	private ClienteService(ClienteDao clienteDao, PersonaDao personaDao) {
 		this.clienteDao = clienteDao;
+		this.personaDao = personaDao;
 	}
 	
 	public Cliente getEmptyCliente() {
@@ -39,7 +42,7 @@ public class ClienteService {
 	}
 	
 	public void saveCliente(Cliente toSave) {
-	
+		
 		clienteDao.save(toSave);
 	}
 	

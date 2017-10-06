@@ -45,11 +45,6 @@ public class PersonaValidator implements Validator<Persona>{
 					+ "Si requiere ingresar a alguien existente utilize el botón buscar", "Error");
 			return false;
 		}
-		else if(clienteService.existeClienteCon(t)) {
-			msgShw.showErrorMessage("El cliente ya está agregado", "Error");
-			
-			return false;
-		}
 		
 		return true;
 	}
