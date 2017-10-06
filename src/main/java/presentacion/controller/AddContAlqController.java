@@ -7,8 +7,10 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.AvisoNotificacion;
+import entities.Cliente;
 import entities.ContratoAlquiler;
 import entities.Moneda;
+import entities.Propiedad;
 import entities.TipoContratoAlquiler;
 import entities.TipoOfrecimiento;
 import misc.Binder;
@@ -24,19 +26,26 @@ public class AddContAlqController {
 	ContratoService contratoService;
 	@Inject
 	AddContratoAlq view;
+	ElegirClienteController eligeCliente;
+	ElegirPropiedadController elegirPropiedadController;
 	
 	Binder<ContratoAlquiler> binder;
 	ContratoAlquiler currentContrato;
+	
 	
 	TipoContratoAlqComboBoxModel tipoCombo;
 	MonedaComboBoxModel monedaCombo;
 	
 	@Inject
 	private AddContAlqController(ContratoService contratoService,
-								AddContratoAlq view) {
+								AddContratoAlq view,
+								ElegirClienteController eligeCliente,
+								ElegirPropiedadController elegirPropiedadController) {
 		
 		this.contratoService = contratoService;
 		this.view = view;
+		this.eligeCliente = eligeCliente;
+		this.elegirPropiedadController = elegirPropiedadController;
 		
 		tipoCombo = new TipoContratoAlqComboBoxModel();
 		monedaCombo = new MonedaComboBoxModel();
@@ -45,11 +54,12 @@ public class AddContAlqController {
 		initBinder();
 		
 		view.getBtnGuardarContrato().addActionListener(e -> guardaContrato());
+		view.getBtnLupaCliente().addActionListener(e -> seleccionaCliente());
+		view.getBtnLupaPropiedad().addActionListener(e -> seleccionaPropiedad());
 		
 
 		fillCombos();
 	}
-	
 
 	private void initBinder() {
 		
@@ -124,12 +134,42 @@ public class AddContAlqController {
 		
 	}
 	
+	private void seleccionaCliente() {
+		eligeCliente.showView();
+		Cliente cliente = eligeCliente.getCliente();
+		
+		if(cliente != null) {
+			String credencial = cliente.getPersona().getTipoCred().toString() + " " +
+								cliente.getPersona().getCredencial();
+			
+			view.getTfDniInquilino().setText(credencial);
+			
+			currentContrato.setCliente(cliente);
+		}
+	}
+	
+	private void seleccionaPropiedad() {
+		elegirPropiedadController.showView();
+		Propiedad propiedad = elegirPropiedadController.getPropiedad();
+		
+		if(propiedad != null) {
+		
+			view.getTfIdPropiedad().setText(propiedad.getIdentificador());
+			
+			currentContrato.setPropiedad(propiedad);
+			
+			view.getTextPrecio().setText(propiedad.getPrecioTentativo().getMonto() + "");
+			
+		}
+	}
+	
 	private void guardaContrato() {
 		
 		binder.fillBean();
 		bindAvisos();
 		//if(contratoValidator.isvalid)
 		contratoService.saveContratoAlquiler(currentContrato);
+		closeView();
 		
 	}
 	
@@ -153,5 +193,9 @@ public class AddContAlqController {
 	
 	public void showView() {
 		this.view.setVisible(true);
+	}
+	
+	public void closeView() {
+		this.view.setVisible(false);
 	}
 }

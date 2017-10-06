@@ -15,7 +15,7 @@ public class PropiedadesTableModel extends BaseTableModel<Propiedad>{
 	
 	@Inject
 	private PropiedadesTableModel() {
-		
+	
 		super.addColumn("Identificador", false, 100);
 		super.addColumn("Direccion", false, 400);
 		super.addColumn("Precio", false, 100);
