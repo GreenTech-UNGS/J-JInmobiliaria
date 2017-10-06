@@ -26,24 +26,27 @@ public class ElegirPersonaController {
 		this.personaService = personaService;
 		
 		personaTable = new PersonaTableModel();
+
+		view.getBtnSeleccionar().addActionListener(e -> view.setVisible(false));
+		view.getTablePersonas().setModel(personaTable);
+		view.getTablePersonas().setColumnModel(personaTable.getTableColumnModel());
+		view.getTablePersonas().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		fillTable();
 		
 	}
 
 	private void fillTable() {
-		view.getTablePersonas().setModel(personaTable);
-		view.getTablePersonas().setColumnModel(personaTable.getTableColumnModel());
-		view.getTablePersonas().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
 		
 		personaTable.clean();
 		personaTable.actualizeRows(personaService.getAll());
 		
-		view.getBtnSeleccionar().addActionListener(e -> view.setVisible(false));
 		
 	}
 	
 	public void showView() {
+		fillTable();
 		this.view.setVisible(true);
 	}
 

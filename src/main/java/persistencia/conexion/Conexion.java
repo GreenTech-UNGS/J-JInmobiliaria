@@ -3,17 +3,21 @@ package persistencia.conexion;
 import java.io.File;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
+@Singleton
 public class Conexion {
 	
     private SessionFactory factory;
     private File configuration = new File("hibernate.cfg.xml");
     
     private DBCredentialsEditor dbProps = DBCredentialsEditor.getEditor();
+    private Session session;
 	
     @Inject
 	private Conexion(){
@@ -27,8 +31,8 @@ public class Conexion {
 		c.setProperty("hibernate.connection.username", dbProps.getUsuario());
 		c.setProperty("hibernate.connection.password", dbProps.getPass());
 		
-		System.out.println("asd");
     	factory = c.buildSessionFactory();
+		session = factory.openSession();
 	}
 	/*
 	public static void resetConexion() throws HibernateException{
@@ -36,8 +40,8 @@ public class Conexion {
 	}*/
 	
 	
-	public SessionFactory getSessionFactory(){
-		return factory;
+	public  Session getSession(){
+		return session;
 	}
 	
 	

@@ -67,5 +67,17 @@ public class CuotaAlquiler {
 	public int getID() {
 		return ID;
 	}
+
+	public List<HistoriaEstadoCuota> getEstados() {
+		return estados;
+	}
+
+	public void setEstados(List<HistoriaEstadoCuota> estados) {
+		this.estados = estados;
+	}
+
+	public void setAnioMes(String anioMes) {
+		this.anioMes = anioMes;
+	}
 	
 }
