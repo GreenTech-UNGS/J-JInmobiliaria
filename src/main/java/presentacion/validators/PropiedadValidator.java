@@ -33,7 +33,11 @@ public class PropiedadValidator implements Validator<Propiedad>{
 	@Override
 	public boolean isValid(Propiedad t) {
 
-		if(t.getPrecioTentativo().getMonto() < 0){			
+		if(hayCamposVacios(t)){
+			return false;
+		}
+		
+		if(t.getPrecioTentativo().getMonto() <= 0){			
 			return false;
 		}
 		
@@ -47,6 +51,13 @@ public class PropiedadValidator implements Validator<Propiedad>{
 			return false;
 		}
 		return true;
+	}
+	
+	private boolean hayCamposVacios(Propiedad t) {
+		return 
+				t.getIdentificador().equals("") ||
+				t.getCalle().equals("") ||
+				t.getAltura().equals("");
 	}
 	
 }
