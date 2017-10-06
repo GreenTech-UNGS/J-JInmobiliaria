@@ -1,6 +1,12 @@
 package presentacion.controller;
 
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
+
+import javax.swing.JTable;
+
 import com.google.inject.Inject;
 
 import entities.Propiedad;
@@ -28,6 +34,7 @@ public class MainViewController {
 	
 	AddClienteController clienteController;	
 	AddPropiedadController propiedadController;
+	DetallePropiedadController detallePropController;
 
 	ReservarPropiedadController reservaController;
 
@@ -45,7 +52,8 @@ public class MainViewController {
 			PropiedadService propiedadService,
 			ClienteService clienteService,
 			PropiedadesTableModel tableModelprop,
-			PropietarioService propietarioService){
+			PropietarioService propietarioService,
+			DetallePropiedadController detallePropController){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
@@ -59,6 +67,7 @@ public class MainViewController {
 		this.propiedadService = propiedadService;
 		this.clienteService = clienteService;
 		this.propietarioService = propietarioService;
+		this.detallePropController = detallePropController;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
@@ -70,6 +79,7 @@ public class MainViewController {
 		fillTableClientes();
 		fillTablePropietarios();
 		fillTableProp();
+		selectDetalleProp();
 	}
 
 
@@ -135,5 +145,26 @@ public class MainViewController {
 		this.clienteController.setModeNew();
 		this.clienteController.showView();
 		fillTableClientes();
+	}
+	
+	private void selectDetalleProp(){
+		this.view.getTablePropiedades().addMouseListener(new MouseAdapter(){
+			public void mousePressed(MouseEvent me){
+				if (me.getClickCount() ==2){
+					int selected = view.getTablePropiedades().getSelectedRow();
+					System.out.println(view.getTablePropiedades().getSelectedRow());
+					
+					if(selected == -1) return;
+					
+					mostrarDetalleProp();
+					
+				}
+			}
+		});
+	}
+	
+	private void mostrarDetalleProp(){
+		detallePropController.ShowView();
+		
 	}
 }
