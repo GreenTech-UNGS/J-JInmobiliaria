@@ -33,7 +33,6 @@ public class MainViewController {
 	
 	AddClienteController clienteController;	
 	AddPropiedadController propiedadController;
-	DetallePropiedadController detallePropController;
 
 	ReservarPropiedadController reservaController;
 
@@ -51,8 +50,7 @@ public class MainViewController {
 			PropiedadService propiedadService,
 			ClienteService clienteService,
 			PropiedadesTableModel tableModelprop,
-			PropietarioService propietarioService,
-			DetallePropiedadController detallePropController){
+			PropietarioService propietarioService){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
@@ -66,7 +64,6 @@ public class MainViewController {
 		this.propiedadService = propiedadService;
 		this.clienteService = clienteService;
 		this.propietarioService = propietarioService;
-		this.detallePropController = detallePropController;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
@@ -170,15 +167,11 @@ public class MainViewController {
 					
 					if(selected == -1) return;
 					
-					mostrarDetalleProp();
+					viewPropiedad();
 					
 				}
 			}
 		});
 	}
-	
-	private void mostrarDetalleProp(){
-		detallePropController.ShowView();
-		
-	}
+
 }
