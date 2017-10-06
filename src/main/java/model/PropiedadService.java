@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -60,12 +61,13 @@ public class PropiedadService {
 		
 	}
 
-	public List<Propiedad> getDisponiblesAlquiler() {
+	public List<Propiedad> getAlquilerBy(EstadoProp... estados) {
 		
 		List<Propiedad> allProps = getAll();
-		
-		List<Propiedad> toRet = allProps.stream().filter(p -> getCurrentEstado(p).equals(EstadoProp.DISPONIBLE) ||
-			getCurrentEstado(p).equals(EstadoProp.BORRADOR))
+
+		List<EstadoProp> estadosAFiltrar = Arrays.asList(estados);
+
+		List<Propiedad> toRet = allProps.stream().filter(p -> estadosAFiltrar.contains(getCurrentEstado(p)))
 						.filter(p -> p.getTipoOfrecimiento().equals(TipoOfrecimiento.ALQUILER) ||
 				p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA_Y_ALQUILER))
 						.collect(Collectors.toList());
