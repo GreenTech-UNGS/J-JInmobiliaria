@@ -16,8 +16,7 @@ import presentacion.vista.MainView;
 public class MainViewController {
 	
 	private MainView view;
-	
-	@Inject
+
 	private PropiedadesTableModel tableModelProp;
 	private PropietariosTableModel propietariosTable;
 	private List<Propiedad> TablaPropiedades; 
@@ -63,6 +62,8 @@ public class MainViewController {
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
 		this.view.getBtnReservarPropiedad().addActionListener(e -> agregarReserva());
+		this.view.getBtnViewPropiedad().addActionListener(e -> viewPropiedad());
+
 		this.view.getBtnContratoAlq().addActionListener(e -> agregarContratoAlq());
 		this.view.getBtnContratoVen().addActionListener(e -> agregarContratoVen());
 		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());
@@ -96,12 +97,12 @@ public class MainViewController {
 		
 		this.tableModelProp.clean();
 		this.view.getTablePropiedades().setModel(tableModelProp);
-		tableModelProp.actualizeRows(propiedadService.getAll());
-		
+		propiedadService.getAll().forEach(p -> tableModelProp.addRow(p));
+
 		this.view.getTablePropiedades().setColumnModel(tableModelProp.getTableColumnModel());
 		this.view.getTablePropiedades().getTableHeader().setReorderingAllowed(false);
-		
-		
+
+
 	}
 
 	public void showView(){
@@ -115,10 +116,9 @@ public class MainViewController {
 	}
 
 	private void viewPropiedad(){
-
 		Propiedad seleccionada;
 		int propRow = view.getTablePropiedades().getSelectedRow();
-		boolean isPropSelected =  propRow > 0;
+		boolean isPropSelected =  propRow >= 0;
 		if (isPropSelected) {
 			seleccionada = tableModelProp.getRow(propRow);
 			this.propiedadController.setModeView(seleccionada);

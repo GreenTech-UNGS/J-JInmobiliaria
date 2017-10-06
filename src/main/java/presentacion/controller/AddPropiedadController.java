@@ -184,7 +184,7 @@ public class AddPropiedadController {
 
 		view.setTitle("Detalle Propiedad");
 
-		currentPropiedad = propiedadService.getEmptyPropiedad();
+		currentPropiedad = propiedad;
 		binder.setObjective(currentPropiedad);
 		binder.fillFields();
 	}
