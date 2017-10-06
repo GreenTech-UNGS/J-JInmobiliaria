@@ -43,7 +43,7 @@ public class ReservarPropiedadController {
         fillComboPropiedad();
     }
 
-    void fillComboCliente(){
+    void fillComboCliente() {
         //TODO se conecta siempre a la base de datos. Es viable arreglarlo?
         view.getComboCliente().removeAllItems();
 
@@ -55,12 +55,10 @@ public class ReservarPropiedadController {
         clienteComboBoxModel.setSelected(null);
     }
 
-    void fillComboPropiedad(){
+    void fillComboPropiedad() {
         //TODO verificar que esto ande, no se ha probado aún
         view.getComboPropiedad().removeAllItems();
         List<Propiedad> listPropiedad = propiedadService.getAll();
-
-        System.out.println(listPropiedad);
 
         propiedadComboBoxModelModel.actualize(listPropiedad);
         view.getComboPropiedad().setModel(propiedadComboBoxModelModel);
@@ -68,7 +66,7 @@ public class ReservarPropiedadController {
         propiedadComboBoxModelModel.setSelected(null);
     }
 
-    public void showView(){
+    public void showView() {
         view.setVisible(true);
     }
 
