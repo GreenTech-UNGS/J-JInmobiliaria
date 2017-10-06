@@ -1,5 +1,7 @@
 package presentacion.vista;
 
+import com.google.inject.Inject;
+
 import java.awt.Dimension;
 
 import javax.swing.JButton;
@@ -18,8 +20,9 @@ public class ReservarPropiedadView extends JDialog {
 	
 	JComboBox<String> comboCliente;
 	JComboBox<String> comboPropiedad;
-	
-	private ReservarPropiedadView(){
+
+	@Inject
+    private ReservarPropiedadView(){
 		super();
 		
 		setTitle("Reservar propiedad");
@@ -59,4 +62,20 @@ public class ReservarPropiedadView extends JDialog {
 		comboPropiedad.setBounds(110, 145, 160, 20);
 		panel.add(comboPropiedad);
 	}
+
+    public JButton getBtnGuardar() {
+        return btnGuardar;
+    }
+
+    public JButton getBtnCancelar() {
+        return btnCancelar;
+    }
+
+    public JComboBox<String> getComboCliente() {
+        return comboCliente;
+    }
+
+    public JComboBox<String> getComboPropiedad() {
+        return comboPropiedad;
+    }
 }
