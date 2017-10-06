@@ -16,7 +16,7 @@ public class DatosActualizacionContrato {
 	private float porcentaje;
 	private boolean isAcumulativo;
 	
-	private String periodoDeActualizacion;
+	private int actualizacionMeses;
 
 	public float getPorcentaje() {
 		return porcentaje;
@@ -33,17 +33,18 @@ public class DatosActualizacionContrato {
 	public void setAcumulativo(boolean isAcumulativo) {
 		this.isAcumulativo = isAcumulativo;
 	}
-
-	public Period getPeriodoDeActualizacion() {
-		return Period.parse(periodoDeActualizacion);
-	}
-
-	public void setPeriodoDeActualizacion(Period periodoDeActualizacion) {
-		this.periodoDeActualizacion = periodoDeActualizacion.toString();
-	}
+	
 
 	public int getID() {
 		return ID;
+	}
+
+	public int getActualizacionMeses() {
+		return actualizacionMeses;
+	}
+
+	public void setActualizacionMeses(int actualizacionMeses) {
+		this.actualizacionMeses = actualizacionMeses;
 	}
 	
 }

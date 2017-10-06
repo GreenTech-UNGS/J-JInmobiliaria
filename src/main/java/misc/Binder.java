@@ -96,7 +96,11 @@ public class Binder<T> {
 		if(!f.isAccessible()) f.setAccessible(true);
 
 		if(fields.length == i + 1){
-			f.set(o, getters.get(key).get());
+			try {
+				f.set(o, getters.get(key).get());
+			} catch (Exception e) {
+				throw new RuntimeException("Exception en  " + key + ": " + e.getMessage());
+			}
 		}
 		else{
 			Object o2 = f.get(o);
@@ -151,7 +155,13 @@ public class Binder<T> {
 		if(!f.isAccessible()) f.setAccessible(true);
 
 		if(fields.length == i + 1){
-			setters.get(key).accept(f.get(o));
+			try {
+				setters.get(key).accept(f.get(o));
+			} catch (Exception e) {
+				throw new RuntimeException("Exception en  " + key );
+			}
+			
+			
 		}
 		else{
 			Object o2 = f.get(o);

@@ -16,11 +16,10 @@ public class PropiedadesTableModel extends BaseTableModel<Propiedad>{
 	@Inject
 	private PropiedadesTableModel() {
 		
-		super.addColumn("identificador", false, 100);
-		super.addColumn("calle", false, 100);
-		super.addColumn("altura", false, 100);
-		super.addColumn("precio", false, 100);
-		super.addColumn("estado", false, 100);
+		super.addColumn("Identificador", false, 100);
+		super.addColumn("Direccion", false, 400);
+		super.addColumn("Precio", false, 100);
+		super.addColumn("Estado", false, 100);
 		
 	}
 
@@ -28,10 +27,16 @@ public class PropiedadesTableModel extends BaseTableModel<Propiedad>{
 	protected Object[] toRow(Propiedad t) {
 		
 		String precio = t.getPrecioTentativo().getMonto() + " " + t.getPrecioTentativo().getMoneda();
+		String provincia = t.getLocalidad().getProvincia().toString().replaceAll("_", "");
+		String direccion = t.getCalle() + " " +
+							t.getAltura() + " " +
+							(t.getPiso()==null? "":("Piso " + t.getPiso()+" "))+
+							(t.getDpto()==null? "":("Dpto " + t.getDpto()+" "))+
+							t.getLocalidad().getNombre()+ ", Pcia."+
+							provincia;
 		
 		Object[] fila = {t.getIdentificador(),
-						t.getCalle(),
-						t.getAltura(),
+						direccion,
 						precio,
 						propService.getCurrentEstado(t).toString()};
 		

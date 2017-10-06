@@ -28,13 +28,13 @@ public class AddContratoAlq extends JDialog {
 	private JTextField tfDniInquilino;
 	private JTextField textPrecio;
 	@SuppressWarnings("rawtypes")
-	private JComboBox comboMoneda;
+	private JComboBox<String> comboMoneda;
 	
 	private JButton btnGuardarContrato;
 	private JButton btnCancelarContrato;
 	private JButton btnLupaPropiedad;
 	private JSpinner spinnerDuracionContrato;
-	private JComboBox comboTipoContrato;
+	private JComboBox<String> comboTipoContrato;
 	private JButton btnLupaCliente;
 	private JTextArea textGarantia;
 	private JSpinner spinnerGastosAdmin;
@@ -47,7 +47,7 @@ public class AddContratoAlq extends JDialog {
 	private JCheckBox chckbxVencimiento;
 	private JSpinner spinnerVencimientoEmail;
 	private JCheckBox chckbxIntimacion;
-	private JSpinner spinnerInformacionEmail;
+	private JSpinner spinnerIntimacionEmail;
 	
 	
 	@SuppressWarnings("rawtypes")
@@ -168,7 +168,7 @@ public class AddContratoAlq extends JDialog {
 		agregarContrato.add(textPrecio);
 		textPrecio.setColumns(10);
 		
-		this.comboMoneda = new JComboBox();
+		this.comboMoneda = new JComboBox<>();
 		comboMoneda.setBounds(127, 234, 128, 17);
 		agregarContrato.add(comboMoneda);
 		
@@ -254,7 +254,7 @@ public class AddContratoAlq extends JDialog {
 		chckbxAcumulativoActualiza.setFont(new Font("Dialog", Font.PLAIN, 11));
 		chckbxAcumulativoActualiza.setVerticalAlignment(SwingConstants.TOP);
 		chckbxAcumulativoActualiza.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxAcumulativoActualiza.setBounds(350, 314, 129, 23);
+		chckbxAcumulativoActualiza.setBounds(350, 313, 129, 23);
 		agregarContrato.add(chckbxAcumulativoActualiza);
 		
 		spinnerActualizaContrato = new JSpinner();
@@ -306,7 +306,7 @@ public class AddContratoAlq extends JDialog {
 		chkbxAcumulativoPunitorio.setBounds(350, 430, 129, 23);
 		agregarContrato.add(chkbxAcumulativoPunitorio);
 		
-		comboTipoContrato = new JComboBox();
+		comboTipoContrato = new JComboBox<>();
 		comboTipoContrato.setBounds(102, 129, 167, 18);
 		agregarContrato.add(comboTipoContrato);
 		
@@ -335,10 +335,10 @@ public class AddContratoAlq extends JDialog {
 		label_4.setBounds(152, 574, 56, 15);
 		agregarContrato.add(label_4);
 		
-		spinnerInformacionEmail = new JSpinner();
-		spinnerInformacionEmail.setBounds(412, 572, 45, 20);
-		spinnerInformacionEmail.setModel(new SpinnerNumberModel(0, 0, 28, 1));
-		agregarContrato.add(spinnerInformacionEmail);
+		spinnerIntimacionEmail = new JSpinner();
+		spinnerIntimacionEmail.setBounds(412, 572, 45, 20);
+		spinnerIntimacionEmail.setModel(new SpinnerNumberModel(0, 0, 28, 1));
+		agregarContrato.add(spinnerIntimacionEmail);
 		
 		JLabel label_5 = new JLabel("Dias");
 		label_5.setFont(new Font("Dialog", Font.PLAIN, 11));
@@ -372,7 +372,7 @@ public class AddContratoAlq extends JDialog {
 	}
 
 
-	public JComboBox getComboMoneda() {
+	public JComboBox<String> getComboMoneda() {
 		return comboMoneda;
 	}
 
@@ -397,7 +397,7 @@ public class AddContratoAlq extends JDialog {
 	}
 
 
-	public JComboBox getComboTipoContrato() {
+	public JComboBox<String> getComboTipoContrato() {
 		return comboTipoContrato;
 	}
 
@@ -462,8 +462,8 @@ public class AddContratoAlq extends JDialog {
 	}
 
 
-	public JSpinner getSpinnerInformacionEmail() {
-		return spinnerInformacionEmail;
+	public JSpinner getSpinnerIntimacionEmail() {
+		return spinnerIntimacionEmail;
 	}
 
 }

@@ -34,10 +34,14 @@ public class MainViewController {
 	PropietarioService propietarioService;
 	
 	@Inject
-	private MainViewController(MainView view, AddPropiedadController propiedadesController,
-			AddContAlqController contratoAlqController, AddContVenController contratoVenController,
+	private MainViewController(MainView view,
+			AddPropiedadController propiedadesController,
+			AddContAlqController contratoAlqController,
+			AddContVenController contratoVenController,
 			AddClienteController clienteController,
-			PropiedadService propiedadService, ClienteService clienteService,PropiedadesTableModel tableModelprop,
+			PropiedadService propiedadService,
+			ClienteService clienteService,
+			PropiedadesTableModel tableModelprop,
 			PropietarioService propietarioService){
 		
 		this.view = view;
@@ -107,6 +111,7 @@ public class MainViewController {
 	}
 	
 	private void agregarContratoAlq() {
+		this.contratoAlqController.setModeNew();
 		this.contratoAlqController.showView();
 	}
 	
