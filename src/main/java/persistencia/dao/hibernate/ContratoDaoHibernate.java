@@ -42,7 +42,7 @@ public class ContratoDaoHibernate extends DaoHibernate<Contrato> implements Cont
 		Criteria q = sesion.createCriteria(Contrato.class).
 				createAlias("contrato", "contrato").
 				setFetchMode("contrato", FetchMode.JOIN).
-				add(Restrictions.eq("contrato.ID", t.getID()));
+				add(Restrictions.eq("contrato.Identificador", t.getIdentificador()));
 		
 		finishTransaction();
 		
