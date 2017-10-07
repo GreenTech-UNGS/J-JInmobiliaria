@@ -61,7 +61,8 @@ public class ReservarPropiedadController {
 
         if(propiedad != null){
             currentPropiedad = propiedad;
-
+            view.getTfPropiedad().setText(currentPropiedad.getIdentificador() + " - " +
+            currentPropiedad.getCalle() + " " + currentPropiedad.getAltura());
         }
 
     }
@@ -72,6 +73,8 @@ public class ReservarPropiedadController {
 
         if (cliente != null){
             currentCliente = cliente;
+            view.getTfCliente().setText(currentCliente.getPersona().getCredencial() + " - " +
+            currentCliente.getPersona().getNombre() + " " + currentCliente.getPersona().getApellido());
         }
     }
 
