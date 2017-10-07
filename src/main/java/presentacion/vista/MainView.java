@@ -189,8 +189,7 @@ public class MainView {
         jCalendar.setTodayButtonVisible(true);
         jCalendar.setWeekOfYearVisible(false);
         panelCalendar.add(jCalendar);
-        
-        
+               
         this.panelReportes = new JPanel();
         panelContainer.add(panelReportes, "name_1283074869718816");
 
@@ -217,12 +216,6 @@ public class MainView {
         JLabel label = new JLabel("New label");
         label.setBounds(396, 5, 46, 14);
         panelPrincipal.add(label);
-
-//        JLabel lblCalendario = new JLabel("Label");
-//        Image img = new ImageIcon(this.getClass().getResource("/calen.png")).getImage();
-//        lblCalendario.setIcon(new ImageIcon(img));
-//        lblCalendario.setBounds(769, 11, 237, 175);
-//        panelPrincipal.add(lblCalendario);
 
         JLabel lblNotificaciones = new JLabel("Notificaciones:");
         lblNotificaciones.setFont(new Font("Tahoma", Font.BOLD, 12));
