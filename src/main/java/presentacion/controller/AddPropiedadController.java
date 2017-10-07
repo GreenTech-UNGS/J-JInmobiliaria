@@ -1,14 +1,7 @@
 package presentacion.controller;
 
-import java.awt.event.ActionEvent;
 import java.util.Arrays;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
@@ -27,7 +20,6 @@ import model.PropietarioService;
 import presentacion.combo.LocalidadComboBoxModel;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.ProvinciaComboBoxModel;
-import presentacion.combo.TipoContratoAlqComboBoxModel;
 import presentacion.combo.TipoOfrecimientoComboBoxModel;
 import presentacion.validators.PropiedadValidator;
 import presentacion.vista.AgregarPropiedad;
@@ -41,7 +33,7 @@ public class AddPropiedadController {
 	private LocalidadComboBoxModel localidadCombo;
 	private PropiedadValidator propiedadValidator;
 	private PropiedadService propiedadService;
-	private PropietarioService propietarioService;
+//	private PropietarioService propietarioService;
 	private LocalidadService localidadService;
 	private ElegirPropietarioController elegirPropController;
 		
@@ -62,7 +54,7 @@ public class AddPropiedadController {
 		this.propiedadValidator = propiedadValidator;
 		this.propiedadService = propiedadService;
 		this.localidadService = localidadService;
-		this.propietarioService = propietarioService;
+//		this.propietarioService = propietarioService;
 		this.binder = new Binder<>();
 		this.elegirPropController = elegirPropController;
 		
@@ -191,6 +183,7 @@ public class AddPropiedadController {
 		binder.fillFields();
 		
 		view.getTfPropietario().setText("");
+//		setNotEnabled();
 	}
 
 	public void setModeView(Propiedad propiedad) {
@@ -206,26 +199,27 @@ public class AddPropiedadController {
 			
 			view.setVisible(true);
 	}
-	public void setNotEnabled(){
-		this.view.getTfAltura().setEditable(false);
-		view.getTfCalle().setEditable(false);
-		view.getTfPrecio().setEditable(false);
-		view.getTfIdentificador().setEditable(false);
-		view.getTfEntrecalles().setEditable(false);
-		view.getTfPiso().setEditable(false);
-		view.getTfDepto().setEditable(false);
-		view.getTfPropietario().setEditable(false);
-		view.getComboProvincia().setEditable(false);
-		view.getComboMoneda().setEditable(false);
-		view.getComboTipoOfre().setEditable(false);
-		view.getComboLocalidad().setEditable(false);
-		view.getTaDescPubl().setEditable(false);
-		view.getTaDescPriv().setEditable(false);
-		view.getBtnGuardar().setVisible(false);
-		view.getBtnCancelar().setVisible(false);
-		view.getBtnLupita().setVisible(false);
-		view.getBttAddLoc().setVisible(false);
-		view.getBtnVerHistorial().setVisible(true);	
+	public void setEnabled(boolean bool){
+		
+		view.getTfAltura().setEditable(bool);
+		view.getTfCalle().setEditable(bool);
+		view.getTfPrecio().setEditable(bool);
+		view.getTfIdentificador().setEditable(bool);
+		view.getTfEntrecalles().setEditable(bool);
+		view.getTfPiso().setEditable(bool);
+		view.getTfDepto().setEditable(bool);
+		view.getTfPropietario().setEditable(bool);
+		view.getComboProvincia().setEditable(bool);
+		view.getComboMoneda().setEditable(bool);
+		view.getComboTipoOfre().setEditable(bool);
+		view.getComboLocalidad().setEditable(bool);
+		view.getTaDescPubl().setEditable(bool);
+		view.getTaDescPriv().setEditable(bool);
+		view.getBtnGuardar().setVisible(bool);
+		view.getBtnCancelar().setVisible(bool);
+		view.getBtnLupita().setVisible(bool);
+		view.getBttAddLoc().setVisible(bool);
+		view.getBtnVerHistorial().setVisible(!bool);	
 	}
 
 }

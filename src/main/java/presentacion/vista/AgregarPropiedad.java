@@ -271,9 +271,9 @@ public class AgregarPropiedad extends JDialog{
 		btnVerHistorial.setBounds(442, 20, 102, 23);
 		AgregarPropiedad.add(btnVerHistorial);
 		btnVerHistorial.setVisible(false);
-	/*	JMapViewer mapViewer = new JMapViewer();
-		mapViewer.setBounds(251, 259, 267, 129);
-		AgregarPropiedad.add(mapViewer);*/
+//		JMapViewer mapViewer = new JMapViewer();
+//		mapViewer.setBounds(251, 259, 267, 129);
+//		AgregarPropiedad.add(mapViewer);
 	}
 
 	public JTextField getTfAltura() {

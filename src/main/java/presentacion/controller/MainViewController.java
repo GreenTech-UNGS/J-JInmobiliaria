@@ -145,8 +145,10 @@ public class MainViewController {
 		if (isPropSelected) {
 			seleccionada = tableModelProp.getRow(propRow);
 			this.propiedadController.setModeView(seleccionada);
+			this.propiedadController.setEnabled(false);
 			this.propiedadController.showView();
-			this.propiedadController.setNotEnabled();
+			this.propiedadController.setEnabled(true);
+			
 		}
 
 	}
