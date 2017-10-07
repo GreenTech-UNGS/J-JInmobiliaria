@@ -19,7 +19,7 @@ public class Localidad {
 	private int ID;
 	private String nombre;
 	
-	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.ORDINAL)
 	private Provincia provincia;
 	
 	

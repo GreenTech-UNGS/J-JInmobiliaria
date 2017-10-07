@@ -2,6 +2,8 @@ package entities;
 
 public enum Provincia {
 	Buenos_Aires,
+	Buenos_Aires_GBA,
+	Capital_Federal,
 	Catamarca,
 	Chaco,
 	Chubut,

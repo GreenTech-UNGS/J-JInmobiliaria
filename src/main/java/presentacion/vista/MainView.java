@@ -132,6 +132,7 @@ public class MainView {
 
         JPanel TabPropietarios = new JPanel();
         tabbedPane_2.addTab("Propietarios", null, TabPropietarios, null);
+        TabPropietarios.setLayout(new BoxLayout(TabPropietarios, BoxLayout.X_AXIS));
 
         tablePropietarios = new JTable();
         TabPropietarios.add(tablePropietarios);
@@ -149,6 +150,7 @@ public class MainView {
 
         JPanel panelPagoAlq = new JPanel();
         tabbedPane.addTab("Pagos de alquileres", null, panelPagoAlq, null);
+        panelPagoAlq.setLayout(new BoxLayout(panelPagoAlq, BoxLayout.X_AXIS));
         
         tableCuotas = new JTable();
         
