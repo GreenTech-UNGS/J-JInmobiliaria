@@ -36,13 +36,13 @@ public class ContratoDaoHibernate extends DaoHibernate<Contrato> implements Cont
 	}
 
 	@Override
-	public boolean existeIDContrato(Contrato t) {
+	public boolean existeContratoConIdentificador(String identificador) {
 		initTransaction();
 		
 		Criteria q = sesion.createCriteria(Contrato.class).
 				createAlias("contrato", "contrato").
 				setFetchMode("contrato", FetchMode.JOIN).
-				add(Restrictions.eq("contrato.Identificador", t.getIdentificador()));
+				add(Restrictions.eq("contrato.identificador", identificador));
 		
 		finishTransaction();
 		
