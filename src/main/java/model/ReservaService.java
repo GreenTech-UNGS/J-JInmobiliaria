@@ -13,7 +13,7 @@ public class ReservaService {
     private ReservaService(){}
 
     public List<Reserva> getAll(){
-        throw new NotImplementedException();
+        throw new RuntimeException("No implementado aún");
     }
 
     public void saveReserva(Reserva reserva){
