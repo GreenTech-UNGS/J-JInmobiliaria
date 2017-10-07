@@ -131,6 +131,7 @@ fabric.properties
 
 # Package Files #
 *.jar
+!JMapViewer.jar
 *.war
 *.ear
 *.zip
