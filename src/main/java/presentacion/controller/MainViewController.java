@@ -1,14 +1,18 @@
 package presentacion.controller;
 
-import java.util.List;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import com.google.inject.Inject;
 
 import entities.Propiedad;
 import model.ClienteService;
+import model.CuotaService;
 import model.PropiedadService;
 import model.PropietarioService;
 import presentacion.table.ClientesTableModel;
-import presentacion.table.PersonaTableModel;
+import presentacion.table.CuotasTableModel;
+
 import presentacion.table.PropiedadesTableModel;
 import presentacion.table.PropietariosTableModel;
 import presentacion.vista.MainView;
@@ -16,11 +20,10 @@ import presentacion.vista.MainView;
 public class MainViewController {
 	
 	private MainView view;
-	
-	@Inject
+
 	private PropiedadesTableModel tableModelProp;
 	private PropietariosTableModel propietariosTable;
-	private List<Propiedad> TablaPropiedades; 
+	private CuotasTableModel cuotasTable;
 	
 	private ClientesTableModel tableModelClien;
 	AddContAlqController contratoAlqController;
@@ -34,6 +37,8 @@ public class MainViewController {
 	PropiedadService propiedadService;
 	ClienteService clienteService;
 	PropietarioService propietarioService;
+	CuotaService cuotaService;
+	
 	
 	@Inject
 	private MainViewController(MainView view,
@@ -45,11 +50,13 @@ public class MainViewController {
 			PropiedadService propiedadService,
 			ClienteService clienteService,
 			PropiedadesTableModel tableModelprop,
-			PropietarioService propietarioService){
+			PropietarioService propietarioService,
+			CuotaService cuotaService){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
 		this.propietariosTable = new PropietariosTableModel();
+		this.cuotasTable = new CuotasTableModel();
 		this.tableModelProp = tableModelprop;
 		this.propiedadController = propiedadesController;
 		this.contratoAlqController = contratoAlqController;
@@ -59,6 +66,7 @@ public class MainViewController {
 		this.propiedadService = propiedadService;
 		this.clienteService = clienteService;
 		this.propietarioService = propietarioService;
+		this.cuotaService = cuotaService;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
@@ -69,7 +77,9 @@ public class MainViewController {
 		
 		fillTableClientes();
 		fillTablePropietarios();
+		fillTableCuotas();
 		fillTableProp();
+		selectDetalleProp();
 	}
 
 
@@ -92,16 +102,24 @@ public class MainViewController {
 		this.view.getTablePropietarios().getTableHeader().setReorderingAllowed(false);
 	}
 	
+	private void fillTableCuotas() {
+		this.cuotasTable.clean();
+		this.view.getTableCuotas().setModel(cuotasTable);
+		cuotaService.getPendientes().forEach(c -> cuotasTable.addRow(c));
+		
+		this.view.getTableCuotas().setColumnModel(cuotasTable.getTableColumnModel());
+		this.view.getTableCuotas().getTableHeader().setReorderingAllowed(false);
+	}
+	
 	private void fillTableProp(){
 		
 		this.tableModelProp.clean();
 		this.view.getTablePropiedades().setModel(tableModelProp);
-		tableModelProp.actualizeRows(propiedadService.getAll());
-		
+		propiedadService.getAll().forEach(p -> tableModelProp.addRow(p));
+
 		this.view.getTablePropiedades().setColumnModel(tableModelProp.getTableColumnModel());
 		this.view.getTablePropiedades().getTableHeader().setReorderingAllowed(false);
-		
-		
+
 	}
 
 	public void showView(){
@@ -115,14 +133,16 @@ public class MainViewController {
 	}
 
 	private void viewPropiedad(){
-
 		Propiedad seleccionada;
 		int propRow = view.getTablePropiedades().getSelectedRow();
-		boolean isPropSelected =  propRow > 0;
+		boolean isPropSelected =  propRow >= 0;
 		if (isPropSelected) {
 			seleccionada = tableModelProp.getRow(propRow);
 			this.propiedadController.setModeView(seleccionada);
+			this.propiedadController.setEnabled(false);
 			this.propiedadController.showView();
+			this.propiedadController.setEnabled(true);
+			
 		}
 
 	}
@@ -146,5 +166,18 @@ public class MainViewController {
 		this.clienteController.showView();
 
 		fillTableClientes();
+		
+	}
+	
+	private void selectDetalleProp(){
+		this.view.getTablePropiedades().addMouseListener(new MouseAdapter(){
+			public void mousePressed(MouseEvent me){
+				if (me.getClickCount() ==2){
+					int selected = view.getTablePropiedades().getSelectedRow();
+					if(selected == -1) return;
+					viewPropiedad();
+				}
+			}
+		});
 	}
 }

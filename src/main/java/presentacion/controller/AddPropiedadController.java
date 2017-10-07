@@ -1,8 +1,6 @@
 package presentacion.controller;
 
-import java.awt.event.ActionEvent;
 import java.util.Arrays;
-
 import javax.swing.JOptionPane;
 
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -22,8 +20,8 @@ import model.PropietarioService;
 import presentacion.combo.LocalidadComboBoxModel;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.ProvinciaComboBoxModel;
-import presentacion.combo.TipoContratoAlqComboBoxModel;
 import presentacion.combo.TipoOfrecimientoComboBoxModel;
+import presentacion.validators.PropiedadValidator;
 import presentacion.vista.AgregarPropiedad;
 
 public class AddPropiedadController {
@@ -33,10 +31,12 @@ public class AddPropiedadController {
 	private MonedaComboBoxModel monedaCombo;
 	private TipoOfrecimientoComboBoxModel tipoOfrCombo;
 	private LocalidadComboBoxModel localidadCombo;
+	private PropiedadValidator propiedadValidator;
 	private PropiedadService propiedadService;
-	private PropietarioService propietarioService;
+//	private PropietarioService propietarioService;
 	private LocalidadService localidadService;
 	private ElegirPropietarioController elegirPropController;
+	private HistorialPropiedadController historialPropController;
 		
 	Propiedad currentPropiedad;
 	Propietario currentPropietario;
@@ -45,17 +45,21 @@ public class AddPropiedadController {
 	
 	@Inject
 	private AddPropiedadController(AgregarPropiedad view,
+									PropiedadValidator propiedadValidator,
 									PropiedadService propiedadService,
 									PropietarioService propietarioService,
 									LocalidadService localidadService,
-									ElegirPropietarioController elegirPropController){
+									ElegirPropietarioController elegirPropController,
+									HistorialPropiedadController historialPropController){
 		
 		this.view = view;
+		this.propiedadValidator = propiedadValidator;
 		this.propiedadService = propiedadService;
 		this.localidadService = localidadService;
-		this.propietarioService = propietarioService;
+//		this.propietarioService = propietarioService;
 		this.binder = new Binder<>();
 		this.elegirPropController = elegirPropController;
+		this.historialPropController = historialPropController;
 		
 		this.provCombo = new ProvinciaComboBoxModel();
 		this.monedaCombo = new MonedaComboBoxModel();
@@ -72,6 +76,8 @@ public class AddPropiedadController {
 		view.getBttAddLoc().addActionListener(e -> agregaLocalidad());
 		view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
 		view.getBtnLupita().addActionListener(e -> selectPropietario());
+		view.getBtnCancelar().addActionListener(e -> view.setVisible(false));
+		view.getBtnVerHistorial().addActionListener(e -> this.historialPropController.showView());
 		
 		
 	}
@@ -165,9 +171,13 @@ public class AddPropiedadController {
 	}
 	
 	private void savePropiedad() {
+		
 		binder.fillBean();
-		propiedadService.savePropiedad(currentPropiedad);
-		view.setVisible(false);
+		if(propiedadValidator.isValid(currentPropiedad)){		
+			
+			propiedadService.savePropiedad(currentPropiedad);
+			view.setVisible(false);
+		}
 	}
 	
 	public void setModeNew() {
@@ -182,9 +192,9 @@ public class AddPropiedadController {
 
 	public void setModeView(Propiedad propiedad) {
 
-		view.setTitle("Detalle Propiedad");
+		view.setTitle("Detalle de propiedad");
 
-		currentPropiedad = propiedadService.getEmptyPropiedad();
+		currentPropiedad = propiedad;
 		binder.setObjective(currentPropiedad);
 		binder.fillFields();
 	}
@@ -192,6 +202,25 @@ public class AddPropiedadController {
 	public void showView(){
 			
 			view.setVisible(true);
+	}
+	
+	public void setEnabled(boolean bool){
+		
+		view.getTfAltura().setEditable(bool);
+		view.getTfCalle().setEditable(bool);
+		view.getTfPrecio().setEditable(bool);
+		view.getTfIdentificador().setEditable(bool);
+		view.getTfEntrecalles().setEditable(bool);
+		view.getTfPiso().setEditable(bool);
+		view.getTfDepto().setEditable(bool);
+		view.getTfPropietario().setEditable(bool);
+		view.getTaDescPubl().setEditable(bool);
+		view.getTaDescPriv().setEditable(bool);
+		view.getBtnGuardar().setVisible(bool);
+		view.getBtnCancelar().setVisible(bool);
+		view.getBtnLupita().setVisible(bool);
+		view.getBttAddLoc().setVisible(bool);
+		view.getBtnVerHistorial().setVisible(!bool);	
 	}
 
 }

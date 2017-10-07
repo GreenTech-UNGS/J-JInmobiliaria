@@ -1,7 +1,5 @@
 package presentacion.controller;
 
-import org.quartz.impl.jdbcjobstore.MSSQLDelegate;
-
 import com.google.inject.Inject;
 
 import entities.Cliente;
@@ -49,9 +47,9 @@ public class AddClienteController {
 		this.telefonoController = telefonoController;
 		this.personaService = personaService;
 		this.elegirPersona = elegirPersona;
-		
 		this.tipoCredencialModel = new TipoCredencialComboBoxModel();
 		this.telTable = new TelefonoTableModel();
+		this.binder = new Binder<Cliente>();
 		
 		view.getBtnGuardar().addActionListener(e -> saveCurrentCliente());
 		view.getBtnCancelar().addActionListener(e -> closeView());
@@ -59,7 +57,6 @@ public class AddClienteController {
 		view.getBtnAgregarTelefono().addActionListener(e -> agregaTelefono());
 		view.getBtnBorrarTelefono().addActionListener(e -> borrarTelefono());
 		
-		this.binder = new Binder<Cliente>();
 		
 		binder.bind("persona.nombre",
 				view.getTextNombre()::getText,
@@ -111,7 +108,6 @@ public class AddClienteController {
 	
 	private void saveCurrentCliente() {
 		binder.fillBean();
-		
 
 		if(clienteValidator.isValid(currentCliente)) {
 			clienteService.saveCliente(currentCliente);
@@ -129,7 +125,6 @@ public class AddClienteController {
 			telTable.addRow(nuevoTel);
 			currentCliente.getPersona().insertTelefono(nuevoTel);
 		}
-		
 	}
 	
 	private void eligePersona() {
@@ -144,8 +139,7 @@ public class AddClienteController {
 			
 			setEditCampos(false);
 			
-		}
-		
+		}	
 	}
 	
 	private void setEditCampos(boolean b) {
@@ -178,6 +172,4 @@ public class AddClienteController {
 	public void closeView() {
 		view.setVisible(false);
 	}
-	
-
 }

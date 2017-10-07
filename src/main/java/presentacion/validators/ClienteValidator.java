@@ -22,16 +22,22 @@ public class ClienteValidator implements Validator<Cliente>{
 	
 	@Override
 	public boolean isValid(Cliente t) {
-		if(pValidator.isValid(t.getPersona())) {
-			return true;
-		}else if(clienteService.existeClienteCon(t.getPersona())) {
-				msgShw.showErrorMessage("El cliente ya está agregado", "Error");
-				
+		
+		if(t == null){
+			return false;
+		} 
+		
+		if(pValidator.isValid(t.getPersona()) == false)
 				return false;
+		if(clienteService.existeClienteCon(t.getPersona())) {
+			msgShw.showErrorMessage("El cliente ya está agregado", "Error");
 			
+			return false;			
 		}
+			
 		
 		return true;
-	}
+		
+		}
 	
 }

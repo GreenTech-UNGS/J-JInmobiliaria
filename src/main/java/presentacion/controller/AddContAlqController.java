@@ -12,7 +12,6 @@ import entities.ContratoAlquiler;
 import entities.Moneda;
 import entities.Propiedad;
 import entities.TipoContratoAlquiler;
-import entities.TipoOfrecimiento;
 import misc.Binder;
 import model.ContratoService;
 import presentacion.combo.MonedaComboBoxModel;
@@ -56,6 +55,7 @@ public class AddContAlqController {
 		view.getBtnGuardarContrato().addActionListener(e -> guardaContrato());
 		view.getBtnLupaCliente().addActionListener(e -> seleccionaCliente());
 		view.getBtnLupaPropiedad().addActionListener(e -> seleccionaPropiedad());
+		view.getBtnCancelarContrato().addActionListener(e -> view.setVisible(false));
 		
 
 		fillCombos();

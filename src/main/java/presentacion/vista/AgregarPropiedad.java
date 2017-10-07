@@ -21,6 +21,7 @@ import java.awt.Image;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+//import org.openstreetmap.gui.jmapviewer.JMapViewer;
 
 @SuppressWarnings("serial")
 public class AgregarPropiedad extends JDialog{
@@ -45,6 +46,7 @@ public class AgregarPropiedad extends JDialog{
 	private JButton bttAddLoc;
 	private JTextField tfPropietario;
 	private JButton btnLupita;
+	private JButton btnVerHistorial;
 
 	@Inject
 	private AgregarPropiedad() {
@@ -108,6 +110,7 @@ public class AgregarPropiedad extends JDialog{
 		tfCalle.setColumns(10);
 		
 		comboTipoOfre = new JComboBox<>();
+		comboTipoOfre.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		comboTipoOfre.setBounds(395, 59, 149, 20);
 		AgregarPropiedad.add(comboTipoOfre);
 		
@@ -139,6 +142,7 @@ public class AgregarPropiedad extends JDialog{
 		AgregarPropiedad.add(lblMoneda);
 		
 		comboMoneda = new JComboBox<>();
+		comboMoneda.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		comboMoneda.setBounds(92, 112, 149, 20);
 		AgregarPropiedad.add(comboMoneda);
 		
@@ -196,6 +200,7 @@ public class AgregarPropiedad extends JDialog{
 		
 		@SuppressWarnings("rawtypes")
 		JComboBox comboBox_3 = new JComboBox();
+		comboBox_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		comboBox_3.setBounds(395, 118, 149, 20);
 		AgregarPropiedad.add(comboBox_3);
 		
@@ -236,10 +241,12 @@ public class AgregarPropiedad extends JDialog{
 		AgregarPropiedad.add(taDescPriv);
 		
 		comboProvincia = new JComboBox<>();
+		comboProvincia.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		comboProvincia.setBounds(395, 206, 149, 20);
 		AgregarPropiedad.add(comboProvincia);
 		
 		comboLocalidad = new JComboBox<>();
+		comboLocalidad.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		comboLocalidad.setBounds(396, 231, 102, 20);
 		AgregarPropiedad.add(comboLocalidad);
 		
@@ -253,11 +260,20 @@ public class AgregarPropiedad extends JDialog{
 		tfPropietario.setBounds(395, 84, 123, 20);
 		AgregarPropiedad.add(tfPropietario);
 		
-		this.btnLupita = new JButton("New button");
-//		Image imgLup = new ImageIcon(this.getClass().getResource("/buscar.png")).getImage();
-//		btnLupita.setIcon(new ImageIcon(imgLup));
+		this.btnLupita = new JButton("");
+		Image imgLup = new ImageIcon(this.getClass().getResource("/buscar.png")).getImage();
+		btnLupita.setIcon(new ImageIcon(imgLup));
 		btnLupita.setBounds(522, 83, 22, 23);
 		AgregarPropiedad.add(btnLupita);
+		
+		btnVerHistorial = new JButton("Ver historial");
+		btnVerHistorial.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnVerHistorial.setBounds(442, 20, 102, 23);
+		AgregarPropiedad.add(btnVerHistorial);
+		btnVerHistorial.setVisible(false);
+//		JMapViewer mapViewer = new JMapViewer();
+//		mapViewer.setBounds(251, 259, 267, 129);
+//		AgregarPropiedad.add(mapViewer);
 	}
 
 	public JTextField getTfAltura() {
@@ -340,8 +356,83 @@ public class AgregarPropiedad extends JDialog{
 	public void setTfPropietario(JTextField tfPropietario) {
 		this.tfPropietario = tfPropietario;
 	}
-	
-	
-	
-	
+	public JPanel getAgregarPropiedad() {
+		return AgregarPropiedad;
+	}
+
+	public void setAgregarPropiedad(JPanel agregarPropiedad) {
+		AgregarPropiedad = agregarPropiedad;
+	}
+
+	public JButton getBtnVerHistorial() {
+		return btnVerHistorial;
+	}
+
+	public void setBtnVerHistorial(JButton btnVerHistorial) {
+		this.btnVerHistorial = btnVerHistorial;
+	}
+
+	public void setTfAltura(JTextField tfAltura) {
+		this.tfAltura = tfAltura;
+	}
+
+	public void setTfCalle(JTextField tfCalle) {
+		this.tfCalle = tfCalle;
+	}
+
+	public void setTfPrecio(JTextField tfPrecio) {
+		this.tfPrecio = tfPrecio;
+	}
+
+	public void setTfIdentificador(JTextField tfIdentificador) {
+		this.tfIdentificador = tfIdentificador;
+	}
+
+	public void setTfEntrecalles(JTextField tfEntrecalles) {
+		this.tfEntrecalles = tfEntrecalles;
+	}
+
+	public void setTfPiso(JTextField tfPiso) {
+		this.tfPiso = tfPiso;
+	}
+
+	public void setTfDepto(JTextField tfDepto) {
+		this.tfDepto = tfDepto;
+	}
+
+	public void setComboProvincia(JComboBox<String> comboProvincia) {
+		this.comboProvincia = comboProvincia;
+	}
+
+	public void setComboMoneda(JComboBox<String> comboMoneda) {
+		this.comboMoneda = comboMoneda;
+	}
+
+	public void setComboTipoOfre(JComboBox<String> comboTipoOfre) {
+		this.comboTipoOfre = comboTipoOfre;
+	}
+
+	public void setTaDescPubl(JTextArea taDescPubl) {
+		this.taDescPubl = taDescPubl;
+	}
+
+	public void setTaDescPriv(JTextArea taDescPriv) {
+		this.taDescPriv = taDescPriv;
+	}
+
+	public void setBtnGuardar(JButton btnGuardar) {
+		this.btnGuardar = btnGuardar;
+	}
+
+	public void setBtnCancelar(JButton btnCancelar) {
+		this.btnCancelar = btnCancelar;
+	}
+
+	public void setComboLocalidad(JComboBox<String> comboLocalidad) {
+		this.comboLocalidad = comboLocalidad;
+	}
+
+	public void setBttAddLoc(JButton bttAddLoc) {
+		this.bttAddLoc = bttAddLoc;
+	}
 }

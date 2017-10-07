@@ -7,9 +7,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JSeparator;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -27,7 +30,6 @@ public class AddContratoAlq extends JDialog {
 	private JTextField tfIdPropiedad;
 	private JTextField tfDniInquilino;
 	private JTextField textPrecio;
-	@SuppressWarnings("rawtypes")
 	private JComboBox<String> comboMoneda;
 	
 	private JButton btnGuardarContrato;
@@ -50,7 +52,6 @@ public class AddContratoAlq extends JDialog {
 	private JSpinner spinnerIntimacionEmail;
 	
 	
-	@SuppressWarnings("rawtypes")
 	public AddContratoAlq() {
 		super();
 		setTitle("Agregar Contrato");
@@ -73,7 +74,7 @@ public class AddContratoAlq extends JDialog {
 		
 		JLabel lblIdPropiedad = new JLabel("Propiedad: ");
 		lblIdPropiedad.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblIdPropiedad.setBounds(22, 76, 75, 14);
+		lblIdPropiedad.setBounds(22, 75, 75, 14);
 		agregarContrato.add(lblIdPropiedad);
 		
 		JLabel lblDniInq = new JLabel("Cliente:");
@@ -153,7 +154,7 @@ public class AddContratoAlq extends JDialog {
 		
 		tfIdPropiedad = new JTextField();
 		tfIdPropiedad.setEditable(false);
-		tfIdPropiedad.setBounds(102, 74, 120, 17);
+		tfIdPropiedad.setBounds(102, 75, 128, 19);
 		agregarContrato.add(tfIdPropiedad);
 		tfIdPropiedad.setColumns(10);
 		
@@ -200,8 +201,10 @@ public class AddContratoAlq extends JDialog {
 		btnCancelarContrato.setBounds(329, 625, 120, 38);
 		agregarContrato.add(btnCancelarContrato);
 		
-		btnLupaPropiedad = new JButton("L");
-		btnLupaPropiedad.setBounds(234, 74, 35, 17);
+		btnLupaPropiedad = new JButton("");
+		btnLupaPropiedad.setBounds(234, 75, 35, 23);
+		Image imgLup = new ImageIcon(this.getClass().getResource("/buscar.png")).getImage();
+		btnLupaPropiedad.setIcon(new ImageIcon(imgLup));
 		agregarContrato.add(btnLupaPropiedad);
 		
 		textGarantia = new JTextArea();

@@ -23,6 +23,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.border.TitledBorder;
 
 import com.google.inject.Inject;
+import com.toedter.calendar.JCalendar;
 
 import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
@@ -50,6 +51,9 @@ public class MainView {
     private JTable tablePropiedades;
     private JTable tableClientes;
     private JTable tablePropietarios;
+    private JTable tableCuotas;
+    
+    private JCalendar jCalendar;
 
     @Inject
     public MainView() {
@@ -131,7 +135,7 @@ public class MainView {
 
         tablePropietarios = new JTable();
         TabPropietarios.add(tablePropietarios);
-
+        
         JScrollPane scrollPane_2 = new JScrollPane(tablePropietarios);
         TabPropietarios.add(scrollPane_2);
 
@@ -145,7 +149,12 @@ public class MainView {
 
         JPanel panelPagoAlq = new JPanel();
         tabbedPane.addTab("Pagos de alquileres", null, panelPagoAlq, null);
-
+        
+        tableCuotas = new JTable();
+        
+        JScrollPane scrollPane_3 = new JScrollPane(tableCuotas);
+        panelPagoAlq.add(scrollPane_3);
+        
         JPanel panelPagoVen = new JPanel();
         tabbedPane.addTab("Pagos de ventas", null, panelPagoVen, null);
 
@@ -171,6 +180,16 @@ public class MainView {
         panelMenu.setMinimumSize(new Dimension(100, 100));
         panelMenu.setBackground(new Color(47, 79, 79));
 
+        JPanel panelCalendar = new JPanel();
+        panelCalendar.setBounds(769, 11, 237, 175);
+        panelPrincipal.add(panelCalendar);
+        panelCalendar.setLayout(null);
+        jCalendar = new JCalendar();
+        jCalendar.setBounds(0, 0, 237, 175);
+        jCalendar.setTodayButtonVisible(true);
+        jCalendar.setWeekOfYearVisible(false);
+        panelCalendar.add(jCalendar);
+               
         this.panelReportes = new JPanel();
         panelContainer.add(panelReportes, "name_1283074869718816");
 
@@ -197,12 +216,6 @@ public class MainView {
         JLabel label = new JLabel("New label");
         label.setBounds(396, 5, 46, 14);
         panelPrincipal.add(label);
-
-        JLabel lblCalendario = new JLabel("Label");
-        Image img = new ImageIcon(this.getClass().getResource("/calen.png")).getImage();
-        lblCalendario.setIcon(new ImageIcon(img));
-        lblCalendario.setBounds(769, 11, 237, 175);
-        panelPrincipal.add(lblCalendario);
 
         JLabel lblNotificaciones = new JLabel("Notificaciones:");
         lblNotificaciones.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -335,8 +348,8 @@ public class MainView {
         btnAgregarPropiedad = new JButton("Agregar Propiedad");
         panelButtons.add(btnAgregarPropiedad);
 
-        Component horizontalGlue_1 = Box.createHorizontalGlue();
-        panelButtons.add(horizontalGlue_1);
+        Component horizontalGlue_0 = Box.createHorizontalGlue();
+        panelButtons.add(horizontalGlue_0);
 
         btnReservarPropiedad = new JButton("Reservar propiedad");
         panelButtons.add(btnReservarPropiedad);
@@ -389,6 +402,10 @@ public class MainView {
 
     public JTable getTablePropietarios() {
         return tablePropietarios;
+    }
+    
+    public JTable getTableCuotas() {
+        return tableCuotas;
     }
 
 

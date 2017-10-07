@@ -40,7 +40,7 @@ public class PersonaService {
 
 
 	public boolean existePersona(Persona t) {
-		Persona personaInDb = personaDao.getPersonaWith(t.getID());;
+		Persona personaInDb = personaDao.getPersonaWith(t.getID());
 		return t.equals(personaInDb);
 	}
 	
