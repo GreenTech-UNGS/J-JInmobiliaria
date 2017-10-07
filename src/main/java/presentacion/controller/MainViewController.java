@@ -3,8 +3,11 @@ package presentacion.controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import org.joda.time.YearMonth;
+
 import com.google.inject.Inject;
 
+import entities.EstadoCuota;
 import entities.Propiedad;
 import model.ClienteService;
 import model.CuotaService;
@@ -105,7 +108,7 @@ public class MainViewController {
 	private void fillTableCuotas() {
 		this.cuotasTable.clean();
 		this.view.getTableCuotas().setModel(cuotasTable);
-		cuotaService.getPendientes().forEach(c -> cuotasTable.addRow(c));
+		cuotaService.getCuotasOf(YearMonth.now(), EstadoCuota.PENDIENTE).forEach(c -> cuotasTable.addRow(c));
 		
 		this.view.getTableCuotas().setColumnModel(cuotasTable.getTableColumnModel());
 		this.view.getTableCuotas().getTableHeader().setReorderingAllowed(false);

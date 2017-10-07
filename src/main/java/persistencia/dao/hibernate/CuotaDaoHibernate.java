@@ -5,6 +5,9 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+import org.joda.time.YearMonth;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -47,31 +50,14 @@ public class CuotaDaoHibernate extends DaoHibernate<CuotaAlquiler> implements Cu
 	}
 	
 	@Override
-	public List<CuotaAlquiler> getPendientes() {
+	public List<CuotaAlquiler> getAllOf(YearMonth anioMes) {
 		initTransaction();
 		
-		Criteria q = sesion.createCriteria(CuotaAlquiler.class);
+		Criteria q = sesion.createCriteria(CuotaAlquiler.class)
+				.add(Restrictions.eq("anioMes", anioMes.toString()));
 		
 		finishTransaction();
-		
-		List<CuotaAlquiler> toReturn = new ArrayList<CuotaAlquiler>();
-		for(Object cuota : q.list()){		
-			
-			Comparator<HistoriaEstadoCuota> comparator = new Comparator<HistoriaEstadoCuota>() {
-				@Override
-				public int compare(HistoriaEstadoCuota o1, HistoriaEstadoCuota o2) {
-					return Integer.valueOf(o1.getFecha().toString()).compareTo(Integer.valueOf(o2.getFecha().toString()));
-				}
-			};			
-			((CuotaAlquiler) cuota).getEstados().sort(comparator);
-			
-			if(((CuotaAlquiler) cuota).getEstados().get(((CuotaAlquiler) cuota).getEstados().size()-1).equals(EstadoCuota.PENDIENTE)){
-				
-				toReturn.add((CuotaAlquiler) cuota);
-			}			
-		}
-		
-		return toReturn;
+		return q.list();
 	}
 	
 }
