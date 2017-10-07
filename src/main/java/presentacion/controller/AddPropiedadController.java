@@ -3,7 +3,12 @@ package presentacion.controller;
 import java.awt.event.ActionEvent;
 import java.util.Arrays;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
@@ -200,6 +205,27 @@ public class AddPropiedadController {
 	public void showView(){
 			
 			view.setVisible(true);
+	}
+	public void setNotEnabled(){
+		this.view.getTfAltura().setEditable(false);
+		view.getTfCalle().setEditable(false);
+		view.getTfPrecio().setEditable(false);
+		view.getTfIdentificador().setEditable(false);
+		view.getTfEntrecalles().setEditable(false);
+		view.getTfPiso().setEditable(false);
+		view.getTfDepto().setEditable(false);
+		view.getTfPropietario().setEditable(false);
+		view.getComboProvincia().setEditable(false);
+		view.getComboMoneda().setEditable(false);
+		view.getComboTipoOfre().setEditable(false);
+		view.getComboLocalidad().setEditable(false);
+		view.getTaDescPubl().setEditable(false);
+		view.getTaDescPriv().setEditable(false);
+		view.getBtnGuardar().setVisible(false);
+		view.getBtnCancelar().setVisible(false);
+		view.getBtnLupita().setVisible(false);
+		view.getBttAddLoc().setVisible(false);
+		view.getBtnVerHistorial().setVisible(true);	
 	}
 
 }

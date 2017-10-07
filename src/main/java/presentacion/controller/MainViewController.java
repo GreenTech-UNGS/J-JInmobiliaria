@@ -1,11 +1,7 @@
 package presentacion.controller;
 
-import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
-
-import javax.swing.JTable;
 
 import com.google.inject.Inject;
 
@@ -14,7 +10,6 @@ import model.ClienteService;
 import model.PropiedadService;
 import model.PropietarioService;
 import presentacion.table.ClientesTableModel;
-import presentacion.table.PersonaTableModel;
 import presentacion.table.PropiedadesTableModel;
 import presentacion.table.PropietariosTableModel;
 import presentacion.vista.MainView;
@@ -25,7 +20,6 @@ public class MainViewController {
 
 	private PropiedadesTableModel tableModelProp;
 	private PropietariosTableModel propietariosTable;
-	private List<Propiedad> TablaPropiedades; 
 	
 	private ClientesTableModel tableModelClien;
 	AddContAlqController contratoAlqController;
@@ -130,6 +124,7 @@ public class MainViewController {
 			seleccionada = tableModelProp.getRow(propRow);
 			this.propiedadController.setModeView(seleccionada);
 			this.propiedadController.showView();
+			this.propiedadController.setNotEnabled();
 		}
 
 	}
@@ -156,6 +151,7 @@ public class MainViewController {
 		this.clienteController.showView();
 
 		fillTableClientes();
+		
 	}
 	
 	private void selectDetalleProp(){
@@ -163,15 +159,10 @@ public class MainViewController {
 			public void mousePressed(MouseEvent me){
 				if (me.getClickCount() ==2){
 					int selected = view.getTablePropiedades().getSelectedRow();
-					System.out.println(view.getTablePropiedades().getSelectedRow());
-					
 					if(selected == -1) return;
-					
 					viewPropiedad();
-					
 				}
 			}
 		});
 	}
-
 }
