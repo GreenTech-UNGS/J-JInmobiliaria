@@ -13,6 +13,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.AvisoNotificacion;
+import entities.Contrato;
 import entities.ContratoAlquiler;
 import entities.ContratoVenta;
 import entities.CuotaAlquiler;
@@ -23,6 +24,7 @@ import entities.EstadoProp;
 import entities.HistoriaEstadoCuota;
 import entities.HistoriaEstadoProp;
 import entities.Moneda;
+import entities.Persona;
 import entities.Precio;
 import entities.Propiedad;
 import entities.TipoContratoAlquiler;
@@ -46,6 +48,11 @@ public class ContratoService {
 		this.propiedadDao = propiedadDao;
 		this.cuotaDao = cuotaDao;
 		
+	}
+	
+	public boolean existeContratoConIdentificador(Contrato t) {
+		
+		return contratoDao.existeContratoConIdentificador(t.getIdentificador());		
 	}
 	
 	public void saveContratoAlquiler(ContratoAlquiler c) {
