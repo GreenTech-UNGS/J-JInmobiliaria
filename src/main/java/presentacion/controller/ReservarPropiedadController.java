@@ -6,11 +6,13 @@ import entities.Propiedad;
 import misc.Binder;
 import model.ClienteService;
 import model.PropiedadService;
+import org.joda.time.DateTime;
 import presentacion.combo.ClienteComboBoxModel;
 import presentacion.combo.PropiedadComboBoxModel;
 import presentacion.vista.ElegirCliente;
 import presentacion.vista.ReservarPropiedadView;
 
+import java.util.Date;
 import java.util.List;
 
 public class ReservarPropiedadController {
@@ -46,6 +48,7 @@ public class ReservarPropiedadController {
         this.propiedadController = propiedadController;
 
         view.getBtnCancelar().addActionListener(e -> closeView());
+        view.getBtnGuardar().addActionListener(e -> reservarPropiedad());
         view.getBtnSelecCliente().addActionListener(e -> selectCliente());
         view.getBtnSelecPropiedad().addActionListener(e -> selectPropiedad());
 
@@ -53,6 +56,11 @@ public class ReservarPropiedadController {
         this.clienteBinder = new Binder<>();
         this.propiedadBinder = new Binder<>();
 
+    }
+
+    private void reservarPropiedad() {
+        DateTime currrentTime = DateTime.now();
+        closeView();
     }
 
     private void selectPropiedad() {
@@ -85,4 +93,5 @@ public class ReservarPropiedadController {
     private void closeView() {
         view.setVisible(false);
     }
+
 }
