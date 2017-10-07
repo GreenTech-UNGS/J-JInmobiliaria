@@ -20,9 +20,13 @@ public class ReservarPropiedadController {
     private ClienteService clienteService;
 
     private ElegirClienteController clienteController;
+    private ElegirPropiedadController propiedadController;
 
     private PropiedadComboBoxModel propiedadComboBoxModelModel;
     private ClienteComboBoxModel clienteComboBoxModel;
+
+    Propiedad currentPropiedad;
+    Cliente currentCliente;
 
     private Binder<Cliente> clienteBinder;
     private Binder<Propiedad> propiedadBinder;
@@ -31,17 +35,19 @@ public class ReservarPropiedadController {
     public ReservarPropiedadController(ReservarPropiedadView view,
                                        PropiedadService propiedadService,
                                        ClienteService clienteService,
-                                       ElegirClienteController clienteController) {
+                                       ElegirClienteController clienteController,
+                                       ElegirPropiedadController propiedadController) {
         this.view = view;
         this.propiedadService = propiedadService;
         this.clienteService = clienteService;
         this.propiedadComboBoxModelModel = new PropiedadComboBoxModel();
         this.clienteComboBoxModel = new ClienteComboBoxModel();
         this.clienteController = clienteController;
+        this.propiedadController = propiedadController;
 
         view.getBtnCancelar().addActionListener(e -> closeView());
         view.getBtnSelecCliente().addActionListener(e -> selectCliente());
-        view.getBtnSelecCliente().addActionListener(e -> selectPropiedad());
+        view.getBtnSelecPropiedad().addActionListener(e -> selectPropiedad());
 
 
         this.clienteBinder = new Binder<>();
@@ -50,6 +56,12 @@ public class ReservarPropiedadController {
     }
 
     private void selectPropiedad() {
+        this.propiedadController.showView();
+        Propiedad propiedad = propiedadController.getPropiedad();
+
+        if(propiedad != null){
+
+        }
 
     }
 
@@ -58,7 +70,7 @@ public class ReservarPropiedadController {
         Cliente cliente = clienteController.getCliente();
 
         if (cliente != null){
-            //Seleccioa
+            currentCliente = cliente;
         }
     }
 
