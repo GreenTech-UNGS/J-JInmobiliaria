@@ -151,7 +151,7 @@ public class MainViewController {
 	}
 
 	private void agregarReserva(){
-
+		this.reservaController.setModeNew();
 		this.reservaController.showView();
 	}
 

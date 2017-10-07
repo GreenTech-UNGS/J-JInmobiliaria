@@ -3,14 +3,17 @@ package presentacion.controller;
 import com.google.inject.Inject;
 import entities.Cliente;
 import entities.Propiedad;
+import entities.Reserva;
 import misc.Binder;
 import model.ClienteService;
 import model.PropiedadService;
+import model.ReservaService;
 import org.joda.time.DateTime;
 import presentacion.combo.ClienteComboBoxModel;
 import presentacion.combo.PropiedadComboBoxModel;
 import presentacion.vista.ElegirCliente;
 import presentacion.vista.ReservarPropiedadView;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Date;
 import java.util.List;
@@ -20,6 +23,7 @@ public class ReservarPropiedadController {
 
     private PropiedadService propiedadService;
     private ClienteService clienteService;
+    ReservaService reservaService;
 
     private ElegirClienteController clienteController;
     private ElegirPropiedadController propiedadController;
@@ -27,6 +31,7 @@ public class ReservarPropiedadController {
     private PropiedadComboBoxModel propiedadComboBoxModelModel;
     private ClienteComboBoxModel clienteComboBoxModel;
 
+    Reserva currentReserva;
     Propiedad currentPropiedad;
     Cliente currentCliente;
 
@@ -37,11 +42,13 @@ public class ReservarPropiedadController {
     public ReservarPropiedadController(ReservarPropiedadView view,
                                        PropiedadService propiedadService,
                                        ClienteService clienteService,
+                                       ReservaService reservaService,
                                        ElegirClienteController clienteController,
                                        ElegirPropiedadController propiedadController) {
         this.view = view;
         this.propiedadService = propiedadService;
         this.clienteService = clienteService;
+        this.reservaService = reservaService;
         this.propiedadComboBoxModelModel = new PropiedadComboBoxModel();
         this.clienteComboBoxModel = new ClienteComboBoxModel();
         this.clienteController = clienteController;
@@ -59,7 +66,7 @@ public class ReservarPropiedadController {
     }
 
     private void reservarPropiedad() {
-        DateTime currrentTime = DateTime.now();
+        reservaService.saveReserva(currentReserva);
         closeView();
     }
 
@@ -69,6 +76,7 @@ public class ReservarPropiedadController {
 
         if(propiedad != null){
             currentPropiedad = propiedad;
+            currentReserva.setPropiedad(currentPropiedad);
             view.getTfPropiedad().setText(currentPropiedad.getIdentificador() + " - " +
             currentPropiedad.getCalle() + " " + currentPropiedad.getAltura());
         }
@@ -81,9 +89,20 @@ public class ReservarPropiedadController {
 
         if (cliente != null){
             currentCliente = cliente;
+            currentReserva.setReservador(currentCliente.getPersona());
+
             view.getTfCliente().setText(currentCliente.getPersona().getCredencial() + " - " +
             currentCliente.getPersona().getNombre() + " " + currentCliente.getPersona().getApellido());
         }
+    }
+
+    public void setModeNew(){
+        view.setTitle("Reservar propiedad");
+
+        currentReserva = reservaService.getEmptyReserva();
+        currentPropiedad = null;
+        currentCliente = null;
+        throw new NotImplementedException();
     }
 
     public void showView() {
