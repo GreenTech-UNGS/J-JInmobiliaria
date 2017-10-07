@@ -346,18 +346,21 @@ public class MainView {
         panelButtons.add(horizontalGlue);
 
         btnAgregarPropiedad = new JButton("Agregar Propiedad");
+        btnAgregarPropiedad.setFont(new Font("Tahoma", Font.BOLD, 11));
         panelButtons.add(btnAgregarPropiedad);
 
         Component horizontalGlue_0 = Box.createHorizontalGlue();
         panelButtons.add(horizontalGlue_0);
 
         btnReservarPropiedad = new JButton("Reservar propiedad");
+        btnReservarPropiedad.setFont(new Font("Tahoma", Font.BOLD, 11));
         panelButtons.add(btnReservarPropiedad);
 
         Component horizontalGlue_3 = Box.createHorizontalGlue();
         panelButtons.add(horizontalGlue_3);
 
         JButton btnBorrarPropiedad = new JButton("Borrar Propiedad");
+        btnBorrarPropiedad.setFont(new Font("Tahoma", Font.BOLD, 11));
         panelButtons.add(btnBorrarPropiedad);
 
         Component horizontalGlue_2 = Box.createHorizontalGlue();

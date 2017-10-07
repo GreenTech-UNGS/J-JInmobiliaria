@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 
 import entities.ContratoVenta;
 import entities.Propiedad;
+import model.ContratoService;
 import presentacion.vista.AddContratoVen;
 
 public class AddContVenController {
@@ -12,7 +13,8 @@ public class AddContVenController {
 	private AddContratoVen view;
 	ElegirClienteController elegirCliente;
 	ElegirPropiedadController elegirProp;
-	ContratoVenta contratoActual;
+	ContratoVenta currentContrato;
+	ContratoService contratoService;
 	
 	@Inject
 	private AddContVenController(AddContratoVen view,
@@ -46,8 +48,18 @@ public class AddContVenController {
 		if(propiedad != null) {
 		
 			view.getTfPropiedad().setText(propiedad.getIdentificador());
-		
-			contratoActual.setPropiedad(propiedad);
+			//llenar tf de precio o se pone a mano o qué
+			currentContrato.setPropiedad(propiedad);
 		}	
+	}
+	
+	public void guardarContrato(){
+		
+		//falta validador
+		contratoService.SaveContratoVenta(currentContrato);
+	}
+	
+	public void setModeNew(){
+		currentContrato = contratoService.getNewContratoVenta();
 	}
 }

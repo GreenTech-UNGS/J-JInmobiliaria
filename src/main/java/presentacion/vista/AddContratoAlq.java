@@ -170,6 +170,7 @@ public class AddContratoAlq extends JDialog {
 		textPrecio.setColumns(10);
 		
 		this.comboMoneda = new JComboBox<>();
+		comboMoneda.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		comboMoneda.setBounds(127, 234, 128, 17);
 		agregarContrato.add(comboMoneda);
 		
@@ -186,6 +187,7 @@ public class AddContratoAlq extends JDialog {
 		agregarContrato.add(separator_2);
 		
 		this.btnGuardarContrato = new JButton("Guardar");
+		btnGuardarContrato.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnGuardarContrato.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -194,6 +196,7 @@ public class AddContratoAlq extends JDialog {
 		agregarContrato.add(btnGuardarContrato);
 		
 		this.btnCancelarContrato = new JButton("Cancelar");
+		btnCancelarContrato.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnCancelarContrato.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -216,6 +219,7 @@ public class AddContratoAlq extends JDialog {
 		agregarContrato.add(btnLupaCliente);
 		
 		spinnerGastosAdmin = new JSpinner();
+		spinnerGastosAdmin.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		spinnerGastosAdmin.setModel(new SpinnerNumberModel(new Float(8), new Float(0), new Float(100), new Float(0.1)));
 		spinnerGastosAdmin.setBounds(461, 207, 46, 20);
 		agregarContrato.add(spinnerGastosAdmin);
@@ -230,6 +234,7 @@ public class AddContratoAlq extends JDialog {
 		agregarContrato.add(lblTiempoDeAlquiler);
 		
 		spinnerTiempoPago = new JSpinner();
+		spinnerTiempoPago.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		spinnerTiempoPago.setModel(new SpinnerNumberModel(0, 0, 28, 1));
 		spinnerTiempoPago.setBounds(142, 432, 45, 20);
 		agregarContrato.add(spinnerTiempoPago);
@@ -261,11 +266,13 @@ public class AddContratoAlq extends JDialog {
 		agregarContrato.add(chckbxAcumulativoActualiza);
 		
 		spinnerActualizaContrato = new JSpinner();
+		spinnerActualizaContrato.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		spinnerActualizaContrato.setBounds(102, 315, 45, 20);
 		spinnerActualizaContrato.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
 		agregarContrato.add(spinnerActualizaContrato);
 		
 		spinnerPorcenajeActualiza = new JSpinner();
+		spinnerPorcenajeActualiza.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		spinnerPorcenajeActualiza.setBounds(102, 345, 45, 20);
 		spinnerPorcenajeActualiza.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(100), new Float(0.1)));
 		agregarContrato.add(spinnerPorcenajeActualiza);
@@ -294,6 +301,7 @@ public class AddContratoAlq extends JDialog {
 		agregarContrato.add(separator_4);
 		
 		spinnerPorcentajePunitorio = new JSpinner();
+		spinnerPorcentajePunitorio.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		spinnerPorcentajePunitorio.setBounds(142, 461, 46, 20);
 		spinnerPorcentajePunitorio.setModel(new SpinnerNumberModel(new Float(0.5), new Float(0), new Float(100), new Float(0.1)));
 		agregarContrato.add(spinnerPorcentajePunitorio);
@@ -310,6 +318,7 @@ public class AddContratoAlq extends JDialog {
 		agregarContrato.add(chkbxAcumulativoPunitorio);
 		
 		comboTipoContrato = new JComboBox<>();
+		comboTipoContrato.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		comboTipoContrato.setBounds(102, 129, 167, 18);
 		agregarContrato.add(comboTipoContrato);
 		
@@ -329,6 +338,7 @@ public class AddContratoAlq extends JDialog {
 		agregarContrato.add(chckbxIntimacion);
 		
 		spinnerVencimientoEmail = new JSpinner();
+		spinnerVencimientoEmail.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		spinnerVencimientoEmail.setBounds(89, 572, 45, 20);
 		spinnerVencimientoEmail.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
 		agregarContrato.add(spinnerVencimientoEmail);

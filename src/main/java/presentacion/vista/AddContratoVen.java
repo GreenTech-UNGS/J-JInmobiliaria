@@ -13,6 +13,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class AddContratoVen extends JDialog{
@@ -128,14 +130,21 @@ public class AddContratoVen extends JDialog{
 		getContentPane().add(tfGarantia);
 		
 		this.btnAdjuntar = new JButton("Adjuntar");
-		btnAdjuntar.setBounds(409, 237, 89, 23);
+		btnAdjuntar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnAdjuntar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnAdjuntar.setBounds(406, 237, 89, 23);
 		getContentPane().add(btnAdjuntar);
 		
 		this.btnGuardarContVen = new JButton("Guardar");
+		btnGuardarContVen.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnGuardarContVen.setBounds(144, 359, 113, 36);
 		getContentPane().add(btnGuardarContVen);
 		
 		this.btnCancelarContVen = new JButton("Cancelar");
+		btnCancelarContVen.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnCancelarContVen.setBounds(286, 359, 113, 36);
 		getContentPane().add(btnCancelarContVen);
 		
