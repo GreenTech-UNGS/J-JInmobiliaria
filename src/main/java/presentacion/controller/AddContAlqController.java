@@ -12,7 +12,6 @@ import entities.ContratoAlquiler;
 import entities.Moneda;
 import entities.Propiedad;
 import entities.TipoContratoAlquiler;
-import entities.TipoOfrecimiento;
 import misc.Binder;
 import model.ContratoService;
 import presentacion.combo.MonedaComboBoxModel;

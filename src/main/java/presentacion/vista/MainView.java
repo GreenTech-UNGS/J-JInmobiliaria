@@ -42,7 +42,6 @@ public class MainView {
     private JButton btnContratos;
     private JButton btnInquilinos;
     private JButton btnAgregarPropiedad;
-    private JButton btnViewPropiedad;
     private JButton btnAgregarContratoAlq;
     private JButton btnAgregarContratoVen;
     private JButton btnPagos;
@@ -345,12 +344,6 @@ public class MainView {
         Component horizontalGlue_0 = Box.createHorizontalGlue();
         panelButtons.add(horizontalGlue_0);
 
-        btnViewPropiedad = new JButton("Ver Propiedad");
-        panelButtons.add(btnViewPropiedad);
-
-        Component horizontalGlue_1 = Box.createHorizontalGlue();
-        panelButtons.add(horizontalGlue_1);
-
         btnReservarPropiedad = new JButton("Reservar propiedad");
         panelButtons.add(btnReservarPropiedad);
 
@@ -391,11 +384,6 @@ public class MainView {
     public JButton getBtnReservarPropiedad() {
         return btnReservarPropiedad;
     }
-
-    public JButton getBtnViewPropiedad() {
-        return btnViewPropiedad;
-    }
-
 
     public JTable getTableClientes() {
         return tableClientes;

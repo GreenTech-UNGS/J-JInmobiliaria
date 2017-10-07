@@ -1,6 +1,5 @@
 package presentacion.vista;
 
-
 import javax.swing.JDialog;
 import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
@@ -11,11 +10,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import java.awt.Component;
 import java.awt.Dimension;
-
-import javax.swing.Box;
 
 @SuppressWarnings("serial")
 @Singleton

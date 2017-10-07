@@ -2,9 +2,7 @@ package presentacion.controller;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
 
-import javax.swing.JTable;
 import com.google.inject.Inject;
 
 import entities.Propiedad;
@@ -14,7 +12,6 @@ import model.PropiedadService;
 import model.PropietarioService;
 import presentacion.table.ClientesTableModel;
 import presentacion.table.CuotasTableModel;
-import presentacion.table.PersonaTableModel;
 
 import presentacion.table.PropiedadesTableModel;
 import presentacion.table.PropietariosTableModel;
@@ -27,7 +24,6 @@ public class MainViewController {
 	private PropiedadesTableModel tableModelProp;
 	private PropietariosTableModel propietariosTable;
 	private CuotasTableModel cuotasTable;
-	private List<Propiedad> TablaPropiedades; 
 	
 	private ClientesTableModel tableModelClien;
 	AddContAlqController contratoAlqController;
@@ -75,8 +71,6 @@ public class MainViewController {
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
 		this.view.getBtnReservarPropiedad().addActionListener(e -> agregarReserva());
-		this.view.getBtnViewPropiedad().addActionListener(e -> viewPropiedad());
-
 		this.view.getBtnContratoAlq().addActionListener(e -> agregarContratoAlq());
 		this.view.getBtnContratoVen().addActionListener(e -> agregarContratoVen());
 		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());

@@ -73,6 +73,7 @@ public class AddPropiedadController {
 		view.getBttAddLoc().addActionListener(e -> agregaLocalidad());
 		view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
 		view.getBtnLupita().addActionListener(e -> selectPropietario());
+		view.getBtnCancelar().addActionListener(e -> view.setVisible(false));
 		
 		
 	}
@@ -183,12 +184,11 @@ public class AddPropiedadController {
 		binder.fillFields();
 		
 		view.getTfPropietario().setText("");
-//		setNotEnabled();
 	}
 
 	public void setModeView(Propiedad propiedad) {
 
-		view.setTitle("Detalle Propiedad");
+		view.setTitle("Detalle de propiedad");
 
 		currentPropiedad = propiedad;
 		binder.setObjective(currentPropiedad);
@@ -209,10 +209,6 @@ public class AddPropiedadController {
 		view.getTfPiso().setEditable(bool);
 		view.getTfDepto().setEditable(bool);
 		view.getTfPropietario().setEditable(bool);
-		view.getComboProvincia().setEditable(bool);
-		view.getComboMoneda().setEditable(bool);
-		view.getComboTipoOfre().setEditable(bool);
-		view.getComboLocalidad().setEditable(bool);
 		view.getTaDescPubl().setEditable(bool);
 		view.getTaDescPriv().setEditable(bool);
 		view.getBtnGuardar().setVisible(bool);

@@ -1,6 +1,5 @@
 package presentacion.controller;
 
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 import com.google.inject.Inject;

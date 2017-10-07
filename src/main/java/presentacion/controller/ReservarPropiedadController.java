@@ -3,7 +3,6 @@ package presentacion.controller;
 import com.google.inject.Inject;
 import entities.Cliente;
 import entities.Propiedad;
-import misc.Binder;
 import model.ClienteService;
 import model.PropiedadService;
 import presentacion.combo.ClienteComboBoxModel;
@@ -17,12 +16,8 @@ public class ReservarPropiedadController {
 
     private PropiedadService propiedadService;
     private ClienteService clienteService;
-
     private PropiedadComboBoxModel propiedadComboBoxModelModel;
     private ClienteComboBoxModel clienteComboBoxModel;
-
-    private Binder<Cliente> clienteBinder;
-    private Binder<Propiedad> propiedadBinder;
 
     @Inject
     public ReservarPropiedadController(ReservarPropiedadView view,
@@ -35,9 +30,6 @@ public class ReservarPropiedadController {
         this.clienteComboBoxModel = new ClienteComboBoxModel();
 
         view.getBtnCancelar().addActionListener(e -> closeView());
-
-        this.clienteBinder = new Binder<>();
-        this.propiedadBinder = new Binder<>();
 
         fillComboCliente();
         fillComboPropiedad();

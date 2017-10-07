@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 
+@SuppressWarnings("serial")
 public class ReservarPropiedadView extends JDialog {
 	
 	private JPanel panel;

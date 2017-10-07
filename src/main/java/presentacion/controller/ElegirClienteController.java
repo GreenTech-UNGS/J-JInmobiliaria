@@ -5,13 +5,9 @@ import javax.swing.ListSelectionModel;
 import com.google.inject.Inject;
 
 import entities.Cliente;
-import entities.Propietario;
 import model.ClienteService;
-import model.PropietarioService;
 import presentacion.table.ClientesTableModel;
-import presentacion.table.PropietariosTableModel;
 import presentacion.vista.ElegirCliente;
-import presentacion.vista.ElegirPropietario;
 
 public class ElegirClienteController {
 	

@@ -27,7 +27,6 @@ public class AddContratoAlq extends JDialog {
 	private JTextField tfIdPropiedad;
 	private JTextField tfDniInquilino;
 	private JTextField textPrecio;
-	@SuppressWarnings("rawtypes")
 	private JComboBox<String> comboMoneda;
 	
 	private JButton btnGuardarContrato;
@@ -50,7 +49,6 @@ public class AddContratoAlq extends JDialog {
 	private JSpinner spinnerIntimacionEmail;
 	
 	
-	@SuppressWarnings("rawtypes")
 	public AddContratoAlq() {
 		super();
 		setTitle("Agregar Contrato");
