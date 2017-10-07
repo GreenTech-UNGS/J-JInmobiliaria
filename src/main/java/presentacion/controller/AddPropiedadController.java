@@ -36,6 +36,7 @@ public class AddPropiedadController {
 //	private PropietarioService propietarioService;
 	private LocalidadService localidadService;
 	private ElegirPropietarioController elegirPropController;
+	private HistorialPropiedadController historialPropController;
 		
 	Propiedad currentPropiedad;
 	Propietario currentPropietario;
@@ -48,7 +49,8 @@ public class AddPropiedadController {
 									PropiedadService propiedadService,
 									PropietarioService propietarioService,
 									LocalidadService localidadService,
-									ElegirPropietarioController elegirPropController){
+									ElegirPropietarioController elegirPropController,
+									HistorialPropiedadController historialPropController){
 		
 		this.view = view;
 		this.propiedadValidator = propiedadValidator;
@@ -57,6 +59,7 @@ public class AddPropiedadController {
 //		this.propietarioService = propietarioService;
 		this.binder = new Binder<>();
 		this.elegirPropController = elegirPropController;
+		this.historialPropController = historialPropController;
 		
 		this.provCombo = new ProvinciaComboBoxModel();
 		this.monedaCombo = new MonedaComboBoxModel();
@@ -74,6 +77,7 @@ public class AddPropiedadController {
 		view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
 		view.getBtnLupita().addActionListener(e -> selectPropietario());
 		view.getBtnCancelar().addActionListener(e -> view.setVisible(false));
+		view.getBtnVerHistorial().addActionListener(e -> this.historialPropController.showView());
 		
 		
 	}
@@ -199,6 +203,7 @@ public class AddPropiedadController {
 			
 			view.setVisible(true);
 	}
+	
 	public void setEnabled(boolean bool){
 		
 		view.getTfAltura().setEditable(bool);
