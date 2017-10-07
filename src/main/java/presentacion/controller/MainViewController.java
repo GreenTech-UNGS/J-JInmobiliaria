@@ -158,6 +158,7 @@ public class MainViewController {
 	}
 	
 	private void agregarContratoVen() {
+		this.contratoVenController.setModeNew();
 		this.contratoVenController.showView();
 	}
 	

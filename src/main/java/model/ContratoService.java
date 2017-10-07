@@ -14,6 +14,7 @@ import com.google.inject.Singleton;
 
 import entities.AvisoNotificacion;
 import entities.ContratoAlquiler;
+import entities.ContratoVenta;
 import entities.CuotaAlquiler;
 import entities.DatosActualizacionContrato;
 import entities.DatosPunitorioContrato;
@@ -96,10 +97,7 @@ public class ContratoService {
 			}
 			
 			cuotaDao.save(nuevaCuota);
-			
-			
-		}
-		
+		}	
 	}
 	
 	public ContratoAlquiler getNewContratoAlquiler() {
@@ -120,6 +118,27 @@ public class ContratoService {
 		toRet.setDatoActualizacion(actualizacion);
 		toRet.setTipoContratoAlquiler(TipoContratoAlquiler.VIVIENDA);
 		
+		return toRet;
+	}
+	
+	public void SaveContratoVenta(ContratoVenta c){
+			
+			contratoDao.save(c);
+			
+			HistoriaEstadoProp estado = new HistoriaEstadoProp();
+			estado.setEstado(EstadoProp.VENDIDA);
+			estado.setFecha(DateTime.now());
+			
+			Propiedad propiedad = c.getPropiedad();
+			propiedad.getEstados().add(estado);
+			
+			propiedadDao.save(propiedad);
+		}
+	
+	public ContratoVenta getNewContratoVenta(){
+		
+		ContratoVenta toRet = new ContratoVenta();
+
 		return toRet;
 	}
 	

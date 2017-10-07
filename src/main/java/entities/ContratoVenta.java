@@ -14,6 +14,7 @@ public class ContratoVenta extends Contrato{
 	
 	@OneToOne(cascade = {CascadeType.ALL})
 	private Precio monto;
+	
 	public Precio getMonto() {
 		return monto;
 	}
