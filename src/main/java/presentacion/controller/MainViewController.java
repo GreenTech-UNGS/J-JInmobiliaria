@@ -2,14 +2,20 @@ package presentacion.controller;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
+import javax.swing.JTable;
 import com.google.inject.Inject;
 
 import entities.Propiedad;
 import model.ClienteService;
+import model.CuotaService;
 import model.PropiedadService;
 import model.PropietarioService;
 import presentacion.table.ClientesTableModel;
+import presentacion.table.CuotasTableModel;
+import presentacion.table.PersonaTableModel;
+
 import presentacion.table.PropiedadesTableModel;
 import presentacion.table.PropietariosTableModel;
 import presentacion.vista.MainView;
@@ -20,6 +26,8 @@ public class MainViewController {
 
 	private PropiedadesTableModel tableModelProp;
 	private PropietariosTableModel propietariosTable;
+	private CuotasTableModel cuotasTable;
+	private List<Propiedad> TablaPropiedades; 
 	
 	private ClientesTableModel tableModelClien;
 	AddContAlqController contratoAlqController;
@@ -33,6 +41,8 @@ public class MainViewController {
 	PropiedadService propiedadService;
 	ClienteService clienteService;
 	PropietarioService propietarioService;
+	CuotaService cuotaService;
+	
 	
 	@Inject
 	private MainViewController(MainView view,
@@ -44,11 +54,13 @@ public class MainViewController {
 			PropiedadService propiedadService,
 			ClienteService clienteService,
 			PropiedadesTableModel tableModelprop,
-			PropietarioService propietarioService){
+			PropietarioService propietarioService,
+			CuotaService cuotaService){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
 		this.propietariosTable = new PropietariosTableModel();
+		this.cuotasTable = new CuotasTableModel();
 		this.tableModelProp = tableModelprop;
 		this.propiedadController = propiedadesController;
 		this.contratoAlqController = contratoAlqController;
@@ -58,6 +70,7 @@ public class MainViewController {
 		this.propiedadService = propiedadService;
 		this.clienteService = clienteService;
 		this.propietarioService = propietarioService;
+		this.cuotaService = cuotaService;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
@@ -70,6 +83,7 @@ public class MainViewController {
 		
 		fillTableClientes();
 		fillTablePropietarios();
+		fillTableCuotas();
 		fillTableProp();
 		selectDetalleProp();
 	}
@@ -94,6 +108,15 @@ public class MainViewController {
 		this.view.getTablePropietarios().getTableHeader().setReorderingAllowed(false);
 	}
 	
+	private void fillTableCuotas() {
+		this.cuotasTable.clean();
+		this.view.getTableCuotas().setModel(cuotasTable);
+		cuotaService.getPendientes().forEach(c -> cuotasTable.addRow(c));
+		
+		this.view.getTableCuotas().setColumnModel(cuotasTable.getTableColumnModel());
+		this.view.getTableCuotas().getTableHeader().setReorderingAllowed(false);
+	}
+	
 	private void fillTableProp(){
 		
 		this.tableModelProp.clean();
@@ -102,7 +125,6 @@ public class MainViewController {
 
 		this.view.getTablePropiedades().setColumnModel(tableModelProp.getTableColumnModel());
 		this.view.getTablePropiedades().getTableHeader().setReorderingAllowed(false);
-
 
 	}
 

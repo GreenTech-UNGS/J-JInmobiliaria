@@ -21,6 +21,7 @@ import java.awt.Image;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+//import org.openstreetmap.gui.jmapviewer.JMapViewer;
 
 @SuppressWarnings("serial")
 public class AgregarPropiedad extends JDialog{
@@ -270,6 +271,9 @@ public class AgregarPropiedad extends JDialog{
 		btnVerHistorial.setBounds(442, 20, 102, 23);
 		AgregarPropiedad.add(btnVerHistorial);
 		btnVerHistorial.setVisible(false);
+	/*	JMapViewer mapViewer = new JMapViewer();
+		mapViewer.setBounds(251, 259, 267, 129);
+		AgregarPropiedad.add(mapViewer);*/
 	}
 
 	public JTextField getTfAltura() {
@@ -352,7 +356,6 @@ public class AgregarPropiedad extends JDialog{
 	public void setTfPropietario(JTextField tfPropietario) {
 		this.tfPropietario = tfPropietario;
 	}
-
 	public JPanel getAgregarPropiedad() {
 		return AgregarPropiedad;
 	}
@@ -432,6 +435,4 @@ public class AgregarPropiedad extends JDialog{
 	public void setBttAddLoc(JButton bttAddLoc) {
 		this.bttAddLoc = bttAddLoc;
 	}
-	
-	
 }

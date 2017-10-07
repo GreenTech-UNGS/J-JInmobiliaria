@@ -1,6 +1,9 @@
 package persistencia.dao.hibernate;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.management.RuntimeErrorException;
 
 import org.hibernate.Criteria;
 
@@ -8,6 +11,8 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.CuotaAlquiler;
+import entities.EstadoCuota;
+import entities.InteresPunitorioCuota;
 import entities.Localidad;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.CuotaDao;
@@ -31,9 +36,37 @@ public class CuotaDaoHibernate extends DaoHibernate<CuotaAlquiler> implements Cu
 		
 		return q.list();
 	}
-	
-	
 
+	@Override
+	public List<CuotaAlquiler> getAllOfThisMonth() {
+		throw new RuntimeException("NO implementado");
+	}
+
+	@Override
+	public InteresPunitorioCuota getInteresOf(CuotaAlquiler c) {
+		throw new RuntimeException("NO implementado");
+	}
 	
+	@Override
+	public List<CuotaAlquiler> getPendientes() {
+		initTransaction();
+		
+		Criteria q = sesion.createCriteria(CuotaAlquiler.class);
+		
+		finishTransaction();
+
+		//TODO: FILTRAR DENTRO DE LA QUERY
+		
+		List<CuotaAlquiler> toReturn = new ArrayList<CuotaAlquiler>();
+		for(Object cuota : q.list()){		
+			//TODO: ORDENAR ESTADOS POR FECHA
+			if(((CuotaAlquiler) cuota).getEstados().get(((CuotaAlquiler) cuota).getEstados().size()-1).equals(EstadoCuota.PENDIENTE)){
+				
+				toReturn.add((CuotaAlquiler) cuota);
+			}			
+		}
+		
+		return toReturn;
+	}
 	
 }
