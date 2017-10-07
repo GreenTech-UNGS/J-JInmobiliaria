@@ -17,7 +17,7 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID;
 	private boolean isHabilitado;
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@ManyToOne(cascade = {CascadeType.ALL})
 	private Persona persona;
 	
 	public Cliente() {
