@@ -5,13 +5,8 @@ import presentacion.controller.ElegirClienteController;
 
 import java.awt.Dimension;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
 public class ReservarPropiedadView extends JDialog {
@@ -19,10 +14,12 @@ public class ReservarPropiedadView extends JDialog {
 	private JPanel panel;
 	private JButton btnGuardar;
 	private JButton btnCancelar;
-    private ElegirClienteController clienteController;
 
-	JButton btnSelecCliente;
-	JButton btnSelecPropiedad;
+	private JButton btnSelecCliente;
+	private JButton btnSelecPropiedad;
+
+	private JTextField tfCliente;
+	private JTextField tfPropiedad;
 
 	@Inject
     private ReservarPropiedadView(){
@@ -58,12 +55,22 @@ public class ReservarPropiedadView extends JDialog {
 		panel.add(btnCancelar);
 
 		btnSelecCliente = new JButton("+");
-		btnSelecCliente.setBounds(110, 83, 40, 20);
+		btnSelecCliente.setBounds(270, 83, 40, 20);
 		panel.add(btnSelecCliente);
 
 		btnSelecPropiedad = new JButton("+");
-		btnSelecPropiedad.setBounds(110, 145, 40, 20);
+		btnSelecPropiedad.setBounds(270, 145, 40, 20);
 		panel.add(btnSelecPropiedad);
+
+		tfCliente = new JTextField();
+		tfCliente.setEditable(false);
+        tfCliente.setBounds(110, 83, 150, 20);
+        panel.add(tfCliente);
+
+        tfPropiedad = new JTextField();
+		tfPropiedad.setEditable(false);
+		tfPropiedad.setBounds(110, 145, 150, 20);
+		panel.add(tfPropiedad);
 	}
 
     public JButton getBtnGuardar() {
@@ -82,4 +89,11 @@ public class ReservarPropiedadView extends JDialog {
         return btnSelecPropiedad;
     }
 
+    public JTextField getTfCliente() {
+        return tfCliente;
+    }
+
+    public JTextField getTfPropiedad() {
+        return tfPropiedad;
+    }
 }

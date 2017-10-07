@@ -60,6 +60,7 @@ public class ReservarPropiedadController {
         Propiedad propiedad = propiedadController.getPropiedad();
 
         if(propiedad != null){
+            currentPropiedad = propiedad;
 
         }
 
