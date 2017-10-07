@@ -46,7 +46,7 @@ public class AddContVenController {
 		if(propiedad != null) {
 		
 			view.getTfPropiedad().setText(propiedad.getIdentificador());
-			
+		
 			contratoActual.setPropiedad(propiedad);
 		}	
 	}
