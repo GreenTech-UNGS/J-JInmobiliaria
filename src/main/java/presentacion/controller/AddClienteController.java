@@ -111,7 +111,6 @@ public class AddClienteController {
 	
 	private void saveCurrentCliente() {
 		binder.fillBean();
-		
 
 		if(clienteValidator.isValid(currentCliente)) {
 			clienteService.saveCliente(currentCliente);

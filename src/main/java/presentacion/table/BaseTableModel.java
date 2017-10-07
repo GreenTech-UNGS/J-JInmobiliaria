@@ -1,5 +1,7 @@
 package presentacion.table;
 
+import com.google.inject.Inject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +19,13 @@ public abstract class BaseTableModel<T> extends DefaultTableModel{
 	private static final long serialVersionUID = 1L;
 	
 	protected List<String> columnas;
-	protected List<T> rows;
+	public List<T> rows;
 	protected TableColumnModel colModel;
 	
-	
+
 	public BaseTableModel() {
-		
 		super(new Object[]{}, 0);
-		
+
 		columnas = new ArrayList<>();
 		rows = new ArrayList<>();
 		colModel = new DefaultTableColumnModel();
@@ -52,7 +53,7 @@ public abstract class BaseTableModel<T> extends DefaultTableModel{
 	}
 	
 	public void actualizeRows(List<T> newlist){
-		this.rows.clear();
+		clean();
 		addRows(newlist);
 	}
 	

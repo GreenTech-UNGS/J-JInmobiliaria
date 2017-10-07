@@ -25,15 +25,19 @@ public class ClienteValidator implements Validator<Cliente>{
 		
 		if(t == null){
 			return false;
-		} else if(pValidator.isValid(t.getPersona()) == false) {
-			return false;
-		}else if(clienteService.existeClienteCon(t.getPersona())) {
-				msgShw.showErrorMessage("El cliente ya estï¿½ agregado", "Error");
-				
-				return false;			
+		} 
+		
+		if(pValidator.isValid(t.getPersona()) == false)
+				return false;
+		if(clienteService.existeClienteCon(t.getPersona())) {
+			msgShw.showErrorMessage("El cliente ya está agregado", "Error");
+			
+			return false;			
 		}
+			
 		
 		return true;
-	}
+		
+		}
 	
 }

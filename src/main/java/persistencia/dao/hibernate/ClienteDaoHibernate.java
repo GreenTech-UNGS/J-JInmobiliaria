@@ -38,8 +38,9 @@ public class ClienteDaoHibernate extends DaoHibernate<Cliente> implements Client
 		initTransaction();
 		
 		Criteria q = sesion.createCriteria(Cliente.class).
+				createAlias("persona", "persona").
 				setFetchMode("persona", FetchMode.JOIN).
-				add(Restrictions.eqOrIsNull("persona", t));
+				add(Restrictions.eq("persona.credencial", t.getCredencial()));
 		
 		finishTransaction();
 		
