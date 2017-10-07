@@ -32,4 +32,7 @@ public class CuotaService {
 		return cuotaDao.getAll();
 	}
 
+	public List<CuotaAlquiler> getPendientes(){
+		return cuotaDao.getPendientes();
+	}
 }

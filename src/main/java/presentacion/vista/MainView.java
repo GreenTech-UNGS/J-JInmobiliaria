@@ -50,6 +50,7 @@ public class MainView {
     private JTable tablePropiedades;
     private JTable tableClientes;
     private JTable tablePropietarios;
+    private JTable tableCuotas;
 
     @Inject
     public MainView() {
@@ -131,7 +132,7 @@ public class MainView {
 
         tablePropietarios = new JTable();
         TabPropietarios.add(tablePropietarios);
-
+        
         JScrollPane scrollPane_2 = new JScrollPane(tablePropietarios);
         TabPropietarios.add(scrollPane_2);
 
@@ -145,7 +146,12 @@ public class MainView {
 
         JPanel panelPagoAlq = new JPanel();
         tabbedPane.addTab("Pagos de alquileres", null, panelPagoAlq, null);
-
+        
+        tableCuotas = new JTable();
+        
+        JScrollPane scrollPane_3 = new JScrollPane(tableCuotas);
+        panelPagoAlq.add(scrollPane_3);
+        
         JPanel panelPagoVen = new JPanel();
         tabbedPane.addTab("Pagos de ventas", null, panelPagoVen, null);
 
@@ -389,6 +395,10 @@ public class MainView {
 
     public JTable getTablePropietarios() {
         return tablePropietarios;
+    }
+    
+    public JTable getTableCuotas() {
+        return tableCuotas;
     }
 
 
