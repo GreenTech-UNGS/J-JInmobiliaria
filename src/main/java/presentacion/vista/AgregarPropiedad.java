@@ -50,6 +50,7 @@ public class AgregarPropiedad extends JDialog{
 	private JButton btnLupita;
 	private JButton btnVerHistorial;
 	private JMapViewer mapa;
+	private JButton btnActualizar;
 
 	@Inject
 	private AgregarPropiedad() {
@@ -279,13 +280,21 @@ public class AgregarPropiedad extends JDialog{
 		btnVerHistorial.setBounds(442, 20, 102, 23);
 		AgregarPropiedad.add(btnVerHistorial);
 		
-		JButton btnActualizar = new JButton("Actualizar");
+		btnActualizar = new JButton("Actualizar");
 		btnActualizar.setBounds(442, 307, 102, 23);
 		AgregarPropiedad.add(btnActualizar);
 		btnVerHistorial.setVisible(false);
 //		JMapViewer mapViewer = new JMapViewer();
 //		mapViewer.setBounds(251, 259, 267, 129);
 //		AgregarPropiedad.add(mapViewer);
+	}
+
+	public JButton getBtnActualizar() {
+		return btnActualizar;
+	}
+
+	public JMapViewer getMapa() {
+		return mapa;
 	}
 
 	public JTextField getTfAltura() {
