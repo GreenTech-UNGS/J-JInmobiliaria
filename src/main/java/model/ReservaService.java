@@ -3,7 +3,6 @@ package model;
 import com.google.inject.Inject;
 import entities.Reserva;
 import org.joda.time.DateTime;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class ReservaService {
     public void saveReserva(Reserva reserva){
         reserva.setFecha(DateTime.now());
         //LLAMAR AL DAO
-        throw new NotImplementedException();
+        throw new RuntimeException();
     }
 
     public Reserva getEmptyReserva() {
