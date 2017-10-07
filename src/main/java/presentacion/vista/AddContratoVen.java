@@ -5,8 +5,11 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
@@ -14,9 +17,9 @@ import javax.swing.JSpinner;
 @SuppressWarnings("serial")
 public class AddContratoVen extends JDialog{
 	private JTextField tfIdContrato;
-	private JTextField tfComprador;
+	private JTextField tfCliente;
 	private JTextField tfPropiedad;
-	private JTextField tfMonto;
+	private JTextField tfPrecio;
 	private JTextField tfGarantia;
 	
 	private JButton btnAdjuntar;
@@ -24,6 +27,8 @@ public class AddContratoVen extends JDialog{
 	private JButton btnCancelarContVen;
 	private JTextField textField;
 	private JComboBox<String> comboBox;
+	private JButton btnBuscarCliente;
+	private JButton btnBuscarPropiedad;
 	
 	public AddContratoVen() {
 		super();
@@ -41,24 +46,24 @@ public class AddContratoVen extends JDialog{
 		lblIdContrato.setBounds(27, 69, 68, 14);
 		getContentPane().add(lblIdContrato);
 		
-		JLabel lblComprador = new JLabel("Comprador:");
-		lblComprador.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblComprador.setBounds(27, 94, 68, 14);
-		getContentPane().add(lblComprador);
+		JLabel lblCliente = new JLabel("Cliente:");
+		lblCliente.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblCliente.setBounds(27, 94, 68, 14);
+		getContentPane().add(lblCliente);
 		
 		JLabel lblPropiedad = new JLabel("Propiedad:");
 		lblPropiedad.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblPropiedad.setBounds(27, 119, 68, 14);
 		getContentPane().add(lblPropiedad);
 		
-		JLabel lblMontoProp = new JLabel("Monto de propiedad:");
-		lblMontoProp.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblMontoProp.setBounds(261, 69, 108, 14);
-		getContentPane().add(lblMontoProp);
+		JLabel lblPrecio = new JLabel("Precio:");
+		lblPrecio.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblPrecio.setBounds(324, 69, 45, 14);
+		getContentPane().add(lblPrecio);
 		
 		JLabel lblMoneda = new JLabel("Moneda:");
 		lblMoneda.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblMoneda.setBounds(323, 94, 46, 14);
+		lblMoneda.setBounds(324, 94, 46, 14);
 		getContentPane().add(lblMoneda);
 		
 		JLabel lblPjeAdm = new JLabel("Porcentaje gastos administrativos:");
@@ -90,20 +95,23 @@ public class AddContratoVen extends JDialog{
 		getContentPane().add(tfIdContrato);
 		tfIdContrato.setColumns(10);
 		
-		tfComprador = new JTextField();
-		tfComprador.setBounds(92, 91, 127, 20);
-		getContentPane().add(tfComprador);
-		tfComprador.setColumns(10);
+		tfCliente = new JTextField();
+		tfCliente.setBounds(92, 91, 98, 20);
+		getContentPane().add(tfCliente);
+		tfCliente.setColumns(10);
+		tfCliente.setEnabled(false);
 		
 		tfPropiedad = new JTextField();
-		tfPropiedad.setBounds(92, 116, 127, 20);
+		tfPropiedad.setBounds(92, 116, 98, 20);
 		getContentPane().add(tfPropiedad);
 		tfPropiedad.setColumns(10);
+		tfPropiedad.setEnabled(false);
 		
-		tfMonto = new JTextField();
-		tfMonto.setColumns(10);
-		tfMonto.setBounds(368, 66, 127, 20);
-		getContentPane().add(tfMonto);
+		tfPrecio = new JTextField();
+		tfPrecio.setColumns(10);
+		tfPrecio.setBounds(368, 66, 127, 20);
+		getContentPane().add(tfPrecio);
+		tfPrecio.setEnabled(false);
 		
 		JLabel lblOtrosDatos = new JLabel("Otros datos");
 		lblOtrosDatos.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -144,6 +152,17 @@ public class AddContratoVen extends JDialog{
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
+		btnBuscarPropiedad = new JButton("");
+		btnBuscarPropiedad.setBounds(192, 115, 27, 23);
+		Image imgLup = new ImageIcon(this.getClass().getResource("/buscar.png")).getImage();
+		btnBuscarPropiedad.setIcon(new ImageIcon(imgLup));
+		getContentPane().add(btnBuscarPropiedad);
+		
+		btnBuscarCliente = new JButton("");
+		btnBuscarCliente.setBounds(192, 90, 27, 23);
+		btnBuscarCliente.setIcon(new ImageIcon(imgLup));
+		getContentPane().add(btnBuscarCliente);
+		
 	}
 
 	public JTextField getTfIdContrato() {
@@ -155,11 +174,11 @@ public class AddContratoVen extends JDialog{
 	}
 
 	public JTextField getTfComprador() {
-		return tfComprador;
+		return tfCliente;
 	}
 
 	public void setTfComprador(JTextField tfComprador) {
-		this.tfComprador = tfComprador;
+		this.tfCliente = tfComprador;
 	}
 
 	public JTextField getTfPropiedad() {
@@ -171,11 +190,11 @@ public class AddContratoVen extends JDialog{
 	}
 
 	public JTextField getTfMonto() {
-		return tfMonto;
+		return tfPrecio;
 	}
 
 	public void setTfMonto(JTextField tfMonto) {
-		this.tfMonto = tfMonto;
+		this.tfPrecio = tfMonto;
 	}
 
 	public JTextField getTfGarantia() {
@@ -209,4 +228,21 @@ public class AddContratoVen extends JDialog{
 	public void setBtnCancelarContVen(JButton btnCancelarContVen) {
 		this.btnCancelarContVen = btnCancelarContVen;
 	}
+
+	public JButton getBtnBuscarCliente() {
+		return btnBuscarCliente;
+	}
+
+	public void setBtnBuscarCliente(JButton btnBuscarCliente) {
+		this.btnBuscarCliente = btnBuscarCliente;
+	}
+
+	public JButton getBtnBuscarPropiedad() {
+		return btnBuscarPropiedad;
+	}
+
+	public void setBtnBuscarPropiedad(JButton btnBuscarPropiedad) {
+		this.btnBuscarPropiedad = btnBuscarPropiedad;
+	}
+	
 }
