@@ -15,6 +15,9 @@ import javax.swing.JDialog;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AgregarCliente extends JDialog{
 
@@ -46,52 +49,62 @@ public class AgregarCliente extends JDialog{
 		
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(20, 83, 80, 20);
+		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNombre.setBounds(30, 83, 80, 20);
 		panel.add(lblNombre);
 		
 		JLabel lblApellido = new JLabel("Apellido:");
-		lblApellido.setBounds(20, 114, 80, 20);
+		lblApellido.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblApellido.setBounds(30, 114, 80, 20);
 		panel.add(lblApellido);
 		
 		JLabel lblMail = new JLabel("Email:");
-		lblMail.setBounds(20, 145, 80, 20);
+		lblMail.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblMail.setBounds(30, 145, 80, 20);
 		panel.add(lblMail);
 
 		textNombre = new JTextField();
-		textNombre.setBounds(100, 83, 200, 20);
+		textNombre.setBounds(100, 83, 212, 20);
 		panel.add(textNombre);
 		textNombre.setColumns(10);
 		
 		textApellido = new JTextField();
-		textApellido.setBounds(100, 114, 200, 20);
+		textApellido.setBounds(100, 114, 212, 20);
 		panel.add(textApellido);
 		textApellido.setColumns(10);
 		
 		textMail = new JTextField();
-		textMail.setBounds(100, 145, 200, 20);
+		textMail.setBounds(100, 145, 212, 20);
 		panel.add(textMail);
 		textMail.setColumns(10);
 		
 		comboCredencial = new JComboBox<String>();
-		comboCredencial.setBounds(20, 52, 61, 20);
+		comboCredencial.setBounds(31, 52, 61, 20);
 		panel.add(comboCredencial);
 		comboCredencial.addItem("DNI");
 		comboCredencial.addItem("CUIT");
 		
 		btnGuardar = new JButton("Guardar");
+		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnGuardar.setBounds(20, 330, 135, 42);
 		panel.add(btnGuardar);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnCancelar.setBounds(189, 330, 123, 42);
 		panel.add(btnCancelar);
 		
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(210, 9, 90, 20);
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnBuscar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnBuscar.setBounds(234, 21, 90, 20);
 		panel.add(btnBuscar);
 		
 		textCredencial = new JTextField();
-		textCredencial.setBounds(100, 52, 200, 20);
+		textCredencial.setBounds(100, 52, 212, 20);
 		panel.add(textCredencial);
 		textCredencial.setColumns(10);
 		
@@ -103,10 +116,12 @@ public class AgregarCliente extends JDialog{
 		tablePanel.setViewportView(tableTelefono);
 		
 		btnAgregarTelefono = new JButton("Agregar Telefono");
+		btnAgregarTelefono.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnAgregarTelefono.setBounds(189, 295, 123, 23);
 		panel.add(btnAgregarTelefono);
 		
 		btnBorrarTelefono = new JButton("Borrar Telefono");
+		btnBorrarTelefono.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnBorrarTelefono.setBounds(20, 296, 135, 23);
 		panel.add(btnBorrarTelefono);
 

@@ -2,6 +2,7 @@ package presentacion.controller;
 
 import com.google.inject.Inject;
 
+import entities.Cliente;
 import entities.ContratoVenta;
 import entities.Propiedad;
 import model.ContratoService;
@@ -19,11 +20,13 @@ public class AddContVenController {
 	@Inject
 	private AddContVenController(AddContratoVen view,
 			ElegirClienteController elegirCliente,
-			ElegirPropiedadController elegirProp){
+			ElegirPropiedadController elegirProp, 
+			ContratoService contratoService){
 		
 		this.view = view;
 		this.elegirCliente = elegirCliente;
 		this.elegirProp = elegirProp;
+		this.contratoService = contratoService;
 		
 		view.getBtnCancelarContVen().addActionListener(e -> view.setVisible(false));
 		view.getBtnBuscarCliente().addActionListener(e -> elegirCliente());
@@ -36,19 +39,22 @@ public class AddContVenController {
 		}
 	
 	private void elegirCliente(){
+		
 		elegirCliente.showView();
-		//poner el id del cliente en el tf cuando se pueda agregar clientes
-	}
+		Cliente cliente = elegirCliente.getCliente();
+		view.getTfCliente().setText(cliente.getPersona().getCredencial());
+		}
 	
 	private void elegirPropiedad(){
-		elegirProp.showView();
 		
+		elegirProp.showView();
 		Propiedad propiedad = elegirProp.getPropiedad();
 		
 		if(propiedad != null) {
 		
 			view.getTfPropiedad().setText(propiedad.getIdentificador());
-			//llenar tf de precio o se pone a mano o qué
+			view.getTfPrecio().setText(String.valueOf(propiedad.getPrecioTentativo().getMonto()));
+			view.getTfMoneda().setText(propiedad.getPrecioTentativo().getMoneda().toString());
 			currentContrato.setPropiedad(propiedad);
 		}	
 	}

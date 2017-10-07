@@ -23,14 +23,11 @@ public class AddContratoVen extends JDialog{
 	private JTextField tfPropiedad;
 	private JTextField tfPrecio;
 	private JTextField tfGarantia;
-	
-	private JButton btnAdjuntar;
 	private JButton btnGuardarContVen;
 	private JButton btnCancelarContVen;
-	private JTextField textField;
-	private JComboBox<String> comboBox;
 	private JButton btnBuscarCliente;
 	private JButton btnBuscarPropiedad;
+	private JTextField tfMoneda;
 	
 	public AddContratoVen() {
 		super();
@@ -38,7 +35,7 @@ public class AddContratoVen extends JDialog{
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setModal(true);
-		setSize(new Dimension(528, 460));
+		setSize(new Dimension(528, 419));
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
@@ -70,18 +67,13 @@ public class AddContratoVen extends JDialog{
 		
 		JLabel lblPjeAdm = new JLabel("Porcentaje gastos administrativos:");
 		lblPjeAdm.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPjeAdm.setBounds(27, 266, 175, 14);
+		lblPjeAdm.setBounds(27, 241, 175, 14);
 		getContentPane().add(lblPjeAdm);
 		
 		JLabel lblGarantia = new JLabel("Garant\u00EDa de pago:");
 		lblGarantia.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblGarantia.setBounds(27, 216, 121, 14);
 		getContentPane().add(lblGarantia);
-		
-		JLabel lblDocumentos = new JLabel("Documentos adjuntos:");
-		lblDocumentos.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblDocumentos.setBounds(27, 241, 121, 14);
-		getContentPane().add(lblDocumentos);
 		
 		JLabel lblDatosGenerales = new JLabel("Datos generales");
 		lblDatosGenerales.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -101,19 +93,19 @@ public class AddContratoVen extends JDialog{
 		tfCliente.setBounds(92, 91, 98, 20);
 		getContentPane().add(tfCliente);
 		tfCliente.setColumns(10);
-		tfCliente.setEnabled(false);
+		tfCliente.setEditable(false);
 		
 		tfPropiedad = new JTextField();
 		tfPropiedad.setBounds(92, 116, 98, 20);
 		getContentPane().add(tfPropiedad);
 		tfPropiedad.setColumns(10);
-		tfPropiedad.setEnabled(false);
+		tfPropiedad.setEditable(false);
 		
 		tfPrecio = new JTextField();
 		tfPrecio.setColumns(10);
 		tfPrecio.setBounds(368, 66, 127, 20);
 		getContentPane().add(tfPrecio);
-		tfPrecio.setEnabled(false);
+		tfPrecio.setEditable(false);
 		
 		JLabel lblOtrosDatos = new JLabel("Otros datos");
 		lblOtrosDatos.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -129,37 +121,19 @@ public class AddContratoVen extends JDialog{
 		tfGarantia.setBounds(118, 213, 377, 20);
 		getContentPane().add(tfGarantia);
 		
-		this.btnAdjuntar = new JButton("Adjuntar");
-		btnAdjuntar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnAdjuntar.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnAdjuntar.setBounds(406, 237, 89, 23);
-		getContentPane().add(btnAdjuntar);
-		
 		this.btnGuardarContVen = new JButton("Guardar");
 		btnGuardarContVen.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnGuardarContVen.setBounds(144, 359, 113, 36);
+		btnGuardarContVen.setBounds(145, 299, 113, 36);
 		getContentPane().add(btnGuardarContVen);
 		
 		this.btnCancelarContVen = new JButton("Cancelar");
 		btnCancelarContVen.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnCancelarContVen.setBounds(286, 359, 113, 36);
+		btnCancelarContVen.setBounds(287, 299, 113, 36);
 		getContentPane().add(btnCancelarContVen);
 		
-		comboBox = new JComboBox<>();
-		comboBox.setBounds(368, 91, 127, 20);
-		getContentPane().add(comboBox);
-		
 		JSpinner spinnerPorcentaje = new JSpinner();
-		spinnerPorcentaje.setBounds(212, 263, 45, 20);
+		spinnerPorcentaje.setBounds(201, 238, 45, 20);
 		getContentPane().add(spinnerPorcentaje);
-		
-		textField = new JTextField();
-		textField.setBounds(147, 238, 252, 20);
-		getContentPane().add(textField);
-		textField.setColumns(10);
 		
 		btnBuscarPropiedad = new JButton("");
 		btnBuscarPropiedad.setBounds(192, 115, 27, 23);
@@ -171,6 +145,12 @@ public class AddContratoVen extends JDialog{
 		btnBuscarCliente.setBounds(192, 90, 27, 23);
 		btnBuscarCliente.setIcon(new ImageIcon(imgLup));
 		getContentPane().add(btnBuscarCliente);
+		
+		tfMoneda = new JTextField();
+		tfMoneda.setBounds(368, 91, 127, 20);
+		getContentPane().add(tfMoneda);
+		tfMoneda.setColumns(10);
+		tfMoneda.setEditable(false);
 		
 	}
 
@@ -214,14 +194,6 @@ public class AddContratoVen extends JDialog{
 		this.tfGarantia = tfGarantia;
 	}
 
-	public JButton getBtnAdjuntar() {
-		return btnAdjuntar;
-	}
-
-	public void setBtnAdjuntar(JButton btnAdjuntar) {
-		this.btnAdjuntar = btnAdjuntar;
-	}
-
 	public JButton getBtnGuardarContVen() {
 		return btnGuardarContVen;
 	}
@@ -253,5 +225,30 @@ public class AddContratoVen extends JDialog{
 	public void setBtnBuscarPropiedad(JButton btnBuscarPropiedad) {
 		this.btnBuscarPropiedad = btnBuscarPropiedad;
 	}
+
+	public JTextField getTfCliente() {
+		return tfCliente;
+	}
+
+	public void setTfCliente(JTextField tfCliente) {
+		this.tfCliente = tfCliente;
+	}
+
+	public JTextField getTfPrecio() {
+		return tfPrecio;
+	}
+
+	public void setTfPrecio(JTextField tfPrecio) {
+		this.tfPrecio = tfPrecio;
+	}
+
+	public JTextField getTfMoneda() {
+		return tfMoneda;
+	}
+
+	public void setTfMoneda(JTextField tfMoneda) {
+		this.tfMoneda = tfMoneda;
+	}
+	
 	
 }
