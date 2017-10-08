@@ -80,8 +80,8 @@ public class ContratoService {
 	private void creaCuotas(ContratoAlquiler c) {
 		
 		int cantCuotas = c.getCantMeses();
-		float montoInicial = c.getCuotaMensual().getMonto();
-		float monto = c.getCuotaMensual().getMonto();
+		double montoInicial = c.getCuotaMensual().getMonto();
+		double monto = c.getCuotaMensual().getMonto();
 		Moneda m = c.getCuotaMensual().getMoneda();
 		YearMonth nextMonth = YearMonth.now().plusMonths(1);
 		
@@ -159,7 +159,7 @@ public class ContratoService {
 	}
 	
 
-	private EstadoContrato getEstadoOf(Contrato c) {
+	public EstadoContrato getEstadoOf(Contrato c) {
 		
 		List<HistoriaEstadoContrato> estados = c.getEstados();
 		
@@ -170,20 +170,15 @@ public class ContratoService {
 	}
 	
 
-	public List<Contrato> getContratosVenta(){
+	public List<ContratoVenta> getContratosVenta(){
 		
-		List<Contrato> allContratos = getAll();
-
-		List<Contrato> toRet = allContratos.stream().filter(p -> p.getClass().equals(ContratoVenta.class)).collect(Collectors.toList());
-		return toRet;
+		return contratoDao.getAllVenta();
 		
 	}
 	
-	public List<Contrato> getContratosAlquiler(){
+	public List<ContratoAlquiler> getContratosAlquiler(){
 		
-		List<Contrato> allContratos = getAll();
-		List<Contrato> toRet = allContratos.stream().filter(p -> p.getClass().equals(ContratoAlquiler.class)).collect(Collectors.toList());
-		return toRet;
+		return contratoDao.getAllAlquiler();
 	}
 	
 }

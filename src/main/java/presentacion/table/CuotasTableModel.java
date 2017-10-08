@@ -16,7 +16,7 @@ public class CuotasTableModel extends BaseTableModel<CuotaAlquiler> {
 	@Override
 	protected Object[] toRow(CuotaAlquiler t) {
 		
-		float temp = t.getMonto().getMonto();
+		double temp = t.getMonto().getMonto();
 		String valor = t.getMonto().getMoneda().toString() + temp;
 		
 		Object[] fila = {

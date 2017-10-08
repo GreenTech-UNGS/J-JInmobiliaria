@@ -10,7 +10,8 @@ import entities.InteresPunitorioCuota;
 public interface CuotaDao extends Dao<CuotaAlquiler>{
 
 	public List<CuotaAlquiler> getAllOf(YearMonth anioMes);
-	List<CuotaAlquiler> getAllOfThisMonth();
-	InteresPunitorioCuota getInteresOf(CuotaAlquiler c);
+	public List<CuotaAlquiler> getAllOfThisMonth();
+	public InteresPunitorioCuota getInteresOf(CuotaAlquiler c);
+	public void saveInteres(InteresPunitorioCuota interes);
 	
 }

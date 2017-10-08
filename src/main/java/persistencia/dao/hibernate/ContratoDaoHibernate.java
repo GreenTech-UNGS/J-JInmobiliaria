@@ -11,6 +11,8 @@ import com.google.inject.Singleton;
 
 import entities.Cliente;
 import entities.Contrato;
+import entities.ContratoAlquiler;
+import entities.ContratoVenta;
 import entities.Persona;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.ContratoDao;
@@ -49,5 +51,27 @@ public class ContratoDaoHibernate extends DaoHibernate<Contrato> implements Cont
 		List<Contrato> res = q.list();
 		
 		return !res.isEmpty();
+	}
+
+	@Override
+	public List<ContratoAlquiler> getAllAlquiler() {
+		initTransaction();
+		
+		Criteria q = sesion.createCriteria(ContratoAlquiler.class);
+		
+		finishTransaction();
+		
+		return q.list();
+	}
+
+	@Override
+	public List<ContratoVenta> getAllVenta() {
+		initTransaction();
+		
+		Criteria q = sesion.createCriteria(ContratoVenta.class);
+		
+		finishTransaction();
+		
+		return q.list();
 	}
 }

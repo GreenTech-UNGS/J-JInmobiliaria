@@ -4,12 +4,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.joda.time.YearMonth;
 
 import com.google.inject.Inject;
 
 import entities.CuotaAlquiler;
 import entities.EstadoCuota;
+import entities.InteresPunitorioCuota;
 import persistencia.dao.iface.CuotaDao;
 
 public class CuotaService {
@@ -55,5 +58,38 @@ public class CuotaService {
 				collect(Collectors.toList());
 		
 		return toRet;
+	}
+
+	public List<CuotaAlquiler> getVencidas() {
+		List<CuotaAlquiler> cuotas = cuotaDao.getAllOfThisMonth();
+		
+		LocalDate today = DateTime.now().toLocalDate();
+		return cuotas.stream().
+				filter(c ->{
+						
+				LocalDate diaPago = new LocalDate(c.getAnioMes().getYear(),
+							c.getAnioMes().getMonthValue(),
+							c.getContrato().getDatoPunitorio().getDiasDePago());
+					return today.isAfter(diaPago);
+				} ).
+				filter(c -> getEstadoOf(c).equals(EstadoCuota.PENDIENTE)).
+				collect(Collectors.toList());
+	}
+
+	public LocalDate getDiaPago(CuotaAlquiler cuota) {
+		
+		return new LocalDate(cuota.getAnioMes().getYear(),
+				cuota.getAnioMes().getMonthValue(),
+				cuota.getContrato().getDatoPunitorio().getDiasDePago());
+	}
+
+	public InteresPunitorioCuota getInteresOf(CuotaAlquiler cuota) {
+		// TODO Auto-generated method stub
+		return cuotaDao.getInteresOf(cuota);
+	}
+
+	public void saveInteres(InteresPunitorioCuota interes) {
+		cuotaDao.saveInteres(interes);
+		
 	}
 }
