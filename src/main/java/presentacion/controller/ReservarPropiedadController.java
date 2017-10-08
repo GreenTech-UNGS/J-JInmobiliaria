@@ -11,6 +11,7 @@ import model.ReservaService;
 import org.joda.time.DateTime;
 import presentacion.combo.ClienteComboBoxModel;
 import presentacion.combo.PropiedadComboBoxModel;
+import presentacion.validators.MessageShow;
 import presentacion.vista.ElegirCliente;
 import presentacion.vista.ReservarPropiedadView;
 
@@ -59,8 +60,12 @@ public class ReservarPropiedadController {
     }
 
     private void reservarPropiedad() {
-        reservaService.saveReserva(currentReserva);
-        closeView();
+
+        //FIXME Incorporar Validator
+        if(currentCliente != null && currentPropiedad!= null) {
+            reservaService.saveReserva(currentReserva);
+            closeView();
+        }
     }
 
     private void selectPropiedad() {
