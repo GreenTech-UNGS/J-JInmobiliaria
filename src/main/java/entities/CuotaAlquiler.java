@@ -1,7 +1,5 @@
 package entities;
 
-import java.time.Month;
-import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.joda.time.Partial;
+import org.joda.time.YearMonth;
 
 @Entity
 @Table(name = "cuotasAlquiler")

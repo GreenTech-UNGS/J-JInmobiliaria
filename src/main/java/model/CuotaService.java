@@ -42,7 +42,7 @@ public class CuotaService {
 	
 	public EstadoCuota getEstadoOf(CuotaAlquiler c) {
 		
-		c.getEstados().sort((e1, e2) -> e1.getFecha().compareTo(e2.getFecha()));
+		c.getEstados().sort((e2, e1) -> e1.getFecha().compareTo(e2.getFecha()));
 		
 		return c.getEstados().get(0).getEstado();
 		
@@ -68,7 +68,7 @@ public class CuotaService {
 				filter(c ->{
 						
 				LocalDate diaPago = new LocalDate(c.getAnioMes().getYear(),
-							c.getAnioMes().getMonthValue(),
+							c.getAnioMes().getMonthOfYear(),
 							c.getContrato().getDatoPunitorio().getDiasDePago());
 					return today.isAfter(diaPago);
 				} ).
@@ -79,7 +79,7 @@ public class CuotaService {
 	public LocalDate getDiaPago(CuotaAlquiler cuota) {
 		
 		return new LocalDate(cuota.getAnioMes().getYear(),
-				cuota.getAnioMes().getMonthValue(),
+				cuota.getAnioMes().getMonthOfYear(),
 				cuota.getContrato().getDatoPunitorio().getDiasDePago());
 	}
 

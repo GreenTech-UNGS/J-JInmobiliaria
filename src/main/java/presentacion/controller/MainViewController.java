@@ -138,7 +138,7 @@ public class MainViewController {
 		
 		this.contratosTable2.clean();
 		this.view.getTablaContratoAlquiler().setModel(contratosTable2);
-		contratoService.getContratosVenta().forEach(c -> contratosTable2.addRow(c));
+		contratoService.getContratosAlquiler().forEach(c -> contratosTable2.addRow(c));
 		
 		this.view.getTablaContratoAlquiler().setColumnModel(contratosTable.getTableColumnModel());
 		this.view.getTablaContratoAlquiler().getTableHeader().setReorderingAllowed(false);
