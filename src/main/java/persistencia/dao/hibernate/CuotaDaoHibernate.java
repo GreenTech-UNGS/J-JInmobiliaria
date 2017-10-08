@@ -41,12 +41,24 @@ public class CuotaDaoHibernate extends DaoHibernate<CuotaAlquiler> implements Cu
 
 	@Override
 	public List<CuotaAlquiler> getAllOfThisMonth() {
-		throw new RuntimeException("NO implementado");
+		return getAllOf(YearMonth.now());
 	}
 
 	@Override
 	public InteresPunitorioCuota getInteresOf(CuotaAlquiler c) {
-		throw new RuntimeException("NO implementado");
+		initTransaction();
+		
+		Criteria q = sesion.createCriteria(InteresPunitorioCuota.class)
+				.add(Restrictions.eq("cuota", c));
+		
+		finishTransaction();
+		
+		List<InteresPunitorioCuota> res = q.list();
+		
+		if(res.isEmpty())
+			return null;
+		
+		return res.get(0);
 	}
 	
 	@Override
@@ -58,6 +70,16 @@ public class CuotaDaoHibernate extends DaoHibernate<CuotaAlquiler> implements Cu
 		
 		finishTransaction();
 		return q.list();
+	}
+
+	@Override
+	public void saveInteres(InteresPunitorioCuota interes) {
+		initTransaction();
+		
+		sesion.saveOrUpdate(interes);
+		
+		finishTransaction();
+		
 	}
 	
 }

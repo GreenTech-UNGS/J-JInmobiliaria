@@ -80,8 +80,8 @@ public class ContratoService {
 	private void creaCuotas(ContratoAlquiler c) {
 		
 		int cantCuotas = c.getCantMeses();
-		float montoInicial = c.getCuotaMensual().getMonto();
-		float monto = c.getCuotaMensual().getMonto();
+		double montoInicial = c.getCuotaMensual().getMonto();
+		double monto = c.getCuotaMensual().getMonto();
 		Moneda m = c.getCuotaMensual().getMoneda();
 		YearMonth nextMonth = YearMonth.now().plusMonths(1);
 		
@@ -159,7 +159,7 @@ public class ContratoService {
 	}
 	
 
-	private EstadoContrato getEstadoOf(Contrato c) {
+	public EstadoContrato getEstadoOf(Contrato c) {
 		
 		List<HistoriaEstadoContrato> estados = c.getEstados();
 		

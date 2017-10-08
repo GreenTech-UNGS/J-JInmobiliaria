@@ -15,7 +15,7 @@ public class Precio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID;
-	private float monto;
+	private double monto;
 	
 	@Enumerated(EnumType.ORDINAL)
 	private Moneda moneda;
@@ -24,17 +24,17 @@ public class Precio {
 		
 	}
 	
-	public Precio(float monto, Moneda moneda) {
+	public Precio(double monto, Moneda moneda) {
 		super();
 		this.monto = monto;
 		this.moneda = moneda;
 	}
 
-	public float getMonto() {
+	public double getMonto() {
 		return monto;
 	}
 
-	public void setMonto(float monto) {
+	public void setMonto(double monto) {
 		this.monto = monto;
 	}
 
