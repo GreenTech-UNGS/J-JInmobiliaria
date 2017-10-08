@@ -11,12 +11,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.joda.time.YearMonth;
+
 @Entity
 @Table(name="contratosAlquiler")
 public class ContratoAlquiler extends Contrato{
 
 	
 	private int cantMeses;
+	private String primerAnioMes;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
 	private Precio cuotaMensual;
@@ -35,6 +38,7 @@ public class ContratoAlquiler extends Contrato{
 
 	@OneToOne(cascade = {CascadeType.ALL})
 	private DatosActualizacionContrato datoActualizacion;
+	
 
 	public int getCantMeses() {
 		return cantMeses;
@@ -90,6 +94,14 @@ public class ContratoAlquiler extends Contrato{
 
 	public void setDatoActualizacion(DatosActualizacionContrato datoActualizacion) {
 		this.datoActualizacion = datoActualizacion;
+	}
+
+	public YearMonth getPrimerAnioMes() {
+		return YearMonth.parse(primerAnioMes);
+	}
+
+	public void setPrimerAnioMes(YearMonth primerAnioMes) {
+		this.primerAnioMes = primerAnioMes.toString();
 	}
 
 

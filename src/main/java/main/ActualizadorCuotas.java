@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.Period;
+import org.joda.time.YearMonth;
 
 import persistencia.dao.iface.CuotaDao;
 import misc.ActualizadorModule;
@@ -16,8 +17,11 @@ import model.CuotaService;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import entities.ContratoAlquiler;
 import entities.CuotaAlquiler;
+import entities.EstadoContrato;
 import entities.EstadoCuota;
+import entities.HistoriaEstadoContrato;
 import entities.InteresPunitorioCuota;
 import entities.Moneda;
 import entities.Precio;
@@ -25,19 +29,55 @@ import entities.Precio;
 public class ActualizadorCuotas {
 	
 	static Injector injector;
-	static CuotaDao cuotaDao;
 	static CuotaService cuotaService;
+	static ContratoService contratoService;
 	
 	  public static void main( String[] args ){
 		  
 		injector = Guice.createInjector(new ActualizadorModule());
 		
-		cuotaDao = injector.getInstance(CuotaDao.class);
 		cuotaService = injector.getInstance(CuotaService.class);
+		contratoService = injector.getInstance(ContratoService.class);
 
 		actualizeCuotasVencidas();
+		actualizeContratos();
 		  
 	  }
+
+	private static void actualizeContratos() {
+		
+		List<ContratoAlquiler> contratos = contratoService.getContratosAlquiler();
+		
+		YearMonth today = YearMonth.now();
+		
+		for (ContratoAlquiler contratoAlquiler : contratos) {
+			
+			YearMonth desde = contratoAlquiler.getPrimerAnioMes();
+			YearMonth hasta = contratoAlquiler.getPrimerAnioMes().plusMonths(contratoAlquiler.getCantMeses());
+			
+			if(today.isAfter(desde) && contratoService.getEstadoOf(contratoAlquiler).equals(EstadoContrato.DEFINITIVO)) {
+				HistoriaEstadoContrato estadoNuevo = new HistoriaEstadoContrato();
+				estadoNuevo.setEstado(EstadoContrato.VIGENTE);
+				estadoNuevo.setFecha(DateTime.now());
+				
+				contratoAlquiler.getEstados().add(estadoNuevo);
+				
+				contratoService.saveContratoAlquiler(contratoAlquiler);
+			}
+			
+			if(today.isAfter(hasta) && contratoService.getEstadoOf(contratoAlquiler).equals(EstadoContrato.VIGENTE)) {
+				HistoriaEstadoContrato estadoNuevo = new HistoriaEstadoContrato();
+				estadoNuevo.setEstado(EstadoContrato.FINALIZADO);
+				estadoNuevo.setFecha(DateTime.now());
+				
+				contratoAlquiler.getEstados().add(estadoNuevo);
+				
+				contratoService.saveContratoAlquiler(contratoAlquiler);
+			}
+			
+		}
+		
+	}
 
 	private static void actualizeCuotasVencidas() {
 		LocalDate today = DateTime.now().toLocalDate();

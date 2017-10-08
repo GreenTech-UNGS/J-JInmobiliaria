@@ -1,6 +1,5 @@
 package model;
 
-import java.time.YearMonth;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
 
 import org.joda.time.DateTime;
+import org.joda.time.YearMonth;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -130,6 +130,12 @@ public class ContratoService {
 		toRet.setDatoActualizacion(actualizacion);
 		toRet.setTipoContratoAlquiler(TipoContratoAlquiler.VIVIENDA);
 		
+		HistoriaEstadoContrato nuevo = new HistoriaEstadoContrato();
+		nuevo.setEstado(EstadoContrato.DEFINITIVO);
+		nuevo.setFecha(DateTime.now());
+		
+		toRet.getEstados().add(nuevo);
+		
 		return toRet;
 	}
 	
@@ -150,6 +156,12 @@ public class ContratoService {
 	public ContratoVenta getNewContratoVenta(){
 		
 		ContratoVenta toRet = new ContratoVenta();
+		
+		HistoriaEstadoContrato nuevo = new HistoriaEstadoContrato();
+		nuevo.setEstado(EstadoContrato.DEFINITIVO);
+		nuevo.setFecha(DateTime.now());
+		
+		toRet.getEstados().add(nuevo);
 
 		return toRet;
 	}
@@ -163,7 +175,7 @@ public class ContratoService {
 		
 		List<HistoriaEstadoContrato> estados = c.getEstados();
 		
-		estados.sort((e1, e2) -> e1.getFecha().compareTo(e2.getFecha()));
+		estados.sort((e2, e1) -> e1.getFecha().compareTo(e2.getFecha()));
 		
 		return estados.get(0).getEstado();
 		
