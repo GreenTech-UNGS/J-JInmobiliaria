@@ -47,6 +47,8 @@ public class AddPropiedadController {
 	private HistorialPropiedadController historialPropController;
 	private LocalizationService localizationService;
 	private EligeInmobiliariaController eligeInmobiliaria;
+	
+	private final Coordinate centerOfMap = new Coordinate(50.064191736659104, 8.96484375);
 		
 	Propiedad currentPropiedad;
 	Propietario currentPropietario;
@@ -87,7 +89,6 @@ public class AddPropiedadController {
 		
 		
 		view.getBtnGuardar().addActionListener(e -> savePropiedad());
-		view.getBttAddLoc().addActionListener(e -> agregaLocalidad());
 		view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
 		view.getBtnLupita().addActionListener(e -> selectPropietario());
 		view.getBtnCancelar().addActionListener(e -> view.setVisible(false));
@@ -188,6 +189,12 @@ public class AddPropiedadController {
 	}
 	
 	private void actualizaMapa() {
+
+		Thread t = new Thread(() -> actualizaMapaThread());
+		t.start();
+	}
+	
+	private void actualizaMapaThread() {
 		
 		String calle = view.getTfCalle().getText();
 		String altura = view.getTfAltura().getText();
@@ -207,10 +214,30 @@ public class AddPropiedadController {
 		}
 		
 		Coordinate localizacion = new Coordinate(punto.getLat(), punto.getLon());
+		restartMapa();
 		
 		view.getMapa().addMapMarker(new MapMarkerDot(localizacion));
 		view.getMapa().setDisplayPosition(localizacion, 15);
+		
+		currentPropiedad.setLat(punto.getLat());
+		currentPropiedad.setLon(punto.getLon());
+		
+	}
 	
+	private void actualizaMapaConCoord() {
+		restartMapa();
+		
+		Coordinate localizacion = new Coordinate(currentPropiedad.getLat(), currentPropiedad.getLon());
+		
+		view.getMapa().addMapMarker(new MapMarkerDot(localizacion));
+		view.getMapa().setDisplayPosition(localizacion, 15);
+		
+	}
+	
+	private void restartMapa() {
+		
+		view.getMapa().removeAllMapMarkers();
+		view.getMapa().setDisplayPosition(centerOfMap, 3);
 	}
 	
 	private void cambiaLocalidades() {
@@ -221,15 +248,7 @@ public class AddPropiedadController {
 		localidadCombo.setSelected(localidades.get(0));
 		
 	}
-	
-	private void agregaLocalidad() {
-		String nombreLoc = JOptionPane.showInputDialog(this.view, "Ingrese nombre de la nueva localidad: ", "Nueva localidad", JOptionPane.INFORMATION_MESSAGE);
-		
-		localidadService.addNewLocalidad(nombreLoc, provCombo.getSelected());
-		
-		cambiaLocalidades();
-	}
-	
+
 	private void savePropiedad() {
 		
 		binder.fillBean();
@@ -247,6 +266,9 @@ public class AddPropiedadController {
 		binder.setObjective(currentPropiedad);
 		binder.fillFields();
 		
+		setEnabled(true);
+		restartMapa();
+		
 		view.getTfPropietario().setText("");
 	}
 
@@ -256,12 +278,14 @@ public class AddPropiedadController {
 
 		currentPropiedad = propiedad;
 		binder.setObjective(currentPropiedad);
+		setEnabled(false);
+		actualizaMapaConCoord();
 		binder.fillFields();
 	}
 
 	public void showView(){
 			
-			view.setVisible(true);
+		view.setVisible(true);
 	}
 	
 	public void setEnabled(boolean bool){
@@ -273,14 +297,19 @@ public class AddPropiedadController {
 		view.getTfEntrecalles().setEditable(bool);
 		view.getTfPiso().setEditable(bool);
 		view.getTfDepto().setEditable(bool);
-		view.getTfPropietario().setEditable(bool);
 		view.getTaDescPubl().setEditable(bool);
 		view.getTaDescPriv().setEditable(bool);
 		view.getBtnGuardar().setVisible(bool);
 		view.getBtnCancelar().setVisible(bool);
 		view.getBtnLupita().setVisible(bool);
-		view.getBttAddLoc().setVisible(bool);
 		view.getBtnVerHistorial().setVisible(!bool);	
+		view.getBtnActualizar().setVisible(bool);
+		view.getBotonLupitaInmobiliaria().setVisible(bool);
+		
+		view.getComboLocalidad().setEnabled(bool);
+		view.getComboMoneda().setEnabled(bool);
+		view.getComboProvincia().setEnabled(bool);
+		view.getComboTipoOfre().setEnabled(bool);
 	}
 
 }

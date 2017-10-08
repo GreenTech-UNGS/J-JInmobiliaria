@@ -45,7 +45,6 @@ public class AgregarPropiedad extends JDialog{
 	private JButton btnGuardar;
 	private JButton btnCancelar;
 	private JComboBox<String> comboLocalidad;
-	private JButton bttAddLoc;
 	private JTextField tfPropietario;
 	private JButton btnLupita;
 	private JButton btnVerHistorial;
@@ -252,12 +251,8 @@ public class AgregarPropiedad extends JDialog{
 		
 		comboLocalidad = new JComboBox<>();
 		comboLocalidad.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		comboLocalidad.setBounds(396, 231, 102, 20);
+		comboLocalidad.setBounds(395, 231, 149, 20);
 		AgregarPropiedad.add(comboLocalidad);
-		
-		bttAddLoc = new JButton("+");
-		bttAddLoc.setBounds(503, 230, 41, 23);
-		AgregarPropiedad.add(bttAddLoc);
 		
 		tfPropietario = new JTextField();
 		tfPropietario.setEditable(false);
@@ -369,11 +364,7 @@ public class AgregarPropiedad extends JDialog{
 	public JComboBox<String> getComboLocalidad() {
 		return comboLocalidad;
 	}
-
-	public JButton getBttAddLoc() {
-		return bttAddLoc;
-	}
-
+	
 	public JButton getBtnLupita() {
 		return btnLupita;
 	}
@@ -465,7 +456,4 @@ public class AgregarPropiedad extends JDialog{
 		this.comboLocalidad = comboLocalidad;
 	}
 
-	public void setBttAddLoc(JButton bttAddLoc) {
-		this.bttAddLoc = bttAddLoc;
-	}
 }

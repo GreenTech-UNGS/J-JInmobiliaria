@@ -21,7 +21,6 @@ public class LocalizationDaoGoogleMaps implements LocalizationDao{
 	@Override
 	public MapPoint getLocationOf(String location) {
 
-		System.out.println(location);
 		String encodedLocation = "";
 		try {
 			encodedLocation = URLEncoder.encode(location, "UTF-8");
@@ -84,16 +83,6 @@ public class LocalizationDaoGoogleMaps implements LocalizationDao{
 	  return null;
 		
 	}
-	
-	//public String parse(String jsonLine) {
-	    /*JsonElement jelement = new JsonParser().parse(jsonLine);
-	    JsonObject  jobject = jelement.getAsJsonObject();
-	    jobject = jobject.getAsJsonObject("data");
-	    JsonArray jarray = jobject.getAsJsonArray("translations");
-	    jobject = jarray.get(0).getAsJsonObject();
-	    String result = jobject.get("translatedText").toString();
-	    return result;*/
-	//}
 
 
 		   
