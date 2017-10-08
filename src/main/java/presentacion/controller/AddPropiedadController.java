@@ -12,6 +12,7 @@ import org.openstreetmap.gui.jmapviewer.interfaces.ICoordinate;
 
 import com.google.inject.Inject;
 
+import entities.Inmobiliaria;
 import entities.Localidad;
 import entities.Moneda;
 import entities.Propiedad;
@@ -45,6 +46,7 @@ public class AddPropiedadController {
 	private ElegirPropietarioController elegirPropController;
 	private HistorialPropiedadController historialPropController;
 	private LocalizationService localizationService;
+	private EligeInmobiliariaController eligeInmobiliaria;
 		
 	Propiedad currentPropiedad;
 	Propietario currentPropietario;
@@ -59,7 +61,8 @@ public class AddPropiedadController {
 									LocalidadService localidadService,
 									ElegirPropietarioController elegirPropController,
 									HistorialPropiedadController historialPropController,
-									LocalizationService localizationService){
+									LocalizationService localizationService,
+									EligeInmobiliariaController eligeInmobiliaria){
 		
 		this.view = view;
 		this.propiedadValidator = propiedadValidator;
@@ -70,6 +73,7 @@ public class AddPropiedadController {
 		this.elegirPropController = elegirPropController;
 		this.historialPropController = historialPropController;
 		this.localizationService = localizationService;
+		this.eligeInmobiliaria = eligeInmobiliaria;
 		
 		this.provCombo = new ProvinciaComboBoxModel();
 		this.monedaCombo = new MonedaComboBoxModel();
@@ -89,10 +93,11 @@ public class AddPropiedadController {
 		view.getBtnCancelar().addActionListener(e -> view.setVisible(false));
 		view.getBtnVerHistorial().addActionListener(e -> this.historialPropController.showView());
 		view.getBtnActualizar().addActionListener(e -> actualizaMapa());
+		view.getBotonLupitaInmobiliaria().addActionListener(e -> eligeInmobiliaria());
 		
 		
 	}
-	
+
 	private void initBinder() {
 		binder.bind("identificador",
 				view.getTfIdentificador()::getText,
@@ -147,6 +152,22 @@ public class AddPropiedadController {
 			view.getTfPropietario().setText(currentPropietario.getPersona().getTipoCred() + " " +currentPropietario.getPersona().getCredencial());
 		}
 	}
+	
+	private void eligeInmobiliaria() {
+		
+		this.eligeInmobiliaria.showView();
+		
+		Inmobiliaria selected = this.eligeInmobiliaria.getInmobiliaria();
+		
+		if(selected == null)
+			return;
+		
+		currentPropiedad.setInmobiliaria(selected);
+		
+		this.view.getTfInmobiliaria().setText(selected.getCUIT());
+				
+	}
+
 
 	private void fillCombos() {
 		

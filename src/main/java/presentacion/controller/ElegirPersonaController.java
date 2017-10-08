@@ -30,6 +30,7 @@ public class ElegirPersonaController {
 		view.getTablePersonas().setModel(personaTable);
 		view.getTablePersonas().setColumnModel(personaTable.getTableColumnModel());
 		view.getTablePersonas().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		view.getTablePersonas().getTableHeader().setReorderingAllowed(false);
 		
 		fillTable();
 		
