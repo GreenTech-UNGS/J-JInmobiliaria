@@ -31,6 +31,8 @@ public class AddContVenController {
 		view.getBtnCancelarContVen().addActionListener(e -> view.setVisible(false));
 		view.getBtnBuscarCliente().addActionListener(e -> elegirCliente());
 		view.getBtnBuscarPropiedad().addActionListener(e -> elegirPropiedad());
+		view.getBtnGuardarContVen().addActionListener(e -> guardarContrato());
+		
 	}
 	
 	public void showView(){
@@ -44,9 +46,10 @@ public class AddContVenController {
 		Cliente cliente = elegirCliente.getCliente();
 		if (cliente != null){
 			view.getTfCliente().setText("DNI " + cliente.getPersona().getCredencial());
+			currentContrato.setCliente(cliente);
 			}
 		}
-	
+
 	private void elegirPropiedad(){
 		
 		elegirProp.showView();
@@ -64,10 +67,15 @@ public class AddContVenController {
 	public void guardarContrato(){
 		
 		//falta validador
+		if(!view.getTfIdContrato().getText().equals("")){
+			currentContrato.setIdentificador(view.getTfIdContrato().getText());
+			//esto lo haría el validador supongo
+		}
 		contratoService.SaveContratoVenta(currentContrato);
 	}
 	
 	public void setModeNew(){
 		currentContrato = contratoService.getNewContratoVenta();
 	}
+	
 }

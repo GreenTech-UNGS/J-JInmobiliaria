@@ -10,10 +10,12 @@ import com.google.inject.Inject;
 import entities.EstadoCuota;
 import entities.Propiedad;
 import model.ClienteService;
+import model.ContratoService;
 import model.CuotaService;
 import model.PropiedadService;
 import model.PropietarioService;
 import presentacion.table.ClientesTableModel;
+import presentacion.table.ContratosTableModel;
 import presentacion.table.CuotasTableModel;
 
 import presentacion.table.PropiedadesTableModel;
@@ -27,6 +29,7 @@ public class MainViewController {
 	private PropiedadesTableModel tableModelProp;
 	private PropietariosTableModel propietariosTable;
 	private CuotasTableModel cuotasTable;
+	private ContratosTableModel contratosTable;
 	
 	private ClientesTableModel tableModelClien;
 	AddContAlqController contratoAlqController;
@@ -39,6 +42,7 @@ public class MainViewController {
 
 	PropiedadService propiedadService;
 	ClienteService clienteService;
+	ContratoService contratoService;
 	PropietarioService propietarioService;
 	CuotaService cuotaService;
 	
@@ -54,7 +58,9 @@ public class MainViewController {
 			ClienteService clienteService,
 			PropiedadesTableModel tableModelprop,
 			PropietarioService propietarioService,
-			CuotaService cuotaService){
+			CuotaService cuotaService,
+			ContratosTableModel contratosTable,
+			ContratoService contratoService){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
@@ -70,6 +76,8 @@ public class MainViewController {
 		this.clienteService = clienteService;
 		this.propietarioService = propietarioService;
 		this.cuotaService = cuotaService;
+		this.contratosTable = contratosTable;
+		this.contratoService = contratoService;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
@@ -82,6 +90,7 @@ public class MainViewController {
 		fillTablePropietarios();
 		fillTableCuotas();
 		fillTableProp();
+		fillTableContratos();
 		selectDetalleProp();
 	}
 
@@ -94,6 +103,16 @@ public class MainViewController {
 		
 		this.view.getTableClientes().setColumnModel(tableModelClien.getTableColumnModel());
 		this.view.getTableClientes().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTableContratos() {
+		
+		this.contratosTable.clean();
+		this.view.getTablaContratoVenta().setModel(contratosTable);
+		contratosTable.actualizeRows(contratoService.getAll());
+		
+		this.view.getTablaContratoVenta().setColumnModel(contratosTable.getTableColumnModel());
+		this.view.getTablaContratoVenta().getTableHeader().setReorderingAllowed(false);
 	}
 	
 	private void fillTablePropietarios() {

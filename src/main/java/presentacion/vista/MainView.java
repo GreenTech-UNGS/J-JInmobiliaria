@@ -54,6 +54,7 @@ public class MainView {
     private JTable tableCuotas;
     
     private JCalendar jCalendar;
+    private JTable tablaContratoVenta;
 
     @Inject
     public MainView() {
@@ -100,6 +101,9 @@ public class MainView {
         
         JScrollPane scrollPane_5 = new JScrollPane();
         contratoVenta.add(scrollPane_5);
+        
+        tablaContratoVenta = new JTable();
+        scrollPane_5.setColumnHeaderView(tablaContratoVenta);
 
         this.btnAgregarContratoVen = new JButton("Agregar contrato de venta");
         btnAgregarContratoVen.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -422,4 +426,15 @@ public class MainView {
     public JTable getTableCuotas() {
         return tableCuotas;
     }
+
+
+	public JTable getTablaContratoVenta() {
+		return tablaContratoVenta;
+	}
+
+
+	public void setTablaContratoVenta(JTable tablaContratoVenta) {
+		this.tablaContratoVenta = tablaContratoVenta;
+	}
+    
 }

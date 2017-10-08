@@ -1,6 +1,7 @@
 package model;
 
 import java.time.YearMonth;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.EnumType;
@@ -13,6 +14,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.AvisoNotificacion;
+import entities.Cliente;
 import entities.Contrato;
 import entities.ContratoAlquiler;
 import entities.ContratoVenta;
@@ -147,6 +149,12 @@ public class ContratoService {
 		ContratoVenta toRet = new ContratoVenta();
 
 		return toRet;
+	}
+	
+	public List<Contrato> getAll(){
+		return contratoDao.getAll();
+		
+		//esto va a devolver todos los contratos, hay que cambiarlo
 	}
 	
 }
