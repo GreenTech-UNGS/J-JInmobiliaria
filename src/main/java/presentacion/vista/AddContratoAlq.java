@@ -160,7 +160,7 @@ public class AddContratoAlq extends JDialog {
 		
 		tfDniInquilino = new JTextField();
 		tfDniInquilino.setEditable(false);
-		tfDniInquilino.setBounds(430, 48, 120, 17);
+		tfDniInquilino.setBounds(430, 48, 128, 17);
 		agregarContrato.add(tfDniInquilino);
 		tfDniInquilino.setColumns(10);
 		
@@ -214,8 +214,9 @@ public class AddContratoAlq extends JDialog {
 		textGarantia.setBounds(430, 75, 166, 38);
 		agregarContrato.add(textGarantia);
 		
-		btnLupaCliente = new JButton("L");
-		btnLupaCliente.setBounds(561, 48, 35, 16);
+		btnLupaCliente = new JButton("");
+		btnLupaCliente.setBounds(560, 48, 35, 23);
+		btnLupaCliente.setIcon(new ImageIcon(imgLup));
 		agregarContrato.add(btnLupaCliente);
 		
 		spinnerGastosAdmin = new JSpinner();

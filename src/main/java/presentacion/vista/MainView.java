@@ -96,16 +96,26 @@ public class MainView {
 
         JPanel contratoVenta = new JPanel();
         PanelTablas.addTab("Contratos de venta", null, contratoVenta, null);
+        contratoVenta.setLayout(new BoxLayout(contratoVenta, BoxLayout.Y_AXIS));
+        
+        JScrollPane scrollPane_5 = new JScrollPane();
+        contratoVenta.add(scrollPane_5);
 
         this.btnAgregarContratoVen = new JButton("Agregar contrato de venta");
+        btnAgregarContratoVen.setAlignmentX(Component.CENTER_ALIGNMENT);
         contratoVenta.add(btnAgregarContratoVen);
-
-        btnAgregarContratoAlq = new JButton("Agregar contrato de aquiler");
-        btnAgregarContratoAlq.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-        contratoAlquiler.add(btnAgregarContratoAlq);
+        contratoAlquiler.setLayout(new BoxLayout(contratoAlquiler, BoxLayout.Y_AXIS));
+        
+        JScrollPane scrollPane_4 = new JScrollPane();
+        contratoAlquiler.add(scrollPane_4);
+        
+                btnAgregarContratoAlq = new JButton("Agregar contrato de aquiler");
+                btnAgregarContratoAlq.setAlignmentX(Component.CENTER_ALIGNMENT);
+                btnAgregarContratoAlq.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                    }
+                });
+                contratoAlquiler.add(btnAgregarContratoAlq);
 
         JPanel panelInquilinos = new JPanel();
         panelContainer.add(panelInquilinos, "name_1084846370736461");
@@ -412,6 +422,4 @@ public class MainView {
     public JTable getTableCuotas() {
         return tableCuotas;
     }
-
-
 }

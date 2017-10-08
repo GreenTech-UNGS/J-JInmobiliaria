@@ -35,7 +35,7 @@ public class AddContratoVen extends JDialog{
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setModal(true);
-		setSize(new Dimension(528, 419));
+		setSize(new Dimension(489, 419));
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
@@ -57,12 +57,12 @@ public class AddContratoVen extends JDialog{
 		
 		JLabel lblPrecio = new JLabel("Precio:");
 		lblPrecio.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPrecio.setBounds(324, 69, 45, 14);
+		lblPrecio.setBounds(287, 69, 45, 14);
 		getContentPane().add(lblPrecio);
 		
 		JLabel lblMoneda = new JLabel("Moneda:");
 		lblMoneda.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblMoneda.setBounds(324, 94, 46, 14);
+		lblMoneda.setBounds(287, 94, 46, 14);
 		getContentPane().add(lblMoneda);
 		
 		JLabel lblPjeAdm = new JLabel("Porcentaje gastos administrativos:");
@@ -81,7 +81,7 @@ public class AddContratoVen extends JDialog{
 		getContentPane().add(lblDatosGenerales);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(27, 55, 468, 3);
+		separator.setBounds(27, 56, 432, 2);
 		getContentPane().add(separator);
 		
 		tfIdContrato = new JTextField();
@@ -103,7 +103,7 @@ public class AddContratoVen extends JDialog{
 		
 		tfPrecio = new JTextField();
 		tfPrecio.setColumns(10);
-		tfPrecio.setBounds(368, 66, 127, 20);
+		tfPrecio.setBounds(332, 66, 127, 20);
 		getContentPane().add(tfPrecio);
 		tfPrecio.setEditable(false);
 		
@@ -113,22 +113,22 @@ public class AddContratoVen extends JDialog{
 		getContentPane().add(lblOtrosDatos);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(27, 203, 468, 2);
+		separator_1.setBounds(27, 203, 432, 2);
 		getContentPane().add(separator_1);
 		
 		tfGarantia = new JTextField();
 		tfGarantia.setColumns(10);
-		tfGarantia.setBounds(118, 213, 377, 20);
+		tfGarantia.setBounds(118, 213, 341, 20);
 		getContentPane().add(tfGarantia);
 		
 		this.btnGuardarContVen = new JButton("Guardar");
 		btnGuardarContVen.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnGuardarContVen.setBounds(145, 299, 113, 36);
+		btnGuardarContVen.setBounds(118, 299, 113, 36);
 		getContentPane().add(btnGuardarContVen);
 		
 		this.btnCancelarContVen = new JButton("Cancelar");
 		btnCancelarContVen.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnCancelarContVen.setBounds(287, 299, 113, 36);
+		btnCancelarContVen.setBounds(256, 299, 113, 36);
 		getContentPane().add(btnCancelarContVen);
 		
 		JSpinner spinnerPorcentaje = new JSpinner();
@@ -147,7 +147,7 @@ public class AddContratoVen extends JDialog{
 		getContentPane().add(btnBuscarCliente);
 		
 		tfMoneda = new JTextField();
-		tfMoneda.setBounds(368, 91, 127, 20);
+		tfMoneda.setBounds(332, 91, 127, 20);
 		getContentPane().add(tfMoneda);
 		tfMoneda.setColumns(10);
 		tfMoneda.setEditable(false);

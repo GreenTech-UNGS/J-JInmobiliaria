@@ -30,6 +30,7 @@ public class ElegirPropiedadController {
 
 		view.getBtnAceptar().addActionListener(e -> view.setVisible(false));
 		fillTableProp();
+		fillTablePropVenta();
 		
 	}
 	private void fillTableProp() {
@@ -38,8 +39,14 @@ public class ElegirPropiedadController {
 		this.tableModelPropiedad.clean();
 		tableModelPropiedad.actualizeRows(propiedadService.getAlquilerBy(EstadoProp.DISPONIBLE));
 	}
+	
+	private void fillTablePropVenta(){
+		this.tableModelPropiedad.clean();
+		tableModelPropiedad.actualizeRows(propiedadService.getVentaBy(EstadoProp.DISPONIBLE));
+	}
 	public void showView(){
 		fillTableProp();
+		fillTablePropVenta();
 		view.setVisible(true);
 	}
 	

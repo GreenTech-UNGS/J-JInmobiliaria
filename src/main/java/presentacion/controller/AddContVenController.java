@@ -42,7 +42,9 @@ public class AddContVenController {
 		
 		elegirCliente.showView();
 		Cliente cliente = elegirCliente.getCliente();
-		view.getTfCliente().setText(cliente.getPersona().getCredencial());
+		if (cliente != null){
+			view.getTfCliente().setText("DNI " + cliente.getPersona().getCredencial());
+			}
 		}
 	
 	private void elegirPropiedad(){
