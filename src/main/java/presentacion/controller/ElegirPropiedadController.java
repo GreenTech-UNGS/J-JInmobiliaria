@@ -44,10 +44,12 @@ public class ElegirPropiedadController {
 		this.tableModelPropiedad.clean();
 		tableModelPropiedad.actualizeRows(propiedadService.getVentaBy(EstadoProp.DISPONIBLE));
 	}
+
 	public void showViewVenta(){
 		fillTablePropVenta();
 		view.setVisible(true);
 	}
+
 	public void showViewProp(){
 		fillTableProp();
 		view.setVisible(true);

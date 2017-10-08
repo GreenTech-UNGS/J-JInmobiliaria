@@ -201,7 +201,7 @@ public class AddPropiedadController {
 		Localidad localidad = localidadCombo.getSelected();
 		
 		if(calle == null || altura == null || localidad == null || localidad.getNombre() == null) {
-			JOptionPane.showMessageDialog(view, "No se puede actualizar el mapa, faltan datos de ubcación", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(view, "No se puede actualizar el mapa, faltan datos de ubcaciï¿½n", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 			
@@ -209,7 +209,7 @@ public class AddPropiedadController {
 		MapPoint punto = localizationService.getLocalizationOf(calle, altura, localidad);
 	
 		if(punto == null) {
-			JOptionPane.showMessageDialog(view, "No se encontro la ubicación", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(view, "No se encontro la ubicaciï¿½n", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		
