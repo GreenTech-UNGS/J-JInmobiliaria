@@ -170,20 +170,15 @@ public class ContratoService {
 	}
 	
 
-	public List<Contrato> getContratosVenta(){
+	public List<ContratoVenta> getContratosVenta(){
 		
-		List<Contrato> allContratos = getAll();
-
-		List<Contrato> toRet = allContratos.stream().filter(p -> p.getClass().equals(ContratoVenta.class)).collect(Collectors.toList());
-		return toRet;
+		return contratoDao.getAllVenta();
 		
 	}
 	
-	public List<Contrato> getContratosAlquiler(){
+	public List<ContratoAlquiler> getContratosAlquiler(){
 		
-		List<Contrato> allContratos = getAll();
-		List<Contrato> toRet = allContratos.stream().filter(p -> p.getClass().equals(ContratoAlquiler.class)).collect(Collectors.toList());
-		return toRet;
+		return contratoDao.getAllAlquiler();
 	}
 	
 }
