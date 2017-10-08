@@ -156,15 +156,13 @@ public class ContratoService {
 	
 	public List<Contrato> getAll(){
 		return contratoDao.getAll();
-		
-		//esto va a devolver todos los contratos, hay que cambiarlo
 	}
+	
 	public List<Contrato> getContratosVenta(){
 		
 		List<Contrato> allContratos = getAll();
 
 		List<Contrato> toRet = allContratos.stream().filter(p -> p.getClass().equals(ContratoVenta.class)).collect(Collectors.toList());
-		System.out.println(toRet);
 		return toRet;
 		
 	}

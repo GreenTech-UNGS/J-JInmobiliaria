@@ -82,7 +82,7 @@ public class MainViewController {
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
-		this.view.getBtnReservarPropiedad().addActionListener(e -> agregarReserva());
+//		this.view.getBtnReservarPropiedad().addActionListener(e -> agregarReserva());
 		this.view.getBtnContratoAlq().addActionListener(e -> agregarContratoAlq());
 		this.view.getBtnContratoVen().addActionListener(e -> agregarContratoVen());
 		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());
@@ -112,8 +112,6 @@ public class MainViewController {
 		this.contratosTable.clean();
 		this.view.getTablaContratoVenta().setModel(contratosTable);
 		contratosTable.actualizeRows(contratoService.getContratosVenta());
-		System.out.println("prueba" + contratoService.getContratosVenta());
-	//	contratoService.getContratosVenta().forEach( p -> contratosTable.addRow(p));
 		
 		this.view.getTablaContratoVenta().setColumnModel(contratosTable.getTableColumnModel());
 		this.view.getTablaContratoVenta().getTableHeader().setReorderingAllowed(false);
@@ -124,7 +122,6 @@ public class MainViewController {
 		this.contratosTable2.clean();
 		this.view.getTablaContratoAlquiler().setModel(contratosTable2);
 		contratosTable2.actualizeRows(contratoService.getContratosAlquiler());
-	//	contratoService.getContratosAlquiler().forEach(p -> contratosTable2.addRow(p));
 		
 		this.view.getTablaContratoAlquiler().setColumnModel(contratosTable.getTableColumnModel());
 		this.view.getTablaContratoAlquiler().getTableHeader().setReorderingAllowed(false);

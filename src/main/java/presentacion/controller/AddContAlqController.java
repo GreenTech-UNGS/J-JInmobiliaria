@@ -149,7 +149,7 @@ public class AddContAlqController {
 	}
 	
 	private void seleccionaPropiedad() {
-		elegirPropiedadController.showView();
+		elegirPropiedadController.showViewProp();
 		Propiedad propiedad = elegirPropiedadController.getPropiedad();
 		
 		if(propiedad != null) {

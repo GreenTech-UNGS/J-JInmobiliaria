@@ -19,7 +19,7 @@ public class ElegirPropiedadController {
 	@Inject
 	private ElegirPropiedadController(ElegirPropiedadView view,
 			PropiedadService clienteServcie,
-			PropiedadesTableModel tableModelPropiedad){
+			PropiedadesTableModel tableModelPropiedad, PropiedadesTableModel tableModelPropiedad2){
 		
 		this.view = view;
 		this.propiedadService = clienteServcie;
@@ -44,9 +44,12 @@ public class ElegirPropiedadController {
 		this.tableModelPropiedad.clean();
 		tableModelPropiedad.actualizeRows(propiedadService.getVentaBy(EstadoProp.DISPONIBLE));
 	}
-	public void showView(){
-		fillTableProp();
+	public void showViewVenta(){
 		fillTablePropVenta();
+		view.setVisible(true);
+	}
+	public void showViewProp(){
+		fillTableProp();
 		view.setVisible(true);
 	}
 	

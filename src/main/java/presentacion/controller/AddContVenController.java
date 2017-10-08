@@ -52,7 +52,7 @@ public class AddContVenController {
 
 	private void elegirPropiedad(){
 		
-		elegirProp.showView();
+		elegirProp.showViewVenta();
 		Propiedad propiedad = elegirProp.getPropiedad();
 		
 		if(propiedad != null) {

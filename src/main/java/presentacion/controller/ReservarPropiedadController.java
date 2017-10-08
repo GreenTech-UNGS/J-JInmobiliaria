@@ -70,7 +70,7 @@ public class ReservarPropiedadController {
     }
 
     private void selectPropiedad() {
-        this.propiedadController.showView();
+        this.propiedadController.showViewVenta();
         Propiedad propiedad = propiedadController.getPropiedad();
 
         if(propiedad != null){
