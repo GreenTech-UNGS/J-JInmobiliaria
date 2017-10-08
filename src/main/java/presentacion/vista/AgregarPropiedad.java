@@ -23,7 +23,7 @@ import java.awt.Image;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-//import org.openstreetmap.gui.jmapviewer.JMapViewer;
+import org.openstreetmap.gui.jmapviewer.JMapViewer;
 
 @SuppressWarnings("serial")
 public class AgregarPropiedad extends JDialog{
@@ -284,9 +284,6 @@ public class AgregarPropiedad extends JDialog{
 		btnActualizar.setBounds(442, 307, 102, 23);
 		AgregarPropiedad.add(btnActualizar);
 		btnVerHistorial.setVisible(false);
-//		JMapViewer mapViewer = new JMapViewer();
-//		mapViewer.setBounds(251, 259, 267, 129);
-//		AgregarPropiedad.add(mapViewer);
 	}
 
 	public JButton getBtnActualizar() {

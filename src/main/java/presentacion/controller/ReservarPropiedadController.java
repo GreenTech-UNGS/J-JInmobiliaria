@@ -13,7 +13,6 @@ import presentacion.combo.ClienteComboBoxModel;
 import presentacion.combo.PropiedadComboBoxModel;
 import presentacion.vista.ElegirCliente;
 import presentacion.vista.ReservarPropiedadView;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Date;
 import java.util.List;
