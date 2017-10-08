@@ -11,7 +11,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
+@SuppressWarnings("serial")
+@Singleton
 public class ElegirInmobiliaria extends JDialog {
 	private JTable table;
 	private JButton btnAceptar;

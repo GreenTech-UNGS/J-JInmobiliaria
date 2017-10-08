@@ -13,9 +13,12 @@ import com.google.inject.Inject;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 
 @SuppressWarnings("serial")
 public class HistorialPropiedadView extends JDialog {
+	private JTable table;
+	private JButton btnAceptar;
 	
 	@Inject
 	private HistorialPropiedadView(){
@@ -33,15 +36,34 @@ public class HistorialPropiedadView extends JDialog {
 		getContentPane().add(panel);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
-		JScrollPane scrollPane = new JScrollPane();
+		table = new JTable();
+		JScrollPane scrollPane = new JScrollPane(table);
 		panel.add(scrollPane);
 		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
 		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
 		
-		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar = new JButton("Aceptar");
 		panel_1.add(btnAceptar);
 	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
+	public JButton getBtnAceptar() {
+		return btnAceptar;
+	}
+
+	public void setBtnAceptar(JButton btnAceptar) {
+		this.btnAceptar = btnAceptar;
+	}
+	
+	
 
 }

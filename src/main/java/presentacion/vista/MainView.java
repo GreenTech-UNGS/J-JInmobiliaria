@@ -100,22 +100,20 @@ public class MainView {
         PanelTablas.addTab("Contratos de venta", null, contratoVenta, null);
         contratoVenta.setLayout(new BoxLayout(contratoVenta, BoxLayout.Y_AXIS));
         
-        JScrollPane scrollPane_5 = new JScrollPane();
-        contratoVenta.add(scrollPane_5);
         
         tablaContratoVenta = new JTable();
-        scrollPane_5.setColumnHeaderView(tablaContratoVenta);
+        JScrollPane scrollPane_5 = new JScrollPane(tablaContratoVenta);
+        contratoVenta.add(scrollPane_5);
 
         this.btnAgregarContratoVen = new JButton("Agregar contrato de venta");
         btnAgregarContratoVen.setAlignmentX(Component.CENTER_ALIGNMENT);
         contratoVenta.add(btnAgregarContratoVen);
         contratoAlquiler.setLayout(new BoxLayout(contratoAlquiler, BoxLayout.Y_AXIS));
         
-        JScrollPane scrollPane_4 = new JScrollPane();
+        tablaContratoAlquiler = new JTable();
+        JScrollPane scrollPane_4 = new JScrollPane(tablaContratoAlquiler);
         contratoAlquiler.add(scrollPane_4);
         
-        tablaContratoAlquiler = new JTable();
-        scrollPane_4.setColumnHeaderView(tablaContratoAlquiler);
         
                 btnAgregarContratoAlq = new JButton("Agregar contrato de aquiler");
                 btnAgregarContratoAlq.setAlignmentX(Component.CENTER_ALIGNMENT);

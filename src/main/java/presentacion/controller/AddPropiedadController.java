@@ -92,7 +92,7 @@ public class AddPropiedadController {
 		view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
 		view.getBtnLupita().addActionListener(e -> selectPropietario());
 		view.getBtnCancelar().addActionListener(e -> view.setVisible(false));
-		view.getBtnVerHistorial().addActionListener(e -> this.historialPropController.showView());
+		view.getBtnVerHistorial().addActionListener(e -> this.historialPropController.showView(currentPropiedad));
 		view.getBtnActualizar().addActionListener(e -> actualizaMapa());
 		view.getBtnInmobiliaria().addActionListener(e -> selectInmobiliaria());
 		
@@ -277,7 +277,8 @@ public class AddPropiedadController {
 		view.getBtnCancelar().setVisible(bool);
 		view.getBtnLupita().setVisible(bool);
 		view.getBttAddLoc().setVisible(bool);
-		view.getBtnVerHistorial().setVisible(!bool);	
+		view.getBtnVerHistorial().setVisible(!bool);
+		view.getBtnInmobiliaria().setVisible(bool);
 	}
 
 }

@@ -27,8 +27,19 @@ public class InmobiliariaDaoHibernate extends DaoHibernate<Inmobiliaria> impleme
 		Criteria q = sesion.createCriteria(Inmobiliaria.class);
 		
 		finishTransaction();
-		
 		return q.list();
+	}
+
+	@Override
+	public void save(Inmobiliaria t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remove(Inmobiliaria t) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

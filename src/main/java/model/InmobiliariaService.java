@@ -14,12 +14,14 @@ public class InmobiliariaService {
 	InmobiliariaDao inmobiliariaDao;
 	
 	@Inject
-	InmobiliariaService(InmobiliariaDao inmobiliariaDao){
+	private InmobiliariaService(InmobiliariaDao inmobiliariaDao){
 		this.inmobiliariaDao = inmobiliariaDao;
 	}
 	
 	public List<Inmobiliaria> getAll(){
 		return inmobiliariaDao.getAll();
+	
 	}
+
 
 }
