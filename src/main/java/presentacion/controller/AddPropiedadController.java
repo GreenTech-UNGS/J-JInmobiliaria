@@ -180,6 +180,11 @@ public class AddPropiedadController {
 		
 		MapPoint punto = localizationService.getLocalizationOf(calle, altura, localidad);
 	
+		if(punto == null) {
+			JOptionPane.showMessageDialog(view, "No se encontro la ubicación", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		
 		Coordinate localizacion = new Coordinate(punto.getLat(), punto.getLon());
 		
 		view.getMapa().addMapMarker(new MapMarkerDot(localizacion));

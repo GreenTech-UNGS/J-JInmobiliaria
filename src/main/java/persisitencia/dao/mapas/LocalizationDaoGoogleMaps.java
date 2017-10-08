@@ -10,6 +10,10 @@ import java.io.*;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLPeerUnverifiedException;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 public class LocalizationDaoGoogleMaps implements LocalizationDao{
 
 	private String key = "AIzaSyCQzeyyVflANVpzD511q3C_3iLjnHJ8aFk" ;
@@ -28,87 +32,70 @@ public class LocalizationDaoGoogleMaps implements LocalizationDao{
 				+ encodedLocation + ""
 				+ "&key=" + key;
 		
-		getJson(https_url);
-		return new MapPoint(-34.521423, -58.700954);
+		JsonObject jsonObj = getJson(https_url);
+		
+		String status = jsonObj.getAsJsonPrimitive("status").getAsString();
+		
+		if(!status.equals("OK"))
+			return null;
+		
+		JsonObject jsonLocation = jsonObj.getAsJsonArray("results").get(0).getAsJsonObject().get("geometry").getAsJsonObject().get("location").getAsJsonObject();
+		
+		double lat = jsonLocation.getAsJsonPrimitive("lat").getAsDouble();
+		double lon = jsonLocation.getAsJsonPrimitive("lng").getAsDouble();
+		
+		return new MapPoint(lat, lon);
+	
 		
 	}
 
-	private void getJson(String https_url_encoded) {
+	private JsonObject getJson(String https_url_encoded) {
 	   URL url;
 	   try {
-	     url = new URL(https_url_encoded);
+	    url = new URL(https_url_encoded);
 	     
-	     HttpsURLConnection con = (HttpsURLConnection)url.openConnection();
-
-	     //dumpl all cert info
-	     print_https_cert(con);
-	
-	     //dump all the content
-	     print_content(con);
+	    HttpsURLConnection con = (HttpsURLConnection)url.openConnection();
+	    
+		BufferedReader br =
+				new BufferedReader(
+						new InputStreamReader(con.getInputStream()));
+		
+		String json = "";
+		
+		while (true){
+			String input = br.readLine();
+			if(input == null)
+				break;
+			json += input;
+		}
+		
+		br.close();
+				   
+		
+		JsonObject jsonObj = new JsonParser().parse(json).getAsJsonObject();
+		
+		return jsonObj;
 	
 	  } catch (MalformedURLException e) {
 	     e.printStackTrace();
 	  } catch (IOException e) {
 	     e.printStackTrace();
 	  }
+	  return null;
 		
 	}
+	
+	//public String parse(String jsonLine) {
+	    /*JsonElement jelement = new JsonParser().parse(jsonLine);
+	    JsonObject  jobject = jelement.getAsJsonObject();
+	    jobject = jobject.getAsJsonObject("data");
+	    JsonArray jarray = jobject.getAsJsonArray("translations");
+	    jobject = jarray.get(0).getAsJsonObject();
+	    String result = jobject.get("translatedText").toString();
+	    return result;*/
+	//}
 
-		   private void print_https_cert(HttpsURLConnection con){
 
-		    if(con!=null){
-
-		      try {
-
-			System.out.println("Response Code : " + con.getResponseCode());
-			System.out.println("Cipher Suite : " + con.getCipherSuite());
-			System.out.println("\n");
-
-			Certificate[] certs = con.getServerCertificates();
-			for(Certificate cert : certs){
-			   System.out.println("Cert Type : " + cert.getType());
-			   System.out.println("Cert Hash Code : " + cert.hashCode());
-			   System.out.println("Cert Public Key Algorithm : "
-		                                    + cert.getPublicKey().getAlgorithm());
-			   System.out.println("Cert Public Key Format : "
-		                                    + cert.getPublicKey().getFormat());
-			   System.out.println("\n");
-			}
-
-			} catch (SSLPeerUnverifiedException e) {
-				e.printStackTrace();
-			} catch (IOException e){
-				e.printStackTrace();
-			}
-
-		     }
-
-		   }
-
-		   private void print_content(HttpsURLConnection con){
-			if(con!=null){
-
-			try {
-
-			   System.out.println("****** Content of the URL ********");
-			   BufferedReader br =
-				new BufferedReader(
-					new InputStreamReader(con.getInputStream()));
-
-			   String input;
-
-			   while ((input = br.readLine()) != null){
-			      System.out.println(input);
-			   }
-			   br.close();
-
-			} catch (IOException e) {
-			   e.printStackTrace();
-			}
-
-		       }
-
-		   }
 		   
 		   
 	
