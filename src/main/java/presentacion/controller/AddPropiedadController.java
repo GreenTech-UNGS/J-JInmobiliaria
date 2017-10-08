@@ -98,18 +98,10 @@ public class AddPropiedadController {
 		view.getBtnCancelar().addActionListener(e -> view.setVisible(false));
 		view.getBtnVerHistorial().addActionListener(e -> this.historialPropController.showView(currentPropiedad));
 		view.getBtnActualizar().addActionListener(e -> actualizaMapa());
-<<<<<<< HEAD
-		view.getBtnInmobiliaria().addActionListener(e -> selectInmobiliaria());
-=======
-		view.getBotonLupitaInmobiliaria().addActionListener(e -> eligeInmobiliaria());
->>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
+		view.getBotonLupitaInmobiliaria().addActionListener(e -> selectInmobiliaria());
 		
 		
 	}
-<<<<<<< HEAD
-	
-=======
->>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
 
 	private void initBinder() {
 		binder.bind("identificador",
@@ -166,9 +158,10 @@ public class AddPropiedadController {
 		}
 	}
 	
-<<<<<<< HEAD
+
 	private void selectInmobiliaria() {
 		this.elegirInmobController.showView();
+		
 		Inmobiliaria inmob = elegirInmobController.getInmobiliaria();
 		
 		if(inmob !=null){
@@ -177,23 +170,7 @@ public class AddPropiedadController {
 			
 		}
 	}
-=======
-	private void eligeInmobiliaria() {
-		
-		this.eligeInmobiliaria.showView();
-		
-		Inmobiliaria selected = this.eligeInmobiliaria.getInmobiliaria();
-		
-		if(selected == null)
-			return;
-		
-		currentPropiedad.setInmobiliaria(selected);
-		
-		this.view.getTfInmobiliaria().setText(selected.getCUIT());
-				
-	}
 
->>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
 
 	private void fillCombos() {
 		
@@ -310,8 +287,8 @@ public class AddPropiedadController {
 		
 		view.getTfPropietario().setText(currentPropiedad.getPropietario().getPersona().getTipoCred().toString() + " " +
 										currentPropiedad.getPropietario().getPersona().getCredencial());
-		
-		view.getTfInmobiliaria().setText(currentPropiedad.getInmobiliaria().getCUIT());
+		if(currentPropiedad.getInmobiliaria()!=null){
+			view.getTfInmobiliaria().setText(currentPropiedad.getInmobiliaria().getCUIT());};
 	}
 
 	public void showView(){
@@ -333,11 +310,7 @@ public class AddPropiedadController {
 		view.getBtnGuardar().setVisible(bool);
 		view.getBtnCancelar().setVisible(bool);
 		view.getBtnLupita().setVisible(bool);
-<<<<<<< HEAD
-		view.getBttAddLoc().setVisible(bool);
 		view.getBtnVerHistorial().setVisible(!bool);
-		view.getBtnInmobiliaria().setVisible(bool);
-=======
 		view.getBtnVerHistorial().setVisible(!bool);	
 		view.getBtnActualizar().setVisible(bool);
 		view.getBotonLupitaInmobiliaria().setVisible(bool);
@@ -346,7 +319,7 @@ public class AddPropiedadController {
 		view.getComboMoneda().setEnabled(bool);
 		view.getComboProvincia().setEnabled(bool);
 		view.getComboTipoOfre().setEnabled(bool);
->>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
+
 	}
 
 }

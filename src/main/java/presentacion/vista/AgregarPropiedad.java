@@ -52,12 +52,9 @@ public class AgregarPropiedad extends JDialog{
 	private JMapViewer mapa;
 	private JButton btnActualizar;
 	private JTextField tfInmobiliaria;
-<<<<<<< HEAD
-	private JButton btnInmobiliaria;
-=======
+
 	private JButton botonLupitaInmobiliaria;
 	private JFormattedTextField tfPrecio;
->>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
 
 	@Inject
 	private AgregarPropiedad() {
@@ -277,18 +274,7 @@ public class AgregarPropiedad extends JDialog{
 		AgregarPropiedad.add(btnActualizar);
 		
 		tfInmobiliaria = new JTextField();
-<<<<<<< HEAD
-		tfInmobiliaria.setBounds(395, 112, 123, 20);
-		AgregarPropiedad.add(tfInmobiliaria);
-		tfInmobiliaria.setColumns(10);
-		tfInmobiliaria.setEditable(false);
-		
-		btnInmobiliaria = new JButton("");
-		btnInmobiliaria.setBounds(522, 108, 22, 23);
-		btnInmobiliaria.setIcon(new ImageIcon(imgLup));
-		AgregarPropiedad.add(btnInmobiliaria);
-		
-=======
+
 		tfInmobiliaria.setEditable(false);
 		tfInmobiliaria.setBounds(395, 115, 123, 20);
 		AgregarPropiedad.add(tfInmobiliaria);
@@ -302,12 +288,8 @@ public class AgregarPropiedad extends JDialog{
 		tfPrecio = new JFormattedTextField(new Float(0));
 		tfPrecio.setBounds(92, 87, 149, 20);
 		AgregarPropiedad.add(tfPrecio);
->>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
-		btnVerHistorial.setVisible(false);
-	}
 
-	public JTextField getTfInmobiliaria() {
-		return tfInmobiliaria;
+		btnVerHistorial.setVisible(false);
 	}
 
 	public JButton getBotonLupitaInmobiliaria() {
@@ -478,12 +460,5 @@ public class AgregarPropiedad extends JDialog{
 		this.tfInmobiliaria = tfInmobiliaria;
 	}
 
-	public JButton getBtnInmobiliaria() {
-		return btnInmobiliaria;
-	}
-
-	public void setBtnInmobiliaria(JButton btnInmobiliaria) {
-		this.btnInmobiliaria = btnInmobiliaria;
-	}
 	
 }
