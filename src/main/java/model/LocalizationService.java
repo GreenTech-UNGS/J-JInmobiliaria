@@ -20,12 +20,14 @@ public class LocalizationService {
 	}
 	
 	public MapPoint getLocalizationOf(String calle, String altura, Localidad localidad) {
-		
-		String loc = calle +
-				" " + altura +
-				", " + localidad.getNombre() +
-				" " + localidad.getProvincia().toString().replaceAll("_", "") +
+
+		String loc = altura +
+				" " + calle +
+				"," + localidad.getNombre() +
+				"," + localidad.getProvincia().toString().replaceAll("_", " ") +
 				" " + "Argentina";
+		
+		loc = loc.replaceAll(" ", "+");
 		
 		return locDao.getLocationOf(loc);
 		

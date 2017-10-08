@@ -3,6 +3,7 @@ package persisitencia.dao.mapas;
 import persistencia.dao.iface.LocalizationDao;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.security.cert.Certificate;
 import java.io.*;
 
@@ -11,36 +12,47 @@ import javax.net.ssl.SSLPeerUnverifiedException;
 
 public class LocalizationDaoGoogleMaps implements LocalizationDao{
 
+	private String key = "AIzaSyCQzeyyVflANVpzD511q3C_3iLjnHJ8aFk" ;
+	
 	@Override
 	public MapPoint getLocationOf(String location) {
 
-		testIt();
+		System.out.println(location);
+		String encodedLocation = "";
+		try {
+			encodedLocation = URLEncoder.encode(location, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		String https_url = "https://maps.googleapis.com/maps/api/geocode/json?address="
+				+ encodedLocation + ""
+				+ "&key=" + key;
+		
+		getJson(https_url);
 		return new MapPoint(-34.521423, -58.700954);
 		
 	}
 
-	   private void testIt(){
+	private void getJson(String https_url_encoded) {
+	   URL url;
+	   try {
+	     url = new URL(https_url_encoded);
+	     
+	     HttpsURLConnection con = (HttpsURLConnection)url.openConnection();
 
-		      String https_url = "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyCQzeyyVflANVpzD511q3C_3iLjnHJ8aFk";
-		      URL url;
-		      try {
-
-			     url = new URL(https_url);
-			     HttpsURLConnection con = (HttpsURLConnection)url.openConnection();
-
-			     //dumpl all cert info
-			     print_https_cert(con);
-
-			     //dump all the content
-			     print_content(con);
-
-		      } catch (MalformedURLException e) {
-			     e.printStackTrace();
-		      } catch (IOException e) {
-			     e.printStackTrace();
-		      }
-
-		   }
+	     //dumpl all cert info
+	     print_https_cert(con);
+	
+	     //dump all the content
+	     print_content(con);
+	
+	  } catch (MalformedURLException e) {
+	     e.printStackTrace();
+	  } catch (IOException e) {
+	     e.printStackTrace();
+	  }
+		
+	}
 
 		   private void print_https_cert(HttpsURLConnection con){
 
