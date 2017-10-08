@@ -130,8 +130,8 @@ public class AddPropiedadController {
 				t -> monedaCombo.setSelected((Moneda)t));
 		
 		binder.bind("precioTentativo.monto",
-				() -> Float.parseFloat(view.getTfPrecio().getText()),
-				t -> view.getTfPrecio().setText(t.toString()));
+				() -> view.getTfPrecio().getValue(),
+				t -> view.getTfPrecio().setValue(t));
 
 		binder.bind("tipoOfrecimiento",
 				tipoOfrCombo::getSelected,
@@ -270,6 +270,7 @@ public class AddPropiedadController {
 		restartMapa();
 		
 		view.getTfPropietario().setText("");
+		view.getTfInmobiliaria().setText("");
 	}
 
 	public void setModeView(Propiedad propiedad) {
@@ -281,6 +282,11 @@ public class AddPropiedadController {
 		setEnabled(false);
 		actualizaMapaConCoord();
 		binder.fillFields();
+		
+		view.getTfPropietario().setText(currentPropiedad.getPropietario().getPersona().getTipoCred().toString() + " " +
+										currentPropiedad.getPropietario().getPersona().getCredencial());
+		
+		view.getTfInmobiliaria().setText(currentPropiedad.getInmobiliaria().getCUIT());
 	}
 
 	public void showView(){

@@ -65,4 +65,5 @@ public class PropiedadValidator implements Validator<Propiedad>{
 				t.getLocalidad().getNombre() == null;
 	}
 	
+	
 }
