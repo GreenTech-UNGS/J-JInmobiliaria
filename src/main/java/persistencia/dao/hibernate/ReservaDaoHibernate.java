@@ -1,11 +1,15 @@
 package persistencia.dao.hibernate;
 
 import com.google.inject.Inject;
+
+import entities.Cliente;
 import entities.Reserva;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.ReservaDAO;
 
 import java.util.List;
+
+import org.hibernate.Criteria;
 
 public class ReservaDaoHibernate extends DaoHibernate<Reserva> implements ReservaDAO {
 
@@ -16,6 +20,12 @@ public class ReservaDaoHibernate extends DaoHibernate<Reserva> implements Reserv
 
     @Override
     public List<Reserva> getAll() {
-        throw new RuntimeException("No implementado aún");
+    	initTransaction();
+		
+		Criteria q = sesion.createCriteria(Reserva.class);
+		
+		finishTransaction();
+		
+		return q.list();
     }
 }

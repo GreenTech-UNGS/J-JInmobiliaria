@@ -53,10 +53,12 @@ public class MainView {
     private JTable tablePropietarios;
     private JTable tableCuotas;
     private JButton btnEditarCliente;
+    private JButton btnNewButton;
     
     private JCalendar jCalendar;
     private JTable tablaContratoVenta;
     private JTable tablaContratoAlquiler;
+    private JTable tablaReservas;
 
     @Inject
     public MainView() {
@@ -349,40 +351,58 @@ public class MainView {
         btnReportes.setBackground(new Color(0, 51, 51));
         panelMenu.add(btnReportes);
         panelPropiedades.setLayout(new BoxLayout(panelPropiedades, BoxLayout.Y_AXIS));
-
+        
+        JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+        panelPropiedades.add(tabbedPane_1);
+                        
+        JPanel panelTodas = new JPanel();
+        tabbedPane_1.addTab("Todas las propiedades", null, panelTodas, null);
+        panelTodas.setLayout(new BoxLayout(panelTodas, BoxLayout.Y_AXIS));
+                        
         JScrollPane scrollPane = new JScrollPane();
-        panelPropiedades.add(scrollPane);
-
+        panelTodas.add(scrollPane);
+                                
         tablePropiedades = new JTable();
         scrollPane.setViewportView(tablePropiedades);
-
-        JPanel panelButtons = new JPanel();
-        panelPropiedades.add(panelButtons);
-        panelButtons.setLayout(new BoxLayout(panelButtons, BoxLayout.X_AXIS));
-
-        Component horizontalGlue = Box.createHorizontalGlue();
-        panelButtons.add(horizontalGlue);
-
-        btnAgregarPropiedad = new JButton("Agregar Propiedad");
-        btnAgregarPropiedad.setFont(new Font("Tahoma", Font.BOLD, 11));
-        panelButtons.add(btnAgregarPropiedad);
-
-        Component horizontalGlue_0 = Box.createHorizontalGlue();
-        panelButtons.add(horizontalGlue_0);
-
-        btnReservarPropiedad = new JButton("Reservar propiedad");
-        btnReservarPropiedad.setFont(new Font("Tahoma", Font.BOLD, 11));
-        panelButtons.add(btnReservarPropiedad);
-
-        Component horizontalGlue_3 = Box.createHorizontalGlue();
-        panelButtons.add(horizontalGlue_3);
-
-        JButton btnBorrarPropiedad = new JButton("Borrar Propiedad");
-        btnBorrarPropiedad.setFont(new Font("Tahoma", Font.BOLD, 11));
-        panelButtons.add(btnBorrarPropiedad);
-
-        Component horizontalGlue_2 = Box.createHorizontalGlue();
-        panelButtons.add(horizontalGlue_2);
+                                        
+       JPanel panelButtons = new JPanel();
+       panelTodas.add(panelButtons);
+       panelButtons.setLayout(new BoxLayout(panelButtons, BoxLayout.X_AXIS));
+                                                
+       Component horizontalGlue = Box.createHorizontalGlue();
+       panelButtons.add(horizontalGlue);
+                                                        
+       btnAgregarPropiedad = new JButton("Agregar propiedad");
+       btnAgregarPropiedad.setFont(new Font("Tahoma", Font.PLAIN, 11));
+       panelButtons.add(btnAgregarPropiedad);
+                                                                
+      Component horizontalGlue_3 = Box.createHorizontalGlue();
+      panelButtons.add(horizontalGlue_3);
+                                                                        
+      btnReservarPropiedad = new JButton("Reservar propiedad");
+      btnReservarPropiedad.setFont(new Font("Tahoma", Font.PLAIN, 11));
+      panelButtons.add(btnReservarPropiedad);
+                                                                                
+      Component horizontalGlue_2 = Box.createHorizontalGlue();
+      panelButtons.add(horizontalGlue_2);
+                                                                                        
+      btnNewButton = new JButton("Ver reservas");
+      btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
+      panelButtons.add(btnNewButton);
+                                                                                        
+      Component horizontalGlue_1 = Box.createHorizontalGlue();
+      panelButtons.add(horizontalGlue_1);
+                                                                                        
+      JPanel panelReservas = new JPanel();
+      tabbedPane_1.addTab("Reservas a propiedades", null, panelReservas, null);
+      panelReservas.setLayout(new BoxLayout(panelReservas, BoxLayout.Y_AXIS));
+                                                                                        
+      tablaReservas = new JTable();
+      JScrollPane scrollPane_6 = new JScrollPane(tablaReservas);
+      panelReservas.add(scrollPane_6);                                                                             
+                                                                                     
+      JPanel panel_1 = new JPanel();
+      panelReservas.add(panel_1);
     }
 
     public JTable getTablePropiedades() {
@@ -458,6 +478,15 @@ public class MainView {
 	public void setBtnEditarCliente(JButton btnEditarCliente) {
 		this.btnEditarCliente = btnEditarCliente;
 	}
-	
+
+
+	public JTable getTablaReservas() {
+		return tablaReservas;
+	}
+
+
+	public void setTablaReservas(JTable tablaReservas) {
+		this.tablaReservas = tablaReservas;
+	}
 	
 }

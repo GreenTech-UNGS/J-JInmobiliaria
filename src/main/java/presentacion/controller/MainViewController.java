@@ -14,12 +14,14 @@ import model.ContratoService;
 import model.CuotaService;
 import model.PropiedadService;
 import model.PropietarioService;
+import model.ReservaService;
 import presentacion.table.ClientesTableModel;
 import presentacion.table.ContratosTableModel;
 import presentacion.table.CuotasTableModel;
 
 import presentacion.table.PropiedadesTableModel;
 import presentacion.table.PropietariosTableModel;
+import presentacion.table.ReservaTableModel;
 import presentacion.vista.MainView;
 
 public class MainViewController {
@@ -32,6 +34,7 @@ public class MainViewController {
 	private ContratosTableModel contratosTable;	
 	private ContratosTableModel contratosTable2;
 	private ClientesTableModel tableModelClien;
+	private ReservaTableModel reservaTable;
 	
 	AddContAlqController contratoAlqController;
 	AddContVenController contratoVenController;
@@ -44,6 +47,7 @@ public class MainViewController {
 	ContratoService contratoService;
 	PropietarioService propietarioService;
 	CuotaService cuotaService;
+	ReservaService reservaService;
 	
 	
 	@Inject
@@ -60,12 +64,14 @@ public class MainViewController {
 			CuotaService cuotaService,
 			ContratosTableModel contratosTable,
 			ContratosTableModel contratosTable2,
-			ContratoService contratoService){
+			ContratoService contratoService,
+			ReservaService reservaService){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
 		this.propietariosTable = new PropietariosTableModel();
 		this.cuotasTable = new CuotasTableModel();
+		this.reservaTable = new ReservaTableModel();
 		this.tableModelProp = tableModelprop;
 		this.propiedadController = propiedadesController;
 		this.contratoAlqController = contratoAlqController;
@@ -79,6 +85,7 @@ public class MainViewController {
 		this.contratosTable = contratosTable;
 		this.contratosTable2 = contratosTable2;
 		this.contratoService = contratoService;
+		this.reservaService = reservaService;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
@@ -95,6 +102,7 @@ public class MainViewController {
 		fillTableContratosVenta();
 		fillTableContratosAlquiler();
 		selectDetalleProp();
+		fillTableReservas();
 	}
 
 	private void fillTableClientes() {
@@ -105,6 +113,15 @@ public class MainViewController {
 		
 		this.view.getTableClientes().setColumnModel(tableModelClien.getTableColumnModel());
 		this.view.getTableClientes().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTableReservas() {
+		this.reservaTable.clean();
+		this.view.getTablaReservas().setModel(reservaTable);
+		reservaTable.actualizeRows(reservaService.getAll());
+		
+		this.view.getTablaReservas().setColumnModel(reservaTable.getTableColumnModel());
+		this.view.getTableClientes().getTableHeader().setReorderingAllowed(false);	
 	}
 	
 	private void fillTableContratosVenta() {

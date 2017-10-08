@@ -17,7 +17,7 @@ public class ReservaService {
     }
 
     public List<Reserva> getAll(){
-        return null;
+        return reservaDAO.getAll();
     }
 
     public void saveReserva(Reserva reserva){
