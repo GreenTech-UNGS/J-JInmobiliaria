@@ -65,7 +65,7 @@ public class AddClienteController {
 				view.getTextApellido()::getText,
 				s -> view.getTextApellido().setText((String)s));
 		binder.bind("persona.credencial",
-				view.getTextCredencial()::getText,
+				() -> view.getTextCredencial().getText().replaceAll("\\.", "").replaceAll("-", ""),
 				s -> view.getTextCredencial().setText((String)s));
 		binder.bind("persona.email",
 				view.getTextMail()::getText,
