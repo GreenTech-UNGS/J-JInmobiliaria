@@ -51,6 +51,8 @@ public class AgregarPropiedad extends JDialog{
 	private JButton btnVerHistorial;
 	private JMapViewer mapa;
 	private JButton btnActualizar;
+	private JTextField tfInmobiliaria;
+	private JButton btnInmobiliaria;
 
 	@Inject
 	private AgregarPropiedad() {
@@ -207,12 +209,6 @@ public class AgregarPropiedad extends JDialog{
 		lblInmobiliariaAmiga.setBounds(296, 118, 96, 14);
 		AgregarPropiedad.add(lblInmobiliariaAmiga);
 		
-		@SuppressWarnings("rawtypes")
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		comboBox_3.setBounds(395, 118, 149, 20);
-		AgregarPropiedad.add(comboBox_3);
-		
 		JLabel lblPiso = new JLabel("Piso:");
 		lblPiso.setBounds(54, 262, 31, 14);
 		AgregarPropiedad.add(lblPiso);
@@ -283,6 +279,18 @@ public class AgregarPropiedad extends JDialog{
 		btnActualizar = new JButton("Actualizar");
 		btnActualizar.setBounds(442, 307, 102, 23);
 		AgregarPropiedad.add(btnActualizar);
+		
+		tfInmobiliaria = new JTextField();
+		tfInmobiliaria.setBounds(395, 112, 123, 20);
+		AgregarPropiedad.add(tfInmobiliaria);
+		tfInmobiliaria.setColumns(10);
+		tfInmobiliaria.setEditable(false);
+		
+		btnInmobiliaria = new JButton("");
+		btnInmobiliaria.setBounds(522, 108, 22, 23);
+		btnInmobiliaria.setIcon(new ImageIcon(imgLup));
+		AgregarPropiedad.add(btnInmobiliaria);
+		
 		btnVerHistorial.setVisible(false);
 	}
 
@@ -453,4 +461,21 @@ public class AgregarPropiedad extends JDialog{
 	public void setBttAddLoc(JButton bttAddLoc) {
 		this.bttAddLoc = bttAddLoc;
 	}
+
+	public JTextField getTfInmobiliaria() {
+		return tfInmobiliaria;
+	}
+
+	public void setTfInmobiliaria(JTextField tfInmobiliaria) {
+		this.tfInmobiliaria = tfInmobiliaria;
+	}
+
+	public JButton getBtnInmobiliaria() {
+		return btnInmobiliaria;
+	}
+
+	public void setBtnInmobiliaria(JButton btnInmobiliaria) {
+		this.btnInmobiliaria = btnInmobiliaria;
+	}
+	
 }

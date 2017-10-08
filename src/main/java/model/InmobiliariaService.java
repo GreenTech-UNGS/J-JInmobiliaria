@@ -1,0 +1,25 @@
+package model;
+
+import java.util.List;
+
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
+import entities.Inmobiliaria;
+import persistencia.dao.iface.InmobiliariaDao;
+
+@Singleton
+public class InmobiliariaService {
+	
+	InmobiliariaDao inmobiliariaDao;
+	
+	@Inject
+	InmobiliariaService(InmobiliariaDao inmobiliariaDao){
+		this.inmobiliariaDao = inmobiliariaDao;
+	}
+	
+	public List<Inmobiliaria> getAll(){
+		return inmobiliariaDao.getAll();
+	}
+
+}

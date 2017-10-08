@@ -69,9 +69,7 @@ public class PropiedadService {
 		List<Propiedad> toRet = allProps.stream().filter(p -> estadosAFiltrar.contains(getCurrentEstado(p)))
 						.filter(p -> p.getTipoOfrecimiento().equals(TipoOfrecimiento.ALQUILER) ||
 				p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA_Y_ALQUILER))
-						.collect(Collectors.toList());
-		System.out.println("alquiler" + toRet);
-		
+						.collect(Collectors.toList());	
 		return toRet;
 		
 	}

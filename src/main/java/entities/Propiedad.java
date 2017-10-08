@@ -176,8 +176,5 @@ public class Propiedad {
 
 	public int getID() {
 		return ID;
-	}
-	
-	
-	
+	}	
 }
