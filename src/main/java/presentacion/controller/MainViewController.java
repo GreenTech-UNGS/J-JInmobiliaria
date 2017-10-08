@@ -86,6 +86,7 @@ public class MainViewController {
 		this.view.getBtnContratoAlq().addActionListener(e -> agregarContratoAlq());
 		this.view.getBtnContratoVen().addActionListener(e -> agregarContratoVen());
 		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());
+		this.view.getBtnEditarCliente().addActionListener(e -> editarCliente());
 		
 		fillTableClientes();
 		fillTablePropietarios();
@@ -95,7 +96,6 @@ public class MainViewController {
 		fillTableContratosAlquiler();
 		selectDetalleProp();
 	}
-
 
 	private void fillTableClientes() {
 		
@@ -204,6 +204,18 @@ public class MainViewController {
 		fillTableClientes();
 		
 	}
+	
+
+	private void editarCliente() {
+		int select = this.view.getTableClientes().getSelectedRow();
+		
+		if (select!=-1){
+			clienteController.editarCliente(this.tableModelClien.getRow(select));
+			clienteController.showView();
+			this.fillTableClientes();
+		}
+	}
+
 	
 	private void selectDetalleProp(){
 		this.view.getTablePropiedades().addMouseListener(new MouseAdapter(){

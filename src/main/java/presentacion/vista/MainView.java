@@ -52,6 +52,7 @@ public class MainView {
     private JTable tableClientes;
     private JTable tablePropietarios;
     private JTable tableCuotas;
+    private JButton btnEditarCliente;
     
     private JCalendar jCalendar;
     private JTable tablaContratoVenta;
@@ -145,6 +146,9 @@ public class MainView {
 
         btnAgregarCliente = new JButton("Agregar cliente");
         panel.add(btnAgregarCliente);
+        
+        btnEditarCliente = new JButton("Editar cliente");
+        panel.add(btnEditarCliente);
 
         JPanel TabPropietarios = new JPanel();
         tabbedPane_2.addTab("Propietarios", null, TabPropietarios, null);
@@ -444,7 +448,16 @@ public class MainView {
 	public void setTablaContratoAlquiler(JTable tablaContratoAlquiler) {
 		this.tablaContratoAlquiler = tablaContratoAlquiler;
 	}
+
+
+	public JButton getBtnEditarCliente() {
+		return btnEditarCliente;
+	}
+
+
+	public void setBtnEditarCliente(JButton btnEditarCliente) {
+		this.btnEditarCliente = btnEditarCliente;
+	}
 	
 	
-    
 }

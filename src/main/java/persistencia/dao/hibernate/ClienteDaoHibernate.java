@@ -48,7 +48,12 @@ public class ClienteDaoHibernate extends DaoHibernate<Cliente> implements Client
 		
 		return !res.isEmpty();
 	}
-	
-	
 
+	@Override
+	public void actualizeCliente(Cliente toActualize) {
+		initTransaction();
+		sesion.saveOrUpdate(toActualize);
+		finishTransaction();
+		
+	}
 }

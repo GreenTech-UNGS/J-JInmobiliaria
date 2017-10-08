@@ -55,4 +55,8 @@ public class ClienteService {
 		return clienteDao.existeClienteCon(t);
 		
 	}
+	
+	public void actualizarCliente(Cliente clienteViejo){
+		clienteDao.actualizeCliente(clienteViejo);
+	}
 }

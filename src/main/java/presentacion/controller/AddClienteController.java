@@ -1,5 +1,7 @@
 package presentacion.controller;
 
+import javax.swing.JOptionPane;
+
 import com.google.inject.Inject;
 
 import entities.Cliente;
@@ -56,6 +58,7 @@ public class AddClienteController {
 		view.getBtnBuscar().addActionListener(e -> eligePersona());
 		view.getBtnAgregarTelefono().addActionListener(e -> agregaTelefono());
 		view.getBtnBorrarTelefono().addActionListener(e -> borrarTelefono());
+		view.getBtnGuardarCambios().addActionListener(e -> actualizarCliente());
 		
 		
 		binder.bind("persona.nombre",
@@ -79,7 +82,7 @@ public class AddClienteController {
 		fillTables();
 		
 	}
-	
+
 	public void setModeNew() {
 		currentCliente = clienteService.getEmptyCliente();
 		binder.setObjective(currentCliente);
@@ -114,6 +117,26 @@ public class AddClienteController {
 			view.setVisible(false);
 		}
 	}
+	
+	private void actualizarCliente() {
+		binder.fillBean();
+		clienteService.actualizarCliente(currentCliente);
+		view.setVisible(false);
+	}
+	
+	private boolean fieldsOk(){
+		//Esto tendría que hacerlo el validador
+		boolean emptys = view.getTextCredencial().getText().isEmpty();
+		emptys |= view.getTextNombre().getText().isEmpty();
+		emptys |= view.getTextApellido().getText().isEmpty();
+		emptys |= view.getTextMail().getText().isEmpty();
+		
+		if(emptys){
+			JOptionPane.showMessageDialog(view, "Hay campos obligatorios que estan vacios",
+											"Error",
+											JOptionPane.ERROR_MESSAGE);
+			return false;}
+		return true;}
 	
 	private void agregaTelefono() {
 		telefonoController.setModeNew();
@@ -162,6 +185,17 @@ public class AddClienteController {
 			telTable.removeRow(fila);
 			
 		}
+	}
+	public void editarCliente(Cliente c){
+		view.setTitle("Editar cliente");
+		view.getBtnGuardar().setVisible(false);
+		view.getBtnCancelar().setVisible(false);
+		view.getBtnGuardarCambios().setVisible(true);
+		fillCombos();
+		
+		currentCliente = c;
+		binder.setObjective(currentCliente);
+		binder.fillFields();
 	}
 
 	public void showView(){

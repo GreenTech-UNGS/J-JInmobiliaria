@@ -29,6 +29,7 @@ public class AgregarCliente extends JDialog{
 	private JTable tableTelefono;
 	private JButton btnAgregarTelefono;
 	private JButton btnBorrarTelefono;
+	private JButton btnGuardarCambios;
 
 	@Inject
 	private AgregarCliente() {
@@ -86,12 +87,16 @@ public class AgregarCliente extends JDialog{
 		
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnGuardar.setBounds(20, 330, 135, 42);
+		btnGuardar.setBounds(20, 330, 98, 29);
 		panel.add(btnGuardar);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnCancelar.setBounds(189, 330, 123, 42);
+		btnCancelar.setBounds(226, 330, 98, 29);
 		panel.add(btnCancelar);
 		
 		btnBuscar = new JButton("Buscar");
@@ -116,14 +121,24 @@ public class AgregarCliente extends JDialog{
 		tablePanel.setViewportView(tableTelefono);
 		
 		btnAgregarTelefono = new JButton("Agregar Telefono");
+		btnAgregarTelefono.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnAgregarTelefono.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnAgregarTelefono.setBounds(189, 295, 123, 23);
+		btnAgregarTelefono.setBounds(201, 296, 123, 23);
 		panel.add(btnAgregarTelefono);
 		
 		btnBorrarTelefono = new JButton("Borrar Telefono");
 		btnBorrarTelefono.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnBorrarTelefono.setBounds(20, 296, 135, 23);
 		panel.add(btnBorrarTelefono);
+		
+		btnGuardarCambios = new JButton("Guardar cambios");
+		btnGuardarCambios.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnGuardarCambios.setBounds(113, 330, 123, 29);
+		panel.add(btnGuardarCambios);
+		btnGuardarCambios.setVisible(false);
 
 	}
 	
@@ -176,4 +191,29 @@ public class AgregarCliente extends JDialog{
 		return btnBorrarTelefono;
 	}
 
+	public JButton getBtnGuardarCambios() {
+		return btnGuardarCambios;
+	}
+
+	public void setBtnGuardarCambios(JButton btnGuardarCambios) {
+		this.btnGuardarCambios = btnGuardarCambios;
+	}
+
+	public void setTextNombre(JTextField textNombre) {
+		this.textNombre = textNombre;
+	}
+
+	public void setTextApellido(JTextField textApellido) {
+		this.textApellido = textApellido;
+	}
+
+	public void setTextMail(JTextField textMail) {
+		this.textMail = textMail;
+	}
+
+	public void setTextCredencial(JTextField textCredencial) {
+		this.textCredencial = textCredencial;
+	}
+	
+	
 }
