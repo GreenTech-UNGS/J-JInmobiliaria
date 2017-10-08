@@ -188,7 +188,7 @@ public class AddPropiedadController {
 		Coordinate localizacion = new Coordinate(punto.getLat(), punto.getLon());
 		
 		view.getMapa().addMapMarker(new MapMarkerDot(localizacion));
-		view.getMapa().setDisplayPosition(localizacion, 16);
+		view.getMapa().setDisplayPosition(localizacion, 15);
 	
 	}
 	
