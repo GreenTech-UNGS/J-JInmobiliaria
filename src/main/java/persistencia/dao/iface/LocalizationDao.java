@@ -4,18 +4,18 @@ public interface LocalizationDao {
 
 	public class MapPoint{
 		
-		private float lat, lon;
+		private double lat, lon;
 		
-		public MapPoint(float lat, float lon) {
+		public MapPoint(double lat, double lon) {
 			this.lat = lat;
 			this.lon = lon;
 		}
 
-		public float getLat() {
+		public double getLat() {
 			return lat;
 		}
 
-		public float getLon() {
+		public double getLon() {
 			return lon;
 		}
 		

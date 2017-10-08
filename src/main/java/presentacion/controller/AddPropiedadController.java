@@ -1,9 +1,14 @@
 package presentacion.controller;
 
 import java.util.Arrays;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import org.openstreetmap.gui.jmapviewer.Coordinate;
+import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
+import org.openstreetmap.gui.jmapviewer.interfaces.ICoordinate;
 
 import com.google.inject.Inject;
 
@@ -15,8 +20,10 @@ import entities.Provincia;
 import entities.TipoOfrecimiento;
 import misc.Binder;
 import model.LocalidadService;
+import model.LocalizationService;
 import model.PropiedadService;
 import model.PropietarioService;
+import persistencia.dao.iface.LocalizationDao.MapPoint;
 import presentacion.combo.LocalidadComboBoxModel;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.ProvinciaComboBoxModel;
@@ -37,6 +44,7 @@ public class AddPropiedadController {
 	private LocalidadService localidadService;
 	private ElegirPropietarioController elegirPropController;
 	private HistorialPropiedadController historialPropController;
+	private LocalizationService localizationService;
 		
 	Propiedad currentPropiedad;
 	Propietario currentPropietario;
@@ -50,7 +58,8 @@ public class AddPropiedadController {
 									PropietarioService propietarioService,
 									LocalidadService localidadService,
 									ElegirPropietarioController elegirPropController,
-									HistorialPropiedadController historialPropController){
+									HistorialPropiedadController historialPropController,
+									LocalizationService localizationService){
 		
 		this.view = view;
 		this.propiedadValidator = propiedadValidator;
@@ -60,6 +69,7 @@ public class AddPropiedadController {
 		this.binder = new Binder<>();
 		this.elegirPropController = elegirPropController;
 		this.historialPropController = historialPropController;
+		this.localizationService = localizationService;
 		
 		this.provCombo = new ProvinciaComboBoxModel();
 		this.monedaCombo = new MonedaComboBoxModel();
@@ -78,6 +88,7 @@ public class AddPropiedadController {
 		view.getBtnLupita().addActionListener(e -> selectPropietario());
 		view.getBtnCancelar().addActionListener(e -> view.setVisible(false));
 		view.getBtnVerHistorial().addActionListener(e -> this.historialPropController.showView());
+		view.getBtnActualizar().addActionListener(e -> actualizaMapa());
 		
 		
 	}
@@ -155,10 +166,33 @@ public class AddPropiedadController {
 		
 	}
 	
+	private void actualizaMapa() {
+		
+		String calle = view.getTfCalle().getText();
+		String altura = view.getTfAltura().getText();
+		Localidad localidad = localidadCombo.getSelected();
+		
+		if(calle == null || altura == null || localidad == null || localidad.getNombre() == null) {
+			JOptionPane.showMessageDialog(view, "No se puede actualizar el mapa, faltan datos de ubcación", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+			
+		
+		MapPoint punto = localizationService.getLocalizationOf(calle, altura, localidad);
+	
+		Coordinate localizacion = new Coordinate(punto.getLat(), punto.getLon());
+		
+		view.getMapa().addMapMarker(new MapMarkerDot(localizacion));
+		view.getMapa().setDisplayPosition(localizacion, 16);
+	
+	}
+	
 	private void cambiaLocalidades() {
 		
 		localidadCombo.removeAllElements();
-		localidadCombo.actualize(localidadService.getAllOf(provCombo.getSelected()));
+		List<Localidad> localidades = localidadService.getAllOf(provCombo.getSelected());
+		localidadCombo.actualize(localidades);
+		localidadCombo.setSelected(localidades.get(0));
 		
 	}
 	

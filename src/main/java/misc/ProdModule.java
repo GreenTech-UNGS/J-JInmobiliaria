@@ -4,6 +4,7 @@ import com.google.inject.Binder;
 import com.google.inject.Module;
 import com.google.inject.Singleton;
 
+import persisitencia.dao.mapas.LocalizationDaoGoogleMaps;
 import persistencia.conexion.Conexion;
 import persistencia.dao.hibernate.ClienteDaoHibernate;
 import persistencia.dao.hibernate.ContratoDaoHibernate;
@@ -16,6 +17,7 @@ import persistencia.dao.iface.ClienteDao;
 import persistencia.dao.iface.ContratoDao;
 import persistencia.dao.iface.CuotaDao;
 import persistencia.dao.iface.LocalidadDao;
+import persistencia.dao.iface.LocalizationDao;
 import persistencia.dao.iface.PersonaDao;
 import persistencia.dao.iface.PropiedadDao;
 import persistencia.dao.iface.PropietarioDao;
@@ -54,6 +56,8 @@ public class ProdModule implements Module{
 		binder.bind(PropietarioDao.class).to(PropietarioDaoHibernate.class).in(Singleton.class);
 		binder.bind(ContratoDao.class).to(ContratoDaoHibernate.class).in(Singleton.class);
 		binder.bind(CuotaDao.class).to(CuotaDaoHibernate.class).in(Singleton.class);
+		
+		binder.bind(LocalizationDao.class).to(LocalizationDaoGoogleMaps.class).in(Singleton.class);
 		
 	}
 	

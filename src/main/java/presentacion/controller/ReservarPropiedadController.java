@@ -102,7 +102,7 @@ public class ReservarPropiedadController {
         currentReserva = reservaService.getEmptyReserva();
         currentPropiedad = null;
         currentCliente = null;
-        throw new NotImplementedException();
+        throw new RuntimeException("No implementado aún");
     }
 
     public void showView() {

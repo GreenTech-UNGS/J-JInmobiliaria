@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import org.openstreetmap.gui.jmapviewer.JMapViewer;
+
 import com.google.inject.Inject;
 
 import javax.swing.JLabel;
@@ -47,6 +49,8 @@ public class AgregarPropiedad extends JDialog{
 	private JTextField tfPropietario;
 	private JButton btnLupita;
 	private JButton btnVerHistorial;
+	private JMapViewer mapa;
+	private JButton btnActualizar;
 
 	@Inject
 	private AgregarPropiedad() {
@@ -54,7 +58,7 @@ public class AgregarPropiedad extends JDialog{
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setModal(true);
-		setSize(new Dimension(574, 660));
+		setSize(new Dimension(580, 800));
 		setResizable(false);
 		setLocationRelativeTo(null);
 		
@@ -124,7 +128,7 @@ public class AgregarPropiedad extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnGuardar.setBounds(149, 563, 135, 42);
+		btnGuardar.setBounds(149, 718, 135, 42);
 		AgregarPropiedad.add(btnGuardar);
 		
 
@@ -133,7 +137,7 @@ public class AgregarPropiedad extends JDialog{
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnCancelar.setBounds(293, 563, 123, 42);
+		btnCancelar.setBounds(293, 718, 123, 42);
 		AgregarPropiedad.add(btnCancelar);
 		
 		JLabel lblMoneda = new JLabel("Moneda:");
@@ -148,11 +152,11 @@ public class AgregarPropiedad extends JDialog{
 		
 		JLabel lblDescripcin = new JLabel("Descripci\u00F3n privada:");
 		lblDescripcin.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblDescripcin.setBounds(20, 458, 110, 14);
+		lblDescripcin.setBounds(20, 613, 110, 14);
 		AgregarPropiedad.add(lblDescripcin);
 		
 		taDescPubl = new JTextArea();
-		taDescPubl.setBounds(20, 394, 524, 53);
+		taDescPubl.setBounds(20, 549, 524, 53);
 		AgregarPropiedad.add(taDescPubl);
 		
 		JLabel lblDatosGenerales = new JLabel("Datos generales");
@@ -193,6 +197,11 @@ public class AgregarPropiedad extends JDialog{
 		tfEntrecalles.setBounds(395, 259, 149, 20);
 		AgregarPropiedad.add(tfEntrecalles);
 		
+		mapa = new JMapViewer();
+		mapa.setZoomContolsVisible(false);
+		mapa.setBounds(20, 341, 524, 141);
+		AgregarPropiedad.add(mapa);
+		
 		JLabel lblInmobiliariaAmiga = new JLabel("Inmobiliaria amiga:");
 		lblInmobiliariaAmiga.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblInmobiliariaAmiga.setBounds(296, 118, 96, 14);
@@ -224,20 +233,20 @@ public class AgregarPropiedad extends JDialog{
 		
 		JLabel lblOtrosDatos = new JLabel("Otros datos");
 		lblOtrosDatos.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblOtrosDatos.setBounds(20, 338, 71, 14);
+		lblOtrosDatos.setBounds(20, 493, 71, 14);
 		AgregarPropiedad.add(lblOtrosDatos);
 		
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(20, 363, 524, 2);
+		separator_2.setBounds(20, 518, 524, 2);
 		AgregarPropiedad.add(separator_2);
 		
 		JLabel lblDescripcinPblica = new JLabel("Descripci\u00F3n p\u00FAblica:");
 		lblDescripcinPblica.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblDescripcinPblica.setBounds(20, 374, 96, 14);
+		lblDescripcinPblica.setBounds(20, 529, 96, 14);
 		AgregarPropiedad.add(lblDescripcinPblica);
 		
 		taDescPriv = new JTextArea();
-		taDescPriv.setBounds(20, 480, 524, 53);
+		taDescPriv.setBounds(20, 635, 524, 53);
 		AgregarPropiedad.add(taDescPriv);
 		
 		comboProvincia = new JComboBox<>();
@@ -270,10 +279,22 @@ public class AgregarPropiedad extends JDialog{
 		btnVerHistorial.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnVerHistorial.setBounds(442, 20, 102, 23);
 		AgregarPropiedad.add(btnVerHistorial);
+		
+		btnActualizar = new JButton("Actualizar");
+		btnActualizar.setBounds(442, 307, 102, 23);
+		AgregarPropiedad.add(btnActualizar);
 		btnVerHistorial.setVisible(false);
 //		JMapViewer mapViewer = new JMapViewer();
 //		mapViewer.setBounds(251, 259, 267, 129);
 //		AgregarPropiedad.add(mapViewer);
+	}
+
+	public JButton getBtnActualizar() {
+		return btnActualizar;
+	}
+
+	public JMapViewer getMapa() {
+		return mapa;
 	}
 
 	public JTextField getTfAltura() {
