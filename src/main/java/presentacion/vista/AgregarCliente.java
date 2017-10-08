@@ -30,6 +30,7 @@ public class AgregarCliente extends JDialog{
 	private JButton btnAgregarTelefono;
 	private JButton btnBorrarTelefono;
 	private JButton btnGuardarCambios;
+	private JScrollPane tablePanel;
 
 	@Inject
 	private AgregarCliente() {
@@ -113,7 +114,7 @@ public class AgregarCliente extends JDialog{
 		panel.add(textCredencial);
 		textCredencial.setColumns(10);
 		
-		JScrollPane tablePanel = new JScrollPane();
+		tablePanel = new JScrollPane();
 		tablePanel.setBounds(20, 201, 304, 83);
 		panel.add(tablePanel);
 		
@@ -213,6 +214,14 @@ public class AgregarCliente extends JDialog{
 
 	public void setTextCredencial(JTextField textCredencial) {
 		this.textCredencial = textCredencial;
+	}
+
+	public JScrollPane getTablePanel() {
+		return tablePanel;
+	}
+
+	public void setTablePanel(JScrollPane tablePanel) {
+		this.tablePanel = tablePanel;
 	}
 	
 	

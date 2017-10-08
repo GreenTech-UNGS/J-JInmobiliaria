@@ -72,11 +72,11 @@ public class AddClienteController {
 				s -> view.getTextCredencial().setText((String)s));
 		binder.bind("persona.email",
 				view.getTextMail()::getText,
-				s -> view.getTextMail().setText((String)s));
-				
+				s -> view.getTextMail().setText((String)s));			
 		binder.bind("persona.tipoCred",
 				tipoCredencialModel::getSelected,
 				t -> tipoCredencialModel.setSelected((TipoCredencial)t));
+		
 		
 		fillCombos();
 		fillTables();
@@ -100,6 +100,7 @@ public class AddClienteController {
 	}
 	
 	private void fillTables() {
+		telTable.clean();
 		if(currentCliente != null) {
 			telTable.addRows(personaService.getAllTelefonosOf(currentCliente.getPersona()));
 			
@@ -120,7 +121,6 @@ public class AddClienteController {
 	
 	private void actualizarCliente() {
 		binder.fillBean();
-		clienteService.actualizarCliente(currentCliente);
 		view.setVisible(false);
 	}
 	
@@ -187,6 +187,7 @@ public class AddClienteController {
 		}
 	}
 	public void editarCliente(Cliente c){
+		fillTables();
 		view.setTitle("Editar cliente");
 		view.getBtnGuardar().setVisible(false);
 		view.getBtnCancelar().setVisible(false);
@@ -199,7 +200,7 @@ public class AddClienteController {
 	}
 
 	public void showView(){
-			
+		fillTables();
 		view.setVisible(true);
 	}
 	
