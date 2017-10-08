@@ -58,7 +58,7 @@ public class AgregarPropiedad extends JDialog{
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setModal(true);
-		setSize(new Dimension(580, 800));
+		setSize(new Dimension(580, 737));
 		setResizable(false);
 		setLocationRelativeTo(null);
 		
@@ -128,7 +128,7 @@ public class AgregarPropiedad extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnGuardar.setBounds(149, 718, 135, 42);
+		btnGuardar.setBounds(147, 642, 135, 42);
 		AgregarPropiedad.add(btnGuardar);
 		
 
@@ -137,7 +137,7 @@ public class AgregarPropiedad extends JDialog{
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnCancelar.setBounds(293, 718, 123, 42);
+		btnCancelar.setBounds(286, 642, 123, 42);
 		AgregarPropiedad.add(btnCancelar);
 		
 		JLabel lblMoneda = new JLabel("Moneda:");
@@ -152,11 +152,11 @@ public class AgregarPropiedad extends JDialog{
 		
 		JLabel lblDescripcin = new JLabel("Descripci\u00F3n privada:");
 		lblDescripcin.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblDescripcin.setBounds(20, 613, 110, 14);
+		lblDescripcin.setBounds(20, 583, 110, 14);
 		AgregarPropiedad.add(lblDescripcin);
 		
 		taDescPubl = new JTextArea();
-		taDescPubl.setBounds(20, 549, 524, 53);
+		taDescPubl.setBounds(20, 549, 524, 23);
 		AgregarPropiedad.add(taDescPubl);
 		
 		JLabel lblDatosGenerales = new JLabel("Datos generales");
@@ -246,7 +246,7 @@ public class AgregarPropiedad extends JDialog{
 		AgregarPropiedad.add(lblDescripcinPblica);
 		
 		taDescPriv = new JTextArea();
-		taDescPriv.setBounds(20, 635, 524, 53);
+		taDescPriv.setBounds(20, 608, 524, 23);
 		AgregarPropiedad.add(taDescPriv);
 		
 		comboProvincia = new JComboBox<>();

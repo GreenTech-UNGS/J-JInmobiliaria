@@ -55,6 +55,7 @@ public class MainView {
     
     private JCalendar jCalendar;
     private JTable tablaContratoVenta;
+    private JTable tablaContratoAlquiler;
 
     @Inject
     public MainView() {
@@ -112,6 +113,9 @@ public class MainView {
         
         JScrollPane scrollPane_4 = new JScrollPane();
         contratoAlquiler.add(scrollPane_4);
+        
+        tablaContratoAlquiler = new JTable();
+        scrollPane_4.setColumnHeaderView(tablaContratoAlquiler);
         
                 btnAgregarContratoAlq = new JButton("Agregar contrato de aquiler");
                 btnAgregarContratoAlq.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -436,5 +440,17 @@ public class MainView {
 	public void setTablaContratoVenta(JTable tablaContratoVenta) {
 		this.tablaContratoVenta = tablaContratoVenta;
 	}
+
+
+	public JTable getTablaContratoAlquiler() {
+		return tablaContratoAlquiler;
+	}
+
+
+	public void setTablaContratoAlquiler(JTable tablaContratoAlquiler) {
+		this.tablaContratoAlquiler = tablaContratoAlquiler;
+	}
+	
+	
     
 }

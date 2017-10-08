@@ -1,7 +1,9 @@
 package model;
 
 import java.time.YearMonth;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.EnumType;
@@ -30,6 +32,7 @@ import entities.Persona;
 import entities.Precio;
 import entities.Propiedad;
 import entities.TipoContratoAlquiler;
+import entities.TipoOfrecimiento;
 import persistencia.dao.iface.ContratoDao;
 import persistencia.dao.iface.CuotaDao;
 import persistencia.dao.iface.PropiedadDao;
@@ -155,6 +158,22 @@ public class ContratoService {
 		return contratoDao.getAll();
 		
 		//esto va a devolver todos los contratos, hay que cambiarlo
+	}
+	public List<Contrato> getContratosVenta(){
+		
+		List<Contrato> allContratos = getAll();
+
+		List<Contrato> toRet = allContratos.stream().filter(p -> p.getClass().equals(ContratoVenta.class)).collect(Collectors.toList());
+		System.out.println(toRet);
+		return toRet;
+		
+	}
+	
+	public List<Contrato> getContratosAlquiler(){
+		
+		List<Contrato> allContratos = getAll();
+		List<Contrato> toRet = allContratos.stream().filter(p -> p.getClass().equals(ContratoAlquiler.class)).collect(Collectors.toList());
+		return toRet;
 	}
 	
 }

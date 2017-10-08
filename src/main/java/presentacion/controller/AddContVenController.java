@@ -67,14 +67,13 @@ public class AddContVenController {
 	public void guardarContrato(){
 		
 		//falta validador
-		if(!view.getTfIdContrato().getText().equals("")){
-			currentContrato.setIdentificador(view.getTfIdContrato().getText());
-			//esto lo haría el validador supongo
-		}
+		currentContrato.setIdentificador(view.getTfIdContrato().getText());
 		contratoService.SaveContratoVenta(currentContrato);
+		view.setVisible(false);
 	}
 	
 	public void setModeNew(){
+		
 		currentContrato = contratoService.getNewContratoVenta();
 	}
 	

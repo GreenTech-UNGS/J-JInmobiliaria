@@ -29,15 +29,14 @@ public class MainViewController {
 	private PropiedadesTableModel tableModelProp;
 	private PropietariosTableModel propietariosTable;
 	private CuotasTableModel cuotasTable;
-	private ContratosTableModel contratosTable;
-	
+	private ContratosTableModel contratosTable;	
+	private ContratosTableModel contratosTable2;
 	private ClientesTableModel tableModelClien;
+	
 	AddContAlqController contratoAlqController;
 	AddContVenController contratoVenController;
-	
 	AddClienteController clienteController;	
 	AddPropiedadController propiedadController;
-
 	ReservarPropiedadController reservaController;
 
 	PropiedadService propiedadService;
@@ -60,6 +59,7 @@ public class MainViewController {
 			PropietarioService propietarioService,
 			CuotaService cuotaService,
 			ContratosTableModel contratosTable,
+			ContratosTableModel contratosTable2,
 			ContratoService contratoService){
 		
 		this.view = view;
@@ -77,6 +77,7 @@ public class MainViewController {
 		this.propietarioService = propietarioService;
 		this.cuotaService = cuotaService;
 		this.contratosTable = contratosTable;
+		this.contratosTable2 = contratosTable2;
 		this.contratoService = contratoService;
 		
 		
@@ -90,7 +91,8 @@ public class MainViewController {
 		fillTablePropietarios();
 		fillTableCuotas();
 		fillTableProp();
-		fillTableContratos();
+		fillTableContratosVenta();
+		fillTableContratosAlquiler();
 		selectDetalleProp();
 	}
 
@@ -105,14 +107,27 @@ public class MainViewController {
 		this.view.getTableClientes().getTableHeader().setReorderingAllowed(false);
 	}
 	
-	private void fillTableContratos() {
+	private void fillTableContratosVenta() {
 		
 		this.contratosTable.clean();
 		this.view.getTablaContratoVenta().setModel(contratosTable);
-		contratosTable.actualizeRows(contratoService.getAll());
+		contratosTable.actualizeRows(contratoService.getContratosVenta());
+		System.out.println("prueba" + contratoService.getContratosVenta());
+	//	contratoService.getContratosVenta().forEach( p -> contratosTable.addRow(p));
 		
 		this.view.getTablaContratoVenta().setColumnModel(contratosTable.getTableColumnModel());
 		this.view.getTablaContratoVenta().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTableContratosAlquiler() {
+		
+		this.contratosTable2.clean();
+		this.view.getTablaContratoAlquiler().setModel(contratosTable2);
+		contratosTable2.actualizeRows(contratoService.getContratosAlquiler());
+	//	contratoService.getContratosAlquiler().forEach(p -> contratosTable2.addRow(p));
+		
+		this.view.getTablaContratoAlquiler().setColumnModel(contratosTable.getTableColumnModel());
+		this.view.getTablaContratoAlquiler().getTableHeader().setReorderingAllowed(false);
 	}
 	
 	private void fillTablePropietarios() {
@@ -134,7 +149,6 @@ public class MainViewController {
 	}
 	
 	private void fillTableProp(){
-		
 		this.tableModelProp.clean();
 		this.view.getTablePropiedades().setModel(tableModelProp);
 		propiedadService.getAll().forEach(p -> tableModelProp.addRow(p));
@@ -177,11 +191,13 @@ public class MainViewController {
 	private void agregarContratoAlq() {
 		this.contratoAlqController.setModeNew();
 		this.contratoAlqController.showView();
+		fillTableContratosAlquiler();
 	}
 	
 	private void agregarContratoVen() {
 		this.contratoVenController.setModeNew();
 		this.contratoVenController.showView();
+		fillTableContratosVenta();
 	}
 	
 	private void agregarCliente() {
