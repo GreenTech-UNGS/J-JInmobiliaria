@@ -26,6 +26,9 @@ import java.text.DecimalFormat;
 import java.awt.event.ActionEvent;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import javax.swing.JFormattedTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class AgregarPropiedad extends JDialog{
@@ -62,7 +65,7 @@ public class AgregarPropiedad extends JDialog{
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setModal(true);
-		setSize(new Dimension(580, 737));
+		setSize(new Dimension(706, 660));
 		setResizable(false);
 		setLocationRelativeTo(null);
 		
@@ -74,52 +77,52 @@ public class AgregarPropiedad extends JDialog{
 		
 		JLabel lblPropierario = new JLabel("Propietario:");
 		lblPropierario.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPropierario.setBounds(331, 87, 61, 14);
+		lblPropierario.setBounds(474, 62, 61, 14);
 		AgregarPropiedad.add(lblPropierario);
 		
 		JLabel lblDireccin = new JLabel("Calle:");
 		lblDireccin.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblDireccin.setBounds(54, 209, 46, 14);
+		lblDireccin.setBounds(30, 182, 46, 14);
 		AgregarPropiedad.add(lblDireccin);
 		
-		JLabel lblNewLabel = new JLabel("Tipo de ofrecimiento:");
+		JLabel lblNewLabel = new JLabel("Tipo de");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel.setBounds(282, 62, 110, 14);
+		lblNewLabel.setBounds(30, 84, 46, 14);
 		AgregarPropiedad.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Localidad:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_1.setBounds(331, 234, 61, 14);
+		lblNewLabel_1.setBounds(474, 207, 61, 14);
 		AgregarPropiedad.add(lblNewLabel_1);
 		
 		JLabel lblProvincia = new JLabel("Provincia:");
 		lblProvincia.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblProvincia.setBounds(331, 209, 61, 14);
+		lblProvincia.setBounds(474, 182, 61, 14);
 		AgregarPropiedad.add(lblProvincia);
 		
 		JLabel lblAltura = new JLabel("Altura:");
 		lblAltura.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblAltura.setBounds(49, 234, 46, 14);
+		lblAltura.setBounds(30, 207, 46, 14);
 		AgregarPropiedad.add(lblAltura);
 		
 		JLabel lblPrecio = new JLabel("Precio:");
 		lblPrecio.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPrecio.setBounds(54, 87, 46, 14);
+		lblPrecio.setBounds(266, 62, 46, 14);
 		AgregarPropiedad.add(lblPrecio);
 		
 		this.tfAltura = new JTextField();
-		tfAltura.setBounds(92, 234, 149, 20);
+		tfAltura.setBounds(86, 204, 117, 20);
 		AgregarPropiedad.add(tfAltura);
 		tfAltura.setColumns(10);
 		
 		tfCalle = new JTextField();
-		tfCalle.setBounds(92, 206, 149, 20);
+		tfCalle.setBounds(86, 179, 117, 20);
 		AgregarPropiedad.add(tfCalle);
 		tfCalle.setColumns(10);
 		
 		comboTipoOfre = new JComboBox<>();
 		comboTipoOfre.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		comboTipoOfre.setBounds(395, 59, 149, 20);
+		comboTipoOfre.setBounds(92, 90, 117, 20);
 		AgregarPropiedad.add(comboTipoOfre);
 		
 		btnGuardar = new JButton("Guardar");
@@ -127,7 +130,7 @@ public class AgregarPropiedad extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnGuardar.setBounds(147, 642, 135, 42);
+		btnGuardar.setBounds(226, 565, 117, 33);
 		AgregarPropiedad.add(btnGuardar);
 		
 
@@ -136,35 +139,36 @@ public class AgregarPropiedad extends JDialog{
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnCancelar.setBounds(286, 642, 123, 42);
+		btnCancelar.setBounds(353, 565, 110, 33);
 		AgregarPropiedad.add(btnCancelar);
 		
 		JLabel lblMoneda = new JLabel("Moneda:");
 		lblMoneda.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblMoneda.setBounds(41, 112, 54, 14);
+		lblMoneda.setBounds(254, 93, 51, 14);
 		AgregarPropiedad.add(lblMoneda);
 		
 		comboMoneda = new JComboBox<>();
 		comboMoneda.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		comboMoneda.setBounds(92, 112, 149, 20);
+		comboMoneda.setBounds(305, 90, 122, 20);
 		AgregarPropiedad.add(comboMoneda);
 		
 		JLabel lblDescripcin = new JLabel("Descripci\u00F3n privada:");
 		lblDescripcin.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblDescripcin.setBounds(20, 583, 110, 14);
+		lblDescripcin.setBounds(353, 460, 110, 14);
 		AgregarPropiedad.add(lblDescripcin);
 		
 		taDescPubl = new JTextArea();
-		taDescPubl.setBounds(20, 549, 524, 23);
+		taDescPubl.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		taDescPubl.setBounds(40, 485, 303, 58);
 		AgregarPropiedad.add(taDescPubl);
 		
 		JLabel lblDatosGenerales = new JLabel("Datos generales");
 		lblDatosGenerales.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDatosGenerales.setBounds(20, 24, 123, 14);
+		lblDatosGenerales.setBounds(30, 24, 123, 14);
 		AgregarPropiedad.add(lblDatosGenerales);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(20, 49, 524, 2);
+		separator.setBounds(20, 49, 654, 2);
 		AgregarPropiedad.add(separator);
 		
 		JLabel lblIdPropiedad = new JLabel("Identificador:");
@@ -174,120 +178,138 @@ public class AgregarPropiedad extends JDialog{
 		
 		tfIdentificador = new JTextField();
 		tfIdentificador.setColumns(10);
-		tfIdentificador.setBounds(92, 62, 149, 20);
+		tfIdentificador.setBounds(91, 59, 117, 20);
 		AgregarPropiedad.add(tfIdentificador);
 		
 		JLabel lblDatosUbicacionales = new JLabel("Datos ubicacionales:");
 		lblDatosUbicacionales.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDatosUbicacionales.setBounds(20, 171, 123, 14);
+		lblDatosUbicacionales.setBounds(30, 144, 123, 14);
 		AgregarPropiedad.add(lblDatosUbicacionales);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(20, 196, 524, 2);
+		separator_1.setBounds(20, 169, 654, 2);
 		AgregarPropiedad.add(separator_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Entre calles:");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_2.setBounds(331, 262, 61, 14);
+		lblNewLabel_2.setBounds(15, 232, 61, 14);
 		AgregarPropiedad.add(lblNewLabel_2);
 		
 		tfEntrecalles = new JTextField();
 		tfEntrecalles.setColumns(10);
-		tfEntrecalles.setBounds(395, 259, 149, 20);
+		tfEntrecalles.setBounds(86, 229, 117, 20);
 		AgregarPropiedad.add(tfEntrecalles);
 		
 		mapa = new JMapViewer();
+		mapa.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		mapa.setZoomContolsVisible(false);
-		mapa.setBounds(20, 341, 524, 141);
+		mapa.setBounds(38, 260, 621, 141);
 		AgregarPropiedad.add(mapa);
+		
+		btnActualizar = new JButton("Actualizar mapa");
+		btnActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnActualizar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnActualizar.setBounds(495, 11, 116, 23);
+		mapa.add(btnActualizar);
 		
 		JLabel lblInmobiliariaAmiga = new JLabel("Inmobiliaria amiga:");
 		lblInmobiliariaAmiga.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblInmobiliariaAmiga.setBounds(296, 118, 96, 14);
+		lblInmobiliariaAmiga.setBounds(439, 93, 96, 14);
 		AgregarPropiedad.add(lblInmobiliariaAmiga);
 		
 		JLabel lblPiso = new JLabel("Piso:");
-		lblPiso.setBounds(54, 262, 31, 14);
+		lblPiso.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblPiso.setBounds(274, 182, 31, 14);
 		AgregarPropiedad.add(lblPiso);
 		
 		tfPiso = new JTextField();
 		tfPiso.setColumns(10);
-		tfPiso.setBounds(92, 259, 149, 20);
+		tfPiso.setBounds(305, 179, 122, 20);
 		AgregarPropiedad.add(tfPiso);
 		
 		JLabel lblDepartamento = new JLabel("Dpto.:");
-		lblDepartamento.setBounds(49, 287, 46, 14);
+		lblDepartamento.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblDepartamento.setBounds(266, 207, 31, 14);
 		AgregarPropiedad.add(lblDepartamento);
 		
 		tfDepto = new JTextField();
 		tfDepto.setColumns(10);
-		tfDepto.setBounds(92, 284, 149, 20);
+		tfDepto.setBounds(305, 204, 121, 20);
 		AgregarPropiedad.add(tfDepto);
 		
 		JLabel lblOtrosDatos = new JLabel("Otros datos");
 		lblOtrosDatos.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblOtrosDatos.setBounds(20, 493, 71, 14);
+		lblOtrosDatos.setBounds(20, 422, 71, 14);
 		AgregarPropiedad.add(lblOtrosDatos);
 		
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(20, 518, 524, 2);
+		separator_2.setBounds(20, 447, 654, 2);
 		AgregarPropiedad.add(separator_2);
 		
 		JLabel lblDescripcinPblica = new JLabel("Descripci\u00F3n p\u00FAblica:");
 		lblDescripcinPblica.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblDescripcinPblica.setBounds(20, 529, 96, 14);
+		lblDescripcinPblica.setBounds(38, 460, 96, 14);
 		AgregarPropiedad.add(lblDescripcinPblica);
 		
 		taDescPriv = new JTextArea();
-		taDescPriv.setBounds(20, 608, 524, 23);
+		taDescPriv.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		taDescPriv.setBounds(353, 485, 306, 58);
 		AgregarPropiedad.add(taDescPriv);
 		
 		comboProvincia = new JComboBox<>();
 		comboProvincia.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		comboProvincia.setBounds(395, 206, 149, 20);
+		comboProvincia.setBounds(536, 179, 123, 20);
 		AgregarPropiedad.add(comboProvincia);
 		
 		comboLocalidad = new JComboBox<>();
 		comboLocalidad.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		comboLocalidad.setBounds(395, 231, 149, 20);
+		comboLocalidad.setBounds(536, 206, 123, 20);
 		AgregarPropiedad.add(comboLocalidad);
 		
 		tfPropietario = new JTextField();
 		tfPropietario.setEditable(false);
 		tfPropietario.setColumns(10);
-		tfPropietario.setBounds(395, 84, 123, 20);
+		tfPropietario.setBounds(536, 59, 117, 20);
 		AgregarPropiedad.add(tfPropietario);
 		
 		this.btnLupita = new JButton("");
 		Image imgLup = new ImageIcon(this.getClass().getResource("/buscar.png")).getImage();
 		btnLupita.setIcon(new ImageIcon(imgLup));
-		btnLupita.setBounds(522, 83, 22, 23);
+		btnLupita.setBounds(652, 59, 22, 20);
 		AgregarPropiedad.add(btnLupita);
 		
 		btnVerHistorial = new JButton("Ver historial");
 		btnVerHistorial.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnVerHistorial.setBounds(442, 20, 102, 23);
+		btnVerHistorial.setBounds(557, 20, 102, 23);
 		AgregarPropiedad.add(btnVerHistorial);
-		
-		btnActualizar = new JButton("Actualizar");
-		btnActualizar.setBounds(442, 307, 102, 23);
-		AgregarPropiedad.add(btnActualizar);
 		
 		tfInmobiliaria = new JTextField();
 
 		tfInmobiliaria.setEditable(false);
-		tfInmobiliaria.setBounds(395, 115, 123, 20);
+		tfInmobiliaria.setBounds(536, 90, 117, 20);
 		AgregarPropiedad.add(tfInmobiliaria);
 		tfInmobiliaria.setColumns(10);
 		
 		botonLupitaInmobiliaria = new JButton("");
+		botonLupitaInmobiliaria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		botonLupitaInmobiliaria.setIcon(new ImageIcon(imgLup));
-		botonLupitaInmobiliaria.setBounds(522, 114, 22, 23);
+		botonLupitaInmobiliaria.setBounds(652, 90, 22, 20);
 		AgregarPropiedad.add(botonLupitaInmobiliaria);
 		
 		tfPrecio = new JFormattedTextField(new Float(0));
-		tfPrecio.setBounds(92, 87, 149, 20);
+		tfPrecio.setBounds(305, 59, 122, 20);
 		AgregarPropiedad.add(tfPrecio);
+		
+		JLabel lblOfrecimiento = new JLabel("ofrecimiento:");
+		lblOfrecimiento.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblOfrecimiento.setBounds(20, 96, 76, 14);
+		AgregarPropiedad.add(lblOfrecimiento);
 
 		btnVerHistorial.setVisible(false);
 	}
@@ -459,6 +481,4 @@ public class AgregarPropiedad extends JDialog{
 	public void setTfInmobiliaria(JTextField tfInmobiliaria) {
 		this.tfInmobiliaria = tfInmobiliaria;
 	}
-
-	
 }
