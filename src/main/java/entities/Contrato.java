@@ -32,7 +32,8 @@ public class Contrato {
 	
 	@OneToMany(cascade = {CascadeType.ALL})
 	private List<HistoriaEstadoContrato> estados;
-	
+
+
 	public Contrato() {
 		estados = new ArrayList<>();
 	}
@@ -98,6 +99,13 @@ public class Contrato {
 		return ID;
 	}
 	
+	public List<HistoriaEstadoContrato> getEstados() {
+		return estados;
+	}
+
+	public void setEstados(List<HistoriaEstadoContrato> estados) {
+		this.estados = estados;
+	}
 	
 
 }

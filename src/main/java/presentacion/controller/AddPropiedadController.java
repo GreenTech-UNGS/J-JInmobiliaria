@@ -47,6 +47,9 @@ public class AddPropiedadController {
 	private ElegirInmobiliariaController elegirInmobController;
 	private HistorialPropiedadController historialPropController;
 	private LocalizationService localizationService;
+	private EligeInmobiliariaController eligeInmobiliaria;
+	
+	private final Coordinate centerOfMap = new Coordinate(50.064191736659104, 8.96484375);
 		
 	Propiedad currentPropiedad;
 	Propietario currentPropietario;
@@ -63,7 +66,8 @@ public class AddPropiedadController {
 									ElegirPropietarioController elegirPropController,
 									ElegirInmobiliariaController elegirInmobController,
 									HistorialPropiedadController historialPropController,
-									LocalizationService localizationService){
+									LocalizationService localizationService,
+									EligeInmobiliariaController eligeInmobiliaria){
 		
 		this.view = view;
 		this.propiedadValidator = propiedadValidator;
@@ -75,6 +79,7 @@ public class AddPropiedadController {
 		this.elegirInmobController = elegirInmobController;
 		this.historialPropController = historialPropController;
 		this.localizationService = localizationService;
+		this.eligeInmobiliaria = eligeInmobiliaria;
 		
 		this.provCombo = new ProvinciaComboBoxModel();
 		this.monedaCombo = new MonedaComboBoxModel();
@@ -88,17 +93,23 @@ public class AddPropiedadController {
 		
 		
 		view.getBtnGuardar().addActionListener(e -> savePropiedad());
-		view.getBttAddLoc().addActionListener(e -> agregaLocalidad());
 		view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
 		view.getBtnLupita().addActionListener(e -> selectPropietario());
 		view.getBtnCancelar().addActionListener(e -> view.setVisible(false));
 		view.getBtnVerHistorial().addActionListener(e -> this.historialPropController.showView(currentPropiedad));
 		view.getBtnActualizar().addActionListener(e -> actualizaMapa());
+<<<<<<< HEAD
 		view.getBtnInmobiliaria().addActionListener(e -> selectInmobiliaria());
+=======
+		view.getBotonLupitaInmobiliaria().addActionListener(e -> eligeInmobiliaria());
+>>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
 		
 		
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
 
 	private void initBinder() {
 		binder.bind("identificador",
@@ -131,8 +142,8 @@ public class AddPropiedadController {
 				t -> monedaCombo.setSelected((Moneda)t));
 		
 		binder.bind("precioTentativo.monto",
-				() -> Float.parseFloat(view.getTfPrecio().getText()),
-				t -> view.getTfPrecio().setText(t.toString()));
+				() -> view.getTfPrecio().getValue(),
+				t -> view.getTfPrecio().setValue(t));
 
 		binder.bind("tipoOfrecimiento",
 				tipoOfrCombo::getSelected,
@@ -155,6 +166,7 @@ public class AddPropiedadController {
 		}
 	}
 	
+<<<<<<< HEAD
 	private void selectInmobiliaria() {
 		this.elegirInmobController.showView();
 		Inmobiliaria inmob = elegirInmobController.getInmobiliaria();
@@ -165,6 +177,23 @@ public class AddPropiedadController {
 			
 		}
 	}
+=======
+	private void eligeInmobiliaria() {
+		
+		this.eligeInmobiliaria.showView();
+		
+		Inmobiliaria selected = this.eligeInmobiliaria.getInmobiliaria();
+		
+		if(selected == null)
+			return;
+		
+		currentPropiedad.setInmobiliaria(selected);
+		
+		this.view.getTfInmobiliaria().setText(selected.getCUIT());
+				
+	}
+
+>>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
 
 	private void fillCombos() {
 		
@@ -185,6 +214,12 @@ public class AddPropiedadController {
 	}
 	
 	private void actualizaMapa() {
+
+		Thread t = new Thread(() -> actualizaMapaThread());
+		t.start();
+	}
+	
+	private void actualizaMapaThread() {
 		
 		String calle = view.getTfCalle().getText();
 		String altura = view.getTfAltura().getText();
@@ -204,10 +239,30 @@ public class AddPropiedadController {
 		}
 		
 		Coordinate localizacion = new Coordinate(punto.getLat(), punto.getLon());
+		restartMapa();
 		
 		view.getMapa().addMapMarker(new MapMarkerDot(localizacion));
 		view.getMapa().setDisplayPosition(localizacion, 15);
+		
+		currentPropiedad.setLat(punto.getLat());
+		currentPropiedad.setLon(punto.getLon());
+		
+	}
 	
+	private void actualizaMapaConCoord() {
+		restartMapa();
+		
+		Coordinate localizacion = new Coordinate(currentPropiedad.getLat(), currentPropiedad.getLon());
+		
+		view.getMapa().addMapMarker(new MapMarkerDot(localizacion));
+		view.getMapa().setDisplayPosition(localizacion, 15);
+		
+	}
+	
+	private void restartMapa() {
+		
+		view.getMapa().removeAllMapMarkers();
+		view.getMapa().setDisplayPosition(centerOfMap, 3);
 	}
 	
 	private void cambiaLocalidades() {
@@ -218,15 +273,7 @@ public class AddPropiedadController {
 		localidadCombo.setSelected(localidades.get(0));
 		
 	}
-	
-	private void agregaLocalidad() {
-		String nombreLoc = JOptionPane.showInputDialog(this.view, "Ingrese nombre de la nueva localidad: ", "Nueva localidad", JOptionPane.INFORMATION_MESSAGE);
-		
-		localidadService.addNewLocalidad(nombreLoc, provCombo.getSelected());
-		
-		cambiaLocalidades();
-	}
-	
+
 	private void savePropiedad() {
 		
 		binder.fillBean();
@@ -244,7 +291,11 @@ public class AddPropiedadController {
 		binder.setObjective(currentPropiedad);
 		binder.fillFields();
 		
+		setEnabled(true);
+		restartMapa();
+		
 		view.getTfPropietario().setText("");
+		view.getTfInmobiliaria().setText("");
 	}
 
 	public void setModeView(Propiedad propiedad) {
@@ -253,12 +304,19 @@ public class AddPropiedadController {
 
 		currentPropiedad = propiedad;
 		binder.setObjective(currentPropiedad);
+		setEnabled(false);
+		actualizaMapaConCoord();
 		binder.fillFields();
+		
+		view.getTfPropietario().setText(currentPropiedad.getPropietario().getPersona().getTipoCred().toString() + " " +
+										currentPropiedad.getPropietario().getPersona().getCredencial());
+		
+		view.getTfInmobiliaria().setText(currentPropiedad.getInmobiliaria().getCUIT());
 	}
 
 	public void showView(){
 			
-			view.setVisible(true);
+		view.setVisible(true);
 	}
 	
 	public void setEnabled(boolean bool){
@@ -270,15 +328,25 @@ public class AddPropiedadController {
 		view.getTfEntrecalles().setEditable(bool);
 		view.getTfPiso().setEditable(bool);
 		view.getTfDepto().setEditable(bool);
-		view.getTfPropietario().setEditable(bool);
 		view.getTaDescPubl().setEditable(bool);
 		view.getTaDescPriv().setEditable(bool);
 		view.getBtnGuardar().setVisible(bool);
 		view.getBtnCancelar().setVisible(bool);
 		view.getBtnLupita().setVisible(bool);
+<<<<<<< HEAD
 		view.getBttAddLoc().setVisible(bool);
 		view.getBtnVerHistorial().setVisible(!bool);
 		view.getBtnInmobiliaria().setVisible(bool);
+=======
+		view.getBtnVerHistorial().setVisible(!bool);	
+		view.getBtnActualizar().setVisible(bool);
+		view.getBotonLupitaInmobiliaria().setVisible(bool);
+		
+		view.getComboLocalidad().setEnabled(bool);
+		view.getComboMoneda().setEnabled(bool);
+		view.getComboProvincia().setEnabled(bool);
+		view.getComboTipoOfre().setEnabled(bool);
+>>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
 	}
 
 }

@@ -22,11 +22,11 @@ public class ElegirClienteController {
 		this.view = view;
 		this.clienteServcie = clienteServcie;
 		this.tableModelCliente = new ClientesTableModel();
-		fillTableProp();
+		fillTableCliente();
 		
 	}
 
-	private void fillTableProp() {
+	private void fillTableCliente() {
 		
 		this.view.getTable().setModel(tableModelCliente);
 		this.view.getTable().setColumnModel(tableModelCliente.getTableColumnModel());
@@ -38,7 +38,7 @@ public class ElegirClienteController {
 	}
 
 	public void showView(){
-		
+		fillTableCliente();
 		view.setVisible(true);
 	}
 	

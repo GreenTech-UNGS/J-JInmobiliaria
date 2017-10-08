@@ -231,10 +231,6 @@ public class MainView {
         JMenuItem mntmAlgo_2 = new JMenuItem("Algo3");
         mnItem_1.add(mntmAlgo_2);
 
-        JLabel label = new JLabel("New label");
-        label.setBounds(396, 5, 46, 14);
-        panelPrincipal.add(label);
-
         JLabel lblNotificaciones = new JLabel("Notificaciones:");
         lblNotificaciones.setFont(new Font("Tahoma", Font.BOLD, 12));
         lblNotificaciones.setBounds(75, 11, 104, 14);

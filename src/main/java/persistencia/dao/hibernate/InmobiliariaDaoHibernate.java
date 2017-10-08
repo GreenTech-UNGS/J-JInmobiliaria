@@ -1,3 +1,4 @@
+
 package persistencia.dao.hibernate;
 
 import java.util.List;
@@ -41,5 +42,5 @@ public class InmobiliariaDaoHibernate extends DaoHibernate<Inmobiliaria> impleme
 		// TODO Auto-generated method stub
 		
 	}
-
 }
+

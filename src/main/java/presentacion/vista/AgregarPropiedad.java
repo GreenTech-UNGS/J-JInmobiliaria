@@ -22,8 +22,10 @@ import java.awt.Image;
 
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.awt.event.ActionEvent;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
+import javax.swing.JFormattedTextField;
 
 @SuppressWarnings("serial")
 public class AgregarPropiedad extends JDialog{
@@ -31,7 +33,6 @@ public class AgregarPropiedad extends JDialog{
 	private JPanel AgregarPropiedad;
 	private JTextField tfAltura;
 	private JTextField tfCalle;
-	private JTextField tfPrecio;
 	private JTextField tfIdentificador;
 	private JTextField tfEntrecalles;
 	private JTextField tfPiso;
@@ -45,14 +46,18 @@ public class AgregarPropiedad extends JDialog{
 	private JButton btnGuardar;
 	private JButton btnCancelar;
 	private JComboBox<String> comboLocalidad;
-	private JButton bttAddLoc;
 	private JTextField tfPropietario;
 	private JButton btnLupita;
 	private JButton btnVerHistorial;
 	private JMapViewer mapa;
 	private JButton btnActualizar;
 	private JTextField tfInmobiliaria;
+<<<<<<< HEAD
 	private JButton btnInmobiliaria;
+=======
+	private JButton botonLupitaInmobiliaria;
+	private JFormattedTextField tfPrecio;
+>>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
 
 	@Inject
 	private AgregarPropiedad() {
@@ -119,11 +124,6 @@ public class AgregarPropiedad extends JDialog{
 		comboTipoOfre.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		comboTipoOfre.setBounds(395, 59, 149, 20);
 		AgregarPropiedad.add(comboTipoOfre);
-		
-		tfPrecio = new JTextField();
-		tfPrecio.setBounds(92, 87, 149, 20);
-		AgregarPropiedad.add(tfPrecio);
-		tfPrecio.setColumns(10);
 		
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
@@ -252,12 +252,8 @@ public class AgregarPropiedad extends JDialog{
 		
 		comboLocalidad = new JComboBox<>();
 		comboLocalidad.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		comboLocalidad.setBounds(396, 231, 102, 20);
+		comboLocalidad.setBounds(395, 231, 149, 20);
 		AgregarPropiedad.add(comboLocalidad);
-		
-		bttAddLoc = new JButton("+");
-		bttAddLoc.setBounds(503, 230, 41, 23);
-		AgregarPropiedad.add(bttAddLoc);
 		
 		tfPropietario = new JTextField();
 		tfPropietario.setEditable(false);
@@ -281,6 +277,7 @@ public class AgregarPropiedad extends JDialog{
 		AgregarPropiedad.add(btnActualizar);
 		
 		tfInmobiliaria = new JTextField();
+<<<<<<< HEAD
 		tfInmobiliaria.setBounds(395, 112, 123, 20);
 		AgregarPropiedad.add(tfInmobiliaria);
 		tfInmobiliaria.setColumns(10);
@@ -291,7 +288,30 @@ public class AgregarPropiedad extends JDialog{
 		btnInmobiliaria.setIcon(new ImageIcon(imgLup));
 		AgregarPropiedad.add(btnInmobiliaria);
 		
+=======
+		tfInmobiliaria.setEditable(false);
+		tfInmobiliaria.setBounds(395, 115, 123, 20);
+		AgregarPropiedad.add(tfInmobiliaria);
+		tfInmobiliaria.setColumns(10);
+		
+		botonLupitaInmobiliaria = new JButton("");
+		botonLupitaInmobiliaria.setIcon(new ImageIcon(imgLup));
+		botonLupitaInmobiliaria.setBounds(522, 114, 22, 23);
+		AgregarPropiedad.add(botonLupitaInmobiliaria);
+		
+		tfPrecio = new JFormattedTextField(new Float(0));
+		tfPrecio.setBounds(92, 87, 149, 20);
+		AgregarPropiedad.add(tfPrecio);
+>>>>>>> branch 'master' of https://github.com/GreenTech-UNGS/J-JInmobiliaria.git
 		btnVerHistorial.setVisible(false);
+	}
+
+	public JTextField getTfInmobiliaria() {
+		return tfInmobiliaria;
+	}
+
+	public JButton getBotonLupitaInmobiliaria() {
+		return botonLupitaInmobiliaria;
 	}
 
 	public JButton getBtnActualizar() {
@@ -310,7 +330,7 @@ public class AgregarPropiedad extends JDialog{
 		return tfCalle;
 	}
 
-	public JTextField getTfPrecio() {
+	public JFormattedTextField getTfPrecio() {
 		return tfPrecio;
 	}
 
@@ -362,11 +382,7 @@ public class AgregarPropiedad extends JDialog{
 	public JComboBox<String> getComboLocalidad() {
 		return comboLocalidad;
 	}
-
-	public JButton getBttAddLoc() {
-		return bttAddLoc;
-	}
-
+	
 	public JButton getBtnLupita() {
 		return btnLupita;
 	}
@@ -404,10 +420,6 @@ public class AgregarPropiedad extends JDialog{
 
 	public void setTfCalle(JTextField tfCalle) {
 		this.tfCalle = tfCalle;
-	}
-
-	public void setTfPrecio(JTextField tfPrecio) {
-		this.tfPrecio = tfPrecio;
 	}
 
 	public void setTfIdentificador(JTextField tfIdentificador) {
@@ -456,10 +468,6 @@ public class AgregarPropiedad extends JDialog{
 
 	public void setComboLocalidad(JComboBox<String> comboLocalidad) {
 		this.comboLocalidad = comboLocalidad;
-	}
-
-	public void setBttAddLoc(JButton bttAddLoc) {
-		this.bttAddLoc = bttAddLoc;
 	}
 
 	public JTextField getTfInmobiliaria() {

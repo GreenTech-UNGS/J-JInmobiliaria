@@ -11,6 +11,7 @@ import model.ReservaService;
 import org.joda.time.DateTime;
 import presentacion.combo.ClienteComboBoxModel;
 import presentacion.combo.PropiedadComboBoxModel;
+import presentacion.validators.MessageShow;
 import presentacion.vista.ElegirCliente;
 import presentacion.vista.ReservarPropiedadView;
 
@@ -22,7 +23,7 @@ public class ReservarPropiedadController {
 
     private PropiedadService propiedadService;
     private ClienteService clienteService;
-    ReservaService reservaService;
+    private ReservaService reservaService;
 
     private ElegirClienteController clienteController;
     private ElegirPropiedadController propiedadController;
@@ -30,12 +31,9 @@ public class ReservarPropiedadController {
     private PropiedadComboBoxModel propiedadComboBoxModelModel;
     private ClienteComboBoxModel clienteComboBoxModel;
 
-    Reserva currentReserva;
-    Propiedad currentPropiedad;
-    Cliente currentCliente;
-
-    private Binder<Cliente> clienteBinder;
-    private Binder<Propiedad> propiedadBinder;
+    private Reserva currentReserva;
+    private Propiedad currentPropiedad;
+    private Cliente currentCliente;
 
     @Inject
     public ReservarPropiedadController(ReservarPropiedadView view,
@@ -59,18 +57,19 @@ public class ReservarPropiedadController {
         view.getBtnSelecPropiedad().addActionListener(e -> selectPropiedad());
 
 
-        this.clienteBinder = new Binder<>();
-        this.propiedadBinder = new Binder<>();
-
     }
 
     private void reservarPropiedad() {
-        reservaService.saveReserva(currentReserva);
-        closeView();
+
+        //FIXME Incorporar Validator
+        if(currentCliente != null && currentPropiedad!= null) {
+            reservaService.saveReserva(currentReserva);
+            closeView();
+        }
     }
 
     private void selectPropiedad() {
-        this.propiedadController.showViewVenta();
+        this.propiedadController.showViewProp();
         Propiedad propiedad = propiedadController.getPropiedad();
 
         if(propiedad != null){
@@ -101,7 +100,6 @@ public class ReservarPropiedadController {
         currentReserva = reservaService.getEmptyReserva();
         currentPropiedad = null;
         currentCliente = null;
-        throw new RuntimeException("No implementado aún");
     }
 
     public void showView() {

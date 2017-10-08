@@ -58,11 +58,12 @@ public class PropiedadValidator implements Validator<Propiedad>{
 	
 	private boolean hayCamposVacios(Propiedad t) {
 		
-		return 
-				t.getIdentificador().equals("") || 
-				t.getCalle().equals("") || 
-				t.getAltura().equals("") || 
+		return
+				t.getIdentificador().equals("") ||
+				t.getCalle().equals("") ||
+				t.getAltura().equals("") ||
 				t.getLocalidad().getNombre() == null;
 	}
+	
 	
 }

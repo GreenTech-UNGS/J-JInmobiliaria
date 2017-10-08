@@ -82,7 +82,7 @@ public class MainViewController {
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
-//		this.view.getBtnReservarPropiedad().addActionListener(e -> agregarReserva());
+		this.view.getBtnReservarPropiedad().addActionListener(e -> agregarReserva());
 		this.view.getBtnContratoAlq().addActionListener(e -> agregarContratoAlq());
 		this.view.getBtnContratoVen().addActionListener(e -> agregarContratoVen());
 		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());

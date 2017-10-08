@@ -34,6 +34,25 @@ public class Propiedad {
 	private String obsPublicas;
 	private String obsPrivadas;
 	
+	private double lat;
+	private double lon;
+	
+	public double getLat() {
+		return lat;
+	}
+
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+
+	public double getLon() {
+		return lon;
+	}
+
+	public void setLon(double lon) {
+		this.lon = lon;
+	}
+
 	@OneToMany(cascade = {CascadeType.ALL})
 	private List<HistoriaEstadoProp> estados;
 	

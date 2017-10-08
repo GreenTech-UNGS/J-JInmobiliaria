@@ -23,8 +23,10 @@ import entities.ContratoVenta;
 import entities.CuotaAlquiler;
 import entities.DatosActualizacionContrato;
 import entities.DatosPunitorioContrato;
+import entities.EstadoContrato;
 import entities.EstadoCuota;
 import entities.EstadoProp;
+import entities.HistoriaEstadoContrato;
 import entities.HistoriaEstadoCuota;
 import entities.HistoriaEstadoProp;
 import entities.Moneda;
@@ -32,7 +34,6 @@ import entities.Persona;
 import entities.Precio;
 import entities.Propiedad;
 import entities.TipoContratoAlquiler;
-import entities.TipoOfrecimiento;
 import persistencia.dao.iface.ContratoDao;
 import persistencia.dao.iface.CuotaDao;
 import persistencia.dao.iface.PropiedadDao;
@@ -74,7 +75,6 @@ public class ContratoService {
 		creaCuotas(c);
 		
 		propiedadDao.save(propiedad);
-		//TODO: crear pagos y eso
 	}
 	
 	private void creaCuotas(ContratoAlquiler c) {
@@ -158,6 +158,18 @@ public class ContratoService {
 		return contratoDao.getAll();
 	}
 	
+
+	private EstadoContrato getEstadoOf(Contrato c) {
+		
+		List<HistoriaEstadoContrato> estados = c.getEstados();
+		
+		estados.sort((e1, e2) -> e1.getFecha().compareTo(e2.getFecha()));
+		
+		return estados.get(0).getEstado();
+		
+	}
+	
+
 	public List<Contrato> getContratosVenta(){
 		
 		List<Contrato> allContratos = getAll();
