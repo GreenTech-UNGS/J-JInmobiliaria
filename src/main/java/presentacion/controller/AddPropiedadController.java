@@ -248,7 +248,6 @@ public class AddPropiedadController {
 		localidadCombo.removeAllElements();
 		List<Localidad> localidades = localidadService.getAllOf(provCombo.getSelected());
 		localidadCombo.actualize(localidades);
-		localidadCombo.setSelected(localidades.get(0));
 		
 	}
 

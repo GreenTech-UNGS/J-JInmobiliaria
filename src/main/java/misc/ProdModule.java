@@ -4,6 +4,7 @@ import com.google.inject.Binder;
 import com.google.inject.Module;
 import com.google.inject.Singleton;
 
+import model.PagosCobrosService;
 import persisitencia.dao.mapas.LocalizationDaoGoogleMaps;
 import persistencia.conexion.Conexion;
 import persistencia.dao.hibernate.ClienteDaoHibernate;
@@ -52,6 +53,7 @@ public class ProdModule implements Module{
 		binder.bind(AddContAlqController.class).in(Singleton.class);
 		binder.bind(AddContVenController.class).in(Singleton.class);
 		binder.bind(AddClienteController.class).in(Singleton.class);
+		binder.bind(PagosCobrosService.class).in(Singleton.class);
 		
 		binder.bind(Conexion.class).in(Singleton.class);
 		binder.bind(ClienteDao.class).to(ClienteDaoHibernate.class).in(Singleton.class);
