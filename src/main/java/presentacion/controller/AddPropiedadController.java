@@ -260,7 +260,7 @@ public class AddPropiedadController {
 		
 		binder.fillBean();
 		if(propiedadValidator.isValid(currentPropiedad)){		
-			
+			actualizaMapaThread();
 			propiedadService.savePropiedad(currentPropiedad);
 			view.setVisible(false);
 		}

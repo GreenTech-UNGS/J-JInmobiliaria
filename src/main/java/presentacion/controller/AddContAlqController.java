@@ -197,6 +197,15 @@ public class AddContAlqController {
 
 	public void setModeNew() {
 		
+		view.getTfIdPropiedad().setEditable(true);
+		view.getBtnLupaPropiedad().setEnabled(true);
+		view.getTfDniInquilino().setEditable(true);
+		view.getBtnLupaCliente().setEnabled(true);
+		
+		view.getBtnGuardarContrato().setVisible(true);
+		view.getBtnCancelarContrato().setVisible(true);
+		view.getBtnRenovarContrato().setVisible(false);
+		
 		currentContrato = contratoService.getNewContratoAlquiler();
 		binder.setObjective(currentContrato);
 		binder.fillFields();
@@ -212,18 +221,24 @@ public class AddContAlqController {
 	}
 
 	
-	public void setRenovarMode(Contrato c){
+	public void setRenovarMode(ContratoAlquiler c){
 		
-		showView();
-		//aca se tiene que llenar el puto formulario solo
-		view.getTextIdContrato().setEnabled(false);
-		view.getTfIdPropiedad().setEnabled(false);
+		view.getTfIdPropiedad().setEditable(false);
 		view.getBtnLupaPropiedad().setEnabled(false);
-		view.getTfDniInquilino().setEnabled(false);
+		view.getTfDniInquilino().setEditable(false);
 		view.getBtnLupaCliente().setEnabled(false);
 		
 		view.getBtnGuardarContrato().setVisible(false);
 		view.getBtnCancelarContrato().setVisible(false);
 		view.getBtnRenovarContrato().setVisible(true);
+		
+		currentContrato = contratoService.getActualizacionOf(c);
+		
+		binder.setObjective(currentContrato);
+		
+		binder.fillFields();
+
+		showView();
+		
 		}
 }
