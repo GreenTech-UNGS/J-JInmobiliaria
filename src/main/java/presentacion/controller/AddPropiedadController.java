@@ -248,7 +248,6 @@ public class AddPropiedadController {
 		localidadCombo.removeAllElements();
 		List<Localidad> localidades = localidadService.getAllOf(provCombo.getSelected());
 		localidadCombo.actualize(localidades);
-		localidadCombo.setSelected(localidades.get(0));
 		
 	}
 
@@ -274,6 +273,7 @@ public class AddPropiedadController {
 		
 		view.getTfPropietario().setText("");
 		view.getTfInmobiliaria().setText("");
+		view.getLblReservada().setVisible(false);
 	}
 
 	public void setModeView(Propiedad propiedad) {
@@ -288,8 +288,12 @@ public class AddPropiedadController {
 		
 		view.getTfPropietario().setText(currentPropiedad.getPropietario().getPersona().getTipoCred().toString() + " " +
 										currentPropiedad.getPropietario().getPersona().getCredencial());
-		if(currentPropiedad.getInmobiliaria()!=null){
-			view.getTfInmobiliaria().setText(currentPropiedad.getInmobiliaria().getCUIT());};
+		if(currentPropiedad.getInmobiliaria()!=null)
+			view.getTfInmobiliaria().setText(currentPropiedad.getInmobiliaria().getCUIT());
+		
+
+		if(propiedadService.getCurrentEstado(currentPropiedad).equals(EstadoProp.RESERVADA))
+			view.getLblReservada().setVisible(true);
 	}
 
 	public void showView(){
@@ -320,9 +324,7 @@ public class AddPropiedadController {
 		view.getComboMoneda().setEnabled(bool);
 		view.getComboProvincia().setEnabled(bool);
 		view.getComboTipoOfre().setEnabled(bool);
-		if(propiedadService.getCurrentEstado(currentPropiedad).equals(EstadoProp.RESERVADA)){
-			view.getLblReservada().setVisible(!bool);
-		}
+			
 
 	}
 

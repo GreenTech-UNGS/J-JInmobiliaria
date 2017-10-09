@@ -194,7 +194,8 @@ public class ContratoService {
 		
 		List<HistoriaEstadoContrato> estados = c.getEstados();
 		
-		estados.sort((e2, e1) -> e1.getFecha().compareTo(e2.getFecha()));
+		estados.sort((e1, e2) -> e2.getFecha().compareTo(e1.getFecha()));
+		
 		
 		return estados.get(0).getEstado();
 		

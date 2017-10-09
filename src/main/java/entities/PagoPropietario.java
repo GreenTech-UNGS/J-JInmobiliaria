@@ -18,7 +18,7 @@ import org.joda.time.DateTime;
 @Table(name = "pagosPropietario")
 public class PagoPropietario {
 
-	private enum EstadoPago{PENDIENTE, PAGO};
+	public enum EstadoPago{PENDIENTE, PAGO};
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,8 @@ public class PagoPropietario {
 	@Enumerated(EnumType.ORDINAL)
 	private EstadoPago estado;
 	
-	private float monto;
+	@OneToOne(cascade = {CascadeType.ALL})
+	private Precio monto;
 
 	public CuotaAlquiler getCuota() {
 		return cuota;
@@ -57,11 +58,11 @@ public class PagoPropietario {
 		this.estado = estado;
 	}
 
-	public float getMonto() {
+	public Precio getMonto() {
 		return monto;
 	}
 
-	public void setMonto(float monto) {
+	public void setMonto(Precio monto) {
 		this.monto = monto;
 	}
 

@@ -4,6 +4,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import org.joda.time.DateTime;
+import javax.swing.JOptionPane;
+
 import org.joda.time.YearMonth;
 
 import com.google.inject.Inject;
@@ -68,6 +70,7 @@ public class MainViewController {
 			PropiedadService propiedadService,
 			ClienteService clienteService,
 			PropiedadesTableModel tableModelprop,
+			CuotasTableModel cuotasTable,
 			PropietarioService propietarioService,
 			CuotaService cuotaService,
 			ContratosTableModel contratosTable,
@@ -79,7 +82,7 @@ public class MainViewController {
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
 		this.propietariosTable = new PropietariosTableModel();
-		this.cuotasTable = new CuotasTableModel();
+		this.cuotasTable = cuotasTable;
 		this.reservaTable = new ReservaTableModel();
 		this.tableModelProp = tableModelprop;
 		this.propiedadController = propiedadesController;
@@ -114,6 +117,7 @@ public class MainViewController {
 		fillTableProp();
 		fillTableContratosVenta();
 		fillTableContratosAlquiler();
+		fillTablePagosProps();
 		selectDetalleProp();
 		fillTableReservas();
 	}
@@ -161,10 +165,20 @@ public class MainViewController {
 	private void fillTableCuotas() {
 		this.cuotasTable.clean();
 		this.view.getTableCuotas().setModel(cuotasTable);
-		cuotaService.getAll().forEach(c -> cuotasTable.addRow(c));
+		cuotaService.getCuotasOf(YearMonth.now(), EstadoCuota.values()).forEach(c -> cuotasTable.addRow(c));
 		
 		this.view.getTableCuotas().setColumnModel(cuotasTable.getTableColumnModel());
 		this.view.getTableCuotas().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTablePagosProps() {
+		/*//TODO this.cuotasTable.clean();
+		this.view.getTableCuotas().setModel(cuotasTable);
+		cuotaService.getCuotasOf(YearMonth.now(), EstadoCuota.values()).forEach(c -> cuotasTable.addRow(c));
+		
+		this.view.getTableCuotas().setColumnModel(cuotasTable.getTableColumnModel());
+		this.view.getTableCuotas().getTableHeader().setReorderingAllowed(false);*/
+		
 	}
 	
 	private void fillTableProp(){
@@ -283,11 +297,19 @@ public class MainViewController {
 		int select = this.view.getTableCuotas().getSelectedRow();
 		
 		if (select!=-1){
-
-			cobroController.setCuota(cuotasTable.getRow(select));
+			CuotaAlquiler c = cuotasTable.getRow(select);
+			if(!cuotaService.getEstadoOf(c).equals(EstadoCuota.PENDIENTE)) {
+				JOptionPane.showMessageDialog(null, "Solo se pueden registrar pagos de cuotas pendientes", "Error", JOptionPane.INFORMATION_MESSAGE);
+			}
+			else {
+				cobroController.setCuota(c);
 			
-			cobroController.showView();
-			this.fillTableCuotas();
+				cobroController.showView();
+				this.fillTableCuotas();
+			}
+		
+			
 		}
+		
 	}
 }

@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.inject.Inject;
@@ -29,8 +30,12 @@ public class PersonaService {
 	}
 	
 	public List<Telefono> getAllTelefonosOf(PersonaBasica pb) {
+		List<Telefono> toRet = personaDao.getAllTelefonosOf(pb);
 		
-		return personaDao.getAllTelefonosOf(pb);
+		if(toRet == null)
+			toRet = new ArrayList<>();
+		
+		return toRet;
 		
 	}
 	
