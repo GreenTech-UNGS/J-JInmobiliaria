@@ -45,6 +45,9 @@ public class PersonaDaoHibernate extends DaoHibernate<Persona> implements Person
 		q.setMaxResults(1);
 		finishTransaction();
 		
+		if(q.list().isEmpty())
+			return null;
+		
 		return ((PersonaBasica)(q.list().get(0))).getTelefonos();
 	}
 

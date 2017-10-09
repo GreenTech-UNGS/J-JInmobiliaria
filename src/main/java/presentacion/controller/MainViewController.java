@@ -114,6 +114,7 @@ public class MainViewController {
 		fillTableProp();
 		fillTableContratosVenta();
 		fillTableContratosAlquiler();
+		fillTablePagosProps();
 		selectDetalleProp();
 		fillTableReservas();
 	}
@@ -165,6 +166,16 @@ public class MainViewController {
 		
 		this.view.getTableCuotas().setColumnModel(cuotasTable.getTableColumnModel());
 		this.view.getTableCuotas().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTablePagosProps() {
+		/*//TODO this.cuotasTable.clean();
+		this.view.getTableCuotas().setModel(cuotasTable);
+		cuotaService.getCuotasOf(YearMonth.now(), EstadoCuota.values()).forEach(c -> cuotasTable.addRow(c));
+		
+		this.view.getTableCuotas().setColumnModel(cuotasTable.getTableColumnModel());
+		this.view.getTableCuotas().getTableHeader().setReorderingAllowed(false);*/
+		
 	}
 	
 	private void fillTableProp(){
