@@ -6,6 +6,7 @@ import entities.Cliente;
 import entities.ContratoVenta;
 import entities.Propiedad;
 import model.ContratoService;
+import presentacion.validators.ContratoVentaValidator;
 import presentacion.vista.AddContratoVen;
 
 public class AddContVenController {
@@ -16,17 +17,20 @@ public class AddContVenController {
 	ElegirPropiedadController elegirProp;
 	ContratoVenta currentContrato;
 	ContratoService contratoService;
+	ContratoVentaValidator contratoVentaValidator;
 	
 	@Inject
 	private AddContVenController(AddContratoVen view,
 			ElegirClienteController elegirCliente,
 			ElegirPropiedadController elegirProp, 
-			ContratoService contratoService){
+			ContratoService contratoService,
+			ContratoVentaValidator contratoVentaValidator){
 		
 		this.view = view;
 		this.elegirCliente = elegirCliente;
 		this.elegirProp = elegirProp;
 		this.contratoService = contratoService;
+		this.contratoVentaValidator = contratoVentaValidator;
 		
 		view.getBtnCancelarContVen().addActionListener(e -> view.setVisible(false));
 		view.getBtnBuscarCliente().addActionListener(e -> elegirCliente());
@@ -66,10 +70,12 @@ public class AddContVenController {
 	
 	public void guardarContrato(){
 		
-		//falta validador
-		currentContrato.setIdentificador(view.getTfIdContrato().getText());
-		contratoService.SaveContratoVenta(currentContrato);
-		view.setVisible(false);
+		if(contratoVentaValidator.isValid(currentContrato)){
+			
+			currentContrato.setIdentificador(view.getTfIdContrato().getText());
+			contratoService.SaveContratoVenta(currentContrato);
+			view.setVisible(false);
+		}
 	}
 	
 	public void setModeNew(){
