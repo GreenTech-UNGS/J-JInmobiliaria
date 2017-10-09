@@ -14,7 +14,7 @@ import com.google.inject.Singleton;
 public class Conexion {
 	
     private SessionFactory factory;
-    private File configuration = new File("hibernate.cfg.xml");
+    private File configuration = new File("config" + File.separatorChar + "hibernate.cfg.xml");
     
     private DBCredentialsEditor dbProps = DBCredentialsEditor.getEditor();
     private Session session;

@@ -16,7 +16,7 @@ public class DBCredentialsEditor {
 		return instancia;
 	}
 	
-    private File propsFile = new File("config.properties");
+    private File propsFile = new File("config" + File.separatorChar + "config.properties");
     private Properties props = new Properties();
 	
     private DBCredentialsEditor(){
