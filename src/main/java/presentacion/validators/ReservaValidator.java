@@ -21,13 +21,15 @@ public class ReservaValidator implements Validator<Reserva>{
     }
 
     @Override
-    public boolean isValid(Reserva reserva) {
+    public boolean isValid(Reserva t) {
        
-    	if(propiedadService.getCurrentEstado(reserva.getPropiedad()).equals(EstadoProp.DISPONIBLE) == false){
+		if(t == null){
+			return false;
+		} else if(propiedadService.getCurrentEstado(t.getPropiedad()).equals(EstadoProp.DISPONIBLE) == false){
     		msgShw.showErrorMessage("La propiedad seleccionada no esta disponible", "Error");
 			return false;
     	}
     		
-    	return false;
+    	return true;
     }
 }
