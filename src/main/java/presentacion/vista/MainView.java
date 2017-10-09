@@ -59,6 +59,7 @@ public class MainView {
     private JTable tablaContratoVenta;
     private JTable tablaContratoAlquiler;
     private JTable tablaReservas;
+    private JButton btnRegistrarCobro;
 
     @Inject
     public MainView() {
@@ -171,16 +172,24 @@ public class MainView {
         panelPagos.add(tabbedPane);
 
         JPanel panelPagoAlq = new JPanel();
-        tabbedPane.addTab("Pagos de alquileres", null, panelPagoAlq, null);
-        panelPagoAlq.setLayout(new BoxLayout(panelPagoAlq, BoxLayout.X_AXIS));
+        tabbedPane.addTab("Cobro de alquileres", null, panelPagoAlq, null);
+        panelPagoAlq.setLayout(new BoxLayout(panelPagoAlq, BoxLayout.Y_AXIS));
         
         tableCuotas = new JTable();
         
         JScrollPane scrollPane_3 = new JScrollPane(tableCuotas);
         panelPagoAlq.add(scrollPane_3);
         
+        JPanel botonesAlquiler = new JPanel();
+        panelPagoAlq.add(botonesAlquiler);
+        botonesAlquiler.setLayout(new BoxLayout(botonesAlquiler, BoxLayout.X_AXIS));
+        
+        btnRegistrarCobro = new JButton("Registrar Cobro");
+        botonesAlquiler.add(btnRegistrarCobro);
+        
         JPanel panelPagoVen = new JPanel();
         tabbedPane.addTab("Pagos de ventas", null, panelPagoVen, null);
+        tabbedPane.setEnabledAt(1, true);
 
         JPanel panelPagoProp = new JPanel();
         tabbedPane.addTab("Pagos a propietarios", null, panelPagoProp, null);
@@ -494,6 +503,8 @@ public class MainView {
 	public void setBtnDesreservar(JButton btnDesreservar) {
 		this.btnDesreservar = btnDesreservar;
 	}
-
 	
+	public JButton getBtnRegistrarCobro() {
+		return btnRegistrarCobro;
+	}
 }

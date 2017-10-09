@@ -8,6 +8,7 @@ import org.joda.time.YearMonth;
 
 import com.google.inject.Inject;
 
+import entities.CuotaAlquiler;
 import entities.EstadoCuota;
 import entities.EstadoProp;
 import entities.HistoriaEstadoProp;
@@ -45,6 +46,7 @@ public class MainViewController {
 	AddClienteController clienteController;	
 	AddPropiedadController propiedadController;
 	ReservarPropiedadController reservaController;
+	RegistrarCobroController cobroController;
 
 	PropiedadService propiedadService;
 	ClienteService clienteService;
@@ -69,7 +71,8 @@ public class MainViewController {
 			ContratosTableModel contratosTable,
 			ContratosTableModel contratosTable2,
 			ContratoService contratoService,
-			ReservaService reservaService){
+			ReservaService reservaService,
+			RegistrarCobroController cobroController){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
@@ -90,6 +93,7 @@ public class MainViewController {
 		this.contratosTable2 = contratosTable2;
 		this.contratoService = contratoService;
 		this.reservaService = reservaService;
+		this.cobroController = cobroController;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
@@ -99,6 +103,8 @@ public class MainViewController {
 		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());
 		this.view.getBtnEditarCliente().addActionListener(e -> editarCliente());
 		this.view.getBtnDesreservar().addActionListener(e -> borrarReserva());
+		this.view.getBtnRegistrarCobro().addActionListener(e -> registrarCobro());
+
 		
 		fillTableClientes();
 		fillTableCuotas();
@@ -152,7 +158,7 @@ public class MainViewController {
 	private void fillTableCuotas() {
 		this.cuotasTable.clean();
 		this.view.getTableCuotas().setModel(cuotasTable);
-		cuotaService.getCuotasOf(YearMonth.now(), EstadoCuota.PENDIENTE).forEach(c -> cuotasTable.addRow(c));
+		cuotaService.getAll().forEach(c -> cuotasTable.addRow(c));
 		
 		this.view.getTableCuotas().setColumnModel(cuotasTable.getTableColumnModel());
 		this.view.getTableCuotas().getTableHeader().setReorderingAllowed(false);
@@ -257,6 +263,19 @@ public class MainViewController {
     		
 			fillTableReservas();
 			fillTableProp();
+		}
+	}
+		
+	private void registrarCobro() {
+		CuotaAlquiler selected = null;
+		int select = this.view.getTableCuotas().getSelectedRow();
+		
+		if (select!=-1){
+
+			cobroController.setCuota(cuotasTable.getRow(select));
+			
+			cobroController.showView();
+			this.fillTableCuotas();
 		}
 	}
 }
