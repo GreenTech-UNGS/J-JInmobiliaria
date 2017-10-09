@@ -3,21 +3,21 @@ package presentacion.validators;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import entities.Ingreso;
+import entities.CuotaAlquiler;
 
 @Singleton
-public class IngresoValidator implements Validator<Ingreso>{
+public class CobroAlquilerValidator implements Validator<CuotaAlquiler>{
 
 	MessageShow msgShw;
 	
 	@Inject
-	public IngresoValidator(MessageShow msgShw) {
+	public CobroAlquilerValidator(MessageShow msgShw) {
 		
 		this.msgShw = msgShw;
 	}
 	
 	@Override
-	public boolean isValid(Ingreso t) {
+	public boolean isValid(CuotaAlquiler t) {
 		
 		if(t == null){
 			return false;
