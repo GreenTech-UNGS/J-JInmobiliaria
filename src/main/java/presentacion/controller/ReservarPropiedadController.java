@@ -81,7 +81,6 @@ public class ReservarPropiedadController {
     }
 
     private void selectPropiedad() {
-        System.out.println("asd");
         this.propiedadController.showViewProp();
         Propiedad propiedad = propiedadController.getPropiedad();
 

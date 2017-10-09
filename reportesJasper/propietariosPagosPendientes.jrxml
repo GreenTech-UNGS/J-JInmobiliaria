@@ -11,34 +11,76 @@
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
-	<field name="nombre" class="java.lang.String">
-		<fieldDescription><![CDATA[nombre]]></fieldDescription>
+	<field name="montoStr" class="java.lang.String">
+		<fieldDescription><![CDATA[montoStr]]></fieldDescription>
 	</field>
-	<field name="apellido" class="java.lang.String">
-		<fieldDescription><![CDATA[apellido]]></fieldDescription>
+	<field name="propiedadStr" class="java.lang.String">
+		<fieldDescription><![CDATA[propiedadStr]]></fieldDescription>
 	</field>
-	<field name="monto" class="java.lang.String">
-		<fieldDescription><![CDATA[monto]]></fieldDescription>
+	<field name="idContrato" class="java.lang.String">
+		<fieldDescription><![CDATA[idContrato]]></fieldDescription>
+	</field>
+	<field name="inquilinoStr" class="java.lang.String">
+		<fieldDescription><![CDATA[inquilinoStr]]></fieldDescription>
+	</field>
+	<field name="propietarioStr" class="java.lang.String">
+		<fieldDescription><![CDATA[propietarioStr]]></fieldDescription>
 	</field>
 	<group name="GroupPropietarios">
+		<groupExpression><![CDATA[$F{propietarioStr}]]></groupExpression>
 		<groupHeader>
-			<band height="50">
+			<band height="40">
+				<rectangle>
+					<reportElement x="0" y="0" width="555" height="20" forecolor="#4BCCAC" backcolor="#4BCCAC" uuid="9f26ce0a-991e-48da-af38-a38e3d218ce2"/>
+				</rectangle>
 				<textField>
-					<reportElement x="10" y="20" width="100" height="17" uuid="76170d38-1ad9-4fde-88da-f58660982a3d"/>
-					<textFieldExpression><![CDATA[$F{apellido}.charAt(0)]]></textFieldExpression>
+					<reportElement x="0" y="0" width="230" height="19" uuid="3f11b8f0-c565-4554-a24d-eba3d41fbb07"/>
+					<textFieldExpression><![CDATA[$F{propietarioStr}]]></textFieldExpression>
 				</textField>
-			</band>
-		</groupHeader>
-		<groupFooter>
-			<band height="50">
-				<textField>
-					<reportElement x="180" y="20" width="80" height="18" uuid="032251cc-405c-42f7-a00f-6e7e23533fb3">
+				<staticText>
+					<reportElement x="0" y="20" width="90" height="20" uuid="6b9cdb48-9247-4f3e-b652-2fc66968ca23">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
-					<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
-				</textField>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font fontName="Arial" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Identificador Contrato]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="89" y="20" width="159" height="20" uuid="75852f01-3da1-4122-bf88-b181359ad036">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Top">
+						<font fontName="Arial" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Inmueble]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="250" y="20" width="122" height="20" uuid="4013aaee-b8ed-447f-ae98-3e3f64bb4c78"/>
+					<textElement verticalAlignment="Top">
+						<font fontName="Arial" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Cliente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="370" y="20" width="79" height="20" uuid="669feb80-7dfb-4e82-9439-6608708d98f8"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Monto a pagar]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="450" y="20" width="100" height="20" uuid="920fd96a-1785-48ef-a79b-42e7e8a92934"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Firma]]></text>
+				</staticText>
 			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
 		</groupFooter>
 	</group>
 	<background>
@@ -47,85 +89,63 @@
 	<title>
 		<band height="79" splitType="Stretch">
 			<staticText>
-				<reportElement x="-6" y="12" width="186" height="30" uuid="65d42c78-b7a1-4705-aa4a-9869e91b2e19"/>
+				<reportElement x="0" y="10" width="186" height="30" uuid="65d42c78-b7a1-4705-aa4a-9869e91b2e19"/>
 				<textElement>
 					<font fontName="Arial" size="20" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Lopez y Lopez]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="499" y="10" width="56" height="20" uuid="18f4d047-fa6c-4f64-a8bc-2400319f4df4"/>
-				<textFieldExpression><![CDATA[$P{Fecha}]]></textFieldExpression>
+				<reportElement x="452" y="20" width="103" height="20" uuid="18f4d047-fa6c-4f64-a8bc-2400319f4df4"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="400" y="10" width="102" height="20" uuid="91249cc8-5f32-4905-a370-9010c91be0ab"/>
+				<reportElement x="350" y="20" width="102" height="20" uuid="91249cc8-5f32-4905-a370-9010c91be0ab"/>
 				<text><![CDATA[Reporte generado el:]]></text>
 			</staticText>
-		</band>
-	</title>
-	<pageHeader>
-		<band height="35" splitType="Stretch">
 			<staticText>
-				<reportElement x="3" y="2" width="207" height="20" uuid="46547ff6-2e7d-4921-be5f-54e22530f944"/>
+				<reportElement x="170" y="49" width="207" height="20" uuid="46547ff6-2e7d-4921-be5f-54e22530f944"/>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Pagos Pendientes de propietarios.]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="69" width="555" height="2" uuid="394caec6-a68f-453c-89b7-8cb072406388">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
 		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="38" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="0" width="80" height="20" uuid="6b9cdb48-9247-4f3e-b652-2fc66968ca23">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font fontName="Arial" size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Nombre]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="80" y="0" width="80" height="20" uuid="75852f01-3da1-4122-bf88-b181359ad036">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-				</reportElement>
-				<textElement verticalAlignment="Top">
-					<font fontName="Arial" size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Apellido]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="188" y="2" width="100" height="14" uuid="4013aaee-b8ed-447f-ae98-3e3f64bb4c78"/>
-				<textElement verticalAlignment="Top">
-					<font fontName="Arial" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Importe]]></text>
-			</staticText>
-		</band>
+		<band height="38" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="58" splitType="Stretch">
-			<textField isBlankWhenNull="true">
-				<reportElement x="0" y="20" width="80" height="18" uuid="cddd99d1-3d11-4263-b853-584432a0008d">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-				</reportElement>
-				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+		<band height="63" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="10" width="90" height="30" uuid="3025648e-af8d-405f-b89a-93c324469608"/>
+				<textFieldExpression><![CDATA[$F{idContrato}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="80" y="20" width="80" height="18" uuid="2adc909f-d7e5-4518-919e-7bb4fb2597b4">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<textFieldExpression><![CDATA[$F{apellido}]]></textFieldExpression>
+				<reportElement x="89" y="10" width="159" height="30" uuid="cea3c3a6-151d-48b4-bba7-5fa9c94c4969"/>
+				<textFieldExpression><![CDATA[$F{propiedadStr}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="180" y="20" width="80" height="18" uuid="fc6f894b-08b9-4b0c-b0dd-9e2fc780b1ff">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				<reportElement x="248" y="10" width="120" height="30" uuid="0be4389f-8efe-4a3e-9898-b2922203f9c0"/>
+				<textFieldExpression><![CDATA[$F{inquilinoStr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="10" width="80" height="30" uuid="70777c04-ac10-4685-b1fe-73989550f0ee"/>
+				<textFieldExpression><![CDATA[$F{montoStr}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="453" y="30" width="101" height="1" uuid="c2ab750a-312c-4a60-9374-2d0f1540f509">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
-			</textField>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
@@ -134,7 +154,7 @@
 	<pageFooter>
 		<band height="54" splitType="Stretch">
 			<textField>
-				<reportElement x="388" y="10" width="100" height="30" uuid="4d9050c4-3824-43e5-a51a-d29d33af7825"/>
+				<reportElement x="360" y="10" width="100" height="30" uuid="4d9050c4-3824-43e5-a51a-d29d33af7825"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>

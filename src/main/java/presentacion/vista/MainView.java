@@ -63,6 +63,7 @@ public class MainView {
     private JButton btnRegistrarCobro;
     private JTable tablePagosPropietarios;
     private JButton btnRegistrarPago;
+    private JButton btnGenerarReportePropietarios;
 
     @Inject
     public MainView() {
@@ -86,7 +87,7 @@ public class MainView {
 
         JPanel panelContainer = new JPanel();
         panelContainer.setBorder(null);
-        panelContainer.setBounds(93, 32, 668, 474);
+        panelContainer.setBounds(93, 20, 668, 474);
         frmLpezLpez.getContentPane().add(panelContainer);
         panelContainer.setLayout(new CardLayout(0, 0));
 
@@ -195,12 +196,6 @@ public class MainView {
         
         btnRegistrarCobro = new JButton("Registrar Cobro");
         botonesAlquiler.add(btnRegistrarCobro);
-        
-        JPanel panelPagoVen = new JPanel();
-        tabbedPane.addTab("Pagos de ventas", null, panelPagoVen, null);
-        tabbedPane.setEnabledAt(1, true);
-        //TODO: Cambiar
-        panelPagoVen.setVisible(false);
 
         JPanel panelPagoProp = new JPanel();
         tabbedPane.addTab("Pagos a propietarios", null, panelPagoProp, null);
@@ -215,13 +210,25 @@ public class MainView {
         panelPagoProp.add(bontones);
         bontones.setLayout(new BoxLayout(bontones, BoxLayout.X_AXIS));
         
+        Component glue = Box.createGlue();
+        bontones.add(glue);
+        
         btnRegistrarPago = new JButton("Registrar Pago");
         bontones.add(btnRegistrarPago);
+        
+        Component glue_1 = Box.createGlue();
+        bontones.add(glue_1);
+        
+        btnGenerarReportePropietarios = new JButton("Generar Reporte");
+        bontones.add(btnGenerarReportePropietarios);
+        
+        Component glue_2 = Box.createGlue();
+        bontones.add(glue_2);
 
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
         panelPrincipal.setBackground(new Color(47, 79, 79));
-        panelPrincipal.setBounds(0, 21, 1016, 496);
+        panelPrincipal.setBounds(0, 0, 1016, 517);
         frmLpezLpez.getContentPane().add(panelPrincipal);
         panelPrincipal.setLayout(null);
 
@@ -249,26 +256,6 @@ public class MainView {
                
         this.panelReportes = new JPanel();
         panelContainer.add(panelReportes, "name_1283074869718816");
-
-        JMenuBar menuBar = new JMenuBar();
-        menuBar.setBackground(SystemColor.inactiveCaption);
-        menuBar.setBounds(0, 0, 1016, 21);
-        frmLpezLpez.getContentPane().add(menuBar);
-
-        JMenu mnItem = new JMenu("Item1");
-        menuBar.add(mnItem);
-
-        JMenuItem mntmAlgo = new JMenuItem("Algo1");
-        mnItem.add(mntmAlgo);
-
-        JMenuItem mntmAlgo_1 = new JMenuItem("Algo2");
-        mnItem.add(mntmAlgo_1);
-
-        JMenu mnItem_1 = new JMenu("Item2");
-        menuBar.add(mnItem_1);
-
-        JMenuItem mntmAlgo_2 = new JMenuItem("Algo3");
-        mnItem_1.add(mntmAlgo_2);
 
         JLabel lblNotificaciones = new JLabel("Notificaciones:");
         lblNotificaciones.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -550,5 +537,10 @@ public class MainView {
 
 	public JButton getBtnRegistrarPago() {
 		return btnRegistrarPago;
+	}
+
+
+	public JButton getBtnGenerarReportePropietarios() {
+		return btnGenerarReportePropietarios;
 	}
 }

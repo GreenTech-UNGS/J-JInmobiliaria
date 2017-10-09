@@ -74,7 +74,6 @@ public class PropiedadService {
 				p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA_Y_ALQUILER))
 						.collect(Collectors.toList());	
 
-		toRet.forEach(p -> System.out.println(getCurrentEstado(p)));
 		return toRet;
 		
 	}

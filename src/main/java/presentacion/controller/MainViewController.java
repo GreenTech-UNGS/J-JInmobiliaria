@@ -2,6 +2,7 @@ package presentacion.controller;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import org.joda.time.DateTime;
 import javax.swing.JOptionPane;
@@ -10,6 +11,7 @@ import org.joda.time.YearMonth;
 
 import com.google.inject.Inject;
 
+import dto.PendientesPropietariosDTO;
 import entities.Contrato;
 import entities.ContratoAlquiler;
 import entities.CuotaAlquiler;
@@ -26,6 +28,7 @@ import model.PagosCobrosService;
 import model.PropiedadService;
 import model.PropietarioService;
 import model.ReservaService;
+import presentacion.reportes.ReportePropietariosPagosPendientes;
 import presentacion.table.ClientesTableModel;
 import presentacion.table.ContratosTableModel;
 import presentacion.table.CuotasTableModel;
@@ -119,16 +122,26 @@ public class MainViewController {
 		this.view.getBtnRegistrarCobro().addActionListener(e -> registrarCobro());
 		this.view.getBtnRenovar().addActionListener(e -> renovarContrato());
 		this.view.getBtnRegistrarPago().addActionListener(e -> registrarPago());
-
+		
+		this.view.getBtnGenerarReportePropietarios().addActionListener(e -> generaReportePropietarios());
 		
 		fillTableClientes();
 		fillTableCuotas();
 		fillTableProp();
+		fillTablePropietarios();
 		fillTableContratosVenta();
 		fillTableContratosAlquiler();
 		fillTablePagosProps();
 		selectDetalleProp();
 		fillTableReservas();
+	}
+
+	private void generaReportePropietarios() {
+		List<PendientesPropietariosDTO> dtos = propietarioService.pagosPendientesReporte();
+		ReportePropietariosPagosPendientes reporte = new ReportePropietariosPagosPendientes(dtos);
+		
+		reporte.mostrar();
+		
 	}
 
 	private void fillTableClientes() {
@@ -139,6 +152,16 @@ public class MainViewController {
 		
 		this.view.getTableClientes().setColumnModel(tableModelClien.getTableColumnModel());
 		this.view.getTableClientes().getTableHeader().setReorderingAllowed(false);
+	}
+	
+
+	private void fillTablePropietarios() {
+		this.propietariosTable.clean();
+		this.view.getTablePropietarios().setModel(propietariosTable);
+		propietariosTable.actualizeRows(propietarioService.getAll());
+		
+		this.view.getTablePropietarios().setColumnModel(propietariosTable.getTableColumnModel());
+		this.view.getTablePropietarios().getTableHeader().setReorderingAllowed(false);
 	}
 	
 	private void fillTableReservas() {
@@ -249,6 +272,8 @@ public class MainViewController {
 		fillTableClientes();
 	}
 	
+	
+	
 	private void editarCliente() {
 		int select = this.view.getTableClientes().getSelectedRow();
 		
@@ -332,8 +357,8 @@ public class MainViewController {
 			int option = JOptionPane.showConfirmDialog(null, "¿Desea registrar el pago al propietario?", "Resgistrar Pago", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			
 			if(option == 0) {
-				this.fillTablePagosProps();
 				pagoCobroService.registrarpagoPropietario(p);
+				this.fillTablePagosProps();
 			}
 			
 		}
