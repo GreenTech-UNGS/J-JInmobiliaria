@@ -45,6 +45,7 @@ public class AgregarPropiedad extends JDialog{
 	private JComboBox<String> comboTipoOfre;
 	private JTextArea taDescPubl;
 	private JTextArea taDescPriv;
+	private JLabel lblReservada;
 
 	private JButton btnGuardar;
 	private JButton btnCancelar;
@@ -70,6 +71,7 @@ public class AgregarPropiedad extends JDialog{
 		setLocationRelativeTo(null);
 		
 		AgregarPropiedad = new JPanel();
+		AgregarPropiedad.setForeground(new Color(204, 0, 0));
 		AgregarPropiedad.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(AgregarPropiedad);
 		AgregarPropiedad.setLayout(null);
@@ -283,7 +285,7 @@ public class AgregarPropiedad extends JDialog{
 		
 		btnVerHistorial = new JButton("Ver historial");
 		btnVerHistorial.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnVerHistorial.setBounds(557, 20, 102, 23);
+		btnVerHistorial.setBounds(557, 24, 102, 19);
 		AgregarPropiedad.add(btnVerHistorial);
 		
 		tfInmobiliaria = new JTextField();
@@ -310,6 +312,13 @@ public class AgregarPropiedad extends JDialog{
 		lblOfrecimiento.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblOfrecimiento.setBounds(20, 96, 76, 14);
 		AgregarPropiedad.add(lblOfrecimiento);
+		
+		lblReservada = new JLabel("Propiedad Reservada");
+		lblReservada.setForeground(new Color(204, 0, 0));
+		lblReservada.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblReservada.setBounds(293, 11, 145, 27);
+		AgregarPropiedad.add(lblReservada);
+		lblReservada.setVisible(false);
 
 		btnVerHistorial.setVisible(false);
 	}
@@ -481,4 +490,14 @@ public class AgregarPropiedad extends JDialog{
 	public void setTfInmobiliaria(JTextField tfInmobiliaria) {
 		this.tfInmobiliaria = tfInmobiliaria;
 	}
+
+	public JLabel getLblReservada() {
+		return lblReservada;
+	}
+
+	public void setLblReservada(JLabel lblReservada) {
+		this.lblReservada = lblReservada;
+	}
+	
+	
 }

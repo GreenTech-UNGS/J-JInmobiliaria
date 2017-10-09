@@ -12,6 +12,7 @@ import org.openstreetmap.gui.jmapviewer.interfaces.ICoordinate;
 
 import com.google.inject.Inject;
 
+import entities.EstadoProp;
 import entities.Inmobiliaria;
 import entities.Localidad;
 import entities.Moneda;
@@ -319,6 +320,9 @@ public class AddPropiedadController {
 		view.getComboMoneda().setEnabled(bool);
 		view.getComboProvincia().setEnabled(bool);
 		view.getComboTipoOfre().setEnabled(bool);
+		if(propiedadService.getCurrentEstado(currentPropiedad).equals(EstadoProp.RESERVADA)){
+			view.getLblReservada().setVisible(!bool);
+		}
 
 	}
 
