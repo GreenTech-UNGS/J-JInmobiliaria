@@ -1,21 +1,24 @@
 package model;
 
-import java.util.List;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
+import entities.PagoPropietario;
 import entities.Persona;
 import entities.Persona.TipoCredencial;
 import entities.Propietario;
 import persistencia.dao.iface.PropietarioDao;
+import persistencia.dao.iface.PropietarioPagoPendienteDAO;
+
+import java.util.List;
 
 @Singleton
 public class PropietarioService {
 
 	PropietarioDao propietarioDao;
-	
-	@Inject
+	PropietarioPagoPendienteDAO propietarioPagoPendienteDAO;
+
+
+    @Inject
 	private PropietarioService(PropietarioDao propietarioDao) {
 		this.propietarioDao = propietarioDao;
 	}
@@ -38,5 +41,8 @@ public class PropietarioService {
 	public List<Propietario> getAll() {
 		return propietarioDao.getAll();
 	}
+	/*public List<PagoPropietario> pagosPendientesReporte() {
+		return propietarioPagoPendienteDAO.getAll();
+	}*/
 	
 }

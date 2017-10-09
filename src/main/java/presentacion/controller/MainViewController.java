@@ -10,6 +10,8 @@ import org.joda.time.YearMonth;
 
 import com.google.inject.Inject;
 
+import entities.Contrato;
+import entities.ContratoAlquiler;
 import entities.CuotaAlquiler;
 import entities.EstadoCuota;
 import entities.EstadoProp;
@@ -19,13 +21,14 @@ import entities.Reserva;
 import model.ClienteService;
 import model.ContratoService;
 import model.CuotaService;
+import model.PagosCobrosService;
 import model.PropiedadService;
 import model.PropietarioService;
 import model.ReservaService;
 import presentacion.table.ClientesTableModel;
 import presentacion.table.ContratosTableModel;
 import presentacion.table.CuotasTableModel;
-
+import presentacion.table.PagosPropietariosTableModel;
 import presentacion.table.PropiedadesTableModel;
 import presentacion.table.PropietariosTableModel;
 import presentacion.table.ReservaTableModel;
@@ -42,6 +45,7 @@ public class MainViewController {
 	private ContratosTableModel contratosTable2;
 	private ClientesTableModel tableModelClien;
 	private ReservaTableModel reservaTable;
+	private PagosPropietariosTableModel pagopropTable;
 	
 	AddContAlqController contratoAlqController;
 	AddContVenController contratoVenController;
@@ -56,6 +60,7 @@ public class MainViewController {
 	PropietarioService propietarioService;
 	CuotaService cuotaService;
 	ReservaService reservaService;
+	PagosCobrosService pagoCobroService;
 	
 	
 	@Inject
@@ -66,6 +71,7 @@ public class MainViewController {
 			AddClienteController clienteController,
 			ReservarPropiedadController reservaController,
 			PropiedadService propiedadService,
+			PagosCobrosService pagoCobroService,
 			ClienteService clienteService,
 			PropiedadesTableModel tableModelprop,
 			CuotasTableModel cuotasTable,
@@ -73,6 +79,7 @@ public class MainViewController {
 			CuotaService cuotaService,
 			ContratosTableModel contratosTable,
 			ContratosTableModel contratosTable2,
+			PagosPropietariosTableModel pagopropTable,
 			ContratoService contratoService,
 			ReservaService reservaService,
 			RegistrarCobroController cobroController){
@@ -84,6 +91,7 @@ public class MainViewController {
 		this.reservaTable = new ReservaTableModel();
 		this.tableModelProp = tableModelprop;
 		this.propiedadController = propiedadesController;
+		this.pagoCobroService = pagoCobroService;
 		this.contratoAlqController = contratoAlqController;
 		this.contratoVenController = contratoVenController;
 		this.clienteController = clienteController;
@@ -94,6 +102,7 @@ public class MainViewController {
 		this.cuotaService = cuotaService;
 		this.contratosTable = contratosTable;
 		this.contratosTable2 = contratosTable2;
+		this.pagopropTable = pagopropTable;
 		this.contratoService = contratoService;
 		this.reservaService = reservaService;
 		this.cobroController = cobroController;
@@ -107,6 +116,7 @@ public class MainViewController {
 		this.view.getBtnEditarCliente().addActionListener(e -> editarCliente());
 		this.view.getBtnDesreservar().addActionListener(e -> borrarReserva());
 		this.view.getBtnRegistrarCobro().addActionListener(e -> registrarCobro());
+		this.view.getBtnRenovar().addActionListener(e -> renovarContrato());
 
 		
 		fillTableClientes();
@@ -114,6 +124,7 @@ public class MainViewController {
 		fillTableProp();
 		fillTableContratosVenta();
 		fillTableContratosAlquiler();
+		fillTablePagosProps();
 		selectDetalleProp();
 		fillTableReservas();
 	}
@@ -165,6 +176,16 @@ public class MainViewController {
 		
 		this.view.getTableCuotas().setColumnModel(cuotasTable.getTableColumnModel());
 		this.view.getTableCuotas().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTablePagosProps() {
+		this.pagopropTable.clean();
+		this.view.getTablePagosPropietarios().setModel(pagopropTable);
+		pagoCobroService.getAllPagosPropsPendientes().forEach(c -> pagopropTable.addRow(c));
+		
+		this.view.getTablePagosPropietarios().setColumnModel(pagopropTable.getTableColumnModel());
+		this.view.getTablePagosPropietarios().getTableHeader().setReorderingAllowed(false);
+		
 	}
 	
 	private void fillTableProp(){
@@ -266,6 +287,15 @@ public class MainViewController {
     		
 			fillTableReservas();
 			fillTableProp();
+		}
+	}
+	
+	private void renovarContrato(){
+		if(this.view.getTablaContratoAlquiler().getSelectedRow()!=-1){
+			Contrato seleccion = contratosTable2.getRow(this.view.getTablaContratoAlquiler().getSelectedRow());
+			
+			this.contratoAlqController.setRenovarMode(seleccion);
+			
 		}
 	}
 		

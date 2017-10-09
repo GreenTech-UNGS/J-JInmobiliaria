@@ -54,12 +54,14 @@ public class MainView {
     private JTable tableCuotas;
     private JButton btnEditarCliente;
     private JButton btnDesreservar;
+    private JButton btnRenovar;
     
     private JCalendar jCalendar;
     private JTable tablaContratoVenta;
     private JTable tablaContratoAlquiler;
     private JTable tablaReservas;
     private JButton btnRegistrarCobro;
+    private JTable tablePagosPropietarios;
 
     @Inject
     public MainView() {
@@ -117,15 +119,21 @@ public class MainView {
         tablaContratoAlquiler = new JTable();
         JScrollPane scrollPane_4 = new JScrollPane(tablaContratoAlquiler);
         contratoAlquiler.add(scrollPane_4);
-        
-        
-                btnAgregarContratoAlq = new JButton("Agregar contrato de aquiler");
-                btnAgregarContratoAlq.setAlignmentX(Component.CENTER_ALIGNMENT);
-                btnAgregarContratoAlq.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                    }
-                });
-                contratoAlquiler.add(btnAgregarContratoAlq);
+                
+                JPanel panel_2 = new JPanel();
+                contratoAlquiler.add(panel_2);
+                
+                
+                        btnAgregarContratoAlq = new JButton("Agregar contrato de aquiler");
+                        panel_2.add(btnAgregarContratoAlq);
+                        btnAgregarContratoAlq.setAlignmentX(Component.CENTER_ALIGNMENT);
+                        
+                        btnRenovar = new JButton("Renovar contrato");
+                        panel_2.add(btnRenovar);
+                        btnAgregarContratoAlq.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                            }
+                        });
 
         JPanel panelInquilinos = new JPanel();
         panelContainer.add(panelInquilinos, "name_1084846370736461");
@@ -193,6 +201,12 @@ public class MainView {
 
         JPanel panelPagoProp = new JPanel();
         tabbedPane.addTab("Pagos a propietarios", null, panelPagoProp, null);
+        panelPagoProp.setLayout(new BoxLayout(panelPagoProp, BoxLayout.X_AXIS));
+        
+        tablePagosPropietarios = new JTable();
+        
+        JScrollPane scrollPane_7 = new JScrollPane(tablePagosPropietarios);
+        panelPagoProp.add(scrollPane_7);
 
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -506,5 +520,20 @@ public class MainView {
 	
 	public JButton getBtnRegistrarCobro() {
 		return btnRegistrarCobro;
+	}
+
+
+	public JButton getBtnRenovar() {
+		return btnRenovar;
+	}
+
+
+	public void setBtnRenovar(JButton btnRenovar) {
+		this.btnRenovar = btnRenovar;
+	}
+	
+	
+	public JTable getTablePagosPropietarios() {
+		return tablePagosPropietarios;
 	}
 }

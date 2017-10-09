@@ -8,6 +8,7 @@ import com.google.inject.Singleton;
 
 import entities.AvisoNotificacion;
 import entities.Cliente;
+import entities.Contrato;
 import entities.ContratoAlquiler;
 import entities.Moneda;
 import entities.Propiedad;
@@ -56,6 +57,7 @@ public class AddContAlqController {
 		view.getBtnLupaCliente().addActionListener(e -> seleccionaCliente());
 		view.getBtnLupaPropiedad().addActionListener(e -> seleccionaPropiedad());
 		view.getBtnCancelarContrato().addActionListener(e -> view.setVisible(false));
+		view.getBtnRenovarContrato().addActionListener(e -> renovarContrato());
 		
 
 		fillCombos();
@@ -173,6 +175,16 @@ public class AddContAlqController {
 		
 	}
 	
+	public void renovarContrato() {
+		
+		binder.fillBean();
+		bindAvisos();
+		
+		contratoService.saveContratoAlquiler(currentContrato);
+		closeView();
+		
+	}
+	
 	private void fillCombos() {
 		
 		this.view.getComboTipoContrato().setModel(tipoCombo);
@@ -198,4 +210,20 @@ public class AddContAlqController {
 	public void closeView() {
 		this.view.setVisible(false);
 	}
+
+	
+	public void setRenovarMode(Contrato c){
+		
+		showView();
+		//aca se tiene que llenar el puto formulario solo
+		view.getTextIdContrato().setEnabled(false);
+		view.getTfIdPropiedad().setEnabled(false);
+		view.getBtnLupaPropiedad().setEnabled(false);
+		view.getTfDniInquilino().setEnabled(false);
+		view.getBtnLupaCliente().setEnabled(false);
+		
+		view.getBtnGuardarContrato().setVisible(false);
+		view.getBtnCancelarContrato().setVisible(false);
+		view.getBtnRenovarContrato().setVisible(true);
+		}
 }

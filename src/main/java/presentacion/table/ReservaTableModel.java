@@ -14,7 +14,7 @@ public class ReservaTableModel extends BaseTableModel<Reserva>{
 
 	@Override
 	protected Object[] toRow(Reserva t) {
-		Object[] fila = {t.getFecha(),
+		Object[] fila = {t.getFecha().toString("dd/MM/YYYY   HH:mm"),
 				t.getReservador().getID(),
 				t.getReservador().getNombre(),
 				t.getReservador().getApellido(),
