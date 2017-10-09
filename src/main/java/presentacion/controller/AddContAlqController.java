@@ -3,6 +3,8 @@ package presentacion.controller;
 import java.time.Period;
 import java.util.Arrays;
 
+import javax.swing.JOptionPane;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -12,18 +14,22 @@ import entities.Contrato;
 import entities.ContratoAlquiler;
 import entities.Moneda;
 import entities.Propiedad;
+import entities.Reserva;
 import entities.TipoContratoAlquiler;
 import misc.Binder;
 import model.ContratoService;
+import model.PropiedadService;
+import model.ReservaService;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.TipoContratoAlqComboBoxModel;
+import presentacion.validators.ContratoAlquilerValidator;
 import presentacion.vista.AddContratoAlq;
 
 @Singleton
 public class AddContAlqController {
 	
-	@Inject
 	ContratoService contratoService;
+	ReservaService reservaService;
 	@Inject
 	AddContratoAlq view;
 	ElegirClienteController eligeCliente;
@@ -31,7 +37,7 @@ public class AddContAlqController {
 	
 	Binder<ContratoAlquiler> binder;
 	ContratoAlquiler currentContrato;
-	
+	ContratoAlquilerValidator contratoAlquilerValidator;
 	
 	TipoContratoAlqComboBoxModel tipoCombo;
 	MonedaComboBoxModel monedaCombo;
@@ -39,12 +45,16 @@ public class AddContAlqController {
 	@Inject
 	private AddContAlqController(ContratoService contratoService,
 								AddContratoAlq view,
+								ReservaService reservaService,
 								ElegirClienteController eligeCliente,
+								ContratoAlquilerValidator contratoAlquilerValidator,
 								ElegirPropiedadController elegirPropiedadController) {
 		
 		this.contratoService = contratoService;
 		this.view = view;
 		this.eligeCliente = eligeCliente;
+		this.contratoAlquilerValidator = contratoAlquilerValidator;
+		this.reservaService = reservaService;
 		this.elegirPropiedadController = elegirPropiedadController;
 		
 		tipoCombo = new TipoContratoAlqComboBoxModel();
@@ -169,10 +179,20 @@ public class AddContAlqController {
 		
 		binder.fillBean();
 		bindAvisos();
-		//if(contratoValidator.isvalid)
+		if(contratoAlquilerValidator.isValid(currentContrato)){
+
+			contratoService.saveContratoAlquiler(currentContrato);
+			closeView();
+		}
+		Reserva r = reservaService.getReservaOf(currentContrato.getPropiedad());
+		if( r != null) {
+			if(r.getReservador().getID() != currentContrato.getCliente().getPersona().getID()) {
+				JOptionPane.showMessageDialog(view, "La propiedad esta reservada. El cliente debe ser el reservador", "Error", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+		}
 		contratoService.saveContratoAlquiler(currentContrato);
-		closeView();
-		
+		closeView();		
 	}
 	
 	public void renovarContrato() {
