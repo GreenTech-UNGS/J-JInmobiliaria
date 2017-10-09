@@ -13,6 +13,7 @@ import com.google.inject.Singleton;
 
 import entities.CuotaAlquiler;
 import model.PagosCobrosService;
+import presentacion.validators.CobroAlquilerValidator;
 import presentacion.vista.RegistrarCobroView;
 
 @Singleton
@@ -21,16 +22,19 @@ public class RegistrarCobroController {
 	RegistrarCobroView view;
 	CuotaAlquiler currentCuota;
 	PagosCobrosService cobrosService;
+	CobroAlquilerValidator cobroAlquilerValidator;
 
 	boolean okWasPressed;
 	
 	
 	@Inject
 	private RegistrarCobroController(RegistrarCobroView view,
-			PagosCobrosService cobrosService) {
+			PagosCobrosService cobrosService,
+			CobroAlquilerValidator ingresoValidator) {
 		
 		this.view = view;
 		this.cobrosService = cobrosService;
+		this.cobroAlquilerValidator = ingresoValidator;
 		okWasPressed = false;
 		
 		view.getBtnOk().addActionListener(e -> okPressed());
@@ -49,8 +53,6 @@ public class RegistrarCobroController {
 		
 	}
 	
-	
-	
 	private void okPressed() {
 		okWasPressed = true;
 		
@@ -61,7 +63,7 @@ public class RegistrarCobroController {
 			JOptionPane.showMessageDialog(view, "La fecha de pago debe ser posterior al inicio de la cuota\n"
 					+ "y anterior a hoy", "Error", JOptionPane.ERROR_MESSAGE);
 		}
-		else {
+		else if(cobroAlquilerValidator.isValid(currentCuota)){
 			cobrosService.generarCobroAlquiler(currentCuota, fechaPago);
 			this.view.setVisible(false);
 		}
