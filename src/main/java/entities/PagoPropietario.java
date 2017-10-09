@@ -1,18 +1,6 @@
 package entities;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "pagosPropietario")
@@ -31,7 +19,7 @@ public class PagoPropietario {
 	@Enumerated(EnumType.ORDINAL)
 	private EstadoPago estado;
 	
-	private float monto;
+	private Precio monto;
 
 	public CuotaAlquiler getCuota() {
 		return cuota;
@@ -57,11 +45,11 @@ public class PagoPropietario {
 		this.estado = estado;
 	}
 
-	public float getMonto() {
+	public Precio getMonto() {
 		return monto;
 	}
 
-	public void setMonto(float monto) {
+	public void setMonto(Precio monto) {
 		this.monto = monto;
 	}
 
