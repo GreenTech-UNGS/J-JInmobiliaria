@@ -29,6 +29,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
 public class AgregarPropiedad extends JDialog{
@@ -159,11 +160,6 @@ public class AgregarPropiedad extends JDialog{
 		lblDescripcin.setBounds(353, 460, 110, 14);
 		AgregarPropiedad.add(lblDescripcin);
 		
-		taDescPubl = new JTextArea();
-		taDescPubl.setBorder(new LineBorder(Color.LIGHT_GRAY));
-		taDescPubl.setBounds(40, 485, 303, 58);
-		AgregarPropiedad.add(taDescPubl);
-		
 		JLabel lblDatosGenerales = new JLabel("Datos generales");
 		lblDatosGenerales.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblDatosGenerales.setBounds(30, 24, 123, 14);
@@ -256,11 +252,6 @@ public class AgregarPropiedad extends JDialog{
 		lblDescripcinPblica.setBounds(38, 460, 96, 14);
 		AgregarPropiedad.add(lblDescripcinPblica);
 		
-		taDescPriv = new JTextArea();
-		taDescPriv.setBorder(new LineBorder(Color.LIGHT_GRAY));
-		taDescPriv.setBounds(353, 485, 306, 58);
-		AgregarPropiedad.add(taDescPriv);
-		
 		comboProvincia = new JComboBox<>();
 		comboProvincia.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		comboProvincia.setBounds(536, 179, 123, 20);
@@ -318,6 +309,23 @@ public class AgregarPropiedad extends JDialog{
 		lblReservada.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblReservada.setBounds(293, 11, 145, 27);
 		AgregarPropiedad.add(lblReservada);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(38, 485, 288, 58);
+		AgregarPropiedad.add(scrollPane);
+		
+		taDescPubl = new JTextArea();
+		scrollPane.setViewportView(taDescPubl);
+		taDescPubl.setColumns(10);
+		taDescPubl.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(353, 484, 306, 59);
+		AgregarPropiedad.add(scrollPane_1);
+		
+		taDescPriv = new JTextArea();
+		scrollPane_1.setViewportView(taDescPriv);
+		taDescPriv.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		lblReservada.setVisible(false);
 
 		btnVerHistorial.setVisible(false);
@@ -498,6 +506,4 @@ public class AgregarPropiedad extends JDialog{
 	public void setLblReservada(JLabel lblReservada) {
 		this.lblReservada = lblReservada;
 	}
-	
-	
 }
