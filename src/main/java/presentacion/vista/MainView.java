@@ -61,6 +61,7 @@ public class MainView {
     private JTable tablaContratoAlquiler;
     private JTable tablaReservas;
     private JButton btnRegistrarCobro;
+    private JTable tablePagosPropietarios;
 
     @Inject
     public MainView() {
@@ -200,6 +201,12 @@ public class MainView {
 
         JPanel panelPagoProp = new JPanel();
         tabbedPane.addTab("Pagos a propietarios", null, panelPagoProp, null);
+        panelPagoProp.setLayout(new BoxLayout(panelPagoProp, BoxLayout.X_AXIS));
+        
+        tablePagosPropietarios = new JTable();
+        
+        JScrollPane scrollPane_7 = new JScrollPane(tablePagosPropietarios);
+        panelPagoProp.add(scrollPane_7);
 
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -526,4 +533,7 @@ public class MainView {
 	}
 	
 	
+	public JTable getTablePagosPropietarios() {
+		return tablePagosPropietarios;
+	}
 }

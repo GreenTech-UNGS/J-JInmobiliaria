@@ -21,13 +21,14 @@ import entities.Reserva;
 import model.ClienteService;
 import model.ContratoService;
 import model.CuotaService;
+import model.PagosCobrosService;
 import model.PropiedadService;
 import model.PropietarioService;
 import model.ReservaService;
 import presentacion.table.ClientesTableModel;
 import presentacion.table.ContratosTableModel;
 import presentacion.table.CuotasTableModel;
-
+import presentacion.table.PagosPropietariosTableModel;
 import presentacion.table.PropiedadesTableModel;
 import presentacion.table.PropietariosTableModel;
 import presentacion.table.ReservaTableModel;
@@ -44,6 +45,7 @@ public class MainViewController {
 	private ContratosTableModel contratosTable2;
 	private ClientesTableModel tableModelClien;
 	private ReservaTableModel reservaTable;
+	private PagosPropietariosTableModel pagopropTable;
 	
 	AddContAlqController contratoAlqController;
 	AddContVenController contratoVenController;
@@ -58,6 +60,7 @@ public class MainViewController {
 	PropietarioService propietarioService;
 	CuotaService cuotaService;
 	ReservaService reservaService;
+	PagosCobrosService pagoCobroService;
 	
 	
 	@Inject
@@ -68,6 +71,7 @@ public class MainViewController {
 			AddClienteController clienteController,
 			ReservarPropiedadController reservaController,
 			PropiedadService propiedadService,
+			PagosCobrosService pagoCobroService,
 			ClienteService clienteService,
 			PropiedadesTableModel tableModelprop,
 			CuotasTableModel cuotasTable,
@@ -75,6 +79,7 @@ public class MainViewController {
 			CuotaService cuotaService,
 			ContratosTableModel contratosTable,
 			ContratosTableModel contratosTable2,
+			PagosPropietariosTableModel pagopropTable,
 			ContratoService contratoService,
 			ReservaService reservaService,
 			RegistrarCobroController cobroController){
@@ -86,6 +91,7 @@ public class MainViewController {
 		this.reservaTable = new ReservaTableModel();
 		this.tableModelProp = tableModelprop;
 		this.propiedadController = propiedadesController;
+		this.pagoCobroService = pagoCobroService;
 		this.contratoAlqController = contratoAlqController;
 		this.contratoVenController = contratoVenController;
 		this.clienteController = clienteController;
@@ -96,6 +102,7 @@ public class MainViewController {
 		this.cuotaService = cuotaService;
 		this.contratosTable = contratosTable;
 		this.contratosTable2 = contratosTable2;
+		this.pagopropTable = pagopropTable;
 		this.contratoService = contratoService;
 		this.reservaService = reservaService;
 		this.cobroController = cobroController;
@@ -172,12 +179,12 @@ public class MainViewController {
 	}
 	
 	private void fillTablePagosProps() {
-		/*//TODO this.cuotasTable.clean();
-		this.view.getTableCuotas().setModel(cuotasTable);
-		cuotaService.getCuotasOf(YearMonth.now(), EstadoCuota.values()).forEach(c -> cuotasTable.addRow(c));
+		this.pagopropTable.clean();
+		this.view.getTablePagosPropietarios().setModel(pagopropTable);
+		pagoCobroService.getAllPagosPropsPendientes().forEach(c -> pagopropTable.addRow(c));
 		
-		this.view.getTableCuotas().setColumnModel(cuotasTable.getTableColumnModel());
-		this.view.getTableCuotas().getTableHeader().setReorderingAllowed(false);*/
+		this.view.getTablePagosPropietarios().setColumnModel(pagopropTable.getTableColumnModel());
+		this.view.getTablePagosPropietarios().getTableHeader().setReorderingAllowed(false);
 		
 	}
 	

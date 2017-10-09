@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
 
@@ -89,6 +91,12 @@ public class PagosCobrosService {
 		nuevoPago.setPropietario(cuota.getContrato().getPropiedad().getPropietario());
 		
 		propietarioDao.generaPago(nuevoPago);
+		
+	}
+	
+	public List<PagoPropietario> getAllPagosPropsPendientes(){
+		
+		return propietarioDao.getAllPagosPropsPendientes();
 		
 	}
 	

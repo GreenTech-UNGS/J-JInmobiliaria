@@ -41,8 +41,8 @@ public class PropietarioService {
 	public List<Propietario> getAll() {
 		return propietarioDao.getAll();
 	}
-	public List<PagoPropietario> pagosPendientesReporte() {
+	/*public List<PagoPropietario> pagosPendientesReporte() {
 		return propietarioPagoPendienteDAO.getAll();
-	}
+	}*/
 	
 }
