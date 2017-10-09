@@ -21,7 +21,7 @@ public class PagosPropietariosTableModel extends BaseTableModel<PagoPropietario>
 		
 		DecimalFormat format = new DecimalFormat("#.##");
 		
-		String monto = format.format(t.getMonto().getMoneda().toString() + " " +t.getMonto().getMonto());
+		String monto = t.getMonto().getMoneda().toString() + " " + format.format(t.getMonto().getMonto());
 
 		
 		Object[] toRet = {propietarioStr,
