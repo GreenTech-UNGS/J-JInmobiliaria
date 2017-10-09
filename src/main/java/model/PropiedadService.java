@@ -58,9 +58,6 @@ public class PropiedadService {
 		
 		p.getEstados().sort((h1, h2) -> h2.getFecha().compareTo(h1.getFecha()));
 		
-
-
-		
 		return p.getEstados().get(0).getEstado();
 		
 	}
