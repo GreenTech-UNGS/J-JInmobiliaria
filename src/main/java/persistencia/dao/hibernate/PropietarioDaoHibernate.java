@@ -53,6 +53,16 @@ public class PropietarioDaoHibernate extends DaoHibernate<Propietario> implement
 		
 		return q.list();
 	}
+
+	@Override
+	public void savePago(PagoPropietario p) {
+		initTransaction();
+		
+		sesion.saveOrUpdate(p);
+		
+		finishTransaction();
+		
+	}
 	
 	
 	

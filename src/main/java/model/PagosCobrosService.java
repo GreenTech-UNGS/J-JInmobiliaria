@@ -99,5 +99,20 @@ public class PagosCobrosService {
 		return propietarioDao.getAllPagosPropsPendientes();
 		
 	}
+
+
+	public void registrarpagoPropietario(PagoPropietario p) {
+		
+		p.setEstado(EstadoPago.PAGO);
+		
+		HistoriaEstadoCuota nuevo = new HistoriaEstadoCuota();
+		nuevo.setEstado(EstadoCuota.PAGAPROPIETARIO);
+		nuevo.setFecha(DateTime.now());
+		
+		p.getCuota().getEstados().add(nuevo);
+		
+		propietarioDao.savePago(p);
+		
+	}
 	
 }

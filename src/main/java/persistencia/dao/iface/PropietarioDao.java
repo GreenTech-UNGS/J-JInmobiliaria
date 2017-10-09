@@ -10,4 +10,5 @@ public interface PropietarioDao extends Dao<Propietario>{
 
 	public void generaPago(PagoPropietario pago);
 	public List<PagoPropietario> getAllPagosPropsPendientes();
+	public void savePago(PagoPropietario p);
 }

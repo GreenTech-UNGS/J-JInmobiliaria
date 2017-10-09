@@ -14,6 +14,7 @@ import entities.CuotaAlquiler;
 import entities.EstadoCuota;
 import entities.HistoriaEstadoCuota;
 import entities.InteresPunitorioCuota;
+import entities.PagoPropietario;
 import persistencia.dao.iface.CuotaDao;
 
 public class CuotaService {
@@ -93,4 +94,6 @@ public class CuotaService {
 		cuotaDao.saveInteres(interes);
 		
 	}
+
+
 }

@@ -16,6 +16,7 @@ import entities.CuotaAlquiler;
 import entities.EstadoCuota;
 import entities.EstadoProp;
 import entities.HistoriaEstadoProp;
+import entities.PagoPropietario;
 import entities.Propiedad;
 import entities.Reserva;
 import model.ClienteService;
@@ -117,6 +118,7 @@ public class MainViewController {
 		this.view.getBtnDesreservar().addActionListener(e -> borrarReserva());
 		this.view.getBtnRegistrarCobro().addActionListener(e -> registrarCobro());
 		this.view.getBtnRenovar().addActionListener(e -> renovarContrato());
+		this.view.getBtnRegistrarPago().addActionListener(e -> registrarPago());
 
 		
 		fillTableClientes();
@@ -301,7 +303,6 @@ public class MainViewController {
 	}
 		
 	private void registrarCobro() {
-		CuotaAlquiler selected = null;
 		int select = this.view.getTableCuotas().getSelectedRow();
 		
 		if (select!=-1){
@@ -319,5 +320,22 @@ public class MainViewController {
 			
 		}
 		
+	}
+	
+
+	private void registrarPago() {
+		int select = this.view.getTablePagosPropietarios().getSelectedRow();
+		
+		if (select!=-1){
+			PagoPropietario p = pagopropTable.getRow(select);
+			
+			int option = JOptionPane.showConfirmDialog(null, "¿Desea registrar el pago al propietario?", "Resgistrar Pago", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			
+			if(option == 0) {
+				this.fillTablePagosProps();
+				pagoCobroService.registrarpagoPropietario(p);
+			}
+			
+		}
 	}
 }

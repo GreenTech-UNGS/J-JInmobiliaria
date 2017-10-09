@@ -62,6 +62,7 @@ public class MainView {
     private JTable tablaReservas;
     private JButton btnRegistrarCobro;
     private JTable tablePagosPropietarios;
+    private JButton btnRegistrarPago;
 
     @Inject
     public MainView() {
@@ -198,15 +199,24 @@ public class MainView {
         JPanel panelPagoVen = new JPanel();
         tabbedPane.addTab("Pagos de ventas", null, panelPagoVen, null);
         tabbedPane.setEnabledAt(1, true);
+        //TODO: Cambiar
+        panelPagoVen.setVisible(false);
 
         JPanel panelPagoProp = new JPanel();
         tabbedPane.addTab("Pagos a propietarios", null, panelPagoProp, null);
-        panelPagoProp.setLayout(new BoxLayout(panelPagoProp, BoxLayout.X_AXIS));
+        panelPagoProp.setLayout(new BoxLayout(panelPagoProp, BoxLayout.Y_AXIS));
         
         tablePagosPropietarios = new JTable();
         
         JScrollPane scrollPane_7 = new JScrollPane(tablePagosPropietarios);
         panelPagoProp.add(scrollPane_7);
+        
+        JPanel bontones = new JPanel();
+        panelPagoProp.add(bontones);
+        bontones.setLayout(new BoxLayout(bontones, BoxLayout.X_AXIS));
+        
+        btnRegistrarPago = new JButton("Registrar Pago");
+        bontones.add(btnRegistrarPago);
 
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -535,5 +545,10 @@ public class MainView {
 	
 	public JTable getTablePagosPropietarios() {
 		return tablePagosPropietarios;
+	}
+
+
+	public JButton getBtnRegistrarPago() {
+		return btnRegistrarPago;
 	}
 }
