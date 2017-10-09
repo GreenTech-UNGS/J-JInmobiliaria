@@ -4,19 +4,25 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.Contrato;
+import entities.EstadoContrato;
+import entities.EstadoProp;
 import model.ContratoService;
+import model.PropiedadService;
 
 @Singleton
 public class ContratoValidator implements Validator<Contrato>{
 
 	ContratoService contratoService;
+	PropiedadService propiedadService;
 	MessageShow msgShw;
 	
 	@Inject
 	public ContratoValidator(ContratoService contratoService,
+			PropiedadService propiedadService,
 			MessageShow msgShw) {
 		
 		this.contratoService = contratoService;
+		this.propiedadService = propiedadService;
 		this.msgShw = msgShw;
 	}
 	
@@ -25,7 +31,7 @@ public class ContratoValidator implements Validator<Contrato>{
 		
 		if(t == null){
 			return false;
-		} else if(hayCamposVacios(t)) {
+		} else if(hayCamposVacios(t)) { //contratoService.getEstadoOf(t).equals(EstadoContrato.DEFINITIVO) && 
 			msgShw.showErrorMessage("Debe completar todos los campos obligatorios", "Error");
 			return false;
 			
@@ -38,7 +44,12 @@ public class ContratoValidator implements Validator<Contrato>{
 					+ " esta repetido. \n"
 					+ "Si requiere ingresar un contrato existente utilice el boton buscar", "Error");
 			return false;
-		}
+			
+		} else if(propiedadService.getCurrentEstado(t.getPropiedad()).equals(EstadoProp.DISPONIBLE) || 
+				propiedadService.getCurrentEstado(t.getPropiedad()).equals(EstadoProp.RESERVADA) == false) {
+			msgShw.showErrorMessage("La propiedad seleccionada no esta disponible", "Error");
+			return false;
+		}			
 		
 		return true;
 	}
@@ -48,10 +59,10 @@ public class ContratoValidator implements Validator<Contrato>{
 	} 
 	
 	private boolean hayCamposVacios(Contrato t) {
-		return t.getCliente().getPersona() == null ||
-				t.getCreador().getPersona() == null ||
+		return t.getIdentificador().equals("") ||
 				t.getPropiedad().getCalle() == null ||
-				t.getIdentificador().equals("") ||
+				t.getCliente().getPersona() == null ||
+				t.getCreador().getPersona() == null ||
 				t.getGarantia().equals("");
 	}
 }
