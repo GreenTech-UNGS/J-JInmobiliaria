@@ -281,11 +281,11 @@ public class MainViewController {
 			else {
 				cobroController.setCuota(c);
 			
-			cobroController.showView();
-			this.fillTableCuotas();
-		}
-		
+				cobroController.showView();
+				this.fillTableCuotas();
 			}
+		
+			
 		}
 		
 	}
