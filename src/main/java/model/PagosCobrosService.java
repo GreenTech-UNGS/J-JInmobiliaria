@@ -11,22 +11,28 @@ import entities.EstadoCuota;
 import entities.HistoriaEstadoCuota;
 import entities.IngresoAlquiler;
 import entities.InteresPunitorioCuota;
+import entities.PagoPropietario;
+import entities.PagoPropietario.EstadoPago;
 import entities.Precio;
 import persistencia.dao.iface.CuotaDao;
 import persistencia.dao.iface.IngresoDao;
+import persistencia.dao.iface.PropietarioDao;
 
 @Singleton
 public class PagosCobrosService {
 
 	CuotaService cuotaService;
 	IngresoDao ingresoDao;
+	PropietarioDao propietarioDao;
 	
 	@Inject
 	private PagosCobrosService(CuotaService cuotaService,
-			IngresoDao ingresoDao) {
+			IngresoDao ingresoDao,
+			PropietarioDao propietarioDao) {
 		
 		this.cuotaService = cuotaService;
 		this.ingresoDao = ingresoDao;
+		this.propietarioDao = propietarioDao;
 	}
 	
 	
@@ -59,6 +65,30 @@ public class PagosCobrosService {
 		
 		ingresoDao.save(ingreso);
 		cuotaService.saveCuota(cuota);
+		
+		generaPagopropietario(cuota);
+		
+	}
+	
+	public void generaPagopropietario(CuotaAlquiler cuota) {
+		
+		PagoPropietario nuevoPago = new PagoPropietario();
+		double monto = cuota.getMonto().getMonto();
+		InteresPunitorioCuota interes = cuotaService.getInteresOf(cuota);
+		
+		if(interes != null)
+			monto += interes.getMonto().getMonto();
+		
+		double montoParaPropietario = monto * ((100.0 - cuota.getContrato().getGastosAdmin())/100.0);
+		
+		Precio p = new Precio(montoParaPropietario, cuota.getMonto().getMoneda());
+		
+		nuevoPago.setCuota(cuota);
+		nuevoPago.setEstado(EstadoPago.PENDIENTE);
+		nuevoPago.setMonto(p);
+		nuevoPago.setPropietario(cuota.getContrato().getPropiedad().getPropietario());
+		
+		propietarioDao.generaPago(nuevoPago);
 		
 	}
 	

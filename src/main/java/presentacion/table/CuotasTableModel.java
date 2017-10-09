@@ -1,5 +1,7 @@
 package presentacion.table;
 
+import java.text.DecimalFormat;
+
 import com.google.inject.Inject;
 
 import entities.CuotaAlquiler;
@@ -18,8 +20,6 @@ public class CuotasTableModel extends BaseTableModel<CuotaAlquiler> {
 		super.addColumn("DNI Inquilino", false, 100);
 		super.addColumn("ID Propiedad", false, 100);
 		super.addColumn("ID Contrato", false, 100);
-		super.addColumn("Monto", false, 100);
-		super.addColumn("Intereses", false, 100);
 		super.addColumn("Total", false, 100);
 		super.addColumn("Estado", false, 100);
 	}
@@ -35,17 +35,15 @@ public class CuotasTableModel extends BaseTableModel<CuotaAlquiler> {
 		
 		InteresPunitorioCuota interes = cuotaService.getInteresOf(t);
 		
-		String interesStr = interes==null? "0" : interes.getMonto().getMoneda() + " " + interes.getMonto().getMonto();
+		DecimalFormat format = new DecimalFormat("#.##");
 		
 		String totalStr = interes==null? valor : interes.getMonto().getMoneda().toString() + " " +
-						(interes.getMonto().getMonto() + t.getMonto().getMonto());
+						format.format(interes.getMonto().getMonto() + t.getMonto().getMonto());
 		
 		Object[] fila = {
 				credencial,
 				t.getContrato().getPropiedad().getIdentificador(),
 				t.getContrato().getIdentificador(),
-				valor,
-				interesStr,
 				totalStr,
 				cuotaService.getEstadoOf(t).toString()
 		};
