@@ -7,6 +7,7 @@ import org.joda.time.YearMonth;
 
 import com.google.inject.Inject;
 
+import entities.CuotaAlquiler;
 import entities.EstadoCuota;
 import entities.Propiedad;
 import model.ClienteService;
@@ -41,6 +42,7 @@ public class MainViewController {
 	AddClienteController clienteController;	
 	AddPropiedadController propiedadController;
 	ReservarPropiedadController reservaController;
+	RegistrarCobroController cobroController;
 
 	PropiedadService propiedadService;
 	ClienteService clienteService;
@@ -65,7 +67,8 @@ public class MainViewController {
 			ContratosTableModel contratosTable,
 			ContratosTableModel contratosTable2,
 			ContratoService contratoService,
-			ReservaService reservaService){
+			ReservaService reservaService,
+			RegistrarCobroController cobroController){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
@@ -86,6 +89,7 @@ public class MainViewController {
 		this.contratosTable2 = contratosTable2;
 		this.contratoService = contratoService;
 		this.reservaService = reservaService;
+		this.cobroController = cobroController;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
@@ -94,6 +98,7 @@ public class MainViewController {
 		this.view.getBtnContratoVen().addActionListener(e -> agregarContratoVen());
 		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());
 		this.view.getBtnEditarCliente().addActionListener(e -> editarCliente());
+		this.view.getBtnRegistrarCobro().addActionListener(e -> registrarCobro());
 		
 		fillTableClientes();
 		fillTablePropietarios();
@@ -222,7 +227,6 @@ public class MainViewController {
 		
 	}
 	
-
 	private void editarCliente() {
 		int select = this.view.getTableClientes().getSelectedRow();
 		
@@ -244,5 +248,20 @@ public class MainViewController {
 				}
 			}
 		});
+	}
+	
+
+	private void registrarCobro() {
+		CuotaAlquiler selected = null;
+		int select = this.view.getTableCuotas().getSelectedRow();
+		
+		if (select!=-1){
+
+			cobroController.setCuota(cuotasTable.getRow(select));
+			
+			cobroController.showView();
+			this.fillTableCuotas();
+		}
+		
 	}
 }

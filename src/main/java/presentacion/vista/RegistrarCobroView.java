@@ -16,11 +16,16 @@ import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Component;
+import javax.swing.Box;
+import java.awt.Font;
 
 @Singleton
 public class RegistrarCobroView extends JDialog{
 
 	JDateChooser dateChooser;
+	private JButton btnOk;
+	private Component horizontalStrut;
 	
 	@Inject
 	private RegistrarCobroView() {
@@ -36,7 +41,15 @@ public class RegistrarCobroView extends JDialog{
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
+		horizontalStrut = Box.createHorizontalStrut(20);
+		GridBagConstraints gbc_horizontalStrut = new GridBagConstraints();
+		gbc_horizontalStrut.insets = new Insets(0, 0, 5, 5);
+		gbc_horizontalStrut.gridx = 0;
+		gbc_horizontalStrut.gridy = 1;
+		getContentPane().add(horizontalStrut, gbc_horizontalStrut);
+		
 		JLabel lblFechaDelCobro = new JLabel("Fecha del cobro:");
+		lblFechaDelCobro.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		GridBagConstraints gbc_lblFechaDelCobro = new GridBagConstraints();
 		gbc_lblFechaDelCobro.anchor = GridBagConstraints.NORTH;
 		gbc_lblFechaDelCobro.fill = GridBagConstraints.HORIZONTAL;
@@ -54,12 +67,20 @@ public class RegistrarCobroView extends JDialog{
 		gbc_dateChooser.gridy = 1;
 		getContentPane().add(dateChooser, gbc_dateChooser);
 		
-		JButton btnOk = new JButton("Ok");
+		btnOk = new JButton("Ok");
 		GridBagConstraints gbc_btnOk = new GridBagConstraints();
 		gbc_btnOk.anchor = GridBagConstraints.NORTH;
 		gbc_btnOk.gridwidth = 2;
 		gbc_btnOk.gridx = 1;
 		gbc_btnOk.gridy = 2;
 		getContentPane().add(btnOk, gbc_btnOk);
+	}
+
+	public JDateChooser getDateChooser() {
+		return dateChooser;
+	}
+
+	public JButton getBtnOk() {
+		return btnOk;
 	}
 }
