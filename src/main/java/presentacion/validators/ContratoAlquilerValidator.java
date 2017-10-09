@@ -22,8 +22,6 @@ public class ContratoAlquilerValidator implements Validator<ContratoAlquiler>{
 	@Override
 	public boolean isValid(ContratoAlquiler t) {
 		
-		//TODO: DIFERENCIAR TIPOS
-		
 		if(t == null){
 			return false;
 		}
@@ -34,7 +32,7 @@ public class ContratoAlquilerValidator implements Validator<ContratoAlquiler>{
 			msgShw.showErrorMessage("Ingrese un precio valido", "Error");
 			return false;
 		}
-		else if(t.getCantMeses() <= 0){ //TODO: Cantidades segun tipo		
+		else if(t.getCantMeses() <= 0 || t.getCantMeses() > 36){ //TODO: Cantidades segun tipo		
 			msgShw.showErrorMessage("No se puede dar de alta un alquiler por " 
 			+ t.getCantMeses() + " meses", "Error");
 			return false;
