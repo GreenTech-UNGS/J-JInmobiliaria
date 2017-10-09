@@ -13,7 +13,7 @@ public class HistEstadosPropTableModel extends BaseTableModel<HistoriaEstadoProp
 	@Override
 	protected Object[] toRow(HistoriaEstadoProp t) {
 		Object[] fila = {
-				t.getFecha(),
+				t.getFecha().toString("dd-MM-YYYY HH:mm"),
 				t.getEstado(),
 		};
 

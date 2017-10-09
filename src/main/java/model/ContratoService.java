@@ -212,5 +212,52 @@ public class ContratoService {
 		
 		return contratoDao.getAllAlquiler();
 	}
+
+	public ContratoAlquiler getActualizacionOf(ContratoAlquiler c) {
+		ContratoAlquiler toRet = new ContratoAlquiler();
+		
+		Precio p = new Precio(c.getCuotaMensual().getMonto(), c.getCuotaMensual().getMoneda());
+		AvisoNotificacion intimacion = new AvisoNotificacion();
+		intimacion.setHabilitado(c.getAvisoIntimacion().isHabilitado());
+		intimacion.setPeriodo(c.getAvisoIntimacion().getPeriodo());
+		
+		AvisoNotificacion vencer = new AvisoNotificacion();
+		vencer.setHabilitado(c.getAvisoIntimacion().isHabilitado());
+		vencer.setPeriodo(c.getAvisoIntimacion().getPeriodo());
+		
+		DatosPunitorioContrato punitorio = new DatosPunitorioContrato();
+		punitorio.setAcumulativo(c.getDatoPunitorio().isAcumulativo());
+		punitorio.setDiasDePago(c.getDatoPunitorio().getDiasDePago());
+		punitorio.setPorcentaje(c.getDatoPunitorio().getPorcentaje());
+		
+		DatosActualizacionContrato actualizacion = new DatosActualizacionContrato();
+		actualizacion.setActualizacionMeses(c.getDatoActualizacion().getActualizacionMeses());
+		actualizacion.setAcumulativo(c.getDatoActualizacion().isAcumulativo());
+		actualizacion.setPorcentaje(c.getDatoActualizacion().getPorcentaje());
+		
+		toRet.setCantMeses(c.getCantMeses());
+		toRet.setCliente(c.getCliente());
+		toRet.setGarantia(c.getGarantia());
+		toRet.setGastosAdmin(c.getGastosAdmin());
+		toRet.setPropiedad(c.getPropiedad());
+		
+		toRet.setCuotaMensual(p);
+		toRet.setAvisoIntimacion(intimacion);
+		toRet.setAvisoProxVencer(vencer);
+		toRet.setDatoPunitorio(punitorio);
+		toRet.setDatoActualizacion(actualizacion);
+		toRet.setTipoContratoAlquiler(c.getTipoContratoAlquiler());
+		
+		HistoriaEstadoContrato nuevo = new HistoriaEstadoContrato();
+		nuevo.setEstado(EstadoContrato.DEFINITIVO);
+		nuevo.setFecha(DateTime.now());
+		
+		toRet.getEstados().add(nuevo);
+		
+		toRet.setPrimerAnioMes(YearMonth.now().plusMonths(1));
+		
+		return toRet;
+		
+	}
 	
 }

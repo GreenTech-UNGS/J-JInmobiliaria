@@ -135,8 +135,8 @@ public class AddPropiedadController {
 				t -> monedaCombo.setSelected((Moneda)t));
 		
 		binder.bind("precioTentativo.monto",
-				() -> view.getTfPrecio().getValue(),
-				t -> view.getTfPrecio().setValue(t));
+				() -> Double.parseDouble((view.getTfPrecio().getText())),
+				t -> view.getTfPrecio().setText(t.toString()));
 
 		binder.bind("tipoOfrecimiento",
 				tipoOfrCombo::getSelected,
@@ -253,9 +253,14 @@ public class AddPropiedadController {
 
 	private void savePropiedad() {
 		
+		if(!view.getTfPrecio().getText().matches("([0-9]*[\\.])?[0-9]+")) {
+			JOptionPane.showMessageDialog(view, "El precio debe ser un numero", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		
 		binder.fillBean();
 		if(propiedadValidator.isValid(currentPropiedad)){		
-			
+			actualizaMapaThread();
 			propiedadService.savePropiedad(currentPropiedad);
 			view.setVisible(false);
 		}

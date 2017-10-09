@@ -292,10 +292,10 @@ public class MainViewController {
 	
 	private void renovarContrato(){
 		if(this.view.getTablaContratoAlquiler().getSelectedRow()!=-1){
-			Contrato seleccion = contratosTable2.getRow(this.view.getTablaContratoAlquiler().getSelectedRow());
+			ContratoAlquiler seleccion = (ContratoAlquiler)contratosTable2.getRow(this.view.getTablaContratoAlquiler().getSelectedRow());
 			
 			this.contratoAlqController.setRenovarMode(seleccion);
-			
+			fillTableContratosAlquiler();
 		}
 	}
 		

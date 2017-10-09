@@ -58,7 +58,7 @@ public class AgregarPropiedad extends JDialog{
 	private JTextField tfInmobiliaria;
 
 	private JButton botonLupitaInmobiliaria;
-	private JFormattedTextField tfPrecio;
+	private JTextField tfPrecio;
 
 	@Inject
 	private AgregarPropiedad() {
@@ -304,7 +304,7 @@ public class AgregarPropiedad extends JDialog{
 		botonLupitaInmobiliaria.setBounds(652, 90, 22, 20);
 		AgregarPropiedad.add(botonLupitaInmobiliaria);
 		
-		tfPrecio = new JFormattedTextField(new Float(0));
+		tfPrecio = new JTextField();
 		tfPrecio.setBounds(305, 59, 122, 20);
 		AgregarPropiedad.add(tfPrecio);
 		
@@ -343,7 +343,7 @@ public class AgregarPropiedad extends JDialog{
 		return tfCalle;
 	}
 
-	public JFormattedTextField getTfPrecio() {
+	public JTextField getTfPrecio() {
 		return tfPrecio;
 	}
 
