@@ -125,6 +125,21 @@ public class MainViewController {
 		
 		this.view.getBtnGenerarReportePropietarios().addActionListener(e -> generaReportePropietarios());
 		
+		this.view.getBtnPropiedades().addActionListener(e -> {fillTableProp();
+													fillTableReservas();});
+		this.view.getBtnContratos().addActionListener(e -> {fillTableContratosAlquiler(); 
+													fillTableContratosVenta();});
+		this.view.getBtnPagos().addActionListener(e -> {fillTableCuotas();
+												fillTablePagosProps();});
+		this.view.getBtnInquilinos().addActionListener(e -> {fillTableClientes();
+														fillTablePropietarios();});
+		
+		
+		selectDetalleProp();
+		fillAllTables();
+	}
+
+	private void fillAllTables() {
 		fillTableClientes();
 		fillTableCuotas();
 		fillTableProp();
@@ -132,7 +147,6 @@ public class MainViewController {
 		fillTableContratosVenta();
 		fillTableContratosAlquiler();
 		fillTablePagosProps();
-		selectDetalleProp();
 		fillTableReservas();
 	}
 
