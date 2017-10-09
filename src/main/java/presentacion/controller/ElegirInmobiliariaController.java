@@ -37,7 +37,7 @@ public class ElegirInmobiliariaController {
 	}
 	
 	public void showView(){
-		
+		fillTableInmobiliaria();
 		view.setVisible(true);
 	}
 	

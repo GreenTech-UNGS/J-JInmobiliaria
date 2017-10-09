@@ -225,6 +225,7 @@ public class MainViewController {
 		this.reservaController.setModeNew();
 		this.reservaController.showView();
 		this.fillTableProp();
+		this.fillTableReservas();
 	}
 
 	private void agregarContratoAlq() {
