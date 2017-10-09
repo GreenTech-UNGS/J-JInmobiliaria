@@ -1,12 +1,24 @@
 package entities;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
 @Entity
 @Table(name = "pagosPropietario")
 public class PagoPropietario {
 
-	private enum EstadoPago{PENDIENTE, PAGO};
+	public enum EstadoPago{PENDIENTE, PAGO};
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +31,7 @@ public class PagoPropietario {
 	@Enumerated(EnumType.ORDINAL)
 	private EstadoPago estado;
 	
+	@OneToOne(cascade = {CascadeType.ALL})
 	private Precio monto;
 
 	public CuotaAlquiler getCuota() {
