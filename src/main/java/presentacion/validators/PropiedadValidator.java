@@ -24,7 +24,7 @@ public class PropiedadValidator implements Validator<Propiedad>{
 	@Override
 	public boolean isValid(Propiedad t) {
 
-		if(propiedadService.getCurrentEstado(t).equals(EstadoProp.DISPONIBLE) && hayCamposVacios(t)){
+		if(hayCamposVacios(t)){ //propiedadService.getCurrentEstado(t).equals(EstadoProp.DISPONIBLE) && 
 			msgShw.showErrorMessage("Debe completar todos los campos obligatorios", "Error");
 			return false;
 		}
@@ -52,6 +52,5 @@ public class PropiedadValidator implements Validator<Propiedad>{
 				t.getPropietario().getPersona().getNombre() == null ||
 				t.getLat() == 0 && t.getLon() == 0;
 	}
-	
-	
+		
 }
