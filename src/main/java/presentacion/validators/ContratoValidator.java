@@ -59,7 +59,7 @@ public class ContratoValidator implements Validator<Contrato>{
 	} 
 	
 	private boolean hayCamposVacios(Contrato t) {
-		return t.getIdentificador().equals("") ||
+		return t.getIdentificador() == null||
 				t.getPropiedad().getCalle() == null ||
 				t.getCliente().getPersona() == null ||
 				t.getCreador().getPersona() == null ||
