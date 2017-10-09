@@ -14,6 +14,7 @@ import org.joda.time.DateTime;
 import presentacion.combo.ClienteComboBoxModel;
 import presentacion.combo.PropiedadComboBoxModel;
 import presentacion.validators.MessageShow;
+import presentacion.validators.ReservaValidator;
 import presentacion.vista.ElegirCliente;
 import presentacion.vista.ReservarPropiedadView;
 
@@ -26,7 +27,7 @@ public class ReservarPropiedadController {
     private PropiedadService propiedadService;
     private ClienteService clienteService;
     private ReservaService reservaService;
-
+    private ReservaValidator reservaValidator;
     private ElegirClienteController clienteController;
     private ElegirPropiedadController propiedadController;
 
@@ -42,12 +43,14 @@ public class ReservarPropiedadController {
                                        PropiedadService propiedadService,
                                        ClienteService clienteService,
                                        ReservaService reservaService,
+                                       ReservaValidator reservaValidator,
                                        ElegirClienteController clienteController,
                                        ElegirPropiedadController propiedadController) {
         this.view = view;
         this.propiedadService = propiedadService;
         this.clienteService = clienteService;
         this.reservaService = reservaService;
+        this.reservaValidator = reservaValidator;
         this.propiedadComboBoxModelModel = new PropiedadComboBoxModel();
         this.clienteComboBoxModel = new ClienteComboBoxModel();
         this.clienteController = clienteController;
@@ -63,8 +66,7 @@ public class ReservarPropiedadController {
 
     private void reservarPropiedad() {
 
-        //FIXME Incorporar Validator
-        if(currentCliente != null && currentPropiedad!= null) {
+      if(reservaValidator.isValid(currentReserva) && currentCliente != null && currentPropiedad!= null) {
      
             reservaService.saveReserva(currentReserva);
  
