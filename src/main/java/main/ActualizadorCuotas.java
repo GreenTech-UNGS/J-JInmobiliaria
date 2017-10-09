@@ -6,9 +6,11 @@ import java.util.stream.Collectors;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 import org.joda.time.Period;
 import org.joda.time.YearMonth;
 
+import persistencia.conexion.Conexion;
 import persistencia.dao.iface.CuotaDao;
 import misc.ActualizadorModule;
 import model.ContratoService;
@@ -41,7 +43,9 @@ public class ActualizadorCuotas {
 
 		actualizeCuotasVencidas();
 		actualizeContratos();
-		  
+		
+		Conexion c = injector.getInstance(Conexion.class);
+		c.cerrar();
 	  }
 
 	private static void actualizeContratos() {
@@ -55,7 +59,7 @@ public class ActualizadorCuotas {
 			YearMonth desde = contratoAlquiler.getPrimerAnioMes();
 			YearMonth hasta = contratoAlquiler.getPrimerAnioMes().plusMonths(contratoAlquiler.getCantMeses());
 			
-			if(today.isAfter(desde) && contratoService.getEstadoOf(contratoAlquiler).equals(EstadoContrato.DEFINITIVO)) {
+			if(!desde.isBefore(today) && contratoService.getEstadoOf(contratoAlquiler).equals(EstadoContrato.DEFINITIVO)) {
 				HistoriaEstadoContrato estadoNuevo = new HistoriaEstadoContrato();
 				estadoNuevo.setEstado(EstadoContrato.VIGENTE);
 				estadoNuevo.setFecha(DateTime.now());

@@ -56,7 +56,11 @@ public class PropiedadService {
 	
 	public EstadoProp getCurrentEstado(Propiedad p) {
 		
-		p.getEstados().sort((h2, h1) -> h1.getFecha().compareTo(h2.getFecha()));
+		p.getEstados().sort((h1, h2) -> h2.getFecha().compareTo(h1.getFecha()));
+		
+
+
+		
 		return p.getEstados().get(0).getEstado();
 		
 	}

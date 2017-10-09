@@ -12,6 +12,7 @@ import com.google.inject.Inject;
 
 import entities.CuotaAlquiler;
 import entities.EstadoCuota;
+import entities.HistoriaEstadoCuota;
 import entities.InteresPunitorioCuota;
 import persistencia.dao.iface.CuotaDao;
 
@@ -42,7 +43,7 @@ public class CuotaService {
 	
 	public EstadoCuota getEstadoOf(CuotaAlquiler c) {
 		
-		c.getEstados().sort((e2, e1) -> e1.getFecha().compareTo(e2.getFecha()));
+		c.getEstados().sort((e1, e2) -> e2.getFecha().compareTo(e1.getFecha()));
 		
 		return c.getEstados().get(0).getEstado();
 		
