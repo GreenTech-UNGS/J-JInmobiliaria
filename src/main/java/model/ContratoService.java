@@ -77,6 +77,23 @@ public class ContratoService {
 		propiedadDao.save(propiedad);
 	}
 	
+	public void saveContratoAlquiler(Contrato c) {
+
+		contratoDao.save(c);
+		
+		HistoriaEstadoProp estado = new HistoriaEstadoProp();
+		estado.setEstado(EstadoProp.ALQUILADA);
+		estado.setFecha(DateTime.now());
+		
+		Propiedad propiedad = c.getPropiedad();
+		propiedad.getEstados().add(estado);
+		
+//		creaCuotas(c);
+		
+		propiedadDao.save(propiedad);
+	}
+	
+	
 	private void creaCuotas(ContratoAlquiler c) {
 		
 		int cantCuotas = c.getCantMeses();

@@ -8,6 +8,8 @@ import org.joda.time.YearMonth;
 
 import com.google.inject.Inject;
 
+import entities.Contrato;
+import entities.ContratoAlquiler;
 import entities.CuotaAlquiler;
 import entities.EstadoCuota;
 import entities.EstadoProp;
@@ -104,6 +106,7 @@ public class MainViewController {
 		this.view.getBtnEditarCliente().addActionListener(e -> editarCliente());
 		this.view.getBtnDesreservar().addActionListener(e -> borrarReserva());
 		this.view.getBtnRegistrarCobro().addActionListener(e -> registrarCobro());
+		this.view.getBtnRenovar().addActionListener(e -> renovarContrato());
 
 		
 		fillTableClientes();
@@ -263,6 +266,15 @@ public class MainViewController {
     		
 			fillTableReservas();
 			fillTableProp();
+		}
+	}
+	
+	private void renovarContrato(){
+		if(this.view.getTablaContratoAlquiler().getSelectedRow()!=-1){
+			Contrato seleccion = contratosTable2.getRow(this.view.getTablaContratoAlquiler().getSelectedRow());
+			
+			this.contratoAlqController.setRenovarMode(seleccion);
+			
 		}
 	}
 		

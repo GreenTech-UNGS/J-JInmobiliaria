@@ -50,6 +50,7 @@ public class AddContratoAlq extends JDialog {
 	private JSpinner spinnerVencimientoEmail;
 	private JCheckBox chckbxIntimacion;
 	private JSpinner spinnerIntimacionEmail;
+	private JButton btnRenovarContrato;
 	
 	
 	public AddContratoAlq() {
@@ -192,7 +193,7 @@ public class AddContratoAlq extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnGuardarContrato.setBounds(183, 625, 128, 38);
+		btnGuardarContrato.setBounds(165, 625, 128, 38);
 		agregarContrato.add(btnGuardarContrato);
 		
 		this.btnCancelarContrato = new JButton("Cancelar");
@@ -358,6 +359,16 @@ public class AddContratoAlq extends JDialog {
 		label_5.setFont(new Font("Dialog", Font.PLAIN, 11));
 		label_5.setBounds(475, 574, 70, 15);
 		agregarContrato.add(label_5);
+		
+		btnRenovarContrato = new JButton("Renovar contrato");
+		btnRenovarContrato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnRenovarContrato.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnRenovarContrato.setBounds(249, 629, 128, 30);
+		agregarContrato.add(btnRenovarContrato);
+		btnRenovarContrato.setVisible(false);
 	}
 
 
@@ -479,5 +490,57 @@ public class AddContratoAlq extends JDialog {
 	public JSpinner getSpinnerIntimacionEmail() {
 		return spinnerIntimacionEmail;
 	}
+
+
+	public void setTextIdContrato(JTextField textIdContrato) {
+		this.textIdContrato = textIdContrato;
+	}
+
+
+	public void setTfIdPropiedad(JTextField tfIdPropiedad) {
+		this.tfIdPropiedad = tfIdPropiedad;
+	}
+
+
+	public void setTfDniInquilino(JTextField tfDniInquilino) {
+		this.tfDniInquilino = tfDniInquilino;
+	}
+
+
+	public void setTextPrecio(JTextField textPrecio) {
+		this.textPrecio = textPrecio;
+	}
+
+
+	public void setComboMoneda(JComboBox<String> comboMoneda) {
+		this.comboMoneda = comboMoneda;
+	}
+
+
+	public void setComboTipoContrato(JComboBox<String> comboTipoContrato) {
+		this.comboTipoContrato = comboTipoContrato;
+	}
+
+
+	public void setTextGarantia(JTextArea textGarantia) {
+		this.textGarantia = textGarantia;
+	}
+
+
+	public void setSpinnerDuracionContrato(JSpinner spinnerDuracionContrato) {
+		this.spinnerDuracionContrato = spinnerDuracionContrato;
+	}
+
+
+	public JButton getBtnRenovarContrato() {
+		return btnRenovarContrato;
+	}
+
+
+	public void setBtnRenovarContrato(JButton btnRenovarContrato) {
+		this.btnRenovarContrato = btnRenovarContrato;
+	}
+	
+	
 
 }
