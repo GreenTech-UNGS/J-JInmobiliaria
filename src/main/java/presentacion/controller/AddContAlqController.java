@@ -17,6 +17,7 @@ import misc.Binder;
 import model.ContratoService;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.TipoContratoAlqComboBoxModel;
+import presentacion.validators.ContratoAlquilerValidator;
 import presentacion.vista.AddContratoAlq;
 
 @Singleton
@@ -31,7 +32,7 @@ public class AddContAlqController {
 	
 	Binder<ContratoAlquiler> binder;
 	ContratoAlquiler currentContrato;
-	
+	ContratoAlquilerValidator contratoAlquilerValidator;
 	
 	TipoContratoAlqComboBoxModel tipoCombo;
 	MonedaComboBoxModel monedaCombo;
@@ -40,11 +41,13 @@ public class AddContAlqController {
 	private AddContAlqController(ContratoService contratoService,
 								AddContratoAlq view,
 								ElegirClienteController eligeCliente,
+								ContratoAlquilerValidator contratoAlquilerValidator,
 								ElegirPropiedadController elegirPropiedadController) {
 		
 		this.contratoService = contratoService;
 		this.view = view;
 		this.eligeCliente = eligeCliente;
+		this.contratoAlquilerValidator = contratoAlquilerValidator;
 		this.elegirPropiedadController = elegirPropiedadController;
 		
 		tipoCombo = new TipoContratoAlqComboBoxModel();
@@ -169,9 +172,11 @@ public class AddContAlqController {
 		
 		binder.fillBean();
 		bindAvisos();
-		if(true)
-		contratoService.saveContratoAlquiler(currentContrato);
-		closeView();
+		if(contratoAlquilerValidator.isValid(currentContrato)){
+
+			contratoService.saveContratoAlquiler(currentContrato);
+			closeView();
+		}
 		
 	}
 	
