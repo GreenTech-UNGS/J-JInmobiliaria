@@ -66,6 +66,7 @@ public class MainViewController {
 			PropiedadService propiedadService,
 			ClienteService clienteService,
 			PropiedadesTableModel tableModelprop,
+			CuotasTableModel cuotasTable,
 			PropietarioService propietarioService,
 			CuotaService cuotaService,
 			ContratosTableModel contratosTable,
@@ -77,7 +78,7 @@ public class MainViewController {
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
 		this.propietariosTable = new PropietariosTableModel();
-		this.cuotasTable = new CuotasTableModel();
+		this.cuotasTable = cuotasTable;
 		this.reservaTable = new ReservaTableModel();
 		this.tableModelProp = tableModelprop;
 		this.propiedadController = propiedadesController;
