@@ -1,6 +1,7 @@
 package model;
 
 import org.joda.time.DateTime;
+import org.joda.time.LocalTime;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -32,7 +33,10 @@ public class PagosCobrosService {
 	public void generarCobroAlquiler(CuotaAlquiler cuota, DateTime fecha) {
 		
 		HistoriaEstadoCuota nuevo = new HistoriaEstadoCuota();
-		nuevo.setFecha(fecha);
+		
+		DateTime fechaNueva = fecha.withTime(LocalTime.now());
+		
+		nuevo.setFecha(fechaNueva);
 		nuevo.setEstado(EstadoCuota.PAGA);
 		
 		cuota.getEstados().add(nuevo);
@@ -49,8 +53,8 @@ public class PagosCobrosService {
 		p.setMonto(ingresoMonto);
 		
 		ingreso.setCuota(cuota);
-		ingreso.setDetalle("Pago de cuota al dia " + fecha.toDate().toString());
-		ingreso.setFecha(fecha);
+		ingreso.setDetalle("Pago de cuota al dia " + fechaNueva.toDate().toString());
+		ingreso.setFecha(fechaNueva);
 		ingreso.setMonto(p);
 		
 		ingresoDao.save(ingreso);

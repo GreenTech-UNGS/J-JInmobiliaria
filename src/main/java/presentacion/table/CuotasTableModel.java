@@ -21,6 +21,7 @@ public class CuotasTableModel extends BaseTableModel<CuotaAlquiler> {
 		super.addColumn("Monto", false, 100);
 		super.addColumn("Intereses", false, 100);
 		super.addColumn("Total", false, 100);
+		super.addColumn("Estado", false, 100);
 	}
 
 	@Override
@@ -45,7 +46,8 @@ public class CuotasTableModel extends BaseTableModel<CuotaAlquiler> {
 				t.getContrato().getIdentificador(),
 				valor,
 				interesStr,
-				totalStr
+				totalStr,
+				cuotaService.getEstadoOf(t).toString()
 		};
 
 		return fila;
