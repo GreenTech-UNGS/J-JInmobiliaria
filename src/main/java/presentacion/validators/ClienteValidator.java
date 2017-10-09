@@ -30,14 +30,12 @@ public class ClienteValidator implements Validator<Cliente>{
 		if(pValidator.isValid(t.getPersona()) == false)
 				return false;
 		if(clienteService.existeClienteCon(t.getPersona())) {
-			msgShw.showErrorMessage("El cliente ya está agregado", "Error");
+			msgShw.showErrorMessage("El cliente ya esta agregado", "Error");
 			
 			return false;			
 		}
-			
 		
-		return true;
+		return true;		
+	}
 		
-		}
-	
 }
