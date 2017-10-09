@@ -42,11 +42,11 @@ public class ReservarPropiedadView extends JDialog {
 		panel.setLayout(null);
 		
 		JLabel lblNombre = new JLabel("Cliente:");
-		lblNombre.setBounds(56, 83, 80, 20);
+		lblNombre.setBounds(20, 83, 57, 20);
 		panel.add(lblNombre);
 		
 		JLabel lblMail = new JLabel("Propiedad:");
-		lblMail.setBounds(40, 145, 80, 20);
+		lblMail.setBounds(20, 145, 80, 20);
 		panel.add(lblMail);
 		
 		btnGuardar = new JButton("Guardar");

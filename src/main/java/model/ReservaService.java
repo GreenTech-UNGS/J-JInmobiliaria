@@ -9,6 +9,7 @@ import org.joda.time.DateTime;
 import persistencia.dao.iface.ReservaDAO;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ReservaService {
 
@@ -24,6 +25,15 @@ public class ReservaService {
     public List<Reserva> getAll(){
         return reservaDAO.getAll();
     }
+    
+    public List<Reserva> getAllCurrent(){
+    	List<Reserva> all = getAll();
+    	
+    	return all.stream().
+    			filter(r -> propiedadService.getCurrentEstado(r.getPropiedad()).equals(EstadoProp.RESERVADA)).
+    			collect(Collectors.toList());
+    	
+    }
 
     public void saveReserva(Reserva reserva){
         reserva.setFecha(DateTime.now());
@@ -32,7 +42,7 @@ public class ReservaService {
     
     public Reserva getReservaOf(Propiedad p) {
     	
-    	EstadoProp estado =propiedadService.getCurrentEstado(p);
+    	EstadoProp estado = propiedadService.getCurrentEstado(p);
     	
     	if(!estado.equals(EstadoProp.RESERVADA)) {
     		return null;

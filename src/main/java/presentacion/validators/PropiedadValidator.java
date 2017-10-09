@@ -49,8 +49,7 @@ public class PropiedadValidator implements Validator<Propiedad>{
 				t.getCalle().equals("") ||
 				t.getAltura().equals("") ||
 				t.getLocalidad().getNombre() == null ||
-				t.getPropietario().getPersona().getNombre() == null ||
-				t.getLat() == 0 && t.getLon() == 0;
+				t.getPropietario().getPersona().getNombre() == null;
 	}
 		
 }
