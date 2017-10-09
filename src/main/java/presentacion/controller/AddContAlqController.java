@@ -169,7 +169,7 @@ public class AddContAlqController {
 		
 		binder.fillBean();
 		bindAvisos();
-		//if(contratoValidator.isvalid)
+		if(true)
 		contratoService.saveContratoAlquiler(currentContrato);
 		closeView();
 		
