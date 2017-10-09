@@ -2,6 +2,8 @@ package presentacion.controller;
 
 import com.google.inject.Inject;
 import entities.Cliente;
+import entities.EstadoProp;
+import entities.HistoriaEstadoProp;
 import entities.Propiedad;
 import entities.Reserva;
 import misc.Binder;
@@ -63,8 +65,16 @@ public class ReservarPropiedadController {
 
         //FIXME Incorporar Validator
         if(currentCliente != null && currentPropiedad!= null) {
+     
             reservaService.saveReserva(currentReserva);
-            closeView();
+ 
+            HistoriaEstadoProp estado = new HistoriaEstadoProp();
+    		estado.setEstado(EstadoProp.RESERVADA);
+    		estado.setFecha(DateTime.now());
+    		
+    		currentPropiedad.getEstados().add(estado);
+    		propiedadService.actualizarPropiedad(currentPropiedad);
+    		closeView();
         }
     }
 

@@ -53,7 +53,7 @@ public class MainView {
     private JTable tablePropietarios;
     private JTable tableCuotas;
     private JButton btnEditarCliente;
-    private JButton btnNewButton;
+    private JButton btnDesreservar;
     
     private JCalendar jCalendar;
     private JTable tablaContratoVenta;
@@ -382,13 +382,6 @@ public class MainView {
       btnReservarPropiedad = new JButton("Reservar propiedad");
       btnReservarPropiedad.setFont(new Font("Tahoma", Font.PLAIN, 11));
       panelButtons.add(btnReservarPropiedad);
-                                                                                
-      Component horizontalGlue_2 = Box.createHorizontalGlue();
-      panelButtons.add(horizontalGlue_2);
-                                                                                        
-      btnNewButton = new JButton("Ver reservas");
-      btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
-      panelButtons.add(btnNewButton);
                                                                                         
       Component horizontalGlue_1 = Box.createHorizontalGlue();
       panelButtons.add(horizontalGlue_1);
@@ -403,6 +396,9 @@ public class MainView {
                                                                                      
       JPanel panel_1 = new JPanel();
       panelReservas.add(panel_1);
+      
+      btnDesreservar = new JButton("Desreservar");
+      panel_1.add(btnDesreservar);
     }
 
     public JTable getTablePropiedades() {
@@ -488,5 +484,16 @@ public class MainView {
 	public void setTablaReservas(JTable tablaReservas) {
 		this.tablaReservas = tablaReservas;
 	}
+
+
+	public JButton getBtnDesreservar() {
+		return btnDesreservar;
+	}
+
+
+	public void setBtnDesreservar(JButton btnDesreservar) {
+		this.btnDesreservar = btnDesreservar;
+	}
+
 	
 }

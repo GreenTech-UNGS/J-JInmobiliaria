@@ -7,6 +7,7 @@ import org.hibernate.Criteria;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import entities.Cliente;
 import entities.Persona;
 import entities.Propiedad;
 import persistencia.conexion.Conexion;
@@ -31,5 +32,11 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 		
 		return q.list();
 	}
-
+	
+	public void actualizePropiedad(Propiedad toActualize) {
+		initTransaction();
+		sesion.saveOrUpdate(toActualize);
+		finishTransaction();
+		
+	}
 }

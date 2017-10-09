@@ -31,5 +31,8 @@ public class ReservaService {
 
         return toRet;
     }
+    public void remove(Reserva r){
+    	reservaDAO.remove(r);
+    }
 
 }

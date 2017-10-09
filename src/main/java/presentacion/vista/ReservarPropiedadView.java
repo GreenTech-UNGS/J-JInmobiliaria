@@ -4,9 +4,12 @@ import com.google.inject.Inject;
 import presentacion.controller.ElegirClienteController;
 
 import java.awt.Dimension;
+import java.awt.Image;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class ReservarPropiedadView extends JDialog {
@@ -39,11 +42,11 @@ public class ReservarPropiedadView extends JDialog {
 		panel.setLayout(null);
 		
 		JLabel lblNombre = new JLabel("Cliente:");
-		lblNombre.setBounds(20, 83, 80, 20);
+		lblNombre.setBounds(56, 83, 80, 20);
 		panel.add(lblNombre);
 		
 		JLabel lblMail = new JLabel("Propiedad:");
-		lblMail.setBounds(20, 145, 80, 20);
+		lblMail.setBounds(40, 145, 80, 20);
 		panel.add(lblMail);
 		
 		btnGuardar = new JButton("Guardar");
@@ -54,22 +57,29 @@ public class ReservarPropiedadView extends JDialog {
 		btnCancelar.setBounds(189, 330, 123, 42);
 		panel.add(btnCancelar);
 
-		btnSelecCliente = new JButton("+");
-		btnSelecCliente.setBounds(270, 83, 40, 20);
+		btnSelecCliente = new JButton("");
+		btnSelecCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnSelecCliente.setBounds(257, 83, 32, 20);
+		Image imgLup = new ImageIcon(this.getClass().getResource("/buscar.png")).getImage();
+		btnSelecCliente.setIcon(new ImageIcon(imgLup));
 		panel.add(btnSelecCliente);
 
-		btnSelecPropiedad = new JButton("+");
-		btnSelecPropiedad.setBounds(270, 145, 40, 20);
+		btnSelecPropiedad = new JButton("");
+		btnSelecPropiedad.setBounds(257, 145, 32, 20);
+		btnSelecPropiedad.setIcon(new ImageIcon(imgLup));
 		panel.add(btnSelecPropiedad);
 
 		tfCliente = new JTextField();
 		tfCliente.setEditable(false);
-        tfCliente.setBounds(110, 83, 150, 20);
+        tfCliente.setBounds(97, 83, 150, 20);
         panel.add(tfCliente);
 
         tfPropiedad = new JTextField();
 		tfPropiedad.setEditable(false);
-		tfPropiedad.setBounds(110, 145, 150, 20);
+		tfPropiedad.setBounds(97, 145, 150, 20);
 		panel.add(tfPropiedad);
 	}
 

@@ -3,12 +3,16 @@ package presentacion.controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import org.joda.time.DateTime;
 import org.joda.time.YearMonth;
 
 import com.google.inject.Inject;
 
 import entities.EstadoCuota;
+import entities.EstadoProp;
+import entities.HistoriaEstadoProp;
 import entities.Propiedad;
+import entities.Reserva;
 import model.ClienteService;
 import model.ContratoService;
 import model.CuotaService;
@@ -94,9 +98,9 @@ public class MainViewController {
 		this.view.getBtnContratoVen().addActionListener(e -> agregarContratoVen());
 		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());
 		this.view.getBtnEditarCliente().addActionListener(e -> editarCliente());
+		this.view.getBtnDesreservar().addActionListener(e -> borrarReserva());
 		
 		fillTableClientes();
-		fillTablePropietarios();
 		fillTableCuotas();
 		fillTableProp();
 		fillTableContratosVenta();
@@ -143,15 +147,7 @@ public class MainViewController {
 		this.view.getTablaContratoAlquiler().setColumnModel(contratosTable.getTableColumnModel());
 		this.view.getTablaContratoAlquiler().getTableHeader().setReorderingAllowed(false);
 	}
-	
-	private void fillTablePropietarios() {
-		this.propietariosTable.clean();
-		this.view.getTablePropietarios().setModel(propietariosTable);
-		propietarioService.getAll().forEach(p -> propietariosTable.addRow(p));
-		
-		this.view.getTablePropietarios().setColumnModel(propietariosTable.getTableColumnModel());
-		this.view.getTablePropietarios().getTableHeader().setReorderingAllowed(false);
-	}
+
 	
 	private void fillTableCuotas() {
 		this.cuotasTable.clean();
@@ -192,14 +188,13 @@ public class MainViewController {
 			this.propiedadController.setEnabled(false);
 			this.propiedadController.showView();
 			this.propiedadController.setEnabled(true);
-			
 		}
-
 	}
 
 	private void agregarReserva(){
 		this.reservaController.setModeNew();
 		this.reservaController.showView();
+		this.fillTableProp();
 	}
 
 	private void agregarContratoAlq() {
@@ -219,10 +214,8 @@ public class MainViewController {
 		this.clienteController.showView();
 
 		fillTableClientes();
-		
 	}
 	
-
 	private void editarCliente() {
 		int select = this.view.getTableClientes().getSelectedRow();
 		
@@ -244,5 +237,26 @@ public class MainViewController {
 				}
 			}
 		});
+	}
+	
+	private void borrarReserva(){
+		if(this.view.getTablaReservas().getSelectedRow()!=-1){
+			Reserva seleccion = reservaTable.getRow(this.view.getTablaReservas().getSelectedRow());
+			
+			
+			HistoriaEstadoProp estado = new HistoriaEstadoProp();
+    		estado.setEstado(EstadoProp.DISPONIBLE);
+    		estado.setFecha(DateTime.now());
+    		
+    		Propiedad propiedad = seleccion.getPropiedad();
+    		
+    		propiedad.getEstados().add(estado);
+    		propiedadService.actualizarPropiedad(propiedad);
+    		
+    		reservaService.remove(seleccion);
+    		
+			fillTableReservas();
+			fillTableProp();
+		}
 	}
 }

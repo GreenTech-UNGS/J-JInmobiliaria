@@ -31,6 +31,5 @@ public class PropietarioDaoHibernate extends DaoHibernate<Propietario> implement
 		return q.list();
 	}
 	
-	
 
 }

@@ -9,6 +9,7 @@ import org.joda.time.DateTime;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import entities.Cliente;
 import entities.EstadoProp;
 import entities.HistoriaEstadoProp;
 import entities.Moneda;
@@ -83,6 +84,10 @@ public class PropiedadService {
 						(TipoOfrecimiento.VENTA_Y_ALQUILER)).collect(Collectors.toList());
 		return toRet;
 		
+	}
+	
+	public void actualizarPropiedad(Propiedad propiedadVieja){
+		propiedadDao.actualizePropiedad(propiedadVieja);
 	}
 	
 }
