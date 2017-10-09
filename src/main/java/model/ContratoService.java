@@ -136,6 +136,8 @@ public class ContratoService {
 		
 		toRet.getEstados().add(nuevo);
 		
+		toRet.setPrimerAnioMes(YearMonth.now().plusMonths(1));
+		
 		return toRet;
 	}
 	

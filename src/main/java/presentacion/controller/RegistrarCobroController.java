@@ -12,20 +12,25 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.CuotaAlquiler;
+import model.PagosCobrosService;
 import presentacion.vista.RegistrarCobroView;
 
 @Singleton
 public class RegistrarCobroController {
 
 	RegistrarCobroView view;
-	boolean okWasPressed;
 	CuotaAlquiler currentCuota;
+	PagosCobrosService cobrosService;
+
+	boolean okWasPressed;
 	
 	
 	@Inject
-	private RegistrarCobroController(RegistrarCobroView view) {
+	private RegistrarCobroController(RegistrarCobroView view,
+			PagosCobrosService cobrosService) {
 		
 		this.view = view;
+		this.cobrosService = cobrosService;
 		okWasPressed = false;
 		
 		view.getBtnOk().addActionListener(e -> okPressed());
@@ -44,14 +49,7 @@ public class RegistrarCobroController {
 		
 	}
 	
-	public DateTime getDate() {
-		if(!okWasPressed)
-			return null;
-		
-		DateTime fechaPago = new DateTime(view.getDateChooser().getDate());
-		
-		return fechaPago;
-	}
+	
 	
 	private void okPressed() {
 		okWasPressed = true;
@@ -64,6 +62,7 @@ public class RegistrarCobroController {
 					+ "y anterior a hoy", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		else {
+			cobrosService.generarCobroAlquiler(currentCuota, fechaPago);
 			this.view.setVisible(false);
 		}
 	}

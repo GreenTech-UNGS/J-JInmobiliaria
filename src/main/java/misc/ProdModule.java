@@ -63,6 +63,7 @@ public class ProdModule implements Module{
 		binder.bind(CuotaDao.class).to(CuotaDaoHibernate.class).in(Singleton.class);
 		binder.bind(InmobiliariaDao.class).to(InmobiliariaDaoHibernate.class).in(Singleton.class);
 		binder.bind(ReservaDAO.class).to(ReservaDaoHibernate.class).in(Singleton.class);
+		binder.bind(IngresoDao.class).to(IngresoDaoHibernate.class).in(Singleton.class);
 
 		binder.bind(LocalizationDao.class).to(LocalizationDaoGoogleMaps.class).in(Singleton.class);
 		
