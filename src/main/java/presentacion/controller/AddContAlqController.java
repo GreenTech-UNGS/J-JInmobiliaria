@@ -179,11 +179,6 @@ public class AddContAlqController {
 		
 		binder.fillBean();
 		bindAvisos();
-		if(contratoAlquilerValidator.isValid(currentContrato)){
-
-			contratoService.saveContratoAlquiler(currentContrato);
-			closeView();
-		}
 		Reserva r = reservaService.getReservaOf(currentContrato.getPropiedad());
 		if( r != null) {
 			if(r.getReservador().getID() != currentContrato.getCliente().getPersona().getID()) {
@@ -191,7 +186,11 @@ public class AddContAlqController {
 				return;
 			}
 		}
-		contratoService.saveContratoAlquiler(currentContrato);
+		if(contratoAlquilerValidator.isValid(currentContrato)){
+
+			contratoService.saveContratoAlquiler(currentContrato);
+			closeView();
+		}
 		closeView();		
 	}
 	
@@ -217,9 +216,10 @@ public class AddContAlqController {
 
 	public void setModeNew() {
 		
-		view.getTfIdPropiedad().setEditable(true);
+		view.getTfIdPropiedad().setText("");
+		view.getTfIdPropiedad().setText("");
+		
 		view.getBtnLupaPropiedad().setEnabled(true);
-		view.getTfDniInquilino().setEditable(true);
 		view.getBtnLupaCliente().setEnabled(true);
 		
 		view.getBtnGuardarContrato().setVisible(true);
@@ -243,9 +243,7 @@ public class AddContAlqController {
 	
 	public void setRenovarMode(ContratoAlquiler c){
 		
-		view.getTfIdPropiedad().setEditable(false);
 		view.getBtnLupaPropiedad().setEnabled(false);
-		view.getTfDniInquilino().setEditable(false);
 		view.getBtnLupaCliente().setEnabled(false);
 		
 		view.getBtnGuardarContrato().setVisible(false);

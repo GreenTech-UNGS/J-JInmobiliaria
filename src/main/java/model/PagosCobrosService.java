@@ -8,6 +8,7 @@ import org.joda.time.LocalTime;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import entities.ContratoVenta;
 import entities.CuotaAlquiler;
 import entities.EstadoCuota;
 import entities.HistoriaEstadoCuota;
@@ -86,9 +87,28 @@ public class PagosCobrosService {
 		Precio p = new Precio(montoParaPropietario, cuota.getMonto().getMoneda());
 		
 		nuevoPago.setCuota(cuota);
+		nuevoPago.setContrato(cuota.getContrato());
 		nuevoPago.setEstado(EstadoPago.PENDIENTE);
 		nuevoPago.setMonto(p);
 		nuevoPago.setPropietario(cuota.getContrato().getPropiedad().getPropietario());
+		
+		propietarioDao.generaPago(nuevoPago);
+		
+	}
+	
+	public void generaPagoPropietario(ContratoVenta c) {
+		
+		PagoPropietario nuevoPago = new PagoPropietario();
+		double monto = c.getMonto().getMonto();		
+		
+		double montoParaPropietario = monto * ((100.0 - c.getGastosAdmin())/100.0);
+		
+		Precio p = new Precio(montoParaPropietario, c.getMonto().getMoneda());
+		
+		nuevoPago.setContrato(c);
+		nuevoPago.setEstado(EstadoPago.PENDIENTE);
+		nuevoPago.setMonto(p);
+		nuevoPago.setPropietario(c.getPropiedad().getPropietario());
 		
 		propietarioDao.generaPago(nuevoPago);
 		

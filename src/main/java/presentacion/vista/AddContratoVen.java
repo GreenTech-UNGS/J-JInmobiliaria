@@ -15,6 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
 public class AddContratoVen extends JDialog{
@@ -28,6 +29,7 @@ public class AddContratoVen extends JDialog{
 	private JButton btnBuscarCliente;
 	private JButton btnBuscarPropiedad;
 	private JTextField tfMoneda;
+	private JSpinner spinnerPorcentaje;
 	
 	public AddContratoVen() {
 		super();
@@ -67,7 +69,7 @@ public class AddContratoVen extends JDialog{
 		
 		JLabel lblPjeAdm = new JLabel("Porcentaje gastos administrativos:");
 		lblPjeAdm.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPjeAdm.setBounds(27, 241, 175, 14);
+		lblPjeAdm.setBounds(27, 274, 175, 14);
 		getContentPane().add(lblPjeAdm);
 		
 		JLabel lblGarantia = new JLabel("Garant\u00EDa de pago:");
@@ -116,11 +118,6 @@ public class AddContratoVen extends JDialog{
 		separator_1.setBounds(27, 203, 432, 2);
 		getContentPane().add(separator_1);
 		
-		tfGarantia = new JTextField();
-		tfGarantia.setColumns(10);
-		tfGarantia.setBounds(118, 213, 341, 20);
-		getContentPane().add(tfGarantia);
-		
 		this.btnGuardarContVen = new JButton("Guardar");
 		btnGuardarContVen.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnGuardarContVen.setBounds(118, 299, 113, 36);
@@ -131,8 +128,8 @@ public class AddContratoVen extends JDialog{
 		btnCancelarContVen.setBounds(256, 299, 113, 36);
 		getContentPane().add(btnCancelarContVen);
 		
-		JSpinner spinnerPorcentaje = new JSpinner();
-		spinnerPorcentaje.setBounds(201, 238, 45, 20);
+		spinnerPorcentaje = new JSpinner();
+		spinnerPorcentaje.setBounds(206, 271, 45, 20);
 		getContentPane().add(spinnerPorcentaje);
 		
 		btnBuscarPropiedad = new JButton("");
@@ -151,6 +148,14 @@ public class AddContratoVen extends JDialog{
 		getContentPane().add(tfMoneda);
 		tfMoneda.setColumns(10);
 		tfMoneda.setEditable(false);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(125, 216, 334, 44);
+		getContentPane().add(scrollPane);
+		
+		tfGarantia = new JTextField();
+		scrollPane.setViewportView(tfGarantia);
+		tfGarantia.setColumns(10);
 		
 	}
 
@@ -249,6 +254,8 @@ public class AddContratoVen extends JDialog{
 	public void setTfMoneda(JTextField tfMoneda) {
 		this.tfMoneda = tfMoneda;
 	}
-	
-	
+
+	public JSpinner getSpinnerPorcentaje() {
+		return spinnerPorcentaje;
+	}
 }

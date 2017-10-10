@@ -45,8 +45,8 @@ public class ContratoValidator implements Validator<Contrato>{
 					+ "Si requiere ingresar un contrato existente utilice el boton buscar", "Error");
 			return false;
 			
-		} else if(propiedadService.getCurrentEstado(t.getPropiedad()).equals(EstadoProp.DISPONIBLE) || 
-				propiedadService.getCurrentEstado(t.getPropiedad()).equals(EstadoProp.RESERVADA) == false) {
+		} else if(! (propiedadService.getCurrentEstado(t.getPropiedad()).equals(EstadoProp.DISPONIBLE) || 
+				propiedadService.getCurrentEstado(t.getPropiedad()).equals(EstadoProp.RESERVADA))) {
 			msgShw.showErrorMessage("La propiedad seleccionada no esta disponible", "Error");
 			return false;
 		}			
@@ -62,7 +62,6 @@ public class ContratoValidator implements Validator<Contrato>{
 		return t.getIdentificador() == null||
 				t.getPropiedad().getCalle() == null ||
 				t.getCliente().getPersona() == null ||
-				t.getCreador().getPersona() == null ||
 				t.getGarantia().equals("");
 	}
 }

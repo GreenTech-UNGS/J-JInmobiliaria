@@ -30,6 +30,7 @@ import entities.HistoriaEstadoContrato;
 import entities.HistoriaEstadoCuota;
 import entities.HistoriaEstadoProp;
 import entities.Moneda;
+import entities.PagoPropietario;
 import entities.Persona;
 import entities.Precio;
 import entities.Propiedad;
@@ -73,22 +74,6 @@ public class ContratoService {
 		propiedad.getEstados().add(estado);
 		
 		creaCuotas(c);
-		
-		propiedadDao.save(propiedad);
-	}
-	
-	public void saveContratoAlquiler(Contrato c) {
-
-		contratoDao.save(c);
-		
-		HistoriaEstadoProp estado = new HistoriaEstadoProp();
-		estado.setEstado(EstadoProp.ALQUILADA);
-		estado.setFecha(DateTime.now());
-		
-		Propiedad propiedad = c.getPropiedad();
-		propiedad.getEstados().add(estado);
-		
-//		creaCuotas(c);
 		
 		propiedadDao.save(propiedad);
 	}
@@ -169,18 +154,22 @@ public class ContratoService {
 			Propiedad propiedad = c.getPropiedad();
 			propiedad.getEstados().add(estado);
 			
+			//TODO
+			
 			propiedadDao.save(propiedad);
 		}
 	
 	public ContratoVenta getNewContratoVenta(){
 		
 		ContratoVenta toRet = new ContratoVenta();
+		Precio p = new Precio(0, Moneda.PESOS);
 		
 		HistoriaEstadoContrato nuevo = new HistoriaEstadoContrato();
 		nuevo.setEstado(EstadoContrato.DEFINITIVO);
 		nuevo.setFecha(DateTime.now());
 		
 		toRet.getEstados().add(nuevo);
+		toRet.setMonto(p);
 
 		return toRet;
 	}

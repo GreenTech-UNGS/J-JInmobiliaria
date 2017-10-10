@@ -54,13 +54,13 @@ public class PropietarioService {
 		List<PagoPropietario> lista = propietarioDao.getAllPagosPropsPendientes();
 		List<PendientesPropietariosDTO> toRet = lista.stream().map(p -> {
 			PendientesPropietariosDTO dto = new PendientesPropietariosDTO();
-			Persona persona = p.getCuota().getContrato().getCliente().getPersona();
+			Persona persona = p.getContrato().getCliente().getPersona();
 			Persona propietario = p.getPropietario().getPersona();
 			Precio precio = p.getMonto();
-			Propiedad prop = p.getCuota().getContrato().getPropiedad();
+			Propiedad prop = p.getContrato().getPropiedad();
 			String provincia =  prop.getLocalidad().getProvincia().toString().replaceAll("_", "");
 			
-			dto.setIdContrato(p.getCuota().getContrato().getIdentificador());
+			dto.setIdContrato(p.getContrato().getIdentificador());
 			dto.setInquilinoStr(persona.getNombre() + " " +
 					persona.getApellido() + " " +
 					persona.getTipoCred().toString() + " " +

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,10 +25,15 @@ public class PagoPropietario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID;
 	
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private Contrato contrato;
+	
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private CuotaAlquiler cuota;
+	
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private Propietario propietario;
+	
 	@Enumerated(EnumType.ORDINAL)
 	private EstadoPago estado;
 	
@@ -69,6 +75,16 @@ public class PagoPropietario {
 	public int getID() {
 		return ID;
 	}
+
+	public Contrato getContrato() {
+		return contrato;
+	}
+
+	public void setContrato(Contrato contrato) {
+		this.contrato = contrato;
+	}
+
+
 
 	
 	
