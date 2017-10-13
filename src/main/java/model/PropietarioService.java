@@ -27,6 +27,26 @@ public class PropietarioService {
 	private PropietarioService(PropietarioDao propietarioDao) {
 		this.propietarioDao = propietarioDao;
 	}
+    
+	public Propietario getEmptyPropietario() {
+		
+		Propietario toRet = new Propietario();
+		Persona p = new Persona();
+		p.setTipoCred(Persona.TipoCredencial.DNI);
+		toRet.setHabilitado(true);
+		
+		toRet.setPersona(p);
+		
+		return toRet;
+	}
+	
+	public Propietario getNewPropietarioFrom(Persona p) {
+		Propietario toRet = new Propietario();
+		toRet.setHabilitado(true);
+		toRet.setPersona(p);
+		
+		return toRet;
+	}
 
 	public void addNewPropietario(String propietarioCuit) {
 		Propietario toAdd = new Propietario();
@@ -43,8 +63,19 @@ public class PropietarioService {
 		
 	}
 
+	public void savePropietario(Propietario toSave) {
+		
+		propietarioDao.save(toSave);
+	}
+	
 	public List<Propietario> getAll() {
 		return propietarioDao.getAll();
+	}
+	
+	public boolean existePropietarioCon(Persona t) {
+		
+		return propietarioDao.existePropietarioCon(t);
+		
 	}
 	
 	public List<PendientesPropietariosDTO> pagosPendientesReporte() {
