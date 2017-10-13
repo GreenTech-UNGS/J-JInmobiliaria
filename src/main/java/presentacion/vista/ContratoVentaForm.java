@@ -18,7 +18,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
-public class AddContratoVen extends JDialog{
+public class ContratoVentaForm extends JDialog{
 	private JTextField tfIdContrato;
 	private JTextField tfCliente;
 	private JTextField tfPropiedad;
@@ -31,7 +31,7 @@ public class AddContratoVen extends JDialog{
 	private JTextField tfMoneda;
 	private JSpinner spinnerPorcentaje;
 	
-	public AddContratoVen() {
+	public ContratoVentaForm() {
 		super();
 		setTitle("Agregar contrato de venta");
 		

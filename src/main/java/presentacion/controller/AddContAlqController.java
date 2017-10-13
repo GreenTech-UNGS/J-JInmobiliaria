@@ -23,7 +23,7 @@ import model.ReservaService;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.TipoContratoAlqComboBoxModel;
 import presentacion.validators.ContratoAlquilerValidator;
-import presentacion.vista.AddContratoAlq;
+import presentacion.vista.ContratoAlquilerForm;
 
 @Singleton
 public class AddContAlqController {
@@ -31,7 +31,7 @@ public class AddContAlqController {
 	ContratoService contratoService;
 	ReservaService reservaService;
 	@Inject
-	AddContratoAlq view;
+	ContratoAlquilerForm view;
 	ElegirClienteController eligeCliente;
 	ElegirPropiedadController elegirPropiedadController;
 	
@@ -44,7 +44,7 @@ public class AddContAlqController {
 	
 	@Inject
 	private AddContAlqController(ContratoService contratoService,
-								AddContratoAlq view,
+								ContratoAlquilerForm view,
 								ReservaService reservaService,
 								ElegirClienteController eligeCliente,
 								ContratoAlquilerValidator contratoAlquilerValidator,

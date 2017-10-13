@@ -14,12 +14,12 @@ import com.google.inject.Singleton;
 import entities.CuotaAlquiler;
 import model.PagosCobrosService;
 import presentacion.validators.CobroAlquilerValidator;
-import presentacion.vista.RegistrarCobroView;
+import presentacion.vista.RegistrarCobroForm;
 
 @Singleton
 public class RegistrarCobroController {
 
-	RegistrarCobroView view;
+	RegistrarCobroForm view;
 	CuotaAlquiler currentCuota;
 	PagosCobrosService cobrosService;
 	CobroAlquilerValidator cobroAlquilerValidator;
@@ -28,7 +28,7 @@ public class RegistrarCobroController {
 	
 	
 	@Inject
-	private RegistrarCobroController(RegistrarCobroView view,
+	private RegistrarCobroController(RegistrarCobroForm view,
 			PagosCobrosService cobrosService,
 			CobroAlquilerValidator ingresoValidator) {
 		

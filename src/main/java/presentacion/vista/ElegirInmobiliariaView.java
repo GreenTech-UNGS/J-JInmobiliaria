@@ -15,12 +15,12 @@ import com.google.inject.Singleton;
 
 @SuppressWarnings("serial")
 @Singleton
-public class ElegirInmobiliaria extends JDialog {
+public class ElegirInmobiliariaView extends JDialog {
 	private JTable table;
 	private JButton btnAceptar;
 	
 	@Inject
-	private ElegirInmobiliaria(){
+	private ElegirInmobiliariaView(){
 		super();
 		
 		setTitle("Elegir inmobiliaria");

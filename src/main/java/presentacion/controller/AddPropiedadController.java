@@ -16,7 +16,7 @@ import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.ProvinciaComboBoxModel;
 import presentacion.combo.TipoOfrecimientoComboBoxModel;
 import presentacion.validators.PropiedadValidator;
-import presentacion.vista.AgregarPropiedad;
+import presentacion.vista.PropiedadForm;
 
 import javax.swing.*;
 import java.util.Arrays;
@@ -24,7 +24,7 @@ import java.util.List;
 
 public class AddPropiedadController {
 	
-	private AgregarPropiedad view;
+	private PropiedadForm view;
 	private ProvinciaComboBoxModel provCombo;
 	private MonedaComboBoxModel monedaCombo;
 	private TipoOfrecimientoComboBoxModel tipoOfrCombo;
@@ -48,7 +48,7 @@ public class AddPropiedadController {
 	Binder<Propiedad> binderP;
 	
 	@Inject
-	private AddPropiedadController(AgregarPropiedad view,
+	private AddPropiedadController(PropiedadForm view,
 									PropiedadValidator propiedadValidator,
 									PropiedadService propiedadService,
 									PropietarioService propietarioService,

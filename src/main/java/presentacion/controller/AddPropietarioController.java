@@ -12,11 +12,11 @@ import model.PersonaService;
 import presentacion.combo.TipoCredencialComboBoxModel;
 import presentacion.table.TelefonoTableModel;
 import presentacion.validators.PropietarioValidator;
-import presentacion.vista.AgregarPropietario;
+import presentacion.vista.PropietarioForm;
 
 public class AddPropietarioController {
 	
-	private AgregarPropietario view;
+	private PropietarioForm view;
 	PersonaService personaService;
 	private PropietarioService propietarioService;
 	
@@ -34,7 +34,7 @@ public class AddPropietarioController {
 	private Binder<Propietario> binder;
 	
 	@Inject
-	private AddPropietarioController(AgregarPropietario view,
+	private AddPropietarioController(PropietarioForm view,
 								 PropietarioService propietarioService,
 								 PersonaService personaService,
 								 AddTelefonoController telefonoController,

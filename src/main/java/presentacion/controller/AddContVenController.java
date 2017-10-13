@@ -13,12 +13,12 @@ import misc.Binder;
 import model.ContratoService;
 import model.ReservaService;
 import presentacion.validators.ContratoVentaValidator;
-import presentacion.vista.AddContratoVen;
+import presentacion.vista.ContratoVentaForm;
 
 public class AddContVenController {
 	
 	public static AddContVenController instance;
-	private AddContratoVen view;
+	private ContratoVentaForm view;
 	ElegirClienteController elegirCliente;
 	ElegirPropiedadController elegirProp;
 	ContratoVenta currentContrato;
@@ -29,7 +29,7 @@ public class AddContVenController {
 	Binder<ContratoVenta> binder;
 	
 	@Inject
-	private AddContVenController(AddContratoVen view,
+	private AddContVenController(ContratoVentaForm view,
 			ElegirClienteController elegirCliente,
 			ElegirPropiedadController elegirProp, 
 			ContratoService contratoService,

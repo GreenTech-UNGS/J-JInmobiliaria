@@ -23,7 +23,7 @@ import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class AddContratoAlq extends JDialog {
+public class ContratoAlquilerForm extends JDialog {
 
 	private JPanel agregarContrato;
 	private JTextField textIdContrato;
@@ -53,7 +53,7 @@ public class AddContratoAlq extends JDialog {
 	private JButton btnRenovarContrato;
 	
 	
-	public AddContratoAlq() {
+	public ContratoAlquilerForm() {
 		super();
 		setTitle("Agregar Contrato");
 		

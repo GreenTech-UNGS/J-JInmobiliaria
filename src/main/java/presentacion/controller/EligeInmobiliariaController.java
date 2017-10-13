@@ -8,18 +8,18 @@ import com.google.inject.Singleton;
 import entities.Inmobiliaria;
 import model.InmobiliariaService;
 import presentacion.table.InmobiliariaTableModel;
-import presentacion.vista.EligeInmobiliariaView;
+import presentacion.vista.EligirInmobiliariaView;
 
 @Singleton
 public class EligeInmobiliariaController {
 
-	EligeInmobiliariaView view;
+	EligirInmobiliariaView view;
 	InmobiliariaTableModel tableModel;
 	
 	InmobiliariaService inmobiliariaService;
 	
 	@Inject
-	private EligeInmobiliariaController(EligeInmobiliariaView view,
+	private EligeInmobiliariaController(EligirInmobiliariaView view,
 			InmobiliariaService inmoService) {
 		this.view = view;
 		this.inmobiliariaService = inmoService;

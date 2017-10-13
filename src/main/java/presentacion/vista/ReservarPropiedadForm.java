@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class ReservarPropiedadView extends JDialog {
+public class ReservarPropiedadForm extends JDialog {
 	
 	private JPanel panel;
 	private JButton btnGuardar;
@@ -25,7 +25,7 @@ public class ReservarPropiedadView extends JDialog {
 	private JTextField tfPropiedad;
 
 	@Inject
-    private ReservarPropiedadView(){
+    private ReservarPropiedadForm(){
 		super();
 		
 		setTitle("Reservar propiedad");

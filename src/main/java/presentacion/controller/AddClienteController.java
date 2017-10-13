@@ -15,11 +15,11 @@ import presentacion.combo.TipoCredencialComboBoxModel;
 import presentacion.table.TelefonoTableModel;
 import presentacion.validators.ClienteValidator;
 import presentacion.validators.MessageShow;
-import presentacion.vista.AgregarCliente;
+import presentacion.vista.ClienteForm;
 
 public class AddClienteController {
 	
-	private AgregarCliente view;
+	private ClienteForm view;
 	PersonaService personaService;
 	private ClienteService clienteService;
 	
@@ -38,7 +38,7 @@ public class AddClienteController {
 	private Binder<Cliente> binder;
 	
 	@Inject
-	private AddClienteController(AgregarCliente view,
+	private AddClienteController(ClienteForm view,
 								 ClienteService clienteService,
 								 PersonaService personaService,
 								 AddTelefonoController telefonoController,

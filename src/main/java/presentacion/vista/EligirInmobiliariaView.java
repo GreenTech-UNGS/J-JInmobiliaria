@@ -14,12 +14,12 @@ import javax.swing.JTable;
 import com.google.inject.Inject;
 
 @SuppressWarnings("serial")
-public class EligeInmobiliariaView extends JDialog {
+public class EligirInmobiliariaView extends JDialog {
 	private JTable table;
 	private JButton btnAceptar;
 	
 	@Inject
-	private EligeInmobiliariaView() {
+	private EligirInmobiliariaView() {
 		super();
 		
 		setTitle("Elegir Inmobiliaria");

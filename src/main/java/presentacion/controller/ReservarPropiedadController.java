@@ -15,14 +15,14 @@ import presentacion.combo.ClienteComboBoxModel;
 import presentacion.combo.PropiedadComboBoxModel;
 import presentacion.validators.MessageShow;
 import presentacion.validators.ReservaValidator;
-import presentacion.vista.ElegirCliente;
-import presentacion.vista.ReservarPropiedadView;
+import presentacion.vista.ElegirClienteView;
+import presentacion.vista.ReservarPropiedadForm;
 
 import java.util.Date;
 import java.util.List;
 
 public class ReservarPropiedadController {
-    private ReservarPropiedadView view;
+    private ReservarPropiedadForm view;
 
     private PropiedadService propiedadService;
     private ClienteService clienteService;
@@ -39,7 +39,7 @@ public class ReservarPropiedadController {
     private Cliente currentCliente;
 
     @Inject
-    public ReservarPropiedadController(ReservarPropiedadView view,
+    public ReservarPropiedadController(ReservarPropiedadForm view,
                                        PropiedadService propiedadService,
                                        ClienteService clienteService,
                                        ReservaService reservaService,

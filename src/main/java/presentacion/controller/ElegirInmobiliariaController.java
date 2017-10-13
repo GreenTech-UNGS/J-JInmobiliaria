@@ -8,15 +8,15 @@ import entities.Cliente;
 import entities.Inmobiliaria;
 import model.InmobiliariaService;
 import presentacion.table.InmobiliariaTableModel;
-import presentacion.vista.ElegirInmobiliaria;
+import presentacion.vista.ElegirInmobiliariaView;
 
 public class ElegirInmobiliariaController {
-	private ElegirInmobiliaria view;
+	private ElegirInmobiliariaView view;
 	private InmobiliariaService inmobiliariaService;
 	private InmobiliariaTableModel inmobiliariaTable;
 	
 	@Inject
-	public ElegirInmobiliariaController(ElegirInmobiliaria view, InmobiliariaService inmobiliariaService){
+	public ElegirInmobiliariaController(ElegirInmobiliariaView view, InmobiliariaService inmobiliariaService){
 		
 		this.view = view;
 		this.inmobiliariaService = inmobiliariaService;

@@ -19,7 +19,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AgregarPropietario extends JDialog{
+public class PropietarioForm extends JDialog{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
@@ -33,7 +33,7 @@ public class AgregarPropietario extends JDialog{
 	private JScrollPane tablePanel;
 
 	@Inject
-	private AgregarPropietario() {
+	private PropietarioForm() {
 		super();
 		
 		setTitle("Agregar Propietario");

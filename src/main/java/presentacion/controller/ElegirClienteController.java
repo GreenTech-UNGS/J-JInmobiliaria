@@ -7,16 +7,16 @@ import com.google.inject.Inject;
 import entities.Cliente;
 import model.ClienteService;
 import presentacion.table.ClientesTableModel;
-import presentacion.vista.ElegirCliente;
+import presentacion.vista.ElegirClienteView;
 
 public class ElegirClienteController {
 	
-	private ElegirCliente view;
+	private ElegirClienteView view;
 	private ClienteService clienteServcie;
 	private ClientesTableModel tableModelCliente;
 	
 	@Inject
-	private ElegirClienteController(ElegirCliente view,
+	private ElegirClienteController(ElegirClienteView view,
 			ClienteService clienteServcie){
 		
 		this.view = view;

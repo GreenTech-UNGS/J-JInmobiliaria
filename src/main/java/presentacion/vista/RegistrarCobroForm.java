@@ -21,14 +21,14 @@ import javax.swing.Box;
 import java.awt.Font;
 
 @Singleton
-public class RegistrarCobroView extends JDialog{
+public class RegistrarCobroForm extends JDialog{
 
 	JDateChooser dateChooser;
 	private JButton btnOk;
 	private Component horizontalStrut;
 	
 	@Inject
-	private RegistrarCobroView() {
+	private RegistrarCobroForm() {
 		setTitle("Registrar cobro de alquiler");
 		setModal(true);
 		setSize(new Dimension(300, 150));

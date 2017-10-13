@@ -10,12 +10,12 @@ import entities.Telefono.Tipo;
 import misc.Binder;
 import presentacion.combo.TipoTelefonoComboBoxModel;
 import presentacion.validators.TelefonoValidator;
-import presentacion.vista.AgregaTelefonoView;
+import presentacion.vista.TelefonoForm;
 
 @Singleton
 public class AddTelefonoController {
 	
-	AgregaTelefonoView view;
+	TelefonoForm view;
 	TipoTelefonoComboBoxModel comboModel;
 	Telefono currentTelefono;
 	
@@ -25,7 +25,7 @@ public class AddTelefonoController {
 	private TelefonoValidator telefonoValidator;
 	
 	@Inject
-	private AddTelefonoController(AgregaTelefonoView view,
+	private AddTelefonoController(TelefonoForm view,
                                   TipoTelefonoComboBoxModel comboModel) {
 		
 		this.view = view;

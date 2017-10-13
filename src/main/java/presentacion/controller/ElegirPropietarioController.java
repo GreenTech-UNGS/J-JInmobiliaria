@@ -7,18 +7,18 @@ import com.google.inject.Inject;
 import entities.Propietario;
 import model.PropietarioService;
 import presentacion.table.PropietariosTableModel;
-import presentacion.vista.ElegirPropietario;
+import presentacion.vista.ElegirPropietarioView;
 
 import java.util.List;
 
 public class ElegirPropietarioController {
 	
-	private ElegirPropietario view;
+	private ElegirPropietarioView view;
 	private PropietarioService propietarioService;
 	private PropietariosTableModel tableModelProp;
 	
 	@Inject
-	private ElegirPropietarioController(ElegirPropietario view,
+	private ElegirPropietarioController(ElegirPropietarioView view,
 										PropietarioService propietarioService){
 		
 		this.view = view;

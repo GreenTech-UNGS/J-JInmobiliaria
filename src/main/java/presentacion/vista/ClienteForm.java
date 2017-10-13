@@ -11,15 +11,19 @@ import com.google.inject.Inject;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.InputVerifier;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.ActionEvent;
 
-public class AgregarCliente extends JDialog{
+public class ClienteForm extends JDialog{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
@@ -33,7 +37,7 @@ public class AgregarCliente extends JDialog{
 	private JScrollPane tablePanel;
 
 	@Inject
-	private AgregarCliente() {
+	private ClienteForm() {
 		super();
 		
 		setTitle("Agregar Cliente");
@@ -140,6 +144,7 @@ public class AgregarCliente extends JDialog{
 		btnGuardarCambios.setBounds(113, 330, 123, 29);
 		panel.add(btnGuardarCambios);
 		btnGuardarCambios.setVisible(false);
+
 
 	}
 	

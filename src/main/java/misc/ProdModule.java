@@ -33,11 +33,11 @@ import presentacion.controller.AddPropietarioController;
 import presentacion.controller.ElegirInmobiliariaController;
 import presentacion.controller.ElegirPropietarioController;
 import presentacion.controller.AddClienteController;
-import presentacion.vista.AddContratoAlq;
-import presentacion.vista.AgregarCliente;
-import presentacion.vista.AgregarPropiedad;
-import presentacion.vista.AgregarPropietario;
-import presentacion.vista.ElegirPropietario;
+import presentacion.vista.ContratoAlquilerForm;
+import presentacion.vista.ClienteForm;
+import presentacion.vista.PropiedadForm;
+import presentacion.vista.PropietarioForm;
+import presentacion.vista.ElegirPropietarioView;
 import presentacion.vista.MainView;
 
 public class ProdModule implements Module{
@@ -46,10 +46,10 @@ public class ProdModule implements Module{
 	public void configure(Binder binder) {
 		
 		binder.bind(MainView.class).in(Singleton.class);
-		binder.bind(AgregarCliente.class).in(Singleton.class);
-		binder.bind(AgregarPropietario.class).in(Singleton.class);
-		binder.bind(AddContratoAlq.class).in(Singleton.class);
-		binder.bind(AgregarPropiedad.class).in(Singleton.class);
+		binder.bind(ClienteForm.class).in(Singleton.class);
+		binder.bind(PropietarioForm.class).in(Singleton.class);
+		binder.bind(ContratoAlquilerForm.class).in(Singleton.class);
+		binder.bind(PropiedadForm.class).in(Singleton.class);
 		binder.bind(MainView.class).in(Singleton.class);
 		binder.bind(MainView.class).in(Singleton.class);
 		binder.bind(AddPropiedadController.class).in(Singleton.class);

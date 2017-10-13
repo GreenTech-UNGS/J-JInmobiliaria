@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
-public class AgregarPropiedad extends JDialog{
+public class PropiedadForm extends JDialog{
 
 	private JPanel AgregarPropiedad;
 	private JTextField tfAltura;
@@ -49,7 +49,7 @@ public class AgregarPropiedad extends JDialog{
 	private JTextField tfPrecio;
 
 	@Inject
-	private AgregarPropiedad() {
+	private PropiedadForm() {
 		super();
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

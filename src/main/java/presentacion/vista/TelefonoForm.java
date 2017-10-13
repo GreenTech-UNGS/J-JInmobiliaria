@@ -21,7 +21,7 @@ import javax.swing.Box;
 
 @SuppressWarnings("serial")
 @Singleton
-public class AgregaTelefonoView extends JDialog{
+public class TelefonoForm extends JDialog{
 	private JTextField textTelefono;
 	private JTextField textDescr;
 	private JButton btnOk;
@@ -37,7 +37,7 @@ public class AgregaTelefonoView extends JDialog{
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Inject
-	private AgregaTelefonoView() {
+	private TelefonoForm() {
 		setResizable(false);
 		setTitle("Agregar Telefono");
 		
