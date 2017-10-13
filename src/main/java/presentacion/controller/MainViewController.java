@@ -54,6 +54,7 @@ public class MainViewController {
 	AddContAlqController contratoAlqController;
 	AddContVenController contratoVenController;
 	AddClienteController clienteController;	
+	AddPropietarioController propietarioController;	
 	AddPropiedadController propiedadController;
 	ReservarPropiedadController reservaController;
 	RegistrarCobroController cobroController;
@@ -73,6 +74,7 @@ public class MainViewController {
 			AddContAlqController contratoAlqController,
 			AddContVenController contratoVenController,
 			AddClienteController clienteController,
+			AddPropietarioController propietarioController,
 			ReservarPropiedadController reservaController,
 			PropiedadService propiedadService,
 			PagosCobrosService pagoCobroService,
@@ -99,6 +101,7 @@ public class MainViewController {
 		this.contratoAlqController = contratoAlqController;
 		this.contratoVenController = contratoVenController;
 		this.clienteController = clienteController;
+		this.propietarioController = propietarioController;
 		this.reservaController = reservaController;
 		this.propiedadService = propiedadService;
 		this.clienteService = clienteService;
@@ -118,6 +121,8 @@ public class MainViewController {
 		this.view.getBtnContratoVen().addActionListener(e -> agregarContratoVen());
 		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());
 		this.view.getBtnEditarCliente().addActionListener(e -> editarCliente());
+		this.view.getBtnAgregarPropietario().addActionListener(e -> agregarPropietario());
+		this.view.getBtnEditarPropietario().addActionListener(e -> editarPropietario());
 		this.view.getBtnDesreservar().addActionListener(e -> borrarReserva());
 		this.view.getBtnRegistrarCobro().addActionListener(e -> registrarCobro());
 		this.view.getBtnRenovar().addActionListener(e -> renovarContrato());
@@ -286,8 +291,6 @@ public class MainViewController {
 		fillTableClientes();
 	}
 	
-	
-	
 	private void editarCliente() {
 		int select = this.view.getTableClientes().getSelectedRow();
 		
@@ -295,6 +298,23 @@ public class MainViewController {
 			clienteController.editarCliente(this.tableModelClien.getRow(select));
 			clienteController.showView();
 			this.fillTableClientes();
+		}
+	}
+
+	private void agregarPropietario() {
+		this.propietarioController.setModeNew();
+		this.propietarioController.showView();
+
+		fillTablePropietarios();
+	}
+		
+	private void editarPropietario() {
+		int select = this.view.getTablePropietarios().getSelectedRow();
+		
+		if (select!=-1){ 
+			propietarioController.editarPropietario(this.propietariosTable.getRow(select));
+			propietarioController.showView();
+			this.fillTablePropietarios();
 		}
 	}
 
@@ -368,7 +388,7 @@ public class MainViewController {
 		if (select!=-1){
 			PagoPropietario p = pagopropTable.getRow(select);
 			
-			int option = JOptionPane.showConfirmDialog(null, "¿Desea registrar el pago al propietario?", "Resgistrar Pago", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			int option = JOptionPane.showConfirmDialog(null, "ï¿½Desea registrar el pago al propietario?", "Resgistrar Pago", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			
 			if(option == 0) {
 				pagoCobroService.registrarpagoPropietario(p);

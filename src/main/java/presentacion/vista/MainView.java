@@ -47,12 +47,14 @@ public class MainView {
     private JButton btnAgregarContratoVen;
     private JButton btnPagos;
     private JButton btnAgregarCliente;
+    private JButton btnAgregarPropietario;
     private JButton btnReservarPropiedad;
     private JTable tablePropiedades;
     private JTable tableClientes;
     private JTable tablePropietarios;
     private JTable tableCuotas;
     private JButton btnEditarCliente;
+    private JButton btnEditarPropietario;
     private JButton btnDesreservar;
     private JButton btnRenovar;
     
@@ -156,23 +158,32 @@ public class MainView {
 
         JPanel panel = new JPanel();
         TabCliente.add(panel);
-
+        
         btnAgregarCliente = new JButton("Agregar cliente");
         panel.add(btnAgregarCliente);
         
         btnEditarCliente = new JButton("Editar cliente");
         panel.add(btnEditarCliente);
-
+                
         JPanel TabPropietarios = new JPanel();
         tabbedPane_2.addTab("Propietarios", null, TabPropietarios, null);
-        TabPropietarios.setLayout(new BoxLayout(TabPropietarios, BoxLayout.X_AXIS));
+        TabPropietarios.setLayout(new BoxLayout(TabPropietarios, BoxLayout.Y_AXIS));
 
         tablePropietarios = new JTable();
-        TabPropietarios.add(tablePropietarios);
         
         JScrollPane scrollPane_2 = new JScrollPane(tablePropietarios);
         TabPropietarios.add(scrollPane_2);
-
+        
+        JPanel panel2 = new JPanel();
+        TabPropietarios.add(panel2);
+        
+        btnAgregarPropietario = new JButton("Agregar propietario");
+        panel2.add(btnAgregarPropietario);
+        
+        btnEditarPropietario = new JButton("Editar propietario");
+        panel2.add(btnEditarPropietario);
+       
+        
         JPanel panelPagos = new JPanel();
         panelContainer.add(panelPagos, "name_1283035568116550");
         panelPagos.setLayout(null);
@@ -444,6 +455,10 @@ public class MainView {
     public JButton getBtnAgregarCliente() {
         return btnAgregarCliente;
     }
+    
+    public JButton getBtnAgregarPropietario() {
+        return btnAgregarPropietario;
+    }
 
     public JButton getBtnReservarPropiedad() {
         return btnReservarPropiedad;
@@ -493,6 +508,14 @@ public class MainView {
 
 	public void setBtnEditarCliente(JButton btnEditarCliente) {
 		this.btnEditarCliente = btnEditarCliente;
+	}
+	
+	public JButton getBtnEditarPropietario() {
+		return btnEditarPropietario;
+	}
+
+	public void setBtnEditarPropietario(JButton btnEditarPropietario) {
+		this.btnEditarPropietario = btnEditarPropietario;
 	}
 
 
