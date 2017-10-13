@@ -1,42 +1,19 @@
 package presentacion.controller;
 
+import com.google.inject.Inject;
+import dto.PendientesPropietariosDTO;
+import entities.*;
+import model.*;
+import org.joda.time.DateTime;
+import org.joda.time.YearMonth;
+import presentacion.reportes.ReportePropietariosPagosPendientes;
+import presentacion.table.*;
+import presentacion.vista.MainView;
+
+import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-
-import org.joda.time.DateTime;
-import javax.swing.JOptionPane;
-
-import org.joda.time.YearMonth;
-
-import com.google.inject.Inject;
-
-import dto.PendientesPropietariosDTO;
-import entities.Contrato;
-import entities.ContratoAlquiler;
-import entities.CuotaAlquiler;
-import entities.EstadoCuota;
-import entities.EstadoProp;
-import entities.HistoriaEstadoProp;
-import entities.PagoPropietario;
-import entities.Propiedad;
-import entities.Reserva;
-import model.ClienteService;
-import model.ContratoService;
-import model.CuotaService;
-import model.PagosCobrosService;
-import model.PropiedadService;
-import model.PropietarioService;
-import model.ReservaService;
-import presentacion.reportes.ReportePropietariosPagosPendientes;
-import presentacion.table.ClientesTableModel;
-import presentacion.table.ContratosTableModel;
-import presentacion.table.CuotasTableModel;
-import presentacion.table.PagosPropietariosTableModel;
-import presentacion.table.PropiedadesTableModel;
-import presentacion.table.PropietariosTableModel;
-import presentacion.table.ReservaTableModel;
-import presentacion.vista.MainView;
 
 public class MainViewController {
 	
@@ -368,7 +345,7 @@ public class MainViewController {
 		if (select!=-1){
 			PagoPropietario p = pagopropTable.getRow(select);
 			
-			int option = JOptionPane.showConfirmDialog(null, "¿Desea registrar el pago al propietario?", "Resgistrar Pago", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			int option = JOptionPane.showConfirmDialog(null, "?Desea registrar el pago al propietario?", "Resgistrar Pago", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			
 			if(option == 0) {
 				pagoCobroService.registrarpagoPropietario(p);
