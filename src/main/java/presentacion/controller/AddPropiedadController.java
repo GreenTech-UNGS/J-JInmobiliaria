@@ -1,30 +1,15 @@
 package presentacion.controller;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.swing.JOptionPane;
-
-import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
-import org.openstreetmap.gui.jmapviewer.Coordinate;
-import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
-import org.openstreetmap.gui.jmapviewer.interfaces.ICoordinate;
-
 import com.google.inject.Inject;
-
-import entities.EstadoProp;
-import entities.Inmobiliaria;
-import entities.Localidad;
-import entities.Moneda;
-import entities.Propiedad;
-import entities.Propietario;
-import entities.Provincia;
-import entities.TipoOfrecimiento;
+import entities.*;
 import misc.Binder;
 import model.LocalidadService;
 import model.LocalizationService;
 import model.PropiedadService;
 import model.PropietarioService;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import org.openstreetmap.gui.jmapviewer.Coordinate;
+import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 import persistencia.dao.iface.LocalizationDao.MapPoint;
 import presentacion.combo.LocalidadComboBoxModel;
 import presentacion.combo.MonedaComboBoxModel;
@@ -32,6 +17,10 @@ import presentacion.combo.ProvinciaComboBoxModel;
 import presentacion.combo.TipoOfrecimientoComboBoxModel;
 import presentacion.validators.PropiedadValidator;
 import presentacion.vista.AgregarPropiedad;
+
+import javax.swing.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class AddPropiedadController {
 	
@@ -249,6 +238,19 @@ public class AddPropiedadController {
 		List<Localidad> localidades = localidadService.getAllOf(provCombo.getSelected());
 		localidadCombo.actualize(localidades);
 		
+	}
+
+	public void editPropiedad(Propiedad p){
+
+		view.setTitle("Editar Propiedad");
+		view.getBtnGuardar().setVisible(false);
+		view.getBtnCancelar().setVisible(false);
+		view.getBtnGuardarCambios().setVisible(true);
+		fillCombos();
+
+		currentPropiedad = p;
+		binder.setObjective(currentPropiedad);
+		binder.fillFields();
 	}
 
 	private void savePropiedad() {

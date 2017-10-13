@@ -1,35 +1,14 @@
 package presentacion.vista;
 
-import java.awt.Dimension;
-
-import javax.swing.JFrame;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-
-import org.openstreetmap.gui.jmapviewer.JMapViewer;
-
 import com.google.inject.Inject;
-
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import java.awt.Font;
-import java.awt.Image;
-
-import javax.swing.JSeparator;
-import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
-import java.awt.event.ActionEvent;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
-import javax.swing.JFormattedTextField;
-import javax.swing.SwingConstants;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import java.awt.Color;
-import javax.swing.JScrollPane;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class AgregarPropiedad extends JDialog{
@@ -57,6 +36,14 @@ public class AgregarPropiedad extends JDialog{
 	private JMapViewer mapa;
 	private JButton btnActualizar;
 	private JTextField tfInmobiliaria;
+	private JButton btnGuardarCambios;
+
+	public JButton getBtnGuardarCambios() {
+		return btnGuardarCambios;
+	}
+	public void setBtnGuardarCambios(JButton btnGuardarCambios) {
+		this.btnGuardarCambios = btnGuardarCambios;
+	}
 
 	private JButton botonLupitaInmobiliaria;
 	private JTextField tfPrecio;

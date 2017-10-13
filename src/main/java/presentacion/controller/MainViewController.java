@@ -98,6 +98,7 @@ public class MainViewController {
 		this.view.getBtnContratoVen().addActionListener(e -> agregarContratoVen());
 		this.view.getBtnAgregarCliente().addActionListener(e -> agregarCliente());
 		this.view.getBtnEditarCliente().addActionListener(e -> editarCliente());
+		this.view.getBtnEditPropiedad().addActionListener(e -> editarPropiedad());
 		this.view.getBtnAgregarPropietario().addActionListener(e -> agregarPropietario());
 		this.view.getBtnEditarPropietario().addActionListener(e -> editarPropietario());
 		this.view.getBtnDesreservar().addActionListener(e -> borrarReserva());
@@ -277,6 +278,15 @@ public class MainViewController {
 		}
 	}
 
+	private void editarPropiedad() {
+		int select = this.view.getTablePropiedades().getSelectedRow();
+
+		if (select!=-1){
+			propiedadController.editPropiedad(this.tableModelProp.getRow(select));
+			propiedadController.showView();
+			this.fillTableProp();
+		}
+	}
 	private void agregarPropietario() {
 		this.propietarioController.setModeNew();
 		this.propietarioController.showView();
