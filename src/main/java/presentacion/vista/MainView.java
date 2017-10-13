@@ -1,35 +1,13 @@
 package presentacion.vista;
 
-import java.awt.Image;
-
-import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import java.awt.Color;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Dimension;
-import java.awt.CardLayout;
-import java.awt.SystemColor;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JSeparator;
-import javax.swing.JTabbedPane;
-import javax.swing.border.TitledBorder;
-
 import com.google.inject.Inject;
 import com.toedter.calendar.JCalendar;
 
-import javax.swing.BoxLayout;
-import javax.swing.JScrollPane;
-import java.awt.Component;
-import javax.swing.Box;
-import javax.swing.JTable;
+import javax.swing.*;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainView {
 
@@ -40,6 +18,7 @@ public class MainView {
     private JPanel panelReportes;
 
     private JButton btnPropiedades;
+    private JButton btnEditarPropiedad;
     private JButton btnContratos;
     private JButton btnInquilinos;
     private JButton btnAgregarPropiedad;
@@ -413,7 +392,15 @@ public class MainView {
       btnReservarPropiedad = new JButton("Reservar propiedad");
       btnReservarPropiedad.setFont(new Font("Tahoma", Font.PLAIN, 11));
       panelButtons.add(btnReservarPropiedad);
-                                                                                        
+
+      Component horizontalGlue_4 = Box.createHorizontalGlue();
+      panelButtons.add(horizontalGlue_4);
+
+      btnEditarPropiedad = new JButton("Editar propiedad");
+      btnEditarPropiedad.setFont(new Font("Tahoma", Font.PLAIN, 11));
+
+      panelButtons.add(btnEditarPropiedad);
+
       Component horizontalGlue_1 = Box.createHorizontalGlue();
       panelButtons.add(horizontalGlue_1);
                                                                                         
@@ -464,6 +451,14 @@ public class MainView {
         return btnReservarPropiedad;
     }
 
+    public JButton getBtnEditPropiedad() {
+        return btnEditarPropiedad;
+    }
+
+    public void setBtnEditarPropiedad(JButton btnEditarPropiedad) {
+        this.btnEditarPropiedad = btnEditarPropiedad;
+    }
+
     public JTable getTableClientes() {
         return tableClientes;
     }
@@ -480,21 +475,17 @@ public class MainView {
         return tableCuotas;
     }
 
-
 	public JTable getTablaContratoVenta() {
 		return tablaContratoVenta;
 	}
-
 
 	public void setTablaContratoVenta(JTable tablaContratoVenta) {
 		this.tablaContratoVenta = tablaContratoVenta;
 	}
 
-
 	public JTable getTablaContratoAlquiler() {
 		return tablaContratoAlquiler;
 	}
-
 
 	public void setTablaContratoAlquiler(JTable tablaContratoAlquiler) {
 		this.tablaContratoAlquiler = tablaContratoAlquiler;
