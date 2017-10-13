@@ -29,12 +29,14 @@ import persistencia.dao.iface.*;
 import presentacion.controller.AddContAlqController;
 import presentacion.controller.AddContVenController;
 import presentacion.controller.AddPropiedadController;
+import presentacion.controller.AddPropietarioController;
 import presentacion.controller.ElegirInmobiliariaController;
 import presentacion.controller.ElegirPropietarioController;
 import presentacion.controller.AddClienteController;
 import presentacion.vista.AddContratoAlq;
 import presentacion.vista.AgregarCliente;
 import presentacion.vista.AgregarPropiedad;
+import presentacion.vista.AgregarPropietario;
 import presentacion.vista.ElegirPropietario;
 import presentacion.vista.MainView;
 
@@ -45,6 +47,7 @@ public class ProdModule implements Module{
 		
 		binder.bind(MainView.class).in(Singleton.class);
 		binder.bind(AgregarCliente.class).in(Singleton.class);
+		binder.bind(AgregarPropietario.class).in(Singleton.class);
 		binder.bind(AddContratoAlq.class).in(Singleton.class);
 		binder.bind(AgregarPropiedad.class).in(Singleton.class);
 		binder.bind(MainView.class).in(Singleton.class);
@@ -53,6 +56,7 @@ public class ProdModule implements Module{
 		binder.bind(AddContAlqController.class).in(Singleton.class);
 		binder.bind(AddContVenController.class).in(Singleton.class);
 		binder.bind(AddClienteController.class).in(Singleton.class);
+		binder.bind(AddPropietarioController.class).in(Singleton.class);
 		binder.bind(PagosCobrosService.class).in(Singleton.class);
 		
 		binder.bind(Conexion.class).in(Singleton.class);
