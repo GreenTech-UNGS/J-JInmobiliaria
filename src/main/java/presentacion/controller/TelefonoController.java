@@ -13,7 +13,7 @@ import presentacion.validators.TelefonoValidator;
 import presentacion.vista.TelefonoForm;
 
 @Singleton
-public class AddTelefonoController {
+public class TelefonoController {
 	
 	TelefonoForm view;
 	TipoTelefonoComboBoxModel comboModel;
@@ -25,7 +25,7 @@ public class AddTelefonoController {
 	private TelefonoValidator telefonoValidator;
 	
 	@Inject
-	private AddTelefonoController(TelefonoForm view,
+	private TelefonoController(TelefonoForm view,
                                   TipoTelefonoComboBoxModel comboModel) {
 		
 		this.view = view;

@@ -28,11 +28,11 @@ public class MainViewController {
 	private ReservaTableModel reservaTable;
 	private PagosPropietariosTableModel pagopropTable;
 	
-	AddContAlqController contratoAlqController;
-	AddContVenController contratoVenController;
-	AddClienteController clienteController;	
-	AddPropietarioController propietarioController;	
-	AddPropiedadController propiedadController;
+	ContratoAlquilerController contratoAlqController;
+	ContratoVentaController contratoVenController;
+	ClienteController clienteController;	
+	PropietarioController propietarioController;	
+	PropiedadController propiedadController;
 	ReservarPropiedadController reservaController;
 	RegistrarCobroController cobroController;
 
@@ -47,11 +47,11 @@ public class MainViewController {
 	
 	@Inject
 	private MainViewController(MainView view,
-			AddPropiedadController propiedadesController,
-			AddContAlqController contratoAlqController,
-			AddContVenController contratoVenController,
-			AddClienteController clienteController,
-			AddPropietarioController propietarioController,
+			PropiedadController propiedadesController,
+			ContratoAlquilerController contratoAlqController,
+			ContratoVentaController contratoVenController,
+			ClienteController clienteController,
+			PropietarioController propietarioController,
 			ReservarPropiedadController reservaController,
 			PropiedadService propiedadService,
 			PagosCobrosService pagoCobroService,

@@ -26,7 +26,7 @@ import presentacion.validators.ContratoAlquilerValidator;
 import presentacion.vista.ContratoAlquilerForm;
 
 @Singleton
-public class AddContAlqController {
+public class ContratoAlquilerController {
 	
 	ContratoService contratoService;
 	ReservaService reservaService;
@@ -43,7 +43,7 @@ public class AddContAlqController {
 	MonedaComboBoxModel monedaCombo;
 	
 	@Inject
-	private AddContAlqController(ContratoService contratoService,
+	private ContratoAlquilerController(ContratoService contratoService,
 								ContratoAlquilerForm view,
 								ReservaService reservaService,
 								ElegirClienteController eligeCliente,

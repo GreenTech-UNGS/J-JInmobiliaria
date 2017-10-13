@@ -14,7 +14,7 @@ import presentacion.table.TelefonoTableModel;
 import presentacion.validators.PropietarioValidator;
 import presentacion.vista.PropietarioForm;
 
-public class AddPropietarioController {
+public class PropietarioController {
 	
 	private PropietarioForm view;
 	PersonaService personaService;
@@ -28,16 +28,16 @@ public class AddPropietarioController {
 	private TipoCredencialComboBoxModel tipoCredencialModel;
 	private TelefonoTableModel telTable;
 	
-	private AddTelefonoController telefonoController;
+	private TelefonoController telefonoController;
 	private ElegirPersonaController elegirPersona;
 	private Propietario currentPropietario;
 	private Binder<Propietario> binder;
 	
 	@Inject
-	private AddPropietarioController(PropietarioForm view,
+	private PropietarioController(PropietarioForm view,
 								 PropietarioService propietarioService,
 								 PersonaService personaService,
-								 AddTelefonoController telefonoController,
+								 TelefonoController telefonoController,
 								 ElegirPersonaController elegirPersona){
 		
 		this.view = view;

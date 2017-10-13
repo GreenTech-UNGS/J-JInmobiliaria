@@ -17,7 +17,7 @@ import presentacion.validators.ClienteValidator;
 import presentacion.validators.MessageShow;
 import presentacion.vista.ClienteForm;
 
-public class AddClienteController {
+public class ClienteController {
 	
 	private ClienteForm view;
 	PersonaService personaService;
@@ -32,16 +32,16 @@ public class AddClienteController {
 	private TipoCredencialComboBoxModel tipoCredencialModel;
 	private TelefonoTableModel telTable;
 	
-	private AddTelefonoController telefonoController;
+	private TelefonoController telefonoController;
 	private ElegirPersonaController elegirPersona;
 	private Cliente currentCliente;
 	private Binder<Cliente> binder;
 	
 	@Inject
-	private AddClienteController(ClienteForm view,
+	private ClienteController(ClienteForm view,
 								 ClienteService clienteService,
 								 PersonaService personaService,
-								 AddTelefonoController telefonoController,
+								 TelefonoController telefonoController,
 								 ElegirPersonaController elegirPersona){
 		
 		this.view = view;

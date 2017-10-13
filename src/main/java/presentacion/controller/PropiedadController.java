@@ -22,7 +22,7 @@ import javax.swing.*;
 import java.util.Arrays;
 import java.util.List;
 
-public class AddPropiedadController {
+public class PropiedadController {
 	
 	private PropiedadForm view;
 	private ProvinciaComboBoxModel provCombo;
@@ -37,7 +37,6 @@ public class AddPropiedadController {
 	private ElegirInmobiliariaController elegirInmobController;
 	private HistorialPropiedadController historialPropController;
 	private LocalizationService localizationService;
-	private EligeInmobiliariaController eligeInmobiliaria;
 	
 	private final Coordinate centerOfMap = new Coordinate(50.064191736659104, 8.96484375);
 		
@@ -48,7 +47,7 @@ public class AddPropiedadController {
 	Binder<Propiedad> binderP;
 	
 	@Inject
-	private AddPropiedadController(PropiedadForm view,
+	private PropiedadController(PropiedadForm view,
 									PropiedadValidator propiedadValidator,
 									PropiedadService propiedadService,
 									PropietarioService propietarioService,
@@ -56,8 +55,7 @@ public class AddPropiedadController {
 									ElegirPropietarioController elegirPropController,
 									ElegirInmobiliariaController elegirInmobController,
 									HistorialPropiedadController historialPropController,
-									LocalizationService localizationService,
-									EligeInmobiliariaController eligeInmobiliaria){
+									LocalizationService localizationService){
 		
 		this.view = view;
 		this.propiedadValidator = propiedadValidator;
@@ -69,7 +67,6 @@ public class AddPropiedadController {
 		this.elegirInmobController = elegirInmobController;
 		this.historialPropController = historialPropController;
 		this.localizationService = localizationService;
-		this.eligeInmobiliaria = eligeInmobiliaria;
 		
 		this.provCombo = new ProvinciaComboBoxModel();
 		this.monedaCombo = new MonedaComboBoxModel();
