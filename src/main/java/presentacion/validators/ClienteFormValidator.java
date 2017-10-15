@@ -45,13 +45,12 @@ public class ClienteFormValidator implements ValidatorNew{
 	private boolean isCredencialValid(){
 		TipoCredencial tipoCred = TipoCredencial.valueOf((String)view.getComboCredencial().getSelectedItem());
 		String credencial = view.getTextCredencial().getText();
-		
 		if(tipoCred == TipoCredencial.DNI)
-			if(credencial == null || !credencial.matches(Regex.DNI()) || !credencial.matches(Regex.OnlyNumbersDNI()))
+			if(credencial == null || (!credencial.matches(Regex.DNI()) && !credencial.matches(Regex.OnlyNumbersDNI())))
 				return false;
 
 		if(tipoCred == TipoCredencial.CUIT)
-			if(credencial == null || !credencial.matches(Regex.CUIT()) || !credencial.matches(Regex.onlyNumbersCUIT()))
+			if(credencial == null || (!credencial.matches(Regex.CUIT()) && !credencial.matches(Regex.onlyNumbersCUIT())))
 				return false;
 			
 		return true;
