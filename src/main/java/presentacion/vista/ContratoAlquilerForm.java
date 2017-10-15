@@ -4,12 +4,14 @@ import java.awt.Dimension;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.JComboBox;
 import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
@@ -211,9 +213,15 @@ public class ContratoAlquilerForm extends JDialog {
 		btnLupaPropiedad.setIcon(new ImageIcon(imgLup));
 		agregarContrato.add(btnLupaPropiedad);
 		
+
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(430, 75, 166, 55);
+		scrollPane.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
+		agregarContrato.add(scrollPane);
+		
 		textGarantia = new JTextArea();
-		textGarantia.setBounds(430, 75, 166, 38);
-		agregarContrato.add(textGarantia);
+		textGarantia.setLineWrap(true);
+		scrollPane.setViewportView(textGarantia);
 		
 		btnLupaCliente = new JButton("");
 		btnLupaCliente.setBounds(560, 48, 35, 23);

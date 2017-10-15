@@ -17,9 +17,10 @@ public class CuotasTableModel extends BaseTableModel<CuotaAlquiler> {
 	public CuotasTableModel(CuotaService cuotaService){
 		
 		this.cuotaService = cuotaService;
+		super.addColumn("Numero de cuota", false, 100);
 		super.addColumn("DNI Inquilino", false, 100);
-		super.addColumn("ID Propiedad", false, 100);
-		super.addColumn("ID Contrato", false, 100);
+		super.addColumn("Codigo Propiedad", false, 100);
+		super.addColumn("Codigo Contrato", false, 100);
 		super.addColumn("Total", false, 100);
 		super.addColumn("Estado", false, 100);
 	}
@@ -41,6 +42,7 @@ public class CuotasTableModel extends BaseTableModel<CuotaAlquiler> {
 						format.format(interes.getMonto().getMonto() + t.getMonto().getMonto());
 		
 		Object[] fila = {
+				t.getAnioMes(),
 				credencial,
 				t.getContrato().getPropiedad().getIdentificador(),
 				t.getContrato().getIdentificador(),

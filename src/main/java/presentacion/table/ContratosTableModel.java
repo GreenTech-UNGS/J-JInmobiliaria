@@ -7,11 +7,11 @@ public class ContratosTableModel extends BaseTableModel<Contrato>{
 	
 	public ContratosTableModel(){
 		
-		super.addColumn("Identificador contrato", false, 100);
+		super.addColumn("Codigo contrato", false, 100);
 		super.addColumn("Nombre cliente", false, 100);
 		super.addColumn("Apellido cliente", false, 100);
 		super.addColumn("Dni cliente", false, 100);
-		super.addColumn("Identificador propiedad", false, 100);
+		super.addColumn("Codigo propiedad", false, 100);
 	}
 
 	@Override

@@ -193,7 +193,7 @@ public class MainViewController {
 	private void fillTableCuotas() {
 		this.cuotasTable.clean();
 		this.view.getTableCuotas().setModel(cuotasTable);
-		cuotaService.getCuotasOf(YearMonth.now(), EstadoCuota.values()).forEach(c -> cuotasTable.addRow(c));
+		cuotaService.getAll().forEach(c -> cuotasTable.addRow(c));
 		
 		this.view.getTableCuotas().setColumnModel(cuotasTable.getTableColumnModel());
 		this.view.getTableCuotas().getTableHeader().setReorderingAllowed(false);

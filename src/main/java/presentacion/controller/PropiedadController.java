@@ -86,7 +86,7 @@ public class PropiedadController {
 		view.getBtnVerHistorial().addActionListener(e -> this.historialPropController.showView(currentPropiedad));
 		view.getBtnActualizar().addActionListener(e -> actualizaMapa());
 		view.getBotonLupitaInmobiliaria().addActionListener(e -> selectInmobiliaria());
-		
+		view.getBtnGuardarCambios().addActionListener(e -> actualizarPropietario());
 		
 	}
 
@@ -250,6 +250,11 @@ public class PropiedadController {
 		binder.fillFields();
 	}
 
+	private void actualizarPropietario() {
+		binder.fillBean();
+		view.setVisible(false);
+	}
+	
 	private void savePropiedad() {
 		
 		if(!view.getTfPrecio().getText().matches("([0-9]*[\\.])?[0-9]+")) {
@@ -328,6 +333,7 @@ public class PropiedadController {
 		view.getComboMoneda().setEnabled(bool);
 		view.getComboProvincia().setEnabled(bool);
 		view.getComboTipoOfre().setEnabled(bool);
+		view.getBtnGuardarCambios().setVisible(false);
 			
 
 	}

@@ -16,7 +16,7 @@ public class PropiedadesTableModel extends BaseTableModel<Propiedad>{
 	@Inject
 	private PropiedadesTableModel() {
 		super();
-		super.addColumn("Identificador", false, 100);
+		super.addColumn("Codigo", false, 100);
 		super.addColumn("Direccion", false, 400);
 		super.addColumn("Precio", false, 100);
 		super.addColumn("Estado", false, 100);
@@ -27,13 +27,14 @@ public class PropiedadesTableModel extends BaseTableModel<Propiedad>{
 	protected Object[] toRow(Propiedad t) {
 		//FIXME Esto da error null pointer cuando el combo de provincia está vacío
 		String precio = t.getPrecioTentativo().getMonto() + " " + t.getPrecioTentativo().getMoneda();
-		String provincia = t.getLocalidad().getProvincia().toString().replaceAll("_", "");
+		String piso = "";
+		String depto = "";
+		if(!t.getPiso().equals("")){
+			piso = " Piso:" + t.getPiso();}
+		if(!t.getDpto().equals("")){
+			depto = " Depto:" + t.getDpto();}
 		String direccion = t.getCalle() + " " +
-							t.getAltura() + " " +
-							(t.getPiso()==null? "":("Piso " + t.getPiso()+" "))+
-							(t.getDpto()==null? "":("Dpto " + t.getDpto()+" "))+
-							t.getLocalidad().getNombre()+ ", Pcia."+
-							provincia;
+							t.getAltura() + piso + depto;
 		
 		Object[] fila = {t.getIdentificador(),
 						direccion,

@@ -36,17 +36,9 @@ public class PropiedadForm extends JDialog{
 	private JMapViewer mapa;
 	private JButton btnActualizar;
 	private JTextField tfInmobiliaria;
-	private JButton btnGuardarCambios;
-
-	public JButton getBtnGuardarCambios() {
-		return btnGuardarCambios;
-	}
-	public void setBtnGuardarCambios(JButton btnGuardarCambios) {
-		this.btnGuardarCambios = btnGuardarCambios;
-	}
-
 	private JButton botonLupitaInmobiliaria;
 	private JTextField tfPrecio;
+	private JButton btnGuardarCambios;
 
 	@Inject
 	private PropiedadForm() {
@@ -299,20 +291,30 @@ public class PropiedadForm extends JDialog{
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(38, 485, 288, 58);
+		scrollPane.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
 		AgregarPropiedad.add(scrollPane);
 		
 		taDescPubl = new JTextArea();
 		scrollPane.setViewportView(taDescPubl);
-		taDescPubl.setColumns(10);
+		taDescPubl.setLineWrap(true);
 		taDescPubl.setBorder(new LineBorder(Color.LIGHT_GRAY));
+
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(353, 484, 306, 59);
+		scrollPane_1.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
 		AgregarPropiedad.add(scrollPane_1);
 		
 		taDescPriv = new JTextArea();
 		scrollPane_1.setViewportView(taDescPriv);
+		taDescPriv.setLineWrap(true);
 		taDescPriv.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		
+		btnGuardarCambios = new JButton("Guardar cambios");
+		btnGuardarCambios.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnGuardarCambios.setBounds(274, 565, 132, 33);
+		AgregarPropiedad.add(btnGuardarCambios);
+		btnGuardarCambios.setVisible(false);
 		lblReservada.setVisible(false);
 
 		btnVerHistorial.setVisible(false);
@@ -493,4 +495,14 @@ public class PropiedadForm extends JDialog{
 	public void setLblReservada(JLabel lblReservada) {
 		this.lblReservada = lblReservada;
 	}
+
+	public JButton getBtnGuardarCambios() {
+		return btnGuardarCambios;
+	}
+
+	public void setBtnGuardarCambios(JButton btnGuardarCambios) {
+		this.btnGuardarCambios = btnGuardarCambios;
+	}
+	
+	
 }
