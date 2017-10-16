@@ -27,6 +27,10 @@ public class MainViewController {
 	private ClientesTableModel tableModelClien;
 	private ReservaTableModel reservaTable;
 	private PagosPropietariosTableModel pagopropTable;
+	private PropiedadesTableModel tableEnAlquiler;
+	private PropiedadesTableModel tableEnVenta;
+	private PropiedadesTableModel tableAlquiladas;
+	private PropiedadesTableModel tableVendidas;
 	
 	ContratoAlquilerController contratoAlqController;
 	ContratoVentaController contratoVenController;
@@ -65,7 +69,11 @@ public class MainViewController {
 			PagosPropietariosTableModel pagopropTable,
 			ContratoService contratoService,
 			ReservaService reservaService,
-			RegistrarCobroController cobroController){
+			RegistrarCobroController cobroController,
+			PropiedadesTableModel tableEnAlquiler,
+			PropiedadesTableModel tableEnVenta,
+			PropiedadesTableModel tableAlquiladas,
+			PropiedadesTableModel tableVendidas){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
@@ -90,6 +98,10 @@ public class MainViewController {
 		this.contratoService = contratoService;
 		this.reservaService = reservaService;
 		this.cobroController = cobroController;
+		this.tableEnAlquiler =tableEnAlquiler;
+		this.tableEnVenta = tableEnVenta;
+		this.tableAlquiladas = tableAlquiladas;
+		this.tableVendidas = tableVendidas;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
@@ -130,6 +142,10 @@ public class MainViewController {
 		fillTableContratosAlquiler();
 		fillTablePagosProps();
 		fillTableReservas();
+		fillTableEnAlquiler();
+		fillTableEnVenta();
+		fillTableAlquiladas();
+		fillTableVendidas();
 	}
 
 	private void generaReportePropietarios() {
@@ -213,10 +229,40 @@ public class MainViewController {
 		this.tableModelProp.clean();
 		this.view.getTablePropiedades().setModel(tableModelProp);
 		propiedadService.getAll().forEach(p -> tableModelProp.addRow(p));
-
 		this.view.getTablePropiedades().setColumnModel(tableModelProp.getTableColumnModel());
 		this.view.getTablePropiedades().getTableHeader().setReorderingAllowed(false);
-
+	}
+	
+	private void fillTableEnAlquiler(){
+		this.tableEnAlquiler.clean();
+		this.view.getTableEnAlquiler().setModel(tableEnAlquiler);
+		
+		propiedadService.getEnAlquiler().forEach(e -> tableEnAlquiler.addRow(e));
+		this.view.getTableEnAlquiler().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTableEnVenta(){
+		this.tableEnVenta.clean();
+		this.view.getTableEnVenta().setModel(tableEnVenta);
+		
+		propiedadService.getEnVenta().forEach(e -> tableEnVenta.addRow(e));
+		this.view.getTableEnVenta().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTableAlquiladas(){
+		this.tableAlquiladas.clean();
+		this.view.getTableAlquiladas().setModel(tableAlquiladas);
+		
+		propiedadService.getAlquiladas().forEach(e -> tableAlquiladas.addRow(e));
+		this.view.getTableAlquiladas().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTableVendidas(){
+		this.tableVendidas.clean();
+		this.view.getTableVendidas().setModel(tableVendidas);
+		
+		propiedadService.getVendidas().forEach(e -> tableVendidas.addRow(e));
+		this.view.getTableVendidas().getTableHeader().setReorderingAllowed(false);
 	}
 
 	public void showView(){

@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,8 +57,7 @@ public class PropiedadService {
 	
 	public EstadoProp getCurrentEstado(Propiedad p) {
 		
-		p.getEstados().sort((h1, h2) -> h2.getFecha().compareTo(h1.getFecha()));
-		
+		p.getEstados().sort((h1, h2) -> h2.getFecha().compareTo(h1.getFecha()));	
 		return p.getEstados().get(0).getEstado();
 		
 	}
@@ -91,6 +91,50 @@ public class PropiedadService {
 	
 	public void actualizarPropiedad(Propiedad propiedadVieja){
 		propiedadDao.actualizePropiedad(propiedadVieja);
+	}
+	
+	public List<Propiedad> getEnAlquiler(){
+		List<Propiedad> toRet = new ArrayList<Propiedad>();
+		for(Propiedad p : this.getAll()){
+			if(p.getTipoOfrecimiento().equals(TipoOfrecimiento.ALQUILER) || p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA_Y_ALQUILER)){
+				if(this.getCurrentEstado(p).equals(EstadoProp.DISPONIBLE)){
+					toRet.add(p);
+				}
+			}
+		}
+		return toRet;
+	}
+	
+	public List<Propiedad> getEnVenta(){
+		List<Propiedad> toRet = new ArrayList<Propiedad>();
+		for(Propiedad p : this.getAll()){
+			if(p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA) || p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA_Y_ALQUILER)){
+				if(this.getCurrentEstado(p).equals(EstadoProp.DISPONIBLE)){
+					toRet.add(p);
+				}
+			}
+		}
+		return toRet;
+	}
+	
+	public List<Propiedad> getAlquiladas(){
+		List<Propiedad> toRet = new ArrayList<Propiedad>();
+		for(Propiedad p : this.getAll()){
+			if(this.getCurrentEstado(p).equals(EstadoProp.ALQUILADA)){
+				toRet.add(p);
+			}
+		}
+		return toRet;
+	}
+	
+	public List<Propiedad> getVendidas(){
+		List<Propiedad> toRet = new ArrayList<Propiedad>();
+		for(Propiedad p : this.getAll()){
+			if(this.getCurrentEstado(p).equals(EstadoProp.VENDIDA)){
+				toRet.add(p);
+			}
+		}
+		return toRet;
 	}
 	
 }

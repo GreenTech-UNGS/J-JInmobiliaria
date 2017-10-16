@@ -14,7 +14,7 @@ public class PropiedadesTableModel extends BaseTableModel<Propiedad>{
 	PropiedadService propService;
 	
 	@Inject
-	private PropiedadesTableModel() {
+	public PropiedadesTableModel() {
 		super();
 		super.addColumn("Codigo", false, 100);
 		super.addColumn("Direccion", false, 400);

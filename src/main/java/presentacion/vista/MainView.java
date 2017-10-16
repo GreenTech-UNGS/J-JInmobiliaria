@@ -45,6 +45,10 @@ public class MainView {
     private JTable tablePagosPropietarios;
     private JButton btnRegistrarPago;
     private JButton btnGenerarReportePropietarios;
+    private JTable tableEnAlquiler;
+    private JTable tableEnVenta;
+    private JTable tableAlquiladas;
+    private JTable tableVendidas;
 
     @Inject
     public MainView() {
@@ -403,20 +407,64 @@ public class MainView {
 
       Component horizontalGlue_1 = Box.createHorizontalGlue();
       panelButtons.add(horizontalGlue_1);
-                                                                                        
+      
+      JPanel panelEnAlquiler = new JPanel();
+      tabbedPane_1.addTab("En alquiler", null, panelEnAlquiler, null);
+      panelEnAlquiler.setLayout(new BoxLayout(panelEnAlquiler, BoxLayout.Y_AXIS));
+      
+      JScrollPane scrollPaneEnAlquiler = new JScrollPane();
+      panelEnAlquiler.add(scrollPaneEnAlquiler);
+      
+      tableEnAlquiler = new JTable();
+      scrollPaneEnAlquiler.setColumnHeaderView(tableEnAlquiler);
+      scrollPaneEnAlquiler.setViewportView(tableEnAlquiler);
+      
+      JPanel panelEnVenta = new JPanel();
+      tabbedPane_1.addTab("En venta", null, panelEnVenta, null);
+      panelEnVenta.setLayout(new BoxLayout(panelEnVenta, BoxLayout.Y_AXIS));
+      
+      JScrollPane scrollPaneEnVenta = new JScrollPane();
+      panelEnVenta.add(scrollPaneEnVenta);
+      
+      tableEnVenta = new JTable();
+      scrollPaneEnVenta.setColumnHeaderView(tableEnVenta);
+      scrollPaneEnVenta.setViewportView(tableEnVenta);
+      
       JPanel panelReservas = new JPanel();
-      tabbedPane_1.addTab("Reservas a propiedades", null, panelReservas, null);
+      tabbedPane_1.addTab("Reservadas", null, panelReservas, null);
       panelReservas.setLayout(new BoxLayout(panelReservas, BoxLayout.Y_AXIS));
-                                                                                        
+      
       tablaReservas = new JTable();
-      JScrollPane scrollPane_6 = new JScrollPane(tablaReservas);
-      panelReservas.add(scrollPane_6);                                                                             
-                                                                                     
+      JScrollPane scrollPaneReservadas = new JScrollPane(tablaReservas);
+      panelReservas.add(scrollPaneReservadas);                                                                             
+      
       JPanel panel_1 = new JPanel();
       panelReservas.add(panel_1);
       
       btnDesreservar = new JButton("Desreservar");
       panel_1.add(btnDesreservar);
+      
+      JPanel panelAlquiladas = new JPanel();
+      tabbedPane_1.addTab("Alquiladas", null, panelAlquiladas, null);
+      panelAlquiladas.setLayout(new BoxLayout(panelAlquiladas, BoxLayout.Y_AXIS));
+      
+      JScrollPane scrollPaneAlquiladas = new JScrollPane();
+      panelAlquiladas.add(scrollPaneAlquiladas);
+      
+      tableAlquiladas = new JTable();
+      scrollPaneAlquiladas.setColumnHeaderView(tableAlquiladas);
+      scrollPaneAlquiladas.setViewportView(tableAlquiladas);
+      
+      JPanel panelVendidas = new JPanel();
+      tabbedPane_1.addTab("Vendidas", null, panelVendidas, null);
+      panelVendidas.setLayout(new BoxLayout(panelVendidas, BoxLayout.Y_AXIS));
+      
+      JScrollPane scrollPaneVendidas = new JScrollPane();
+      panelVendidas.add(scrollPaneVendidas);
+      
+      tableVendidas = new JTable();
+      scrollPaneVendidas.setColumnHeaderView(tableVendidas);
+      scrollPaneVendidas.setViewportView(tableVendidas);
     }
 
     public JTable getTablePropiedades() {
@@ -571,5 +619,45 @@ public class MainView {
 
 	public JButton getBtnPagos() {
 		return btnPagos;
+	}
+
+
+	public JTable getTableEnAlquiler() {
+		return tableEnAlquiler;
+	}
+
+
+	public void setTableEnAlquiler(JTable tableEnAlquiler) {
+		this.tableEnAlquiler = tableEnAlquiler;
+	}
+
+
+	public JTable getTableEnVenta() {
+		return tableEnVenta;
+	}
+
+
+	public void setTableEnVenta(JTable tableEnVenta) {
+		this.tableEnVenta = tableEnVenta;
+	}
+
+
+	public JTable getTableAlquiladas() {
+		return tableAlquiladas;
+	}
+
+
+	public void setTableAlquiladas(JTable tableAlquiladas) {
+		this.tableAlquiladas = tableAlquiladas;
+	}
+
+
+	public JTable getTableVendidas() {
+		return tableVendidas;
+	}
+
+
+	public void setTableVendidas(JTable tableVendidas) {
+		this.tableVendidas = tableVendidas;
 	}
 }
