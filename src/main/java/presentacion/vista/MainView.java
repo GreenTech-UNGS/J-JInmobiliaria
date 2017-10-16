@@ -36,6 +36,7 @@ public class MainView {
     private JButton btnEditarPropietario;
     private JButton btnDesreservar;
     private JButton btnRenovar;
+    private JButton btnCancelarContrato;
     
     private JCalendar jCalendar;
     private JTable tablaContratoVenta;
@@ -117,6 +118,9 @@ public class MainView {
                         
                         btnRenovar = new JButton("Renovar contrato");
                         panel_2.add(btnRenovar);
+                        
+                        btnCancelarContrato = new JButton("Cancelar contrato");
+                        panel_2.add(btnCancelarContrato);
                         btnAgregarContratoAlq.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent e) {
                             }
@@ -660,4 +664,16 @@ public class MainView {
 	public void setTableVendidas(JTable tableVendidas) {
 		this.tableVendidas = tableVendidas;
 	}
+
+
+	public JButton getBtnCancelarContrato() {
+		return btnCancelarContrato;
+	}
+
+
+	public void setBtnCancelarContrato(JButton btnCancelarContrato) {
+		this.btnCancelarContrato = btnCancelarContrato;
+	}
+	
+	
 }

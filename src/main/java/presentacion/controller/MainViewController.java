@@ -117,6 +117,7 @@ public class MainViewController {
 		this.view.getBtnRegistrarCobro().addActionListener(e -> registrarCobro());
 		this.view.getBtnRenovar().addActionListener(e -> renovarContrato());
 		this.view.getBtnRegistrarPago().addActionListener(e -> registrarPago());
+		this.view.getBtnCancelarContrato().addActionListener(e -> cancelarContrato());
 		
 		this.view.getBtnGenerarReportePropietarios().addActionListener(e -> generaReportePropietarios());
 		
@@ -389,6 +390,14 @@ public class MainViewController {
 			ContratoAlquiler seleccion = (ContratoAlquiler)contratosTable2.getRow(this.view.getTablaContratoAlquiler().getSelectedRow());
 			
 			this.contratoAlqController.setRenovarMode(seleccion);
+			fillTableContratosAlquiler();
+		}
+	}
+	
+	private void cancelarContrato() {
+		if (this.view.getTablaContratoAlquiler().getSelectedRow()!=-1){
+			ContratoAlquiler seleccion = (ContratoAlquiler) contratosTable2.getRow(this.view.getTablaContratoAlquiler().getSelectedRow());
+			contratoService.cancelarContrato(seleccion);
 			fillTableContratosAlquiler();
 		}
 	}
