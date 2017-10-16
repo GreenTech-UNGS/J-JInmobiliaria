@@ -11,11 +11,14 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 
 import com.google.inject.Inject;
+import java.awt.Component;
+import javax.swing.Box;
 
 @SuppressWarnings("serial")
-public class ElegirPropietarioView extends JDialog {
+public class ElegirPropietarioView extends JDialog{
 	private JTable table;
 	private JButton btnAceptar;
+	private JButton btnAgregarOtro;
 	
 	@Inject
 	private ElegirPropietarioView() {
@@ -39,8 +42,20 @@ public class ElegirPropietarioView extends JDialog {
 		getContentPane().add(panelBotones);
 		panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.X_AXIS));
 		
+		Component glue_2 = Box.createGlue();
+		panelBotones.add(glue_2);
+		
 		btnAceptar = new JButton("Aceptar");
 		panelBotones.add(btnAceptar);
+		
+		Component glue = Box.createGlue();
+		panelBotones.add(glue);
+		
+		btnAgregarOtro = new JButton("Agregar otro");
+		panelBotones.add(btnAgregarOtro);
+		
+		Component glue_1 = Box.createGlue();
+		panelBotones.add(glue_1);
 	}
 
 	public JTable getTable() {
@@ -58,9 +73,12 @@ public class ElegirPropietarioView extends JDialog {
 	public void setBtnAceptar(JButton btnAceptar) {
 		this.btnAceptar = btnAceptar;
 	}
-	
-	
-	
-	
 
+	public JButton getBtnAgregarOtro() {
+		return btnAgregarOtro;
+	}
+
+	public void setBtnAgregarOtro(JButton btnAgregarOtro) {
+		this.btnAgregarOtro = btnAgregarOtro;
+	}
 }

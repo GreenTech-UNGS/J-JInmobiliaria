@@ -31,7 +31,6 @@ public class PropiedadController {
 	private LocalidadComboBoxModel localidadCombo;
 	private PropiedadValidator propiedadValidator;
 	private PropiedadService propiedadService;
-//	private PropietarioService propietarioService;
 	private LocalidadService localidadService;
 	private ElegirPropietarioController elegirPropController;
 	private ElegirInmobiliariaController elegirInmobController;
@@ -61,7 +60,6 @@ public class PropiedadController {
 		this.propiedadValidator = propiedadValidator;
 		this.propiedadService = propiedadService;
 		this.localidadService = localidadService;
-//		this.propietarioService = propietarioService;
 		this.binder = new Binder<>();
 		this.elegirPropController = elegirPropController;
 		this.elegirInmobController = elegirInmobController;
@@ -267,6 +265,7 @@ public class PropiedadController {
 			actualizaMapaThread();
 			propiedadService.savePropiedad(currentPropiedad);
 			view.setVisible(false);
+			elegirPropController.showView();
 		}
 	}
 	

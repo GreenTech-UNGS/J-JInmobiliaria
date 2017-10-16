@@ -107,7 +107,7 @@ public class PropietarioController {
 	
 	private void saveCurrentPropietario() {
 		binder.fillBean();
-
+		
 		if(propietarioValidator.isValid(currentPropietario)) {
 			propietarioService.savePropietario(currentPropietario);
 			view.setVisible(false);

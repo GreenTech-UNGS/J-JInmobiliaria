@@ -9,23 +9,31 @@ import model.PropietarioService;
 import presentacion.table.PropietariosTableModel;
 import presentacion.vista.ElegirPropietarioView;
 
-import java.util.List;
-
-public class ElegirPropietarioController {
+public class ElegirPropietarioController{
 	
 	private ElegirPropietarioView view;
 	private PropietarioService propietarioService;
 	private PropietariosTableModel tableModelProp;
+	PropietarioController propietarioController;
 	
 	@Inject
 	private ElegirPropietarioController(ElegirPropietarioView view,
-										PropietarioService propietarioService){
+										PropietarioService propietarioService,
+										PropietarioController propietarioController){
 		
 		this.view = view;
 		this.propietarioService = propietarioService;
 		this.tableModelProp = new PropietariosTableModel();
+		this.propietarioController = propietarioController;
 		fillTableProp();
 		
+		this.view.getBtnAgregarOtro().addActionListener(e -> agregarOtroPropietario());
+		
+	}
+	private void agregarOtroPropietario() {
+		propietarioController.setModeNew();
+		propietarioController.showView();
+		fillTableProp();
 	}
 	private void fillTableProp() {
 		
@@ -41,7 +49,7 @@ public class ElegirPropietarioController {
 		fillTableProp();
 		view.setVisible(true);
 	}
-	
+
 	public Propietario getPropietario(){
 		
 		int selected = view.getTable().getSelectedRow();

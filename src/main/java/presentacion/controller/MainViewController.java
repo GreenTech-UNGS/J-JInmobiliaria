@@ -5,7 +5,6 @@ import dto.PendientesPropietariosDTO;
 import entities.*;
 import model.*;
 import org.joda.time.DateTime;
-import org.joda.time.YearMonth;
 import presentacion.reportes.ReportePropietariosPagosPendientes;
 import presentacion.table.*;
 import presentacion.vista.MainView;
