@@ -272,7 +272,7 @@ public class MainViewController {
 	private void agregarPropiedad(){
 		this.propiedadController.setModeNew();
 		this.propiedadController.showView();
-		fillTableProp();
+		fillAllTables();
 	}
 
 	private void viewPropiedad(){

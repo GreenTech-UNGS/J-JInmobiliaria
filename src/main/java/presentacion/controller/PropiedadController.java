@@ -265,7 +265,6 @@ public class PropiedadController {
 			actualizaMapaThread();
 			propiedadService.savePropiedad(currentPropiedad);
 			view.setVisible(false);
-			elegirPropController.showView();
 		}
 	}
 	
