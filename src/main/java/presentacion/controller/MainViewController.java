@@ -27,7 +27,6 @@ public class MainViewController {
 	private ContratosTableModel contratosTable;	
 	private ContratosTableModel contratosTable2;
 	private ClientesTableModel tableModelClien;
-	private ContratosTableModel tableModelContrato;
 	private ReservaTableModel reservaTable;
 	private PagosPropietariosTableModel pagopropTable;
 	private PropiedadesTableModel tableEnAlquiler;
@@ -132,6 +131,7 @@ public class MainViewController {
 		this.view.getBtnCancelarContrato().addActionListener(e -> cancelarContrato());
 		this.view.getBtnAgregarInmobiliaria().addActionListener(e -> agregarInmobiliaria());
 		
+		this.view.getBtnGenerarReporteCobros().addActionListener(e -> generaReporteCobroDeAlquileres());
 		this.view.getBtnGenerarReportePropietarios().addActionListener(e -> generaReportePropietarios());
 		
 		this.view.getBtnPropiedades().addActionListener(e -> {fillTableProp();
@@ -170,6 +170,7 @@ public class MainViewController {
 		reporte.mostrar();
 		
 	}
+	
 //TODO parametrizar el yearmonth
 	private void generaReporteCobroDeAlquileres() {
 		List<CobrosDeAlquileresDTO> dtos =
