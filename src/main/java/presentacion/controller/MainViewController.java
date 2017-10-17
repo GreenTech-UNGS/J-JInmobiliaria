@@ -1,10 +1,13 @@
 package presentacion.controller;
 
 import com.google.inject.Inject;
+import dto.CobrosDeAlquileresDTO;
 import dto.PendientesPropietariosDTO;
 import entities.*;
 import model.*;
 import org.joda.time.DateTime;
+import org.joda.time.YearMonth;
+import presentacion.reportes.ReporteCobrosDeAlquileres;
 import presentacion.reportes.ReportePropietariosPagosPendientes;
 import presentacion.table.*;
 import presentacion.vista.MainView;
@@ -24,6 +27,7 @@ public class MainViewController {
 	private ContratosTableModel contratosTable;	
 	private ContratosTableModel contratosTable2;
 	private ClientesTableModel tableModelClien;
+	private ContratosTableModel tableModelContrato;
 	private ReservaTableModel reservaTable;
 	private PagosPropietariosTableModel pagopropTable;
 	private PropiedadesTableModel tableEnAlquiler;
@@ -44,6 +48,7 @@ public class MainViewController {
 	ClienteService clienteService;
 	ContratoService contratoService;
 	PropietarioService propietarioService;
+	PagosCobrosService pagosCobrosService;
 	CuotaService cuotaService;
 	ReservaService reservaService;
 	PagosCobrosService pagoCobroService;
@@ -74,7 +79,8 @@ public class MainViewController {
 			PropiedadesTableModel tableEnVenta,
 			PropiedadesTableModel tableAlquiladas,
 			PropiedadesTableModel tableVendidas,
-			InmobiliariaController inmobiliariaController){
+			InmobiliariaController inmobiliariaController
+	){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
@@ -157,6 +163,14 @@ public class MainViewController {
 		
 		reporte.mostrar();
 		
+	}
+//TODO parametrizar el yearmonth
+	private void generaReporteCobroDeAlquileres() {
+		List<CobrosDeAlquileresDTO> dtos =
+				pagosCobrosService.cobrosDeAlquilerReporteOf(YearMonth.now());
+		ReporteCobrosDeAlquileres reporte = new ReporteCobrosDeAlquileres(dtos);
+		reporte.mostrar();
+
 	}
 
 	private void fillTableClientes() {
@@ -326,6 +340,17 @@ public class MainViewController {
 			this.fillTableClientes();
 		}
 	}
+
+	private void editarContrato() {
+		int select = this.view.getTablaContratoAlquiler().getSelectedRow();
+
+		if (select!=-1){
+		//	contratoAlqController.editarContrato(this.tableModelContrato.getRow(select));
+			contratoAlqController.showView();
+			this.fillTableContratosAlquiler();
+		}
+	}
+
 
 	private void editarPropiedad() {
 		int select = this.view.getTablePropiedades().getSelectedRow();

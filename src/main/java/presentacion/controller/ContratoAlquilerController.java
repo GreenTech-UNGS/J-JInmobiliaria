@@ -1,33 +1,23 @@
 package presentacion.controller;
 
-import java.time.Period;
-import java.util.Arrays;
-
-import javax.swing.JOptionPane;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
-import entities.AvisoNotificacion;
-import entities.Cliente;
-import entities.Contrato;
-import entities.ContratoAlquiler;
-import entities.Moneda;
-import entities.Propiedad;
-import entities.Reserva;
-import entities.TipoContratoAlquiler;
+import entities.*;
 import misc.Binder;
 import model.ContratoService;
-import model.PropiedadService;
 import model.ReservaService;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.TipoContratoAlqComboBoxModel;
 import presentacion.validators.ContratoAlquilerValidator;
 import presentacion.vista.ContratoAlquilerForm;
 
+import javax.swing.*;
+import java.time.Period;
+import java.util.Arrays;
+
 @Singleton
 public class ContratoAlquilerController {
-	
+
 	ContratoService contratoService;
 	ReservaService reservaService;
 	@Inject
@@ -231,7 +221,19 @@ public class ContratoAlquilerController {
 		binder.fillFields();
 		
 	}
-	
+
+	public void editarContrato(ContratoAlquiler c){
+		view.setTitle("Editar Contrato");
+//		view.getBtnGuardar().setVisible(false);
+//		view.getBtnCancelar().setVisible(false);
+//		view.getBtnGuardarCambios().setVisible(true);
+		fillCombos();
+
+		currentContrato = c;
+		binder.setObjective(currentContrato);
+		binder.fillFields();
+	}
+
 	public void showView() {
 		this.view.setVisible(true);
 	}
