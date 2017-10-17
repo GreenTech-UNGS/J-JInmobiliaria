@@ -1,6 +1,5 @@
 package presentacion.controller;
 
-<<<<<<< HEAD
 import com.google.inject.Inject;
 
 import entities.Inmobiliaria;

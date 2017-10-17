@@ -31,8 +31,6 @@ public class ContratoAlquilerController {
 	Binder<ContratoAlquiler> binder;
 	ContratoAlquiler currentContrato;
 	ContratoAlquilerFormValidator contratoAlquilerValidator;
-	ContratoAlquiler currentContrato;
-	ContratoAlquilerValidator contratoAlquilerValidator;
 	
 	TipoContratoAlqComboBoxModel tipoCombo;
 	MonedaComboBoxModel monedaCombo;
