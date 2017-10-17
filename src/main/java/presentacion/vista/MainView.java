@@ -54,6 +54,7 @@ public class MainView {
     private JTable tableAlquiladas;
     private JTable tableVendidas;
     private JTable tableInmobiliaria;
+    private JButton btnGenerarReporteCobros;
 
     @Inject
     public MainView() {
@@ -199,8 +200,20 @@ public class MainView {
         panelPagoAlq.add(botonesAlquiler);
         botonesAlquiler.setLayout(new BoxLayout(botonesAlquiler, BoxLayout.X_AXIS));
         
+        Component horizontalGlue_5 = Box.createHorizontalGlue();
+        botonesAlquiler.add(horizontalGlue_5);
+        
         btnRegistrarCobro = new JButton("Registrar Cobro");
         botonesAlquiler.add(btnRegistrarCobro);
+        
+        Component horizontalGlue_2 = Box.createHorizontalGlue();
+        botonesAlquiler.add(horizontalGlue_2);
+        
+        btnGenerarReporteCobros = new JButton("Generar Reporte");
+        botonesAlquiler.add(btnGenerarReporteCobros);
+        
+        Component horizontalGlue_6 = Box.createHorizontalGlue();
+        botonesAlquiler.add(horizontalGlue_6);
 
         JPanel panelPagoProp = new JPanel();
         tabbedPane.addTab("Pagos a propietarios", null, panelPagoProp, null);
@@ -774,6 +787,9 @@ public class MainView {
 	public void setTableInmobiliaria(JTable tableInmobiliaria) {
 		this.tableInmobiliaria = tableInmobiliaria;
 	}
-	
-	
+
+
+	public JButton getBtnGenerarReporteCobros() {
+		return btnGenerarReporteCobros;
+	}
 }
