@@ -24,6 +24,7 @@ public class MainView {
     private JButton btnAgregarPropiedad;
     private JButton btnAgregarContratoAlq;
     private JButton btnAgregarContratoVen;
+    private JButton btnEditarContrato;
     private JButton btnPagos;
     private JButton btnAgregarCliente;
     private JButton btnAgregarPropietario;
@@ -36,6 +37,8 @@ public class MainView {
     private JButton btnEditarPropietario;
     private JButton btnDesreservar;
     private JButton btnRenovar;
+    private JButton btnCancelarContrato;
+    private JButton btnInmobiliaria;
     
     private JCalendar jCalendar;
     private JTable tablaContratoVenta;
@@ -45,6 +48,10 @@ public class MainView {
     private JTable tablePagosPropietarios;
     private JButton btnRegistrarPago;
     private JButton btnGenerarReportePropietarios;
+    private JTable tableEnAlquiler;
+    private JTable tableEnVenta;
+    private JTable tableAlquiladas;
+    private JTable tableVendidas;
 
     @Inject
     public MainView() {
@@ -58,7 +65,7 @@ public class MainView {
         frmLpezLpez.setBackground(new Color(255, 255, 255));
         frmLpezLpez.setTitle("L\u00F3pez & L\u00F3pez");
         frmLpezLpez.setResizable(false);
-        frmLpezLpez.setBounds(100, 100, 1022, 546);
+        frmLpezLpez.setBounds(100, 100, 1047, 534);
         frmLpezLpez.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmLpezLpez.getContentPane().setLayout(null);
         frmLpezLpez.setLocationRelativeTo(null);
@@ -68,7 +75,7 @@ public class MainView {
 
         JPanel panelContainer = new JPanel();
         panelContainer.setBorder(null);
-        panelContainer.setBounds(93, 20, 668, 474);
+        panelContainer.setBounds(93, 11, 668, 483);
         frmLpezLpez.getContentPane().add(panelContainer);
         panelContainer.setLayout(new CardLayout(0, 0));
 
@@ -105,18 +112,24 @@ public class MainView {
                 
                 JPanel panel_2 = new JPanel();
                 contratoAlquiler.add(panel_2);
-                
-                
+
                         btnAgregarContratoAlq = new JButton("Agregar contrato de aquiler");
                         panel_2.add(btnAgregarContratoAlq);
                         btnAgregarContratoAlq.setAlignmentX(Component.CENTER_ALIGNMENT);
                         
                         btnRenovar = new JButton("Renovar contrato");
                         panel_2.add(btnRenovar);
+                        
+                        btnCancelarContrato = new JButton("Cancelar contrato");
+                        panel_2.add(btnCancelarContrato);
                         btnAgregarContratoAlq.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent e) {
                             }
                         });
+        JPanel panel_EditAlquiler = new JPanel();
+        contratoAlquiler.add(panel_EditAlquiler);
+        btnEditarContrato = new JButton("Editar contrato");
+        panel_EditAlquiler.add(btnEditarContrato);;
 
         JPanel panelInquilinos = new JPanel();
         panelContainer.add(panelInquilinos, "name_1084846370736461");
@@ -218,17 +231,17 @@ public class MainView {
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
         panelPrincipal.setBackground(new Color(47, 79, 79));
-        panelPrincipal.setBounds(0, 0, 1016, 517);
+        panelPrincipal.setBounds(0, 0, 1016, 505);
         frmLpezLpez.getContentPane().add(panelPrincipal);
         panelPrincipal.setLayout(null);
 
         JPanel panelNotif = new JPanel();
-        panelNotif.setBounds(769, 193, 237, 292);
+        panelNotif.setBounds(769, 193, 237, 301);
         panelPrincipal.add(panelNotif);
         panelNotif.setLayout(null);
 
         JPanel panelMenu = new JPanel();
-        panelMenu.setBounds(10, 5, 74, 480);
+        panelMenu.setBounds(10, 11, 74, 483);
         panelPrincipal.add(panelMenu);
         panelMenu.setMaximumSize(new Dimension(100, 100));
         panelMenu.setMinimumSize(new Dimension(100, 100));
@@ -261,7 +274,7 @@ public class MainView {
 
         btnPropiedades = new JButton("");
         btnPropiedades.setToolTipText("Propiedades");
-        Image imgProp = new ImageIcon(this.getClass().getResource("/propiedades.png")).getImage();
+        Image imgProp = new ImageIcon(this.getClass().getResource("/props1.png")).getImage();
         btnPropiedades.setIcon(new ImageIcon(imgProp));
         btnPropiedades.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -274,6 +287,7 @@ public class MainView {
                 panelContainer.repaint();
             }
         });
+        panelMenu.setLayout(new BoxLayout(panelMenu, BoxLayout.Y_AXIS));
         btnPropiedades.setPreferredSize(new Dimension(70, 70));
         btnPropiedades.setMaximumSize(new Dimension(100, 100));
         btnPropiedades.setMinimumSize(new Dimension(100, 100));
@@ -281,8 +295,8 @@ public class MainView {
         panelMenu.add(btnPropiedades);
 
         btnContratos = new JButton("");
-        btnContratos.setToolTipText("Contratos");
-        Image imgCon = new ImageIcon(this.getClass().getResource("/contratos.png")).getImage();
+        btnContratos.setToolTipText("contratos");
+        Image imgCon = new ImageIcon(this.getClass().getResource("/contratos1.png")).getImage();
         btnContratos.setIcon(new ImageIcon(imgCon));
 
         btnContratos.setPreferredSize(new Dimension(70, 70));
@@ -298,12 +312,15 @@ public class MainView {
                 panelContainer.repaint();
             }
         });
+        
+        Component glue_3 = Box.createGlue();
+        panelMenu.add(glue_3);
         panelMenu.add(btnContratos);
 
         btnInquilinos = new JButton("");
-        btnInquilinos.setToolTipText("Inquilinos");
+        btnInquilinos.setToolTipText("Clientes");
 
-        Image imgInq = new ImageIcon(this.getClass().getResource("/inquilinos.png")).getImage();
+        Image imgInq = new ImageIcon(this.getClass().getResource("/clientes1.png")).getImage();
         btnInquilinos.setIcon(new ImageIcon(imgInq));
 
         btnInquilinos.addActionListener(new ActionListener() {
@@ -317,6 +334,9 @@ public class MainView {
                 panelContainer.repaint();
             }
         });
+        
+        Component glue_4 = Box.createGlue();
+        panelMenu.add(glue_4);
         btnInquilinos.setPreferredSize(new Dimension(70, 70));
         btnInquilinos.setBackground(new Color(0, 51, 51));
         panelMenu.add(btnInquilinos);
@@ -324,7 +344,7 @@ public class MainView {
         this.btnPagos = new JButton("");
         btnPagos.setToolTipText("Pagos");
 
-        Image imgPago = new ImageIcon(this.getClass().getResource("/pagos.png")).getImage();
+        Image imgPago = new ImageIcon(this.getClass().getResource("/pagos1.png")).getImage();
         btnPagos.setIcon(new ImageIcon(imgPago));
 
         btnPagos.addActionListener(new ActionListener() {
@@ -338,6 +358,9 @@ public class MainView {
                 panelContainer.repaint();
             }
         });
+        
+        Component glue_5 = Box.createGlue();
+        panelMenu.add(glue_5);
         btnPagos.setPreferredSize(new Dimension(70, 70));
         btnPagos.setBackground(new Color(0, 51, 51));
         panelMenu.add(btnPagos);
@@ -355,11 +378,39 @@ public class MainView {
             }
         });
         btnReportes.setToolTipText("Reportes");
-        Image imgRep = new ImageIcon(this.getClass().getResource("/reportes.png")).getImage();
+        Image imgRep = new ImageIcon(this.getClass().getResource("/reportes1.png")).getImage();
+        
+        Component glue_6 = Box.createGlue();
+        panelMenu.add(glue_6);
         btnReportes.setIcon(new ImageIcon(imgRep));
         btnReportes.setPreferredSize(new Dimension(70, 70));
         btnReportes.setBackground(new Color(0, 51, 51));
         panelMenu.add(btnReportes);
+        
+        JPanel panelinmobiliaria = new JPanel();
+        panelContainer.add(panelinmobiliaria, "name_2539662807626028");
+        
+        btnInmobiliaria = new JButton("");
+        btnInmobiliaria.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		panelContainer.removeAll();
+                panelContainer.repaint();
+                panelContainer.revalidate();
+
+                panelContainer.add(panelinmobiliaria);
+                panelContainer.repaint();
+                panelContainer.repaint();
+        	}
+        });
+        btnInmobiliaria.setToolTipText("Inmobiliarias");
+        Image imgInm = new ImageIcon(this.getClass().getResource("/inmobiliarias1.png")).getImage();
+        
+        Component glue_7 = Box.createGlue();
+        panelMenu.add(glue_7);
+        btnInmobiliaria.setIcon(new ImageIcon(imgInm));
+        btnInmobiliaria.setPreferredSize(new Dimension(70, 70));
+        btnInmobiliaria.setBackground(new Color(0, 51, 51));
+        panelMenu.add(btnInmobiliaria);
         panelPropiedades.setLayout(new BoxLayout(panelPropiedades, BoxLayout.Y_AXIS));
         
         JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
@@ -403,20 +454,65 @@ public class MainView {
 
       Component horizontalGlue_1 = Box.createHorizontalGlue();
       panelButtons.add(horizontalGlue_1);
-                                                                                        
+      
+      JPanel panelEnAlquiler = new JPanel();
+      tabbedPane_1.addTab("En alquiler", null, panelEnAlquiler, null);
+      panelEnAlquiler.setLayout(new BoxLayout(panelEnAlquiler, BoxLayout.Y_AXIS));
+      
+      JScrollPane scrollPaneEnAlquiler = new JScrollPane();
+      panelEnAlquiler.add(scrollPaneEnAlquiler);
+      
+      tableEnAlquiler = new JTable();
+      scrollPaneEnAlquiler.setColumnHeaderView(tableEnAlquiler);
+      scrollPaneEnAlquiler.setViewportView(tableEnAlquiler);
+      
+      JPanel panelEnVenta = new JPanel();
+      tabbedPane_1.addTab("En venta", null, panelEnVenta, null);
+      panelEnVenta.setLayout(new BoxLayout(panelEnVenta, BoxLayout.Y_AXIS));
+      
+      JScrollPane scrollPaneEnVenta = new JScrollPane();
+      panelEnVenta.add(scrollPaneEnVenta);
+      
+      tableEnVenta = new JTable();
+      scrollPaneEnVenta.setColumnHeaderView(tableEnVenta);
+      scrollPaneEnVenta.setViewportView(tableEnVenta);
+      
       JPanel panelReservas = new JPanel();
-      tabbedPane_1.addTab("Reservas a propiedades", null, panelReservas, null);
+      tabbedPane_1.addTab("Reservadas", null, panelReservas, null);
       panelReservas.setLayout(new BoxLayout(panelReservas, BoxLayout.Y_AXIS));
-                                                                                        
+      
       tablaReservas = new JTable();
-      JScrollPane scrollPane_6 = new JScrollPane(tablaReservas);
-      panelReservas.add(scrollPane_6);                                                                             
-                                                                                     
+      JScrollPane scrollPaneReservadas = new JScrollPane(tablaReservas);
+      panelReservas.add(scrollPaneReservadas);                                                                             
+      
       JPanel panel_1 = new JPanel();
       panelReservas.add(panel_1);
       
       btnDesreservar = new JButton("Desreservar");
       panel_1.add(btnDesreservar);
+      
+      JPanel panelAlquiladas = new JPanel();
+      tabbedPane_1.addTab("Alquiladas", null, panelAlquiladas, null);
+      panelAlquiladas.setLayout(new BoxLayout(panelAlquiladas, BoxLayout.Y_AXIS));
+      
+      JScrollPane scrollPaneAlquiladas = new JScrollPane();
+      panelAlquiladas.add(scrollPaneAlquiladas);
+      
+      tableAlquiladas = new JTable();
+      scrollPaneAlquiladas.setColumnHeaderView(tableAlquiladas);
+      scrollPaneAlquiladas.setViewportView(tableAlquiladas);
+      
+      JPanel panelVendidas = new JPanel();
+      tabbedPane_1.addTab("Vendidas", null, panelVendidas, null);
+      panelVendidas.setLayout(new BoxLayout(panelVendidas, BoxLayout.Y_AXIS));
+      
+      JScrollPane scrollPaneVendidas = new JScrollPane();
+      panelVendidas.add(scrollPaneVendidas);
+      
+      tableVendidas = new JTable();
+      scrollPaneVendidas.setColumnHeaderView(tableVendidas);
+      scrollPaneVendidas.setViewportView(tableVendidas);
+      
     }
 
     public JTable getTablePropiedades() {
@@ -496,16 +592,27 @@ public class MainView {
 		return btnEditarCliente;
 	}
 
-
 	public void setBtnEditarCliente(JButton btnEditarCliente) {
 		this.btnEditarCliente = btnEditarCliente;
 	}
-	
+
 	public JButton getBtnEditarPropietario() {
 		return btnEditarPropietario;
 	}
 
-	public void setBtnEditarPropietario(JButton btnEditarPropietario) {
+
+    public JButton getBtnEditarContrato() {
+        return btnEditarContrato;
+    }
+
+    public void setBtnEditarContrato(JButton btnEditarContrato) {
+        this.btnEditarContrato = btnEditarCliente;
+    }
+
+
+
+
+    public void setBtnEditarPropietario(JButton btnEditarPropietario) {
 		this.btnEditarPropietario = btnEditarPropietario;
 	}
 
@@ -571,5 +678,65 @@ public class MainView {
 
 	public JButton getBtnPagos() {
 		return btnPagos;
+	}
+
+
+	public JTable getTableEnAlquiler() {
+		return tableEnAlquiler;
+	}
+
+
+	public void setTableEnAlquiler(JTable tableEnAlquiler) {
+		this.tableEnAlquiler = tableEnAlquiler;
+	}
+
+
+	public JTable getTableEnVenta() {
+		return tableEnVenta;
+	}
+
+
+	public void setTableEnVenta(JTable tableEnVenta) {
+		this.tableEnVenta = tableEnVenta;
+	}
+
+
+	public JTable getTableAlquiladas() {
+		return tableAlquiladas;
+	}
+
+
+	public void setTableAlquiladas(JTable tableAlquiladas) {
+		this.tableAlquiladas = tableAlquiladas;
+	}
+
+
+	public JTable getTableVendidas() {
+		return tableVendidas;
+	}
+
+
+	public void setTableVendidas(JTable tableVendidas) {
+		this.tableVendidas = tableVendidas;
+	}
+
+
+	public JButton getBtnCancelarContrato() {
+		return btnCancelarContrato;
+	}
+
+
+	public void setBtnCancelarContrato(JButton btnCancelarContrato) {
+		this.btnCancelarContrato = btnCancelarContrato;
+	}
+
+
+	public JButton getBtnInmobiliaria() {
+		return btnInmobiliaria;
+	}
+
+
+	public void setBtnInmobiliaria(JButton btnInmobiliaria) {
+		this.btnInmobiliaria = btnInmobiliaria;
 	}
 }

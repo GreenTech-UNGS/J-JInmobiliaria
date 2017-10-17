@@ -1,11 +1,13 @@
 package presentacion.controller;
 
 import com.google.inject.Inject;
+import dto.CobrosDeAlquileresDTO;
 import dto.PendientesPropietariosDTO;
 import entities.*;
 import model.*;
 import org.joda.time.DateTime;
 import org.joda.time.YearMonth;
+import presentacion.reportes.ReporteCobrosDeAlquileres;
 import presentacion.reportes.ReportePropietariosPagosPendientes;
 import presentacion.table.*;
 import presentacion.vista.MainView;
@@ -25,8 +27,13 @@ public class MainViewController {
 	private ContratosTableModel contratosTable;	
 	private ContratosTableModel contratosTable2;
 	private ClientesTableModel tableModelClien;
+	private ContratosTableModel tableModelContrato;
 	private ReservaTableModel reservaTable;
 	private PagosPropietariosTableModel pagopropTable;
+	private PropiedadesTableModel tableEnAlquiler;
+	private PropiedadesTableModel tableEnVenta;
+	private PropiedadesTableModel tableAlquiladas;
+	private PropiedadesTableModel tableVendidas;
 	
 	ContratoAlquilerController contratoAlqController;
 	ContratoVentaController contratoVenController;
@@ -35,11 +42,13 @@ public class MainViewController {
 	PropiedadController propiedadController;
 	ReservarPropiedadController reservaController;
 	RegistrarCobroController cobroController;
+	InmobiliariaController inmobiliariaController;
 
 	PropiedadService propiedadService;
 	ClienteService clienteService;
 	ContratoService contratoService;
 	PropietarioService propietarioService;
+	PagosCobrosService pagosCobrosService;
 	CuotaService cuotaService;
 	ReservaService reservaService;
 	PagosCobrosService pagoCobroService;
@@ -65,7 +74,13 @@ public class MainViewController {
 			PagosPropietariosTableModel pagopropTable,
 			ContratoService contratoService,
 			ReservaService reservaService,
-			RegistrarCobroController cobroController){
+			RegistrarCobroController cobroController,
+			PropiedadesTableModel tableEnAlquiler,
+			PropiedadesTableModel tableEnVenta,
+			PropiedadesTableModel tableAlquiladas,
+			PropiedadesTableModel tableVendidas,
+			InmobiliariaController inmobiliariaController
+	){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
@@ -90,6 +105,11 @@ public class MainViewController {
 		this.contratoService = contratoService;
 		this.reservaService = reservaService;
 		this.cobroController = cobroController;
+		this.tableEnAlquiler =tableEnAlquiler;
+		this.tableEnVenta = tableEnVenta;
+		this.tableAlquiladas = tableAlquiladas;
+		this.tableVendidas = tableVendidas;
+		this.inmobiliariaController = inmobiliariaController;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
@@ -105,6 +125,7 @@ public class MainViewController {
 		this.view.getBtnRegistrarCobro().addActionListener(e -> registrarCobro());
 		this.view.getBtnRenovar().addActionListener(e -> renovarContrato());
 		this.view.getBtnRegistrarPago().addActionListener(e -> registrarPago());
+		this.view.getBtnCancelarContrato().addActionListener(e -> cancelarContrato());
 		
 		this.view.getBtnGenerarReportePropietarios().addActionListener(e -> generaReportePropietarios());
 		
@@ -130,6 +151,10 @@ public class MainViewController {
 		fillTableContratosAlquiler();
 		fillTablePagosProps();
 		fillTableReservas();
+		fillTableEnAlquiler();
+		fillTableEnVenta();
+		fillTableAlquiladas();
+		fillTableVendidas();
 	}
 
 	private void generaReportePropietarios() {
@@ -138,6 +163,14 @@ public class MainViewController {
 		
 		reporte.mostrar();
 		
+	}
+//TODO parametrizar el yearmonth
+	private void generaReporteCobroDeAlquileres() {
+		List<CobrosDeAlquileresDTO> dtos =
+				pagosCobrosService.cobrosDeAlquilerReporteOf(YearMonth.now());
+		ReporteCobrosDeAlquileres reporte = new ReporteCobrosDeAlquileres(dtos);
+		reporte.mostrar();
+
 	}
 
 	private void fillTableClientes() {
@@ -193,7 +226,7 @@ public class MainViewController {
 	private void fillTableCuotas() {
 		this.cuotasTable.clean();
 		this.view.getTableCuotas().setModel(cuotasTable);
-		cuotaService.getCuotasOf(YearMonth.now(), EstadoCuota.values()).forEach(c -> cuotasTable.addRow(c));
+		cuotaService.getAll().forEach(c -> cuotasTable.addRow(c));
 		
 		this.view.getTableCuotas().setColumnModel(cuotasTable.getTableColumnModel());
 		this.view.getTableCuotas().getTableHeader().setReorderingAllowed(false);
@@ -213,10 +246,40 @@ public class MainViewController {
 		this.tableModelProp.clean();
 		this.view.getTablePropiedades().setModel(tableModelProp);
 		propiedadService.getAll().forEach(p -> tableModelProp.addRow(p));
-
 		this.view.getTablePropiedades().setColumnModel(tableModelProp.getTableColumnModel());
 		this.view.getTablePropiedades().getTableHeader().setReorderingAllowed(false);
-
+	}
+	
+	private void fillTableEnAlquiler(){
+		this.tableEnAlquiler.clean();
+		this.view.getTableEnAlquiler().setModel(tableEnAlquiler);
+		
+		propiedadService.getEnAlquiler().forEach(e -> tableEnAlquiler.addRow(e));
+		this.view.getTableEnAlquiler().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTableEnVenta(){
+		this.tableEnVenta.clean();
+		this.view.getTableEnVenta().setModel(tableEnVenta);
+		
+		propiedadService.getEnVenta().forEach(e -> tableEnVenta.addRow(e));
+		this.view.getTableEnVenta().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTableAlquiladas(){
+		this.tableAlquiladas.clean();
+		this.view.getTableAlquiladas().setModel(tableAlquiladas);
+		
+		propiedadService.getAlquiladas().forEach(e -> tableAlquiladas.addRow(e));
+		this.view.getTableAlquiladas().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTableVendidas(){
+		this.tableVendidas.clean();
+		this.view.getTableVendidas().setModel(tableVendidas);
+		
+		propiedadService.getVendidas().forEach(e -> tableVendidas.addRow(e));
+		this.view.getTableVendidas().getTableHeader().setReorderingAllowed(false);
 	}
 
 	public void showView(){
@@ -226,7 +289,7 @@ public class MainViewController {
 	private void agregarPropiedad(){
 		this.propiedadController.setModeNew();
 		this.propiedadController.showView();
-		fillTableProp();
+		fillAllTables();
 	}
 
 	private void viewPropiedad(){
@@ -277,6 +340,17 @@ public class MainViewController {
 			this.fillTableClientes();
 		}
 	}
+
+	private void editarContrato() {
+		int select = this.view.getTablaContratoAlquiler().getSelectedRow();
+
+		if (select!=-1){
+		//	contratoAlqController.editarContrato(this.tableModelContrato.getRow(select));
+			contratoAlqController.showView();
+			this.fillTableContratosAlquiler();
+		}
+	}
+
 
 	private void editarPropiedad() {
 		int select = this.view.getTablePropiedades().getSelectedRow();
@@ -343,6 +417,14 @@ public class MainViewController {
 			ContratoAlquiler seleccion = (ContratoAlquiler)contratosTable2.getRow(this.view.getTablaContratoAlquiler().getSelectedRow());
 			
 			this.contratoAlqController.setRenovarMode(seleccion);
+			fillTableContratosAlquiler();
+		}
+	}
+	
+	private void cancelarContrato() {
+		if (this.view.getTablaContratoAlquiler().getSelectedRow()!=-1){
+			ContratoAlquiler seleccion = (ContratoAlquiler) contratosTable2.getRow(this.view.getTablaContratoAlquiler().getSelectedRow());
+			contratoService.cancelarContrato(seleccion);
 			fillTableContratosAlquiler();
 		}
 	}

@@ -277,4 +277,12 @@ public class ContratoService {
 		
 	}
 	
+	public void cancelarContrato (Contrato c){
+		
+		HistoriaEstadoContrato nuevoEstado = new HistoriaEstadoContrato();
+		nuevoEstado.setEstado(EstadoContrato.CANCELADO);
+		nuevoEstado.setFecha(DateTime.now());
+		
+		c.getEstados().add(nuevoEstado);
+	}
 }

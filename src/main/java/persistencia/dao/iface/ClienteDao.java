@@ -9,6 +9,4 @@ public interface ClienteDao extends Dao<Cliente>{
 	
 	public void actualizeCliente(Cliente toActualize);
 
-	
-	
 }
