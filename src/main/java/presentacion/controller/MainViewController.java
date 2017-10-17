@@ -30,6 +30,7 @@ public class MainViewController {
 	private PropiedadesTableModel tableEnVenta;
 	private PropiedadesTableModel tableAlquiladas;
 	private PropiedadesTableModel tableVendidas;
+	private InmobiliariaTableModel tableInmobiliaria;
 	
 	ContratoAlquilerController contratoAlqController;
 	ContratoVentaController contratoVenController;
@@ -47,6 +48,7 @@ public class MainViewController {
 	CuotaService cuotaService;
 	ReservaService reservaService;
 	PagosCobrosService pagoCobroService;
+	InmobiliariaService inmobiliariaService;
 	
 	
 	@Inject
@@ -74,13 +76,15 @@ public class MainViewController {
 			PropiedadesTableModel tableEnVenta,
 			PropiedadesTableModel tableAlquiladas,
 			PropiedadesTableModel tableVendidas,
-			InmobiliariaController inmobiliariaController){
+			InmobiliariaController inmobiliariaController,
+			InmobiliariaService inmobiliariaService){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
 		this.propietariosTable = new PropietariosTableModel();
 		this.cuotasTable = cuotasTable;
 		this.reservaTable = new ReservaTableModel();
+		this.tableInmobiliaria = new InmobiliariaTableModel();
 		this.tableModelProp = tableModelprop;
 		this.propiedadController = propiedadesController;
 		this.pagoCobroService = pagoCobroService;
@@ -104,6 +108,7 @@ public class MainViewController {
 		this.tableAlquiladas = tableAlquiladas;
 		this.tableVendidas = tableVendidas;
 		this.inmobiliariaController = inmobiliariaController;
+		this.inmobiliariaService = inmobiliariaService;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
@@ -120,6 +125,7 @@ public class MainViewController {
 		this.view.getBtnRenovar().addActionListener(e -> renovarContrato());
 		this.view.getBtnRegistrarPago().addActionListener(e -> registrarPago());
 		this.view.getBtnCancelarContrato().addActionListener(e -> cancelarContrato());
+		this.view.getBtnAgregarInmobiliaria().addActionListener(e -> agregarInmobiliaria());
 		
 		this.view.getBtnGenerarReportePropietarios().addActionListener(e -> generaReportePropietarios());
 		
@@ -149,6 +155,7 @@ public class MainViewController {
 		fillTableEnVenta();
 		fillTableAlquiladas();
 		fillTableVendidas();
+		fillTableInmobiliarias();
 	}
 
 	private void generaReportePropietarios() {
@@ -267,6 +274,14 @@ public class MainViewController {
 		propiedadService.getVendidas().forEach(e -> tableVendidas.addRow(e));
 		this.view.getTableVendidas().getTableHeader().setReorderingAllowed(false);
 	}
+	
+	private void fillTableInmobiliarias(){
+		this.tableInmobiliaria.clean();
+		this.view.getTableInmobiliaria().setModel(tableInmobiliaria);
+		
+		inmobiliariaService.getAll().forEach(e -> tableInmobiliaria.addRow(e));
+		this.view.getTableInmobiliaria().getTableHeader().setReorderingAllowed(false);
+	}
 
 	public void showView(){
 		this.view.show();
@@ -315,6 +330,11 @@ public class MainViewController {
 		this.clienteController.showView();
 
 		fillTableClientes();
+	}
+	
+	private void agregarInmobiliaria() {
+		this.inmobiliariaController.setModeNew();
+		this.inmobiliariaController.showView();
 	}
 	
 	private void editarCliente() {

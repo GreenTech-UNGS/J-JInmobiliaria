@@ -38,6 +38,7 @@ public class MainView {
     private JButton btnRenovar;
     private JButton btnCancelarContrato;
     private JButton btnInmobiliaria;
+    private JButton btnAgregarInmobiliaria;
     
     private JCalendar jCalendar;
     private JTable tablaContratoVenta;
@@ -51,6 +52,7 @@ public class MainView {
     private JTable tableEnVenta;
     private JTable tableAlquiladas;
     private JTable tableVendidas;
+    private JTable tableInmobiliaria;
 
     @Inject
     public MainView() {
@@ -74,7 +76,7 @@ public class MainView {
 
         JPanel panelContainer = new JPanel();
         panelContainer.setBorder(null);
-        panelContainer.setBounds(93, 11, 668, 483);
+        panelContainer.setBounds(93, 11, 692, 483);
         frmLpezLpez.getContentPane().add(panelContainer);
         panelContainer.setLayout(new CardLayout(0, 0));
 
@@ -227,12 +229,12 @@ public class MainView {
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
         panelPrincipal.setBackground(new Color(47, 79, 79));
-        panelPrincipal.setBounds(0, 0, 1016, 505);
+        panelPrincipal.setBounds(0, 0, 1041, 505);
         frmLpezLpez.getContentPane().add(panelPrincipal);
         panelPrincipal.setLayout(null);
 
         JPanel panelNotif = new JPanel();
-        panelNotif.setBounds(769, 193, 237, 301);
+        panelNotif.setBounds(794, 193, 237, 301);
         panelPrincipal.add(panelNotif);
         panelNotif.setLayout(null);
 
@@ -244,7 +246,7 @@ public class MainView {
         panelMenu.setBackground(new Color(47, 79, 79));
 
         JPanel panelCalendar = new JPanel();
-        panelCalendar.setBounds(769, 11, 237, 175);
+        panelCalendar.setBounds(794, 11, 237, 175);
         panelPrincipal.add(panelCalendar);
         panelCalendar.setLayout(null);
         jCalendar = new JCalendar();
@@ -385,6 +387,19 @@ public class MainView {
         
         JPanel panelinmobiliaria = new JPanel();
         panelContainer.add(panelinmobiliaria, "name_2539662807626028");
+        panelinmobiliaria.setLayout(new BoxLayout(panelinmobiliaria, BoxLayout.Y_AXIS));
+        
+        tableInmobiliaria = new JTable();
+        
+        JScrollPane scrollPane_6 = new JScrollPane(tableInmobiliaria);
+        panelinmobiliaria.add(scrollPane_6);
+        
+        JPanel panelBtnInmb = new JPanel();
+        panelinmobiliaria.add(panelBtnInmb);
+        
+        btnAgregarInmobiliaria = new JButton("Agregar inmobiliaria");
+        btnAgregarInmobiliaria.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        panelBtnInmb.add(btnAgregarInmobiliaria);
         
         btnInmobiliaria = new JButton("");
         btnInmobiliaria.addActionListener(new ActionListener() {
@@ -724,4 +739,26 @@ public class MainView {
 	public void setBtnInmobiliaria(JButton btnInmobiliaria) {
 		this.btnInmobiliaria = btnInmobiliaria;
 	}
+
+
+	public JButton getBtnAgregarInmobiliaria() {
+		return btnAgregarInmobiliaria;
+	}
+
+
+	public void setBtnAgregarInmobiliaria(JButton btnAgregarInmobiliaria) {
+		this.btnAgregarInmobiliaria = btnAgregarInmobiliaria;
+	}
+
+
+	public JTable getTableInmobiliaria() {
+		return tableInmobiliaria;
+	}
+
+
+	public void setTableInmobiliaria(JTable tableInmobiliaria) {
+		this.tableInmobiliaria = tableInmobiliaria;
+	}
+	
+	
 }
