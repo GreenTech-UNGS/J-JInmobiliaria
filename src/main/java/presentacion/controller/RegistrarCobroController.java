@@ -13,7 +13,8 @@ import com.google.inject.Singleton;
 
 import entities.CuotaAlquiler;
 import model.PagosCobrosService;
-import presentacion.validators.CobroAlquilerValidator;
+import presentacion.validators.MessageShow;
+import presentacion.validators.RegistrarCobroFormValidator;
 import presentacion.vista.RegistrarCobroForm;
 
 @Singleton
@@ -22,7 +23,8 @@ public class RegistrarCobroController {
 	RegistrarCobroForm view;
 	CuotaAlquiler currentCuota;
 	PagosCobrosService cobrosService;
-	CobroAlquilerValidator cobroAlquilerValidator;
+	RegistrarCobroFormValidator cobroAlquilerValidator;
+	MessageShow msgShw;
 
 	boolean okWasPressed;
 	
@@ -30,11 +32,14 @@ public class RegistrarCobroController {
 	@Inject
 	private RegistrarCobroController(RegistrarCobroForm view,
 			PagosCobrosService cobrosService,
-			CobroAlquilerValidator ingresoValidator) {
+			RegistrarCobroFormValidator ingresoValidator,
+			MessageShow msgShw) {
 		
 		this.view = view;
 		this.cobrosService = cobrosService;
 		this.cobroAlquilerValidator = ingresoValidator;
+		this.msgShw = msgShw;
+		
 		okWasPressed = false;
 		
 		view.getBtnOk().addActionListener(e -> okPressed());
@@ -57,16 +62,15 @@ public class RegistrarCobroController {
 		okWasPressed = true;
 		
 		DateTime fechaPago = new DateTime(view.getDateChooser().getDate());
-		LocalDate inicioCuota = currentCuota.getAnioMes().toLocalDate(1);
 		
-		if(inicioCuota.isAfter(fechaPago.toLocalDate()) || LocalDate.now().isBefore(fechaPago.toLocalDate())) {
-			JOptionPane.showMessageDialog(view, "La fecha de pago debe ser posterior al inicio de la cuota\n"
-					+ "y anterior a hoy", "Error", JOptionPane.ERROR_MESSAGE);
-		}
-		else if(cobroAlquilerValidator.isValid(currentCuota)){
+		if(cobroAlquilerValidator.isValid()){
 			cobrosService.generarCobroAlquiler(currentCuota, fechaPago);
 			this.view.setVisible(false);
 		}
+		else{
+			msgShw.showErrorMessage(cobroAlquilerValidator.getErrorMessage(), "Error");
+		}
+		
 	}
 	
 }

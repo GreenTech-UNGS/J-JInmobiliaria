@@ -11,8 +11,10 @@ import entities.Propiedad;
 import entities.Reserva;
 import misc.Binder;
 import model.ContratoService;
+import model.LogicaNegocioException;
 import model.ReservaService;
-import presentacion.validators.ContratoVentaValidator;
+import presentacion.validators.ContratoVentaFormValidator;
+import presentacion.validators.MessageShow;
 import presentacion.vista.ContratoVentaForm;
 
 public class ContratoVentaController {
@@ -24,9 +26,11 @@ public class ContratoVentaController {
 	ContratoVenta currentContrato;
 	ContratoService contratoService;
 	ReservaService reservaService;
-	ContratoVentaValidator contratoVentaValidator;
+	ContratoVentaFormValidator contratoVentaValidator;
 	
 	Binder<ContratoVenta> binder;
+	
+	MessageShow msgShw;
 	
 	@Inject
 	private ContratoVentaController(ContratoVentaForm view,
@@ -34,7 +38,8 @@ public class ContratoVentaController {
 			ElegirPropiedadController elegirProp, 
 			ContratoService contratoService,
 			ReservaService reservaService,
-			ContratoVentaValidator contratoVentaValidator){
+			ContratoVentaFormValidator contratoVentaValidator,
+			MessageShow msgShw){
 		
 		this.view = view;
 		this.elegirCliente = elegirCliente;
@@ -42,6 +47,7 @@ public class ContratoVentaController {
 		this.contratoService = contratoService;
 		this.reservaService = reservaService;
 		this.contratoVentaValidator = contratoVentaValidator;
+		this.msgShw = msgShw;
 		
 		this.binder = new Binder<>();
 		
@@ -95,20 +101,17 @@ public class ContratoVentaController {
 	
 	public void guardarContrato(){
 		
-		currentContrato.setIdentificador(view.getTfIdContrato().getText());
-		binder.setObjective(currentContrato);
-		binder.fillBean();
-		
-		Reserva r = reservaService.getReservaOf(currentContrato.getPropiedad());
-		if( r != null) {
-			if(r.getReservador().getID() != currentContrato.getCliente().getPersona().getID()) {
-				JOptionPane.showMessageDialog(view, "La propiedad esta reservada. El cliente debe ser el reservador", "Error", JOptionPane.ERROR_MESSAGE);
-				return;
+		if(contratoVentaValidator.isValid()){		
+			currentContrato.setIdentificador(view.getTfIdContrato().getText());
+			binder.setObjective(currentContrato);
+			binder.fillBean();
+			
+			try {
+				contratoService.saveContratoVenta(currentContrato);
+			} catch (LogicaNegocioException e) {
+				
+				msgShw.showErrorMessage(e.getMessage(), "Error");
 			}
-		}
-		
-		if(contratoVentaValidator.isValid(currentContrato)){
-			contratoService.SaveContratoVenta(currentContrato);
 			view.setVisible(false);
 		}
 		

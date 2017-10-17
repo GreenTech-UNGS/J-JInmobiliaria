@@ -2,6 +2,10 @@ package model;
 
 public class LogicaNegocioException extends Exception{
 
+	public LogicaNegocioException(String message) {
+		super(message);
+	}
+
 	/**
 	 * 
 	 */

@@ -72,7 +72,7 @@ public class ContratoService {
 	public void saveContratoAlquiler(ContratoAlquiler c) throws LogicaNegocioException{
 
 		if(!isPropiedadReservadaCorrectamente(c))
-			throw new LogConfigurationException("La propiedad esta reservada. El cliente debe ser el reservador");
+			throw new LogicaNegocioException("La propiedad esta reservada. El cliente debe ser el reservador");
 			
 		contratoDao.save(c);
 		
@@ -163,7 +163,7 @@ public class ContratoService {
 		return toRet;
 	}
 	
-	public void SaveContratoVenta(ContratoVenta c){
+	public void saveContratoVenta(ContratoVenta c) throws LogicaNegocioException{
 			
 			contratoDao.save(c);
 			
@@ -175,6 +175,14 @@ public class ContratoService {
 			propiedad.getEstados().add(estado);
 			
 			//TODO
+			
+			Reserva r = reservaService.getReservaOf(c.getPropiedad());
+			if( r != null) {
+				if(r.getReservador().getID() != c.getCliente().getPersona().getID()) {
+					throw new LogicaNegocioException("La propiedad esta reservada. El cliente debe ser el reservador");
+				}
+			}
+			
 			
 			propiedadDao.save(propiedad);
 		}

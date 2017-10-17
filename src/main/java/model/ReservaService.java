@@ -3,6 +3,7 @@ package model;
 import com.google.inject.Inject;
 
 import entities.EstadoProp;
+import entities.HistoriaEstadoProp;
 import entities.Propiedad;
 import entities.Reserva;
 import org.joda.time.DateTime;
@@ -38,6 +39,14 @@ public class ReservaService {
     public void saveReserva(Reserva reserva){
         reserva.setFecha(DateTime.now());
         reservaDAO.save(reserva);
+        
+        HistoriaEstadoProp estado = new HistoriaEstadoProp();
+		estado.setEstado(EstadoProp.RESERVADA);
+		estado.setFecha(DateTime.now());
+		
+		reserva.getPropiedad().getEstados().add(estado);
+		propiedadService.actualizarPropiedad(reserva.getPropiedad());
+        
     }
     
     public Reserva getReservaOf(Propiedad p) {
