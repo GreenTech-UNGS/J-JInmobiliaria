@@ -14,7 +14,7 @@ import org.joda.time.DateTime;
 import presentacion.combo.ClienteComboBoxModel;
 import presentacion.combo.PropiedadComboBoxModel;
 import presentacion.validators.MessageShow;
-import presentacion.validators.ReservaValidator;
+import presentacion.validators.ReservarPropiedadFormValidator;
 import presentacion.vista.ElegirClienteView;
 import presentacion.vista.ReservarPropiedadForm;
 
@@ -23,16 +23,11 @@ import java.util.List;
 
 public class ReservarPropiedadController {
     private ReservarPropiedadForm view;
-
-    private PropiedadService propiedadService;
-    private ClienteService clienteService;
+    
     private ReservaService reservaService;
-    private ReservaValidator reservaValidator;
+    private ReservarPropiedadFormValidator reservaValidator;
     private ElegirClienteController clienteController;
     private ElegirPropiedadController propiedadController;
-
-    private PropiedadComboBoxModel propiedadComboBoxModelModel;
-    private ClienteComboBoxModel clienteComboBoxModel;
 
     private Reserva currentReserva;
     private Propiedad currentPropiedad;
@@ -40,19 +35,13 @@ public class ReservarPropiedadController {
 
     @Inject
     public ReservarPropiedadController(ReservarPropiedadForm view,
-                                       PropiedadService propiedadService,
-                                       ClienteService clienteService,
                                        ReservaService reservaService,
-                                       ReservaValidator reservaValidator,
+                                       ReservarPropiedadFormValidator reservaValidator,
                                        ElegirClienteController clienteController,
                                        ElegirPropiedadController propiedadController) {
         this.view = view;
-        this.propiedadService = propiedadService;
-        this.clienteService = clienteService;
         this.reservaService = reservaService;
         this.reservaValidator = reservaValidator;
-        this.propiedadComboBoxModelModel = new PropiedadComboBoxModel();
-        this.clienteComboBoxModel = new ClienteComboBoxModel();
         this.clienteController = clienteController;
         this.propiedadController = propiedadController;
 
@@ -66,16 +55,9 @@ public class ReservarPropiedadController {
 
     private void reservarPropiedad() {
 
-      if(reservaValidator.isValid(currentReserva) && currentCliente != null && currentPropiedad!= null) {
+      if(reservaValidator.isValid() && currentCliente != null && currentPropiedad!= null) {
      
             reservaService.saveReserva(currentReserva);
- 
-            HistoriaEstadoProp estado = new HistoriaEstadoProp();
-    		estado.setEstado(EstadoProp.RESERVADA);
-    		estado.setFecha(DateTime.now());
-    		
-    		currentPropiedad.getEstados().add(estado);
-    		propiedadService.actualizarPropiedad(currentPropiedad);
     		closeView();
         }
     }

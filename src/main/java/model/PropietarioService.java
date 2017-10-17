@@ -16,6 +16,8 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.logging.LogConfigurationException;
+
 @Singleton
 public class PropietarioService {
 
@@ -63,7 +65,10 @@ public class PropietarioService {
 		
 	}
 
-	public void savePropietario(Propietario toSave) {
+	public void savePropietario(Propietario toSave) throws LogicaNegocioException{
+		
+		if(existePropietarioCon(toSave.getPersona()))
+			throw new LogConfigurationException("Ya existe un propietario con la misma credencial");
 		
 		propietarioDao.save(toSave);
 	}

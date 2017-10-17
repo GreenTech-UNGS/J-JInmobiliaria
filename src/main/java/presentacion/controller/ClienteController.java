@@ -1,6 +1,13 @@
 package presentacion.controller;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 import com.google.inject.Inject;
 
@@ -8,12 +15,12 @@ import entities.Cliente;
 import entities.Persona;
 import entities.Persona.TipoCredencial;
 import entities.Telefono;
-import misc.Binder;
 import model.ClienteService;
 import model.PersonaService;
 import presentacion.combo.TipoCredencialComboBoxModel;
+import presentacion.mappers.ClienteFormMapper;
 import presentacion.table.TelefonoTableModel;
-import presentacion.validators.ClienteValidator;
+import presentacion.validators.ClienteFormValidator;
 import presentacion.validators.MessageShow;
 import presentacion.vista.ClienteForm;
 
@@ -24,7 +31,9 @@ public class ClienteController {
 	private ClienteService clienteService;
 	
 	@Inject
-	private ClienteValidator clienteValidator;
+	private ClienteFormValidator clienteValidator;
+	@Inject
+	private ClienteFormMapper clienteMapper;
 	
 	@Inject
 	private MessageShow msgShow;
@@ -35,7 +44,6 @@ public class ClienteController {
 	private TelefonoController telefonoController;
 	private ElegirPersonaController elegirPersona;
 	private Cliente currentCliente;
-	private Binder<Cliente> binder;
 	
 	@Inject
 	private ClienteController(ClienteForm view,
@@ -51,31 +59,13 @@ public class ClienteController {
 		this.elegirPersona = elegirPersona;
 		this.tipoCredencialModel = new TipoCredencialComboBoxModel();
 		this.telTable = new TelefonoTableModel();
-		this.binder = new Binder<Cliente>();
 		
 		view.getBtnGuardar().addActionListener(e -> saveCurrentCliente());
 		view.getBtnCancelar().addActionListener(e -> closeView());
 		view.getBtnBuscar().addActionListener(e -> eligePersona());
 		view.getBtnAgregarTelefono().addActionListener(e -> agregaTelefono());
 		view.getBtnBorrarTelefono().addActionListener(e -> borrarTelefono());
-		view.getBtnGuardarCambios().addActionListener(e -> actualizarCliente());
-		
-		
-		binder.bind("persona.nombre",
-				view.getTextNombre()::getText,
-				s -> view.getTextNombre().setText((String)s));
-		binder.bind("persona.apellido",
-				view.getTextApellido()::getText,
-				s -> view.getTextApellido().setText((String)s));
-		binder.bind("persona.credencial",
-				() -> view.getTextCredencial().getText().replaceAll("\\.", "").replaceAll("-", ""),
-				s -> view.getTextCredencial().setText((String)s));
-		binder.bind("persona.email",
-				view.getTextMail()::getText,
-				s -> view.getTextMail().setText((String)s));			
-		binder.bind("persona.tipoCred",
-				tipoCredencialModel::getSelected,
-				t -> tipoCredencialModel.setSelected((TipoCredencial)t));
+		view.getBtnGuardarCambios().addActionListener(e -> saveCurrentCliente());
 		
 		
 		fillCombos();
@@ -85,8 +75,7 @@ public class ClienteController {
 
 	public void setModeNew() {
 		currentCliente = clienteService.getEmptyCliente();
-		binder.setObjective(currentCliente);
-		binder.fillFields();
+		clienteMapper.fillFields(currentCliente);
 		telTable.clean();
 		
 		setEditCampos(true);
@@ -111,17 +100,15 @@ public class ClienteController {
 	}
 	
 	private void saveCurrentCliente() {
-		binder.fillBean();
-
-		if(clienteValidator.isValid(currentCliente)) {
+		
+		if(clienteValidator.isValid()) {
+			clienteMapper.fillBean(currentCliente);
 			clienteService.saveCliente(currentCliente);
 			view.setVisible(false);
 		}
-	}
-	
-	private void actualizarCliente() {
-		binder.fillBean();
-		view.setVisible(false);
+		else{
+			msgShow.showErrorMessage(clienteValidator.getErrorMessage(), "Error");
+		}
 	}
 	
 	private boolean fieldsOk(){
@@ -144,7 +131,7 @@ public class ClienteController {
 		
 		Telefono nuevoTel = telefonoController.getTelefono();
 				
-		if(telefonoController.getTelefonoValidator().isValid(nuevoTel)) {
+		if(nuevoTel != null) {
 			telTable.addRow(nuevoTel);
 			currentCliente.getPersona().insertTelefono(nuevoTel);
 		}
@@ -157,8 +144,7 @@ public class ClienteController {
 		
 		if(p != null) {
 			currentCliente = clienteService.getNewClienteFrom(p);
-			binder.setObjective(currentCliente);
-			binder.fillFields();
+			clienteMapper.fillFields(currentCliente);
 			
 			setEditCampos(false);
 			
@@ -187,16 +173,15 @@ public class ClienteController {
 		}
 	}
 	public void editarCliente(Cliente c){
-		fillTables();
 		view.setTitle("Editar cliente");
 		view.getBtnGuardar().setVisible(false);
 		view.getBtnCancelar().setVisible(false);
 		view.getBtnGuardarCambios().setVisible(true);
-		fillCombos();
 		
 		currentCliente = c;
-		binder.setObjective(currentCliente);
-		binder.fillFields();
+		fillCombos();
+		fillTables();
+		clienteMapper.fillFields(c);
 	}
 
 	public void showView(){

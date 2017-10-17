@@ -15,6 +15,7 @@ import persistencia.dao.iface.CuotaDao;
 import misc.ActualizadorModule;
 import model.ContratoService;
 import model.CuotaService;
+import model.LogicaNegocioException;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -66,7 +67,10 @@ public class ActualizadorCuotas {
 				
 				contratoAlquiler.getEstados().add(estadoNuevo);
 				
-				contratoService.saveContratoAlquiler(contratoAlquiler);
+				try {
+					contratoService.saveContratoAlquiler(contratoAlquiler);
+				} catch (LogicaNegocioException e) {
+				}
 			}
 			
 			if(today.isAfter(hasta) && contratoService.getEstadoOf(contratoAlquiler).equals(EstadoContrato.VIGENTE)) {
@@ -76,7 +80,10 @@ public class ActualizadorCuotas {
 				
 				contratoAlquiler.getEstados().add(estadoNuevo);
 				
-				contratoService.saveContratoAlquiler(contratoAlquiler);
+				try {
+					contratoService.saveContratoAlquiler(contratoAlquiler);
+				} catch (LogicaNegocioException e) {
+				}
 			}
 			
 		}

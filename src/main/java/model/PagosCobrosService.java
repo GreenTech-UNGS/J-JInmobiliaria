@@ -1,25 +1,18 @@
 package model;
 
-import java.util.List;
-
-import org.joda.time.DateTime;
-import org.joda.time.LocalTime;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
-import entities.ContratoVenta;
-import entities.CuotaAlquiler;
-import entities.EstadoCuota;
-import entities.HistoriaEstadoCuota;
-import entities.IngresoAlquiler;
-import entities.InteresPunitorioCuota;
-import entities.PagoPropietario;
+import dto.CobrosDeAlquileresDTO;
+import entities.*;
 import entities.PagoPropietario.EstadoPago;
-import entities.Precio;
-import persistencia.dao.iface.CuotaDao;
+import org.joda.time.DateTime;
+import org.joda.time.LocalTime;
+import org.joda.time.YearMonth;
 import persistencia.dao.iface.IngresoDao;
 import persistencia.dao.iface.PropietarioDao;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Singleton
 public class PagosCobrosService {
@@ -134,5 +127,53 @@ public class PagosCobrosService {
 		propietarioDao.savePago(p);
 		
 	}
-	
+
+	public List<CobrosDeAlquileresDTO> cobrosDeAlquilerReporteOf(YearMonth aniomes) {
+
+		List<CuotaAlquiler> listaCuotas =  cuotaService.getCuotasOf(aniomes, EstadoCuota.values());
+		List<CobrosDeAlquileresDTO> cobros = new ArrayList<CobrosDeAlquileresDTO>();
+		for (CuotaAlquiler cuota : listaCuotas) {
+
+			String identificadorContrato = cuota.getContrato().getIdentificador();
+			String nombreInquilino = cuota.getContrato().getCliente()
+										.getPersona().getApellido()
+									+ ", "
+									+ cuota.getContrato().getCliente()
+										.getPersona().getNombre();
+									//+ cuota.getContrato().getCliente().getPersona().getTelefonos()
+			String propiedad = cuota.getContrato().getPropiedad().getCalle()
+								+ " " +cuota.getContrato().getPropiedad().getAltura()
+								+ " Piso:" +cuota.getContrato().getPropiedad().getPiso()
+								+ " Dto.:" +cuota.getContrato().getPropiedad().getDpto();
+			String monto = cuota.getMonto().getMonto()
+							+ cuota.getMonto().getMoneda().toString();
+			String estado = cuotaService.getEstadoOf(cuota).toString();
+			InteresPunitorioCuota interes = cuotaService.getInteresOf(cuota);
+			String interesStr  = "";
+			Double montoTotal = 0d;
+			if(interes != null){
+				interesStr = interes.getMonto().getMonto()+ " "
+							+ interes.getMonto().getMoneda().toString();
+				montoTotal =  cuota.getMonto().getMonto()
+							+interes.getMonto().getMonto();
+			}
+
+			CobrosDeAlquileresDTO toAdd = new CobrosDeAlquileresDTO();
+			toAdd.setIdContrato(identificadorContrato);
+			toAdd.setInquilinoStr(nombreInquilino);
+			toAdd.setPropiedadStr(propiedad);
+			toAdd.setAnioMes(aniomes.toString());
+			toAdd.setMontoStr(monto);
+			toAdd.setEstadoStr(estado);
+			toAdd.setInteresStr(interesStr);
+			toAdd.setMontoTotalStr(montoTotal.toString());
+
+			cobros.add(toAdd);
+		}
+
+		return cobros;
+
+	}
+
+
 }

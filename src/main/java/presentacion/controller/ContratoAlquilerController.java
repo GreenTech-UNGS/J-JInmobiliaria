@@ -1,33 +1,26 @@
 package presentacion.controller;
 
-import java.time.Period;
-import java.util.Arrays;
-
-import javax.swing.JOptionPane;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
-import entities.AvisoNotificacion;
-import entities.Cliente;
-import entities.Contrato;
-import entities.ContratoAlquiler;
-import entities.Moneda;
-import entities.Propiedad;
-import entities.Reserva;
-import entities.TipoContratoAlquiler;
+import entities.*;
 import misc.Binder;
 import model.ContratoService;
+import model.LogicaNegocioException;
 import model.PropiedadService;
 import model.ReservaService;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.TipoContratoAlqComboBoxModel;
-import presentacion.validators.ContratoAlquilerValidator;
+import presentacion.validators.ContratoAlquilerFormValidator;
+import presentacion.validators.MessageShow;
 import presentacion.vista.ContratoAlquilerForm;
+
+import javax.swing.*;
+import java.time.Period;
+import java.util.Arrays;
 
 @Singleton
 public class ContratoAlquilerController {
-	
+
 	ContratoService contratoService;
 	ReservaService reservaService;
 	@Inject
@@ -37,18 +30,23 @@ public class ContratoAlquilerController {
 	
 	Binder<ContratoAlquiler> binder;
 	ContratoAlquiler currentContrato;
+	ContratoAlquilerFormValidator contratoAlquilerValidator;
+	ContratoAlquiler currentContrato;
 	ContratoAlquilerValidator contratoAlquilerValidator;
 	
 	TipoContratoAlqComboBoxModel tipoCombo;
 	MonedaComboBoxModel monedaCombo;
+	
+	MessageShow msgShw;
 	
 	@Inject
 	private ContratoAlquilerController(ContratoService contratoService,
 								ContratoAlquilerForm view,
 								ReservaService reservaService,
 								ElegirClienteController eligeCliente,
-								ContratoAlquilerValidator contratoAlquilerValidator,
-								ElegirPropiedadController elegirPropiedadController) {
+								ContratoAlquilerFormValidator contratoAlquilerValidator,
+								ElegirPropiedadController elegirPropiedadController,
+								MessageShow msgShw) {
 		
 		this.contratoService = contratoService;
 		this.view = view;
@@ -56,6 +54,7 @@ public class ContratoAlquilerController {
 		this.contratoAlquilerValidator = contratoAlquilerValidator;
 		this.reservaService = reservaService;
 		this.elegirPropiedadController = elegirPropiedadController;
+		this.msgShw = msgShw;
 		
 		tipoCombo = new TipoContratoAlqComboBoxModel();
 		monedaCombo = new MonedaComboBoxModel();
@@ -176,32 +175,32 @@ public class ContratoAlquilerController {
 	}
 	
 	private void guardaContrato() {
-		
-		binder.fillBean();
-		bindAvisos();
-		Reserva r = reservaService.getReservaOf(currentContrato.getPropiedad());
-		if( r != null) {
-			if(r.getReservador().getID() != currentContrato.getCliente().getPersona().getID()) {
-				JOptionPane.showMessageDialog(view, "La propiedad esta reservada. El cliente debe ser el reservador", "Error", JOptionPane.ERROR_MESSAGE);
-				return;
-			}
-		}
-		if(contratoAlquilerValidator.isValid(currentContrato)){
-
-			contratoService.saveContratoAlquiler(currentContrato);
+		if(contratoAlquilerValidator.isValid()){
+			binder.fillBean();
+			bindAvisos();
+			guardaCurrentContrato();			
 			closeView();
 		}
-		closeView();		
+		else{
+			msgShw.showErrorMessage(contratoAlquilerValidator.getErrorMessage(), "Error");
+		}
 	}
 	
 	public void renovarContrato() {
 		
 		binder.fillBean();
 		bindAvisos();
-		
-		contratoService.saveContratoAlquiler(currentContrato);
+		guardaCurrentContrato();
 		closeView();
 		
+	}
+	
+	private void guardaCurrentContrato(){
+		try {
+			contratoService.saveContratoAlquiler(currentContrato);
+		} catch (LogicaNegocioException e) {
+			msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
+		}
 	}
 	
 	private void fillCombos() {
@@ -231,7 +230,19 @@ public class ContratoAlquilerController {
 		binder.fillFields();
 		
 	}
-	
+
+	public void editarContrato(ContratoAlquiler c){
+		view.setTitle("Editar Contrato");
+//		view.getBtnGuardar().setVisible(false);
+//		view.getBtnCancelar().setVisible(false);
+//		view.getBtnGuardarCambios().setVisible(true);
+		fillCombos();
+
+		currentContrato = c;
+		binder.setObjective(currentContrato);
+		binder.fillFields();
+	}
+
 	public void showView() {
 		this.view.setVisible(true);
 	}

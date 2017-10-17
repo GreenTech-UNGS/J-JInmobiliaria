@@ -9,7 +9,8 @@ import entities.Telefono;
 import entities.Telefono.Tipo;
 import misc.Binder;
 import presentacion.combo.TipoTelefonoComboBoxModel;
-import presentacion.validators.TelefonoValidator;
+import presentacion.validators.MessageShow;
+import presentacion.validators.TelefonoFormValidator;
 import presentacion.vista.TelefonoForm;
 
 @Singleton
@@ -18,18 +19,21 @@ public class TelefonoController {
 	TelefonoForm view;
 	TipoTelefonoComboBoxModel comboModel;
 	Telefono currentTelefono;
+	MessageShow msgShw;
 	
 	Binder<Telefono> binder;
 	
 	@Inject
-	private TelefonoValidator telefonoValidator;
+	private TelefonoFormValidator telefonoValidator;
 	
 	@Inject
 	private TelefonoController(TelefonoForm view,
-                                  TipoTelefonoComboBoxModel comboModel) {
+                                  TipoTelefonoComboBoxModel comboModel,
+                                  MessageShow msgShw) {
 		
 		this.view = view;
 		this.comboModel = comboModel;
+		this.msgShw = msgShw;
 		currentTelefono = null;
 
 		fillCombos();
@@ -67,8 +71,13 @@ public class TelefonoController {
 	}
 	
 	private void aceptar() {
-		binder.fillBean();
-		view.setVisible(false);
+		if(telefonoValidator.isValid()){
+			binder.fillBean();
+			view.setVisible(false);
+		}
+		else{
+			msgShw.showErrorMessage(telefonoValidator.getErrorMessage(), "Error");
+		}
 	}
 	
 	private void cancelar() {
@@ -84,10 +93,6 @@ public class TelefonoController {
 		if (! otroSelected)
 			view.getTextDescr().setText("");
 		
-	}
-	
-	public TelefonoValidator getTelefonoValidator(){
-		return telefonoValidator;
 	}
 	
 }

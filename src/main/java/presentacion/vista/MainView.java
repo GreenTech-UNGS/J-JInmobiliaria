@@ -24,6 +24,7 @@ public class MainView {
     private JButton btnAgregarPropiedad;
     private JButton btnAgregarContratoAlq;
     private JButton btnAgregarContratoVen;
+    private JButton btnEditarContrato;
     private JButton btnPagos;
     private JButton btnAgregarCliente;
     private JButton btnAgregarPropietario;
@@ -113,8 +114,7 @@ public class MainView {
                 
                 JPanel panel_2 = new JPanel();
                 contratoAlquiler.add(panel_2);
-                
-                
+
                         btnAgregarContratoAlq = new JButton("Agregar contrato de aquiler");
                         panel_2.add(btnAgregarContratoAlq);
                         btnAgregarContratoAlq.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -128,6 +128,10 @@ public class MainView {
                             public void actionPerformed(ActionEvent e) {
                             }
                         });
+        JPanel panel_EditAlquiler = new JPanel();
+        contratoAlquiler.add(panel_EditAlquiler);
+        btnEditarContrato = new JButton("Editar contrato");
+        panel_EditAlquiler.add(btnEditarContrato);;
 
         JPanel panelInquilinos = new JPanel();
         panelContainer.add(panelInquilinos, "name_1084846370736461");
@@ -603,16 +607,27 @@ public class MainView {
 		return btnEditarCliente;
 	}
 
-
 	public void setBtnEditarCliente(JButton btnEditarCliente) {
 		this.btnEditarCliente = btnEditarCliente;
 	}
-	
+
 	public JButton getBtnEditarPropietario() {
 		return btnEditarPropietario;
 	}
 
-	public void setBtnEditarPropietario(JButton btnEditarPropietario) {
+
+    public JButton getBtnEditarContrato() {
+        return btnEditarContrato;
+    }
+
+    public void setBtnEditarContrato(JButton btnEditarContrato) {
+        this.btnEditarContrato = btnEditarCliente;
+    }
+
+
+
+
+    public void setBtnEditarPropietario(JButton btnEditarPropietario) {
 		this.btnEditarPropietario = btnEditarPropietario;
 	}
 
