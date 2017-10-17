@@ -37,6 +37,7 @@ public class MainView {
     private JButton btnDesreservar;
     private JButton btnRenovar;
     private JButton btnCancelarContrato;
+    private JButton btnInmobiliaria;
     
     private JCalendar jCalendar;
     private JTable tablaContratoVenta;
@@ -63,7 +64,7 @@ public class MainView {
         frmLpezLpez.setBackground(new Color(255, 255, 255));
         frmLpezLpez.setTitle("L\u00F3pez & L\u00F3pez");
         frmLpezLpez.setResizable(false);
-        frmLpezLpez.setBounds(100, 100, 1022, 546);
+        frmLpezLpez.setBounds(100, 100, 1047, 534);
         frmLpezLpez.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmLpezLpez.getContentPane().setLayout(null);
         frmLpezLpez.setLocationRelativeTo(null);
@@ -73,7 +74,7 @@ public class MainView {
 
         JPanel panelContainer = new JPanel();
         panelContainer.setBorder(null);
-        panelContainer.setBounds(93, 20, 668, 474);
+        panelContainer.setBounds(93, 11, 668, 483);
         frmLpezLpez.getContentPane().add(panelContainer);
         panelContainer.setLayout(new CardLayout(0, 0));
 
@@ -226,17 +227,17 @@ public class MainView {
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
         panelPrincipal.setBackground(new Color(47, 79, 79));
-        panelPrincipal.setBounds(0, 0, 1016, 517);
+        panelPrincipal.setBounds(0, 0, 1016, 505);
         frmLpezLpez.getContentPane().add(panelPrincipal);
         panelPrincipal.setLayout(null);
 
         JPanel panelNotif = new JPanel();
-        panelNotif.setBounds(769, 193, 237, 292);
+        panelNotif.setBounds(769, 193, 237, 301);
         panelPrincipal.add(panelNotif);
         panelNotif.setLayout(null);
 
         JPanel panelMenu = new JPanel();
-        panelMenu.setBounds(10, 5, 74, 480);
+        panelMenu.setBounds(10, 11, 74, 483);
         panelPrincipal.add(panelMenu);
         panelMenu.setMaximumSize(new Dimension(100, 100));
         panelMenu.setMinimumSize(new Dimension(100, 100));
@@ -269,7 +270,7 @@ public class MainView {
 
         btnPropiedades = new JButton("");
         btnPropiedades.setToolTipText("Propiedades");
-        Image imgProp = new ImageIcon(this.getClass().getResource("/propiedades.png")).getImage();
+        Image imgProp = new ImageIcon(this.getClass().getResource("/props1.png")).getImage();
         btnPropiedades.setIcon(new ImageIcon(imgProp));
         btnPropiedades.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -282,6 +283,7 @@ public class MainView {
                 panelContainer.repaint();
             }
         });
+        panelMenu.setLayout(new BoxLayout(panelMenu, BoxLayout.Y_AXIS));
         btnPropiedades.setPreferredSize(new Dimension(70, 70));
         btnPropiedades.setMaximumSize(new Dimension(100, 100));
         btnPropiedades.setMinimumSize(new Dimension(100, 100));
@@ -289,8 +291,8 @@ public class MainView {
         panelMenu.add(btnPropiedades);
 
         btnContratos = new JButton("");
-        btnContratos.setToolTipText("Contratos");
-        Image imgCon = new ImageIcon(this.getClass().getResource("/contratos.png")).getImage();
+        btnContratos.setToolTipText("contratos");
+        Image imgCon = new ImageIcon(this.getClass().getResource("/contratos1.png")).getImage();
         btnContratos.setIcon(new ImageIcon(imgCon));
 
         btnContratos.setPreferredSize(new Dimension(70, 70));
@@ -306,12 +308,15 @@ public class MainView {
                 panelContainer.repaint();
             }
         });
+        
+        Component glue_3 = Box.createGlue();
+        panelMenu.add(glue_3);
         panelMenu.add(btnContratos);
 
         btnInquilinos = new JButton("");
-        btnInquilinos.setToolTipText("Inquilinos");
+        btnInquilinos.setToolTipText("Clientes");
 
-        Image imgInq = new ImageIcon(this.getClass().getResource("/inquilinos.png")).getImage();
+        Image imgInq = new ImageIcon(this.getClass().getResource("/clientes1.png")).getImage();
         btnInquilinos.setIcon(new ImageIcon(imgInq));
 
         btnInquilinos.addActionListener(new ActionListener() {
@@ -325,6 +330,9 @@ public class MainView {
                 panelContainer.repaint();
             }
         });
+        
+        Component glue_4 = Box.createGlue();
+        panelMenu.add(glue_4);
         btnInquilinos.setPreferredSize(new Dimension(70, 70));
         btnInquilinos.setBackground(new Color(0, 51, 51));
         panelMenu.add(btnInquilinos);
@@ -332,7 +340,7 @@ public class MainView {
         this.btnPagos = new JButton("");
         btnPagos.setToolTipText("Pagos");
 
-        Image imgPago = new ImageIcon(this.getClass().getResource("/pagos.png")).getImage();
+        Image imgPago = new ImageIcon(this.getClass().getResource("/pagos1.png")).getImage();
         btnPagos.setIcon(new ImageIcon(imgPago));
 
         btnPagos.addActionListener(new ActionListener() {
@@ -346,6 +354,9 @@ public class MainView {
                 panelContainer.repaint();
             }
         });
+        
+        Component glue_5 = Box.createGlue();
+        panelMenu.add(glue_5);
         btnPagos.setPreferredSize(new Dimension(70, 70));
         btnPagos.setBackground(new Color(0, 51, 51));
         panelMenu.add(btnPagos);
@@ -363,11 +374,39 @@ public class MainView {
             }
         });
         btnReportes.setToolTipText("Reportes");
-        Image imgRep = new ImageIcon(this.getClass().getResource("/reportes.png")).getImage();
+        Image imgRep = new ImageIcon(this.getClass().getResource("/reportes1.png")).getImage();
+        
+        Component glue_6 = Box.createGlue();
+        panelMenu.add(glue_6);
         btnReportes.setIcon(new ImageIcon(imgRep));
         btnReportes.setPreferredSize(new Dimension(70, 70));
         btnReportes.setBackground(new Color(0, 51, 51));
         panelMenu.add(btnReportes);
+        
+        JPanel panelinmobiliaria = new JPanel();
+        panelContainer.add(panelinmobiliaria, "name_2539662807626028");
+        
+        btnInmobiliaria = new JButton("");
+        btnInmobiliaria.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		panelContainer.removeAll();
+                panelContainer.repaint();
+                panelContainer.revalidate();
+
+                panelContainer.add(panelinmobiliaria);
+                panelContainer.repaint();
+                panelContainer.repaint();
+        	}
+        });
+        btnInmobiliaria.setToolTipText("Inmobiliarias");
+        Image imgInm = new ImageIcon(this.getClass().getResource("/inmobiliarias1.png")).getImage();
+        
+        Component glue_7 = Box.createGlue();
+        panelMenu.add(glue_7);
+        btnInmobiliaria.setIcon(new ImageIcon(imgInm));
+        btnInmobiliaria.setPreferredSize(new Dimension(70, 70));
+        btnInmobiliaria.setBackground(new Color(0, 51, 51));
+        panelMenu.add(btnInmobiliaria);
         panelPropiedades.setLayout(new BoxLayout(panelPropiedades, BoxLayout.Y_AXIS));
         
         JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
@@ -469,6 +508,7 @@ public class MainView {
       tableVendidas = new JTable();
       scrollPaneVendidas.setColumnHeaderView(tableVendidas);
       scrollPaneVendidas.setViewportView(tableVendidas);
+      
     }
 
     public JTable getTablePropiedades() {
@@ -674,6 +714,14 @@ public class MainView {
 	public void setBtnCancelarContrato(JButton btnCancelarContrato) {
 		this.btnCancelarContrato = btnCancelarContrato;
 	}
-	
-	
+
+
+	public JButton getBtnInmobiliaria() {
+		return btnInmobiliaria;
+	}
+
+
+	public void setBtnInmobiliaria(JButton btnInmobiliaria) {
+		this.btnInmobiliaria = btnInmobiliaria;
+	}
 }

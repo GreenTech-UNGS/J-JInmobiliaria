@@ -38,6 +38,7 @@ public class MainViewController {
 	PropiedadController propiedadController;
 	ReservarPropiedadController reservaController;
 	RegistrarCobroController cobroController;
+	InmobiliariaController inmobiliariaController;
 
 	PropiedadService propiedadService;
 	ClienteService clienteService;
@@ -72,7 +73,8 @@ public class MainViewController {
 			PropiedadesTableModel tableEnAlquiler,
 			PropiedadesTableModel tableEnVenta,
 			PropiedadesTableModel tableAlquiladas,
-			PropiedadesTableModel tableVendidas){
+			PropiedadesTableModel tableVendidas,
+			InmobiliariaController inmobiliariaController){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
@@ -101,6 +103,7 @@ public class MainViewController {
 		this.tableEnVenta = tableEnVenta;
 		this.tableAlquiladas = tableAlquiladas;
 		this.tableVendidas = tableVendidas;
+		this.inmobiliariaController = inmobiliariaController;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());

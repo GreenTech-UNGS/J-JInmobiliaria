@@ -73,9 +73,7 @@ public class PropiedadController {
 		this.localidadCombo = new LocalidadComboBoxModel();
 
 		fillCombos();
-		
 		initBinder();
-		
 		
 		view.getBtnGuardar().addActionListener(e -> savePropiedad());
 		view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
@@ -139,7 +137,8 @@ public class PropiedadController {
 			currentPropietario = elegirPropController.getPropietario();
 			currentPropiedad.setPropietario(currentPropietario);
 			
-			view.getTfPropietario().setText(currentPropietario.getPersona().getTipoCred() + " " +currentPropietario.getPersona().getCredencial());
+			view.getTfPropietario().setText(currentPropietario.getPersona().getNombre() + " " +
+			currentPropietario.getPersona().getApellido());
 		}
 	}
 	
@@ -191,15 +190,12 @@ public class PropiedadController {
 			JOptionPane.showMessageDialog(view, "No se puede actualizar el mapa, faltan datos de ubcaci�n", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-			
-		
 		MapPoint punto = localizationService.getLocalizationOf(calle, altura, localidad);
 	
 		if(punto == null) {
 			JOptionPane.showMessageDialog(view, "No se encontro la ubicaci�n", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
-		}
-		
+		}	
 		Coordinate localizacion = new Coordinate(punto.getLat(), punto.getLon());
 		restartMapa();
 		
@@ -212,10 +208,9 @@ public class PropiedadController {
 	}
 	
 	private void actualizaMapaConCoord() {
+		
 		restartMapa();
-		
 		Coordinate localizacion = new Coordinate(currentPropiedad.getLat(), currentPropiedad.getLon());
-		
 		view.getMapa().addMapMarker(new MapMarkerDot(localizacion));
 		view.getMapa().setDisplayPosition(localizacion, 15);
 		
@@ -242,13 +237,13 @@ public class PropiedadController {
 		view.getBtnCancelar().setVisible(false);
 		view.getBtnGuardarCambios().setVisible(true);
 		fillCombos();
-
 		currentPropiedad = p;
 		binder.setObjective(currentPropiedad);
 		binder.fillFields();
 	}
 
 	private void actualizarPropietario() {
+		
 		binder.fillBean();
 		view.setVisible(false);
 	}
@@ -259,7 +254,6 @@ public class PropiedadController {
 			JOptionPane.showMessageDialog(view, "El precio debe ser un numero", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		
 		binder.fillBean();
 		if(propiedadValidator.isValid(currentPropiedad)){		
 			actualizaMapaThread();
@@ -269,15 +263,14 @@ public class PropiedadController {
 	}
 	
 	public void setModeNew() {
+		
 		view.setTitle("Agregar Propiedad");
-
 		currentPropiedad = propiedadService.getEmptyPropiedad();
 		binder.setObjective(currentPropiedad);
 		binder.fillFields();
 		
 		setEnabled(true);
 		restartMapa();
-		
 		view.getTfPropietario().setText("");
 		view.getTfInmobiliaria().setText("");
 		view.getLblReservada().setVisible(false);
@@ -292,13 +285,11 @@ public class PropiedadController {
 		setEnabled(false);
 		actualizaMapaConCoord();
 		binder.fillFields();
-		
 		view.getTfPropietario().setText(currentPropiedad.getPropietario().getPersona().getTipoCred().toString() + " " +
 										currentPropiedad.getPropietario().getPersona().getCredencial());
 		if(currentPropiedad.getInmobiliaria()!=null)
 			view.getTfInmobiliaria().setText(currentPropiedad.getInmobiliaria().getCUIT());
 		
-
 		if(propiedadService.getCurrentEstado(currentPropiedad).equals(EstadoProp.RESERVADA))
 			view.getLblReservada().setVisible(true);
 	}
@@ -326,14 +317,10 @@ public class PropiedadController {
 		view.getBtnVerHistorial().setVisible(!bool);	
 		view.getBtnActualizar().setVisible(bool);
 		view.getBotonLupitaInmobiliaria().setVisible(bool);
-		
 		view.getComboLocalidad().setEnabled(bool);
 		view.getComboMoneda().setEnabled(bool);
 		view.getComboProvincia().setEnabled(bool);
 		view.getComboTipoOfre().setEnabled(bool);
 		view.getBtnGuardarCambios().setVisible(false);
-			
-
 	}
-
 }
