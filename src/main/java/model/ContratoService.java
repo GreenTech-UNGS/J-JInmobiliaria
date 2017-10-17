@@ -8,7 +8,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
+import javax.swing.JOptionPane;
 
+import org.apache.commons.logging.LogConfigurationException;
 import org.joda.time.DateTime;
 import org.joda.time.YearMonth;
 
@@ -34,6 +36,7 @@ import entities.PagoPropietario;
 import entities.Persona;
 import entities.Precio;
 import entities.Propiedad;
+import entities.Reserva;
 import entities.TipoContratoAlquiler;
 import persistencia.dao.iface.ContratoDao;
 import persistencia.dao.iface.CuotaDao;
@@ -42,6 +45,8 @@ import persistencia.dao.iface.PropiedadDao;
 @Singleton
 public class ContratoService {
 
+	ReservaService reservaService;
+	
 	ContratoDao contratoDao;
 	PropiedadDao propiedadDao;
 	CuotaDao cuotaDao;
@@ -49,11 +54,13 @@ public class ContratoService {
 	@Inject
 	private ContratoService(ContratoDao contratoDao,
 			PropiedadDao propiedadDao,
-			CuotaDao cuotaDao) {
+			CuotaDao cuotaDao,
+			ReservaService reservaService) {
 		
 		this.contratoDao = contratoDao;
 		this.propiedadDao = propiedadDao;
 		this.cuotaDao = cuotaDao;
+		this.reservaService = reservaService;
 		
 	}
 	
@@ -62,8 +69,11 @@ public class ContratoService {
 		return contratoDao.existeContratoConIdentificador(t.getIdentificador());		
 	}
 	
-	public void saveContratoAlquiler(ContratoAlquiler c) {
+	public void saveContratoAlquiler(ContratoAlquiler c) throws LogicaNegocioException{
 
+		if(!isPropiedadReservadaCorrectamente(c))
+			throw new LogConfigurationException("La propiedad esta reservada. El cliente debe ser el reservador");
+			
 		contratoDao.save(c);
 		
 		HistoriaEstadoProp estado = new HistoriaEstadoProp();
@@ -76,6 +86,16 @@ public class ContratoService {
 		creaCuotas(c);
 		
 		propiedadDao.save(propiedad);
+	}
+	
+	private boolean isPropiedadReservadaCorrectamente(ContratoAlquiler c){
+		Reserva r = reservaService.getReservaOf(c.getPropiedad());
+		if( r != null) {
+			if(r.getReservador().getID() != c.getCliente().getPersona().getID()) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	

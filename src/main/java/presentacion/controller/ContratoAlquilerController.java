@@ -18,11 +18,13 @@ import entities.Reserva;
 import entities.TipoContratoAlquiler;
 import misc.Binder;
 import model.ContratoService;
+import model.LogicaNegocioException;
 import model.PropiedadService;
 import model.ReservaService;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.TipoContratoAlqComboBoxModel;
-import presentacion.validators.ContratoAlquilerValidator;
+import presentacion.validators.ContratoAlquilerFormValidator;
+import presentacion.validators.MessageShow;
 import presentacion.vista.ContratoAlquilerForm;
 
 @Singleton
@@ -37,18 +39,21 @@ public class ContratoAlquilerController {
 	
 	Binder<ContratoAlquiler> binder;
 	ContratoAlquiler currentContrato;
-	ContratoAlquilerValidator contratoAlquilerValidator;
+	ContratoAlquilerFormValidator contratoAlquilerValidator;
 	
 	TipoContratoAlqComboBoxModel tipoCombo;
 	MonedaComboBoxModel monedaCombo;
+	
+	MessageShow msgShw;
 	
 	@Inject
 	private ContratoAlquilerController(ContratoService contratoService,
 								ContratoAlquilerForm view,
 								ReservaService reservaService,
 								ElegirClienteController eligeCliente,
-								ContratoAlquilerValidator contratoAlquilerValidator,
-								ElegirPropiedadController elegirPropiedadController) {
+								ContratoAlquilerFormValidator contratoAlquilerValidator,
+								ElegirPropiedadController elegirPropiedadController,
+								MessageShow msgShw) {
 		
 		this.contratoService = contratoService;
 		this.view = view;
@@ -56,6 +61,7 @@ public class ContratoAlquilerController {
 		this.contratoAlquilerValidator = contratoAlquilerValidator;
 		this.reservaService = reservaService;
 		this.elegirPropiedadController = elegirPropiedadController;
+		this.msgShw = msgShw;
 		
 		tipoCombo = new TipoContratoAlqComboBoxModel();
 		monedaCombo = new MonedaComboBoxModel();
@@ -177,31 +183,34 @@ public class ContratoAlquilerController {
 	
 	private void guardaContrato() {
 		
-		binder.fillBean();
-		bindAvisos();
-		Reserva r = reservaService.getReservaOf(currentContrato.getPropiedad());
-		if( r != null) {
-			if(r.getReservador().getID() != currentContrato.getCliente().getPersona().getID()) {
-				JOptionPane.showMessageDialog(view, "La propiedad esta reservada. El cliente debe ser el reservador", "Error", JOptionPane.ERROR_MESSAGE);
-				return;
-			}
-		}
-		if(contratoAlquilerValidator.isValid(currentContrato)){
-
-			contratoService.saveContratoAlquiler(currentContrato);
+		if(contratoAlquilerValidator.isValid()){
+			binder.fillBean();
+			bindAvisos();
+			guardaCurrentContrato();			
 			closeView();
 		}
-		closeView();		
+		else{
+			msgShw.showErrorMessage(contratoAlquilerValidator.getErrorMessage(), "Error");
+		}
+		
+	
 	}
 	
 	public void renovarContrato() {
 		
 		binder.fillBean();
 		bindAvisos();
-		
-		contratoService.saveContratoAlquiler(currentContrato);
+		guardaCurrentContrato();
 		closeView();
 		
+	}
+	
+	private void guardaCurrentContrato(){
+		try {
+			contratoService.saveContratoAlquiler(currentContrato);
+		} catch (LogicaNegocioException e) {
+			msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
+		}
 	}
 	
 	private void fillCombos() {

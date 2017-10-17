@@ -131,10 +131,10 @@ public class ClienteController {
 		
 		Telefono nuevoTel = telefonoController.getTelefono();
 				
-		/*if(telefonoController.getTelefonoValidator().isValid(nuevoTel)) {
+		if(nuevoTel != null) {
 			telTable.addRow(nuevoTel);
 			currentCliente.getPersona().insertTelefono(nuevoTel);
-		}*/
+		}
 	}
 	
 	private void eligePersona() {
@@ -173,14 +173,14 @@ public class ClienteController {
 		}
 	}
 	public void editarCliente(Cliente c){
-		fillTables();
 		view.setTitle("Editar cliente");
 		view.getBtnGuardar().setVisible(false);
 		view.getBtnCancelar().setVisible(false);
 		view.getBtnGuardarCambios().setVisible(true);
-		fillCombos();
 		
 		currentCliente = c;
+		fillCombos();
+		fillTables();
 		clienteMapper.fillFields(c);
 	}
 
