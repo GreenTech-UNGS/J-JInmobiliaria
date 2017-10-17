@@ -15,7 +15,8 @@ import presentacion.combo.LocalidadComboBoxModel;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.ProvinciaComboBoxModel;
 import presentacion.combo.TipoOfrecimientoComboBoxModel;
-import presentacion.validators.PropiedadValidator;
+import presentacion.validators.MessageShow;
+import presentacion.validators.PropiedadFormValidator;
 import presentacion.vista.PropiedadForm;
 
 import javax.swing.*;
@@ -29,9 +30,8 @@ public class PropiedadController {
 	private MonedaComboBoxModel monedaCombo;
 	private TipoOfrecimientoComboBoxModel tipoOfrCombo;
 	private LocalidadComboBoxModel localidadCombo;
-	private PropiedadValidator propiedadValidator;
+	private PropiedadFormValidator propiedadValidator;
 	private PropiedadService propiedadService;
-//	private PropietarioService propietarioService;
 	private LocalidadService localidadService;
 	private ElegirPropietarioController elegirPropController;
 	private ElegirInmobiliariaController elegirInmobController;
@@ -44,29 +44,30 @@ public class PropiedadController {
 	Propietario currentPropietario;
 	Inmobiliaria currentInmobiliaria;
 	Binder<Propiedad> binder;
-	Binder<Propiedad> binderP;
+	
+	MessageShow mshShw;
 	
 	@Inject
 	private PropiedadController(PropiedadForm view,
-									PropiedadValidator propiedadValidator,
+									PropiedadFormValidator propiedadValidator,
 									PropiedadService propiedadService,
-									PropietarioService propietarioService,
 									LocalidadService localidadService,
 									ElegirPropietarioController elegirPropController,
 									ElegirInmobiliariaController elegirInmobController,
 									HistorialPropiedadController historialPropController,
-									LocalizationService localizationService){
+									LocalizationService localizationService,
+									MessageShow mshShw){
 		
 		this.view = view;
 		this.propiedadValidator = propiedadValidator;
 		this.propiedadService = propiedadService;
 		this.localidadService = localidadService;
-//		this.propietarioService = propietarioService;
 		this.binder = new Binder<>();
 		this.elegirPropController = elegirPropController;
 		this.elegirInmobController = elegirInmobController;
 		this.historialPropController = historialPropController;
 		this.localizationService = localizationService;
+		this.mshShw = mshShw;
 		
 		this.provCombo = new ProvinciaComboBoxModel();
 		this.monedaCombo = new MonedaComboBoxModel();
@@ -251,17 +252,15 @@ public class PropiedadController {
 	}
 
 	private void savePropiedad() {
-		
-		if(!view.getTfPrecio().getText().matches("([0-9]*[\\.])?[0-9]+")) {
-			JOptionPane.showMessageDialog(view, "El precio debe ser un numero", "Error", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
-		
-		binder.fillBean();
-		if(propiedadValidator.isValid(currentPropiedad)){		
+
+		if(propiedadValidator.isValid()){
+			binder.fillBean();
 			actualizaMapaThread();
 			propiedadService.savePropiedad(currentPropiedad);
 			view.setVisible(false);
+		}
+		else{
+			mshShw.showErrorMessage(propiedadValidator.getErrorMessage(), "Error");
 		}
 	}
 	

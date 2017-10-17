@@ -8,10 +8,12 @@ import entities.Persona.TipoCredencial;
 import entities.Telefono;
 import misc.Binder;
 import model.PropietarioService;
+import model.LogicaNegocioException;
 import model.PersonaService;
 import presentacion.combo.TipoCredencialComboBoxModel;
 import presentacion.table.TelefonoTableModel;
-import presentacion.validators.PropietarioValidator;
+import presentacion.validators.MessageShow;
+import presentacion.validators.PropietarioFormValidator;
 import presentacion.vista.PropietarioForm;
 
 public class PropietarioController {
@@ -21,7 +23,7 @@ public class PropietarioController {
 	private PropietarioService propietarioService;
 	
 	@Inject
-	private PropietarioValidator propietarioValidator;
+	private PropietarioFormValidator propietarioValidator;
 	
 	@Inject
 	
@@ -33,12 +35,15 @@ public class PropietarioController {
 	private Propietario currentPropietario;
 	private Binder<Propietario> binder;
 	
+	private MessageShow msgShw;
+	
 	@Inject
 	private PropietarioController(PropietarioForm view,
 								 PropietarioService propietarioService,
 								 PersonaService personaService,
 								 TelefonoController telefonoController,
-								 ElegirPersonaController elegirPersona){
+								 ElegirPersonaController elegirPersona,
+								 MessageShow msgShw){
 		
 		this.view = view;
 		this.propietarioService = propietarioService;
@@ -48,6 +53,8 @@ public class PropietarioController {
 		this.tipoCredencialModel = new TipoCredencialComboBoxModel();
 		this.telTable = new TelefonoTableModel();
 		this.binder = new Binder<Propietario>();
+		
+		this.msgShw = msgShw;
 		
 		view.getBtnGuardar().addActionListener(e -> saveCurrentPropietario());
 		view.getBtnCancelar().addActionListener(e -> closeView());
@@ -106,11 +113,18 @@ public class PropietarioController {
 	}
 	
 	private void saveCurrentPropietario() {
-		binder.fillBean();
 
-		if(propietarioValidator.isValid(currentPropietario)) {
-			propietarioService.savePropietario(currentPropietario);
+		if(propietarioValidator.isValid()) {
+			binder.fillBean();
+			try {
+				propietarioService.savePropietario(currentPropietario);
+			} catch (LogicaNegocioException e) {
+				msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
+			}
 			view.setVisible(false);
+		}
+		else{
+			msgShw.showErrorMessage(propietarioValidator.getErrorMessage(), "Error");
 		}
 	}
 	
@@ -125,7 +139,7 @@ public class PropietarioController {
 		
 		Telefono nuevoTel = telefonoController.getTelefono();
 				
-		if(telefonoController.getTelefonoValidator().isValid(nuevoTel)) {
+		if(nuevoTel != null) {
 			telTable.addRow(nuevoTel);
 			currentPropietario.getPersona().insertTelefono(nuevoTel);
 		}
