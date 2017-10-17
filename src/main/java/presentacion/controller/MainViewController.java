@@ -348,6 +348,7 @@ public class MainViewController {
 	private void agregarInmobiliaria() {
 		this.inmobiliariaController.setModeNew();
 		this.inmobiliariaController.showView();
+		fillTableInmobiliarias();
 	}
 	
 	private void editarCliente() {

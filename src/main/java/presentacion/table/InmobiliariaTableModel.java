@@ -2,6 +2,7 @@ package presentacion.table;
 
 import entities.Inmobiliaria;
 
+@SuppressWarnings("serial")
 public class InmobiliariaTableModel extends BaseTableModel<Inmobiliaria>{
 
 	
@@ -17,8 +18,9 @@ public class InmobiliariaTableModel extends BaseTableModel<Inmobiliaria>{
 		String direccion = t.getCalle() + " " +
 				t.getAltura() + " " +
 				(t.getPiso()==null? "":("Piso " + t.getPiso()+" "))+
-				(t.getDepto()==null? "":("Dpto " + t.getDepto()+" "))+
-				t.getLocalidad().getNombre()+ ", Pcia.";
+				(t.getDepto()==null? "":("Dpto " + t.getDepto()+" "))
+//				+t.getLocalidad().getNombre()
+				;
 		
 		Object[] toRet = {t.getCUIT(),
 						t.getNombre(),

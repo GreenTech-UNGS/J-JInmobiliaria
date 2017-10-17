@@ -6,7 +6,10 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import com.google.inject.Inject;
-import javax.swing.BoxLayout;
+
+import entities.Localidad;
+import entities.Provincia;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -14,15 +17,25 @@ import javax.swing.JComboBox;
 import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class InmobiliariaForm extends JDialog {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JTextField tfEmail;
+	private JTextField tfCuit;
+	private JTextField tfNombre;
+	private JTextField tfCalle;
+	private JTextField tfAltura;
+	private JTextField tfPiso;
+	private JTextField tfDepto;
+	private JComboBox<String> cbLocalidad;
+	private JComboBox<String> cbProvincia;
+	private JButton btnGuardar;
+	private JButton btnCancelar;
 	
 	@Inject
 	private InmobiliariaForm(){
@@ -32,22 +45,24 @@ public class InmobiliariaForm extends JDialog {
 		setTitle("Agregar Inmobiliaria");	
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setModal(true);
-		setSize(new Dimension(470, 470));
+		setSize(new Dimension(470, 519));
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNombre.setBounds(47, 72, 46, 14);
 		getContentPane().add(lblNombre);
 		
 		JLabel lblCuit = new JLabel("CUIT:");
+		lblCuit.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblCuit.setBounds(47, 97, 46, 14);
 		getContentPane().add(lblCuit);
 		
 		JLabel lblLocalidad = new JLabel("Localidad:");
 		lblLocalidad.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblLocalidad.setBounds(47, 122, 57, 14);
+		lblLocalidad.setBounds(47, 178, 57, 14);
 		getContentPane().add(lblLocalidad);
 		
 		JLabel lblCalle = new JLabel("Calle:");
@@ -71,47 +86,48 @@ public class InmobiliariaForm extends JDialog {
 		getContentPane().add(lblNewLabel);
 		
 		JLabel lblEmail = new JLabel("Email:");
-		lblEmail.setBounds(47, 147, 46, 14);
+		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblEmail.setBounds(47, 122, 46, 14);
 		getContentPane().add(lblEmail);
 		
-		textField = new JTextField();
-		textField.setBounds(103, 144, 123, 20);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		tfEmail = new JTextField();
+		tfEmail.setBounds(103, 119, 123, 20);
+		getContentPane().add(tfEmail);
+		tfEmail.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(103, 94, 123, 20);
-		getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		tfCuit = new JTextField();
+		tfCuit.setBounds(103, 94, 123, 20);
+		getContentPane().add(tfCuit);
+		tfCuit.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(103, 69, 123, 20);
-		getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		tfNombre = new JTextField();
+		tfNombre.setBounds(103, 69, 123, 20);
+		getContentPane().add(tfNombre);
+		tfNombre.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(296, 69, 123, 20);
-		getContentPane().add(textField_3);
-		textField_3.setColumns(10);
+		tfCalle = new JTextField();
+		tfCalle.setBounds(296, 69, 123, 20);
+		getContentPane().add(tfCalle);
+		tfCalle.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(296, 94, 123, 20);
-		getContentPane().add(textField_4);
-		textField_4.setColumns(10);
+		tfAltura = new JTextField();
+		tfAltura.setBounds(296, 94, 123, 20);
+		getContentPane().add(tfAltura);
+		tfAltura.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(296, 119, 123, 20);
-		getContentPane().add(textField_5);
-		textField_5.setColumns(10);
+		tfPiso = new JTextField();
+		tfPiso.setBounds(296, 119, 123, 20);
+		getContentPane().add(tfPiso);
+		tfPiso.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(296, 144, 123, 20);
-		getContentPane().add(textField_6);
-		textField_6.setColumns(10);
+		tfDepto = new JTextField();
+		tfDepto.setBounds(296, 144, 123, 20);
+		getContentPane().add(tfDepto);
+		tfDepto.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(103, 119, 123, 20);
-		getContentPane().add(comboBox);
+		cbLocalidad = new JComboBox<String>();
+		cbLocalidad.setBounds(103, 175, 123, 20);
+		getContentPane().add(cbLocalidad);
 		
 		JLabel lblDatosGenerales = new JLabel("Datos generales");
 		lblDatosGenerales.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -124,46 +140,163 @@ public class InmobiliariaForm extends JDialog {
 		
 		JLabel lblTelefonos = new JLabel("Telefonos");
 		lblTelefonos.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblTelefonos.setBounds(47, 187, 78, 14);
+		lblTelefonos.setBounds(47, 220, 78, 14);
 		getContentPane().add(lblTelefonos);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(47, 212, 372, 2);
+		separator_1.setBounds(47, 245, 372, 2);
 		getContentPane().add(separator_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(47, 225, 297, 56);
+		scrollPane.setBounds(47, 258, 291, 56);
 		getContentPane().add(scrollPane);
 		
-		JButton btnAgregar = new JButton("Agregar");
-		btnAgregar.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnAgregar.setBounds(348, 225, 71, 23);
-		getContentPane().add(btnAgregar);
+		JButton btnAgregarTel = new JButton("Agregar");
+		btnAgregarTel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnAgregarTel.setBounds(341, 258, 78, 23);
+		getContentPane().add(btnAgregarTel);
 		
-		JButton btnBorrar = new JButton("Borrar");
-		btnBorrar.setBounds(348, 259, 71, 23);
-		getContentPane().add(btnBorrar);
+		JButton btnBorrarTel = new JButton("Borrar");
+		btnBorrarTel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnBorrarTel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnBorrarTel.setBounds(341, 292, 78, 23);
+		getContentPane().add(btnBorrarTel);
 		
 		JLabel lblContactos = new JLabel("Contactos");
 		lblContactos.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblContactos.setBounds(47, 306, 78, 14);
+		lblContactos.setBounds(47, 331, 78, 14);
 		getContentPane().add(lblContactos);
 		
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(47, 331, 372, 2);
+		separator_2.setBounds(47, 356, 372, 2);
 		getContentPane().add(separator_2);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(47, 344, 297, 56);
+		scrollPane_1.setBounds(47, 369, 291, 56);
 		getContentPane().add(scrollPane_1);
 		
-		JButton button = new JButton("Agregar");
-		button.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		button.setBounds(348, 344, 71, 23);
-		getContentPane().add(button);
+		JButton btnAgregarCont = new JButton("Agregar");
+		btnAgregarCont.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnAgregarCont.setBounds(341, 368, 78, 23);
+		getContentPane().add(btnAgregarCont);
 		
-		JButton button_1 = new JButton("Borrar");
-		button_1.setBounds(348, 378, 71, 23);
-		getContentPane().add(button_1);
+		JButton btnBorrarCont = new JButton("Borrar");
+		btnBorrarCont.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnBorrarCont.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnBorrarCont.setBounds(341, 402, 78, 23);
+		getContentPane().add(btnBorrarCont);
+		
+		cbProvincia = new JComboBox<String>();
+		cbProvincia.setBounds(103, 144, 123, 20);
+		getContentPane().add(cbProvincia);
+		
+		btnGuardar = new JButton("Guardar");
+		btnGuardar.setBounds(120, 444, 105, 35);
+		getContentPane().add(btnGuardar);
+		
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(236, 444, 102, 35);
+		getContentPane().add(btnCancelar);
+		
+		JLabel lblProvincia = new JLabel("Provincia:");
+		lblProvincia.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblProvincia.setBounds(47, 147, 57, 14);
+		getContentPane().add(lblProvincia);
 	}
+
+	public JTextField getTfEmail() {
+		return tfEmail;
+	}
+
+	public void setTfEmail(JTextField tfEmail) {
+		this.tfEmail = tfEmail;
+	}
+
+	public JTextField getTfCuit() {
+		return tfCuit;
+	}
+
+	public void setTfCuit(JTextField tfCuit) {
+		this.tfCuit = tfCuit;
+	}
+
+	public JTextField getTfNombre() {
+		return tfNombre;
+	}
+
+	public void setTfNombre(JTextField tfNombre) {
+		this.tfNombre = tfNombre;
+	}
+
+	public JTextField getTfCalle() {
+		return tfCalle;
+	}
+
+	public void setTfCalle(JTextField tfCalle) {
+		this.tfCalle = tfCalle;
+	}
+
+	public JTextField getTfAltura() {
+		return tfAltura;
+	}
+
+	public void setTfAltura(JTextField tfAltura) {
+		this.tfAltura = tfAltura;
+	}
+
+	public JTextField getTfPiso() {
+		return tfPiso;
+	}
+
+	public void setTfPiso(JTextField tfPiso) {
+		this.tfPiso = tfPiso;
+	}
+
+	public JTextField getTfDepto() {
+		return tfDepto;
+	}
+
+	public void setTfDepto(JTextField tfDepto) {
+		this.tfDepto = tfDepto;
+	}
+
+	public JComboBox<String> getCbLocalidad() {
+		return cbLocalidad;
+	}
+
+	public void setCbLocalidad(JComboBox<String> cbLocalidad) {
+		this.cbLocalidad = cbLocalidad;
+	}
+
+	public JComboBox<String> getCbProvincia() {
+		return cbProvincia;
+	}
+
+	public void setCbProvincia(JComboBox<String> cbProvincia) {
+		this.cbProvincia = cbProvincia;
+	}
+
+	public JButton getBtnGuardar() {
+		return btnGuardar;
+	}
+
+	public void setBtnGuardar(JButton btnGuardar) {
+		this.btnGuardar = btnGuardar;
+	}
+
+	public JButton getBtnCancelar() {
+		return btnCancelar;
+	}
+
+	public void setBtnCancelar(JButton btnCancelar) {
+		this.btnCancelar = btnCancelar;
+	}
+	
+	
 }

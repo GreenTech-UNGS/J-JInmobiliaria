@@ -32,12 +32,14 @@ import presentacion.controller.PropiedadController;
 import presentacion.controller.PropietarioController;
 import presentacion.controller.ElegirInmobiliariaController;
 import presentacion.controller.ElegirPropietarioController;
+import presentacion.controller.InmobiliariaController;
 import presentacion.controller.ClienteController;
 import presentacion.vista.ContratoAlquilerForm;
 import presentacion.vista.ClienteForm;
 import presentacion.vista.PropiedadForm;
 import presentacion.vista.PropietarioForm;
 import presentacion.vista.ElegirPropietarioView;
+import presentacion.vista.InmobiliariaForm;
 import presentacion.vista.MainView;
 
 public class ProdModule implements Module{
@@ -50,6 +52,7 @@ public class ProdModule implements Module{
 		binder.bind(PropietarioForm.class).in(Singleton.class);
 		binder.bind(ContratoAlquilerForm.class).in(Singleton.class);
 		binder.bind(PropiedadForm.class).in(Singleton.class);
+		binder.bind(InmobiliariaForm.class).in(Singleton.class);
 		binder.bind(MainView.class).in(Singleton.class);
 		binder.bind(MainView.class).in(Singleton.class);
 		binder.bind(PropiedadController.class).in(Singleton.class);
@@ -57,6 +60,7 @@ public class ProdModule implements Module{
 		binder.bind(ContratoVentaController.class).in(Singleton.class);
 		binder.bind(ClienteController.class).in(Singleton.class);
 		binder.bind(PropietarioController.class).in(Singleton.class);
+		binder.bind(InmobiliariaController.class).in(Singleton.class);
 		binder.bind(PagosCobrosService.class).in(Singleton.class);
 		
 		binder.bind(Conexion.class).in(Singleton.class);

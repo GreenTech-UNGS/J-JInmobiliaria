@@ -34,6 +34,11 @@ public class InmobiliariaService {
 		return toRet;
 	}
 
+	public void saveInmobiliaria(Inmobiliaria inmobiliaria) {
+		inmobiliariaDao.save(inmobiliaria);
+		
+	}
+
 
 }
 
