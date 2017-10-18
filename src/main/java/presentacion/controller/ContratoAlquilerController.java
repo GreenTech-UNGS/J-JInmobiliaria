@@ -3,19 +3,16 @@ package presentacion.controller;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import entities.*;
-import misc.Binder;
 import model.ContratoService;
 import model.LogicaNegocioException;
-import model.PropiedadService;
 import model.ReservaService;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.TipoContratoAlqComboBoxModel;
+import presentacion.mappers.ContratoAlquilerFormMapper;
 import presentacion.validators.ContratoAlquilerFormValidator;
 import presentacion.validators.MessageShow;
 import presentacion.vista.ContratoAlquilerForm;
 
-import javax.swing.*;
-import java.time.Period;
 import java.util.Arrays;
 
 @Singleton
@@ -23,12 +20,11 @@ public class ContratoAlquilerController {
 
 	ContratoService contratoService;
 	ReservaService reservaService;
-	@Inject
 	ContratoAlquilerForm view;
 	ElegirClienteController eligeCliente;
 	ElegirPropiedadController elegirPropiedadController;
+	ContratoAlquilerFormMapper mapper;
 	
-	Binder<ContratoAlquiler> binder;
 	ContratoAlquiler currentContrato;
 	ContratoAlquilerFormValidator contratoAlquilerValidator;
 	
@@ -44,6 +40,7 @@ public class ContratoAlquilerController {
 								ElegirClienteController eligeCliente,
 								ContratoAlquilerFormValidator contratoAlquilerValidator,
 								ElegirPropiedadController elegirPropiedadController,
+								ContratoAlquilerFormMapper mapper,
 								MessageShow msgShw) {
 		
 		this.contratoService = contratoService;
@@ -52,13 +49,11 @@ public class ContratoAlquilerController {
 		this.contratoAlquilerValidator = contratoAlquilerValidator;
 		this.reservaService = reservaService;
 		this.elegirPropiedadController = elegirPropiedadController;
+		this.mapper = mapper;
 		this.msgShw = msgShw;
 		
 		tipoCombo = new TipoContratoAlqComboBoxModel();
 		monedaCombo = new MonedaComboBoxModel();
-		
-		this.binder = new Binder<>();
-		initBinder();
 		
 		view.getBtnGuardarContrato().addActionListener(e -> guardaContrato());
 		view.getBtnLupaCliente().addActionListener(e -> seleccionaCliente());
@@ -68,79 +63,6 @@ public class ContratoAlquilerController {
 		
 
 		fillCombos();
-	}
-
-	private void initBinder() {
-		
-		binder.bind("identificador", view.getTextIdContrato());
-		
-		binder.bind("garantia",
-				view.getTextGarantia()::getText,
-				t -> view.getTextGarantia().setText((String)t));
-		
-		binder.bind("tipoContratoAlquiler",
-				tipoCombo::getSelected,
-				t -> tipoCombo.setSelected((TipoContratoAlquiler)t));
-		
-		binder.bind("cantMeses",
-				view.getSpinnerDuracionContrato()::getValue,
-				i -> view.getSpinnerDuracionContrato().setValue(i));
-		
-		binder.bind("gastosAdmin",
-				view.getSpinnerGastosAdmin()::getValue,
-				f -> view.getSpinnerGastosAdmin().setValue(f));
-		
-		binder.bind("cuotaMensual.monto",
-				() -> Float.parseFloat(view.getTextPrecio().getText()),
-				f -> view.getTextPrecio().setText(f.toString()));
-		
-		binder.bind("cuotaMensual.moneda",
-				monedaCombo::getSelected,
-				m -> monedaCombo.setSelected((Moneda)m));
-		
-		binder.bind("datoActualizacion.porcentaje",
-				view.getSpinnerPorcenajeActualiza()::getValue,
-				f -> view.getSpinnerPorcenajeActualiza().setValue(f));
-		
-		binder.bind("datoActualizacion.actualizacionMeses",
-				view.getSpinnerActualizaContrato()::getValue,
-				f -> view.getSpinnerActualizaContrato().setValue(f));
-		
-		binder.bind("datoActualizacion.isAcumulativo",
-				view.getChckbxAcumulativoActualiza()::isSelected,
-				b -> view.getChckbxAcumulativoActualiza().setSelected((Boolean)b));
-		
-		binder.bind("datoPunitorio.porcentaje",
-				view.getSpinnerPorcentajePunitorio()::getValue,
-				f -> view.getSpinnerPorcentajePunitorio().setValue(f));
-		
-		binder.bind("datoPunitorio.diasDePago",
-				view.getSpinnerTiempoPago()::getValue,
-				f -> view.getSpinnerTiempoPago().setValue(f));
-		
-		binder.bind("datoPunitorio.isAcumulativo",
-				view.getChkbxAcumulativoPunitorio()::isSelected,
-				b -> view.getChkbxAcumulativoPunitorio().setSelected((Boolean)b));
-		
-	}
-	
-	private void bindAvisos() {
-		
-		AvisoNotificacion intimacion = new AvisoNotificacion();
-		AvisoNotificacion vencimiento = new AvisoNotificacion();
-		
-		intimacion.setHabilitado(view.getChckbxIntimacion().isSelected());
-		vencimiento.setHabilitado(view.getChckbxIntimacion().isSelected());
-		
-		String intimacionDiasStr = view.getSpinnerIntimacionEmail().getValue().toString();
-		String vencimientoMesesStr = view.getSpinnerVencimientoEmail().getValue().toString();
-		
-		intimacion.setPeriodo(Period.ofDays(Integer.parseInt(intimacionDiasStr)));
-		vencimiento.setPeriodo(Period.ofMonths(Integer.parseInt(vencimientoMesesStr)));
-		
-		currentContrato.setAvisoIntimacion(intimacion);
-		currentContrato.setAvisoProxVencer(vencimiento);
-		
 	}
 	
 	private void seleccionaCliente() {
@@ -174,8 +96,7 @@ public class ContratoAlquilerController {
 	
 	private void guardaContrato() {
 		if(contratoAlquilerValidator.isValid()){
-			binder.fillBean();
-			bindAvisos();
+			mapper.fillBean(currentContrato);
 			guardaCurrentContrato();			
 			closeView();
 		}
@@ -186,8 +107,7 @@ public class ContratoAlquilerController {
 	
 	public void renovarContrato() {
 		
-		binder.fillBean();
-		bindAvisos();
+		mapper.fillBean(currentContrato);
 		guardaCurrentContrato();
 		closeView();
 		
@@ -224,8 +144,7 @@ public class ContratoAlquilerController {
 		view.getBtnRenovarContrato().setVisible(false);
 		
 		currentContrato = contratoService.getNewContratoAlquiler();
-		binder.setObjective(currentContrato);
-		binder.fillFields();
+		mapper.fillFields(currentContrato);
 		
 	}
 
@@ -237,8 +156,7 @@ public class ContratoAlquilerController {
 		fillCombos();
 
 		currentContrato = c;
-		binder.setObjective(currentContrato);
-		binder.fillFields();
+		mapper.fillFields(currentContrato);
 	}
 
 	public void showView() {
@@ -261,9 +179,7 @@ public class ContratoAlquilerController {
 		
 		currentContrato = contratoService.getActualizacionOf(c);
 		
-		binder.setObjective(currentContrato);
-		
-		binder.fillFields();
+		mapper.fillFields(currentContrato);
 
 		showView();
 		
