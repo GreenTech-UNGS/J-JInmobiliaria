@@ -111,20 +111,6 @@ public class ClienteController {
 		}
 	}
 	
-	private boolean fieldsOk(){
-		//Esto tendría que hacerlo el validador
-		boolean emptys = view.getTextCredencial().getText().isEmpty();
-		emptys |= view.getTextNombre().getText().isEmpty();
-		emptys |= view.getTextApellido().getText().isEmpty();
-		emptys |= view.getTextMail().getText().isEmpty();
-		
-		if(emptys){
-			JOptionPane.showMessageDialog(view, "Hay campos obligatorios que estan vacios",
-											"Error",
-											JOptionPane.ERROR_MESSAGE);
-			return false;}
-		return true;}
-	
 	private void agregaTelefono() {
 		telefonoController.setModeNew();
 		telefonoController.showView();

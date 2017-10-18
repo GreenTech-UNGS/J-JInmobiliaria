@@ -55,7 +55,7 @@ public class ReservarPropiedadController {
 
     private void reservarPropiedad() {
 
-      if(reservaValidator.isValid() && currentCliente != null && currentPropiedad!= null) {
+      if(reservaValidator.isValid()) {
      
             reservaService.saveReserva(currentReserva);
     		closeView();

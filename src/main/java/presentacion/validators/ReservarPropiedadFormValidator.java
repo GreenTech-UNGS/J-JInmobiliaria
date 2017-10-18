@@ -24,16 +24,21 @@ public class ReservarPropiedadFormValidator implements ValidatorNew{
 	@Override
 	public String getErrorMessage() {
 		String toRet = "Error en los siguientes campos";
-		
+
 		if(!isPropiedadSelected())
 			toRet += "\n- No ha seleccionado ninguna propiedad";
-
+		if(!isClienteSelected())
+			toRet += "\n- No ha seleccionado ningun cliente";
 		
 		return toRet;
 	}
 	
 	private boolean isPropiedadSelected(){
 		return ! (view.getTfPropiedad() == null || view.getTfPropiedad().equals(""));    		
+	}
+	
+	private boolean isClienteSelected(){
+		return ! (view.getTfCliente() == null || view.getTfCliente().equals(""));    		
 	}
 
 }
