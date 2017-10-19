@@ -116,7 +116,7 @@ public class MainView {
                 JPanel panel_2 = new JPanel();
                 contratoAlquiler.add(panel_2);
 
-                        btnAgregarContratoAlq = new JButton("Agregar contrato de aquiler");
+                        btnAgregarContratoAlq = new JButton("Agregar contrato");
                         panel_2.add(btnAgregarContratoAlq);
                         btnAgregarContratoAlq.setAlignmentX(Component.CENTER_ALIGNMENT);
                         
@@ -125,14 +125,10 @@ public class MainView {
                         
                         btnCancelarContrato = new JButton("Cancelar contrato");
                         panel_2.add(btnCancelarContrato);
-                        btnAgregarContratoAlq.addActionListener(new ActionListener() {
-                            public void actionPerformed(ActionEvent e) {
-                            }
-                        });
+                        btnEditarContrato = new JButton("Editar contrato");
+                        panel_2.add(btnEditarContrato);
         JPanel panel_EditAlquiler = new JPanel();
-        contratoAlquiler.add(panel_EditAlquiler);
-        btnEditarContrato = new JButton("Editar contrato");
-        panel_EditAlquiler.add(btnEditarContrato);;
+        contratoAlquiler.add(panel_EditAlquiler);;
 
         JPanel panelInquilinos = new JPanel();
         panelContainer.add(panelInquilinos, "name_1084846370736461");

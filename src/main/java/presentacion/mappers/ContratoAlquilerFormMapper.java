@@ -1,6 +1,6 @@
 package presentacion.mappers;
 
-import java.time.Period;
+import org.joda.time.Period;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -8,8 +8,6 @@ import com.google.inject.Singleton;
 import entities.ContratoAlquiler;
 import entities.Moneda;
 import entities.TipoContratoAlquiler;
-import presentacion.combo.MonedaComboBoxModel;
-import presentacion.combo.TipoContratoAlqComboBoxModel;
 import presentacion.vista.ContratoAlquilerForm;
 
 @Singleton
@@ -50,8 +48,8 @@ public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
 		boolean vencimientoHabilitado = view.getChckbxVencimiento().isSelected();
 		String intimacionDiasStr = view.getSpinnerIntimacionEmail().getValue().toString();
 		String vencimientoMesesStr = view.getSpinnerVencimientoEmail().getValue().toString();
-		Period intimacionPeriod = Period.ofDays(Integer.parseInt(intimacionDiasStr));
-		Period vencimientoPeriod = Period.ofMonths(Integer.parseInt(vencimientoMesesStr));
+		Period intimacionPeriod = Period.days(Integer.parseInt(intimacionDiasStr));
+		Period vencimientoPeriod = Period.months(Integer.parseInt(vencimientoMesesStr));
 		
 		
 		t.setIdentificador(identificador);
