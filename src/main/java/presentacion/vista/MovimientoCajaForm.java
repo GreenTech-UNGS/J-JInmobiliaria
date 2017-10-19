@@ -8,6 +8,9 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.demo.DateChooserPanel;
+
+import presentacion.combo.MonedaComboBoxModel;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -30,14 +33,21 @@ public class MovimientoCajaForm extends JDialog{
 	
 	private JDateChooser dateChooser;
 	private JTextField textMonto;
+	private JComboBox<String> comboMoneda;
+	private JTextArea textDetalle;
+	private JButton btnGuardar;
+	
+	private MonedaComboBoxModel monedaModel;
 	
 	@Inject
 	public MovimientoCajaForm() {
 		setTitle("Registrar Movimiento de Caja");
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		setResizable(false);
-		setLocationRelativeTo(null);
+		//setLocationRelativeTo(null);
 		setSize(new Dimension(300, 250));
+		
+		setModal(true);
 		
 		JPanel mainPanel = new JPanel();
 		getContentPane().add(mainPanel);
@@ -80,7 +90,7 @@ public class MovimientoCajaForm extends JDialog{
 		mainPanel.add(textMonto, gbc_textMonto);
 		textMonto.setColumns(10);
 		
-		JComboBox comboMoneda = new JComboBox();
+		comboMoneda = new JComboBox<>();
 		GridBagConstraints gbc_comboMoneda = new GridBagConstraints();
 		gbc_comboMoneda.fill = GridBagConstraints.BOTH;
 		gbc_comboMoneda.insets = new Insets(0, 0, 5, 0);
@@ -123,14 +133,41 @@ public class MovimientoCajaForm extends JDialog{
 		gbc_scrollPane.gridy = 3;
 		mainPanel.add(scrollPane, gbc_scrollPane);
 		
-		JTextArea textDetalle = new JTextArea();
+		textDetalle = new JTextArea();
 		scrollPane.setViewportView(textDetalle);
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel);
 		
-		JButton btnGuardar= new JButton("Guardar");
+		btnGuardar = new JButton("Guardar");
 		panel.add(btnGuardar);
 		
+		monedaModel = new MonedaComboBoxModel();
+		comboMoneda.setModel(monedaModel);
+		
+	}
+
+	public JDateChooser getDateChooser() {
+		return dateChooser;
+	}
+
+	public JTextField getTextMonto() {
+		return textMonto;
+	}
+
+	public JComboBox<String> getComboMoneda() {
+		return comboMoneda;
+	}
+
+	public JTextArea getTextDetalle() {
+		return textDetalle;
+	}
+
+	public JButton getBtnGuardar() {
+		return btnGuardar;
+	}
+
+	public MonedaComboBoxModel getMonedaModel() {
+		return monedaModel;
 	}
 }

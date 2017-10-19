@@ -36,6 +36,7 @@
 		<mapping class="entities.HistoriaEstadoContrato" />
 		<mapping class="entities.HistoriaEstadoCuota" />
 		<mapping class="entities.Ingreso" />
+		<mapping class="entities.Egreso" />
 		<mapping class="entities.IngresoAlquiler" />
 		<mapping class="entities.IngresoVenta" />
 		<mapping class="entities.InteresPunitorioCuota" />

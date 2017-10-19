@@ -1,6 +1,7 @@
 package presentacion.vista.main;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.toedter.calendar.JCalendar;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@Singleton
 public class MainView {
 
     private JFrame frmLpezLpez;
@@ -44,7 +46,8 @@ public class MainView {
     private JButton btnGenerarReporteCobros;
 	private PropiedadesPanel panelPropiedades;
 	private JTable tableMovimientosCaja;
-	private JButton btnRegistrarCaja;
+	private JButton btnRegistrarIngreso;
+	private JButton btnRegistrarEgreso;
 
     @Inject
     public MainView() {
@@ -167,10 +170,9 @@ public class MainView {
         
         JPanel panelPagos = new JPanel();
         panelContainer.add(panelPagos, "name_1283035568116550");
-        panelPagos.setLayout(null);
+        panelPagos.setLayout(new BoxLayout(panelPagos, BoxLayout.X_AXIS));
 
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-        tabbedPane.setBounds(0, 0, 668, 474);
         panelPagos.add(tabbedPane);
 
         JPanel panelPagoAlq = new JPanel();
@@ -243,8 +245,20 @@ public class MainView {
         panelMovimientosDeCaja.add(panelMovimientosButtons);
         panelMovimientosButtons.setLayout(new BoxLayout(panelMovimientosButtons, BoxLayout.X_AXIS));
         
-        btnRegistrarCaja = new JButton("Registrar movimiento de caja");
-        panelMovimientosButtons.add(btnRegistrarCaja);
+        Component horizontalGlue_3 = Box.createHorizontalGlue();
+        panelMovimientosButtons.add(horizontalGlue_3);
+        
+        btnRegistrarIngreso = new JButton("Registrar ingreso");
+        panelMovimientosButtons.add(btnRegistrarIngreso);
+        
+        Component horizontalGlue = Box.createHorizontalGlue();
+        panelMovimientosButtons.add(horizontalGlue);
+        
+        btnRegistrarEgreso = new JButton("Registrar egreso");
+        panelMovimientosButtons.add(btnRegistrarEgreso);
+        
+        Component horizontalGlue_1 = Box.createHorizontalGlue();
+        panelMovimientosButtons.add(horizontalGlue_1);
 
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -658,7 +672,13 @@ public class MainView {
 	}
 
 
-	public JButton getBtnRegistrarCaja() {
-		return btnRegistrarCaja;
+	public JButton getBtnRegistrarIngreso() {
+		return btnRegistrarIngreso;
 	}
+
+
+	public JButton getBtnRegistrarEgreso() {
+		return btnRegistrarEgreso;
+	}
+	
 }

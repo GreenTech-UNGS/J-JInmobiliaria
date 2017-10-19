@@ -49,7 +49,6 @@ public class MainViewController {
 	ClienteService clienteService;
 	ContratoService contratoService;
 	PropietarioService propietarioService;
-	PagosCobrosService pagosCobrosService;
 	CuotaService cuotaService;
 	ReservaService reservaService;
 	PagosCobrosService pagoCobroService;
@@ -133,7 +132,8 @@ public class MainViewController {
 		this.view.getBtnRegistrarPago().addActionListener(e -> registrarPago());
 		this.view.getBtnCancelarContrato().addActionListener(e -> cancelarContrato());
 		this.view.getBtnAgregarInmobiliaria().addActionListener(e -> agregarInmobiliaria());
-		this.view.getBtnRegistrarCaja().addActionListener(e -> registraMovimientoCaja());
+		this.view.getBtnRegistrarIngreso().addActionListener(e -> registraMovimientoCaja(true));
+		this.view.getBtnRegistrarEgreso().addActionListener(e -> registraMovimientoCaja(false));
 		
 		this.view.getBtnGenerarReporteCobros().addActionListener(e -> generaReporteCobroDeAlquileres());
 		this.view.getBtnGenerarReportePropietarios().addActionListener(e -> generaReportePropietarios());
@@ -178,7 +178,7 @@ public class MainViewController {
 //TODO parametrizar el yearmonth
 	private void generaReporteCobroDeAlquileres() {
 		List<CobrosDeAlquileresDTO> dtos =
-				pagosCobrosService.cobrosDeAlquilerReporteOf(YearMonth.now());
+				pagoCobroService.cobrosDeAlquilerReporteOf(YearMonth.now());
 		ReporteCobrosDeAlquileres reporte = new ReporteCobrosDeAlquileres(dtos);
 		reporte.mostrar();
 
@@ -485,8 +485,10 @@ public class MainViewController {
 		}
 	}
 	
-	private void registraMovimientoCaja(){
-		movimientoController.setModeNew();
+	private void registraMovimientoCaja(boolean isIngreso){
+	
+		if(isIngreso)movimientoController.setModeNewIngreso();
+		else movimientoController.setModeNewEgreso();
 		movimientoController.showView();
 	}
 }
