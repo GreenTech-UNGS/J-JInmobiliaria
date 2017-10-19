@@ -10,7 +10,7 @@ import org.joda.time.YearMonth;
 import presentacion.reportes.ReporteCobrosDeAlquileres;
 import presentacion.reportes.ReportePropietariosPagosPendientes;
 import presentacion.table.*;
-import presentacion.vista.MainView;
+import presentacion.vista.main.MainView;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;

@@ -1,4 +1,4 @@
-package presentacion.vista;
+package presentacion.vista.main;
 
 import com.google.inject.Inject;
 import com.toedter.calendar.JCalendar;
@@ -11,31 +11,23 @@ import java.awt.event.ActionListener;
 
 public class MainView {
 
-    @SuppressWarnings("unused")
-    private static MainView instance;
-
     private JFrame frmLpezLpez;
     private JPanel panelReportes;
 
     private JButton btnPropiedades;
-    private JButton btnEditarPropiedad;
     private JButton btnContratos;
     private JButton btnInquilinos;
-    private JButton btnAgregarPropiedad;
     private JButton btnAgregarContratoAlq;
     private JButton btnAgregarContratoVen;
     private JButton btnEditarContrato;
     private JButton btnPagos;
     private JButton btnAgregarCliente;
     private JButton btnAgregarPropietario;
-    private JButton btnReservarPropiedad;
-    private JTable tablePropiedades;
     private JTable tableClientes;
     private JTable tablePropietarios;
     private JTable tableCuotas;
     private JButton btnEditarCliente;
     private JButton btnEditarPropietario;
-    private JButton btnDesreservar;
     private JButton btnRenovar;
     private JButton btnCancelarContrato;
     private JButton btnInmobiliaria;
@@ -44,17 +36,13 @@ public class MainView {
     private JCalendar jCalendar;
     private JTable tablaContratoVenta;
     private JTable tablaContratoAlquiler;
-    private JTable tablaReservas;
     private JButton btnRegistrarCobro;
     private JTable tablePagosPropietarios;
     private JButton btnRegistrarPago;
     private JButton btnGenerarReportePropietarios;
-    private JTable tableEnAlquiler;
-    private JTable tableEnVenta;
-    private JTable tableAlquiladas;
-    private JTable tableVendidas;
     private JTable tableInmobiliaria;
     private JButton btnGenerarReporteCobros;
+	private PropiedadesPanel panelPropiedades;
 
     @Inject
     public MainView() {
@@ -82,7 +70,7 @@ public class MainView {
         frmLpezLpez.getContentPane().add(panelContainer);
         panelContainer.setLayout(new CardLayout(0, 0));
 
-        JPanel panelPropiedades = new JPanel();
+        panelPropiedades = new PropiedadesPanel();
         panelContainer.add(panelPropiedades, "name_1084621145273363");
 
         JPanel panelContratos = new JPanel();
@@ -435,112 +423,12 @@ public class MainView {
         btnInmobiliaria.setPreferredSize(new Dimension(70, 70));
         btnInmobiliaria.setBackground(new Color(0, 51, 51));
         panelMenu.add(btnInmobiliaria);
-        panelPropiedades.setLayout(new BoxLayout(panelPropiedades, BoxLayout.Y_AXIS));
-        
-        JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
-        panelPropiedades.add(tabbedPane_1);
-                        
-        JPanel panelTodas = new JPanel();
-        tabbedPane_1.addTab("Todas las propiedades", null, panelTodas, null);
-        panelTodas.setLayout(new BoxLayout(panelTodas, BoxLayout.Y_AXIS));
-                        
-        JScrollPane scrollPane = new JScrollPane();
-        panelTodas.add(scrollPane);
-                                
-        tablePropiedades = new JTable();
-        scrollPane.setViewportView(tablePropiedades);
-                                        
-       JPanel panelButtons = new JPanel();
-       panelTodas.add(panelButtons);
-       panelButtons.setLayout(new BoxLayout(panelButtons, BoxLayout.X_AXIS));
-                                                
-       Component horizontalGlue = Box.createHorizontalGlue();
-       panelButtons.add(horizontalGlue);
-                                                        
-       btnAgregarPropiedad = new JButton("Agregar propiedad");
-       btnAgregarPropiedad.setFont(new Font("Tahoma", Font.PLAIN, 11));
-       panelButtons.add(btnAgregarPropiedad);
-                                                                
-      Component horizontalGlue_3 = Box.createHorizontalGlue();
-      panelButtons.add(horizontalGlue_3);
-                                                                        
-      btnReservarPropiedad = new JButton("Reservar propiedad");
-      btnReservarPropiedad.setFont(new Font("Tahoma", Font.PLAIN, 11));
-      panelButtons.add(btnReservarPropiedad);
 
-      Component horizontalGlue_4 = Box.createHorizontalGlue();
-      panelButtons.add(horizontalGlue_4);
-
-      btnEditarPropiedad = new JButton("Editar propiedad");
-      btnEditarPropiedad.setFont(new Font("Tahoma", Font.PLAIN, 11));
-
-      panelButtons.add(btnEditarPropiedad);
-
-      Component horizontalGlue_1 = Box.createHorizontalGlue();
-      panelButtons.add(horizontalGlue_1);
-      
-      JPanel panelEnAlquiler = new JPanel();
-      tabbedPane_1.addTab("En alquiler", null, panelEnAlquiler, null);
-      panelEnAlquiler.setLayout(new BoxLayout(panelEnAlquiler, BoxLayout.Y_AXIS));
-      
-      JScrollPane scrollPaneEnAlquiler = new JScrollPane();
-      panelEnAlquiler.add(scrollPaneEnAlquiler);
-      
-      tableEnAlquiler = new JTable();
-      scrollPaneEnAlquiler.setColumnHeaderView(tableEnAlquiler);
-      scrollPaneEnAlquiler.setViewportView(tableEnAlquiler);
-      
-      JPanel panelEnVenta = new JPanel();
-      tabbedPane_1.addTab("En venta", null, panelEnVenta, null);
-      panelEnVenta.setLayout(new BoxLayout(panelEnVenta, BoxLayout.Y_AXIS));
-      
-      JScrollPane scrollPaneEnVenta = new JScrollPane();
-      panelEnVenta.add(scrollPaneEnVenta);
-      
-      tableEnVenta = new JTable();
-      scrollPaneEnVenta.setColumnHeaderView(tableEnVenta);
-      scrollPaneEnVenta.setViewportView(tableEnVenta);
-      
-      JPanel panelReservas = new JPanel();
-      tabbedPane_1.addTab("Reservadas", null, panelReservas, null);
-      panelReservas.setLayout(new BoxLayout(panelReservas, BoxLayout.Y_AXIS));
-      
-      tablaReservas = new JTable();
-      JScrollPane scrollPaneReservadas = new JScrollPane(tablaReservas);
-      panelReservas.add(scrollPaneReservadas);                                                                             
-      
-      JPanel panel_1 = new JPanel();
-      panelReservas.add(panel_1);
-      
-      btnDesreservar = new JButton("Desreservar");
-      panel_1.add(btnDesreservar);
-      
-      JPanel panelAlquiladas = new JPanel();
-      tabbedPane_1.addTab("Alquiladas", null, panelAlquiladas, null);
-      panelAlquiladas.setLayout(new BoxLayout(panelAlquiladas, BoxLayout.Y_AXIS));
-      
-      JScrollPane scrollPaneAlquiladas = new JScrollPane();
-      panelAlquiladas.add(scrollPaneAlquiladas);
-      
-      tableAlquiladas = new JTable();
-      scrollPaneAlquiladas.setColumnHeaderView(tableAlquiladas);
-      scrollPaneAlquiladas.setViewportView(tableAlquiladas);
-      
-      JPanel panelVendidas = new JPanel();
-      tabbedPane_1.addTab("Vendidas", null, panelVendidas, null);
-      panelVendidas.setLayout(new BoxLayout(panelVendidas, BoxLayout.Y_AXIS));
-      
-      JScrollPane scrollPaneVendidas = new JScrollPane();
-      panelVendidas.add(scrollPaneVendidas);
-      
-      tableVendidas = new JTable();
-      scrollPaneVendidas.setColumnHeaderView(tableVendidas);
-      scrollPaneVendidas.setViewportView(tableVendidas);
       
     }
 
     public JTable getTablePropiedades() {
-        return tablePropiedades;
+        return panelPropiedades.getTablePropiedades();
     }
 
     public void show() {
@@ -548,7 +436,7 @@ public class MainView {
     }
 
     public JButton getBtnPropiedades() {
-        return this.btnAgregarPropiedad;
+        return panelPropiedades.getBtnAgregarPropiedad();
     }
 
     public JButton getBtnContratoAlq() {
@@ -568,15 +456,11 @@ public class MainView {
     }
 
     public JButton getBtnReservarPropiedad() {
-        return btnReservarPropiedad;
+        return panelPropiedades.getBtnReservarPropiedad();
     }
 
     public JButton getBtnEditPropiedad() {
-        return btnEditarPropiedad;
-    }
-
-    public void setBtnEditarPropiedad(JButton btnEditarPropiedad) {
-        this.btnEditarPropiedad = btnEditarPropiedad;
+        return panelPropiedades.getBtnEditarPropiedad();
     }
 
     public JTable getTableClientes() {
@@ -642,22 +526,11 @@ public class MainView {
 
 
 	public JTable getTablaReservas() {
-		return tablaReservas;
+		return panelPropiedades.getTablaReservas();
 	}
-
-
-	public void setTablaReservas(JTable tablaReservas) {
-		this.tablaReservas = tablaReservas;
-	}
-
 
 	public JButton getBtnDesreservar() {
-		return btnDesreservar;
-	}
-
-
-	public void setBtnDesreservar(JButton btnDesreservar) {
-		this.btnDesreservar = btnDesreservar;
+		return panelPropiedades.getBtnDesreservar();
 	}
 	
 	public JButton getBtnRegistrarCobro() {
@@ -706,44 +579,20 @@ public class MainView {
 
 
 	public JTable getTableEnAlquiler() {
-		return tableEnAlquiler;
+		return panelPropiedades.getTableEnAlquiler();
 	}
-
-
-	public void setTableEnAlquiler(JTable tableEnAlquiler) {
-		this.tableEnAlquiler = tableEnAlquiler;
-	}
-
 
 	public JTable getTableEnVenta() {
-		return tableEnVenta;
+		return panelPropiedades.getTableEnVenta();
 	}
-
-
-	public void setTableEnVenta(JTable tableEnVenta) {
-		this.tableEnVenta = tableEnVenta;
-	}
-
 
 	public JTable getTableAlquiladas() {
-		return tableAlquiladas;
+		return panelPropiedades.getTableAlquiladas();
 	}
-
-
-	public void setTableAlquiladas(JTable tableAlquiladas) {
-		this.tableAlquiladas = tableAlquiladas;
-	}
-
 
 	public JTable getTableVendidas() {
-		return tableVendidas;
+		return panelPropiedades.getTableVendidas();
 	}
-
-
-	public void setTableVendidas(JTable tableVendidas) {
-		this.tableVendidas = tableVendidas;
-	}
-
 
 	public JButton getBtnCancelarContrato() {
 		return btnCancelarContrato;

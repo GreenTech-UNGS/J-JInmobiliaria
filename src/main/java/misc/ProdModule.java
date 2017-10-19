@@ -37,8 +37,8 @@ import presentacion.vista.ContratoAlquilerForm;
 import presentacion.vista.ClienteForm;
 import presentacion.vista.PropiedadForm;
 import presentacion.vista.PropietarioForm;
+import presentacion.vista.main.MainView;
 import presentacion.vista.ElegirPropietarioView;
-import presentacion.vista.MainView;
 
 public class ProdModule implements Module{
 
