@@ -43,6 +43,7 @@ public class MainViewController {
 	ReservarPropiedadController reservaController;
 	RegistrarCobroController cobroController;
 	InmobiliariaController inmobiliariaController;
+	MovimientoCajaController movimientoController;
 
 	PropiedadService propiedadService;
 	ClienteService clienteService;
@@ -81,7 +82,8 @@ public class MainViewController {
 			PropiedadesTableModel tableAlquiladas,
 			PropiedadesTableModel tableVendidas,
 			InmobiliariaController inmobiliariaController,
-			InmobiliariaService inmobiliariaService){
+			InmobiliariaService inmobiliariaService,
+			MovimientoCajaController movimientoController){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
@@ -113,6 +115,7 @@ public class MainViewController {
 		this.tableVendidas = tableVendidas;
 		this.inmobiliariaController = inmobiliariaController;
 		this.inmobiliariaService = inmobiliariaService;
+		this.movimientoController = movimientoController;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
@@ -130,6 +133,7 @@ public class MainViewController {
 		this.view.getBtnRegistrarPago().addActionListener(e -> registrarPago());
 		this.view.getBtnCancelarContrato().addActionListener(e -> cancelarContrato());
 		this.view.getBtnAgregarInmobiliaria().addActionListener(e -> agregarInmobiliaria());
+		this.view.getBtnRegistrarCaja().addActionListener(e -> registraMovimientoCaja());
 		
 		this.view.getBtnGenerarReporteCobros().addActionListener(e -> generaReporteCobroDeAlquileres());
 		this.view.getBtnGenerarReportePropietarios().addActionListener(e -> generaReportePropietarios());
@@ -479,5 +483,10 @@ public class MainViewController {
 				this.fillTablePagosProps();
 			}			
 		}
+	}
+	
+	private void registraMovimientoCaja(){
+		movimientoController.setModeNew();
+		movimientoController.showView();
 	}
 }

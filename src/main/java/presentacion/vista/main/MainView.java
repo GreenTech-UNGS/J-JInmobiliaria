@@ -43,6 +43,8 @@ public class MainView {
     private JTable tableInmobiliaria;
     private JButton btnGenerarReporteCobros;
 	private PropiedadesPanel panelPropiedades;
+	private JTable tableMovimientosCaja;
+	private JButton btnRegistrarCaja;
 
     @Inject
     public MainView() {
@@ -226,6 +228,23 @@ public class MainView {
         
         Component glue_2 = Box.createGlue();
         bontones.add(glue_2);
+        
+        JPanel panelMovimientosDeCaja = new JPanel();
+        tabbedPane.addTab("Movimientos de caja", null, panelMovimientosDeCaja, null);
+        panelMovimientosDeCaja.setLayout(new BoxLayout(panelMovimientosDeCaja, BoxLayout.Y_AXIS));
+        
+        JScrollPane scrollPane = new JScrollPane();
+        panelMovimientosDeCaja.add(scrollPane);
+        
+        tableMovimientosCaja = new JTable();
+        scrollPane.setViewportView(tableMovimientosCaja);
+        
+        JPanel panelMovimientosButtons = new JPanel();
+        panelMovimientosDeCaja.add(panelMovimientosButtons);
+        panelMovimientosButtons.setLayout(new BoxLayout(panelMovimientosButtons, BoxLayout.X_AXIS));
+        
+        btnRegistrarCaja = new JButton("Registrar movimiento de caja");
+        panelMovimientosButtons.add(btnRegistrarCaja);
 
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -636,5 +655,10 @@ public class MainView {
 
 	public JButton getBtnGenerarReporteCobros() {
 		return btnGenerarReporteCobros;
+	}
+
+
+	public JButton getBtnRegistrarCaja() {
+		return btnRegistrarCaja;
 	}
 }
