@@ -702,4 +702,8 @@ public class MainView {
 		return tableMovimientosCaja;
 	}
 	
+	public JButton getBtnEditarInmobiliaria() {
+		return btnEditarInmobiliaria;
+	}
+	
 }
