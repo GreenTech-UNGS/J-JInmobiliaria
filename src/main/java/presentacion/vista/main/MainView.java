@@ -34,6 +34,7 @@ public class MainView {
     private JButton btnCancelarContrato;
     private JButton btnInmobiliaria;
     private JButton btnAgregarInmobiliaria;
+    private JButton btnEditarInmobiliaria;
     
     private JCalendar jCalendar;
     private JTable tablaContratoVenta;
@@ -435,6 +436,9 @@ public class MainView {
         btnAgregarInmobiliaria.setFont(new Font("Tahoma", Font.PLAIN, 11));
         panelBtnInmb.add(btnAgregarInmobiliaria);
         
+        btnEditarInmobiliaria = new JButton("Editar inmobiliaria");
+        panelBtnInmb.add(btnEditarInmobiliaria);
+        
         btnInmobiliaria = new JButton("");
         btnInmobiliaria.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
@@ -680,5 +684,11 @@ public class MainView {
 	public JButton getBtnRegistrarEgreso() {
 		return btnRegistrarEgreso;
 	}
+
+
+	public JButton getBtnEditarInmobiliaria() {
+		return btnEditarInmobiliaria;
+	}
+	
 	
 }

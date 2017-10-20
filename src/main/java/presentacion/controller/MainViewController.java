@@ -148,6 +148,8 @@ public class MainViewController {
 														fillTablePropietarios();});	
 		this.view.getBtnEditarContrato().addActionListener(e -> editarContratoAlquiler());
 		
+		this.view.getBtnEditarInmobiliaria().addActionListener(e -> editarInmobiliaria());
+		
 		
 		selectDetalleProp();
 		fillAllTables();
@@ -498,5 +500,15 @@ public class MainViewController {
 		if(isIngreso)movimientoController.setModeNewIngreso();
 		else movimientoController.setModeNewEgreso();
 		movimientoController.showView();
+	}
+	
+	private void editarInmobiliaria() {
+		int seleccion = this.view.getTableInmobiliaria().getSelectedRow();
+		
+		if (seleccion !=-1){
+			inmobiliariaController.editInmobiliaria(this.tableInmobiliaria.getRow(seleccion));
+			inmobiliariaController.showView();
+			fillTableInmobiliarias();
+		}
 	}
 }

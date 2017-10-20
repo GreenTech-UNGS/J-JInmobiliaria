@@ -51,7 +51,7 @@ public class ContratoAlquilerController {
 		this.mapper = mapper;
 		this.msgShw = msgShw;
 		
-		view.getBtnGuardarContrato().addActionListener(e -> guardaContrato());
+		view.getBtnGuardarContrato().addActionListener(e -> guardaContratoDefinitivo());
 		view.getBtnLupaCliente().addActionListener(e -> seleccionaCliente());
 		view.getBtnLupaPropiedad().addActionListener(e -> seleccionaPropiedad());
 		view.getBtnCancelarContrato().addActionListener(e -> view.setVisible(false));
@@ -88,9 +88,13 @@ public class ContratoAlquilerController {
 		}
 	}
 	
-	private void guardaContrato() {
+	private void guardaContratoDefinitivo() {
 		if(contratoAlquilerValidator.isValid()){
 			mapper.fillBean(currentContrato);
+			HistoriaEstadoContrato nuevo = new HistoriaEstadoContrato();
+			nuevo.setEstado(EstadoContrato.DEFINITIVO);
+			nuevo.setFecha(DateTime.now());
+			currentContrato.getEstados().add(nuevo);
 			guardaCurrentContrato();			
 			closeView();
 		}
@@ -115,15 +119,6 @@ public class ContratoAlquilerController {
 		} catch (LogicaNegocioException e) {
 			msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
 		}
-	}
-	
-	private void guardarEnDefinitivo(){
-		HistoriaEstadoContrato nuevo = new HistoriaEstadoContrato();
-		nuevo.setEstado(EstadoContrato.BORRADOR);
-		nuevo.setFecha(DateTime.now());
-		currentContrato.getEstados().add(nuevo);
-		
-		guardaCurrentContrato();
 	}
 	
 	private void guardarEnBorrador(){

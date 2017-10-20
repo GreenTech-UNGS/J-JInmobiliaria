@@ -1,8 +1,6 @@
 package presentacion.vista;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-<<<<<<< HEAD
-
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.TipoContratoAlqComboBoxModel;
 
