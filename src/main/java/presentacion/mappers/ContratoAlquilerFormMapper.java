@@ -27,11 +27,11 @@ public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
 
 		String identificador = getStringOf(view.getTextIdContrato().getText());
 		String garantia = getStringOf(view.getTextGarantia().getText());
-		TipoContratoAlquiler tipoContrato = TipoContratoAlquiler.valueOf((String)view.getComboTipoContrato().getSelectedItem());
+		TipoContratoAlquiler tipoContrato = view.getComboTipoContratoModel().getSelected();
 		int cantidadMeses = (int) view.getSpinnerDuracionContrato().getValue();
 		float gatosAdmin = (float) view.getSpinnerGastosAdmin().getValue();
 		double cuotaMensualMonto = Double.parseDouble(view.getTextPrecio().getText());
-		Moneda cuotaMensualMoneda = Moneda.valueOf((String)view.getComboMoneda().getSelectedItem());
+		Moneda cuotaMensualMoneda = view.getMonedaComboModel().getSelected();
 		
 		//Actualizacion
 		float porcentajeActualizacion = (float) view.getSpinnerPorcenajeActualiza().getValue();
@@ -107,11 +107,11 @@ public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
 		
 		view.getTextIdContrato().setText(identificador);
 		view.getTextGarantia().setText(garantia);
-		view.getComboTipoContrato().setSelectedItem(tipoContrato.toString());
+		view.getComboTipoContratoModel().setSelected(tipoContrato);
 		view.getSpinnerDuracionContrato().setValue(cantidadMeses);
 		view.getSpinnerGastosAdmin().setValue(gatosAdmin);
 		view.getTextPrecio().setText(cuotaMensualMonto + "");
-		view.getComboMoneda().setSelectedItem(cuotaMensualMoneda.toString());
+		view.getMonedaComboModel().setSelected(cuotaMensualMoneda);
 		
 		//Actualizacion
 		view.getSpinnerPorcenajeActualiza().setValue(porcentajeActualizacion);

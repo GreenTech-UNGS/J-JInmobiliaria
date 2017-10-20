@@ -2,21 +2,15 @@ package model;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
 import dto.PendientesPropietariosDTO;
-import entities.PagoPropietario;
-import entities.Persona;
+import entities.*;
 import entities.Persona.TipoCredencial;
-import entities.Precio;
-import entities.Propiedad;
-import entities.Propietario;
+import org.apache.commons.logging.LogConfigurationException;
 import persistencia.dao.iface.PropietarioDao;
 
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.apache.commons.logging.LogConfigurationException;
 
 @Singleton
 public class PropietarioService {
@@ -109,11 +103,8 @@ public class PropietarioService {
 			return dto;
 		}).sorted((p1, p2) -> p1.getPropietarioStr().compareTo(p2.getPropietarioStr()))
 				.collect(Collectors.toList());
-		
-		
-		
+
 		return toRet;
-		
 		
 	}
 	

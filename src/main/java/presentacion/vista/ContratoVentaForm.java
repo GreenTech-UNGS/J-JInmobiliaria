@@ -1,21 +1,7 @@
 package presentacion.vista;
 
-import java.awt.Dimension;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.Image;
-
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JSpinner;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JScrollPane;
+import javax.swing.*;
+import java.awt.*;
 
 @SuppressWarnings("serial")
 public class ContratoVentaForm extends JDialog{
@@ -42,7 +28,7 @@ public class ContratoVentaForm extends JDialog{
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		
-		JLabel lblIdContrato = new JLabel("Identificador:");
+		JLabel lblIdContrato = new JLabel("Codigo:");
 		lblIdContrato.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblIdContrato.setBounds(27, 69, 68, 14);
 		getContentPane().add(lblIdContrato);

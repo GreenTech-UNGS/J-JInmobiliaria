@@ -53,7 +53,7 @@ public class MainViewController {
 	ReservaService reservaService;
 	PagosCobrosService pagoCobroService;
 	InmobiliariaService inmobiliariaService;
-	MovimientoCajaService movimientoService;
+	
 	
 	@Inject
 	private MainViewController(MainView view,
@@ -82,8 +82,7 @@ public class MainViewController {
 			PropiedadesTableModel tableVendidas,
 			InmobiliariaController inmobiliariaController,
 			InmobiliariaService inmobiliariaService,
-			MovimientoCajaController movimientoController,
-			MovimientoCajaService movimientoService){
+			MovimientoCajaController movimientoController){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
@@ -116,7 +115,6 @@ public class MainViewController {
 		this.inmobiliariaController = inmobiliariaController;
 		this.inmobiliariaService = inmobiliariaService;
 		this.movimientoController = movimientoController;
-		this.movimientoService = movimientoService;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
@@ -134,12 +132,12 @@ public class MainViewController {
 		this.view.getBtnRegistrarPago().addActionListener(e -> registrarPago());
 		this.view.getBtnCancelarContrato().addActionListener(e -> cancelarContrato());
 		this.view.getBtnAgregarInmobiliaria().addActionListener(e -> agregarInmobiliaria());
-		this.view.getBtnEditarInmobiliaria().addActionListener(e -> editarInmobiliaria());
 		this.view.getBtnRegistrarIngreso().addActionListener(e -> registraMovimientoCaja(true));
 		this.view.getBtnRegistrarEgreso().addActionListener(e -> registraMovimientoCaja(false));
 		
 		this.view.getBtnGenerarReporteCobros().addActionListener(e -> generaReporteCobroDeAlquileres());
 		this.view.getBtnGenerarReportePropietarios().addActionListener(e -> generaReportePropietarios());
+		
 		this.view.getBtnPropiedades().addActionListener(e -> {fillTableProp();
 													fillTableReservas();});
 		this.view.getBtnContratos().addActionListener(e -> {fillTableContratosAlquiler(); 
@@ -148,6 +146,8 @@ public class MainViewController {
 												fillTablePagosProps();});
 		this.view.getBtnInquilinos().addActionListener(e -> {fillTableClientes();
 														fillTablePropietarios();});	
+		this.view.getBtnEditarContrato().addActionListener(e -> editarContratoAlquiler());
+		
 		
 		selectDetalleProp();
 		fillAllTables();
@@ -167,7 +167,6 @@ public class MainViewController {
 		fillTableAlquiladas();
 		fillTableVendidas();
 		fillTableInmobiliarias();
-		fillTableMovimientosCaja();
 	}
 
 	private void generaReportePropietarios() {
@@ -301,15 +300,8 @@ public class MainViewController {
 		this.view.getTableInmobiliaria().setModel(tableInmobiliaria);
 		
 		inmobiliariaService.getAll().forEach(e -> tableInmobiliaria.addRow(e));
+		inmobiliariaService.getAll().forEach(e -> System.out.println(e.getNombre()));
 		this.view.getTableInmobiliaria().getTableHeader().setReorderingAllowed(false);
-	}
-	
-	private void fillTableMovimientosCaja() {
-		this.view.getTableMovimientosModel().clean();
-		
-		this.view.getTableMovimientosModel().addRows(movimientoService.getAll());
-
-		this.view.getTableMovimientosCaja().getTableHeader().setReorderingAllowed(false);
 	}
 
 	public void showView(){
@@ -364,7 +356,6 @@ public class MainViewController {
 	private void agregarInmobiliaria() {
 		this.inmobiliariaController.setModeNew();
 		this.inmobiliariaController.showView();
-		fillTableInmobiliarias();
 	}
 	
 	private void editarCliente() {
@@ -376,22 +367,17 @@ public class MainViewController {
 			this.fillTableClientes();
 		}
 	}
-	
-	private void editarInmobiliaria() {
-		int seleccion = this.view.getTableInmobiliaria().getSelectedRow();
-		
-		if (seleccion !=-1){
-			inmobiliariaController.editInmobiliaria(this.tableInmobiliaria.getRow(seleccion));
-			inmobiliariaController.showView();
-			fillTableInmobiliarias();
-		}
-	}
 
-	private void editarContrato() {
+	private void editarContratoAlquiler() {
 		int select = this.view.getTablaContratoAlquiler().getSelectedRow();
-
+		
 		if (select!=-1){
-		//	contratoAlqController.editarContrato(this.tableModelContrato.getRow(select));
+			ContratoAlquiler selectedContrato = (ContratoAlquiler) this.contratosTable2.getRow(select);
+			if(!contratoService.getEstadoOf(selectedContrato).equals(EstadoContrato.BORRADOR)){
+				JOptionPane.showMessageDialog(null, "No se puede editar un contrato definitivo", "Error", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			contratoAlqController.editarContrato(selectedContrato);
 			contratoAlqController.showView();
 			this.fillTableContratosAlquiler();
 		}

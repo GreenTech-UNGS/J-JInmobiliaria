@@ -113,7 +113,6 @@ public class PagosCobrosService {
 		
 	}
 
-
 	public void registrarpagoPropietario(PagoPropietario p) {
 		
 		p.setEstado(EstadoPago.PAGO);
@@ -121,9 +120,8 @@ public class PagosCobrosService {
 		HistoriaEstadoCuota nuevo = new HistoriaEstadoCuota();
 		nuevo.setEstado(EstadoCuota.PAGAPROPIETARIO);
 		nuevo.setFecha(DateTime.now());
-		
+
 		p.getCuota().getEstados().add(nuevo);
-		
 		propietarioDao.savePago(p);
 		
 	}
@@ -132,8 +130,8 @@ public class PagosCobrosService {
 
 		List<CuotaAlquiler> listaCuotas =  cuotaService.getCuotasOf(aniomes, EstadoCuota.values());
 		List<CobrosDeAlquileresDTO> cobros = new ArrayList<CobrosDeAlquileresDTO>();
-		for (CuotaAlquiler cuota : listaCuotas) {
 
+		for (CuotaAlquiler cuota : listaCuotas) {
 			String identificadorContrato = cuota.getContrato().getIdentificador();
 			String nombreInquilino = cuota.getContrato().getCliente()
 										.getPersona().getApellido()
@@ -150,12 +148,11 @@ public class PagosCobrosService {
 			String estado = cuotaService.getEstadoOf(cuota).toString();
 			InteresPunitorioCuota interes = cuotaService.getInteresOf(cuota);
 			String interesStr  = "";
-			Double montoTotal = 0d;
+			Double montoTotal = cuota.getMonto().getMonto();
 			if(interes != null){
 				interesStr = interes.getMonto().getMonto()+ " "
 							+ interes.getMonto().getMoneda().toString();
-				montoTotal =  cuota.getMonto().getMonto()
-							+interes.getMonto().getMonto();
+				montoTotal += interes.getMonto().getMonto();
 			}
 
 			CobrosDeAlquileresDTO toAdd = new CobrosDeAlquileresDTO();
@@ -170,10 +167,7 @@ public class PagosCobrosService {
 
 			cobros.add(toAdd);
 		}
-
 		return cobros;
-
 	}
-
 
 }

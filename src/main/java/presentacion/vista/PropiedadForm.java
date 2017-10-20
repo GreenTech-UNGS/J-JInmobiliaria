@@ -148,9 +148,9 @@ public class PropiedadForm extends JDialog{
 		separator.setBounds(20, 49, 654, 2);
 		AgregarPropiedad.add(separator);
 		
-		JLabel lblIdPropiedad = new JLabel("Identificador:");
+		JLabel lblIdPropiedad = new JLabel("Codigo:");
 		lblIdPropiedad.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblIdPropiedad.setBounds(20, 62, 80, 14);
+		lblIdPropiedad.setBounds(30, 62, 80, 14);
 		AgregarPropiedad.add(lblIdPropiedad);
 		
 		tfIdentificador = new JTextField();

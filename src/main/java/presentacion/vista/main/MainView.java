@@ -36,7 +36,6 @@ public class MainView {
     private JButton btnCancelarContrato;
     private JButton btnInmobiliaria;
     private JButton btnAgregarInmobiliaria;
-    private JButton btnEditarInmobiliaria;
     
     private JCalendar jCalendar;
     private JTable tablaContratoVenta;
@@ -133,9 +132,10 @@ public class MainView {
 
         JPanel panelInquilinos = new JPanel();
         panelContainer.add(panelInquilinos, "name_1084846370736461");
-        panelInquilinos.setLayout(new BoxLayout(panelInquilinos, BoxLayout.X_AXIS));
+        panelInquilinos.setLayout(null);
 
         JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
+        tabbedPane_2.setBounds(0, 0, 668, 474);
         panelInquilinos.add(tabbedPane_2);
 
         JPanel TabCliente = new JPanel();
@@ -159,19 +159,6 @@ public class MainView {
         JPanel TabPropietarios = new JPanel();
         tabbedPane_2.addTab("Propietarios", null, TabPropietarios, null);
         TabPropietarios.setLayout(new BoxLayout(TabPropietarios, BoxLayout.Y_AXIS));
-        
-        JPanel panlBotonFiltro = new JPanel();
-        TabPropietarios.add(panlBotonFiltro);
-        panlBotonFiltro.setLayout(new BoxLayout(panlBotonFiltro, BoxLayout.X_AXIS));
-        
-        Component horizontalGlue_4 = Box.createHorizontalGlue();
-        panlBotonFiltro.add(horizontalGlue_4);
-        
-        btnAplicarFiltro = new JButton("Aplicar Filtro");
-        panlBotonFiltro.add(btnAplicarFiltro);
-        
-        JButton btnRemoverFiltro = new JButton("Remover Filtro");
-        panlBotonFiltro.add(btnRemoverFiltro);
 
         tablePropietarios = new JTable();
         
@@ -461,9 +448,6 @@ public class MainView {
         btnAgregarInmobiliaria.setFont(new Font("Tahoma", Font.PLAIN, 11));
         panelBtnInmb.add(btnAgregarInmobiliaria);
         
-        btnEditarInmobiliaria = new JButton("Editar inmobiliaria");
-        panelBtnInmb.add(btnEditarInmobiliaria);
-        
         btnInmobiliaria = new JButton("");
         btnInmobiliaria.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
@@ -485,10 +469,8 @@ public class MainView {
         btnInmobiliaria.setPreferredSize(new Dimension(70, 70));
         btnInmobiliaria.setBackground(new Color(0, 51, 51));
         panelMenu.add(btnInmobiliaria);
-        
-        tableMovimientosModel = new MovimientosCajaTableModel();
-        tableMovimientosCaja.setModel(tableMovimientosModel);
 
+      
     }
 
     public JTable getTablePropiedades() {
@@ -711,23 +693,5 @@ public class MainView {
 	public JButton getBtnRegistrarEgreso() {
 		return btnRegistrarEgreso;
 	}
-
-
-	public MovimientosCajaTableModel getTableMovimientosModel() {
-		return tableMovimientosModel;
-	}
-
-
-	public JTable getTableMovimientosCaja() {
-		return tableMovimientosCaja;
-	}
 	
-	public JButton getBtnEditarInmobiliaria() {
-		return btnEditarInmobiliaria;
-	}
-
-
-	public JButton getBtnAplicarFiltro() {
-		return btnAplicarFiltro;
-	}
 }
