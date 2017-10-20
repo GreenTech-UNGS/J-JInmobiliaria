@@ -3,7 +3,7 @@ package entities;
 public enum TipoHabitacion {
 	Cocina,
 	Comedor,
-	Baño,
+	BaÃ±o,
 	Lavadero,
 	Galeria,
 	Altillo,

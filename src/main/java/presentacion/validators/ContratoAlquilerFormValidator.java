@@ -108,28 +108,28 @@ public class ContratoAlquilerFormValidator implements ValidatorNew{
 	}	
 	
 	private boolean isCantMesesValid(){
-		return ((Integer) view.getSpinnerDuracionContrato().getValue() >= 12 ||
-				(Integer) view.getSpinnerDuracionContrato().getValue() <= 48);
+		return   ((Integer) view.getSpinnerDuracionContrato().getValue() >= 12 ||
+				  (Integer) view.getSpinnerDuracionContrato().getValue() <= 48);
 	}	
 	
 	private boolean isGastosAdmValid(){
-		return ((Integer) view.getSpinnerGastosAdmin().getValue() <= 0);
+		return ((float) view.getSpinnerGastosAdmin().getValue() > 0);
 	}	
 	
 	private boolean isActualizacionValid(){
-		return ((Integer) view.getSpinnerActualizaContrato().getValue() <= 0);
+		return ((Integer) view.getSpinnerActualizaContrato().getValue() > 0);
 	}	
 	
 	private boolean isPjeActualizacionValid(){
-		return ((Integer) view.getSpinnerPorcenajeActualiza().getValue() <= 0);
+		return ((float) view.getSpinnerPorcenajeActualiza().getValue() > 0);
 	}	
 	
 	private boolean isTiempoPagoValid(){
-		return ((Integer) view.getSpinnerTiempoPago().getValue() <= 0);
+		return ((Integer) view.getSpinnerTiempoPago().getValue() > 0);
 	}	
 	
 	private boolean isPjePunitorioValid(){
-		return ((Integer) view.getSpinnerPorcentajePunitorio().getValue() <= 0);
+		return ((float) view.getSpinnerPorcentajePunitorio().getValue() > 0);
 	}	
 
 }

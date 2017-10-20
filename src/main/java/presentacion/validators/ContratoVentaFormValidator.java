@@ -86,6 +86,6 @@ public class ContratoVentaFormValidator implements ValidatorNew{
 	}	
 		
 	private boolean isGastosAdmValid(){
-		return ((Integer) view.getSpinnerPorcentaje().getValue() <= 0);
+		return ((float) view.getSpinnerPorcentaje().getValue() > 0);
 	}
 }
