@@ -132,7 +132,7 @@ public class MainViewController {
 		this.view.getBtnRegistrarPago().addActionListener(e -> registrarPago());
 		this.view.getBtnCancelarContrato().addActionListener(e -> cancelarContrato());
 		this.view.getBtnAgregarInmobiliaria().addActionListener(e -> agregarInmobiliaria());
-//		this.view.getBtnEditarInmob().addActionListener(e -> editarInmobiliaria());
+		this.view.getBtnEditarInmobiliaria().addActionListener(e -> editarInmobiliaria());
 		this.view.getBtnRegistrarIngreso().addActionListener(e -> registraMovimientoCaja(true));
 		this.view.getBtnRegistrarEgreso().addActionListener(e -> registraMovimientoCaja(false));
 		

@@ -19,6 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 
 public class InmobiliariaForm extends JDialog {
 	/**
@@ -37,6 +38,9 @@ public class InmobiliariaForm extends JDialog {
 	private JButton btnGuardar;
 	private JButton btnCancelar;
 	private JButton btnGuardarCambios;
+	private JTable tableTelefono;
+	private JButton btnAgregarTel;
+	private JButton btnBorrarTel;
 	
 	@Inject
 	private InmobiliariaForm(){
@@ -148,22 +152,25 @@ public class InmobiliariaForm extends JDialog {
 		separator_1.setBounds(47, 245, 372, 2);
 		getContentPane().add(separator_1);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		JScrollPane scrollPane = new JScrollPane(tableTelefono);
 		scrollPane.setBounds(47, 258, 291, 56);
 		getContentPane().add(scrollPane);
 		
-		JButton btnAgregarTel = new JButton("Agregar");
+		tableTelefono = new JTable();
+//		scrollPane.setColumnHeaderView(tableTelefono);
+		
+		btnAgregarTel = new JButton("Agregar");
 		btnAgregarTel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnAgregarTel.setBounds(341, 258, 78, 23);
 		getContentPane().add(btnAgregarTel);
 		
-		JButton btnBorrarTel = new JButton("Borrar");
+		btnBorrarTel = new JButton("Borrar");
 		btnBorrarTel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		btnBorrarTel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnBorrarTel.setBounds(341, 292, 78, 23);
+		btnBorrarTel.setBounds(341, 291, 78, 23);
 		getContentPane().add(btnBorrarTel);
 		
 		JLabel lblContactos = new JLabel("Contactos");
@@ -315,6 +322,29 @@ public class InmobiliariaForm extends JDialog {
 	public void setBtnGuardarCambios(JButton btnGuardarCambios) {
 		this.btnGuardarCambios = btnGuardarCambios;
 	}
-	
+
+	public JTable getTableTelefono() {
+		return tableTelefono;
+	}
+
+	public void setTableTelefono(JTable tableTelefono) {
+		this.tableTelefono = tableTelefono;
+	}
+
+	public JButton getBtnAgregarTel() {
+		return btnAgregarTel;
+	}
+
+	public void setBtnAgregarTel(JButton btnAgregarTel) {
+		this.btnAgregarTel = btnAgregarTel;
+	}
+
+	public JButton getBtnBorrarTel() {
+		return btnBorrarTel;
+	}
+
+	public void setBtnBorrarTel(JButton btnBorrarTel) {
+		this.btnBorrarTel = btnBorrarTel;
+	}
 	
 }

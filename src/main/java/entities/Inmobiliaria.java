@@ -33,6 +33,9 @@ public class Inmobiliaria {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<PersonaBasica> contactos;
 	
+	@OneToMany(cascade = {CascadeType.ALL})
+	private List<Telefono> telefonos;
+	
 	public Inmobiliaria() {
 		this.contactos = new ArrayList<>();
 	}
@@ -115,6 +118,14 @@ public class Inmobiliaria {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public List<Telefono> getTelefonos() {
+		return telefonos;
+	}
+	
+	public void insertTelefono(Telefono t) {
+		this.telefonos.add(t);
 	}
 
 	

@@ -47,7 +47,7 @@ public class InmobiliariaFormMapper implements Mapper<Inmobiliaria>{
 		
 		view.getTfCuit().setText(CUIT);
 		view.getTfNombre().setText(nombre);
-		view.getTfCalle().setToolTipText(calle);
+		view.getTfCalle().setText(calle);
 		view.getTfAltura().setText(altura);
 		view.getTfPiso().setText(piso);
 		view.getTfDepto().setText(depto);
