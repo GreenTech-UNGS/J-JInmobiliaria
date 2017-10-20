@@ -51,6 +51,7 @@ public class MainView {
 	private JTable tableMovimientosCaja;
 	private JButton btnRegistrarIngreso;
 	private JButton btnRegistrarEgreso;
+	private JButton btnGenerarReporteMovimientos;
 	
 
 	private MovimientosCajaTableModel tableMovimientosModel;
@@ -278,6 +279,12 @@ public class MainView {
         
         Component horizontalGlue_1 = Box.createHorizontalGlue();
         panelMovimientosButtons.add(horizontalGlue_1);
+        
+        btnGenerarReporteMovimientos = new JButton("Generar reporte");
+        panelMovimientosButtons.add(btnGenerarReporteMovimientos);
+        
+        Component horizontalGlue_7 = Box.createHorizontalGlue();
+        panelMovimientosButtons.add(horizontalGlue_7);
 
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
