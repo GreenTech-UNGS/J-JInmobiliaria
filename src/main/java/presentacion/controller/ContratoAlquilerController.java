@@ -15,6 +15,8 @@ import presentacion.vista.ContratoAlquilerForm;
 
 import java.util.Arrays;
 
+import org.joda.time.DateTime;
+
 @Singleton
 public class ContratoAlquilerController {
 
@@ -27,9 +29,6 @@ public class ContratoAlquilerController {
 	
 	ContratoAlquiler currentContrato;
 	ContratoAlquilerFormValidator contratoAlquilerValidator;
-	
-	TipoContratoAlqComboBoxModel tipoCombo;
-	MonedaComboBoxModel monedaCombo;
 	
 	MessageShow msgShw;
 	
@@ -52,14 +51,13 @@ public class ContratoAlquilerController {
 		this.mapper = mapper;
 		this.msgShw = msgShw;
 		
-		tipoCombo = new TipoContratoAlqComboBoxModel();
-		monedaCombo = new MonedaComboBoxModel();
-		
 		view.getBtnGuardarContrato().addActionListener(e -> guardaContrato());
 		view.getBtnLupaCliente().addActionListener(e -> seleccionaCliente());
 		view.getBtnLupaPropiedad().addActionListener(e -> seleccionaPropiedad());
 		view.getBtnCancelarContrato().addActionListener(e -> view.setVisible(false));
 		view.getBtnRenovarContrato().addActionListener(e -> renovarContrato());
+		view.getBtnBorrador().addActionListener(e -> guardarEnBorrador());
+//		view.getBtnGuardarCambios().addActionListener(e -> guardaContrato);
 		
 
 		fillCombos();
@@ -111,19 +109,37 @@ public class ContratoAlquilerController {
 	
 	private void guardaCurrentContrato(){
 		try {
+			mapper.fillBean(currentContrato);
 			contratoService.saveContratoAlquiler(currentContrato);
+			this.view.setVisible(false);
 		} catch (LogicaNegocioException e) {
 			msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
 		}
 	}
 	
+	private void guardarEnDefinitivo(){
+		HistoriaEstadoContrato nuevo = new HistoriaEstadoContrato();
+		nuevo.setEstado(EstadoContrato.BORRADOR);
+		nuevo.setFecha(DateTime.now());
+		currentContrato.getEstados().add(nuevo);
+		
+		guardaCurrentContrato();
+	}
+	
+	private void guardarEnBorrador(){
+		HistoriaEstadoContrato nuevo = new HistoriaEstadoContrato();
+		nuevo.setEstado(EstadoContrato.BORRADOR);
+		nuevo.setFecha(DateTime.now());
+		currentContrato.getEstados().add(nuevo);
+		
+		guardaCurrentContrato();
+	}
+	
 	private void fillCombos() {
 		
-		this.view.getComboTipoContrato().setModel(tipoCombo);
-		tipoCombo.actualize(Arrays.asList(TipoContratoAlquiler.values()));
+		this.view.getComboTipoContratoModel().actualize(Arrays.asList(TipoContratoAlquiler.values()));
 		
-		this.view.getComboMoneda().setModel(monedaCombo);
-		monedaCombo.actualize(Arrays.asList(Moneda.values()));
+		this.view.getMonedaComboModel().actualize(Arrays.asList(Moneda.values()));
 		
 	}
 
@@ -144,14 +160,11 @@ public class ContratoAlquilerController {
 		
 	}
 
-	public void editarContrato(ContratoAlquiler c){
+	public void editarContrato(ContratoAlquiler contrato){
 		view.setTitle("Editar Contrato");
-//		view.getBtnGuardar().setVisible(false);
-//		view.getBtnCancelar().setVisible(false);
-//		view.getBtnGuardarCambios().setVisible(true);
 		fillCombos();
 
-		currentContrato = c;
+		currentContrato = contrato;
 		mapper.fillFields(currentContrato);
 	}
 
@@ -172,6 +185,7 @@ public class ContratoAlquilerController {
 		view.getBtnGuardarContrato().setVisible(false);
 		view.getBtnCancelarContrato().setVisible(false);
 		view.getBtnRenovarContrato().setVisible(true);
+		view.getBtnBorrador().setVisible(false);
 		
 		currentContrato = contratoService.getActualizacionOf(c);
 		

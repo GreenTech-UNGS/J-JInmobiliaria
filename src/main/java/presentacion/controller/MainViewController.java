@@ -148,6 +148,8 @@ public class MainViewController {
 												fillTablePagosProps();});
 		this.view.getBtnInquilinos().addActionListener(e -> {fillTableClientes();
 														fillTablePropietarios();});	
+		this.view.getBtnEditarContrato().addActionListener(e -> editarContratoAlquiler());
+		
 		
 		selectDetalleProp();
 		fillAllTables();
@@ -301,6 +303,7 @@ public class MainViewController {
 		this.view.getTableInmobiliaria().setModel(tableInmobiliaria);
 		
 		inmobiliariaService.getAll().forEach(e -> tableInmobiliaria.addRow(e));
+		inmobiliariaService.getAll().forEach(e -> System.out.println(e.getNombre()));
 		this.view.getTableInmobiliaria().getTableHeader().setReorderingAllowed(false);
 	}
 	
@@ -387,11 +390,16 @@ public class MainViewController {
 		}
 	}
 
-	private void editarContrato() {
+	private void editarContratoAlquiler() {
 		int select = this.view.getTablaContratoAlquiler().getSelectedRow();
-
+		
 		if (select!=-1){
-		//	contratoAlqController.editarContrato(this.tableModelContrato.getRow(select));
+			ContratoAlquiler selectedContrato = (ContratoAlquiler) this.contratosTable2.getRow(select);
+			if(!contratoService.getEstadoOf(selectedContrato).equals(EstadoContrato.BORRADOR)){
+				JOptionPane.showMessageDialog(null, "No se puede editar un contrato definitivo", "Error", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			contratoAlqController.editarContrato(selectedContrato);
 			contratoAlqController.showView();
 			this.fillTableContratosAlquiler();
 		}

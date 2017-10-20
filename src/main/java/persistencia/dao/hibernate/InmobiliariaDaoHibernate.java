@@ -35,18 +35,6 @@ public class InmobiliariaDaoHibernate extends DaoHibernate<Inmobiliaria> impleme
 	}
 
 	@Override
-	public void save(Inmobiliaria t) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void remove(Inmobiliaria t) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public List<Telefono> getAllTelefonosOf(Inmobiliaria i) {
 initTransaction();
 		

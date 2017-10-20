@@ -42,7 +42,7 @@ public class ContratoVentaForm extends JDialog{
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		
-		JLabel lblIdContrato = new JLabel("Identificador:");
+		JLabel lblIdContrato = new JLabel("Codigo:");
 		lblIdContrato.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblIdContrato.setBounds(27, 69, 68, 14);
 		getContentPane().add(lblIdContrato);

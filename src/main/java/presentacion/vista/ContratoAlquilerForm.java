@@ -6,6 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+import presentacion.combo.MonedaComboBoxModel;
+import presentacion.combo.TipoContratoAlqComboBoxModel;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
@@ -53,6 +57,9 @@ public class ContratoAlquilerForm extends JDialog {
 	private JCheckBox chckbxIntimacion;
 	private JSpinner spinnerIntimacionEmail;
 	private JButton btnRenovarContrato;
+	private JButton btnBorrador;
+	private TipoContratoAlqComboBoxModel comboTipoContratoModel;
+	private MonedaComboBoxModel monedaComboModel;
 	
 	
 	public ContratoAlquilerForm() {
@@ -70,7 +77,7 @@ public class ContratoAlquilerForm extends JDialog {
 		setContentPane(agregarContrato);
 		agregarContrato.setLayout(null);
 		
-		JLabel lblIdContrato = new JLabel("Identifcador:");
+		JLabel lblIdContrato = new JLabel("Codigo:");
 		lblIdContrato.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblIdContrato.setBounds(22, 50, 75, 14);
 		agregarContrato.add(lblIdContrato);
@@ -115,7 +122,7 @@ public class ContratoAlquilerForm extends JDialog {
 		lblDatosFinancieros.setBounds(22, 173, 142, 14);
 		agregarContrato.add(lblDatosFinancieros);
 		
-		JLabel lblDiaVenc = new JLabel("Tiempo de pago:");
+		JLabel lblDiaVenc = new JLabel("Dia de vencimiento:");
 		lblDiaVenc.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblDiaVenc.setBounds(22, 435, 128, 14);
 		agregarContrato.add(lblDiaVenc);
@@ -189,13 +196,13 @@ public class ContratoAlquilerForm extends JDialog {
 		separator_2.setBounds(22, 534, 574, 2);
 		agregarContrato.add(separator_2);
 		
-		this.btnGuardarContrato = new JButton("Guardar");
+		this.btnGuardarContrato = new JButton(" Guardar definitivo");
 		btnGuardarContrato.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnGuardarContrato.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnGuardarContrato.setBounds(165, 625, 128, 38);
+		btnGuardarContrato.setBounds(102, 625, 128, 38);
 		agregarContrato.add(btnGuardarContrato);
 		
 		this.btnCancelarContrato = new JButton("Cancelar");
@@ -204,7 +211,7 @@ public class ContratoAlquilerForm extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnCancelarContrato.setBounds(329, 625, 120, 38);
+		btnCancelarContrato.setBounds(412, 625, 120, 38);
 		agregarContrato.add(btnCancelarContrato);
 		
 		btnLupaPropiedad = new JButton("");
@@ -369,14 +376,28 @@ public class ContratoAlquilerForm extends JDialog {
 		agregarContrato.add(label_5);
 		
 		btnRenovarContrato = new JButton("Renovar contrato");
-		btnRenovarContrato.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnRenovarContrato.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnRenovarContrato.setBounds(249, 629, 128, 30);
 		agregarContrato.add(btnRenovarContrato);
 		btnRenovarContrato.setVisible(false);
+		
+		comboTipoContratoModel = new TipoContratoAlqComboBoxModel();
+		this.comboTipoContrato.setModel(comboTipoContratoModel);
+		
+		monedaComboModel = new MonedaComboBoxModel();
+		this.comboMoneda.setModel(monedaComboModel);
+		
+		btnBorrador = new JButton("Guardar borrador");
+		btnBorrador.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnBorrador.setBounds(259, 625, 128, 38);
+		agregarContrato.add(btnBorrador);
+		
+		
+	}
+
+
+	public TipoContratoAlqComboBoxModel getComboTipoContratoModel() {
+		return comboTipoContratoModel;
 	}
 
 
@@ -405,11 +426,6 @@ public class ContratoAlquilerForm extends JDialog {
 	}
 
 
-	public JComboBox<String> getComboMoneda() {
-		return comboMoneda;
-	}
-
-
 	public JButton getBtnGuardarContrato() {
 		return btnGuardarContrato;
 	}
@@ -427,11 +443,6 @@ public class ContratoAlquilerForm extends JDialog {
 
 	public JSpinner getSpinnerDuracionContrato() {
 		return spinnerDuracionContrato;
-	}
-
-
-	public JComboBox<String> getComboTipoContrato() {
-		return comboTipoContrato;
 	}
 
 
@@ -519,14 +530,8 @@ public class ContratoAlquilerForm extends JDialog {
 		this.textPrecio = textPrecio;
 	}
 
-
-	public void setComboMoneda(JComboBox<String> comboMoneda) {
-		this.comboMoneda = comboMoneda;
-	}
-
-
-	public void setComboTipoContrato(JComboBox<String> comboTipoContrato) {
-		this.comboTipoContrato = comboTipoContrato;
+	public MonedaComboBoxModel getMonedaComboModel() {
+		return monedaComboModel;
 	}
 
 
@@ -548,7 +553,9 @@ public class ContratoAlquilerForm extends JDialog {
 	public void setBtnRenovarContrato(JButton btnRenovarContrato) {
 		this.btnRenovarContrato = btnRenovarContrato;
 	}
-	
-	
 
+
+	public JButton getBtnBorrador() {
+		return btnBorrador;
+	}
 }

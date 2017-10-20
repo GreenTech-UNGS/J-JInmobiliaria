@@ -70,6 +70,7 @@ public class InmobiliariaController {
 	
 	private void saveInmobiliaria(){
 		if(inmobiliariaValidator.isValid()) {
+			System.out.println("es valida");
 			inmobiliariaMapper.fillBean(currentInmobiliaria);
 			inmobiliariaService.saveInmobiliaria(currentInmobiliaria);
 			view.setVisible(false);

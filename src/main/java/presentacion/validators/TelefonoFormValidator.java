@@ -30,7 +30,7 @@ public class TelefonoFormValidator implements ValidatorNew{
 	}
 	
 	private boolean isTelefonoValid(){
-		return view.getTextTelefono().getText().matches("[0-9]*-[0-9]*");
+		return view.getTextTelefono().getText().matches("[0-9]{5,}");
 	}
 
 }

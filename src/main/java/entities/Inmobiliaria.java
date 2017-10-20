@@ -38,6 +38,7 @@ public class Inmobiliaria {
 	
 	public Inmobiliaria() {
 		this.contactos = new ArrayList<>();
+		this.telefonos = new ArrayList<>();
 	}
 
 	public int getID() {
