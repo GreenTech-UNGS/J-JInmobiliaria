@@ -1,14 +1,5 @@
 package presentacion.controller;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-
-import javax.swing.JOptionPane;
-import javax.swing.Timer;
-
 import com.google.inject.Inject;
 
 import entities.Cliente;
@@ -111,20 +102,6 @@ public class ClienteController {
 		}
 	}
 	
-	private boolean fieldsOk(){
-		//Esto tendría que hacerlo el validador
-		boolean emptys = view.getTextCredencial().getText().isEmpty();
-		emptys |= view.getTextNombre().getText().isEmpty();
-		emptys |= view.getTextApellido().getText().isEmpty();
-		emptys |= view.getTextMail().getText().isEmpty();
-		
-		if(emptys){
-			JOptionPane.showMessageDialog(view, "Hay campos obligatorios que estan vacios",
-											"Error",
-											JOptionPane.ERROR_MESSAGE);
-			return false;}
-		return true;}
-	
 	private void agregaTelefono() {
 		telefonoController.setModeNew();
 		telefonoController.showView();
@@ -147,7 +124,6 @@ public class ClienteController {
 			clienteMapper.fillFields(currentCliente);
 			
 			setEditCampos(false);
-			
 		}	
 	}
 	
@@ -161,7 +137,6 @@ public class ClienteController {
 		
 		view.getBtnAgregarTelefono().setEnabled(b);
 		view.getBtnBorrarTelefono().setEnabled(b);
-		
 	}
 	
 	private void borrarTelefono() {
@@ -169,9 +144,9 @@ public class ClienteController {
 		
 		for (int fila : seleccionadas){
 			telTable.removeRow(fila);
-			
 		}
 	}
+	
 	public void editarCliente(Cliente c){
 		view.setTitle("Editar cliente");
 		view.getBtnGuardar().setVisible(false);

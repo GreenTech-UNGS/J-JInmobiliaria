@@ -80,7 +80,7 @@ public class ContratoVentaController {
 		elegirCliente.showView();
 		Cliente cliente = elegirCliente.getCliente();
 		if (cliente != null){
-			view.getTfCliente().setText("DNI " + cliente.getPersona().getCredencial());
+			view.getTfCliente().setText(cliente.getPersona().getNombre() + " " + cliente.getPersona().getApellido());
 			currentContrato.setCliente(cliente);
 			}
 		}

@@ -40,6 +40,7 @@ public class MainView {
     private JButton btnCancelarContrato;
     private JButton btnInmobiliaria;
     private JButton btnAgregarInmobiliaria;
+    private JButton btnEditarInmob;
     
     private JCalendar jCalendar;
     private JTable tablaContratoVenta;
@@ -413,10 +414,14 @@ public class MainView {
         
         JPanel panelBtnInmb = new JPanel();
         panelinmobiliaria.add(panelBtnInmb);
+        panelBtnInmb.setLayout(new BoxLayout(panelBtnInmb, BoxLayout.X_AXIS));
         
         btnAgregarInmobiliaria = new JButton("Agregar inmobiliaria");
         btnAgregarInmobiliaria.setFont(new Font("Tahoma", Font.PLAIN, 11));
         panelBtnInmb.add(btnAgregarInmobiliaria);
+        
+        btnEditarInmob = new JButton("Editar inmobiliaria");
+        panelBtnInmb.add(btnEditarInmob);
         
         btnInmobiliaria = new JButton("");
         btnInmobiliaria.addActionListener(new ActionListener() {
@@ -792,4 +797,15 @@ public class MainView {
 	public JButton getBtnGenerarReporteCobros() {
 		return btnGenerarReporteCobros;
 	}
+
+
+	public JButton getBtnEditarInmob() {
+		return btnEditarInmob;
+	}
+
+
+	public void setBtnEditarInmob(JButton btnEditarInmob) {
+		this.btnEditarInmob = btnEditarInmob;
+	}
+	
 }

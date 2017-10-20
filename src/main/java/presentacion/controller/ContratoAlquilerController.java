@@ -69,12 +69,8 @@ public class ContratoAlquilerController {
 		eligeCliente.showView();
 		Cliente cliente = eligeCliente.getCliente();
 		
-		if(cliente != null) {
-			String credencial = cliente.getPersona().getTipoCred().toString() + " " +
-								cliente.getPersona().getCredencial();
-			
-			view.getTfDniInquilino().setText(credencial);
-			
+		if(cliente != null) {	
+			view.getTfDniInquilino().setText(cliente.getPersona().getNombre() + " " + cliente.getPersona().getApellido());	
 			currentContrato.setCliente(cliente);
 		}
 	}

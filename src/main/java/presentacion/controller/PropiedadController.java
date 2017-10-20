@@ -6,7 +6,6 @@ import misc.Binder;
 import model.LocalidadService;
 import model.LocalizationService;
 import model.PropiedadService;
-import model.PropietarioService;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
@@ -153,8 +152,7 @@ public class PropiedadController {
 		
 		if(inmob !=null){
 			currentInmobiliaria = elegirInmobController.getInmobiliaria();
-			view.getTfInmobiliaria().setText("CUIT" + currentInmobiliaria.getCUIT());
-			
+			view.getTfInmobiliaria().setText(currentInmobiliaria.getNombre());
 		}
 	}
 

@@ -6,9 +6,7 @@ import java.util.List;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import entities.Cliente;
 import entities.Inmobiliaria;
-import entities.Persona;
 import persistencia.dao.iface.InmobiliariaDao;
 
 @Singleton

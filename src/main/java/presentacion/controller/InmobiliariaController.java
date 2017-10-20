@@ -9,9 +9,7 @@ import com.google.inject.Inject;
 
 import entities.Inmobiliaria;
 import entities.Localidad;
-import entities.Propiedad;
 import entities.Provincia;
-import misc.Binder;
 import model.InmobiliariaService;
 import model.LocalidadService;
 import presentacion.combo.LocalidadComboBoxModel;
@@ -40,16 +38,19 @@ public class InmobiliariaController {
 	
 	@Inject
 	private InmobiliariaController(InmobiliariaForm view, InmobiliariaService inmobiliariaService,
-									LocalidadService localidadService){
+									LocalidadService localidadService,
+									MessageShow msgShow){
 		this.view = view;
 		this.inmobiliariaService = inmobiliariaService;
 		this.provCombo = new ProvinciaComboBoxModel();
 		this.localidadCombo = new LocalidadComboBoxModel();
 		this.localidadService = localidadService;
+		this.msgShow = msgShow;
 		
 		fillCombo();
 		
 		view.getBtnGuardar().addActionListener(e -> saveInmobiliaria());
+		view.getBtnGuardarCambios().addActionListener(e -> saveInmobiliaria());
 	}
 	
 	public void showView(){
@@ -90,6 +91,17 @@ public class InmobiliariaController {
 		List<Localidad> localidades = localidadService.getAllOf(provCombo.getSelected());
 		localidadCombo.actualize(localidades);
 		
+	}
+	
+	public void editInmobiliaria(Inmobiliaria i){
+		
+		view.setTitle("Editar Inmobiliaria");
+		view.getBtnGuardar().setVisible(false);
+		view.getBtnCancelar().setVisible(false);
+		view.getBtnGuardarCambios().setVisible(true);
+		fillCombo();
+		currentInmobiliaria = i;
+		inmobiliariaMapper.fillFields(i);
 	}
 
 }

@@ -130,10 +130,10 @@ public class MainViewController {
 		this.view.getBtnRegistrarPago().addActionListener(e -> registrarPago());
 		this.view.getBtnCancelarContrato().addActionListener(e -> cancelarContrato());
 		this.view.getBtnAgregarInmobiliaria().addActionListener(e -> agregarInmobiliaria());
+		this.view.getBtnEditarInmob().addActionListener(e -> editarInmobiliaria());
 		
 		this.view.getBtnGenerarReporteCobros().addActionListener(e -> generaReporteCobroDeAlquileres());
 		this.view.getBtnGenerarReportePropietarios().addActionListener(e -> generaReportePropietarios());
-		
 		this.view.getBtnPropiedades().addActionListener(e -> {fillTableProp();
 													fillTableReservas();});
 		this.view.getBtnContratos().addActionListener(e -> {fillTableContratosAlquiler(); 
@@ -359,6 +359,16 @@ public class MainViewController {
 			clienteController.editarCliente(this.tableModelClien.getRow(select));
 			clienteController.showView();
 			this.fillTableClientes();
+		}
+	}
+	
+	private void editarInmobiliaria() {
+		int seleccion = this.view.getTableInmobiliaria().getSelectedRow();
+		
+		if (seleccion !=-1){
+			inmobiliariaController.editInmobiliaria(this.tableInmobiliaria.getRow(seleccion));
+			inmobiliariaController.showView();
+			fillTableInmobiliarias();
 		}
 	}
 

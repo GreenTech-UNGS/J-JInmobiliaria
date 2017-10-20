@@ -36,6 +36,7 @@ public class InmobiliariaForm extends JDialog {
 	private JComboBox<String> cbProvincia;
 	private JButton btnGuardar;
 	private JButton btnCancelar;
+	private JButton btnGuardarCambios;
 	
 	@Inject
 	private InmobiliariaForm(){
@@ -208,6 +209,15 @@ public class InmobiliariaForm extends JDialog {
 		lblProvincia.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblProvincia.setBounds(47, 147, 57, 14);
 		getContentPane().add(lblProvincia);
+		
+		btnGuardarCambios = new JButton("Guardar cambios");
+		btnGuardarCambios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnGuardarCambios.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnGuardarCambios.setBounds(166, 444, 123, 35);
+		getContentPane().add(btnGuardarCambios);
 	}
 
 	public JTextField getTfEmail() {
@@ -296,6 +306,14 @@ public class InmobiliariaForm extends JDialog {
 
 	public void setBtnCancelar(JButton btnCancelar) {
 		this.btnCancelar = btnCancelar;
+	}
+
+	public JButton getBtnGuardarCambios() {
+		return btnGuardarCambios;
+	}
+
+	public void setBtnGuardarCambios(JButton btnGuardarCambios) {
+		this.btnGuardarCambios = btnGuardarCambios;
 	}
 	
 	
