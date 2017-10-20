@@ -35,9 +35,6 @@
 	<field name="estadoStr" class="java.lang.String">
 		<fieldDescription><![CDATA[estadoStr]]></fieldDescription>
 	</field>
-	<group name="GroupPropietarios">
-		<groupExpression><![CDATA[$F{propietarioStr}]]></groupExpression>
-	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

@@ -2,7 +2,6 @@ package dto;
 
 public class CobrosDeAlquileresDTO {
 
-
     String idContrato;
 	String anioMes;
     String propiedadStr;
