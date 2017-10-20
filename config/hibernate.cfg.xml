@@ -42,7 +42,10 @@
 		<mapping class="entities.InteresPunitorioCuota" />
 		<mapping class="entities.PagoPropietario" />
 		<mapping class="entities.Reserva" />
-		<mapping class="entities.Usuario" />
+		<mapping class="entities.Usuario" />		
+		<mapping class="entities.Habitacion" />	
+		<mapping class="entities.PropiedadOtrosDatos" />
+		
 				
     </session-factory>
 </hibernate-configuration>

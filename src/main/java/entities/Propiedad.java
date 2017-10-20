@@ -37,6 +37,9 @@ public class Propiedad {
 	private double lat;
 	private double lon;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	private PropiedadOtrosDatos otrosDatos;
+	
 	public double getLat() {
 		return lat;
 	}
