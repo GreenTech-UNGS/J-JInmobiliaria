@@ -54,6 +54,7 @@ public class MainView {
 	
 
 	private MovimientosCajaTableModel tableMovimientosModel;
+	private JButton btnAplicarFiltro;
 
     @Inject
     public MainView() {
@@ -131,10 +132,9 @@ public class MainView {
 
         JPanel panelInquilinos = new JPanel();
         panelContainer.add(panelInquilinos, "name_1084846370736461");
-        panelInquilinos.setLayout(null);
+        panelInquilinos.setLayout(new BoxLayout(panelInquilinos, BoxLayout.X_AXIS));
 
         JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
-        tabbedPane_2.setBounds(0, 0, 668, 474);
         panelInquilinos.add(tabbedPane_2);
 
         JPanel TabCliente = new JPanel();
@@ -158,6 +158,19 @@ public class MainView {
         JPanel TabPropietarios = new JPanel();
         tabbedPane_2.addTab("Propietarios", null, TabPropietarios, null);
         TabPropietarios.setLayout(new BoxLayout(TabPropietarios, BoxLayout.Y_AXIS));
+        
+        JPanel panlBotonFiltro = new JPanel();
+        TabPropietarios.add(panlBotonFiltro);
+        panlBotonFiltro.setLayout(new BoxLayout(panlBotonFiltro, BoxLayout.X_AXIS));
+        
+        Component horizontalGlue_4 = Box.createHorizontalGlue();
+        panlBotonFiltro.add(horizontalGlue_4);
+        
+        btnAplicarFiltro = new JButton("Aplicar Filtro");
+        panlBotonFiltro.add(btnAplicarFiltro);
+        
+        JButton btnRemoverFiltro = new JButton("Remover Filtro");
+        panlBotonFiltro.add(btnRemoverFiltro);
 
         tablePropietarios = new JTable();
         
@@ -705,5 +718,9 @@ public class MainView {
 	public JButton getBtnEditarInmobiliaria() {
 		return btnEditarInmobiliaria;
 	}
-	
+
+
+	public JButton getBtnAplicarFiltro() {
+		return btnAplicarFiltro;
+	}
 }
