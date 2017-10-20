@@ -27,7 +27,7 @@ public class PropiedadFormValidator implements ValidatorNew{
 		String toRet = "Error en los siguientes campos: ";
 		
 		if(!isPrecioValid())
-			toRet += "\n- el precio no es valido";
+			toRet += "\n- El precio no es valido";
 		
 		return toRet;
 	}

@@ -1,11 +1,11 @@
 package entities;
 
-import java.time.Period;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.joda.time.Period;
 
 @Entity
 public class AvisoNotificacion {
@@ -17,6 +17,10 @@ public class AvisoNotificacion {
 	private String periodo;
 	
 	private boolean isHabilitado;
+	
+	public AvisoNotificacion(){
+		periodo = "P";
+	}
 
 	public Period getPeriodo() {
 		return Period.parse(periodo);

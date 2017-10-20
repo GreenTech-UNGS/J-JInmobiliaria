@@ -1,4 +1,4 @@
-package persisitencia.dao.mapas;
+package persistencia.dao.mapas;
 
 import persistencia.dao.iface.LocalizationDao;
 import java.net.MalformedURLException;

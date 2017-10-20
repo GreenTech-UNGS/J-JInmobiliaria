@@ -10,7 +10,7 @@ import org.joda.time.YearMonth;
 import presentacion.reportes.ReporteCobrosDeAlquileres;
 import presentacion.reportes.ReportePropietariosPagosPendientes;
 import presentacion.table.*;
-import presentacion.vista.MainView;
+import presentacion.vista.main.MainView;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
@@ -43,12 +43,12 @@ public class MainViewController {
 	ReservarPropiedadController reservaController;
 	RegistrarCobroController cobroController;
 	InmobiliariaController inmobiliariaController;
+	MovimientoCajaController movimientoController;
 
 	PropiedadService propiedadService;
 	ClienteService clienteService;
 	ContratoService contratoService;
 	PropietarioService propietarioService;
-	PagosCobrosService pagosCobrosService;
 	CuotaService cuotaService;
 	ReservaService reservaService;
 	PagosCobrosService pagoCobroService;
@@ -81,7 +81,8 @@ public class MainViewController {
 			PropiedadesTableModel tableAlquiladas,
 			PropiedadesTableModel tableVendidas,
 			InmobiliariaController inmobiliariaController,
-			InmobiliariaService inmobiliariaService){
+			InmobiliariaService inmobiliariaService,
+			MovimientoCajaController movimientoController){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
@@ -113,6 +114,7 @@ public class MainViewController {
 		this.tableVendidas = tableVendidas;
 		this.inmobiliariaController = inmobiliariaController;
 		this.inmobiliariaService = inmobiliariaService;
+		this.movimientoController = movimientoController;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
@@ -130,7 +132,9 @@ public class MainViewController {
 		this.view.getBtnRegistrarPago().addActionListener(e -> registrarPago());
 		this.view.getBtnCancelarContrato().addActionListener(e -> cancelarContrato());
 		this.view.getBtnAgregarInmobiliaria().addActionListener(e -> agregarInmobiliaria());
-		this.view.getBtnEditarInmob().addActionListener(e -> editarInmobiliaria());
+//		this.view.getBtnEditarInmob().addActionListener(e -> editarInmobiliaria());
+		this.view.getBtnRegistrarIngreso().addActionListener(e -> registraMovimientoCaja(true));
+		this.view.getBtnRegistrarEgreso().addActionListener(e -> registraMovimientoCaja(false));
 		
 		this.view.getBtnGenerarReporteCobros().addActionListener(e -> generaReporteCobroDeAlquileres());
 		this.view.getBtnGenerarReportePropietarios().addActionListener(e -> generaReportePropietarios());
@@ -174,7 +178,7 @@ public class MainViewController {
 //TODO parametrizar el yearmonth
 	private void generaReporteCobroDeAlquileres() {
 		List<CobrosDeAlquileresDTO> dtos =
-				pagosCobrosService.cobrosDeAlquilerReporteOf(YearMonth.now());
+				pagoCobroService.cobrosDeAlquilerReporteOf(YearMonth.now());
 		ReporteCobrosDeAlquileres reporte = new ReporteCobrosDeAlquileres(dtos);
 		reporte.mostrar();
 
@@ -490,5 +494,12 @@ public class MainViewController {
 				this.fillTablePagosProps();
 			}			
 		}
+	}
+	
+	private void registraMovimientoCaja(boolean isIngreso){
+	
+		if(isIngreso)movimientoController.setModeNewIngreso();
+		else movimientoController.setModeNewEgreso();
+		movimientoController.showView();
 	}
 }
