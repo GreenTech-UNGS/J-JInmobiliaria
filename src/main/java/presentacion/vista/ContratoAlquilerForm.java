@@ -1,11 +1,7 @@
 package presentacion.vista;
-import java.awt.Dimension;
-
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+<<<<<<< HEAD
 
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.TipoContratoAlqComboBoxModel;
@@ -21,12 +17,9 @@ import javax.swing.JSeparator;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextArea;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JCheckBox;
-import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class ContratoAlquilerForm extends JDialog {
@@ -298,16 +291,6 @@ public class ContratoAlquilerForm extends JDialog {
 		label_1.setBounds(165, 347, 22, 15);
 		agregarContrato.add(label_1);
 		
-		JLabel lblMeses = new JLabel("Meses");
-		lblMeses.setFont(new Font("Dialog", Font.PLAIN, 11));
-		lblMeses.setBounds(166, 318, 56, 15);
-		agregarContrato.add(lblMeses);
-		
-		spinnerDuracionContrato = new JSpinner();
-		spinnerDuracionContrato.setBounds(102, 102, 45, 20);
-		spinnerDuracionContrato.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
-		agregarContrato.add(spinnerDuracionContrato);
-		
 		JLabel label_2 = new JLabel("Meses");
 		label_2.setFont(new Font("Dialog", Font.PLAIN, 11));
 		label_2.setBounds(152, 107, 56, 15);
@@ -333,22 +316,33 @@ public class ContratoAlquilerForm extends JDialog {
 		chkbxAcumulativoPunitorio.setFont(new Font("Dialog", Font.PLAIN, 11));
 		chkbxAcumulativoPunitorio.setBounds(350, 430, 129, 23);
 		agregarContrato.add(chkbxAcumulativoPunitorio);
-		
+
+		JLabel lblTipo = new JLabel("Tipo:");
+		lblTipo.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblTipo.setBounds(22, 129, 75, 15);
+
+		agregarContrato.add(lblTipo);
+
 		comboTipoContrato = new JComboBox<>();
 		comboTipoContrato.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		comboTipoContrato.setBounds(102, 129, 167, 18);
 		agregarContrato.add(comboTipoContrato);
-		
-		JLabel lblTipo = new JLabel("Tipo:");
-		lblTipo.setFont(new Font("Dialog", Font.PLAIN, 11));
-		lblTipo.setBounds(22, 129, 75, 15);
-		agregarContrato.add(lblTipo);
-		
+
+		JLabel lblMeses = new JLabel("Meses");
+		lblMeses.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblMeses.setBounds(166, 318, 56, 15);
+		agregarContrato.add(lblMeses);
+
+		spinnerDuracionContrato = new JSpinner();
+		spinnerDuracionContrato.setBounds(102, 102, 45, 20);
+		spinnerDuracionContrato.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
+		agregarContrato.add(spinnerDuracionContrato);
+
 		chckbxVencimiento = new JCheckBox("Vencimiento");
 		chckbxVencimiento.setFont(new Font("Dialog", Font.PLAIN, 11));
 		chckbxVencimiento.setBounds(22, 541, 129, 23);
 		agregarContrato.add(chckbxVencimiento);
-		
+
 		chckbxIntimacion = new JCheckBox("Intimacion");
 		chckbxIntimacion.setFont(new Font("Dialog", Font.PLAIN, 11));
 		chckbxIntimacion.setBounds(350, 541, 129, 23);
