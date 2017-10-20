@@ -53,7 +53,7 @@ public class MainViewController {
 	ReservaService reservaService;
 	PagosCobrosService pagoCobroService;
 	InmobiliariaService inmobiliariaService;
-	
+	MovimientoCajaService movimientoService;
 	
 	@Inject
 	private MainViewController(MainView view,
@@ -82,7 +82,8 @@ public class MainViewController {
 			PropiedadesTableModel tableVendidas,
 			InmobiliariaController inmobiliariaController,
 			InmobiliariaService inmobiliariaService,
-			MovimientoCajaController movimientoController){
+			MovimientoCajaController movimientoController,
+			MovimientoCajaService movimientoService){
 		
 		this.view = view;
 		this.tableModelClien = new ClientesTableModel();
@@ -115,6 +116,7 @@ public class MainViewController {
 		this.inmobiliariaController = inmobiliariaController;
 		this.inmobiliariaService = inmobiliariaService;
 		this.movimientoController = movimientoController;
+		this.movimientoService = movimientoService;
 		
 		
 		this.view.getBtnPropiedades().addActionListener(e -> agregarPropiedad());
@@ -165,6 +167,7 @@ public class MainViewController {
 		fillTableAlquiladas();
 		fillTableVendidas();
 		fillTableInmobiliarias();
+		fillTableMovimientosCaja();
 	}
 
 	private void generaReportePropietarios() {
@@ -299,6 +302,14 @@ public class MainViewController {
 		
 		inmobiliariaService.getAll().forEach(e -> tableInmobiliaria.addRow(e));
 		this.view.getTableInmobiliaria().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTableMovimientosCaja() {
+		this.view.getTableMovimientosModel().clean();
+		
+		this.view.getTableMovimientosModel().addRows(movimientoService.getAll());
+
+		this.view.getTableMovimientosCaja().getTableHeader().setReorderingAllowed(false);
 	}
 
 	public void showView(){

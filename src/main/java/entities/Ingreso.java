@@ -21,17 +21,19 @@ import org.joda.time.DateTime;
 @DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("ingresoBasico")
 @Table(name = "ingresos")
-public class Ingreso {
+public class Ingreso extends MovimientoCaja{
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int ID;
-
-	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	private DateTime fecha;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	int ID;
+	
 	@OneToOne(cascade = CascadeType.ALL)
-	private Precio monto;
-	private String detalle;
+	Precio monto;	
+	
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	DateTime fecha;
+	
+	String detalle;
 	
 	public DateTime getFecha() {
 		return fecha;

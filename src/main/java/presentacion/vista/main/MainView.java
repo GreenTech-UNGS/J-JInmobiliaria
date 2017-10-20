@@ -4,6 +4,8 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.toedter.calendar.JCalendar;
 
+import presentacion.table.MovimientosCajaTableModel;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
@@ -49,6 +51,9 @@ public class MainView {
 	private JTable tableMovimientosCaja;
 	private JButton btnRegistrarIngreso;
 	private JButton btnRegistrarEgreso;
+	
+
+	private MovimientosCajaTableModel tableMovimientosModel;
 
     @Inject
     public MainView() {
@@ -460,8 +465,10 @@ public class MainView {
         btnInmobiliaria.setPreferredSize(new Dimension(70, 70));
         btnInmobiliaria.setBackground(new Color(0, 51, 51));
         panelMenu.add(btnInmobiliaria);
+        
+        tableMovimientosModel = new MovimientosCajaTableModel();
+        tableMovimientosCaja.setModel(tableMovimientosModel);
 
-      
     }
 
     public JTable getTablePropiedades() {
@@ -686,13 +693,13 @@ public class MainView {
 	}
 
 
-	public JButton getBtnEditarInmobiliaria() {
-		return btnEditarInmobiliaria;
+	public MovimientosCajaTableModel getTableMovimientosModel() {
+		return tableMovimientosModel;
 	}
 
 
-	public void setBtnEditarInmobiliaria(JButton btnEditarInmobiliaria) {
-		this.btnEditarInmobiliaria = btnEditarInmobiliaria;
+	public JTable getTableMovimientosCaja() {
+		return tableMovimientosCaja;
 	}
 	
 }

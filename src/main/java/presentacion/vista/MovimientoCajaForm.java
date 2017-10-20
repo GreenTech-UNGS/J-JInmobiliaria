@@ -10,6 +10,7 @@ import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.demo.DateChooserPanel;
 
 import presentacion.combo.MonedaComboBoxModel;
+import presentacion.table.MovimientosCajaTableModel;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
