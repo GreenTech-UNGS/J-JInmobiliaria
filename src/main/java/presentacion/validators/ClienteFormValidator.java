@@ -68,7 +68,9 @@ public class ClienteFormValidator implements ValidatorNew{
 	private boolean isNombreValid(){
 		String nombre = view.getTextNombre().getText();
 		
-		if(nombre == null || nombre.equals("") || nombre.matches("\\s*"))
+		if(nombre == null || nombre.equals("") || nombre.matches("\\b*"))
+			return false;
+		if( ! nombre.matches(Regex.onlyLetters()))
 			return false;
 		
 		return true;
@@ -78,6 +80,8 @@ public class ClienteFormValidator implements ValidatorNew{
 		String apellido = view.getTextApellido().getText();
 		
 		if(apellido == null || apellido.equals("") || apellido.matches("\\b*"))
+			return false;
+		if( ! apellido.matches(Regex.onlyLetters()))
 			return false;
 		
 		return true;

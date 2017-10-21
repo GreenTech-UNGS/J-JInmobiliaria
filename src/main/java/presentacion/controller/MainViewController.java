@@ -12,7 +12,7 @@ import presentacion.reportes.ReporteCobrosDeAlquileres;
 import presentacion.reportes.ReporteMovimientosDeCaja;
 import presentacion.reportes.ReportePropietariosPagosPendientes;
 import presentacion.table.*;
-import presentacion.vista.main.MainView;
+import presentacion.main.vista.MainView;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
