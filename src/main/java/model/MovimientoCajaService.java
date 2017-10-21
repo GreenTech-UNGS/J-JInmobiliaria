@@ -6,6 +6,7 @@ import dto.MovimientoDeCajaDTO;
 import entities.Egreso;
 import entities.Ingreso;
 import entities.Moneda;
+import entities.MovimientoCaja;
 import entities.Precio;
 import org.joda.time.DateTime;
 import persistencia.dao.iface.EgresoDao;
@@ -86,6 +87,17 @@ public class MovimientoCajaService {
 		toRet.setMonto(p);
 		toRet.setDetalle("");
 		toRet.setFecha(DateTime.now());
+		
+		return toRet;
+	}
+
+	public List<MovimientoCaja> getAll() {
+		List<Ingreso> ingresos = ingresoDao.getAll();
+		List<Egreso> egresos = egresoDao.getAll();
+		
+		List<MovimientoCaja> toRet = new ArrayList<>(ingresos);
+		toRet.addAll(egresos);
+		toRet.sort((m1, m2) -> m2.getFecha().compareTo(m1.getFecha()));
 		
 		return toRet;
 	}
