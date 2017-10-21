@@ -30,6 +30,7 @@ import presentacion.controller.ContratoAlquilerController;
 import presentacion.controller.ContratoVentaController;
 import presentacion.controller.PropiedadController;
 import presentacion.controller.PropietarioController;
+import presentacion.main.vista.MainView;
 import presentacion.controller.ElegirInmobiliariaController;
 import presentacion.controller.ElegirPropietarioController;
 import presentacion.controller.InmobiliariaController;
@@ -38,7 +39,6 @@ import presentacion.vista.ContratoAlquilerForm;
 import presentacion.vista.ClienteForm;
 import presentacion.vista.PropiedadForm;
 import presentacion.vista.PropietarioForm;
-import presentacion.vista.main.MainView;
 import presentacion.vista.ElegirPropietarioView;
 import presentacion.vista.InmobiliariaForm;
 

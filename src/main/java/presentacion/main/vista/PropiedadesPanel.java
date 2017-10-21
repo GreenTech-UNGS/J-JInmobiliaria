@@ -1,4 +1,4 @@
-package presentacion.vista.main;
+package presentacion.main.vista;
 
 import java.awt.Component;
 import java.awt.Font;
@@ -11,6 +11,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
+@Singleton
 public class PropiedadesPanel extends JPanel{
 	
 	private JTable tablePropiedades;
@@ -24,7 +28,8 @@ public class PropiedadesPanel extends JPanel{
 	private JTable tableAlquiladas;
 	private JTable tableVendidas;
 
-	public PropiedadesPanel() {
+	@Inject
+	private PropiedadesPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         
         JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);

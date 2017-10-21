@@ -4,7 +4,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import misc.ProdModule;
-import presentacion.controller.MainViewController;
+import presentacion.main.controller.MainViewController;
 
 /**
  * Hello world!

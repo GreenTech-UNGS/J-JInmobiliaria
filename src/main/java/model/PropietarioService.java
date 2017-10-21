@@ -5,7 +5,9 @@ import com.google.inject.Singleton;
 import dto.PendientesPropietariosDTO;
 import entities.*;
 import entities.Persona.TipoCredencial;
-import org.apache.commons.logging.LogConfigurationException;
+import entities.Precio;
+import entities.Propiedad;
+import entities.Propietario;
 import persistencia.dao.iface.PropietarioDao;
 
 import java.text.DecimalFormat;

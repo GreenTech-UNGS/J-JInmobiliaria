@@ -3,6 +3,7 @@ package model;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import dto.CobrosDeAlquileresDTO;
+import dto.PendientesPropietariosDTO;
 import entities.*;
 import entities.PagoPropietario.EstadoPago;
 import org.joda.time.DateTime;
@@ -11,8 +12,10 @@ import org.joda.time.YearMonth;
 import persistencia.dao.iface.IngresoDao;
 import persistencia.dao.iface.PropietarioDao;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Singleton
 public class PagosCobrosService {
@@ -168,6 +171,40 @@ public class PagosCobrosService {
 			cobros.add(toAdd);
 		}
 		return cobros;
+	}
+	
+	public List<PendientesPropietariosDTO> pagosPendientesReporte() {
+		
+		DecimalFormat format = new DecimalFormat("#.##");
+		
+		List<PagoPropietario> lista = propietarioDao.getAllPagosPropsPendientes();
+		List<PendientesPropietariosDTO> toRet = lista.stream().map(p -> {
+			PendientesPropietariosDTO dto = new PendientesPropietariosDTO();
+			Persona persona = p.getContrato().getCliente().getPersona();
+			Persona propietario = p.getPropietario().getPersona();
+			Precio precio = p.getMonto();
+			Propiedad prop = p.getContrato().getPropiedad();
+			String provincia =  prop.getLocalidad().getProvincia().toString().replaceAll("_", "");
+			
+			dto.setIdContrato(p.getContrato().getIdentificador());
+			dto.setInquilinoStr(persona.getNombre() + " " +
+					persona.getApellido() + " " +
+					persona.getTipoCred().toString() + " " +
+					persona.getCredencial());
+			
+			dto.setMontoStr(precio.getMoneda().toString() + " " + format.format(precio.getMonto()));
+			dto.setPropiedadStr(prop.getCalle() + " " +prop.getAltura() + ", " + prop.getLocalidad().getNombre() + " " + provincia);
+			dto.setPropietarioStr(propietario.getApellido() + " " + propietario.getNombre());
+			
+			return dto;
+		}).sorted((p1, p2) -> p1.getPropietarioStr().compareTo(p2.getPropietarioStr()))
+				.collect(Collectors.toList());
+		
+		
+		
+		return toRet;
+		
+		
 	}
 
 }

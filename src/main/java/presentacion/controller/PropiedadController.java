@@ -295,7 +295,6 @@ public class PropiedadController {
 	}
 
 	public void showView(){
-			
 		view.setVisible(true);
 	}
 	
