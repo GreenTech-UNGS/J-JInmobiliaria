@@ -42,6 +42,7 @@ public class MenuPanelController {
 	
 	private void cambiaPanelInmobiliaria() {
 		hideAll();
+		System.out.println("asd");
 		inmobiliariaPanelController.showView();
 		inmobiliariaPanelController.actualize();
 	}
@@ -74,6 +75,15 @@ public class MenuPanelController {
 		hideAll();
 		propiedadesPanelController.showView();
 		propiedadesPanelController.actualize();
+	}
+	
+	public void actualizeAll(){
+		contratosPanelController.actualize();
+		inmobiliariaPanelController.actualize();
+		pagosPanelController.actualize();
+		propiedadesPanelController.actualize();
+		inquilinosPanelController.actualize();
+		reportePanelController.actualize();
 	}
 	
 	private void hideAll(){

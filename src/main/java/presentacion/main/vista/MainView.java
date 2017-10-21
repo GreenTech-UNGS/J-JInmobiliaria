@@ -23,6 +23,7 @@ public class MainView {
     		ContratosPanel panelContratos,
     		InquilinosPanel panelInquilinos,
     		PagosPanel panelPagos,
+    		InmobiliariaPanel panelInmobiliaria,
     		MenuPanel panelMenu,
     		ReportesPanel panelReportes) {  
     	
@@ -48,6 +49,7 @@ public class MainView {
         panelContainer.add(panelContratos, "name_1084753155363088");
         panelContainer.add(panelInquilinos, "name_1084846370736461");
         panelContainer.add(panelPagos, "name_1283035568116550");
+        panelContainer.add(panelInmobiliaria);
        
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));

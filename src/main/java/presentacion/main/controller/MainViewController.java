@@ -17,6 +17,7 @@ public class MainViewController {
 		this.menuController = menuController;
 		
 		this.menuController.showView();
+		this.menuController.actualizeAll();
 
 	}
 

@@ -14,20 +14,29 @@ public class ContratosTableModel extends BaseTableModel<Contrato>{
 	public ContratosTableModel(){
 		
 		super.addColumn("Codigo contrato", false, 100);
-		super.addColumn("Nombre cliente", false, 100);
-		super.addColumn("Apellido cliente", false, 100);
-		super.addColumn("Dni cliente", false, 100);
+		super.addColumn("Cliente ", false, 100);
 		super.addColumn("Codigo propiedad", false, 100);
 		super.addColumn("Estado contrato", false, 100);
 	}
 
 	@Override
 	protected Object[] toRow(Contrato t) {
+		
+		String cliente = "";
+		if(t.getCliente() != null)
+			cliente += t.getCliente().getPersona().getApellido() + 
+						" " + t.getCliente().getPersona().getNombre() +
+						" " + t.getCliente().getPersona().getTipoCred().toString() + 
+						" " + t.getCliente().getPersona().getCredencial();
+		
+		String propiedad = "";
+		
+		if(t.getPropiedad() != null)
+			propiedad += t.getPropiedad().getIdentificador();
+		
 		Object[] fila = {t.getIdentificador(),
-				t.getCliente().getPersona().getNombre(),
-				t.getCliente().getPersona().getApellido(),
-				t.getCliente().getPersona().getCredencial(),
-				t.getPropiedad().getIdentificador(),
+				cliente,
+				propiedad,
 				contratoService.getEstadoOf(t)};
 		return fila;
 	}
