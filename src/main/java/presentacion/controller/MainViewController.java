@@ -2,12 +2,14 @@ package presentacion.controller;
 
 import com.google.inject.Inject;
 import dto.CobrosDeAlquileresDTO;
+import dto.MovimientoDeCajaDTO;
 import dto.PendientesPropietariosDTO;
 import entities.*;
 import model.*;
 import org.joda.time.DateTime;
 import org.joda.time.YearMonth;
 import presentacion.reportes.ReporteCobrosDeAlquileres;
+import presentacion.reportes.ReporteMovimientosDeCaja;
 import presentacion.reportes.ReportePropietariosPagosPendientes;
 import presentacion.table.*;
 import presentacion.vista.main.MainView;
@@ -45,6 +47,7 @@ public class MainViewController {
 	InmobiliariaController inmobiliariaController;
 	MovimientoCajaController movimientoController;
 
+
 	PropiedadService propiedadService;
 	ClienteService clienteService;
 	ContratoService contratoService;
@@ -53,7 +56,7 @@ public class MainViewController {
 	ReservaService reservaService;
 	PagosCobrosService pagoCobroService;
 	InmobiliariaService inmobiliariaService;
-	
+	MovimientoCajaService movimientoService;
 	
 	@Inject
 	private MainViewController(MainView view,
@@ -137,7 +140,8 @@ public class MainViewController {
 		
 		this.view.getBtnGenerarReporteCobros().addActionListener(e -> generaReporteCobroDeAlquileres());
 		this.view.getBtnGenerarReportePropietarios().addActionListener(e -> generaReportePropietarios());
-		
+		this.view.getBtnGenerarReporteMovimientos().addActionListener(e -> generaReporteMovimientos());
+
 		this.view.getBtnPropiedades().addActionListener(e -> {fillTableProp();
 													fillTableReservas();});
 		this.view.getBtnContratos().addActionListener(e -> {fillTableContratosAlquiler(); 
@@ -178,8 +182,14 @@ public class MainViewController {
 		reporte.mostrar();
 		
 	}
-	
-//TODO parametrizar el yearmonth
+
+	private void generaReporteMovimientos() {
+		List<MovimientoDeCajaDTO> dtos = movimientoService.getReporteMovimientoDeCaja();
+		ReporteMovimientosDeCaja reporte  = new ReporteMovimientosDeCaja(dtos);
+		reporte.mostrar();
+	}
+
+	//TODO parametrizar el yearmonth
 	private void generaReporteCobroDeAlquileres() {
 		List<CobrosDeAlquileresDTO> dtos =
 				pagoCobroService.cobrosDeAlquilerReporteOf(YearMonth.now());

@@ -8,8 +8,19 @@ public class MovimientoDeCajaDTO {
     Tipo tipo;
     String fecha;
     String detalleStr;
-    Float monto;
+    Double monto;
+    String monedaStr;
     String montoStr;
+
+
+    public String getMonedaStr() {
+        return monedaStr;
+    }
+
+    public void setMonedaStr(String monedaStr) {
+        this.monedaStr = monedaStr;
+    }
+
 
     public String getFecha() {
         return fecha;
@@ -27,11 +38,11 @@ public class MovimientoDeCajaDTO {
         this.detalleStr = detalleStr;
     }
 
-    public Float getMonto() {
+    public Double getMonto() {
         return monto;
     }
 
-    public void setMonto(Float monto) {
+    public void setMonto(Double monto) {
         this.monto = monto;
     }
 

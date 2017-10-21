@@ -612,6 +612,9 @@ public class MainView {
 		return btnGenerarReportePropietarios;
 	}
 
+    public JButton getBtnGenerarReporteMovimientos() {
+        return btnGenerarReporteMovimientos;
+    }
 
 	public JButton getBtnContratos() {
 		return btnContratos;

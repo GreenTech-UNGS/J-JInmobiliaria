@@ -8,8 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import net.bytebuddy.dynamic.loading.ClassReloadingStrategy.Strategy;
-
 @Entity
 @Table(name="habitaciones")
 public class Habitacion {
