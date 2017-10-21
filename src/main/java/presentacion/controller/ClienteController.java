@@ -8,6 +8,7 @@ import entities.Persona;
 import entities.Persona.TipoCredencial;
 import entities.Telefono;
 import model.ClienteService;
+import model.LogicaNegocioException;
 import model.PersonaService;
 import presentacion.combo.TipoCredencialComboBoxModel;
 import presentacion.mappers.ClienteFormMapper;
@@ -27,9 +28,7 @@ public class ClienteController {
 	@Inject
 	private ClienteFormMapper clienteMapper;
 	
-	@Inject
-	private MessageShow msgShow;
-	
+	@Inject	
 	private TipoCredencialComboBoxModel tipoCredencialModel;
 	private TelefonoTableModel telTable;
 	
@@ -37,12 +36,15 @@ public class ClienteController {
 	private ElegirPersonaController elegirPersona;
 	private Cliente currentCliente;
 	
+	private MessageShow msgShw;
+	
 	@Inject
 	private ClienteController(ClienteForm view,
 								 ClienteService clienteService,
 								 PersonaService personaService,
 								 TelefonoController telefonoController,
-								 ElegirPersonaController elegirPersona){
+								 ElegirPersonaController elegirPersona,
+								 MessageShow msgShw){
 		
 		this.view = view;
 		this.clienteService = clienteService;
@@ -52,6 +54,7 @@ public class ClienteController {
 		this.tipoCredencialModel = new TipoCredencialComboBoxModel();
 		this.telTable = new TelefonoTableModel();
 		
+		this.msgShw = msgShw;
 		view.getBtnGuardar().addActionListener(e -> saveCurrentCliente());
 		view.getBtnCancelar().addActionListener(e -> closeView());
 		view.getBtnBuscar().addActionListener(e -> eligePersona());
@@ -95,11 +98,16 @@ public class ClienteController {
 		
 		if(clienteValidator.isValid()) {
 			clienteMapper.fillBean(currentCliente);
-			clienteService.saveCliente(currentCliente);
+			try {
+				clienteService.saveCliente(currentCliente);
+				view.setVisible(false);
+			} catch (LogicaNegocioException e) {
+				msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
+			}
 			view.setVisible(false);
 		}
 		else{
-			msgShow.showErrorMessage(clienteValidator.getErrorMessage(), "Error");
+			msgShw.showErrorMessage(clienteValidator.getErrorMessage(), "Error");
 		}
 	}
 	

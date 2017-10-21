@@ -62,7 +62,7 @@ public class PropietarioService {
 	public void savePropietario(Propietario toSave) throws LogicaNegocioException{
 		
 		if(existePropietarioCon(toSave.getPersona()))
-			throw new LogConfigurationException("Ya existe un propietario con la misma credencial");
+			throw new LogicaNegocioException("Ya existe un propietario con la misma credencial");
 		
 		propietarioDao.save(toSave);
 	}

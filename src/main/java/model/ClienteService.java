@@ -2,6 +2,8 @@ package model;
 
 import java.util.List;
 
+import org.apache.commons.logging.LogConfigurationException;
+
 import com.google.inject.Inject;
 
 import entities.Cliente;
@@ -41,8 +43,11 @@ public class ClienteService {
 		return toRet;
 	}
 	
-	public void saveCliente(Cliente toSave) {
+	public void saveCliente(Cliente toSave) throws LogicaNegocioException {
 		
+		if(existeClienteCon(toSave.getPersona()))
+			throw new LogicaNegocioException("Ya existe un cliente con la misma credencial");
+	
 		clienteDao.save(toSave);
 	}
 	

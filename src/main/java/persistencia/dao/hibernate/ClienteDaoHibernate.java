@@ -43,10 +43,10 @@ public class ClienteDaoHibernate extends DaoHibernate<Cliente> implements Client
 				add(Restrictions.eq("persona.credencial", t.getCredencial()));
 		
 		finishTransaction();
-		
+				
 		List<Cliente> res = q.list();
 		
-		return !res.isEmpty();
+		return ! (res.isEmpty());
 	}
 
 	@Override

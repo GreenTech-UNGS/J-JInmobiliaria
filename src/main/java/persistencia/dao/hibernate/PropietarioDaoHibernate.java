@@ -76,7 +76,7 @@ public class PropietarioDaoHibernate extends DaoHibernate<Propietario> implement
 		
 		List<Propietario> res = q.list();
 		
-		return !res.isEmpty();
+		return ! (res.isEmpty());
 	}
 	
 

@@ -118,6 +118,7 @@ public class PropietarioController {
 			binder.fillBean();
 			try {
 				propietarioService.savePropietario(currentPropietario);
+				view.setVisible(false);
 			} catch (LogicaNegocioException e) {
 				msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
 			}
