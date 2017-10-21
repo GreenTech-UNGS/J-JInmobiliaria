@@ -25,7 +25,7 @@ public class ContratoAlquilerForm extends JDialog {
 	private JPanel agregarContrato;
 	private JTextField textIdContrato;
 	private JTextField tfIdPropiedad;
-	private JTextField tfDniInquilino;
+	private JTextField tfCliente;
 	private JTextField textPrecio;
 	private JComboBox<String> comboMoneda;
 	
@@ -159,11 +159,11 @@ public class ContratoAlquilerForm extends JDialog {
 		agregarContrato.add(tfIdPropiedad);
 		tfIdPropiedad.setColumns(10);
 		
-		tfDniInquilino = new JTextField();
-		tfDniInquilino.setEditable(false);
-		tfDniInquilino.setBounds(430, 48, 128, 17);
-		agregarContrato.add(tfDniInquilino);
-		tfDniInquilino.setColumns(10);
+		tfCliente = new JTextField();
+		tfCliente.setEditable(false);
+		tfCliente.setBounds(430, 48, 128, 17);
+		agregarContrato.add(tfCliente);
+		tfCliente.setColumns(10);
 		
 		textPrecio = new JTextField();
 		textPrecio.setBounds(127, 209, 128, 17);
@@ -408,8 +408,8 @@ public class ContratoAlquilerForm extends JDialog {
 	}
 
 
-	public JTextField getTfDniInquilino() {
-		return tfDniInquilino;
+	public JTextField getTfCliente() {
+		return tfCliente;
 	}
 
 
@@ -514,7 +514,7 @@ public class ContratoAlquilerForm extends JDialog {
 
 
 	public void setTfDniInquilino(JTextField tfDniInquilino) {
-		this.tfDniInquilino = tfDniInquilino;
+		this.tfCliente = tfDniInquilino;
 	}
 
 

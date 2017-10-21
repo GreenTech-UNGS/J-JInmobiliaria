@@ -31,6 +31,7 @@ public class ContratosPanelController {
 		
 		this.view.getBtnAgregarContratoAlq().addActionListener(e -> agregarContratoAlq());
 		this.view.getBtnAgregarContratoVen().addActionListener(e -> agregarContratoVen());
+		this.view.getBtnEditarContrato().addActionListener(e -> editarContrato());
 	}
 	
 	public void showView(){
@@ -70,7 +71,7 @@ public class ContratosPanelController {
 		int select = this.view.getTablaContratoAlquiler().getSelectedRow();
 
 		if (select!=-1){
-		//	contratoAlqController.editarContrato(this.tableModelContrato.getRow(select));
+			contratoAlqController.editarContrato((ContratoAlquiler) this.contratosTable2.getRow(select));
 			contratoAlqController.showView();
 			this.fillTableContratosAlquiler();
 		}

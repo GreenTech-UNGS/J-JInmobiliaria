@@ -86,7 +86,7 @@ public class ContratoAlquilerFormValidator implements ValidatorNew{
 	}
 	
 	private boolean isClienteValid(){
-		String cliente = view.getTfDniInquilino().getText();
+		String cliente = view.getTfCliente().getText();
 		
 		if(cliente == null || cliente.equals(""))
 			return false;

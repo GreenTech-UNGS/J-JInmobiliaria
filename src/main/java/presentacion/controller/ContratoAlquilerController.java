@@ -68,7 +68,7 @@ public class ContratoAlquilerController {
 		Cliente cliente = eligeCliente.getCliente();
 		
 		if(cliente != null) {	
-			view.getTfDniInquilino().setText(cliente.getPersona().getNombre() + " " + cliente.getPersona().getApellido());	
+			view.getTfCliente().setText(cliente.getPersona().getNombre() + " " + cliente.getPersona().getApellido());	
 			currentContrato.setCliente(cliente);
 		}
 	}
