@@ -6,6 +6,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import filtros.CuotaFiltro;
+import presentacion.mappers.CuotaFiltroMapper;
 import presentacion.vista.filtros.CuotaFiltroView;
 
 @Singleton
@@ -13,15 +14,28 @@ public class CuotaFiltroController {
 
 	private CuotaFiltroView view;
 	
+	@Inject private CuotaFiltroMapper mapper;
+	
 	private CuotaFiltro currentFiltro;
+	private boolean wasOkPressed;
 	
 	@Inject
 	private CuotaFiltroController(CuotaFiltroView view) {
 		this.view = view;
+		wasOkPressed = false;
+		
+		view.getBtnAceptar().addActionListener(e -> aceptar());
+		
+	}
+	
+	private void aceptar(){
+		wasOkPressed = true;
+		view.setVisible(false);
 	}
 	
 	public void setModeNew(){
-		
+		wasOkPressed = false;
+		currentFiltro = new CuotaFiltro();
 	}
 	
 	public void showView(){
@@ -29,12 +43,13 @@ public class CuotaFiltroController {
 	}
 	
 	public CuotaFiltro getFiltro(){
-		CuotaFiltro toRet = new CuotaFiltro();
 		
-		toRet.setDesde(YearMonth.parse("2017-10"));
-		toRet.setHasta(YearMonth.parse("2018-03"));
+		if(!wasOkPressed)
+			return null;
 		
-		return toRet;
+		mapper.fillBean(currentFiltro);
+		
+		return currentFiltro;
 		
 		
 	}

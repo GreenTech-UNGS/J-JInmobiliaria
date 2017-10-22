@@ -53,8 +53,8 @@ public class CuotaService {
 		List<CuotaAlquiler> todos = getAll();
 		
 		return todos.stream().filter(c -> {
-			return !filtro.getHasta().isBefore(c.getAnioMes()) && 
-					!filtro.getDesde().isAfter(c.getAnioMes());  
+			return !c.getAnioMes().isAfter(filtro.getHasta()) && 
+					!c.getAnioMes().isBefore(filtro.getDesde());  
 		
 		}).collect(Collectors.toList());
 		

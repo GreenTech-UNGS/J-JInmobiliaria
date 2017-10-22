@@ -57,6 +57,7 @@ public class PagosPanelController {
 		this.view.getBtnGenerarReportePropietarios().addActionListener(e -> generaReportePropietarios());
 		
 		this.view.getBtnAplicarFiltroAlq().addActionListener(e -> aplicarFiltroAlq());
+		this.view.getBtnRemoverFiltroAlq().addActionListener(e -> removerFiltroAlq());
 		
 	}	
 	
@@ -93,11 +94,17 @@ public class PagosPanelController {
 	}
 	
 	private void aplicarFiltroAlq(){
+		this.cuotaFiltro.setModeNew();
 		this.cuotaFiltro.showView();
 		
 		CuotaFiltro filtro = cuotaFiltro.getFiltro();
 		
-		cuotasTable.actualizeRows(cuotaService.getAllByFiltro(filtro));
+		if(filtro != null)
+			cuotasTable.actualizeRows(cuotaService.getAllByFiltro(filtro));
+	}
+	
+	private void removerFiltroAlq(){
+		this.fillTableCuotas();
 	}
 	
 	private void fillTableCuotas() {

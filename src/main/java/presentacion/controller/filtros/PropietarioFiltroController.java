@@ -39,6 +39,7 @@ public class PropietarioFiltroController {
 		view.getTipoComboBox().actualize(Arrays.asList(TipoCredencial.values()));
 		currentFiltro = new PropietarioFiltro();
 		mapper.fillFields(currentFiltro);
+		wasOkPressed = false;
 	}
 	
 	public void showView() {
