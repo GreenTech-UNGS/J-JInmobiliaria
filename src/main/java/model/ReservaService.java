@@ -51,6 +51,9 @@ public class ReservaService {
     
     public Reserva getReservaOf(Propiedad p) {
     	
+    	if(p == null)
+    		return null;
+    	
     	EstadoProp estado = propiedadService.getCurrentEstado(p);
     	
     	if(!estado.equals(EstadoProp.RESERVADA)) {

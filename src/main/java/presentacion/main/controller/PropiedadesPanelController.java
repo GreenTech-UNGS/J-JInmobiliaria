@@ -14,6 +14,7 @@ import entities.Propiedad;
 import entities.Reserva;
 import model.PropiedadService;
 import model.ReservaService;
+import presentacion.controller.ClienteController;
 import presentacion.controller.PropiedadController;
 import presentacion.controller.ReservarPropiedadController;
 import presentacion.main.vista.PropiedadesPanel;

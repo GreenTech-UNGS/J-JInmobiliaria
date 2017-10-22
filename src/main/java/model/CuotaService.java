@@ -13,6 +13,7 @@ import com.google.inject.Inject;
 import entities.CuotaAlquiler;
 import entities.EstadoCuota;
 import entities.InteresPunitorioCuota;
+import filtros.CuotaFiltro;
 import persistencia.dao.iface.CuotaDao;
 
 public class CuotaService {
@@ -45,6 +46,17 @@ public class CuotaService {
 		c.getEstados().sort((e1, e2) -> e2.getFecha().compareTo(e1.getFecha()));
 		
 		return c.getEstados().get(0).getEstado();
+		
+	}
+	
+	public List<CuotaAlquiler> getAllByFiltro(CuotaFiltro filtro){
+		List<CuotaAlquiler> todos = getAll();
+		
+		return todos.stream().filter(c -> {
+			return !filtro.getHasta().isBefore(c.getAnioMes()) && 
+					!filtro.getDesde().isAfter(c.getAnioMes());  
+		
+		}).collect(Collectors.toList());
 		
 	}
 

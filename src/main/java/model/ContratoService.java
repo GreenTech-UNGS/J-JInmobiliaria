@@ -88,6 +88,19 @@ public class ContratoService {
 		propiedadDao.save(propiedad);
 	}
 	
+	public void saveContratoAlquilerBorrador(ContratoAlquiler c) throws LogicaNegocioException{
+		
+		if(!isPropiedadReservadaCorrectamente(c))
+			throw new LogicaNegocioException("La propiedad esta reservada. El cliente debe ser el reservador");
+		
+		HistoriaEstadoContrato nuevo = new HistoriaEstadoContrato();
+		nuevo.setEstado(EstadoContrato.BORRADOR);
+		nuevo.setFecha(DateTime.now());
+		c.getEstados().add(nuevo);
+		
+		contratoDao.save(c);
+	}
+	
 	private boolean isPropiedadReservadaCorrectamente(ContratoAlquiler c){
 		Reserva r = reservaService.getReservaOf(c.getPropiedad());
 		if( r != null) {

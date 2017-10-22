@@ -108,11 +108,12 @@ public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
 		int intimacionDias = t.getAvisoIntimacion().getPeriodo().getDays();
 		int vencimientoMeses = t.getAvisoProxVencer().getPeriodo().getMonths();
 		
-		String propiedad = t.getPropiedad().getIdentificador();
+		String propiedad = t.getPropiedad() == null ? "":t.getPropiedad().getIdentificador();
 		view.getTfIdPropiedad().setText(propiedad);
 
-		String cliente = t.getCliente().getPersona().getCredencial();
+		String cliente = t.getCliente() == null ? "": t.getCliente().getPersona().getCredencial();
 		view.getTfCliente().setText(cliente);
+		
 		
 		view.getTextIdContrato().setText(identificador);
 		view.getTextGarantia().setText(garantia);

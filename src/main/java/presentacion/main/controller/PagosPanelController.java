@@ -14,6 +14,7 @@ import dto.PendientesPropietariosDTO;
 import entities.CuotaAlquiler;
 import entities.EstadoCuota;
 import entities.PagoPropietario;
+import filtros.CuotaFiltro;
 import model.CuotaService;
 import model.MovimientoCajaService;
 import model.PagosCobrosService;
@@ -93,6 +94,10 @@ public class PagosPanelController {
 	
 	private void aplicarFiltroAlq(){
 		this.cuotaFiltro.showView();
+		
+		CuotaFiltro filtro = cuotaFiltro.getFiltro();
+		
+		cuotasTable.actualizeRows(cuotaService.getAllByFiltro(filtro));
 	}
 	
 	private void fillTableCuotas() {

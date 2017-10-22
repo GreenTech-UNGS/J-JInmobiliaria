@@ -12,6 +12,9 @@ import presentacion.vista.ElegirClienteView;
 public class ElegirClienteController {
 	
 	private ElegirClienteView view;
+	
+	@Inject private ClienteController clienteController;
+	
 	private ClienteService clienteServcie;
 	private ClientesTableModel tableModelCliente;
 	
@@ -22,6 +25,8 @@ public class ElegirClienteController {
 		this.view = view;
 		this.clienteServcie = clienteServcie;
 		this.tableModelCliente = new ClientesTableModel();
+		view.getBtnAceptar().addActionListener(e -> view.setVisible(false));
+		view.getBtnAgregarOtro().addActionListener(e -> agregarCliente());
 		fillTableCliente();
 		
 	}
@@ -34,12 +39,17 @@ public class ElegirClienteController {
 		
 		this.tableModelCliente.clean();
 		tableModelCliente.actualizeRows(clienteServcie.getAll());
-		view.getBtnAceptar().addActionListener(e -> view.setVisible(false));
 	}
 
 	public void showView(){
 		fillTableCliente();
 		view.setVisible(true);
+	}
+	
+	private void agregarCliente(){
+		clienteController.setModeNew();
+		clienteController.showView();
+		fillTableCliente();
 	}
 	
 	public Cliente getCliente(){

@@ -122,12 +122,16 @@ public class ContratoAlquilerController {
 	}
 	
 	private void guardarEnBorrador(){
-		HistoriaEstadoContrato nuevo = new HistoriaEstadoContrato();
-		nuevo.setEstado(EstadoContrato.BORRADOR);
-		nuevo.setFecha(DateTime.now());
-		currentContrato.getEstados().add(nuevo);
 		
-		guardaCurrentContrato();
+		try {
+		
+			mapper.fillBean(currentContrato);
+			contratoService.saveContratoAlquilerBorrador(currentContrato);
+			this.view.setVisible(false);
+		
+		}catch (LogicaNegocioException e) {
+			msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
+		}
 	}
 	
 	private void fillCombos() {

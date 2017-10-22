@@ -11,11 +11,14 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 
 import com.google.inject.Inject;
+import java.awt.Component;
+import javax.swing.Box;
 
 @SuppressWarnings("serial")
 public class ElegirClienteView extends JDialog {
 	private JTable table;
 	private JButton btnAceptar;
+	private JButton btnAgregarOtro;
 	
 	@Inject
 	private ElegirClienteView() {
@@ -39,8 +42,20 @@ public class ElegirClienteView extends JDialog {
 		getContentPane().add(panelBotones);
 		panelBotones.setLayout(new BoxLayout(panelBotones, BoxLayout.X_AXIS));
 		
+		Component horizontalGlue = Box.createHorizontalGlue();
+		panelBotones.add(horizontalGlue);
+		
 		btnAceptar = new JButton("Aceptar");
 		panelBotones.add(btnAceptar);
+		
+		Component horizontalGlue_2 = Box.createHorizontalGlue();
+		panelBotones.add(horizontalGlue_2);
+		
+		btnAgregarOtro = new JButton("Agregar otro");
+		panelBotones.add(btnAgregarOtro);
+		
+		Component horizontalGlue_1 = Box.createHorizontalGlue();
+		panelBotones.add(horizontalGlue_1);
 	}
 
 	public JTable getTable() {
@@ -57,6 +72,10 @@ public class ElegirClienteView extends JDialog {
 
 	public void setBtnAceptar(JButton btnAceptar) {
 		this.btnAceptar = btnAceptar;
+	}
+
+	public JButton getBtnAgregarOtro() {
+		return btnAgregarOtro;
 	}
 	
 	
