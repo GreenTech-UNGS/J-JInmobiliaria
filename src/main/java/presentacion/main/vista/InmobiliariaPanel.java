@@ -31,10 +31,11 @@ public class InmobiliariaPanel extends JPanel{
         this.add(panelBtnInmb);
         
         btnAgregarInmobiliaria = new JButton("Agregar inmobiliaria");
-        btnAgregarInmobiliaria.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        btnAgregarInmobiliaria.setFont(new Font("Tahoma", Font.BOLD, 11));
         panelBtnInmb.add(btnAgregarInmobiliaria);
         
         btnEditarInmobiliaria = new JButton("Editar inmobiliaria");
+        btnEditarInmobiliaria.setFont(new Font("Tahoma", Font.BOLD, 11));
         panelBtnInmb.add(btnEditarInmobiliaria);
 	}
 

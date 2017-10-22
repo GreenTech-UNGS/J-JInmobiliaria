@@ -15,14 +15,15 @@ public class ContratoVentaFormValidator implements ValidatorNew{
 		this.view = view;
 	}
 	
-	@Override
+
 	public boolean isValid() {
 		return isIdValid() 
 				&& isPropiedadValid()
 				&& isClienteValid()
 				&& isGarantiaValid()
 				&& isPrecioValid()
-				&& isGarantiaValid();
+				&& isGarantiaValid()
+				;
 	}
 
 	@Override
@@ -47,6 +48,7 @@ public class ContratoVentaFormValidator implements ValidatorNew{
 		
 	private boolean isIdValid(){
 		String id = view.getTfIdContrato().getText();
+		System.out.println("lo que tiene adrentro" + view.getTfIdContrato().getText());
 		
 		if(id == null || id.equals(""))
 			return false;

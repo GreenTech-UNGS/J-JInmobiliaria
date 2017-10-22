@@ -26,6 +26,8 @@ public class ContratoVentaController {
 	ContratoVenta currentContrato;
 	ContratoService contratoService;
 	ReservaService reservaService;
+	
+	@Inject
 	ContratoVentaFormValidator contratoVentaValidator;
 	
 	Binder<ContratoVenta> binder;
@@ -38,7 +40,6 @@ public class ContratoVentaController {
 			ElegirPropiedadController elegirProp, 
 			ContratoService contratoService,
 			ReservaService reservaService,
-			ContratoVentaFormValidator contratoVentaValidator,
 			MessageShow msgShw){
 		
 		this.view = view;
@@ -46,7 +47,6 @@ public class ContratoVentaController {
 		this.elegirProp = elegirProp;
 		this.contratoService = contratoService;
 		this.reservaService = reservaService;
-		this.contratoVentaValidator = contratoVentaValidator;
 		this.msgShw = msgShw;
 		
 		this.binder = new Binder<>();
@@ -55,7 +55,7 @@ public class ContratoVentaController {
 		view.getBtnBuscarCliente().addActionListener(e -> elegirCliente());
 		view.getBtnBuscarPropiedad().addActionListener(e -> elegirPropiedad());
 		view.getBtnGuardarContVen().addActionListener(e -> guardarContrato());
-		
+
 		binder.bind("monto.monto", () -> Double.parseDouble(view.getTfMonto().getText()),
 				v -> view.getTfMonto().setText(v.toString()));
 		binder.bind("monto.moneda", () -> Moneda.valueOf(view.getTfMoneda().getText()),
@@ -101,13 +101,16 @@ public class ContratoVentaController {
 	
 	public void guardarContrato(){
 		
-		if(contratoVentaValidator.isValid()){		
+		//tendria que pasar por el validador
+		if(!view.getTfIdContrato().equals("")){		
 			currentContrato.setIdentificador(view.getTfIdContrato().getText());
 			binder.setObjective(currentContrato);
 			binder.fillBean();
 			
 			try {
 				contratoService.saveContratoVenta(currentContrato);
+				view.setVisible(false);
+				
 			} catch (LogicaNegocioException e) {
 				
 				msgShw.showErrorMessage(e.getMessage(), "Error");

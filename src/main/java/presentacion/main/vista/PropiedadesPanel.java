@@ -53,21 +53,21 @@ public class PropiedadesPanel extends JPanel{
         panelButtons.add(horizontalGlue);
                                                          
         btnAgregarPropiedad = new JButton("Agregar propiedad");
-        btnAgregarPropiedad.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        btnAgregarPropiedad.setFont(new Font("Tahoma", Font.BOLD, 11));
         panelButtons.add(btnAgregarPropiedad);
                                                                  
        Component horizontalGlue_3 = Box.createHorizontalGlue();
        panelButtons.add(horizontalGlue_3);
                                                                          
        btnReservarPropiedad = new JButton("Reservar propiedad");
-       btnReservarPropiedad.setFont(new Font("Tahoma", Font.PLAIN, 11));
+       btnReservarPropiedad.setFont(new Font("Tahoma", Font.BOLD, 11));
        panelButtons.add(btnReservarPropiedad);
 
        Component horizontalGlue_4 = Box.createHorizontalGlue();
        panelButtons.add(horizontalGlue_4);
 
        btnEditarPropiedad = new JButton("Editar propiedad");
-       btnEditarPropiedad.setFont(new Font("Tahoma", Font.PLAIN, 11));
+       btnEditarPropiedad.setFont(new Font("Tahoma", Font.BOLD, 11));
 
        panelButtons.add(btnEditarPropiedad);
 
