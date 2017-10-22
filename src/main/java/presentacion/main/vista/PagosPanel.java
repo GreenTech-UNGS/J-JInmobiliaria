@@ -29,6 +29,8 @@ public class PagosPanel extends JPanel{
 	private JButton btnRegistrarEgreso;
 
 	private MovimientosCajaTableModel tableMovimientosModel;
+	private JButton btnAplicarFiltroAlq;
+	private JButton btnRemoverFiltroAlq;
 
 	@Inject
 	private PagosPanel() {
@@ -41,6 +43,19 @@ public class PagosPanel extends JPanel{
         JPanel panelPagoAlq = new JPanel();
         tabbedPane.addTab("Cobro de alquileres", null, panelPagoAlq, null);
         panelPagoAlq.setLayout(new BoxLayout(panelPagoAlq, BoxLayout.Y_AXIS));
+        
+        JPanel panelFiltrosAlq = new JPanel();
+        panelPagoAlq.add(panelFiltrosAlq);
+        panelFiltrosAlq.setLayout(new BoxLayout(panelFiltrosAlq, BoxLayout.X_AXIS));
+        
+        Component horizontalGlue_4 = Box.createHorizontalGlue();
+        panelFiltrosAlq.add(horizontalGlue_4);
+        
+        btnAplicarFiltroAlq = new JButton("Aplicar Filtro");
+        panelFiltrosAlq.add(btnAplicarFiltroAlq);
+        
+        btnRemoverFiltroAlq = new JButton("Remover Filtro");
+        panelFiltrosAlq.add(btnRemoverFiltroAlq);
         
         tableCuotas = new JTable();
         
@@ -167,6 +182,14 @@ public class PagosPanel extends JPanel{
 
 	public MovimientosCajaTableModel getTableMovimientosModel() {
 		return tableMovimientosModel;
+	}
+
+	public JButton getBtnAplicarFiltroAlq() {
+		return btnAplicarFiltroAlq;
+	}
+
+	public JButton getBtnRemoverFiltroAlq() {
+		return btnRemoverFiltroAlq;
 	}
 
 }

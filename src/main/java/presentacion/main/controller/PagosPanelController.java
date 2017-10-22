@@ -19,6 +19,7 @@ import model.MovimientoCajaService;
 import model.PagosCobrosService;
 import presentacion.controller.MovimientoCajaController;
 import presentacion.controller.RegistrarCobroController;
+import presentacion.controller.filtros.CuotaFiltroController;
 import presentacion.main.vista.PagosPanel;
 import presentacion.reportes.ReporteCobrosDeAlquileres;
 import presentacion.reportes.ReportePropietariosPagosPendientes;
@@ -37,6 +38,7 @@ public class PagosPanelController {
 	
 	@Inject private PagosCobrosService pagoCobroService;
 	@Inject private RegistrarCobroController cobroController;
+	@Inject private CuotaFiltroController cuotaFiltro;
 	
 	@Inject private MovimientoCajaController movimientoController;
 	
@@ -52,6 +54,8 @@ public class PagosPanelController {
 		
 		this.view.getBtnGenerarReporteCobros().addActionListener(e -> generaReporteCobroDeAlquileres());
 		this.view.getBtnGenerarReportePropietarios().addActionListener(e -> generaReportePropietarios());
+		
+		this.view.getBtnAplicarFiltroAlq().addActionListener(e -> aplicarFiltroAlq());
 		
 	}	
 	
@@ -85,7 +89,11 @@ public class PagosPanelController {
 				this.fillTablePagosProps();
 			}			
 		}
-	}	
+	}
+	
+	private void aplicarFiltroAlq(){
+		this.cuotaFiltro.showView();
+	}
 	
 	private void fillTableCuotas() {
 		this.cuotasTable.clean();
