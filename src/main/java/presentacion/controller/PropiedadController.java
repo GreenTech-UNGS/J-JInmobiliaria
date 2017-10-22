@@ -17,6 +17,7 @@ import presentacion.combo.TipoOfrecimientoComboBoxModel;
 import presentacion.validators.MessageShow;
 import presentacion.validators.PropiedadFormValidator;
 import presentacion.vista.PropiedadForm;
+import presentacion.vista.PropiedadOtrosDatosForm;
 
 import javax.swing.*;
 import java.util.Arrays;
@@ -36,6 +37,8 @@ public class PropiedadController {
 	private ElegirInmobiliariaController elegirInmobController;
 	private HistorialPropiedadController historialPropController;
 	private LocalizationService localizationService;
+	
+	@Inject private PropiedadOtrosDatosController otrosDatosForm;
 	
 	private final Coordinate centerOfMap = new Coordinate(50.064191736659104, 8.96484375);
 		
@@ -85,6 +88,7 @@ public class PropiedadController {
 		view.getBtnActualizar().addActionListener(e -> actualizaMapa());
 		view.getBotonLupitaInmobiliaria().addActionListener(e -> selectInmobiliaria());
 		view.getBtnGuardarCambios().addActionListener(e -> actualizarPropietario());
+		view.getBtnMasDatos().addActionListener(e -> otrosDatosForm.showView());
 		
 	}
 

@@ -34,6 +34,13 @@ public class CuotaFiltroController {
 	}
 	
 	public void setModeNew(){
+		
+		view.getDesdeAnio().setYear(YearMonth.now().getYear());
+		view.getDesdeMes().setMonth(YearMonth.now().getMonthOfYear() - 1);
+		
+		view.getHastaAnio().setYear(YearMonth.now().getYear());
+		view.getHastaMes().setMonth(YearMonth.now().getMonthOfYear() - 1);
+		
 		wasOkPressed = false;
 		currentFiltro = new CuotaFiltro();
 	}

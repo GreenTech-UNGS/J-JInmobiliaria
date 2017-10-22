@@ -37,7 +37,7 @@ public class CuotaFiltroMapper implements Mapper<CuotaFiltro>{
 
 	@Override
 	public void fillFields(CuotaFiltro t) {
-		// TODO Auto-generated method stub
+		//TODO
 		
 	}
 
