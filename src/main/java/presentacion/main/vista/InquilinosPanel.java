@@ -23,6 +23,7 @@ public class InquilinosPanel extends JPanel{
 	private JTable tablePropietarios;
 	private JButton btnAgregarPropietario;
 	private JButton btnEditarPropietario;
+	private JButton btnRemoverFiltro;
 
 	@Inject
 	private InquilinosPanel() {
@@ -64,7 +65,7 @@ public class InquilinosPanel extends JPanel{
         btnAplicarFiltro = new JButton("Aplicar Filtro");
         panlBotonFiltro.add(btnAplicarFiltro);
         
-        JButton btnRemoverFiltro = new JButton("Remover Filtro");
+        btnRemoverFiltro = new JButton("Remover Filtro");
         panlBotonFiltro.add(btnRemoverFiltro);
 
         tablePropietarios = new JTable();
@@ -109,6 +110,10 @@ public class InquilinosPanel extends JPanel{
 
 	public JButton getBtnEditarPropietario() {
 		return btnEditarPropietario;
+	}
+
+	public JButton getBtnRemoverFiltro() {
+		return btnRemoverFiltro;
 	}
 
 }

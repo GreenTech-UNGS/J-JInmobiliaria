@@ -8,7 +8,9 @@ import entities.Persona.TipoCredencial;
 import entities.Precio;
 import entities.Propiedad;
 import entities.Propietario;
+import filtros.PropietarioFiltro;
 import persistencia.dao.iface.PropietarioDao;
+import presentacion.vista.filtros.PropietarioFiltroView;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -71,6 +73,12 @@ public class PropietarioService {
 	
 	public List<Propietario> getAll() {
 		return propietarioDao.getAll();
+	}
+	
+	public List<Propietario> getAllByFiltro(PropietarioFiltro filtro){
+		
+		return propietarioDao.getAllByFiltro(filtro);
+		
 	}
 	
 	public boolean existePropietarioCon(Persona t) {

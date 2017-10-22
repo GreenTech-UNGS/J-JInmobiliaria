@@ -3,10 +3,12 @@ package presentacion.main.controller;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import filtros.PropietarioFiltro;
 import model.ClienteService;
 import model.PropietarioService;
 import presentacion.controller.ClienteController;
 import presentacion.controller.PropietarioController;
+import presentacion.controller.filtros.PropietarioFiltroController;
 import presentacion.main.vista.InquilinosPanel;
 import presentacion.table.ClientesTableModel;
 import presentacion.table.PropietariosTableModel;
@@ -18,6 +20,7 @@ public class InquilinosPanelController {
 	
 	@Inject private ClienteController clienteController;
 	@Inject private PropietarioController propietarioController;	
+	@Inject private PropietarioFiltroController propietarioFiltro;
 	
 	@Inject private ClienteService clienteService;
 	@Inject private PropietarioService propietarioService;
@@ -34,6 +37,8 @@ public class InquilinosPanelController {
 		this.view.getBtnEditarCliente().addActionListener(e -> editarCliente());
 		this.view.getBtnAgregarPropietario().addActionListener(e -> agregarPropietario());
 		this.view.getBtnEditarPropietario().addActionListener(e -> editarPropietario());
+		this.view.getBtnAplicarFiltro().addActionListener(e -> aplicarFiltroPropietario());
+		this.view.getBtnRemoverFiltro().addActionListener(e  -> removerFiltroPropietario());
 		
 	}
 		
@@ -69,7 +74,22 @@ public class InquilinosPanelController {
 		this.propietarioController.showView();
 
 		fillTablePropietarios();
-	}	
+	}
+	
+	private void aplicarFiltroPropietario() {
+		propietarioFiltro.setModeNew();
+		propietarioFiltro.showView();
+		
+		PropietarioFiltro filtro = propietarioFiltro.getFiltro();
+		if(filtro != null) {
+			propietariosTable.actualizeRows(propietarioService.getAllByFiltro(filtro));
+		}
+		
+	}
+	
+	private void removerFiltroPropietario() {
+		fillTablePropietarios();
+	}
 	
 	private void fillTableClientes() {
 		

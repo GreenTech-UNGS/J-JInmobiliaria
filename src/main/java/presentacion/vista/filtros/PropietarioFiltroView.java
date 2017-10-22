@@ -6,6 +6,9 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import com.google.inject.Singleton;
+
+import presentacion.combo.TipoCredencialComboBoxModel;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,14 +24,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 
 @Singleton
-public class PropietarioFiltro extends JDialog{
+public class PropietarioFiltroView extends JDialog{
 	
 	private JPanel panel;
 	private JTextField textNombre, textApellido, textCredencial;
 	private JComboBox<String> comboCredencial;
 	private JButton btnAceptar, btnCancelar;
+	private TipoCredencialComboBoxModel tipoComboBox;
 	
-	public PropietarioFiltro() {
+	public PropietarioFiltroView() {
 		super();
 		
 		setTitle("Filtrar Propietarios");
@@ -68,8 +72,6 @@ public class PropietarioFiltro extends JDialog{
 		comboCredencial = new JComboBox<String>();
 		comboCredencial.setBounds(31, 52, 61, 20);
 		panel.add(comboCredencial);
-		comboCredencial.addItem("DNI");
-		comboCredencial.addItem("CUIT");
 		
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -77,10 +79,6 @@ public class PropietarioFiltro extends JDialog{
 		panel.add(btnAceptar);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnCancelar.setBounds(214, 161, 98, 29);
 		panel.add(btnCancelar);
@@ -89,5 +87,33 @@ public class PropietarioFiltro extends JDialog{
 		textCredencial.setBounds(100, 52, 212, 20);
 		panel.add(textCredencial);
 		textCredencial.setColumns(10);
+		
+		tipoComboBox = new TipoCredencialComboBoxModel();
+		comboCredencial.setModel(tipoComboBox);
+		
+	}
+
+	public JTextField getTextNombre() {
+		return textNombre;
+	}
+
+	public JTextField getTextApellido() {
+		return textApellido;
+	}
+
+	public JTextField getTextCredencial() {
+		return textCredencial;
+	}
+
+	public JButton getBtnAceptar() {
+		return btnAceptar;
+	}
+
+	public JButton getBtnCancelar() {
+		return btnCancelar;
+	}
+
+	public TipoCredencialComboBoxModel getTipoComboBox() {
+		return tipoComboBox;
 	}
 }

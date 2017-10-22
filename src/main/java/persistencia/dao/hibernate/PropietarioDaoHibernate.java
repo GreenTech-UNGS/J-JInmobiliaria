@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import com.google.inject.Inject;
@@ -12,6 +13,7 @@ import com.google.inject.Singleton;
 import entities.PagoPropietario;
 import entities.Persona;
 import entities.Propietario;
+import filtros.PropietarioFiltro;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.PropietarioDao;
 
@@ -77,6 +79,22 @@ public class PropietarioDaoHibernate extends DaoHibernate<Propietario> implement
 		List<Propietario> res = q.list();
 		
 		return ! (res.isEmpty());
+	}
+
+	@Override
+	public List<Propietario> getAllByFiltro(PropietarioFiltro filtro) {
+		initTransaction();
+		Criteria q = sesion.createCriteria(Propietario.class).
+				createAlias("persona", "persona").
+				setFetchMode("persona", FetchMode.JOIN).
+				add(Restrictions.like("persona.nombre", filtro.getNombre(), MatchMode.ANYWHERE)).
+				add(Restrictions.like("persona.apellido", filtro.getApellido(), MatchMode.ANYWHERE)).
+				add(Restrictions.like("persona.credencial", filtro.getCredencial(), MatchMode.ANYWHERE)).
+				add(Restrictions.eq("persona.tipoCred", filtro.getTipoCredencial()));
+		
+		finishTransaction();
+		
+		return q.list();
 	}
 	
 
