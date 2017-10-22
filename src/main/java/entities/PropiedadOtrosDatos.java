@@ -72,7 +72,7 @@ public class PropiedadOtrosDatos {
 		this.habitaciones = habitaciones;
 	}
 
-	public boolean isEsAptoCredito() {
+	public boolean isAptoCredito() {
 		return esAptoCredito;
 	}
 

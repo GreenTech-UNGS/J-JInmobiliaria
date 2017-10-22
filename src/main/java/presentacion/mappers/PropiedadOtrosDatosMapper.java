@@ -35,7 +35,17 @@ public class PropiedadOtrosDatosMapper implements Mapper<PropiedadOtrosDatos>{
 
 	@Override
 	public void fillFields(PropiedadOtrosDatos t) {
-		// TODO Auto-generated method stub
+		TipoPropiedad tipo = t.getTipo();
+		boolean aptoCred = t.isAptoCredito();
+		int ambientes = t.getCantidadAmbientes();
+		int metrosCubiertos = t.getMetrosCuadradosCubiertos();
+		int metrosLote = t.getMetrosCuadradosLote();
+		
+		view.getTipoCombo().setSelected(tipo);
+		view.getChckbxAptoACredito().setSelected(aptoCred);
+		view.getSpinnerAmbientes().setValue(ambientes);
+		view.getSpinnerCubiertos().setValue(metrosCubiertos);
+		view.getSpinnerLote().setValue(metrosLote);
 		
 	}
 	
