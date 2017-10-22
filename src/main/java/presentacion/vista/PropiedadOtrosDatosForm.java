@@ -5,8 +5,14 @@ import javax.swing.JPanel;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+
+import presentacion.combo.TipoPropiedadComboBoxModel;
+import presentacion.table.HabitacionTableModel;
+
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
+
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -14,84 +20,157 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.JCheckBox;
+import java.awt.Dialog.ModalityType;
+import javax.swing.SpinnerNumberModel;
 
 @Singleton
 public class PropiedadOtrosDatosForm extends JDialog{
 	private JTable table;
+	private JButton btnAceptar;
+	private JButton btnCancelar;
+	private JButton btnAgergar;
+	private JButton btnBorrar;
+	private JSpinner spinnerLote;
+	private JSpinner spinnerAmbientes;
+	private JSpinner spinnerCubiertos;
+	private JCheckBox chckbxAptoACredito;
+	private TipoPropiedadComboBoxModel tipoCombo;
+	private HabitacionTableModel tableModel;
 
 	@Inject
 	private PropiedadOtrosDatosForm() {
-		setLayout(null);
+		getContentPane().setLayout(null);
 		setModal(true);
+		setLocationRelativeTo(null);
+		setSize(new Dimension(460, 540));
 		
 		JLabel lblTipo = new JLabel("Tipo: ");
 		lblTipo.setBounds(27, 92, 46, 14);
-		add(lblTipo);
+		getContentPane().add(lblTipo);
 		
 		JLabel lblAmbientes = new JLabel("Ambientes: ");
 		lblAmbientes.setBounds(27, 142, 65, 14);
-		add(lblAmbientes);
+		getContentPane().add(lblAmbientes);
 		
 		JLabel lblMcubiertos = new JLabel("M\u00B2 cubiertos: ");
 		lblMcubiertos.setBounds(272, 139, 78, 14);
-		add(lblMcubiertos);
+		getContentPane().add(lblMcubiertos);
 		
 		JLabel lblMLote = new JLabel("M\u00B2 Lote: ");
 		lblMLote.setBounds(27, 184, 46, 14);
-		add(lblMLote);
+		getContentPane().add(lblMLote);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 264, 430, 2);
-		add(separator);
+		separator.setBounds(10, 264, 424, 2);
+		getContentPane().add(separator);
 		
 		JLabel lblHabitacionesYOtros = new JLabel("Habitaciones y otros");
 		lblHabitacionesYOtros.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblHabitacionesYOtros.setBounds(27, 239, 155, 14);
-		add(lblHabitacionesYOtros);
+		getContentPane().add(lblHabitacionesYOtros);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(27, 293, 394, 92);
-		add(scrollPane);
+		getContentPane().add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		JButton btnAgergar = new JButton("Agergar");
+		btnAgergar = new JButton("Agergar");
 		btnAgergar.setBounds(37, 396, 89, 23);
-		add(btnAgergar);
+		getContentPane().add(btnAgergar);
 		
-		JButton btnBorrar = new JButton("Borrar");
+		btnBorrar = new JButton("Borrar");
 		btnBorrar.setBounds(299, 396, 89, 23);
-		add(btnBorrar);
+		getContentPane().add(btnBorrar);
 		
-		JComboBox comboBoxTipoProp = new JComboBox();
+		JComboBox<String> comboBoxTipoProp = new JComboBox<>();
 		comboBoxTipoProp.setBounds(64, 89, 102, 20);
-		add(comboBoxTipoProp);
+		getContentPane().add(comboBoxTipoProp);
 		
-		JSpinner spinnerAmbientes = new JSpinner();
+		spinnerAmbientes = new JSpinner();
+		spinnerAmbientes.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(Integer.MAX_VALUE), new Integer(1)));
 		spinnerAmbientes.setBounds(97, 139, 46, 20);
-		add(spinnerAmbientes);
+		getContentPane().add(spinnerAmbientes);
 		
-		JSpinner spinnerCubiertos = new JSpinner();
+		spinnerCubiertos = new JSpinner();
+		spinnerCubiertos.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(Integer.MAX_VALUE), new Integer(10)));
 		spinnerCubiertos.setBounds(342, 136, 46, 20);
-		add(spinnerCubiertos);
+		getContentPane().add(spinnerCubiertos);
 		
-		JSpinner spinnerLote = new JSpinner();
+		spinnerLote = new JSpinner();
+		spinnerLote.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), new Integer(Integer.MAX_VALUE), new Integer(10)));
 		spinnerLote.setBounds(97, 184, 46, 20);
-		add(spinnerLote);
+		getContentPane().add(spinnerLote);
 		
-		JCheckBox chckbxAptoACredito = new JCheckBox("Apto a credito");
+		chckbxAptoACredito = new JCheckBox("Apto a credito");
 		chckbxAptoACredito.setBounds(291, 88, 111, 23);
-		add(chckbxAptoACredito);
+		getContentPane().add(chckbxAptoACredito);
 		
 		JLabel lblDatosDeEspacio = new JLabel("Datos de espacio");
 		lblDatosDeEspacio.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblDatosDeEspacio.setBounds(27, 32, 129, 14);
-		add(lblDatosDeEspacio);
+		getContentPane().add(lblDatosDeEspacio);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(10, 57, 430, 2);
-		add(separator_1);
+		separator_1.setBounds(10, 57, 424, 2);
+		getContentPane().add(separator_1);
 		
+		btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBounds(77, 440, 89, 39);
+		getContentPane().add(btnAceptar);
+		
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(272, 440, 89, 39);
+		getContentPane().add(btnCancelar);
+		
+		tipoCombo = new TipoPropiedadComboBoxModel();
+		comboBoxTipoProp.setModel(tipoCombo);
+		
+		tableModel = new HabitacionTableModel();
+		table.setModel(tableModel);
+		table.setColumnModel(tableModel.getTableColumnModel());
+		table.getTableHeader().setReorderingAllowed(false);
+		
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public JButton getBtnAceptar() {
+		return btnAceptar;
+	}
+
+	public JButton getBtnCancelar() {
+		return btnCancelar;
+	}
+
+	public JButton getBtnAgergar() {
+		return btnAgergar;
+	}
+
+	public JButton getBtnBorrar() {
+		return btnBorrar;
+	}
+
+	public JSpinner getSpinnerLote() {
+		return spinnerLote;
+	}
+
+	public JSpinner getSpinnerAmbientes() {
+		return spinnerAmbientes;
+	}
+
+	public JSpinner getSpinnerCubiertos() {
+		return spinnerCubiertos;
+	}
+
+	public JCheckBox getChckbxAptoACredito() {
+		return chckbxAptoACredito;
+	}
+
+	public TipoPropiedadComboBoxModel getTipoCombo() {
+		return tipoCombo;
 	}
 }

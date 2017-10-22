@@ -88,7 +88,7 @@ public class PropiedadController {
 		view.getBtnActualizar().addActionListener(e -> actualizaMapa());
 		view.getBotonLupitaInmobiliaria().addActionListener(e -> selectInmobiliaria());
 		view.getBtnGuardarCambios().addActionListener(e -> actualizarPropietario());
-		view.getBtnMasDatos().addActionListener(e -> otrosDatosForm.showView());
+		view.getBtnMasDatos().addActionListener(e -> agregarOtrosDatos());
 		
 	}
 
@@ -264,6 +264,15 @@ public class PropiedadController {
 		else{
 			mshShw.showErrorMessage(propiedadValidator.getErrorMessage(), "Error");
 		}
+	}
+	
+	private void agregarOtrosDatos() {
+		otrosDatosForm.setModeNew();
+		otrosDatosForm.showView();
+		PropiedadOtrosDatos otrosDatos = otrosDatosForm.getOtrosDatos();
+		
+		if(otrosDatos != null)currentPropiedad.setOtrosDatos(otrosDatos);
+		
 	}
 	
 	public void setModeNew() {

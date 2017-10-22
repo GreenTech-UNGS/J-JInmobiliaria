@@ -198,5 +198,13 @@ public class Propiedad {
 
 	public int getID() {
 		return ID;
+	}
+
+	public PropiedadOtrosDatos getOtrosDatos() {
+		return otrosDatos;
+	}
+
+	public void setOtrosDatos(PropiedadOtrosDatos otrosDatos) {
+		this.otrosDatos = otrosDatos;
 	}	
 }
