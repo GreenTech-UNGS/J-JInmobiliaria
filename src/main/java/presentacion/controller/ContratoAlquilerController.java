@@ -57,8 +57,6 @@ public class ContratoAlquilerController {
 		view.getBtnCancelarContrato().addActionListener(e -> view.setVisible(false));
 		view.getBtnRenovarContrato().addActionListener(e -> renovarContrato());
 		view.getBtnBorrador().addActionListener(e -> guardarEnBorrador());
-//		view.getBtnGuardarCambios().addActionListener(e -> guardaContrato);
-		
 
 		fillCombos();
 	}
@@ -146,7 +144,6 @@ public class ContratoAlquilerController {
 		
 		view.getTfIdPropiedad().setText("");
 		view.getTfIdPropiedad().setText("");
-		
 		view.getBtnLupaPropiedad().setEnabled(true);
 		view.getBtnLupaCliente().setEnabled(true);
 		

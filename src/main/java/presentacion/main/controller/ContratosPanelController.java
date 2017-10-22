@@ -1,14 +1,18 @@
 package presentacion.main.controller;
 
+import javax.swing.JOptionPane;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.ContratoAlquiler;
+import entities.EstadoContrato;
 import model.ContratoService;
 import presentacion.controller.ContratoAlquilerController;
 import presentacion.controller.ContratoVentaController;
 import presentacion.main.vista.ContratosPanel;
 import presentacion.table.ContratosTableModel;
+import presentacion.validators.MessageShow;
 
 @Singleton
 public class ContratosPanelController {
@@ -71,8 +75,16 @@ public class ContratosPanelController {
 		int select = this.view.getTablaContratoAlquiler().getSelectedRow();
 
 		if (select!=-1){
-			contratoAlqController.editarContrato((ContratoAlquiler) this.contratosTable2.getRow(select));
+			ContratoAlquiler contrato =  (ContratoAlquiler) this.contratosTable2.getRow(select);
+			
+			if (contratoService.getEstadoOf(contrato)!=EstadoContrato.BORRADOR){
+				 JOptionPane.showMessageDialog(null, "Solo se pueden editar contratos en borrador");
+				return;
+			}
+			
+			contratoAlqController.editarContrato(contrato);
 			contratoAlqController.showView();
+			
 			this.fillTableContratosAlquiler();
 		}
 	}

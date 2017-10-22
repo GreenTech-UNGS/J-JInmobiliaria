@@ -41,6 +41,7 @@ public class InmobiliariaForm extends JDialog {
 	private JTable tableTelefono;
 	private JButton btnAgregarTel;
 	private JButton btnBorrarTel;
+	private JTable tableTel;
 	
 	@Inject
 	private InmobiliariaForm(){
@@ -152,11 +153,12 @@ public class InmobiliariaForm extends JDialog {
 		separator_1.setBounds(47, 245, 372, 2);
 		getContentPane().add(separator_1);
 		
+		tableTelefono =new JTable();
 		JScrollPane scrollPane = new JScrollPane(tableTelefono);
 		scrollPane.setBounds(47, 258, 291, 56);
 		getContentPane().add(scrollPane);
 		
-		tableTelefono = new JTable();
+	
 //		scrollPane.setColumnHeaderView(tableTelefono);
 		
 		btnAgregarTel = new JButton("Agregar");
@@ -346,5 +348,4 @@ public class InmobiliariaForm extends JDialog {
 	public void setBtnBorrarTel(JButton btnBorrarTel) {
 		this.btnBorrarTel = btnBorrarTel;
 	}
-	
 }

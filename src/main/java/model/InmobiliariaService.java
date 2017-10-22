@@ -36,7 +36,6 @@ public class InmobiliariaService {
 	}
 
 	public void saveInmobiliaria(Inmobiliaria inmobiliaria) {
-		System.out.println(inmobiliaria);
 		inmobiliariaDao.save(inmobiliaria);
 		
 	}

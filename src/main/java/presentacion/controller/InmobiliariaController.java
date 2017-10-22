@@ -70,7 +70,6 @@ public class InmobiliariaController {
 	
 	private void saveInmobiliaria(){
 		if(inmobiliariaValidator.isValid()) {
-			System.out.println("es valida");
 			inmobiliariaMapper.fillBean(currentInmobiliaria);
 			inmobiliariaService.saveInmobiliaria(currentInmobiliaria);
 			view.setVisible(false);
@@ -81,6 +80,9 @@ public class InmobiliariaController {
 	}
 	
 	public void setModeNew() {
+		view.getBtnGuardar().setVisible(true);
+		view.getBtnCancelar().setVisible(true);
+		view.getBtnGuardarCambios().setVisible(false);
 		currentInmobiliaria = inmobiliariaService.getEmptyInmobiliaria();
 		inmobiliariaMapper.fillFields(currentInmobiliaria);
 		telTable.clean();

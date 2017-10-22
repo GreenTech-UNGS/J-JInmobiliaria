@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.Inmobiliaria;
+import entities.Localidad;
 import presentacion.vista.InmobiliariaForm;
 
 @Singleton
@@ -33,6 +34,9 @@ public class InmobiliariaFormMapper implements Mapper<Inmobiliaria>{
 		t.setPiso(piso);
 		t.setDepto(depto);
 		t.setEmail(email);	
+		
+		System.out.println("esta seleccionado " + view.getCbLocalidad().getSelectedItem());
+		//t.setLocalidad((Localidad) view.getCbLocalidad().getSelectedItem());
 	}
 
 	@Override
@@ -52,6 +56,10 @@ public class InmobiliariaFormMapper implements Mapper<Inmobiliaria>{
 		view.getTfPiso().setText(piso);
 		view.getTfDepto().setText(depto);
 		view.getTfEmail().setText(email);
+//		view.getCbLocalidad().setSelectedItem(t.getLocalidad());
+//		view.getCbProvincia().setSelectedItem(t.getLocalidad().getProvincia());
+		view.getCbLocalidad().getModel().setSelectedItem(t.getLocalidad());
+		System.out.println("loc" + t.getLocalidad());
 		
 	}
 
