@@ -3,11 +3,7 @@ package model;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import dto.MovimientoDeCajaDTO;
-import entities.Egreso;
-import entities.Ingreso;
-import entities.Moneda;
-import entities.MovimientoCaja;
-import entities.Precio;
+import entities.*;
 import org.joda.time.DateTime;
 import persistencia.dao.iface.EgresoDao;
 import persistencia.dao.iface.IngresoDao;
@@ -56,8 +52,9 @@ public class MovimientoCajaService {
             ret.add(mov);
         }
 
-        ret.sort((m1, m2) -> DateTime.parse(m1.getFecha()).compareTo(DateTime.parse(m2.getFecha())));
-
+//        ret.sort((m1, m2) -> DateTime.parse(m1.getFecha()).compareTo(DateTime.parse(m2.getFecha())));
+		//TODO: También tendría que estar ordenado por Fecha
+		ret.sort((m1, m2) -> m1.getTipo().compareTo(m2.getTipo()));
 		return ret;
 	}
 	

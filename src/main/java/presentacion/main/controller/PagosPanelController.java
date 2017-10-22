@@ -1,15 +1,9 @@
 package presentacion.main.controller;
 
-import java.util.List;
-
-import javax.swing.JOptionPane;
-
-import org.joda.time.YearMonth;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
 import dto.CobrosDeAlquileresDTO;
+import dto.MovimientoDeCajaDTO;
 import dto.PendientesPropietariosDTO;
 import entities.CuotaAlquiler;
 import entities.EstadoCuota;
@@ -18,14 +12,19 @@ import filtros.CuotaFiltro;
 import model.CuotaService;
 import model.MovimientoCajaService;
 import model.PagosCobrosService;
+import org.joda.time.YearMonth;
 import presentacion.controller.MovimientoCajaController;
 import presentacion.controller.RegistrarCobroController;
 import presentacion.controller.filtros.CuotaFiltroController;
 import presentacion.main.vista.PagosPanel;
 import presentacion.reportes.ReporteCobrosDeAlquileres;
+import presentacion.reportes.ReporteMovimientosDeCaja;
 import presentacion.reportes.ReportePropietariosPagosPendientes;
 import presentacion.table.CuotasTableModel;
 import presentacion.table.PagosPropietariosTableModel;
+
+import javax.swing.*;
+import java.util.List;
 
 @Singleton
 public class PagosPanelController {
@@ -55,6 +54,7 @@ public class PagosPanelController {
 		
 		this.view.getBtnGenerarReporteCobros().addActionListener(e -> generaReporteCobroDeAlquileres());
 		this.view.getBtnGenerarReportePropietarios().addActionListener(e -> generaReportePropietarios());
+		this.view.getBtnGenerarReporteMovimientos().addActionListener(e -> generaReporteMovimientos());
 		
 		this.view.getBtnAplicarFiltroAlq().addActionListener(e -> aplicarFiltroAlq());
 		this.view.getBtnRemoverFiltroAlq().addActionListener(e -> removerFiltroAlq());
@@ -140,7 +140,13 @@ public class PagosPanelController {
 		reporte.mostrar();
 		
 	}
-	
+	private void generaReporteMovimientos() {
+		List<MovimientoDeCajaDTO> dtos = movimientoService.getReporteMovimientoDeCaja();
+		ReporteMovimientosDeCaja reporte = new ReporteMovimientosDeCaja(dtos);
+
+		reporte.mostrar();
+	}
+
 	//TODO parametrizar el yearmonth
 	private void generaReporteCobroDeAlquileres() {
 		List<CobrosDeAlquileresDTO> dtos =

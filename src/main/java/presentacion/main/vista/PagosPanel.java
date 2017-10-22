@@ -1,19 +1,11 @@
 package presentacion.main.vista;
 
-import java.awt.Component;
-
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
 import presentacion.table.MovimientosCajaTableModel;
+
+import javax.swing.*;
+import java.awt.*;
 
 @Singleton
 public class PagosPanel extends JPanel{
@@ -27,6 +19,7 @@ public class PagosPanel extends JPanel{
 	private JTable tableMovimientosCaja;
 	private JButton btnRegistrarIngreso;
 	private JButton btnRegistrarEgreso;
+    private JButton btnGenerarReporteMovimientos;
 
 	private MovimientosCajaTableModel tableMovimientosModel;
 	private JButton btnAplicarFiltroAlq;
@@ -134,7 +127,13 @@ public class PagosPanel extends JPanel{
         
         btnRegistrarEgreso = new JButton("Registrar egreso");
         panelMovimientosButtons.add(btnRegistrarEgreso);
-        
+
+        Component horizontalGlueRep = Box.createHorizontalGlue();
+        panelMovimientosButtons.add(horizontalGlueRep);
+
+        btnGenerarReporteMovimientos = new JButton("Reporte Movimientos");
+        panelMovimientosButtons.add(btnGenerarReporteMovimientos);
+
         Component horizontalGlue_1 = Box.createHorizontalGlue();
         panelMovimientosButtons.add(horizontalGlue_1);
         
@@ -167,6 +166,10 @@ public class PagosPanel extends JPanel{
 	public JButton getBtnGenerarReportePropietarios() {
 		return btnGenerarReportePropietarios;
 	}
+
+    public JButton getBtnGenerarReporteMovimientos() {
+        return btnGenerarReporteMovimientos;
+    }
 
 	public JTable getTableMovimientosCaja() {
 		return tableMovimientosCaja;
