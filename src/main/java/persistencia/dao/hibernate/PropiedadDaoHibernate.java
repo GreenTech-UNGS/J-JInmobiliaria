@@ -56,7 +56,18 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 	
 	@Override
 	public List<Propiedad> getAllByFiltro(PropiedadFiltro filtro){
-		return null;
+		initTransaction();
+		System.out.println(filtro.getPrecioHasta());
+		Criteria q = sesion.createCriteria(Propiedad.class)
+				.createAlias("precioTentativo", "precio")
+				.add(Restrictions.eqOrIsNull("localidad", filtro.getLocalidad()))
+				.add(Restrictions.eqOrIsNull("precio.moneda", filtro.getMoneda()))
+				.add(Restrictions.ge("precio.monto", filtro.getPrecioDesde()))
+				.add(Restrictions.le("precio.monto", filtro.getPrecioHasta()))
+				.add(Restrictions.eqOrIsNull("tipoOfrecimiento", filtro.getTipoOfrecimiento()));
 		
+		finishTransaction();
+		
+		return q.list();		
 	}
 }

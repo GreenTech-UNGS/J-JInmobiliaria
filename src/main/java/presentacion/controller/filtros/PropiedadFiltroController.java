@@ -32,20 +32,12 @@ public class PropiedadFiltroController {
 	private boolean wasOkPressed;
 	private LocalidadService localidadService;
 	
-	ProvinciaComboBoxModel provCombo;
-	MonedaComboBoxModel monedaCombo;
-	LocalidadComboBoxModel localidadCombo;
-	TipoOfrecimientoComboBoxModel tipoOfrCombo;
 	
 	@Inject
 	private PropiedadFiltroController(PropiedadFiltroView view, LocalidadService localidadService){
 		this.view = view;
 		wasOkPressed = false;
 		
-		this.provCombo = new ProvinciaComboBoxModel();
-		this.monedaCombo = new MonedaComboBoxModel();
-		this.localidadCombo = new LocalidadComboBoxModel();
-		this.tipoOfrCombo = new TipoOfrecimientoComboBoxModel();
 		this.localidadService = localidadService;
 		
 		view.getBtnFiltrar().addActionListener(e -> aceptar());
@@ -62,7 +54,7 @@ public class PropiedadFiltroController {
 
 		
 		currentFiltro = new PropiedadFiltro();
-//		mapper.fillFields(currentFiltro);
+		mapper.fillFields(currentFiltro);
 		wasOkPressed = false;
 	}
 	
@@ -85,27 +77,23 @@ public class PropiedadFiltroController {
 	}
 	private void fillCombos() {
 		
-		this.view.getCbProvincia().setModel(provCombo);
-		provCombo.actualize(Arrays.asList(Provincia.values()));
+		view.getProvCombo().clearAndActualize(Arrays.asList(Provincia.values()));
 		AutoCompleteDecorator.decorate(view.getCbProvincia());
 		
-		this.view.getCbMoneda().setModel(monedaCombo);
-		monedaCombo.actualize(Arrays.asList(Moneda.values()));
+		view.getMonedaCombo().clearAndActualize(Arrays.asList(Moneda.values()));
 		
-		this.view.getCbLocalidad().setModel(localidadCombo);
 		AutoCompleteDecorator.decorate(view.getCbLocalidad());
 		cambiaLocalidades();
 		
-		this.view.getCbTipoOfrec().setModel(tipoOfrCombo);
-		tipoOfrCombo.actualize(Arrays.asList(TipoOfrecimiento.values()));
+		view.getTipoOfrCombo().clearAndActualize(Arrays.asList(TipoOfrecimiento.values()));
 		
 	}
 	
 	private void cambiaLocalidades() {
 		
-		localidadCombo.removeAllElements();
-		List<Localidad> localidades = localidadService.getAllOf(provCombo.getSelected());
-		localidadCombo.actualize(localidades);
+		view.getLocalidadCombo().removeAllElements();
+		List<Localidad> localidades = localidadService.getAllOf(view.getProvCombo().getSelected());
+		view.getLocalidadCombo().clearAndActualize(localidades);
 		
 	}
 }
