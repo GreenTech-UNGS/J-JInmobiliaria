@@ -18,6 +18,11 @@ public abstract class BaseComboBoxModel<T> extends DefaultComboBoxModel<String>{
 	
 	public abstract void agregaElemento(T element);
 	
+	public void clearAndActualize(List<T> list) {
+		removeAllElements();
+		actualize(list);
+	}
+	
 	public T getSelected(){
 		
 		String selected = (String)super.getSelectedItem();

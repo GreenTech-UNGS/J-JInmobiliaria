@@ -6,8 +6,9 @@ import entities.Precio;
 import entities.TipoOfrecimiento;
 
 public class PropiedadFiltro {
-	Precio precioDesde;
-	Precio precioHasta;
+	double precioDesde;
+	double precioHasta;
+	Moneda moneda;
 	Localidad localidad;
 	TipoOfrecimiento tipoOfrecimiento;
 	
@@ -23,19 +24,19 @@ public class PropiedadFiltro {
 		this.localidad = localidad;
 	}
 
-	public Precio getPrecioDesde() {
+	public double getPrecioDesde() {
 		return precioDesde;
 	}
 
-	public void setPrecioDesde(Precio precioDesde) {
+	public void setPrecioDesde(double precioDesde) {
 		this.precioDesde = precioDesde;
 	}
 
-	public Precio getPrecioHasta() {
+	public double getPrecioHasta() {
 		return precioHasta;
 	}
 
-	public void setPrecioHasta(Precio precioHasta) {
+	public void setPrecioHasta(double precioHasta) {
 		this.precioHasta = precioHasta;
 	}
 
@@ -45,6 +46,14 @@ public class PropiedadFiltro {
 
 	public void setTipoOfrecimiento(TipoOfrecimiento tipoOfrecimiento) {
 		this.tipoOfrecimiento = tipoOfrecimiento;
+	}
+
+	public Moneda getMoneda() {
+		return moneda;
+	}
+
+	public void setMoneda(Moneda moneda) {
+		this.moneda = moneda;
 	}
 	
 	

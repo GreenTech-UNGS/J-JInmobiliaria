@@ -7,13 +7,23 @@ import javax.swing.JFrame;
 
 import com.google.inject.Singleton;
 
+import entities.Moneda;
+import entities.Provincia;
+import entities.TipoOfrecimiento;
 import presentacion.combo.LocalidadComboBoxModel;
 import presentacion.combo.MonedaComboBoxModel;
+import presentacion.combo.ProvinciaComboBoxModel;
+import presentacion.combo.TipoOfrecimientoComboBoxModel;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+
 import javax.swing.JComboBox;
 import java.awt.Font;
+import java.util.Arrays;
+
 import javax.swing.JSeparator;
 import javax.swing.JButton;
 
@@ -28,6 +38,11 @@ public class PropiedadFiltroView extends JDialog {
 	private JComboBox<String> cbMoneda;
 	private JTextField tfAmbientes;
 	private JComboBox<String> cbTipoOfrec;
+	
+	ProvinciaComboBoxModel provCombo;
+	MonedaComboBoxModel monedaCombo;
+	LocalidadComboBoxModel localidadCombo;
+	TipoOfrecimientoComboBoxModel tipoOfrCombo;
 	
 	public PropiedadFiltroView(){
 		super();
@@ -136,6 +151,18 @@ public class PropiedadFiltroView extends JDialog {
 		cbTipoOfrec = new JComboBox<String>();
 		cbTipoOfrec.setBounds(259, 171, 105, 20);
 		getContentPane().add(cbTipoOfrec);
+		
+		this.provCombo = new ProvinciaComboBoxModel();
+		this.monedaCombo = new MonedaComboBoxModel();
+		this.localidadCombo = new LocalidadComboBoxModel();
+		this.tipoOfrCombo = new TipoOfrecimientoComboBoxModel();
+		
+		getCbProvincia().setModel(provCombo);
+		getCbMoneda().setModel(monedaCombo);
+		getCbLocalidad().setModel(localidadCombo);
+		getCbTipoOfrec().setModel(tipoOfrCombo);
+
+		
 	}
 
 	public JTextField getTfPrecioDesde() {
@@ -200,6 +227,22 @@ public class PropiedadFiltroView extends JDialog {
 
 	public void setCbTipoOfrec(JComboBox<String> cbTipoOfrec) {
 		this.cbTipoOfrec = cbTipoOfrec;
+	}
+
+	public ProvinciaComboBoxModel getProvCombo() {
+		return provCombo;
+	}
+
+	public MonedaComboBoxModel getMonedaCombo() {
+		return monedaCombo;
+	}
+
+	public LocalidadComboBoxModel getLocalidadCombo() {
+		return localidadCombo;
+	}
+
+	public TipoOfrecimientoComboBoxModel getTipoOfrCombo() {
+		return tipoOfrCombo;
 	}
 	
 	
