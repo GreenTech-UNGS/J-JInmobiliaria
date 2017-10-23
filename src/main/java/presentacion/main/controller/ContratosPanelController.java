@@ -12,7 +12,6 @@ import presentacion.controller.ContratoAlquilerController;
 import presentacion.controller.ContratoVentaController;
 import presentacion.main.vista.ContratosPanel;
 import presentacion.table.ContratosTableModel;
-import presentacion.validators.MessageShow;
 
 @Singleton
 public class ContratosPanelController {
@@ -125,7 +124,5 @@ public class ContratosPanelController {
 	public void actualize() {
 		fillTableContratosAlquiler();
 		fillTableContratosVenta();
-		
 	}
-	
 }

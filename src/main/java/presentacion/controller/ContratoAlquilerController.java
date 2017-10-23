@@ -59,6 +59,7 @@ public class ContratoAlquilerController {
 		view.getBtnBorrador().addActionListener(e -> guardarEnBorrador());
 
 		fillCombos();
+		
 	}
 	
 	private void seleccionaCliente() {
@@ -78,9 +79,7 @@ public class ContratoAlquilerController {
 		if(propiedad != null) {
 		
 			view.getTfIdPropiedad().setText(propiedad.getIdentificador());
-			
 			currentContrato.setPropiedad(propiedad);
-			
 			view.getTextPrecio().setText(propiedad.getPrecioTentativo().getMonto() + "");
 			
 		}
