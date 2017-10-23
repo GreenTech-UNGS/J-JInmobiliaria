@@ -9,6 +9,8 @@ import com.google.inject.Inject;
 import entities.Cliente;
 import entities.Persona;
 import entities.Propiedad;
+import filtros.ClienteFiltro;
+import filtros.PropietarioFiltro;
 import persistencia.dao.iface.ClienteDao;
 import persistencia.dao.iface.PersonaDao;
 
@@ -53,6 +55,12 @@ public class ClienteService {
 	
 	public List<Cliente> getAll(){
 		return clienteDao.getAll();
+	}
+		
+	public List<Cliente> getAllByFiltro(ClienteFiltro filtro){
+		
+		return clienteDao.getAllByFiltro(filtro);
+		
 	}
 
 	public boolean existeClienteCon(Persona t) {
