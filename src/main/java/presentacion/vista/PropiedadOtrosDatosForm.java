@@ -39,6 +39,7 @@ public class PropiedadOtrosDatosForm extends JDialog{
 
 	@Inject
 	private PropiedadOtrosDatosForm() {
+		setTitle("Otros datos");
 		getContentPane().setLayout(null);
 		setModal(true);
 		setLocationRelativeTo(null);
@@ -53,11 +54,11 @@ public class PropiedadOtrosDatosForm extends JDialog{
 		getContentPane().add(lblAmbientes);
 		
 		JLabel lblMcubiertos = new JLabel("M\u00B2 cubiertos: ");
-		lblMcubiertos.setBounds(272, 139, 78, 14);
+		lblMcubiertos.setBounds(254, 139, 78, 14);
 		getContentPane().add(lblMcubiertos);
 		
 		JLabel lblMLote = new JLabel("M\u00B2 Lote: ");
-		lblMLote.setBounds(27, 184, 46, 14);
+		lblMLote.setBounds(27, 184, 65, 14);
 		getContentPane().add(lblMLote);
 		
 		JSeparator separator = new JSeparator();

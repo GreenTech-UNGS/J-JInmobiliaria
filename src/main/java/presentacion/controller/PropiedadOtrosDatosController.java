@@ -8,6 +8,8 @@ import com.google.inject.Singleton;
 import entities.PropiedadOtrosDatos;
 import entities.TipoPropiedad;
 import presentacion.mappers.PropiedadOtrosDatosMapper;
+import presentacion.validators.MessageShow;
+import presentacion.validators.PropiedadOtrosDatosValidator;
 import presentacion.vista.PropiedadOtrosDatosForm;
 
 @Singleton
@@ -16,8 +18,11 @@ public class PropiedadOtrosDatosController {
 	private PropiedadOtrosDatosForm view;
 	
 	@Inject PropiedadOtrosDatosMapper mapper;
+	@Inject PropiedadOtrosDatosValidator validator;
+	@Inject MessageShow msgShw;
 	
 	private boolean okWasPressed;
+	private PropiedadOtrosDatos currentDatos;
 	
 	@Inject
 	private PropiedadOtrosDatosController(PropiedadOtrosDatosForm view) {
@@ -31,8 +36,13 @@ public class PropiedadOtrosDatosController {
 	}
 	
 	private void aceptar() {
-		okWasPressed = true;
-		this.view.setVisible(false);
+		if(validator.isValid()) {
+			okWasPressed = true;
+			this.view.setVisible(false);
+		}
+		else {
+			msgShw.showErrorMessage(validator.getErrorMessage(), "Error");
+		}
 	
 	}
 
@@ -43,6 +53,10 @@ public class PropiedadOtrosDatosController {
 	
 	public void setModeNew() {
 		okWasPressed = false;
+		currentDatos = new PropiedadOtrosDatos();
+		currentDatos.setTipo(TipoPropiedad.Otro);
+		
+		mapper.fillFields(currentDatos);
 	}
 	
 	public void showView() {
@@ -53,11 +67,9 @@ public class PropiedadOtrosDatosController {
 		if(!okWasPressed)
 			return null;
 			
-		PropiedadOtrosDatos toRet = new PropiedadOtrosDatos();
-		mapper.fillBean(toRet);
+		mapper.fillBean(currentDatos);
 		
-		
-		return toRet;
+		return currentDatos;
 	}
 	
 }

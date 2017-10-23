@@ -10,6 +10,7 @@ public enum TipoPropiedad {
 	Monoambiente, 
 	Local, 
 	Piso,
-	PH
+	PH,
+	Otro
 	
 }
