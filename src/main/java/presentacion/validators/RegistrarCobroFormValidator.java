@@ -37,9 +37,8 @@ public class RegistrarCobroFormValidator implements ValidatorNew{
 	}
 
 	private boolean isFechaValid(){
-		DateTime fechaPago = new DateTime(view.getDateChooser().getDate());
-		
-		return fechaPago.isAfterNow();
+		//TODO: eliminar clase
+		return true;
 	}
 	
 }

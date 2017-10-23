@@ -32,6 +32,7 @@ import entities.EstadoProp;
 import entities.HistoriaEstadoContrato;
 import entities.HistoriaEstadoCuota;
 import entities.HistoriaEstadoProp;
+import entities.InteresPunitorioCuota;
 import entities.Moneda;
 import entities.PagoPropietario;
 import entities.Persona;
@@ -145,6 +146,13 @@ public class ContratoService {
 					monto += montoInicial * (c.getDatoActualizacion().getPorcentaje()/100);
 			}
 			
+			InteresPunitorioCuota interes = new InteresPunitorioCuota();
+			Precio p2 = new Precio(0, m);
+			interes.setCuota(nuevaCuota);
+			interes.setFecha(DateTime.now());
+			interes.setMonto(p2);
+			
+			cuotaDao.saveInteres(interes);
 			cuotaDao.save(nuevaCuota);
 		}	
 	}

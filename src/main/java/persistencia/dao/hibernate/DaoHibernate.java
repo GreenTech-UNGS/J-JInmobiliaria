@@ -3,6 +3,7 @@ package persistencia.dao.hibernate;
 import java.util.Collection;
 import java.util.List;
 
+import org.hibernate.CacheMode;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionException;
@@ -25,7 +26,7 @@ public abstract class DaoHibernate<T> implements Dao<T>{
 	@Inject
 	protected DaoHibernate(Conexion conexion){
 		this.conexion = conexion;
-
+		sesion = conexion.getSession();
 		//sesionFactory = conexion.getSessionFactory();
 	}
 
@@ -54,15 +55,15 @@ public abstract class DaoHibernate<T> implements Dao<T>{
 	public abstract List<T> getAll();
 	
 	protected synchronized void initTransaction(){
-		
 		sesion = conexion.getSession();
 		transaction = sesion.beginTransaction();
 		
 	}
-
+	
 	protected synchronized void finishTransaction(){
 		
 		transaction.commit();
+		sesion.flush();
 		
 	}
 	

@@ -1,5 +1,10 @@
 package presentacion.controller;
 
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
@@ -12,6 +17,8 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.CuotaAlquiler;
+import entities.InteresPunitorioCuota;
+import model.CuotaService;
 import model.PagosCobrosService;
 import presentacion.validators.MessageShow;
 import presentacion.validators.RegistrarCobroFormValidator;
@@ -23,10 +30,13 @@ public class RegistrarCobroController {
 	RegistrarCobroForm view;
 	CuotaAlquiler currentCuota;
 	PagosCobrosService cobrosService;
+	@Inject private CuotaService cuotaService;
 	RegistrarCobroFormValidator cobroAlquilerValidator;
 	MessageShow msgShw;
 
 	boolean okWasPressed;
+	private InteresPunitorioCuota currentInteres;
+	private final DecimalFormat format = new DecimalFormat("#.##");
 	
 	
 	@Inject
@@ -43,6 +53,7 @@ public class RegistrarCobroController {
 		okWasPressed = false;
 		
 		view.getBtnOk().addActionListener(e -> okPressed());
+		view.getDateChooser().addPropertyChangeListener("date", e -> actualizaInteres());
 		
 	}
 	
@@ -54,8 +65,31 @@ public class RegistrarCobroController {
 		
 		okWasPressed = false;
 		view.getDateChooser().setDate(new Date());
+		
+		view.getTextCliente().setText(
+				currentCuota.getContrato().getCliente().getPersona().getCredencial() + " "
+				+currentCuota.getContrato().getCliente().getPersona().getApellido() + " "
+				+currentCuota.getContrato().getCliente().getPersona().getNombre());
+		
+		view.getTextPropiedad().setText(
+				currentCuota.getContrato().getPropiedad().getIdentificador() + " "
+				+ currentCuota.getContrato().getPropiedad().getLocalidad().getNombre());
+		
 		view.setVisible(true);
 		
+	}
+	
+	private void actualizaInteres() {
+		DateTime fecha = new DateTime(view.getDateChooser().getDate());
+		InteresPunitorioCuota interes = cuotaService.getInteresCalculado(currentCuota, fecha);
+		
+		if(interes != null) {
+			currentInteres = interes;
+			view.getTextInteres().setText(format.format(interes.getMonto().getMonto()) +
+					" " + interes.getMonto().getMoneda().toString());
+		}
+		
+	
 	}
 	
 	private void okPressed() {
@@ -64,6 +98,7 @@ public class RegistrarCobroController {
 		DateTime fechaPago = new DateTime(view.getDateChooser().getDate());
 		
 		if(cobroAlquilerValidator.isValid()){
+			if(currentInteres != null) cuotaService.saveInteres(currentInteres);
 			cobrosService.generarCobroAlquiler(currentCuota, fechaPago);
 			this.view.setVisible(false);
 		}

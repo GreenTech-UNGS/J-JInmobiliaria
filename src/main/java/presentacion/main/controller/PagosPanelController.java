@@ -42,6 +42,8 @@ public class PagosPanelController {
 	
 	@Inject private MovimientoCajaController movimientoController;
 	
+	private CuotaFiltro currentCuotaFiltro;
+	
 	@Inject
 	PagosPanelController(PagosPanel view) {
 		
@@ -99,18 +101,22 @@ public class PagosPanelController {
 		
 		CuotaFiltro filtro = cuotaFiltro.getFiltro();
 		
-		if(filtro != null)
-			cuotasTable.actualizeRows(cuotaService.getAllByFiltro(filtro));
+		//if(filtro != null)
+			currentCuotaFiltro = filtro;
+			//cuotasTable.actualizeRows(cuotaService.getAllByFiltro(filtro));
+			fillTableCuotas();
 	}
 	
 	private void removerFiltroAlq(){
+		currentCuotaFiltro = null;
 		this.fillTableCuotas();
 	}
 	
 	private void fillTableCuotas() {
 		this.cuotasTable.clean();
 		this.view.getTableCuotas().setModel(cuotasTable);
-		cuotaService.getAllOfNow().forEach(c -> cuotasTable.addRow(c));
+		if(currentCuotaFiltro == null)cuotaService.getAllOfNow().forEach(c -> cuotasTable.addRow(c));
+		else cuotasTable.actualizeRows(cuotaService.getAllByFiltro(currentCuotaFiltro));
 		
 		this.view.getTableCuotas().setColumnModel(cuotasTable.getTableColumnModel());
 		this.view.getTableCuotas().getTableHeader().setReorderingAllowed(false);

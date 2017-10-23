@@ -20,6 +20,10 @@ import java.awt.Component;
 import javax.swing.Box;
 import java.awt.Font;
 import javax.swing.JTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 @Singleton
 public class RegistrarCobroForm extends JDialog{
