@@ -63,7 +63,7 @@ public class PersonaDaoHibernate extends DaoHibernate<Persona> implements Person
 		
 		finishTransaction();
 		
-		return !q.list().isEmpty();
+		return ! (q.list().isEmpty());
 		
 	}
 

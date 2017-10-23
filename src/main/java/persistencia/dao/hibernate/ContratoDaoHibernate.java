@@ -48,7 +48,7 @@ public class ContratoDaoHibernate extends DaoHibernate<Contrato> implements Cont
 		
 		List<Contrato> res = q.list();
 		
-		return !res.isEmpty();
+		return ! (res.isEmpty());
 	}
 
 	@Override

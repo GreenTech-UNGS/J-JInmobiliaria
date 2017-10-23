@@ -100,7 +100,6 @@ public class ClienteController {
 			clienteMapper.fillBean(currentCliente);
 			try {
 				clienteService.saveCliente(currentCliente);
-				view.setVisible(false);
 			} catch (LogicaNegocioException e) {
 				msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
 			}
