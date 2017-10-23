@@ -137,6 +137,7 @@ public class PagosPanelController {
 		if(isIngreso)movimientoController.setModeNewIngreso();
 		else movimientoController.setModeNewEgreso();
 		movimientoController.showView();
+		fillTableMovimientosCaja();
 	}
 		
 	private void generaReportePropietarios() {
