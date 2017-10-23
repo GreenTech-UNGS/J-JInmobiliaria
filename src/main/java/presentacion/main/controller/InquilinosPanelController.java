@@ -3,11 +3,13 @@ package presentacion.main.controller;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import filtros.ClienteFiltro;
 import filtros.PropietarioFiltro;
 import model.ClienteService;
 import model.PropietarioService;
 import presentacion.controller.ClienteController;
 import presentacion.controller.PropietarioController;
+import presentacion.controller.filtros.ClienteFiltroController;
 import presentacion.controller.filtros.PropietarioFiltroController;
 import presentacion.main.vista.InquilinosPanel;
 import presentacion.table.ClientesTableModel;
@@ -20,13 +22,14 @@ public class InquilinosPanelController {
 	
 	@Inject private ClienteController clienteController;
 	@Inject private PropietarioController propietarioController;	
+	@Inject private ClienteFiltroController clienteFiltro;
 	@Inject private PropietarioFiltroController propietarioFiltro;
 	
 	@Inject private ClienteService clienteService;
 	@Inject private PropietarioService propietarioService;
-	
-	@Inject private PropietariosTableModel propietariosTable;
+
 	@Inject private ClientesTableModel tableModelClien;
+	@Inject private PropietariosTableModel propietariosTable;
 	
 	@Inject
 	InquilinosPanelController(InquilinosPanel view) {
@@ -37,8 +40,10 @@ public class InquilinosPanelController {
 		this.view.getBtnEditarCliente().addActionListener(e -> editarCliente());
 		this.view.getBtnAgregarPropietario().addActionListener(e -> agregarPropietario());
 		this.view.getBtnEditarPropietario().addActionListener(e -> editarPropietario());
-		this.view.getBtnAplicarFiltro().addActionListener(e -> aplicarFiltroPropietario());
-		this.view.getBtnRemoverFiltro().addActionListener(e  -> removerFiltroPropietario());
+		this.view.getBtnAplicarFiltroClientes().addActionListener(e -> aplicarFiltroCliente());
+		this.view.getBtnRemoverFiltroClientes().addActionListener(e  -> removerFiltroCliente());
+		this.view.getBtnAplicarFiltroPropietarios().addActionListener(e -> aplicarFiltroPropietario());
+		this.view.getBtnRemoverFiltroPropietarios().addActionListener(e  -> removerFiltroPropietario());
 		
 	}
 		
@@ -74,6 +79,21 @@ public class InquilinosPanelController {
 		this.propietarioController.showView();
 
 		fillTablePropietarios();
+	}
+	
+	private void aplicarFiltroCliente() {
+		clienteFiltro.setModeNew();
+		clienteFiltro.showView();
+		
+		ClienteFiltro filtro = clienteFiltro.getFiltro();
+		if(filtro != null) {
+			tableModelClien.actualizeRows(clienteService.getAllByFiltro(filtro));
+		}
+		
+	}
+	
+	private void removerFiltroCliente() {
+		fillTableClientes();
 	}
 	
 	private void aplicarFiltroPropietario() {
