@@ -3,12 +3,11 @@ package persistencia.dao.hibernate;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import entities.Cliente;
-import entities.Persona;
 import entities.Propiedad;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.PropiedadDao;
@@ -31,6 +30,20 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 		finishTransaction();
 		
 		return q.list();
+	}
+	
+	@Override
+	public boolean existePropiedadConIdentificador(String identificador) {
+		
+		initTransaction();
+		
+		Criteria q = sesion.createCriteria(Propiedad.class).
+				add(Restrictions.eq("identificador", identificador));
+		
+		finishTransaction();
+		
+		return ! (q.list().isEmpty());
+		
 	}
 	
 	public void actualizePropiedad(Propiedad toActualize) {

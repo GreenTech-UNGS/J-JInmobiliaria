@@ -11,6 +11,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.Cliente;
+import entities.Contrato;
 import entities.EstadoProp;
 import entities.HistoriaEstadoProp;
 import entities.Moneda;
@@ -35,7 +36,15 @@ public class PropiedadService {
 		return propiedadDao.getAll();
 	}
 	
-	public void savePropiedad(Propiedad p) {
+	public boolean existePropiedadConIdentificador(Propiedad t) {
+		
+		return propiedadDao.existePropiedadConIdentificador(t.getIdentificador());		
+	}
+	
+	public void savePropiedad(Propiedad p) throws LogicaNegocioException {
+		
+		if(existePropiedadConIdentificador(p))
+			throw new LogicaNegocioException("Ya existe una propiedad con el identificador ingresado");
 		
 		HistoriaEstadoProp historia = new HistoriaEstadoProp();
 		historia.setEstado(EstadoProp.DISPONIBLE);
