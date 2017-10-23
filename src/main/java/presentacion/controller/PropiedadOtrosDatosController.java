@@ -55,6 +55,8 @@ public class PropiedadOtrosDatosController {
 		okWasPressed = false;
 		currentDatos = new PropiedadOtrosDatos();
 		currentDatos.setTipo(TipoPropiedad.Otro);
+		
+		mapper.fillFields(currentDatos);
 	}
 	
 	public void showView() {
