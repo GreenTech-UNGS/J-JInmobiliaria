@@ -3,6 +3,8 @@ package presentacion.main.controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JOptionPane;
+
 import org.joda.time.DateTime;
 
 import com.google.inject.Inject;
@@ -106,7 +108,13 @@ public class PropiedadesPanelController {
 		int select = this.view.getTablePropiedades().getSelectedRow();
 
 		if (select!=-1){
-			propiedadController.editPropiedad(this.tableModelProp.getRow(select));
+			Propiedad propiedad = this.tableModelProp.getRow(select);
+			if(!propiedadService.getCurrentEstado(propiedad).equals(EstadoProp.DISPONIBLE) || 
+					propiedadService.getCurrentEstado(propiedad).equals(EstadoProp.BORRADOR)){
+				 JOptionPane.showMessageDialog(null, "Solo se pueden editar propiedades disponibles o en borrador");
+				 return;
+			}
+			propiedadController.editPropiedad(propiedad);
 			propiedadController.showView();
 			this.fillTableProp();
 		}
