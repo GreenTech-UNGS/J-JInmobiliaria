@@ -116,7 +116,7 @@ public class PropiedadesPanelController {
 			}
 			propiedadController.editPropiedad(propiedad);
 			propiedadController.showView();
-			this.fillTableProp();
+			this.fillAllTables();
 		}
 	}	
 	
