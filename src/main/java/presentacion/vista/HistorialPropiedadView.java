@@ -39,6 +39,7 @@ public class HistorialPropiedadView extends JDialog {
 		table = new JTable();
 		JScrollPane scrollPane = new JScrollPane(table);
 		panel.add(scrollPane);
+		table.getTableHeader().setReorderingAllowed(false);
 		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);

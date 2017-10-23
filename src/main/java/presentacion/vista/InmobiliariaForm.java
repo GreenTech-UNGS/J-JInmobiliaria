@@ -51,7 +51,7 @@ public class InmobiliariaForm extends JDialog {
 		setTitle("Agregar Inmobiliaria");	
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setModal(true);
-		setSize(new Dimension(470, 519));
+		setSize(new Dimension(470, 449));
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
@@ -175,43 +175,20 @@ public class InmobiliariaForm extends JDialog {
 		btnBorrarTel.setBounds(341, 291, 78, 23);
 		getContentPane().add(btnBorrarTel);
 		
-		JLabel lblContactos = new JLabel("Contactos");
-		lblContactos.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblContactos.setBounds(47, 331, 78, 14);
-		getContentPane().add(lblContactos);
-		
-		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(47, 356, 372, 2);
-		getContentPane().add(separator_2);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(47, 369, 291, 56);
-		getContentPane().add(scrollPane_1);
-		
-		JButton btnAgregarCont = new JButton("Agregar");
-		btnAgregarCont.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnAgregarCont.setBounds(341, 368, 78, 23);
-		getContentPane().add(btnAgregarCont);
-		
-		JButton btnBorrarCont = new JButton("Borrar");
-		btnBorrarCont.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnBorrarCont.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnBorrarCont.setBounds(341, 402, 78, 23);
-		getContentPane().add(btnBorrarCont);
-		
 		cbProvincia = new JComboBox<String>();
 		cbProvincia.setBounds(103, 144, 123, 20);
 		getContentPane().add(cbProvincia);
 		
 		btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(120, 444, 105, 35);
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnGuardar.setBounds(121, 339, 105, 35);
 		getContentPane().add(btnGuardar);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(236, 444, 102, 35);
+		btnCancelar.setBounds(251, 339, 102, 35);
 		getContentPane().add(btnCancelar);
 		
 		JLabel lblProvincia = new JLabel("Provincia:");
@@ -225,7 +202,7 @@ public class InmobiliariaForm extends JDialog {
 			}
 		});
 		btnGuardarCambios.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnGuardarCambios.setBounds(166, 444, 123, 35);
+		btnGuardarCambios.setBounds(176, 339, 123, 35);
 		getContentPane().add(btnGuardarCambios);
 	}
 
@@ -348,4 +325,6 @@ public class InmobiliariaForm extends JDialog {
 	public void setBtnBorrarTel(JButton btnBorrarTel) {
 		this.btnBorrarTel = btnBorrarTel;
 	}
+
+	
 }

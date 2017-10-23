@@ -176,6 +176,7 @@ public class PropiedadController {
 		this.view.getComboLocalidad().setModel(localidadCombo);
 		AutoCompleteDecorator.decorate(view.getComboLocalidad());
 		cambiaLocalidades();
+
 		
 	}
 	
@@ -246,17 +247,6 @@ public class PropiedadController {
 		binder.fillFields();
 	}
 
-	private void actualizarPropiedad() {
-		
-		if(propiedadValidator.isValid()){
-			binder.fillBean();
-			view.setVisible(false);
-		}
-		else{
-			msgShw.showErrorMessage(propiedadValidator.getErrorMessage(), "Error");
-		}
-	}
-	
 	private void savePropiedad() {
 
 		if(propiedadValidator.isValid()){

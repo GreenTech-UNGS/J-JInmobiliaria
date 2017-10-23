@@ -55,7 +55,7 @@ public class InmobiliariaFormMapper implements Mapper<Inmobiliaria>{
 		view.getTfEmail().setText(email);
 //		view.getCbLocalidad().setSelectedItem(t.getLocalidad());
 //		view.getCbProvincia().setSelectedItem(t.getLocalidad().getProvincia());
-		view.getCbLocalidad().getModel().setSelectedItem(t.getLocalidad());
+//		view.getCbLocalidad().getModel().setSelectedItem(t.getLocalidad());
 		
 	}
 

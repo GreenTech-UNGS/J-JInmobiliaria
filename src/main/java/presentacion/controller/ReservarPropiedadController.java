@@ -90,6 +90,8 @@ public class ReservarPropiedadController {
 
     public void setModeNew(){
         view.setTitle("Reservar propiedad");
+        view.getTfCliente().setText("");
+        view.getTfPropiedad().setText("");
 
         currentReserva = reservaService.getEmptyReserva();
         currentPropiedad = null;

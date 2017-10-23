@@ -36,12 +36,12 @@ public class ElegirPropiedadController {
 	private void fillTableProp() {
 		
 		this.tableModelPropiedad.clean();
-		tableModelPropiedad.actualizeRows(propiedadService.getAlquilerBy(EstadoProp.DISPONIBLE, EstadoProp.RESERVADA));
+		tableModelPropiedad.actualizeRows(propiedadService.getAlquilerBy(EstadoProp.DISPONIBLE));
 	}
 	
 	private void fillTablePropVenta(){
 		this.tableModelPropiedad.clean();
-		tableModelPropiedad.actualizeRows(propiedadService.getVentaBy(EstadoProp.DISPONIBLE, EstadoProp.RESERVADA));
+		tableModelPropiedad.actualizeRows(propiedadService.getVentaBy(EstadoProp.DISPONIBLE));
 	}
 
 	public void showViewVenta(){

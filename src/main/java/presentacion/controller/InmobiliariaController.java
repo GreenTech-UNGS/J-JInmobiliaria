@@ -58,6 +58,7 @@ public class InmobiliariaController {
 		fillCombo();
 		fillTables();
 		
+		view.getCbProvincia().addActionListener(e -> cambiaLocalidades());
 		view.getBtnGuardar().addActionListener(e -> saveInmobiliaria());
 		view.getBtnGuardarCambios().addActionListener(e -> saveInmobiliaria());
 		view.getBtnAgregarTel().addActionListener(e -> agregaTelefono());
@@ -116,8 +117,7 @@ public class InmobiliariaController {
 		
 		localidadCombo.removeAllElements();
 		List<Localidad> localidades = localidadService.getAllOf(provCombo.getSelected());
-		localidadCombo.actualize(localidades);
-		
+		localidadCombo.actualize(localidades);	
 	}
 	
 	public void editInmobiliaria(Inmobiliaria i){
