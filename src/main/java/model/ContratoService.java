@@ -152,8 +152,8 @@ public class ContratoService {
 			interes.setFecha(DateTime.now());
 			interes.setMonto(p2);
 			
-			cuotaDao.saveInteres(interes);
 			cuotaDao.save(nuevaCuota);
+			cuotaDao.saveInteres(interes);
 		}	
 	}
 	
