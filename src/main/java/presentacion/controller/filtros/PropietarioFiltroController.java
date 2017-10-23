@@ -38,6 +38,7 @@ public class PropietarioFiltroController {
 		view.getTipoComboBox().removeAllElements();
 		view.getTipoComboBox().actualize(Arrays.asList(TipoCredencial.values()));
 		currentFiltro = new PropietarioFiltro();
+		currentFiltro.setTipoCredencial(TipoCredencial.DNI);
 		mapper.fillFields(currentFiltro);
 		wasOkPressed = false;
 	}
