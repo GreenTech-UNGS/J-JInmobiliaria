@@ -15,6 +15,7 @@ import javax.swing.JSpinner;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
+import javax.swing.SpinnerNumberModel;
 
 @Singleton
 public class HabitacionForm extends JDialog{
@@ -22,6 +23,7 @@ public class HabitacionForm extends JDialog{
 	private JSpinner spinnerLargo;
 	private JSpinner spinnerAncho;
 	private TipoHabitacionComboBoxModel comboModel;
+	private JButton btnAceptar;
 	
 	@Inject
 	private HabitacionForm() {
@@ -65,14 +67,16 @@ public class HabitacionForm extends JDialog{
 		textObservaciones.setColumns(10);
 		
 		spinnerLargo = new JSpinner();
+		spinnerLargo.setModel(new SpinnerNumberModel(1, 1, 2147483647, 1));
 		spinnerLargo.setBounds(71, 148, 46, 20);
 		getContentPane().add(spinnerLargo);
 		
 		spinnerAncho = new JSpinner();
+		spinnerAncho.setModel(new SpinnerNumberModel(1, 1, 2147483647, 1));
 		spinnerAncho.setBounds(290, 145, 46, 20);
 		getContentPane().add(spinnerAncho);
 		
-		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBounds(159, 216, 89, 23);
 		getContentPane().add(btnAceptar);
 		
@@ -94,5 +98,9 @@ public class HabitacionForm extends JDialog{
 
 	public TipoHabitacionComboBoxModel getComboModel() {
 		return comboModel;
+	}
+
+	public JButton getBtnAceptar() {
+		return btnAceptar;
 	}
 }
