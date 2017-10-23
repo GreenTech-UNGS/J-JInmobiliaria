@@ -2,9 +2,12 @@ package presentacion.combo;
 
 import java.util.List;
 
+import com.google.inject.Singleton;
+
 import entities.Moneda;
 import entities.Provincia;
 
+@Singleton
 public class MonedaComboBoxModel extends BaseComboBoxModel<Moneda>{
 
 	@Override

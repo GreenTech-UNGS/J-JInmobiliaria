@@ -12,11 +12,14 @@ import entities.EstadoProp;
 import entities.HistoriaEstadoProp;
 import entities.Propiedad;
 import entities.Reserva;
+import filtros.PropiedadFiltro;
+import filtros.PropietarioFiltro;
 import model.PropiedadService;
 import model.ReservaService;
 import presentacion.controller.ClienteController;
 import presentacion.controller.PropiedadController;
 import presentacion.controller.ReservarPropiedadController;
+import presentacion.controller.filtros.PropiedadFiltroController;
 import presentacion.main.vista.PropiedadesPanel;
 import presentacion.table.PropiedadesTableModel;
 import presentacion.table.ReservaTableModel;
@@ -39,6 +42,8 @@ public class PropiedadesPanelController {
 	@Inject private PropiedadesTableModel tableAlquiladas;
 	@Inject private PropiedadesTableModel tableVendidas;
 	
+	@Inject private PropiedadFiltroController propiedadFiltro;
+	
 	@Inject
 	PropiedadesPanelController(PropiedadesPanel view) {
 
@@ -48,6 +53,7 @@ public class PropiedadesPanelController {
 		this.view.getBtnReservarPropiedad().addActionListener(e -> agregarReserva());
 		this.view.getBtnDesreservar().addActionListener(e -> borrarReserva());
 		this.view.getBtnEditarPropiedad().addActionListener(e -> editarPropiedad());
+		this.view.getBtnFiltrar().addActionListener(e -> filtrarPropiedades());
 	
 	
 		selectDetalleProp();
@@ -197,5 +203,16 @@ public class PropiedadesPanelController {
 		fillAllTables();
 		
 	}
+	
+	private void filtrarPropiedades() {
+		propiedadFiltro.setModeNew();
+		propiedadFiltro.showView();
+		
+		PropiedadFiltro filtro = propiedadFiltro.getFiltro();
+		if(filtro != null) {
+			tableModelProp.actualizeRows(propiedadService.getAllByFiltro(filtro));
+		}
+	}
+
 }	
 

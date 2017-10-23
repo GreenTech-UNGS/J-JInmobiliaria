@@ -1,9 +1,13 @@
 package presentacion.vista;
 
 import javax.swing.*;
+
+import com.google.inject.Singleton;
+
 import java.awt.*;
 
 @SuppressWarnings("serial")
+@Singleton
 public class ContratoVentaForm extends JDialog{
 	private JTextField tfIdContrato;
 	private JTextField tfCliente;
