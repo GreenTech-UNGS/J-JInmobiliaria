@@ -8,11 +8,20 @@ public class HabitacionTableModel extends BaseTableModel<Habitacion>{
 	public HabitacionTableModel() {
 		super.addColumn("Tipo", false, 100);
 		super.addColumn("Medidas", false, 100);
+		super.addColumn("Observaciones", false, 100);
 	}
 	
 	@Override
 	protected Object[] toRow(Habitacion t) {
-		throw new RuntimeException("No implementado");
+		
+		String medidas = t.getLargo() + " x " +t.getAncho() + " mts.";
+		
+		Object[] toRet = {t.getTipo().toString(),
+				medidas,
+				t.getDescripcion()};
+		
+		return toRet;
+		
 	}
 
 }

@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Generated;
@@ -32,6 +33,10 @@ public class PropiedadOtrosDatos {
 	
 	private boolean esAptoCredito;
 
+	public PropiedadOtrosDatos() {
+		habitaciones = new ArrayList<>();
+	}
+	
 	public TipoPropiedad getTipo() {
 		return tipo;
 	}

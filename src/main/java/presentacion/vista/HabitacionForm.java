@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
+
+import java.awt.Dimension;
+
 import javax.swing.JButton;
 
 @Singleton
@@ -24,6 +27,9 @@ public class HabitacionForm extends JDialog{
 	private HabitacionForm() {
 		setTitle("Agregar habitacion");
 		getContentPane().setLayout(null);
+		setModal(true);
+		setLocationRelativeTo(null);
+		setSize(new Dimension(425, 300));
 		
 		JLabel lblNewLabel = new JLabel("Tipo: ");
 		lblNewLabel.setBounds(35, 38, 46, 14);
@@ -34,11 +40,11 @@ public class HabitacionForm extends JDialog{
 		getContentPane().add(lblObservaciones);
 		
 		JLabel lblLargo = new JLabel("Largo:");
-		lblLargo.setBounds(35, 151, 46, 14);
+		lblLargo.setBounds(22, 151, 46, 14);
 		getContentPane().add(lblLargo);
 		
 		JLabel lblAncho = new JLabel("Ancho:");
-		lblAncho.setBounds(248, 148, 46, 14);
+		lblAncho.setBounds(241, 148, 46, 14);
 		getContentPane().add(lblAncho);
 		
 		JLabel lblMts = new JLabel("Mts.");
