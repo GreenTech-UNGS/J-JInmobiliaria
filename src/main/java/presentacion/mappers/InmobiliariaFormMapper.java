@@ -34,9 +34,6 @@ public class InmobiliariaFormMapper implements Mapper<Inmobiliaria>{
 		t.setPiso(piso);
 		t.setDepto(depto);
 		t.setEmail(email);	
-		
-		System.out.println("esta seleccionado " + view.getCbLocalidad().getSelectedItem());
-		//t.setLocalidad((Localidad) view.getCbLocalidad().getSelectedItem());
 	}
 
 	@Override
@@ -59,7 +56,6 @@ public class InmobiliariaFormMapper implements Mapper<Inmobiliaria>{
 //		view.getCbLocalidad().setSelectedItem(t.getLocalidad());
 //		view.getCbProvincia().setSelectedItem(t.getLocalidad().getProvincia());
 		view.getCbLocalidad().getModel().setSelectedItem(t.getLocalidad());
-		System.out.println("loc" + t.getLocalidad());
 		
 	}
 

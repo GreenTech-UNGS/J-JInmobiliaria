@@ -157,6 +157,10 @@ public class ContratoAlquilerController {
 
 	public void editarContrato(ContratoAlquiler contrato){
 		view.setTitle("Editar Contrato");
+		view.getBtnRenovarContrato().setVisible(false);
+		view.getBtnBorrador().setVisible(true);
+		view.getBtnGuardarContrato().setVisible(true);
+		view.getBtnCancelarContrato().setVisible(true);
 		fillCombos();
 
 		currentContrato = contrato;
