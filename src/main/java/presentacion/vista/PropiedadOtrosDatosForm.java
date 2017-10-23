@@ -77,7 +77,7 @@ public class PropiedadOtrosDatosForm extends JDialog{
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		btnAgergar = new JButton("Agergar");
+		btnAgergar = new JButton("Agregar");
 		btnAgergar.setBounds(37, 396, 89, 23);
 		getContentPane().add(btnAgergar);
 		
@@ -173,5 +173,9 @@ public class PropiedadOtrosDatosForm extends JDialog{
 
 	public TipoPropiedadComboBoxModel getTipoCombo() {
 		return tipoCombo;
+	}
+
+	public HabitacionTableModel getTableModel() {
+		return tableModel;
 	}
 }

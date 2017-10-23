@@ -5,6 +5,7 @@ import java.util.Arrays;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import entities.Habitacion;
 import entities.PropiedadOtrosDatos;
 import entities.TipoPropiedad;
 import presentacion.mappers.PropiedadOtrosDatosMapper;
@@ -16,6 +17,8 @@ import presentacion.vista.PropiedadOtrosDatosForm;
 public class PropiedadOtrosDatosController {
 
 	private PropiedadOtrosDatosForm view;
+	
+	@Inject HabitacionController habitacionController;
 	
 	@Inject PropiedadOtrosDatosMapper mapper;
 	@Inject PropiedadOtrosDatosValidator validator;
@@ -30,11 +33,13 @@ public class PropiedadOtrosDatosController {
 		this.view = view;
 		
 		view.getBtnAceptar().addActionListener(e -> aceptar());
+		view.getBtnAgergar().addActionListener(e -> agregaHabitacion());
+		view.getBtnBorrar().addActionListener(e -> borraHabitacion());
 		
 		fillCombo();
 		
 	}
-	
+
 	private void aceptar() {
 		if(validator.isValid()) {
 			okWasPressed = true;
@@ -44,6 +49,36 @@ public class PropiedadOtrosDatosController {
 			msgShw.showErrorMessage(validator.getErrorMessage(), "Error");
 		}
 	
+	}
+	
+
+	private void agregaHabitacion() {
+		habitacionController.setModeNew();
+		habitacionController.showView();
+		
+		Habitacion habitacion = habitacionController.getHabitacion();
+		
+		if(habitacion != null) {
+			view.getTableModel().addRow(habitacion);
+			currentDatos.getHabitaciones().add(habitacion);
+		}
+	}
+	
+	private void borraHabitacion() {
+		
+		int selectedRow = view.getTable().getSelectedRow();
+		
+		if(selectedRow >= 0) {
+			view.getTableModel().removeRow(selectedRow);
+			currentDatos.getHabitaciones().remove(selectedRow);
+			fillTable();
+		}
+		
+	}
+	
+	private void fillTable() {
+		view.getTableModel().clean();
+		view.getTableModel().actualizeRows(currentDatos.getHabitaciones());
 	}
 
 	private void fillCombo() {
