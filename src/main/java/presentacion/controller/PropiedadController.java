@@ -5,6 +5,7 @@ import entities.*;
 import misc.Binder;
 import model.LocalidadService;
 import model.LocalizationService;
+import model.LogicaNegocioException;
 import model.PropiedadService;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
@@ -17,7 +18,6 @@ import presentacion.combo.TipoOfrecimientoComboBoxModel;
 import presentacion.validators.MessageShow;
 import presentacion.validators.PropiedadFormValidator;
 import presentacion.vista.PropiedadForm;
-import presentacion.vista.PropiedadOtrosDatosForm;
 
 import javax.swing.*;
 import java.util.Arrays;
@@ -47,7 +47,7 @@ public class PropiedadController {
 	Inmobiliaria currentInmobiliaria;
 	Binder<Propiedad> binder;
 	
-	MessageShow mshShw;
+	MessageShow msgShw;
 	
 	@Inject
 	private PropiedadController(PropiedadForm view,
@@ -58,7 +58,7 @@ public class PropiedadController {
 									ElegirInmobiliariaController elegirInmobController,
 									HistorialPropiedadController historialPropController,
 									LocalizationService localizationService,
-									MessageShow mshShw){
+									MessageShow msgShw){
 		
 		this.view = view;
 		this.propiedadValidator = propiedadValidator;
@@ -69,7 +69,7 @@ public class PropiedadController {
 		this.elegirInmobController = elegirInmobController;
 		this.historialPropController = historialPropController;
 		this.localizationService = localizationService;
-		this.mshShw = mshShw;
+		this.msgShw = msgShw;
 		
 		this.provCombo = new ProvinciaComboBoxModel();
 		this.monedaCombo = new MonedaComboBoxModel();
@@ -258,11 +258,15 @@ public class PropiedadController {
 		if(propiedadValidator.isValid()){
 			binder.fillBean();
 			actualizaMapaThread();
-			propiedadService.savePropiedad(currentPropiedad);
+			try {
+				propiedadService.savePropiedad(currentPropiedad);
+			} catch (LogicaNegocioException e) {
+				msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
+			}
 			view.setVisible(false);
 		}
 		else{
-			mshShw.showErrorMessage(propiedadValidator.getErrorMessage(), "Error");
+			msgShw.showErrorMessage(propiedadValidator.getErrorMessage(), "Error");
 		}
 	}
 	
