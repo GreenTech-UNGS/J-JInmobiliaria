@@ -1,6 +1,5 @@
 package presentacion.table;
 
-import entities.Cliente;
 import entities.Persona;
 
 public class PersonaTableModel extends BaseTableModel<Persona>{

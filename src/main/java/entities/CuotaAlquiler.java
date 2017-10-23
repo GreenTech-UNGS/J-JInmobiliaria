@@ -13,7 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.joda.time.Partial;
 import org.joda.time.YearMonth;
 
 @Entity

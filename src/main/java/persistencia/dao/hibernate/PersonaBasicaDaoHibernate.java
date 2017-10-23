@@ -1,12 +1,14 @@
 package persistencia.dao.hibernate;
 
-import com.google.inject.Inject;
-import entities.PersonaBasica;
+import java.util.List;
+
 import org.hibernate.Criteria;
+
+import com.google.inject.Inject;
+
+import entities.PersonaBasica;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.PersonaBasicaDao;
-
-import java.util.List;
 
 public class PersonaBasicaDaoHibernate extends DaoHibernate<PersonaBasica> implements PersonaBasicaDao{
 

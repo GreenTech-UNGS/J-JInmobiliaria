@@ -1,8 +1,8 @@
 package presentacion.combo;
 
-import entities.Cliente;
-
 import java.util.List;
+
+import entities.Cliente;
 
 public class ClienteComboBoxModel extends BaseComboBoxModel<Cliente> {
     @Override

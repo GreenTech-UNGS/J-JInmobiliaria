@@ -1,21 +1,26 @@
 package presentacion.controller;
 
+import java.util.Arrays;
+
+import org.joda.time.DateTime;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import entities.*;
+
+import entities.Cliente;
+import entities.ContratoAlquiler;
+import entities.EstadoContrato;
+import entities.HistoriaEstadoContrato;
+import entities.Moneda;
+import entities.Propiedad;
+import entities.TipoContratoAlquiler;
 import model.ContratoService;
 import model.LogicaNegocioException;
 import model.ReservaService;
-import presentacion.combo.MonedaComboBoxModel;
-import presentacion.combo.TipoContratoAlqComboBoxModel;
 import presentacion.mappers.ContratoAlquilerFormMapper;
 import presentacion.validators.ContratoAlquilerFormValidator;
 import presentacion.validators.MessageShow;
 import presentacion.vista.ContratoAlquilerForm;
-
-import java.util.Arrays;
-
-import org.joda.time.DateTime;
 
 @Singleton
 public class ContratoAlquilerController {

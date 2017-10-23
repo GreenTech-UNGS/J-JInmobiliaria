@@ -4,7 +4,6 @@ import javax.swing.ListSelectionModel;
 
 import com.google.inject.Inject;
 
-import entities.Cliente;
 import entities.Inmobiliaria;
 import model.InmobiliariaService;
 import presentacion.table.InmobiliariaTableModel;

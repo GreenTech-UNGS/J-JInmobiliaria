@@ -11,14 +11,8 @@ import entities.Localidad;
 import entities.Moneda;
 import entities.Provincia;
 import entities.TipoOfrecimiento;
-import entities.Persona.TipoCredencial;
 import filtros.PropiedadFiltro;
-import filtros.PropietarioFiltro;
 import model.LocalidadService;
-import presentacion.combo.LocalidadComboBoxModel;
-import presentacion.combo.MonedaComboBoxModel;
-import presentacion.combo.ProvinciaComboBoxModel;
-import presentacion.combo.TipoOfrecimientoComboBoxModel;
 import presentacion.mappers.PropiedadFiltroMapper;
 import presentacion.vista.filtros.PropiedadFiltroView;
 

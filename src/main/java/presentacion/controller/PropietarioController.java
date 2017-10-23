@@ -2,14 +2,14 @@ package presentacion.controller;
 
 import com.google.inject.Inject;
 
-import entities.Propietario;
 import entities.Persona;
 import entities.Persona.TipoCredencial;
+import entities.Propietario;
 import entities.Telefono;
 import misc.Binder;
-import model.PropietarioService;
 import model.LogicaNegocioException;
 import model.PersonaService;
+import model.PropietarioService;
 import presentacion.combo.TipoCredencialComboBoxModel;
 import presentacion.table.TelefonoTableModel;
 import presentacion.validators.MessageShow;

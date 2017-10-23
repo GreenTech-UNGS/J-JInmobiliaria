@@ -1,11 +1,19 @@
 package presentacion.main.vista;
 
+import java.awt.Component;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import presentacion.table.MovimientosCajaTableModel;
 
-import javax.swing.*;
-import java.awt.*;
+import presentacion.table.MovimientosCajaTableModel;
 
 @Singleton
 public class PagosPanel extends JPanel{

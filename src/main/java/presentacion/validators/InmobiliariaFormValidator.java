@@ -3,7 +3,6 @@ package presentacion.validators;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import entities.Persona.TipoCredencial;
 import presentacion.vista.InmobiliariaForm;
 
 @Singleton

@@ -1,27 +1,24 @@
 package presentacion.vista;
 
+import java.awt.Dimension;
+import java.awt.Font;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import javax.swing.SpinnerNumberModel;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import presentacion.combo.TipoPropiedadComboBoxModel;
 import presentacion.table.HabitacionTableModel;
-
-import javax.swing.JLabel;
-import javax.swing.JSeparator;
-
-import java.awt.Dimension;
-import java.awt.Font;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JSpinner;
-import javax.swing.JCheckBox;
-import java.awt.Dialog.ModalityType;
-import javax.swing.SpinnerNumberModel;
 
 @Singleton
 public class PropiedadOtrosDatosForm extends JDialog{

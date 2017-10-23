@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
-import org.joda.time.Period;
 import org.joda.time.YearMonth;
 
 import com.google.inject.Inject;

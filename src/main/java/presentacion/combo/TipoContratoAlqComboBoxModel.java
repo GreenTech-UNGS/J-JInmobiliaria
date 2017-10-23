@@ -2,9 +2,7 @@ package presentacion.combo;
 
 import java.util.List;
 
-import entities.Provincia;
 import entities.TipoContratoAlquiler;
-import entities.TipoOfrecimiento;
 
 public class TipoContratoAlqComboBoxModel extends BaseComboBoxModel<TipoContratoAlquiler>{
 

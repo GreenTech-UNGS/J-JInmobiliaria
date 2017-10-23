@@ -1,20 +1,21 @@
 package model;
 
+import java.text.DecimalFormat;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+
 import dto.PendientesPropietariosDTO;
-import entities.*;
+import entities.PagoPropietario;
+import entities.Persona;
 import entities.Persona.TipoCredencial;
 import entities.Precio;
 import entities.Propiedad;
 import entities.Propietario;
 import filtros.PropietarioFiltro;
 import persistencia.dao.iface.PropietarioDao;
-import presentacion.vista.filtros.PropietarioFiltroView;
-
-import java.text.DecimalFormat;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Singleton
 public class PropietarioService {

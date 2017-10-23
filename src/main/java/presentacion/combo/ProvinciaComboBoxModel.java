@@ -2,7 +2,6 @@ package presentacion.combo;
 
 import java.util.List;
 
-import entities.Persona.TipoCredencial;
 import entities.Provincia;
 
 public class ProvinciaComboBoxModel extends BaseComboBoxModel<Provincia>{

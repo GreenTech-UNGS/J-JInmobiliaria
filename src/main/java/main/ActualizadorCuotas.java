@@ -1,21 +1,9 @@
 package main;
 
-import java.time.chrono.ChronoLocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalTime;
-import org.joda.time.Period;
 import org.joda.time.YearMonth;
-
-import persistencia.conexion.Conexion;
-import persistencia.dao.iface.CuotaDao;
-import misc.ActualizadorModule;
-import model.ContratoService;
-import model.CuotaService;
-import model.LogicaNegocioException;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -23,11 +11,13 @@ import com.google.inject.Injector;
 import entities.ContratoAlquiler;
 import entities.CuotaAlquiler;
 import entities.EstadoContrato;
-import entities.EstadoCuota;
 import entities.HistoriaEstadoContrato;
 import entities.InteresPunitorioCuota;
-import entities.Moneda;
-import entities.Precio;
+import misc.ActualizadorModule;
+import model.ContratoService;
+import model.CuotaService;
+import model.LogicaNegocioException;
+import persistencia.conexion.Conexion;
 
 public class ActualizadorCuotas {
 	

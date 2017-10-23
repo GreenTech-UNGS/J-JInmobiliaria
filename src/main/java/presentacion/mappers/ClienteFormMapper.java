@@ -4,10 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.Cliente;
-import entities.Persona;
 import entities.Persona.TipoCredencial;
-import presentacion.combo.TipoCredencialComboBoxModel;
-import presentacion.table.TelefonoTableModel;
 import presentacion.vista.ClienteForm;
 
 @Singleton

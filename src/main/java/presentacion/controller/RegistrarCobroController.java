@@ -1,17 +1,9 @@
 package presentacion.controller;
 
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.text.DecimalFormat;
 import java.util.Date;
 
-import javax.swing.JOptionPane;
-
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalTime;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;

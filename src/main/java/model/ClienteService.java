@@ -2,15 +2,11 @@ package model;
 
 import java.util.List;
 
-import org.apache.commons.logging.LogConfigurationException;
-
 import com.google.inject.Inject;
 
 import entities.Cliente;
 import entities.Persona;
-import entities.Propiedad;
 import filtros.ClienteFiltro;
-import filtros.PropietarioFiltro;
 import persistencia.dao.iface.ClienteDao;
 import persistencia.dao.iface.PersonaDao;
 

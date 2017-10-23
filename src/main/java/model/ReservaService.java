@@ -1,16 +1,17 @@
 package model;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.joda.time.DateTime;
+
 import com.google.inject.Inject;
 
 import entities.EstadoProp;
 import entities.HistoriaEstadoProp;
 import entities.Propiedad;
 import entities.Reserva;
-import org.joda.time.DateTime;
 import persistencia.dao.iface.ReservaDAO;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class ReservaService {
 

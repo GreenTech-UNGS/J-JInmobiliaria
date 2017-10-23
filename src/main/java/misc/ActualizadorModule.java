@@ -1,5 +1,7 @@
 package misc;
-import java.util.List;
+import com.google.inject.Binder;
+import com.google.inject.Module;
+import com.google.inject.Singleton;
 
 import persistencia.dao.hibernate.ContratoDaoHibernate;
 import persistencia.dao.hibernate.CuotaDaoHibernate;
@@ -7,12 +9,6 @@ import persistencia.dao.hibernate.PropiedadDaoHibernate;
 import persistencia.dao.iface.ContratoDao;
 import persistencia.dao.iface.CuotaDao;
 import persistencia.dao.iface.PropiedadDao;
-
-import com.google.inject.Binder;
-import com.google.inject.Module;
-import com.google.inject.Singleton;
-
-import entities.CuotaAlquiler;
 
 public class ActualizadorModule implements Module{
 

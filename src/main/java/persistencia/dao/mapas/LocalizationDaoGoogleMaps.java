@@ -1,18 +1,19 @@
 package persistencia.dao.mapas;
 
-import persistencia.dao.iface.LocalizationDao;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.security.cert.Certificate;
-import java.io.*;
 
 import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLPeerUnverifiedException;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
+import persistencia.dao.iface.LocalizationDao;
 
 public class LocalizationDaoGoogleMaps implements LocalizationDao{
 

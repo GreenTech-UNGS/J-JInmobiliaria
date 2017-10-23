@@ -1,17 +1,12 @@
 package presentacion.controller.filtros;
 
-import java.util.Arrays;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import entities.Persona.TipoCredencial;
 import entities.Propiedad;
-import filtros.ClienteFiltro;
 import filtros.ContratoAlquilerFiltro;
-import filtros.PropiedadFiltro;
 import presentacion.controller.ElegirPropiedadController;
-import presentacion.vista.ElegirPropiedadView;
 import presentacion.vista.filtros.ContratoAlquilerFiltroView;
 
 @Singleton

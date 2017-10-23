@@ -3,6 +3,7 @@ package presentacion.main.vista;
 import java.awt.CardLayout;
 import java.awt.Component;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -12,7 +13,6 @@ import javax.swing.JTable;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import javax.swing.Box;
 
 @SuppressWarnings("serial")
 @Singleton

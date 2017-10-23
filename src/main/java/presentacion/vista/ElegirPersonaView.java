@@ -1,16 +1,16 @@
 package presentacion.vista;
 
-import javax.swing.JDialog;
+import java.awt.Dimension;
+
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JPanel;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
-import javax.swing.JButton;
-import java.awt.Dimension;
 
 @SuppressWarnings("serial")
 @Singleton

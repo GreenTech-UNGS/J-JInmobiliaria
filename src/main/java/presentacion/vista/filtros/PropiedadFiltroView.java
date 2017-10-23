@@ -1,31 +1,22 @@
 package presentacion.vista.filtros;
 
 import java.awt.Dimension;
+import java.awt.Font;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
 
 import com.google.inject.Singleton;
 
-import entities.Moneda;
-import entities.Provincia;
-import entities.TipoOfrecimiento;
 import presentacion.combo.LocalidadComboBoxModel;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.ProvinciaComboBoxModel;
 import presentacion.combo.TipoOfrecimientoComboBoxModel;
-
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
-import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
-
-import javax.swing.JComboBox;
-import java.awt.Font;
-import java.util.Arrays;
-
-import javax.swing.JSeparator;
-import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 @Singleton

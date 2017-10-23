@@ -9,7 +9,6 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.Localidad;
-import entities.Persona;
 import entities.Provincia;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.LocalidadDao;

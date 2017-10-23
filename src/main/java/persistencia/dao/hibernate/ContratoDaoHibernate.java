@@ -3,17 +3,14 @@ package persistencia.dao.hibernate;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.FetchMode;
 import org.hibernate.criterion.Restrictions;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import entities.Cliente;
 import entities.Contrato;
 import entities.ContratoAlquiler;
 import entities.ContratoVenta;
-import entities.Persona;
 import filtros.ContratoAlquilerFiltro;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.ContratoDao;

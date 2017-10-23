@@ -4,7 +4,6 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.Inmobiliaria;
-import entities.Localidad;
 import presentacion.vista.InmobiliariaForm;
 
 @Singleton

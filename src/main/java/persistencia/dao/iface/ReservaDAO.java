@@ -1,9 +1,9 @@
 package persistencia.dao.iface;
 
+import java.util.List;
+
 import entities.Propiedad;
 import entities.Reserva;
-
-import java.util.List;
 
 public interface ReservaDAO extends Dao<Reserva>{
 

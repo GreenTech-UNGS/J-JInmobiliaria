@@ -1,20 +1,18 @@
 package presentacion.vista.filtros;
 
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Image;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
-import javax.swing.JButton;
 
 @Singleton
 public class ContratoAlquilerFiltroView extends JDialog{

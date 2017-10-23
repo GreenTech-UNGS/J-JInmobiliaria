@@ -1,17 +1,16 @@
 package persistencia.dao.hibernate;
 
-import com.google.inject.Inject;
-
-import entities.Cliente;
-import entities.Propiedad;
-import entities.Reserva;
-import persistencia.conexion.Conexion;
-import persistencia.dao.iface.ReservaDAO;
-
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+
+import com.google.inject.Inject;
+
+import entities.Propiedad;
+import entities.Reserva;
+import persistencia.conexion.Conexion;
+import persistencia.dao.iface.ReservaDAO;
 
 public class ReservaDaoHibernate extends DaoHibernate<Reserva> implements ReservaDAO {
 

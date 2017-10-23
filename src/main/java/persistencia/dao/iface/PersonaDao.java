@@ -1,6 +1,5 @@
 package persistencia.dao.iface;
 
-import java.util.Collection;
 import java.util.List;
 
 import entities.Persona;

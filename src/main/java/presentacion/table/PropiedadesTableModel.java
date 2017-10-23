@@ -1,6 +1,5 @@
 package presentacion.table;
 
-import com.google.inject.Guice;
 import com.google.inject.Inject;
 
 import entities.Propiedad;

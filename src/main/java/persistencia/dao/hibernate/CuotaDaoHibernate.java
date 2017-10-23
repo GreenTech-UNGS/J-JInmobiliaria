@@ -1,7 +1,5 @@
 package persistencia.dao.hibernate;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -13,8 +11,6 @@ import com.google.inject.Singleton;
 
 import entities.ContratoAlquiler;
 import entities.CuotaAlquiler;
-import entities.EstadoCuota;
-import entities.HistoriaEstadoCuota;
 import entities.InteresPunitorioCuota;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.CuotaDao;

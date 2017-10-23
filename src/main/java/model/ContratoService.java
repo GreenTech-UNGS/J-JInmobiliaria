@@ -1,17 +1,8 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import javax.persistence.CascadeType;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
-import javax.swing.JOptionPane;
-
-import org.apache.commons.logging.LogConfigurationException;
 import org.joda.time.DateTime;
 import org.joda.time.YearMonth;
 
@@ -19,7 +10,6 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.AvisoNotificacion;
-import entities.Cliente;
 import entities.Contrato;
 import entities.ContratoAlquiler;
 import entities.ContratoVenta;
@@ -34,8 +24,6 @@ import entities.HistoriaEstadoCuota;
 import entities.HistoriaEstadoProp;
 import entities.InteresPunitorioCuota;
 import entities.Moneda;
-import entities.PagoPropietario;
-import entities.Persona;
 import entities.Precio;
 import entities.Propiedad;
 import entities.Reserva;

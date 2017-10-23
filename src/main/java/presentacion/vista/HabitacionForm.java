@@ -1,21 +1,19 @@
 package presentacion.vista;
 
+import java.awt.Dimension;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import presentacion.combo.TipoHabitacionComboBoxModel;
-
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.JSpinner;
-
-import java.awt.Dimension;
-
-import javax.swing.JButton;
-import javax.swing.SpinnerNumberModel;
 
 @Singleton
 public class HabitacionForm extends JDialog{

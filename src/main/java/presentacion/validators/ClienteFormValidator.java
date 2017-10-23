@@ -5,7 +5,6 @@ import com.google.inject.Singleton;
 
 import entities.Persona.TipoCredencial;
 import presentacion.vista.ClienteForm;
-import presentacion.validators.Regex;
 
 @Singleton
 public class ClienteFormValidator implements ValidatorNew{

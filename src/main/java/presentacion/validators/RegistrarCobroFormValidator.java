@@ -1,10 +1,5 @@
 package presentacion.validators;
 
-import javax.swing.JOptionPane;
-
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 

@@ -1,12 +1,8 @@
 package persistencia.dao.hibernate;
 
-import java.util.Collection;
 import java.util.List;
 
-import org.hibernate.CacheMode;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionException;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 

@@ -5,7 +5,6 @@ import com.google.inject.Singleton;
 
 import entities.Localidad;
 import entities.Moneda;
-import entities.Precio;
 import entities.TipoOfrecimiento;
 import filtros.PropiedadFiltro;
 import presentacion.vista.filtros.PropiedadFiltroView;

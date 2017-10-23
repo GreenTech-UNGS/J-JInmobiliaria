@@ -7,7 +7,6 @@ import org.hibernate.Criteria;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import entities.CuotaAlquiler;
 import entities.Ingreso;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.IngresoDao;

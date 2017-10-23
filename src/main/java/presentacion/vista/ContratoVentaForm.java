@@ -1,10 +1,20 @@
 package presentacion.vista;
 
-import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
 
 import com.google.inject.Singleton;
-
-import java.awt.*;
 
 @SuppressWarnings("serial")
 @Singleton

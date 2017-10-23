@@ -10,17 +10,13 @@ import org.joda.time.DateTime;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import entities.Cliente;
-import entities.Contrato;
 import entities.EstadoProp;
 import entities.HistoriaEstadoProp;
 import entities.Moneda;
 import entities.Precio;
 import entities.Propiedad;
-import entities.Propietario;
 import entities.TipoOfrecimiento;
 import filtros.PropiedadFiltro;
-import filtros.PropietarioFiltro;
 import persistencia.dao.iface.PropiedadDao;
 
 @Singleton

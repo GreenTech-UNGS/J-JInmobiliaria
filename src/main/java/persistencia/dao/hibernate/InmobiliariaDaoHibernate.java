@@ -11,7 +11,6 @@ import com.google.inject.Singleton;
 
 import entities.Inmobiliaria;
 import entities.PersonaBasica;
-import entities.Propietario;
 import entities.Telefono;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.InmobiliariaDao;

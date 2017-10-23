@@ -6,8 +6,6 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import com.google.inject.Singleton;
-
 import entities.Egreso;
 import entities.Ingreso;
 import entities.MovimientoCaja;

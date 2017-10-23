@@ -3,7 +3,6 @@ package presentacion.combo;
 import java.util.List;
 
 import entities.Localidad;
-import entities.Provincia;
 
 public class LocalidadComboBoxModel extends BaseComboBoxModel<Localidad>{
 

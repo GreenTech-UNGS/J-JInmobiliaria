@@ -1,14 +1,11 @@
 package presentacion.controller;
 
-import javax.swing.JOptionPane;
-
 import com.google.inject.Inject;
 
 import entities.Cliente;
 import entities.ContratoVenta;
 import entities.Moneda;
 import entities.Propiedad;
-import entities.Reserva;
 import misc.Binder;
 import model.ContratoService;
 import model.LogicaNegocioException;

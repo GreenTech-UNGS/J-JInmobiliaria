@@ -1,21 +1,31 @@
 package model;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
-import dto.CobrosDeAlquileresDTO;
-import dto.PendientesPropietariosDTO;
-import entities.*;
-import entities.PagoPropietario.EstadoPago;
-import org.joda.time.DateTime;
-import org.joda.time.LocalTime;
-import org.joda.time.YearMonth;
-import persistencia.dao.iface.IngresoDao;
-import persistencia.dao.iface.PropietarioDao;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.joda.time.DateTime;
+import org.joda.time.LocalTime;
+
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
+import dto.CobrosDeAlquileresDTO;
+import dto.PendientesPropietariosDTO;
+import entities.ContratoVenta;
+import entities.CuotaAlquiler;
+import entities.EstadoCuota;
+import entities.HistoriaEstadoCuota;
+import entities.IngresoAlquiler;
+import entities.InteresPunitorioCuota;
+import entities.PagoPropietario;
+import entities.PagoPropietario.EstadoPago;
+import entities.Persona;
+import entities.Precio;
+import entities.Propiedad;
+import persistencia.dao.iface.IngresoDao;
+import persistencia.dao.iface.PropietarioDao;
 
 @Singleton
 public class PagosCobrosService {

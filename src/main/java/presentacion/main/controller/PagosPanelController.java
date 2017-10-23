@@ -1,7 +1,12 @@
 package presentacion.main.controller;
 
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+
 import dto.CobrosDeAlquileresDTO;
 import dto.MovimientoDeCajaDTO;
 import dto.PendientesPropietariosDTO;
@@ -12,7 +17,6 @@ import filtros.CuotaFiltro;
 import model.CuotaService;
 import model.MovimientoCajaService;
 import model.PagosCobrosService;
-import org.joda.time.YearMonth;
 import presentacion.controller.MovimientoCajaController;
 import presentacion.controller.RegistrarCobroController;
 import presentacion.controller.filtros.CuotaFiltroController;
@@ -22,9 +26,6 @@ import presentacion.reportes.ReporteMovimientosDeCaja;
 import presentacion.reportes.ReportePropietariosPagosPendientes;
 import presentacion.table.CuotasTableModel;
 import presentacion.table.PagosPropietariosTableModel;
-
-import javax.swing.*;
-import java.util.List;
 
 @Singleton
 public class PagosPanelController {

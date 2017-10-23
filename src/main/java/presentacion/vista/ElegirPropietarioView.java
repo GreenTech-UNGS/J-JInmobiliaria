@@ -1,18 +1,18 @@
 package presentacion.vista;
 
+import java.awt.Component;
 import java.awt.Dimension;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JButton;
 import javax.swing.JTable;
 
 import com.google.inject.Inject;
-import java.awt.Component;
-import javax.swing.Box;
 
 @SuppressWarnings("serial")
 public class ElegirPropietarioView extends JDialog{

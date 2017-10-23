@@ -1,25 +1,13 @@
 package presentacion.controller;
 
 import com.google.inject.Inject;
+
 import entities.Cliente;
-import entities.EstadoProp;
-import entities.HistoriaEstadoProp;
 import entities.Propiedad;
 import entities.Reserva;
-import misc.Binder;
-import model.ClienteService;
-import model.PropiedadService;
 import model.ReservaService;
-import org.joda.time.DateTime;
-import presentacion.combo.ClienteComboBoxModel;
-import presentacion.combo.PropiedadComboBoxModel;
-import presentacion.validators.MessageShow;
 import presentacion.validators.ReservarPropiedadFormValidator;
-import presentacion.vista.ElegirClienteView;
 import presentacion.vista.ReservarPropiedadForm;
-
-import java.util.Date;
-import java.util.List;
 
 public class ReservarPropiedadController {
     private ReservarPropiedadForm view;

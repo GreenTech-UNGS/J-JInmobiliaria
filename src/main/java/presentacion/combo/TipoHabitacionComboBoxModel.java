@@ -3,7 +3,6 @@ package presentacion.combo;
 import java.util.List;
 
 import entities.TipoHabitacion;
-import entities.TipoPropiedad;
 
 public class TipoHabitacionComboBoxModel extends BaseComboBoxModel<TipoHabitacion>{
 

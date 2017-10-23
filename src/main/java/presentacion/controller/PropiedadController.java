@@ -1,15 +1,30 @@
 package presentacion.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import org.openstreetmap.gui.jmapviewer.Coordinate;
+import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
+
 import com.google.inject.Inject;
-import entities.*;
+
+import entities.EstadoProp;
+import entities.Inmobiliaria;
+import entities.Localidad;
+import entities.Moneda;
+import entities.Propiedad;
+import entities.PropiedadOtrosDatos;
+import entities.Propietario;
+import entities.Provincia;
+import entities.TipoOfrecimiento;
 import misc.Binder;
 import model.LocalidadService;
 import model.LocalizationService;
 import model.LogicaNegocioException;
 import model.PropiedadService;
-import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
-import org.openstreetmap.gui.jmapviewer.Coordinate;
-import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 import persistencia.dao.iface.LocalizationDao.MapPoint;
 import presentacion.combo.LocalidadComboBoxModel;
 import presentacion.combo.MonedaComboBoxModel;
@@ -18,10 +33,6 @@ import presentacion.combo.TipoOfrecimientoComboBoxModel;
 import presentacion.validators.MessageShow;
 import presentacion.validators.PropiedadFormValidator;
 import presentacion.vista.PropiedadForm;
-
-import javax.swing.*;
-import java.util.Arrays;
-import java.util.List;
 
 public class PropiedadController {
 	

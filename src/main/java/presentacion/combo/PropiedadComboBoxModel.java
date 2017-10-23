@@ -1,8 +1,8 @@
 package presentacion.combo;
 
-import entities.Propiedad;
-
 import java.util.List;
+
+import entities.Propiedad;
 
 public class PropiedadComboBoxModel extends BaseComboBoxModel<Propiedad> {
     @Override

@@ -1,16 +1,20 @@
 package presentacion.main.vista;
 
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.border.TitledBorder;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.toedter.calendar.JCalendar;
-
-import presentacion.table.MovimientosCajaTableModel;
-
-import javax.swing.*;
-import javax.swing.border.TitledBorder;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 @Singleton
 public class MainView {

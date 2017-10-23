@@ -8,7 +8,6 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.Inmobiliaria;
-import entities.PersonaBasica;
 import entities.Telefono;
 import persistencia.dao.iface.InmobiliariaDao;
 

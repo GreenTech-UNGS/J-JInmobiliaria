@@ -2,7 +2,6 @@ package filtros;
 
 import entities.Localidad;
 import entities.Moneda;
-import entities.Precio;
 import entities.TipoOfrecimiento;
 
 public class PropiedadFiltro {
