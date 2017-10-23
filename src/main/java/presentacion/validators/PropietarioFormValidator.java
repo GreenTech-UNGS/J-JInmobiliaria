@@ -30,7 +30,7 @@ public class PropietarioFormValidator implements ValidatorNew{
 
 	@Override
 	public String getErrorMessage() {
-		String toRet = "Error en los siuientes campos: ";
+		String toRet = "Error en los siguientes campos: ";
 		if(!isCredencialValid())
 			toRet += "\n- La credencial no es valida";
 		if(!isEmailValid())
