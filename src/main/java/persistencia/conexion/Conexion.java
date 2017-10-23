@@ -49,4 +49,9 @@ public class Conexion {
 	{
 		factory.close();
 	}
+
+
+	public SessionFactory getSessionFactory() {
+		return factory;
+	}
 }

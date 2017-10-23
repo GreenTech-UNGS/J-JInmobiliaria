@@ -107,7 +107,7 @@ public class ActualizadorCuotas {
 			int cantDias = new Period(diaPago,today).getDays();
 			Precio p = new Precio(0, moneda);
 			double m;
-
+			
 			InteresPunitorioCuota interes = cuotaService.getInteresOf(cuota);
 			
 			if(interes == null){

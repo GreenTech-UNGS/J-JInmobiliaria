@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
+import org.joda.time.Period;
 import org.joda.time.YearMonth;
 
 import com.google.inject.Inject;
@@ -15,6 +17,8 @@ import entities.CuotaAlquiler;
 import entities.EstadoCuota;
 import entities.HistoriaEstadoCuota;
 import entities.InteresPunitorioCuota;
+import entities.Moneda;
+import entities.Precio;
 import filtros.CuotaFiltro;
 import persistencia.dao.iface.CuotaDao;
 
@@ -79,15 +83,18 @@ public class CuotaService {
 		
 		LocalDate today = DateTime.now().toLocalDate();
 		return cuotas.stream().
-				filter(c ->{
-						
-				LocalDate diaPago = new LocalDate(c.getAnioMes().getYear(),
-							c.getAnioMes().getMonthOfYear(),
-							c.getContrato().getDatoPunitorio().getDiasDePago());
-					return today.isAfter(diaPago);
-				} ).
+				filter(c -> isVencida(c)).
 				filter(c -> getEstadoOf(c).equals(EstadoCuota.PENDIENTE)).
 				collect(Collectors.toList());
+	}
+	
+	public boolean isVencida(CuotaAlquiler c) {
+		LocalDate today = DateTime.now().toLocalDate();
+
+		LocalDate diaPago = new LocalDate(c.getAnioMes().getYear(),
+				c.getAnioMes().getMonthOfYear(),
+				c.getContrato().getDatoPunitorio().getDiasDePago());
+		return today.isAfter(diaPago);
 	}
 
 	public LocalDate getDiaPago(CuotaAlquiler cuota) {
@@ -117,6 +124,53 @@ public class CuotaService {
 		// TODO Auto-generated method stub
 		return cuotaDao.getInteresOf(cuota);
 	}
+	
+	public InteresPunitorioCuota getInteresCalculado(CuotaAlquiler c, DateTime fecha) {
+		
+		LocalDate diaPago = getDiaPago(c);
+		int cantDias = Days.daysBetween(diaPago, fecha.toLocalDate()).getDays();
+		
+		if(cantDias < 0)
+			return null;
+		
+		if(getEstadoOf(c).equals(EstadoCuota.PENDIENTE)) {
+			
+			double montoCuota = c.getMonto().getMonto();
+			Moneda moneda = c.getMonto().getMoneda();
+			boolean isAcumulativo = c.getContrato().getDatoPunitorio().isAcumulativo();
+			float porcentaje = c.getContrato().getDatoPunitorio().getPorcentaje();
+			
+			Precio p = new Precio(0, moneda);
+			double m;
+			
+			InteresPunitorioCuota interes = getInteresOf(c);
+			
+			if(interes == null){
+				
+				interes = new InteresPunitorioCuota();
+				interes.setCuota(c);
+				
+			}
+			else{
+				p = interes.getMonto();
+			}
+			
+			
+			if(isAcumulativo) 
+				m = montoCuota * Math.pow((1 + (porcentaje/100.0)), cantDias) - montoCuota ;
+			else 
+				m = montoCuota * (porcentaje/100.0) * cantDias;
+			
+			p.setMonto(m);
+			interes.setMonto(p);
+			interes.setFecha(DateTime.now());
+			
+			return interes;
+		}
+		
+		return null;
+	}
+	
 
 	public void saveInteres(InteresPunitorioCuota interes) {
 		cuotaDao.saveInteres(interes);
