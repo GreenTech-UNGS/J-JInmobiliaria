@@ -53,7 +53,14 @@ public class ContratosPanelController {
 	
 	private void cancelarContrato() {
 		if (this.view.getTablaContratoAlquiler().getSelectedRow()!=-1){
-			ContratoAlquiler seleccion = (ContratoAlquiler) contratosTable2.getRow(this.view.getTablaContratoAlquiler().getSelectedRow());
+			
+			ContratoAlquiler contrato = (ContratoAlquiler) contratosTable2.getRow(this.view.getTablaContratoAlquiler().getSelectedRow());
+			
+			if (contratoService.getEstadoOf(contrato)!=EstadoContrato.DEFINITIVO){
+				 JOptionPane.showMessageDialog(null, "Solo se pueden cancelar contratos definitivos");
+				return;
+			}
+			ContratoAlquiler seleccion = (contrato);
 			contratoService.cancelarContrato(seleccion);
 			fillTableContratosAlquiler();
 		}
