@@ -87,7 +87,7 @@ public class PropiedadController {
 		view.getBtnVerHistorial().addActionListener(e -> this.historialPropController.showView(currentPropiedad));
 		view.getBtnActualizar().addActionListener(e -> actualizaMapa());
 		view.getBotonLupitaInmobiliaria().addActionListener(e -> selectInmobiliaria());
-		view.getBtnGuardarCambios().addActionListener(e -> actualizarPropietario());
+		view.getBtnGuardarCambios().addActionListener(e -> actualizarPropiedad());
 		view.getBtnMasDatos().addActionListener(e -> agregarOtrosDatos());
 		
 	}
@@ -247,10 +247,15 @@ public class PropiedadController {
 		binder.fillFields();
 	}
 
-	private void actualizarPropietario() {
+	private void actualizarPropiedad() {
 		
-		binder.fillBean();
-		view.setVisible(false);
+		if(propiedadValidator.isValid()){
+			binder.fillBean();
+			view.setVisible(false);
+		}
+		else{
+			msgShw.showErrorMessage(propiedadValidator.getErrorMessage(), "Error");
+		}
 	}
 	
 	private void savePropiedad() {
