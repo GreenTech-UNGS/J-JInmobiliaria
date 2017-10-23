@@ -1,6 +1,10 @@
 package presentacion.vista;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import com.toedter.calendar.JMonthChooser;
+import com.toedter.calendar.JYearChooser;
+
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.TipoContratoAlqComboBoxModel;
 
@@ -49,6 +53,8 @@ public class ContratoAlquilerForm extends JDialog {
 	private JSpinner spinnerIntimacionEmail;
 	private JButton btnRenovarContrato;
 	private JButton btnBorrador;
+	private JYearChooser anio;
+	private JMonthChooser mes;
 	private TipoContratoAlqComboBoxModel comboTipoContratoModel;
 	private MonedaComboBoxModel monedaComboModel;
 	
@@ -383,6 +389,18 @@ public class ContratoAlquilerForm extends JDialog {
 		btnBorrador.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnBorrador.setBounds(259, 625, 128, 38);
 		agregarContrato.add(btnBorrador);
+		
+		JLabel lblInicio = new JLabel("Inicio: ");
+		lblInicio.setBounds(350, 142, 56, 14);
+		agregarContrato.add(lblInicio);
+		
+		anio = new JYearChooser();
+		anio.setBounds(517, 144, 57, 20);
+		agregarContrato.add(anio);
+		
+		mes = new JMonthChooser();
+		mes.setBounds(387, 141, 120, 23);
+		agregarContrato.add(mes);
 		
 		
 	}
