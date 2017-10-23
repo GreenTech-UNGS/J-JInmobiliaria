@@ -110,8 +110,8 @@ public class PropiedadesPanelController {
 		if (select!=-1){
 			Propiedad propiedad = this.tableModelProp.getRow(select);
 			if(!propiedadService.getCurrentEstado(propiedad).equals(EstadoProp.DISPONIBLE)){
-				if(!propiedadService.getCurrentEstado(propiedad).equals(EstadoProp.BORRADOR)){
-					JOptionPane.showMessageDialog(null, "Solo se pueden editar propiedades disponibles o en borrador");
+				if(!propiedadService.getCurrentEstado(propiedad).equals(EstadoProp.NODISPONIBLE)){
+					JOptionPane.showMessageDialog(null, "Solo se pueden editar propiedades disponibles o no disponibles");
 					return;
 				}
 			}		

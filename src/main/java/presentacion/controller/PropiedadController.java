@@ -238,8 +238,7 @@ public class PropiedadController {
 	public void editPropiedad(Propiedad p){
 
 		view.setTitle("Editar Propiedad");
-		view.getBtnGuardarDisponible().setVisible(false);
-		view.getBtnCancelar().setVisible(false);
+		view.getBtnCancelar().setVisible(true);
 		view.getBtnGuardarDisponible().setVisible(true);
 		fillCombos();
 		currentPropiedad = p;
@@ -281,7 +280,7 @@ public class PropiedadController {
 			binder.fillBean();
 			actualizaMapaThread();
 			try {
-				propiedadService.savePropiedadBorrador(currentPropiedad);
+				propiedadService.savePropiedadNoDisp(currentPropiedad);
 			} catch (LogicaNegocioException e) {
 				msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
 			}
@@ -348,7 +347,6 @@ public class PropiedadController {
 		view.getTfDepto().setEditable(bool);
 		view.getTaDescPubl().setEditable(bool);
 		view.getTaDescPriv().setEditable(bool);
-		view.getBtnGuardarDisponible().setVisible(bool);
 		view.getBtnCancelar().setVisible(bool);
 		view.getBtnLupita().setVisible(bool);
 		view.getBtnVerHistorial().setVisible(!bool);
@@ -359,6 +357,7 @@ public class PropiedadController {
 		view.getComboMoneda().setEnabled(bool);
 		view.getComboProvincia().setEnabled(bool);
 		view.getComboTipoOfre().setEnabled(bool);
-		view.getBtnGuardarDisponible().setVisible(false);
+		view.getBtnGuardarDisponible().setVisible(bool);
+		view.getBtnBorrador().setVisible(bool);
 	}
 }

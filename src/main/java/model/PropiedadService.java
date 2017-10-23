@@ -56,13 +56,13 @@ public class PropiedadService {
 		propiedadDao.save(p);
 	}
 	
-	public void savePropiedadBorrador(Propiedad p) throws LogicaNegocioException {
+	public void savePropiedadNoDisp(Propiedad p) throws LogicaNegocioException {
 		
 		//if(existePropiedadConIdentificador(p))
 			//throw new LogicaNegocioException("Ya existe una propiedad con el identificador ingresado");
 		
 		HistoriaEstadoProp historia = new HistoriaEstadoProp();
-		historia.setEstado(EstadoProp.BORRADOR);
+		historia.setEstado(EstadoProp.NODISPONIBLE);
 		historia.setFecha(DateTime.now());
 		
 		p.getEstados().add(historia);

@@ -308,13 +308,14 @@ public class PropiedadForm extends JDialog{
 										btnMasDatos.setBounds(557, 554, 96, 23);
 										AgregarPropiedad.add(btnMasDatos);
 										
-										btnBorrador = new JButton("Guardar borrador");
+										btnBorrador = new JButton("Guardar no disponible");
 										btnBorrador.setFont(new Font("Tahoma", Font.PLAIN, 11));
-										btnBorrador.setBounds(112, 565, 132, 33);
+										btnBorrador.setBounds(99, 565, 145, 33);
 										AgregarPropiedad.add(btnBorrador);
 										
 
 										btnCancelar = new JButton("Cancelar");
+										btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 11));
 										btnCancelar.setBounds(405, 565, 130, 33);
 										AgregarPropiedad.add(btnCancelar);
 										btnCancelar.addActionListener(new ActionListener() {
