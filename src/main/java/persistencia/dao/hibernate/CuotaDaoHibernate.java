@@ -11,6 +11,7 @@ import org.joda.time.YearMonth;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import entities.ContratoAlquiler;
 import entities.CuotaAlquiler;
 import entities.EstadoCuota;
 import entities.HistoriaEstadoCuota;
@@ -81,5 +82,20 @@ public class CuotaDaoHibernate extends DaoHibernate<CuotaAlquiler> implements Cu
 		finishTransaction();
 		
 	}
+
+	@Override
+	public List<CuotaAlquiler> getCuotasOf(ContratoAlquiler c) {
+		initTransaction();
+		
+		Criteria q = sesion.createCriteria(CuotaAlquiler.class)
+				.add(Restrictions.eq("contrato", c));
+		
+		finishTransaction();
+		
+		return q.list();
+		
+	}
+
+
 	
 }

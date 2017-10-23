@@ -26,6 +26,9 @@
 	<variable name="monto1" class="java.lang.Double" resetType="Group" resetGroup="Group3" calculation="Sum">
 		<variableExpression><![CDATA[$F{monto}]]></variableExpression>
 	</variable>
+	<variable name="monto2" class="java.lang.Double" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{monto}]]></variableExpression>
+	</variable>
 	<group name="Group3">
 		<groupExpression><![CDATA[$F{tipo}]]></groupExpression>
 		<groupHeader>
@@ -65,16 +68,16 @@
 		</groupHeader>
 		<groupFooter>
 			<band/>
-			<band height="51">
+			<band height="25">
 				<textField>
-					<reportElement x="430" y="16" width="120" height="24" uuid="fe0bf39b-c19f-4094-a050-d80b25f16364"/>
+					<reportElement x="430" y="2" width="120" height="18" uuid="fe0bf39b-c19f-4094-a050-d80b25f16364"/>
 					<textElement>
 						<font fontName="Arial" size="10" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{monto1}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="343" y="20" width="77" height="20" uuid="5d539b66-56b9-4539-ad55-1cf85a56b16b"/>
+					<reportElement x="343" y="2" width="77" height="20" uuid="5d539b66-56b9-4539-ad55-1cf85a56b16b"/>
 					<textElement>
 						<font fontName="Arial" size="10" isBold="true"/>
 					</textElement>
@@ -89,7 +92,7 @@
 	<title>
 		<band height="72">
 			<frame>
-				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="1f684fee-8e87-4e76-a4d0-e4fcde46c6c9"/>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#009936" uuid="1f684fee-8e87-4e76-a4d0-e4fcde46c6c9"/>
 				<staticText>
 					<reportElement x="20" y="20" width="330" height="43" forecolor="#FFFFFF" uuid="494362ee-8b2e-4479-9799-76ae44794993"/>
 					<textElement>
@@ -98,7 +101,7 @@
 					<text><![CDATA[Lopez y Lopez]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="bed813b8-c191-4840-b999-adef60bf3213"/>
+					<reportElement x="315" y="63" width="265" height="20" forecolor="#FFFFFF" uuid="bed813b8-c191-4840-b999-adef60bf3213"/>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
@@ -118,20 +121,20 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="42">
+		<band height="24">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="40" width="555" height="1" uuid="e99839bb-c152-4e4c-83c0-bc1dd73f8a36"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="23" width="555" height="1" uuid="e99839bb-c152-4e4c-83c0-bc1dd73f8a36"/>
 			</line>
 			<textField>
-				<reportElement x="444" y="9" width="100" height="22" uuid="25a70277-7551-4ed7-a929-de46aab97c76"/>
-				<textFieldExpression><![CDATA[$F{monedaStr}]]></textFieldExpression>
+				<reportElement x="420" y="3" width="124" height="17" uuid="25a70277-7551-4ed7-a929-de46aab97c76"/>
+				<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="9" width="100" height="17" uuid="43299c8b-30c0-42c7-bad9-4be7e7804bac"/>
+				<reportElement x="0" y="3" width="100" height="17" uuid="43299c8b-30c0-42c7-bad9-4be7e7804bac"/>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="133" y="12" width="167" height="19" uuid="0fd29b48-1370-4663-b883-2d511e966453"/>
+				<reportElement x="114" y="3" width="167" height="19" uuid="0fd29b48-1370-4663-b883-2d511e966453"/>
 				<textFieldExpression><![CDATA[$F{detalleStr}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -156,6 +159,24 @@
 			</textField>
 		</band>
 	</pageFooter>
+	<lastPageFooter>
+		<band height="52">
+			<staticText>
+				<reportElement x="290" y="11" width="100" height="19" uuid="000c10ed-906b-47cd-9d51-80186cfc5c17"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL General]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="400" y="8" width="150" height="22" uuid="72834196-bb81-473b-9363-7dcfeac35272"/>
+				<textElement>
+					<font fontName="Arial Black" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{monto2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
 	<summary>
 		<band/>
 	</summary>

@@ -19,11 +19,13 @@ public class InquilinosPanel extends JPanel{
 	private JTable tableClientes;
 	private JButton btnAgregarCliente;
 	private JButton btnEditarCliente;
-	private JButton btnAplicarFiltro;
+	private JButton btnAplicarFiltroClientes;
+	private JButton btnAplicarFiltroPropietarios;
 	private JTable tablePropietarios;
 	private JButton btnAgregarPropietario;
 	private JButton btnEditarPropietario;
-	private JButton btnRemoverFiltro;
+	private JButton btnRemoverFiltroClientes;
+	private JButton btnRemoverFiltroPropietarios;
 
 	@Inject
 	private InquilinosPanel() {
@@ -36,6 +38,19 @@ public class InquilinosPanel extends JPanel{
         JPanel TabCliente = new JPanel();
         tabbedPane_2.addTab("Clientes", null, TabCliente, null);
         TabCliente.setLayout(new BoxLayout(TabCliente, BoxLayout.Y_AXIS));
+        
+        JPanel panlBotonFiltroClientes = new JPanel();
+        TabCliente.add(panlBotonFiltroClientes);
+        panlBotonFiltroClientes.setLayout(new BoxLayout(panlBotonFiltroClientes, BoxLayout.X_AXIS));
+        
+        Component horizontalGlue_5 = Box.createHorizontalGlue();
+        panlBotonFiltroClientes.add(horizontalGlue_5);
+        
+        btnAplicarFiltroClientes = new JButton("Aplicar Filtro");
+        panlBotonFiltroClientes.add(btnAplicarFiltroClientes);
+        
+        btnRemoverFiltroClientes = new JButton("Remover Filtro");
+        panlBotonFiltroClientes.add(btnRemoverFiltroClientes);
 
         tableClientes = new JTable();
 
@@ -55,18 +70,18 @@ public class InquilinosPanel extends JPanel{
         tabbedPane_2.addTab("Propietarios", null, TabPropietarios, null);
         TabPropietarios.setLayout(new BoxLayout(TabPropietarios, BoxLayout.Y_AXIS));
         
-        JPanel panlBotonFiltro = new JPanel();
-        TabPropietarios.add(panlBotonFiltro);
-        panlBotonFiltro.setLayout(new BoxLayout(panlBotonFiltro, BoxLayout.X_AXIS));
+        JPanel panlBotonFiltroPropietarios = new JPanel();
+        TabPropietarios.add(panlBotonFiltroPropietarios);
+        panlBotonFiltroPropietarios.setLayout(new BoxLayout(panlBotonFiltroPropietarios, BoxLayout.X_AXIS));
         
         Component horizontalGlue_4 = Box.createHorizontalGlue();
-        panlBotonFiltro.add(horizontalGlue_4);
+        panlBotonFiltroPropietarios.add(horizontalGlue_4);
         
-        btnAplicarFiltro = new JButton("Aplicar Filtro");
-        panlBotonFiltro.add(btnAplicarFiltro);
+        btnAplicarFiltroPropietarios = new JButton("Aplicar Filtro");
+        panlBotonFiltroPropietarios.add(btnAplicarFiltroPropietarios);
         
-        btnRemoverFiltro = new JButton("Remover Filtro");
-        panlBotonFiltro.add(btnRemoverFiltro);
+        btnRemoverFiltroPropietarios = new JButton("Remover Filtro");
+        panlBotonFiltroPropietarios.add(btnRemoverFiltroPropietarios);
 
         tablePropietarios = new JTable();
         
@@ -96,10 +111,14 @@ public class InquilinosPanel extends JPanel{
 		return btnEditarCliente;
 	}
 
-	public JButton getBtnAplicarFiltro() {
-		return btnAplicarFiltro;
+	public JButton getBtnAplicarFiltroClientes() {
+		return btnAplicarFiltroClientes;
 	}
 
+	public JButton getBtnRemoverFiltroClientes() {
+		return btnRemoverFiltroClientes;
+	}
+	
 	public JTable getTablePropietarios() {
 		return tablePropietarios;
 	}
@@ -112,8 +131,12 @@ public class InquilinosPanel extends JPanel{
 		return btnEditarPropietario;
 	}
 
-	public JButton getBtnRemoverFiltro() {
-		return btnRemoverFiltro;
+	public JButton getBtnAplicarFiltroPropietarios() {
+		return btnAplicarFiltroPropietarios;
+	}
+
+	public JButton getBtnRemoverFiltroPropietarios() {
+		return btnRemoverFiltroPropietarios;
 	}
 
 }

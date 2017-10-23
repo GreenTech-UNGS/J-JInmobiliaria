@@ -81,6 +81,10 @@ public abstract class BaseTableModel<T> extends DefaultTableModel{
        //all cells false
        return false;
     }
+    
+    public List<T> getAllRows(){
+    	return rows;
+    }
 	
 	protected abstract Object[] toRow(T t);
 

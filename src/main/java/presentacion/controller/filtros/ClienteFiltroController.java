@@ -6,22 +6,22 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.Persona.TipoCredencial;
-import filtros.PropietarioFiltro;
-import presentacion.mappers.PropietarioFiltroMapper;
-import presentacion.vista.filtros.PropietarioFiltroView;
+import filtros.ClienteFiltro;
+import presentacion.mappers.ClienteFiltroMapper;
+import presentacion.vista.filtros.ClienteFiltroView;
 
 @Singleton
-public class PropietarioFiltroController {
+public class ClienteFiltroController {
 
-	private PropietarioFiltroView view;
+	private ClienteFiltroView view;
 	
-	@Inject private PropietarioFiltroMapper mapper;
+	@Inject private ClienteFiltroMapper mapper;
 	
-	private PropietarioFiltro currentFiltro;
+	private ClienteFiltro currentFiltro;
 	private boolean wasOkPressed;
 	
 	@Inject
-	private PropietarioFiltroController(PropietarioFiltroView view) {
+	private ClienteFiltroController(ClienteFiltroView view) {
 		this.view = view;
 		wasOkPressed = false;
 		
@@ -37,7 +37,7 @@ public class PropietarioFiltroController {
 	public void setModeNew() {
 		view.getTipoComboBox().removeAllElements();
 		view.getTipoComboBox().actualize(Arrays.asList(TipoCredencial.values()));
-		currentFiltro = new PropietarioFiltro();
+		currentFiltro = new ClienteFiltro();
 		currentFiltro.setTipoCredencial(TipoCredencial.DNI);
 		mapper.fillFields(currentFiltro);
 		wasOkPressed = false;
@@ -47,7 +47,7 @@ public class PropietarioFiltroController {
 		view.setVisible(true);
 	}
 	
-	public PropietarioFiltro getFiltro() {
+	public ClienteFiltro getFiltro() {
 		
 		if(!wasOkPressed)
 			return null;
