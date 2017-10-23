@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -28,7 +29,7 @@ public class PropiedadOtrosDatos {
 	private int metrosCuadradosCubiertos;
 	private int metrosCuadradosLote;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Habitacion> habitaciones;
 	
 	private boolean esAptoCredito;
