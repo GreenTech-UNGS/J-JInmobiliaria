@@ -568,4 +568,14 @@ public class ContratoAlquilerForm extends JDialog {
 	public JButton getBtnBorrador() {
 		return btnBorrador;
 	}
+
+
+	public JYearChooser getAnio() {
+		return anio;
+	}
+
+
+	public JMonthChooser getMes() {
+		return mes;
+	}
 }

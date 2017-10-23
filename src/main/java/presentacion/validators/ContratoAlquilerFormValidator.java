@@ -7,6 +7,8 @@ import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import org.joda.time.YearMonth;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -34,7 +36,8 @@ public class ContratoAlquilerFormValidator implements ValidatorNew{
 				&& isActualizacionValid()
 				&& isPjeActualizacionValid()
 				&& isTiempoPagoValid()
-				&& isPjePunitorioValid();
+				&& isPjePunitorioValid()
+				&& isAnioMesValid();
 	}
 
 	@Override
@@ -62,6 +65,8 @@ public class ContratoAlquilerFormValidator implements ValidatorNew{
 			toRet += "\n- El plazo de pago debe ser mayor a cero";		
 		if(!isPjePunitorioValid())
 			toRet += "\n- El porcentaje punitorio debe ser mayor a cero";
+		if(!isAnioMesValid())
+			toRet += "\n- La fecha de inicio debe ser posterior a hoy";
 		
 		return toRet;
 		
@@ -130,6 +135,14 @@ public class ContratoAlquilerFormValidator implements ValidatorNew{
 	
 	private boolean isPjePunitorioValid(){
 		return ((float) view.getSpinnerPorcentajePunitorio().getValue() > 0);
-	}	
+	}
+	
+	private boolean isAnioMesValid() {
+		
+		YearMonth inicio = new YearMonth(view.getAnio().getYear(), view.getMes().getMonth() + 1);
+		
+		return !YearMonth.now().isAfter(inicio);
+		
+	}
 
 }
