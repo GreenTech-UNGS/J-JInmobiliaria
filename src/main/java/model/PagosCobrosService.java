@@ -129,9 +129,9 @@ public class PagosCobrosService {
 		
 	}
 
-	public List<CobrosDeAlquileresDTO> cobrosDeAlquilerReporteOf(YearMonth aniomes) {
+	public List<CobrosDeAlquileresDTO> cobrosDeAlquilerReporteOf(List<CuotaAlquiler> listaCuotas) {
 
-		List<CuotaAlquiler> listaCuotas =  cuotaService.getCuotasOf(aniomes, EstadoCuota.values());
+		//List<CuotaAlquiler> listaCuotas =  cuotaService.getCuotasOf(aniomes, EstadoCuota.values());
 		List<CobrosDeAlquileresDTO> cobros = new ArrayList<CobrosDeAlquileresDTO>();
 
 		for (CuotaAlquiler cuota : listaCuotas) {
@@ -162,7 +162,7 @@ public class PagosCobrosService {
 			toAdd.setIdContrato(identificadorContrato);
 			toAdd.setInquilinoStr(nombreInquilino);
 			toAdd.setPropiedadStr(propiedad);
-			toAdd.setAnioMes(aniomes.toString());
+			toAdd.setAnioMes(cuota.getAnioMes().toString());
 			toAdd.setMontoStr(monto);
 			toAdd.setEstadoStr(estado);
 			toAdd.setInteresStr(interesStr);

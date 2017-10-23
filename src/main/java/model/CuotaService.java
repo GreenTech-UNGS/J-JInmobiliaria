@@ -105,5 +105,10 @@ public class CuotaService {
 		
 	}
 
+	public List<CuotaAlquiler> getAllOfNow() {
+		// TODO Auto-generated method stub
+		return cuotaDao.getAllOf(YearMonth.now());
+	}
+
 
 }

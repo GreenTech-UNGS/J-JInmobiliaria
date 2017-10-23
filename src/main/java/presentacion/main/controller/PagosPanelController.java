@@ -110,7 +110,7 @@ public class PagosPanelController {
 	private void fillTableCuotas() {
 		this.cuotasTable.clean();
 		this.view.getTableCuotas().setModel(cuotasTable);
-		cuotaService.getAll().forEach(c -> cuotasTable.addRow(c));
+		cuotaService.getAllOfNow().forEach(c -> cuotasTable.addRow(c));
 		
 		this.view.getTableCuotas().setColumnModel(cuotasTable.getTableColumnModel());
 		this.view.getTableCuotas().getTableHeader().setReorderingAllowed(false);
@@ -147,10 +147,9 @@ public class PagosPanelController {
 		reporte.mostrar();
 	}
 
-	//TODO parametrizar el yearmonth
 	private void generaReporteCobroDeAlquileres() {
 		List<CobrosDeAlquileresDTO> dtos =
-				pagoCobroService.cobrosDeAlquilerReporteOf(YearMonth.now());
+				pagoCobroService.cobrosDeAlquilerReporteOf(cuotasTable.getAllRows());
 		ReporteCobrosDeAlquileres reporte = new ReporteCobrosDeAlquileres(dtos);
 		reporte.mostrar();
 
