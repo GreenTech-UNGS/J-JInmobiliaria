@@ -19,6 +19,8 @@ import entities.Precio;
 import entities.Propiedad;
 import entities.Propietario;
 import entities.TipoOfrecimiento;
+import filtros.PropiedadFiltro;
+import filtros.PropietarioFiltro;
 import persistencia.dao.iface.PropiedadDao;
 
 @Singleton
@@ -144,6 +146,12 @@ public class PropiedadService {
 			}
 		}
 		return toRet;
+	}
+	
+	public List<Propiedad> getAllByFiltro(PropiedadFiltro filtro){
+		
+		return propiedadDao.getAllByFiltro(filtro);
+		
 	}
 	
 }

@@ -27,6 +27,7 @@ public class PropiedadesPanel extends JPanel{
 	private JButton btnDesreservar;
 	private JTable tableAlquiladas;
 	private JTable tableVendidas;
+	private JButton btnFiltrar;
 
 	@Inject
 	private PropiedadesPanel() {
@@ -70,6 +71,13 @@ public class PropiedadesPanel extends JPanel{
        btnEditarPropiedad.setFont(new Font("Tahoma", Font.BOLD, 11));
 
        panelButtons.add(btnEditarPropiedad);
+       
+       Component glue = Box.createGlue();
+       panelButtons.add(glue);
+       
+       btnFiltrar = new JButton("Filtrar propiedades");
+       btnFiltrar.setFont(new Font("Tahoma", Font.BOLD, 11));
+       panelButtons.add(btnFiltrar);
 
        Component horizontalGlue_1 = Box.createHorizontalGlue();
        panelButtons.add(horizontalGlue_1);
@@ -172,5 +180,14 @@ public class PropiedadesPanel extends JPanel{
 	public JTable getTableVendidas() {
 		return tableVendidas;
 	}
+
+	public JButton getBtnFiltrar() {
+		return btnFiltrar;
+	}
+
+	public void setBtnFiltrar(JButton btnFiltrar) {
+		this.btnFiltrar = btnFiltrar;
+	}
+	
 
 }

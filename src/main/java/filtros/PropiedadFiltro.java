@@ -3,11 +3,13 @@ package filtros;
 import entities.Localidad;
 import entities.Moneda;
 import entities.Precio;
+import entities.TipoOfrecimiento;
 
 public class PropiedadFiltro {
 	Precio precioDesde;
 	Precio precioHasta;
 	Localidad localidad;
+	TipoOfrecimiento tipoOfrecimiento;
 	
 	public PropiedadFiltro(){
 		
@@ -35,6 +37,14 @@ public class PropiedadFiltro {
 
 	public void setPrecioHasta(Precio precioHasta) {
 		this.precioHasta = precioHasta;
+	}
+
+	public TipoOfrecimiento getTipoOfrecimiento() {
+		return tipoOfrecimiento;
+	}
+
+	public void setTipoOfrecimiento(TipoOfrecimiento tipoOfrecimiento) {
+		this.tipoOfrecimiento = tipoOfrecimiento;
 	}
 	
 	

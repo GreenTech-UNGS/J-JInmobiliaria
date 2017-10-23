@@ -9,6 +9,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.Propiedad;
+import filtros.PropiedadFiltro;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.PropiedadDao;
 
@@ -50,6 +51,12 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 		initTransaction();
 		sesion.saveOrUpdate(toActualize);
 		finishTransaction();
+		
+	}
+	
+	@Override
+	public List<Propiedad> getAllByFiltro(PropiedadFiltro filtro){
+		return null;
 		
 	}
 }
