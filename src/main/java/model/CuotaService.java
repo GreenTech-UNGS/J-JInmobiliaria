@@ -10,8 +10,10 @@ import org.joda.time.YearMonth;
 
 import com.google.inject.Inject;
 
+import entities.ContratoAlquiler;
 import entities.CuotaAlquiler;
 import entities.EstadoCuota;
+import entities.HistoriaEstadoCuota;
 import entities.InteresPunitorioCuota;
 import filtros.CuotaFiltro;
 import persistencia.dao.iface.CuotaDao;
@@ -93,6 +95,22 @@ public class CuotaService {
 		return new LocalDate(cuota.getAnioMes().getYear(),
 				cuota.getAnioMes().getMonthOfYear(),
 				cuota.getContrato().getDatoPunitorio().getDiasDePago());
+	}
+	
+	public void cancelaCuotas(List<CuotaAlquiler> cuotas) {
+		for(CuotaAlquiler c: cuotas) {
+			HistoriaEstadoCuota nuevo = new HistoriaEstadoCuota();
+			nuevo.setEstado(EstadoCuota.CANCELADA);
+			nuevo.setFecha(DateTime.now());
+			
+			c.getEstados().add(nuevo);
+			
+			cuotaDao.save(c);
+		}
+	}
+	
+	public List<CuotaAlquiler> getcuotasOf(ContratoAlquiler c){
+		return cuotaDao.getCuotasOf(c);
 	}
 
 	public InteresPunitorioCuota getInteresOf(CuotaAlquiler cuota) {

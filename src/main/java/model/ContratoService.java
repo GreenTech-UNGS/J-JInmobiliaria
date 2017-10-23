@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,6 +47,7 @@ import persistencia.dao.iface.PropiedadDao;
 public class ContratoService {
 
 	ReservaService reservaService;
+	@Inject CuotaService cuotaService;
 	
 	ContratoDao contratoDao;
 	PropiedadDao propiedadDao;
@@ -295,6 +297,17 @@ public class ContratoService {
 		HistoriaEstadoContrato nuevoEstado = new HistoriaEstadoContrato();
 		nuevoEstado.setEstado(EstadoContrato.CANCELADO);
 		nuevoEstado.setFecha(DateTime.now());
+		
+		if(c instanceof ContratoAlquiler) {
+			List<CuotaAlquiler> cuotas = cuotaService.getcuotasOf((ContratoAlquiler)c);
+			List<CuotaAlquiler> aCancelar = new ArrayList<>();
+			for(CuotaAlquiler cuota : cuotas) {
+				if(cuotaService.getEstadoOf(cuota).equals(EstadoCuota.PENDIENTE))
+					aCancelar.add(cuota);
+			}
+			
+			cuotaService.cancelaCuotas(aCancelar);
+		}
 		
 		c.getEstados().add(nuevoEstado);
 	}
