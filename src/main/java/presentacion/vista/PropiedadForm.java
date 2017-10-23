@@ -26,8 +26,6 @@ public class PropiedadForm extends JDialog{
 	private JTextArea taDescPubl;
 	private JTextArea taDescPriv;
 	private JLabel lblReservada;
-
-	private JButton btnGuardar;
 	private JButton btnCancelar;
 	private JComboBox<String> comboLocalidad;
 	private JTextField tfPropietario;
@@ -38,8 +36,9 @@ public class PropiedadForm extends JDialog{
 	private JTextField tfInmobiliaria;
 	private JButton botonLupitaInmobiliaria;
 	private JTextField tfPrecio;
-	private JButton btnGuardarCambios;
+	private JButton btnGuardarDisponible;
 	private JButton btnMasDatos;
+	private JButton btnBorrador;
 
 	@Inject
 	private PropiedadForm() {
@@ -109,23 +108,6 @@ public class PropiedadForm extends JDialog{
 						comboTipoOfre.setFont(new Font("Tahoma", Font.PLAIN, 11));
 						comboTipoOfre.setBounds(92, 90, 117, 20);
 						AgregarPropiedad.add(comboTipoOfre);
-						
-						btnGuardar = new JButton("Guardar");
-						btnGuardar.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-							}
-						});
-						btnGuardar.setBounds(226, 565, 117, 33);
-						AgregarPropiedad.add(btnGuardar);
-						
-
-						btnCancelar = new JButton("Cancelar");
-						btnCancelar.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent arg0) {
-							}
-						});
-						btnCancelar.setBounds(353, 565, 110, 33);
-						AgregarPropiedad.add(btnCancelar);
 						
 						JLabel lblMoneda = new JLabel("Moneda:");
 						lblMoneda.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -312,15 +294,34 @@ public class PropiedadForm extends JDialog{
 										taDescPriv.setLineWrap(true);
 										taDescPriv.setBorder(new LineBorder(Color.LIGHT_GRAY));
 										
-										btnGuardarCambios = new JButton("Guardar cambios");
-										btnGuardarCambios.setFont(new Font("Tahoma", Font.PLAIN, 11));
-										btnGuardarCambios.setBounds(274, 565, 132, 33);
-										AgregarPropiedad.add(btnGuardarCambios);
+										btnGuardarDisponible = new JButton("Guardar disponible");
+										btnGuardarDisponible.addActionListener(new ActionListener() {
+											public void actionPerformed(ActionEvent e) {
+											}
+										});
+										btnGuardarDisponible.setFont(new Font("Tahoma", Font.PLAIN, 11));
+										btnGuardarDisponible.setBounds(263, 565, 132, 33);
+										AgregarPropiedad.add(btnGuardarDisponible);
 										
 										btnMasDatos = new JButton("Mas datos");
+										btnMasDatos.setFont(new Font("Tahoma", Font.PLAIN, 11));
 										btnMasDatos.setBounds(557, 554, 96, 23);
 										AgregarPropiedad.add(btnMasDatos);
-		btnGuardarCambios.setVisible(false);
+										
+										btnBorrador = new JButton("Guardar borrador");
+										btnBorrador.setFont(new Font("Tahoma", Font.PLAIN, 11));
+										btnBorrador.setBounds(112, 565, 132, 33);
+										AgregarPropiedad.add(btnBorrador);
+										
+
+										btnCancelar = new JButton("Cancelar");
+										btnCancelar.setBounds(405, 565, 130, 33);
+										AgregarPropiedad.add(btnCancelar);
+										btnCancelar.addActionListener(new ActionListener() {
+											public void actionPerformed(ActionEvent arg0) {
+											}
+										});
+		btnGuardarDisponible.setVisible(false);
 		lblReservada.setVisible(false);
 
 		btnVerHistorial.setVisible(false);
@@ -385,11 +386,6 @@ public class PropiedadForm extends JDialog{
 	public JTextArea getTaDescPriv() {
 		return taDescPriv;
 	}
-
-	public JButton getBtnGuardar() {
-		return btnGuardar;
-	}
-
 
 	public JButton getBtnCancelar() {
 		return btnCancelar;
@@ -474,10 +470,6 @@ public class PropiedadForm extends JDialog{
 		this.taDescPriv = taDescPriv;
 	}
 
-	public void setBtnGuardar(JButton btnGuardar) {
-		this.btnGuardar = btnGuardar;
-	}
-
 	public void setBtnCancelar(JButton btnCancelar) {
 		this.btnCancelar = btnCancelar;
 	}
@@ -502,15 +494,25 @@ public class PropiedadForm extends JDialog{
 		this.lblReservada = lblReservada;
 	}
 
-	public JButton getBtnGuardarCambios() {
-		return btnGuardarCambios;
+	public JButton getBtnGuardarDisponible() {
+		return btnGuardarDisponible;
 	}
 
-	public void setBtnGuardarCambios(JButton btnGuardarCambios) {
-		this.btnGuardarCambios = btnGuardarCambios;
+	public void setBtnGuardarDisponible(JButton btnGuardarCambios) {
+		this.btnGuardarDisponible = btnGuardarCambios;
 	}
 
 	public JButton getBtnMasDatos() {
 		return btnMasDatos;
 	}
+
+	public JButton getBtnBorrador() {
+		return btnBorrador;
+	}
+
+	public void setBtnBorrador(JButton btnBorrador) {
+		this.btnBorrador = btnBorrador;
+	}
+	
+	
 }

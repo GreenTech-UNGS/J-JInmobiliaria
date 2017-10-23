@@ -62,6 +62,7 @@ public class InmobiliariaController {
 		view.getBtnGuardarCambios().addActionListener(e -> saveInmobiliaria());
 		view.getBtnAgregarTel().addActionListener(e -> agregaTelefono());
 		view.getBtnBorrarTel().addActionListener(e -> borrarTelefono());
+		view.getBtnCancelar().addActionListener(e -> view.setVisible(false));
 	}
 	
 	public void showView(){

@@ -45,8 +45,8 @@ public class PropiedadService {
 	
 	public void savePropiedad(Propiedad p) throws LogicaNegocioException {
 		
-		if(existePropiedadConIdentificador(p))
-			throw new LogicaNegocioException("Ya existe una propiedad con el identificador ingresado");
+		//if(existePropiedadConIdentificador(p))
+			//throw new LogicaNegocioException("Ya existe una propiedad con el identificador ingresado");
 		
 		HistoriaEstadoProp historia = new HistoriaEstadoProp();
 		historia.setEstado(EstadoProp.DISPONIBLE);
@@ -55,6 +55,21 @@ public class PropiedadService {
 		p.getEstados().add(historia);
 		propiedadDao.save(p);
 	}
+	
+	public void savePropiedadBorrador(Propiedad p) throws LogicaNegocioException {
+		
+		//if(existePropiedadConIdentificador(p))
+			//throw new LogicaNegocioException("Ya existe una propiedad con el identificador ingresado");
+		
+		HistoriaEstadoProp historia = new HistoriaEstadoProp();
+		historia.setEstado(EstadoProp.BORRADOR);
+		historia.setFecha(DateTime.now());
+		
+		p.getEstados().add(historia);
+		propiedadDao.save(p);
+	}
+	
+	
 	
 	public Propiedad getEmptyPropiedad() {
 		Propiedad toRet = new Propiedad();

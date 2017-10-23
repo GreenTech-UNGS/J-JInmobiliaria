@@ -80,15 +80,15 @@ public class PropiedadController {
 		fillCombos();
 		initBinder();
 		
-		view.getBtnGuardar().addActionListener(e -> savePropiedad());
 		view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
 		view.getBtnLupita().addActionListener(e -> selectPropietario());
 		view.getBtnCancelar().addActionListener(e -> view.setVisible(false));
 		view.getBtnVerHistorial().addActionListener(e -> this.historialPropController.showView(currentPropiedad));
 		view.getBtnActualizar().addActionListener(e -> actualizaMapa());
 		view.getBotonLupitaInmobiliaria().addActionListener(e -> selectInmobiliaria());
-		view.getBtnGuardarCambios().addActionListener(e -> actualizarPropiedad());
+		view.getBtnGuardarDisponible().addActionListener(e -> savePropiedad());
 		view.getBtnMasDatos().addActionListener(e -> agregarOtrosDatos());
+		view.getBtnBorrador().addActionListener(e -> saveBorrador());
 		
 	}
 
@@ -238,9 +238,9 @@ public class PropiedadController {
 	public void editPropiedad(Propiedad p){
 
 		view.setTitle("Editar Propiedad");
-		view.getBtnGuardar().setVisible(false);
+		view.getBtnGuardarDisponible().setVisible(false);
 		view.getBtnCancelar().setVisible(false);
-		view.getBtnGuardarCambios().setVisible(true);
+		view.getBtnGuardarDisponible().setVisible(true);
 		fillCombos();
 		currentPropiedad = p;
 		binder.setObjective(currentPropiedad);
@@ -265,6 +265,23 @@ public class PropiedadController {
 			actualizaMapaThread();
 			try {
 				propiedadService.savePropiedad(currentPropiedad);
+			} catch (LogicaNegocioException e) {
+				msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
+			}
+			view.setVisible(false);
+		}
+		else{
+			msgShw.showErrorMessage(propiedadValidator.getErrorMessage(), "Error");
+		}
+	}
+	
+	private void saveBorrador() {
+
+		if(propiedadValidator.isValid()){
+			binder.fillBean();
+			actualizaMapaThread();
+			try {
+				propiedadService.savePropiedadBorrador(currentPropiedad);
 			} catch (LogicaNegocioException e) {
 				msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
 			}
@@ -331,7 +348,7 @@ public class PropiedadController {
 		view.getTfDepto().setEditable(bool);
 		view.getTaDescPubl().setEditable(bool);
 		view.getTaDescPriv().setEditable(bool);
-		view.getBtnGuardar().setVisible(bool);
+		view.getBtnGuardarDisponible().setVisible(bool);
 		view.getBtnCancelar().setVisible(bool);
 		view.getBtnLupita().setVisible(bool);
 		view.getBtnVerHistorial().setVisible(!bool);
@@ -342,6 +359,6 @@ public class PropiedadController {
 		view.getComboMoneda().setEnabled(bool);
 		view.getComboProvincia().setEnabled(bool);
 		view.getComboTipoOfre().setEnabled(bool);
-		view.getBtnGuardarCambios().setVisible(false);
+		view.getBtnGuardarDisponible().setVisible(false);
 	}
 }
