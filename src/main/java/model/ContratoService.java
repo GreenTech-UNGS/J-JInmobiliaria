@@ -40,6 +40,7 @@ import entities.Precio;
 import entities.Propiedad;
 import entities.Reserva;
 import entities.TipoContratoAlquiler;
+import filtros.ContratoAlquilerFiltro;
 import persistencia.dao.iface.ContratoDao;
 import persistencia.dao.iface.CuotaDao;
 import persistencia.dao.iface.PropiedadDao;
@@ -121,7 +122,7 @@ public class ContratoService {
 		double montoInicial = c.getCuotaMensual().getMonto();
 		double monto = c.getCuotaMensual().getMonto();
 		Moneda m = c.getCuotaMensual().getMoneda();
-		YearMonth nextMonth = YearMonth.now().plusMonths(1);
+		YearMonth nextMonth = c.getPrimerAnioMes();
 		
 		for(int i = 1; i <= cantCuotas; i++) {
 			
@@ -152,8 +153,8 @@ public class ContratoService {
 			interes.setFecha(DateTime.now());
 			interes.setMonto(p2);
 			
-			cuotaDao.saveInteres(interes);
 			cuotaDao.save(nuevaCuota);
+			cuotaDao.saveInteres(interes);
 		}	
 	}
 	
@@ -294,7 +295,7 @@ public class ContratoService {
 		
 		toRet.getEstados().add(nuevo);
 		
-		toRet.setPrimerAnioMes(YearMonth.now().plusMonths(1));
+		toRet.setPrimerAnioMes(c.getPrimerAnioMes().plusMonths(c.getCantMeses() + 1));
 		
 		return toRet;
 		
@@ -318,5 +319,9 @@ public class ContratoService {
 		}
 		
 		c.getEstados().add(nuevoEstado);
+	}
+
+	public List<ContratoAlquiler> getcontratosAlquilerBy(ContratoAlquilerFiltro filtro) {
+		return contratoDao.getAllBy(filtro);
 	}
 }

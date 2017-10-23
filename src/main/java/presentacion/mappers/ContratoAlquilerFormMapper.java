@@ -1,6 +1,7 @@
 package presentacion.mappers;
 
 import org.joda.time.Period;
+import org.joda.time.YearMonth;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -51,6 +52,8 @@ public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
 		Period intimacionPeriod = Period.days(Integer.parseInt(intimacionDiasStr));
 		Period vencimientoPeriod = Period.months(Integer.parseInt(vencimientoMesesStr));
 		
+		YearMonth inicio = new YearMonth(view.getAnio().getYear(), view.getMes().getMonth() + 1);
+		
 //		Propiedad propiedad = view.getTfIdPropiedad();
 		
 		
@@ -76,6 +79,8 @@ public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
 		
 		t.getAvisoProxVencer().setHabilitado(vencimientoHabilitado);
 		t.getAvisoProxVencer().setPeriodo(vencimientoPeriod);
+		
+		t.setPrimerAnioMes(inicio);
 		
 	}
 
@@ -108,6 +113,9 @@ public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
 		int intimacionDias = t.getAvisoIntimacion().getPeriodo().getDays();
 		int vencimientoMeses = t.getAvisoProxVencer().getPeriodo().getMonths();
 		
+		int anio = t.getPrimerAnioMes().getYear();
+		int mes = t.getPrimerAnioMes().getMonthOfYear() - 1;
+		
 		String propiedad = t.getPropiedad() == null ? "":t.getPropiedad().getIdentificador();
 		view.getTfIdPropiedad().setText(propiedad);
 
@@ -138,6 +146,9 @@ public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
 		view.getChckbxVencimiento().setSelected(vencimientoHabilitado);
 		view.getSpinnerIntimacionEmail().setValue(intimacionDias);
 		view.getSpinnerVencimientoEmail().setValue(vencimientoMeses);
+		
+		view.getAnio().setYear(anio);
+		view.getMes().setMonth(mes);
 		
 		
 	}

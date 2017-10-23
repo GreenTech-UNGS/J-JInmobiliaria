@@ -12,6 +12,7 @@ import javax.swing.JTable;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import javax.swing.Box;
 
 @SuppressWarnings("serial")
 @Singleton
@@ -24,6 +25,9 @@ public class ContratosPanel extends JPanel{
 	private JButton btnRenovar;
 	private JButton btnCancelarContrato;
 	private JButton btnEditarContrato;
+	private JPanel panelFiltroAlq;
+	private JButton btnAplicarFiltro;
+	private JButton btnRemoverFiltro;
 
 	@Inject
 	private ContratosPanel() {
@@ -46,6 +50,19 @@ public class ContratosPanel extends JPanel{
         btnAgregarContratoVen.setAlignmentX(Component.CENTER_ALIGNMENT);
         contratoVenta.add(btnAgregarContratoVen);
         contratoAlquiler.setLayout(new BoxLayout(contratoAlquiler, BoxLayout.Y_AXIS));
+        
+        panelFiltroAlq = new JPanel();
+        contratoAlquiler.add(panelFiltroAlq);
+        panelFiltroAlq.setLayout(new BoxLayout(panelFiltroAlq, BoxLayout.X_AXIS));
+        
+        Component horizontalGlue = Box.createHorizontalGlue();
+        panelFiltroAlq.add(horizontalGlue);
+        
+        btnAplicarFiltro = new JButton("Aplicar Filtro");
+        panelFiltroAlq.add(btnAplicarFiltro);
+        
+        btnRemoverFiltro = new JButton("Remover Filtro");
+        panelFiltroAlq.add(btnRemoverFiltro);
         
         tablaContratoAlquiler = new JTable();
         JScrollPane scrollPane_4 = new JScrollPane(tablaContratoAlquiler);
@@ -94,6 +111,14 @@ public class ContratosPanel extends JPanel{
 
 	public JButton getBtnEditarContrato() {
 		return btnEditarContrato;
+	}
+
+	public JButton getBtnAplicarFiltro() {
+		return btnAplicarFiltro;
+	}
+
+	public JButton getBtnRemoverFiltro() {
+		return btnRemoverFiltro;
 	}
 
 }

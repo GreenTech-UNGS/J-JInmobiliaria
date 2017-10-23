@@ -81,7 +81,6 @@ public class CuotaService {
 	public List<CuotaAlquiler> getVencidas() {
 		List<CuotaAlquiler> cuotas = cuotaDao.getAllOfThisMonth();
 		
-		LocalDate today = DateTime.now().toLocalDate();
 		return cuotas.stream().
 				filter(c -> isVencida(c)).
 				filter(c -> getEstadoOf(c).equals(EstadoCuota.PENDIENTE)).

@@ -48,7 +48,6 @@ public class InmobiliariaFormValidator implements ValidatorNew {
 	
 	private boolean isCredencialValid(){
 		String credencial = view.getTfCuit().getText();
-		System.out.println(credencial);
 		if(credencial == null || !(credencial.matches(Regex.CUIT()) || credencial.matches(Regex.onlyNumbersCUIT())))
 			return false;
 			

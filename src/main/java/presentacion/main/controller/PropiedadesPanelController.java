@@ -46,6 +46,8 @@ public class PropiedadesPanelController {
 	
 	@Inject private PropiedadFiltroController propiedadFiltro;
 	
+	private PropiedadFiltro currentPropiedadFiltro;
+	
 	@Inject
 	PropiedadesPanelController(PropiedadesPanel view) {
 
@@ -56,6 +58,7 @@ public class PropiedadesPanelController {
 		this.view.getBtnDesreservar().addActionListener(e -> borrarReserva());
 		this.view.getBtnEditarPropiedad().addActionListener(e -> editarPropiedad());
 		this.view.getBtnFiltrar().addActionListener(e -> filtrarPropiedades());
+		this.view.getBtnRemoverFiltro().addActionListener(e -> removerFiltro());
 	
 	
 		selectDetalleProp();
@@ -149,7 +152,9 @@ public class PropiedadesPanelController {
 	private void fillTableProp(){
 		this.tableModelProp.clean();
 		this.view.getTablePropiedades().setModel(tableModelProp);
-		propiedadService.getAll().forEach(p -> tableModelProp.addRow(p));
+		if(currentPropiedadFiltro == null)propiedadService.getAll().forEach(p -> tableModelProp.addRow(p));
+		else propiedadService.getAllByFiltro(currentPropiedadFiltro).forEach(p -> tableModelProp.addRow(p));
+		
 		this.view.getTablePropiedades().setColumnModel(tableModelProp.getTableColumnModel());
 		this.view.getTablePropiedades().getTableHeader().setReorderingAllowed(false);
 	}
@@ -217,10 +222,15 @@ public class PropiedadesPanelController {
 		propiedadFiltro.setModeNew();
 		propiedadFiltro.showView();
 		
-		PropiedadFiltro filtro = propiedadFiltro.getFiltro();
-		if(filtro != null) {
-			tableModelProp.actualizeRows(propiedadService.getAllByFiltro(filtro));
+		currentPropiedadFiltro = propiedadFiltro.getFiltro();
+		if(currentPropiedadFiltro != null) {
+			tableModelProp.actualizeRows(propiedadService.getAllByFiltro(currentPropiedadFiltro));
 		}
+	}
+	
+	private void removerFiltro() {
+		currentPropiedadFiltro = null;
+		fillTableProp();
 	}
 
 }	

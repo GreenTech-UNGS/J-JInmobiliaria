@@ -28,6 +28,7 @@ public class PropiedadesPanel extends JPanel{
 	private JTable tableAlquiladas;
 	private JTable tableVendidas;
 	private JButton btnFiltrar;
+	private JButton btnRemoverFiltro;
 
 	@Inject
 	private PropiedadesPanel() {
@@ -39,6 +40,20 @@ public class PropiedadesPanel extends JPanel{
         JPanel panelTodas = new JPanel();
         tabbedPane_1.addTab("Todas las propiedades", null, panelTodas, null);
         panelTodas.setLayout(new BoxLayout(panelTodas, BoxLayout.Y_AXIS));
+        
+        JPanel panelFiltrosTodas = new JPanel();
+        panelTodas.add(panelFiltrosTodas);
+        panelFiltrosTodas.setLayout(new BoxLayout(panelFiltrosTodas, BoxLayout.X_AXIS));
+        
+               Component horizontalGlue_1 = Box.createHorizontalGlue();
+               panelFiltrosTodas.add(horizontalGlue_1);
+        
+        btnFiltrar = new JButton("Aplicar Filtro");
+        panelFiltrosTodas.add(btnFiltrar);
+        btnFiltrar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        
+        btnRemoverFiltro = new JButton("Remover Filtro");
+        panelFiltrosTodas.add(btnRemoverFiltro);
         
         JScrollPane scrollPane = new JScrollPane();
         panelTodas.add(scrollPane);
@@ -74,13 +89,6 @@ public class PropiedadesPanel extends JPanel{
        
        Component glue = Box.createGlue();
        panelButtons.add(glue);
-       
-       btnFiltrar = new JButton("Filtrar propiedades");
-       btnFiltrar.setFont(new Font("Tahoma", Font.BOLD, 11));
-       panelButtons.add(btnFiltrar);
-
-       Component horizontalGlue_1 = Box.createHorizontalGlue();
-       panelButtons.add(horizontalGlue_1);
        
        JPanel panelEnAlquiler = new JPanel();
        tabbedPane_1.addTab("En alquiler", null, panelEnAlquiler, null);
@@ -187,6 +195,10 @@ public class PropiedadesPanel extends JPanel{
 
 	public void setBtnFiltrar(JButton btnFiltrar) {
 		this.btnFiltrar = btnFiltrar;
+	}
+
+	public JButton getBtnRemoverFiltro() {
+		return btnRemoverFiltro;
 	}
 	
 
