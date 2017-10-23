@@ -18,7 +18,7 @@ import javax.swing.JButton;
 
 @Singleton
 public class ContratoAlquilerFiltroView extends JDialog{
-	private JTextField textField;
+	private JTextField textPropiedad;
 	private JButton btnLupa;
 	private JButton btnAceptar;
 	
@@ -40,11 +40,11 @@ public class ContratoAlquilerFiltroView extends JDialog{
 		lblPropiedad.setBounds(31, 57, 72, 14);
 		panel.add(lblPropiedad);
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBounds(100, 54, 149, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		textPropiedad = new JTextField();
+		textPropiedad.setEditable(false);
+		textPropiedad.setBounds(100, 54, 149, 20);
+		panel.add(textPropiedad);
+		textPropiedad.setColumns(10);
 		
 		btnLupa = new JButton("");
 		btnLupa.setIcon(new ImageIcon(imgLup));
@@ -56,17 +56,30 @@ public class ContratoAlquilerFiltroView extends JDialog{
 		panel.add(btnAceptar);
 	}
 
-	public JTextField getTextField() {
-		return textField;
+	public JTextField getTextPropiedad() {
+		return textPropiedad;
+	}
+
+	public void setTextPropiedad(JTextField textPropiedad) {
+		this.textPropiedad = textPropiedad;
 	}
 
 	public JButton getBtnLupa() {
 		return btnLupa;
 	}
 
+	public void setBtnLupa(JButton btnLupa) {
+		this.btnLupa = btnLupa;
+	}
+
 	public JButton getBtnAceptar() {
 		return btnAceptar;
 	}
+
+	public void setBtnAceptar(JButton btnAceptar) {
+		this.btnAceptar = btnAceptar;
+	}
+
 
 	
 	

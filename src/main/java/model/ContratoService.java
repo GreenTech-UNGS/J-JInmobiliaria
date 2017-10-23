@@ -40,6 +40,7 @@ import entities.Precio;
 import entities.Propiedad;
 import entities.Reserva;
 import entities.TipoContratoAlquiler;
+import filtros.ContratoAlquilerFiltro;
 import persistencia.dao.iface.ContratoDao;
 import persistencia.dao.iface.CuotaDao;
 import persistencia.dao.iface.PropiedadDao;
@@ -318,5 +319,9 @@ public class ContratoService {
 		}
 		
 		c.getEstados().add(nuevoEstado);
+	}
+
+	public List<ContratoAlquiler> getcontratosAlquilerBy(ContratoAlquilerFiltro filtro) {
+		return contratoDao.getAllBy(filtro);
 	}
 }

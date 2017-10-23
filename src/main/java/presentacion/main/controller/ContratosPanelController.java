@@ -7,9 +7,11 @@ import com.google.inject.Singleton;
 
 import entities.ContratoAlquiler;
 import entities.EstadoContrato;
+import filtros.ContratoAlquilerFiltro;
 import model.ContratoService;
 import presentacion.controller.ContratoAlquilerController;
 import presentacion.controller.ContratoVentaController;
+import presentacion.controller.filtros.ContratoAlquilerFiltroController;
 import presentacion.main.vista.ContratosPanel;
 import presentacion.table.ContratosTableModel;
 
@@ -21,8 +23,12 @@ public class ContratosPanelController {
 	@Inject private ContratoVentaController contratoVenController;
 	@Inject private ContratoService contratoService;
 	
+	@Inject private ContratoAlquilerFiltroController alquilerfiltro; 
+	
 	@Inject private ContratosTableModel contratosTable;	
 	@Inject private ContratosTableModel contratosTable2;
+	
+	ContratoAlquilerFiltro currentAlqFiltro;
 	
 	@Inject
 	public ContratosPanelController(ContratosPanel view) {
@@ -35,6 +41,9 @@ public class ContratosPanelController {
 		this.view.getBtnAgregarContratoAlq().addActionListener(e -> agregarContratoAlq());
 		this.view.getBtnAgregarContratoVen().addActionListener(e -> agregarContratoVen());
 		this.view.getBtnEditarContrato().addActionListener(e -> editarContrato());
+		
+		this.view.getBtnAplicarFiltro().addActionListener(e -> aplicarFiltroAlq());
+		this.view.getBtnRemoverFiltro().addActionListener(e -> removerFiltroAlq());
 	}
 	
 	public void showView(){
@@ -95,11 +104,26 @@ public class ContratosPanelController {
 		}
 	}
 	
+	private void aplicarFiltroAlq() {
+		alquilerfiltro.setModeNew();
+		alquilerfiltro.showView();
+		
+		currentAlqFiltro = alquilerfiltro.getFiltro();
+		
+		fillTableContratosAlquiler();
+	}
+	
+	private void removerFiltroAlq() {
+		currentAlqFiltro = null;
+		fillTableContratosAlquiler();
+	}
+	
 	private void fillTableContratosAlquiler() {
 		
 		this.contratosTable2.clean();
 		this.view.getTablaContratoAlquiler().setModel(contratosTable2);
-		contratoService.getContratosAlquiler().forEach(c -> contratosTable2.addRow(c));
+		if(currentAlqFiltro == null)contratoService.getContratosAlquiler().forEach(c -> contratosTable2.addRow(c));
+		else contratoService.getcontratosAlquilerBy(currentAlqFiltro).forEach(c -> contratosTable2.addRow(c));
 		
 		this.view.getTablaContratoAlquiler().setColumnModel(contratosTable2.getTableColumnModel());
 		this.view.getTablaContratoAlquiler().getTableHeader().setReorderingAllowed(false);

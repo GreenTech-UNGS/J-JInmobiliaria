@@ -14,6 +14,7 @@ import entities.Contrato;
 import entities.ContratoAlquiler;
 import entities.ContratoVenta;
 import entities.Persona;
+import filtros.ContratoAlquilerFiltro;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.ContratoDao;
 
@@ -67,6 +68,18 @@ public class ContratoDaoHibernate extends DaoHibernate<Contrato> implements Cont
 		initTransaction();
 		
 		Criteria q = sesion.createCriteria(ContratoVenta.class);
+		
+		finishTransaction();
+		
+		return q.list();
+	}
+
+	@Override
+	public List<ContratoAlquiler> getAllBy(ContratoAlquilerFiltro filtro) {
+		initTransaction();
+		
+		Criteria q = sesion.createCriteria(Contrato.class)
+				.add(Restrictions.eqOrIsNull("propiedad", filtro.getPropiedad()));
 		
 		finishTransaction();
 		
