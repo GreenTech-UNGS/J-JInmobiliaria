@@ -21,6 +21,7 @@ public class PropiedadFiltroView extends JDialog {
 	private JButton btnFiltrar;
 	private JComboBox cbProvincia;
 	private JComboBox cbLocalidad;
+	private JComboBox cbMoneda;
 	
 	public PropiedadFiltroView(){
 		super();
@@ -59,7 +60,7 @@ public class PropiedadFiltroView extends JDialog {
 		lblMoneda.setBounds(203, 146, 46, 14);
 		getContentPane().add(lblMoneda);
 		
-		JComboBox cbMoneda = new JComboBox();
+		cbMoneda = new JComboBox();
 		cbMoneda.setBounds(259, 143, 105, 20);
 		getContentPane().add(cbMoneda);
 		
@@ -152,6 +153,13 @@ public class PropiedadFiltroView extends JDialog {
 	public void setCbLocalidad(JComboBox cbLocalidad) {
 		this.cbLocalidad = cbLocalidad;
 	}
-	
-	
+
+	public JComboBox getCbMoneda() {
+		return cbMoneda;
+	}
+
+	public void setCbMoneda(JComboBox cbMoneda) {
+		this.cbMoneda = cbMoneda;
+	}
+
 }

@@ -1,5 +1,8 @@
 package presentacion.controller.filtros;
 
-public class PropiedadFiltroController {
+import presentacion.vista.filtros.PropiedadFiltroView;
 
+public class PropiedadFiltroController {
+	
+	private PropiedadFiltroView view;
 }

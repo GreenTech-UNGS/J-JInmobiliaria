@@ -20,7 +20,7 @@ public class Precio {
 	@Enumerated(EnumType.ORDINAL)
 	private Moneda moneda;
 	
-	private Precio() {
+	public Precio() {
 		
 	}
 	

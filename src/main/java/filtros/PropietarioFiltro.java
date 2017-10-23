@@ -44,8 +44,4 @@ public class PropietarioFiltro {
 		this.tipoCredencial = tipoCredencial;
 	}
 	
-	
-	
-	
-	
 }
