@@ -54,7 +54,12 @@ public class MovimientoCajaService {
 
 //        ret.sort((m1, m2) -> DateTime.parse(m1.getFecha()).compareTo(DateTime.parse(m2.getFecha())));
 		//TODO: También tendría que estar ordenado por Fecha
-		ret.sort((m1, m2) -> m1.getTipo().compareTo(m2.getTipo()));
+		ret.sort((m1, m2) -> {
+			String m1Str = m1.getTipo().toString() + m1.getFecha().toString();
+			String m2Str = m2.getTipo().toString() + m2.getFecha().toString();
+			return m2Str.compareTo(m1Str);
+		});
+		//Collections.reverse(ret);
 		return ret;
 	}
 	

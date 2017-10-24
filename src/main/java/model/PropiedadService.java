@@ -1,23 +1,16 @@
 package model;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+import entities.*;
+import filtros.PropiedadFiltro;
+import org.joda.time.DateTime;
+import persistencia.dao.iface.PropiedadDao;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.joda.time.DateTime;
-
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
-
-import entities.EstadoProp;
-import entities.HistoriaEstadoProp;
-import entities.Moneda;
-import entities.Precio;
-import entities.Propiedad;
-import entities.TipoOfrecimiento;
-import filtros.PropiedadFiltro;
-import persistencia.dao.iface.PropiedadDao;
 
 @Singleton
 public class PropiedadService {
@@ -41,9 +34,13 @@ public class PropiedadService {
 	
 	public void savePropiedad(Propiedad p) throws LogicaNegocioException {
 		
-		//if(existePropiedadConIdentificador(p))
-			//throw new LogicaNegocioException("Ya existe una propiedad con el identificador ingresado");
-		
+		if(existePropiedadConIdentificador(p))
+			throw new LogicaNegocioException("Ya existe una propiedad con el identificador ingresado");
+
+
+		if(p.getPropietario() == null)
+			throw new LogicaNegocioException("La propiedad debe tener un propietario");
+
 		HistoriaEstadoProp historia = new HistoriaEstadoProp();
 		historia.setEstado(EstadoProp.DISPONIBLE);
 		historia.setFecha(DateTime.now());

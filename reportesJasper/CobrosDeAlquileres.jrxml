@@ -17,9 +17,6 @@
 	<field name="interesStr" class="java.lang.String">
 		<fieldDescription><![CDATA[interesStr]]></fieldDescription>
 	</field>
-	<field name="montoStr" class="java.lang.String">
-		<fieldDescription><![CDATA[montoStr]]></fieldDescription>
-	</field>
 	<field name="propiedadStr" class="java.lang.String">
 		<fieldDescription><![CDATA[propiedadStr]]></fieldDescription>
 	</field>
@@ -29,12 +26,18 @@
 	<field name="inquilinoStr" class="java.lang.String">
 		<fieldDescription><![CDATA[inquilinoStr]]></fieldDescription>
 	</field>
-	<field name="montoTotalStr" class="java.lang.String">
-		<fieldDescription><![CDATA[montoTotalStr]]></fieldDescription>
-	</field>
 	<field name="estadoStr" class="java.lang.String">
 		<fieldDescription><![CDATA[estadoStr]]></fieldDescription>
 	</field>
+	<field name="montoTotal" class="java.lang.Double">
+		<fieldDescription><![CDATA[montoTotal]]></fieldDescription>
+	</field>
+	<field name="monto" class="java.lang.Double">
+		<fieldDescription><![CDATA[monto]]></fieldDescription>
+	</field>
+	<variable name="montoTotal1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{montoTotal}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -62,7 +65,7 @@
 				<text><![CDATA[Cobros de Alquileres]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="-6" y="3" width="330" height="43" forecolor="#FFFFFF" uuid="b2d50147-7d08-42b6-86a4-60c79f7d8f8f"/>
+				<reportElement x="-5" y="-4" width="330" height="43" forecolor="#FFFFFF" uuid="b2d50147-7d08-42b6-86a4-60c79f7d8f8f"/>
 				<textElement>
 					<font size="34" isBold="true"/>
 				</textElement>
@@ -128,35 +131,47 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="63" splitType="Stretch">
+		<band height="28" splitType="Stretch">
 			<textField>
-				<reportElement x="55" y="10" width="159" height="30" uuid="a2831ca8-9148-4dbc-8a09-213ef5136eef"/>
+				<reportElement x="55" y="3" width="159" height="20" uuid="a2831ca8-9148-4dbc-8a09-213ef5136eef"/>
 				<textFieldExpression><![CDATA[$F{propiedadStr}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="218" y="10" width="120" height="30" uuid="4afec545-1b7f-4b98-8442-62156570d0b4"/>
+				<reportElement x="218" y="4" width="120" height="20" uuid="4afec545-1b7f-4b98-8442-62156570d0b4"/>
 				<textFieldExpression><![CDATA[$F{inquilinoStr}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="347" y="10" width="80" height="30" uuid="73fb5886-c3f3-4a89-a9a5-05371f45aee6"/>
-				<textFieldExpression><![CDATA[$F{montoStr}]]></textFieldExpression>
+			<textField pattern="###,###,##0.00">
+				<reportElement x="347" y="6" width="80" height="20" uuid="73fb5886-c3f3-4a89-a9a5-05371f45aee6"/>
+				<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="10" width="50" height="30" uuid="2babe53e-832c-47bf-bdd1-4e28cd8536be"/>
+				<reportElement x="-6" y="1" width="50" height="19" uuid="2babe53e-832c-47bf-bdd1-4e28cd8536be"/>
 				<textFieldExpression><![CDATA[$F{idContrato}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="430" y="10" width="72" height="30" uuid="b9abb4f8-5f21-49de-81cb-bacecbbb030f"/>
+				<reportElement x="430" y="7" width="72" height="20" uuid="b9abb4f8-5f21-49de-81cb-bacecbbb030f"/>
 				<textFieldExpression><![CDATA[$F{interesStr}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="503" y="11" width="72" height="30" uuid="dfe0cd7c-1e46-4344-bbb7-b4cb505c3f8e"/>
-				<textFieldExpression><![CDATA[$F{montoTotalStr}]]></textFieldExpression>
+			<textField pattern="####,###,##0.00">
+				<reportElement x="503" y="8" width="72" height="19" uuid="dfe0cd7c-1e46-4344-bbb7-b4cb505c3f8e"/>
+				<textFieldExpression><![CDATA[$F{montoTotal}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="52" splitType="Stretch">
+			<textField pattern="####,###,##0.00#">
+				<reportElement x="440" y="11" width="130" height="21" uuid="0d416313-2f1b-4daf-947a-ec3f5b8e2c5d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{montoTotal1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="332" y="12" width="100" height="17" uuid="b2bf7be2-a9aa-45e9-99be-e9c69a70374d"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch">

@@ -1,31 +1,20 @@
 package model;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+import dto.CobrosDeAlquileresDTO;
+import dto.PendientesPropietariosDTO;
+import entities.*;
+import entities.PagoPropietario.EstadoPago;
+import org.joda.time.DateTime;
+import org.joda.time.LocalTime;
+import persistencia.dao.iface.IngresoDao;
+import persistencia.dao.iface.PropietarioDao;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.joda.time.DateTime;
-import org.joda.time.LocalTime;
-
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
-
-import dto.CobrosDeAlquileresDTO;
-import dto.PendientesPropietariosDTO;
-import entities.ContratoVenta;
-import entities.CuotaAlquiler;
-import entities.EstadoCuota;
-import entities.HistoriaEstadoCuota;
-import entities.IngresoAlquiler;
-import entities.InteresPunitorioCuota;
-import entities.PagoPropietario;
-import entities.PagoPropietario.EstadoPago;
-import entities.Persona;
-import entities.Precio;
-import entities.Propiedad;
-import persistencia.dao.iface.IngresoDao;
-import persistencia.dao.iface.PropietarioDao;
 
 @Singleton
 public class PagosCobrosService {
@@ -156,12 +145,12 @@ public class PagosCobrosService {
 								+ " " +cuota.getContrato().getPropiedad().getAltura()
 								+ " Piso:" +cuota.getContrato().getPropiedad().getPiso()
 								+ " Dto.:" +cuota.getContrato().getPropiedad().getDpto();
-			String monto = cuota.getMonto().getMonto()
-							+ cuota.getMonto().getMoneda().toString();
 			String estado = cuotaService.getEstadoOf(cuota).toString();
+			String moneda = cuota.getMonto().getMoneda().toString();
 			InteresPunitorioCuota interes = cuotaService.getInteresOf(cuota);
 			String interesStr  = "";
 			Double montoTotal = cuota.getMonto().getMonto();
+			Double monto = cuota.getMonto().getMonto();
 			if(interes != null){
 				interesStr = interes.getMonto().getMonto()+ " "
 							+ interes.getMonto().getMoneda().toString();
@@ -172,11 +161,12 @@ public class PagosCobrosService {
 			toAdd.setIdContrato(identificadorContrato);
 			toAdd.setInquilinoStr(nombreInquilino);
 			toAdd.setPropiedadStr(propiedad);
+			toAdd.setMonedaStr(moneda);
 			toAdd.setAnioMes(cuota.getAnioMes().toString());
-			toAdd.setMontoStr(monto);
+			toAdd.setMonto(monto);
+			toAdd.setMontoTotal(montoTotal);
 			toAdd.setEstadoStr(estado);
 			toAdd.setInteresStr(interesStr);
-			toAdd.setMontoTotalStr(montoTotal.toString());
 
 			cobros.add(toAdd);
 		}

@@ -1,14 +1,12 @@
 package presentacion.table;
 
-import java.awt.Color;
-import java.awt.Component;
-
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
-
 import entities.Egreso;
 import entities.Ingreso;
 import entities.MovimientoCaja;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.*;
 
 public class MovimientosCajaTableModel extends BaseTableModel<MovimientoCaja>{
 
@@ -33,7 +31,7 @@ public class MovimientosCajaTableModel extends BaseTableModel<MovimientoCaja>{
 	@Override
 	protected Object[] toRow(MovimientoCaja t) {
 		
-		String fecha = t.getFecha().toString("YYYY-MM-DD HH:mm");
+		String fecha = t.getFecha().toString("dd-MM-yyyy");
 		String monto = t.getMonto().getMonto() + " " + t.getMonto().getMoneda().toString();
 		String descripcion = t.getDetalle();
 		

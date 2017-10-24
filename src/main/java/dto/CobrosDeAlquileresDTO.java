@@ -6,17 +6,28 @@ public class CobrosDeAlquileresDTO {
 	String anioMes;
     String propiedadStr;
     String inquilinoStr;
-    String montoStr;
+    Double monto;
     String interesStr;
     String estadoStr;
-    String montoTotalStr;
+    Double montoTotal;
+    String monedaStr;
 
-    public String getMontoTotalStr() {
-        return montoTotalStr;
+
+    public String getMonedaStr() {
+        return monedaStr;
     }
 
-    public void setMontoTotalStr(String montoTotalStr) {
-        this.montoTotalStr = montoTotalStr;
+    public void setMonedaStr(String monedaStr) {
+        this.monedaStr = monedaStr;
+    }
+
+
+    public Double getMontoTotal() {
+        return montoTotal;
+    }
+
+    public void setMontoTotal(Double montoTotal) {
+        this.montoTotal = montoTotal;
     }
 
     public String getInteresStr() {
@@ -43,7 +54,6 @@ public class CobrosDeAlquileresDTO {
         this.estadoStr = estadoStr;
     }
 
-    
 	public String getIdContrato() {
 		return idContrato;
 	}
@@ -62,11 +72,9 @@ public class CobrosDeAlquileresDTO {
 	public void setInquilinoStr(String inquilinoStr) {
 		this.inquilinoStr = inquilinoStr;
 	}
-	public String getMontoStr() {
-		return montoStr;
-	}
-	public void setMontoStr(String montoStr) {
-		this.montoStr = montoStr;
+	public Double getMonto() { return monto;}
+	public void setMonto(Double monto) {
+		this.monto = monto;
 	}
 
 }

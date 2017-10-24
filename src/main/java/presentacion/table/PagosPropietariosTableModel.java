@@ -1,8 +1,8 @@
 package presentacion.table;
 
-import java.text.DecimalFormat;
-
 import entities.PagoPropietario;
+
+import java.text.DecimalFormat;
 
 public class PagosPropietariosTableModel extends BaseTableModel<PagoPropietario>{
 
@@ -15,7 +15,7 @@ public class PagosPropietariosTableModel extends BaseTableModel<PagoPropietario>
 	
 	@Override
 	protected Object[] toRow(PagoPropietario t) {
-		
+
 		String propietarioStr = t.getPropietario().getPersona().getTipoCred().toString() + " " +
 						t.getPropietario().getPersona().getCredencial();
 		

@@ -21,8 +21,8 @@ public class IngresoMapper implements Mapper<Ingreso>{
 		double monto = Double.parseDouble(view.getTextMonto().getText());
 		Moneda moneda = view.getMonedaModel().getSelected();
 		String descripcion = view.getTextDetalle().getText();
-		
-		t.setFecha(DateTime.now());
+
+		t.setFecha(new DateTime(view.getDateChooser().getDate()));
 		t.setDetalle(descripcion);
 		t.getMonto().setMoneda(moneda);
 		t.getMonto().setMonto(monto);
