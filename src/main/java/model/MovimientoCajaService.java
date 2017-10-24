@@ -1,21 +1,15 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.joda.time.DateTime;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
 import dto.MovimientoDeCajaDTO;
-import entities.Egreso;
-import entities.Ingreso;
-import entities.Moneda;
-import entities.MovimientoCaja;
-import entities.Precio;
+import entities.*;
+import org.joda.time.DateTime;
 import persistencia.dao.iface.EgresoDao;
 import persistencia.dao.iface.IngresoDao;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Singleton
 public class MovimientoCajaService {
@@ -41,20 +35,20 @@ public class MovimientoCajaService {
 			mov.setTipo(MovimientoDeCajaDTO.Tipo.Ingreso);
 			mov.setMonto(ingreso.getMonto().getMonto());
 			mov.setMonedaStr(ingreso.getMonto().getMoneda().toString());
-			mov.setMontoStr(ingreso.getMonto().toString());
+			//mov.setMontoStr(ingreso.getMonto().toString());
 			mov.setDetalleStr(ingreso.getDetalle());
-			mov.setFecha(ingreso.getFecha().toString());
+			mov.setFecha(ingreso.getFecha().toString("dd-MM-yyyy"));
 			ret.add(mov);
 		}
         for (Egreso egreso : engresos
                 ) {
             MovimientoDeCajaDTO mov = new MovimientoDeCajaDTO();
             mov.setTipo(MovimientoDeCajaDTO.Tipo.Egreso);
-            mov.setMonto(egreso.getMonto().getMonto());
+            mov.setMonto(egreso.getMonto().getMonto()*-1);
             mov.setMonedaStr(egreso.getMonto().getMoneda().toString());
-            mov.setMontoStr(egreso.getMonto().toString());
+            //mov.setMontoStr(egreso.getMonto().getMonto());
             mov.setDetalleStr(egreso.getDetalle());
-            mov.setFecha(egreso.getFecha().toString());
+            mov.setFecha(egreso.getFecha().toString("dd-MM-yyyy"));
             ret.add(mov);
         }
 

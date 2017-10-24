@@ -26,9 +26,7 @@ public class MovimientoDeCajaDTO {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
+    public void setFecha(String fecha) { this.fecha = fecha; }
 
     public String getDetalleStr() {
         return detalleStr;
