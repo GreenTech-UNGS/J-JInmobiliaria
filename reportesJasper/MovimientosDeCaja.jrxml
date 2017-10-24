@@ -123,7 +123,7 @@
 	<detail>
 		<band height="24">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="22" width="555" height="1" uuid="e99839bb-c152-4e4c-83c0-bc1dd73f8a36"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="23" width="555" height="1" uuid="e99839bb-c152-4e4c-83c0-bc1dd73f8a36"/>
 			</line>
 			<textField pattern="###,###,##0.00#">
 				<reportElement x="431" y="3" width="124" height="17" uuid="25a70277-7551-4ed7-a929-de46aab97c76"/>
@@ -140,7 +140,7 @@
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="114" y="3" width="236" height="19" uuid="0fd29b48-1370-4663-b883-2d511e966453"/>
+				<reportElement x="114" y="3" width="236" height="17" uuid="0fd29b48-1370-4663-b883-2d511e966453"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
