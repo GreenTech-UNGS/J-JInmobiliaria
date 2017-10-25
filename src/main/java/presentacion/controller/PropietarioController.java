@@ -91,6 +91,13 @@ public class PropietarioController {
 		binder.fillFields();
 		telTable.clean();
 		
+		fillTables();
+		view.setTitle("Agregar propietario");
+		view.getBtnGuardar().setVisible(true);
+		view.getBtnCancelar().setVisible(true);
+		view.getBtnGuardarCambios().setVisible(false);
+		fillCombos();
+		
 		setEditCampos(true);
 	}
 	

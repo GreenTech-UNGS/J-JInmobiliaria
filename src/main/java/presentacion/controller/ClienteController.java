@@ -73,6 +73,13 @@ public class ClienteController {
 		clienteMapper.fillFields(currentCliente);
 		telTable.clean();
 		
+		fillTables();
+		view.setTitle("Agregar cliente");
+		view.getBtnGuardar().setVisible(true);
+		view.getBtnCancelar().setVisible(true);
+		view.getBtnGuardarCambios().setVisible(false);
+		fillCombos();
+		
 		setEditCampos(true);
 	}
 	
