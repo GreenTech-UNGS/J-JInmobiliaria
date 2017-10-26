@@ -148,6 +148,7 @@ public class PagosPanelController {
 		reporte.mostrar();
 		
 	}
+
 	private void generaReporteMovimientos() {
 		List<MovimientoDeCajaDTO> dtos = movimientoService.getReporteMovimientoDeCaja();
 		ReporteMovimientosDeCaja reporte = new ReporteMovimientosDeCaja(dtos);
