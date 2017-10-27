@@ -51,15 +51,19 @@ public abstract class DaoHibernate<T> implements Dao<T>{
 	public abstract List<T> getAll();
 	
 	protected synchronized void initTransaction(){
+		
 		sesion = conexion.getSession();
-		transaction = sesion.beginTransaction();
+		
+		transaction = sesion.getTransaction();
+		
+		transaction.begin();
 		
 	}
 	
 	protected synchronized void finishTransaction(){
 		
 		transaction.commit();
-		sesion.flush();
+		if(sesion.isOpen())sesion.close();
 		
 	}
 	

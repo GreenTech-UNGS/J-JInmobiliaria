@@ -29,9 +29,11 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 		
 		Criteria q = sesion.createCriteria(Propiedad.class);
 		
+		List<Propiedad> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		return toRet;
 	}
 	
 	@Override
