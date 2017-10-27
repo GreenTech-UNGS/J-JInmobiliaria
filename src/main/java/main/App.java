@@ -4,6 +4,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import misc.ProdModule;
+import presentacion.main.controller.LoginController;
 import presentacion.main.controller.MainViewController;
 
 /**
@@ -19,7 +20,7 @@ public class App{
     	Injector injector = Guice.createInjector(new ProdModule());
     	
     	
-    	MainViewController controlador = injector.getInstance(MainViewController.class);
+    	LoginController controlador = injector.getInstance(LoginController.class);
 		controlador.showView();
 	}
 }
