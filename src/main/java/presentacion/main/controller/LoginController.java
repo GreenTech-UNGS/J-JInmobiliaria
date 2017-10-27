@@ -1,5 +1,8 @@
 package presentacion.main.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -17,15 +20,22 @@ public class LoginController {
 	@Inject UsuarioService userService;
 	@Inject MessageShow msgShw;
 	
+	private List<Runnable> loginListeners;
+	
 	@Inject
 	private LoginController(LoginView view) {
 		
 		this.view = view;
+		this.loginListeners = new ArrayList<>();
 		
 		this.view.getBtnLogin().addActionListener(e -> login());
 		
 	}
 
+	public void addLoginListener(Runnable r) {
+		this.loginListeners.add(r);
+	}
+	
 	public void showView() {
 		this.view.show();
 	}
@@ -33,13 +43,14 @@ public class LoginController {
 	private void login() {
 		
 		String nombre = view.getTextUsuario().getText();
-		String password = view.getTextUsuario().getText();
+		String password = view.getTextPass().getText();
 		
 		try {
 			userService.logearUsuario(nombre, password);
 
-			this.mainViewController.showView();
+			this.loginListeners.forEach(l -> l.run());
 			
+			this.mainViewController.showView();		
 			this.view.dispose();
 		} catch (LogicaNegocioException e) {
 			msgShw.showErrorMessage(e.getMessage(), "Error de negocio");

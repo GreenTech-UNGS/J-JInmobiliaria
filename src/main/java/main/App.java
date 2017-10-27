@@ -20,12 +20,12 @@ public class App{
     	LoginController controlador = injector.getInstance(LoginController.class);
     	PermisosService permisos = injector.getInstance(PermisosService.class);
 
-    	permisos.setupViews(injector
+    	controlador.addLoginListener(() -> permisos.setupViews(injector
     			.getAllBindings()
     			.values()
     			.stream()
     			.map(v -> v.getProvider().get())
-    			.collect(Collectors.toList()));
+    			.collect(Collectors.toList())));
     	
 		controlador.showView();
 	}

@@ -17,6 +17,7 @@ import persistencia.dao.hibernate.PersonaDaoHibernate;
 import persistencia.dao.hibernate.PropiedadDaoHibernate;
 import persistencia.dao.hibernate.PropietarioDaoHibernate;
 import persistencia.dao.hibernate.ReservaDaoHibernate;
+import persistencia.dao.hibernate.UsuarioDaoHibernate;
 import persistencia.dao.iface.ClienteDao;
 import persistencia.dao.iface.ContratoDao;
 import persistencia.dao.iface.CuotaDao;
@@ -29,6 +30,7 @@ import persistencia.dao.iface.PersonaDao;
 import persistencia.dao.iface.PropiedadDao;
 import persistencia.dao.iface.PropietarioDao;
 import persistencia.dao.iface.ReservaDAO;
+import persistencia.dao.iface.UsuarioDao;
 import persistencia.dao.mapas.LocalizationDaoGoogleMaps;
 import presentacion.controller.ClienteController;
 import presentacion.controller.ContratoAlquilerController;
@@ -76,6 +78,7 @@ public class ProdModule implements Module{
 		binder.bind(ReservaDAO.class).to(ReservaDaoHibernate.class).in(Singleton.class);
 		binder.bind(IngresoDao.class).to(IngresoDaoHibernate.class).in(Singleton.class);
 		binder.bind(EgresoDao.class).to(EgresoDaoHibernate.class).in(Singleton.class);
+		binder.bind(UsuarioDao.class).to(UsuarioDaoHibernate.class).in(Singleton.class);
 
 		binder.bind(LocalizationDao.class).to(LocalizationDaoGoogleMaps.class).in(Singleton.class);
 		
