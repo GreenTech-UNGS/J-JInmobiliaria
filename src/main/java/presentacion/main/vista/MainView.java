@@ -29,7 +29,7 @@ public class MainView {
     		PagosPanel panelPagos,
     		InmobiliariaPanel panelInmobiliaria,
     		MenuPanel panelMenu,
-    		ReportesPanel panelReportes) {  
+    		CitasPanel panelCitas) {  
     	
     	frmLpezLpez = new JFrame();
         frmLpezLpez.setBackground(new Color(255, 255, 255));
@@ -81,7 +81,7 @@ public class MainView {
         jCalendar.setWeekOfYearVisible(false);
         panelCalendar.add(jCalendar);
         
-        panelContainer.add(panelReportes, "name_1283074869718816");
+        panelContainer.add(panelCitas, "name_1283074869718816");
 
         JLabel lblNotificaciones = new JLabel("Notificaciones:");
         lblNotificaciones.setFont(new Font("Tahoma", Font.BOLD, 12));

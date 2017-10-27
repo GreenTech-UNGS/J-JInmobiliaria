@@ -15,7 +15,8 @@ public class MenuPanelController {
 	@Inject private PagosPanelController pagosPanelController;
 	@Inject private PropiedadesPanelController propiedadesPanelController;
 	@Inject private PersonasPanelController inquilinosPanelController;
-	@Inject private ReportePanelController reportePanelController;
+	//@Inject private ReportePanelController reportePanelController;
+	@Inject private CitasPanelController citasPanelController;
 	
 	@Inject
 	MenuPanelController(MenuPanel view) {
@@ -30,7 +31,7 @@ public class MenuPanelController {
 		
 		view.getBtnPagos().addActionListener(e -> cambiaPanelPagos());
       
-		view.getBtnReportes().addActionListener(e -> cambiaPanelReportes());
+		view.getBtnReportes().addActionListener(e -> cambiaPanelCitas());
      
 		view.getBtnInmobiliaria().addActionListener(e -> cambiaPanelInmobiliaria());
 	  
@@ -42,16 +43,21 @@ public class MenuPanelController {
 	
 	private void cambiaPanelInmobiliaria() {
 		hideAll();
-		System.out.println("asd");
 		inmobiliariaPanelController.showView();
 		inmobiliariaPanelController.actualize();
 	}
+	
+	private void cambiaPanelCitas(){
+		hideAll();
+		citasPanelController.showView();
+		citasPanelController.actualize();
+	}
 
-	private void cambiaPanelReportes() {
+	/*private void cambiaPanelReportes() {
 		hideAll();
 		reportePanelController.showView();
 		reportePanelController.actualize();
-	}
+	}*/
 
 	private void cambiaPanelPagos() {
 		hideAll();
@@ -83,7 +89,8 @@ public class MenuPanelController {
 		pagosPanelController.actualize();
 		propiedadesPanelController.actualize();
 		inquilinosPanelController.actualize();
-		reportePanelController.actualize();
+		citasPanelController.actualize();
+		//reportePanelController.actualize();
 	}
 	
 	private void hideAll(){
@@ -92,6 +99,7 @@ public class MenuPanelController {
 		pagosPanelController.hideView();
 		propiedadesPanelController.hideView();
 		inquilinosPanelController.hideView();
-		reportePanelController.hideView();
+		citasPanelController.hideView();
+		//reportePanelController.hideView();
 	}
 }

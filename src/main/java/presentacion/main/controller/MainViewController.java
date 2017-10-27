@@ -25,6 +25,8 @@ public class MainViewController {
 	public void showView(){
 		this.view.show();
 	}
+	
+	
 
 
 }
