@@ -27,6 +27,11 @@ public class PropiedadService {
 		return propiedadDao.getAll();
 	}
 	
+	public List<TipoHabitacion> getAllTipoHabitacion(){
+		System.out.println(propiedadDao.getAllTipoHabitacion().size());
+		return propiedadDao.getAllTipoHabitacion();
+	}
+	
 	public boolean existePropiedadConIdentificador(Propiedad t) {
 		
 		return propiedadDao.existePropiedadConIdentificador(t.getIdentificador());		

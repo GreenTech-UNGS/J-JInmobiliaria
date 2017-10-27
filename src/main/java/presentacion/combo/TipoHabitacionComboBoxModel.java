@@ -13,9 +13,7 @@ public class TipoHabitacionComboBoxModel extends BaseComboBoxModel<TipoHabitacio
 
 	@Override
 	public void agregaElemento(TipoHabitacion element) {
-		String str = element.toString().toLowerCase();
-		str = str.substring(0, 1).toUpperCase() + str.substring(1);
-		str = str.replaceAll("_", " ");
+		String str = element.getNombre();
 		
 		this.addElement(str);
 		values.put(str, element);
@@ -30,9 +28,7 @@ public class TipoHabitacionComboBoxModel extends BaseComboBoxModel<TipoHabitacio
 		else{
 			
 
-			String str = toSelect.toString().toLowerCase();
-			str = str.substring(0, 1).toUpperCase() + str.substring(1);
-			str = str.replaceAll("_", " ");
+			String str = toSelect.getNombre();
 		
 			this.setSelectedItem(str);
 		

@@ -45,6 +45,7 @@
 		<mapping class="entities.Usuario" />		
 		<mapping class="entities.Habitacion" />	
 		<mapping class="entities.PropiedadOtrosDatos" />
+		<mapping class="entities.TipoHabitacion" />
 		
 				
     </session-factory>

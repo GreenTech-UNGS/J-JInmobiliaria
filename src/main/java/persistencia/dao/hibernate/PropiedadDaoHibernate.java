@@ -9,6 +9,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.Propiedad;
+import entities.TipoHabitacion;
 import filtros.PropiedadFiltro;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.PropiedadDao;
@@ -69,5 +70,16 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 		finishTransaction();
 		
 		return q.list();		
+	}
+
+	@Override
+	public List<TipoHabitacion> getAllTipoHabitacion() {
+		initTransaction();
+		
+		Criteria q = sesion.createCriteria(TipoHabitacion.class);
+		
+		finishTransaction();
+		
+		return q.list();
 	}
 }

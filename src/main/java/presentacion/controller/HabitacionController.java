@@ -7,6 +7,8 @@ import com.google.inject.Singleton;
 
 import entities.Habitacion;
 import entities.TipoHabitacion;
+import model.PropiedadService;
+import persistencia.dao.iface.PropiedadDao;
 import presentacion.mappers.HabitacionMapper;
 import presentacion.vista.HabitacionForm;
 
@@ -16,6 +18,7 @@ public class HabitacionController {
 	private HabitacionForm view;
 	
 	@Inject HabitacionMapper mapper;
+	@Inject PropiedadService propiedadService; 
 
 	private Habitacion currentHabitacion;
 	private boolean okWasPressed;
@@ -26,7 +29,6 @@ public class HabitacionController {
 		
 		this.view.getBtnAceptar().addActionListener(e -> aceptar());
 		
-		fillCombo();
 	}
 
 	private void aceptar() {
@@ -35,7 +37,9 @@ public class HabitacionController {
 	}
 
 	public void showView() {
+		fillCombo();
 		this.view.setVisible(true);
+
 	}
 	
 	public Habitacion getHabitacion() {
@@ -52,14 +56,13 @@ public class HabitacionController {
 	public void setModeNew() {
 		okWasPressed = false;
 		currentHabitacion = new Habitacion();
-		currentHabitacion.setTipo(TipoHabitacion.Otro);
 		
 		mapper.fillFields(currentHabitacion);
 		
 	}
 	
 	private void fillCombo() {
-		this.view.getComboModel().actualize(Arrays.asList(TipoHabitacion.values()));
+		this.view.getComboModel().actualize(propiedadService.getAllTipoHabitacion());
 		
 	}
 	
