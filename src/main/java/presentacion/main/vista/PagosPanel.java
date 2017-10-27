@@ -13,10 +13,13 @@ import javax.swing.JTable;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import entities.Rol;
+import model.permisos.PermissableField;
+import model.permisos.PermissionView;
 import presentacion.table.MovimientosCajaTableModel;
 
 @Singleton
-public class PagosPanel extends JPanel{
+public class PagosPanel extends JPanel implements PermissionView{
 	
 	private JButton btnRegistrarCobro;
 	private JTable tableCuotas;
@@ -32,13 +35,17 @@ public class PagosPanel extends JPanel{
 	private MovimientosCajaTableModel tableMovimientosModel;
 	private JButton btnAplicarFiltroAlq;
 	private JButton btnRemoverFiltroAlq;
+	
+	@PermissableField(roles = { Rol.ADMINISTRADOR })
+	private JPanel panelMovimientosDeCaja;
+	private JTabbedPane tabbedPane;
 
 	@Inject
 	private PagosPanel() {
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
-	    JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+	    tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 	    this.add(tabbedPane);
 
         JPanel panelPagoAlq = new JPanel();
@@ -110,7 +117,7 @@ public class PagosPanel extends JPanel{
         Component glue_2 = Box.createGlue();
         bontones.add(glue_2);
         
-        JPanel panelMovimientosDeCaja = new JPanel();
+        panelMovimientosDeCaja = new JPanel();
         tabbedPane.addTab("Movimientos de caja", null, panelMovimientosDeCaja, null);
         panelMovimientosDeCaja.setLayout(new BoxLayout(panelMovimientosDeCaja, BoxLayout.Y_AXIS));
                 
@@ -201,6 +208,14 @@ public class PagosPanel extends JPanel{
 
 	public JButton getBtnRemoverFiltroAlq() {
 		return btnRemoverFiltroAlq;
+	}
+
+	@Override
+	public void ocultarComponente(Object o) {
+		Component componente = (Component) o; 
+		
+		tabbedPane.remove(componente);
+		componente.setVisible(false);
 	}
 
 }
