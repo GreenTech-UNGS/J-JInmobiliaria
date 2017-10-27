@@ -4,12 +4,15 @@ import java.awt.Component;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+
+import model.permisos.PermissionView;
 
 @Singleton
 public class ContratosVentaTab extends JPanel{

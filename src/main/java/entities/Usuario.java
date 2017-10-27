@@ -1,7 +1,14 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +27,15 @@ public class Usuario{
 	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Persona persona;
 	
+	@Column
+	@Enumerated(EnumType.STRING)
+	@ElementCollection(targetClass = Rol.class)
+	private List<Rol> roles;
+	
+	public Usuario() {
+		roles = new ArrayList<>();
+	}
+	
 	public String getPswHash() {
 		return pswHash;
 	}
@@ -34,6 +50,14 @@ public class Usuario{
 	}
 	public int getID() {
 		return ID;
+	}
+
+	public List<Rol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
 	}
 	
 	
