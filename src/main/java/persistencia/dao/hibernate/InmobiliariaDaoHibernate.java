@@ -29,8 +29,11 @@ public class InmobiliariaDaoHibernate extends DaoHibernate<Inmobiliaria> impleme
 		initTransaction();
 		Criteria q = sesion.createCriteria(Inmobiliaria.class);
 		
+		List<Inmobiliaria> toRet = q.list();
+		
 		finishTransaction();
-		return q.list();
+		
+		return toRet;
 	}
 
 	@Override

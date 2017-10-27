@@ -31,9 +31,12 @@ public class CuotaDaoHibernate extends DaoHibernate<CuotaAlquiler> implements Cu
 		
 		Criteria q = sesion.createCriteria(CuotaAlquiler.class);
 		
+		List<CuotaAlquiler> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 
 	@Override
@@ -47,15 +50,17 @@ public class CuotaDaoHibernate extends DaoHibernate<CuotaAlquiler> implements Cu
 		
 		Criteria q = sesion.createCriteria(InteresPunitorioCuota.class)
 				.add(Restrictions.eq("cuota", c));
+
+		List<InteresPunitorioCuota> toRet = q.list();
 		
 		finishTransaction();
 		
-		List<InteresPunitorioCuota> res = q.list();
+		actualizeList(toRet);
 		
-		if(res.isEmpty())
+		if(toRet.isEmpty())
 			return null;
 		
-		return res.get(0);
+		return toRet.get(0);
 	}
 	
 	@Override
@@ -65,8 +70,12 @@ public class CuotaDaoHibernate extends DaoHibernate<CuotaAlquiler> implements Cu
 		Criteria q = sesion.createCriteria(CuotaAlquiler.class)
 				.add(Restrictions.eq("anioMes", anioMes.toString()));
 		
+		List<CuotaAlquiler> toRet = q.list();
+		
 		finishTransaction();
-		return q.list();
+		
+		actualizeList(toRet);
+		return toRet;
 	}
 
 	@Override
@@ -86,9 +95,12 @@ public class CuotaDaoHibernate extends DaoHibernate<CuotaAlquiler> implements Cu
 		Criteria q = sesion.createCriteria(CuotaAlquiler.class)
 				.add(Restrictions.eq("contrato", c));
 		
+		List<CuotaAlquiler> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 		
 	}
 

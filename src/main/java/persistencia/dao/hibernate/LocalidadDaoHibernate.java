@@ -32,6 +32,7 @@ public class LocalidadDaoHibernate extends DaoHibernate<Localidad> implements Lo
 		
 		finishTransaction();
 		
+		actualizeList(toRet);
 		return toRet;
 	}
 
@@ -45,6 +46,7 @@ public class LocalidadDaoHibernate extends DaoHibernate<Localidad> implements Lo
 		
 		finishTransaction();
 		
+		actualizeList(toRet);
 		return toRet;
 	}
 

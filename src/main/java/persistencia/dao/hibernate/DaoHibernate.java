@@ -1,5 +1,6 @@
 package persistencia.dao.hibernate;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -66,6 +67,14 @@ public abstract class DaoHibernate<T> implements Dao<T>{
 		
 	}
 	
+	
+	protected void actualizeList(Collection<?> c){
+		c.forEach(i -> actualize(i));
+	}
+	
+	protected void actualize(Object o){
+		sesion.refresh(o);
+	}
 
 	
 	

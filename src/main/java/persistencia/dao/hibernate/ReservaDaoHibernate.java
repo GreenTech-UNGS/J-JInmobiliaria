@@ -25,9 +25,12 @@ public class ReservaDaoHibernate extends DaoHibernate<Reserva> implements Reserv
 		
 		Criteria q = sesion.createCriteria(Reserva.class);
 		
+		List<Reserva> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
     }
 
 	@Override
@@ -37,8 +40,11 @@ public class ReservaDaoHibernate extends DaoHibernate<Reserva> implements Reserv
 		Criteria q = sesion.createCriteria(Reserva.class)
 				.add(Restrictions.eq("propiedad", p));
 		
+		List<Reserva> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 }

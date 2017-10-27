@@ -26,9 +26,12 @@ public class EgresoDaoHibernate extends DaoHibernate<Egreso> implements EgresoDa
 		
 		Criteria q = sesion.createCriteria(Egreso.class);
 		
+		List<Egreso> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 
 }

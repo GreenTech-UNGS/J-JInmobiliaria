@@ -25,8 +25,11 @@ public class PersonaBasicaDaoHibernate extends DaoHibernate<PersonaBasica> imple
 		
 		Criteria q = sesion.createCriteria(PersonaBasica.class);
 		
+		List<PersonaBasica> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 }

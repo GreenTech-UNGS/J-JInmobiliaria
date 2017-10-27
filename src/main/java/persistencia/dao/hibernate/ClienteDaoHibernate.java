@@ -29,9 +29,12 @@ public class ClienteDaoHibernate extends DaoHibernate<Cliente> implements Client
 		
 		Criteria q = sesion.createCriteria(Cliente.class);
 		
+		List<Cliente> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 
 	@Override
@@ -43,11 +46,13 @@ public class ClienteDaoHibernate extends DaoHibernate<Cliente> implements Client
 				setFetchMode("persona", FetchMode.JOIN).
 				add(Restrictions.eq("persona.credencial", t.getCredencial()));
 		
-		finishTransaction();
-				
-		List<Cliente> res = q.list();
+		List<Cliente> toRet = q.list();
 		
-		return ! (res.isEmpty());
+		finishTransaction();
+		
+		actualizeList(toRet);
+
+		return ! (toRet.isEmpty());
 	}
 	
 	@Override
@@ -61,9 +66,12 @@ public class ClienteDaoHibernate extends DaoHibernate<Cliente> implements Client
 				add(Restrictions.like("persona.credencial", filtro.getCredencial(), MatchMode.ANYWHERE)).
 				add(Restrictions.eq("persona.tipoCred", filtro.getTipoCredencial()));
 		
+		List<Cliente> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 
 	@Override

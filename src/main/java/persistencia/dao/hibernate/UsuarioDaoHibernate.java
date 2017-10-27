@@ -33,9 +33,12 @@ public class UsuarioDaoHibernate extends DaoHibernate<Usuario> implements Usuari
 								Restrictions.eq("pswHash", pswMd5))
 						);
 		
+		List<Usuario> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list().isEmpty() == false;
+		actualizeList(toRet);
+		return toRet.isEmpty() == false;
 	}
 
 	@Override
@@ -49,9 +52,12 @@ public class UsuarioDaoHibernate extends DaoHibernate<Usuario> implements Usuari
 								Restrictions.eq("pswHash", pswMd5))
 						);
 		
+		List<Usuario> toRet = q.list();
+		
 		finishTransaction();
 		
-		return (Usuario) q.list().get(0);
+		actualizeList(toRet);
+		return toRet.get(0);
 	}
 
 	@Override
@@ -60,9 +66,12 @@ public class UsuarioDaoHibernate extends DaoHibernate<Usuario> implements Usuari
 		
 		Criteria q = sesion.createCriteria(Usuario.class);
 		
+		List<Usuario> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 
 }

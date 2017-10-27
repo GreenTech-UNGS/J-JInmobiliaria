@@ -33,8 +33,7 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 		
 		finishTransaction();
 		
-		toRet.forEach(p -> sesion.refresh(p));
-		
+		actualizeList(toRet);		
 		return toRet;
 	}
 	
@@ -78,6 +77,7 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 		
 		finishTransaction();
 		
+		actualizeList(toRet);
 		return toRet;		
 	}
 
@@ -91,6 +91,7 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 		
 		finishTransaction();
 		
+		actualizeList(toRet);
 		return toRet;	
 	}
 }

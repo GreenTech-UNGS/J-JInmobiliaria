@@ -26,9 +26,11 @@ public class IngresoDaoHibernate extends DaoHibernate<Ingreso> implements Ingres
 		
 		Criteria q = sesion.createCriteria(Ingreso.class);
 		
+		List<Ingreso> toRet = q.list();
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 
 }
