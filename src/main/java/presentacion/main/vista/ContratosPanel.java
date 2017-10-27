@@ -21,12 +21,10 @@ import model.permisos.PermissionView;
 
 @SuppressWarnings("serial")
 @Singleton
-public class ContratosPanel extends JPanel implements PermissionView{
+public class ContratosPanel extends JPanel{
 	
 
 	private JTabbedPane tabs;
-	
-	@PermissableField(roles = {Rol.EMPLEADO, Rol.ADMINISTRADOR})
 	private ContratosAlquilerTab contratoAlquiler;
 
 	@Inject
@@ -53,15 +51,5 @@ public class ContratosPanel extends JPanel implements PermissionView{
 		return tabs;
 	}
 
-	@Override
-	public void ocultarComponente(Object o) {
-		
-		JComponent component = (JComponent) o;
-		
-		component.setVisible(false);
-		
-		tabs.remove(component);
-		
-	}
 
 }

@@ -16,7 +16,7 @@ import presentacion.table.ClientesTableModel;
 import presentacion.table.PropietariosTableModel;
 
 @Singleton
-public class InquilinosPanelController {
+public class PersonasPanelController {
 	
 	private InquilinosPanel view;
 	
@@ -32,7 +32,7 @@ public class InquilinosPanelController {
 	@Inject private PropietariosTableModel propietariosTable;
 	
 	@Inject
-	InquilinosPanelController(InquilinosPanel view) {
+	PersonasPanelController(InquilinosPanel view) {
 		
 		this.view = view;
 		

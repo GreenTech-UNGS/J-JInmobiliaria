@@ -13,6 +13,7 @@ import javax.swing.JTable;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+@SuppressWarnings("serial")
 @Singleton
 public class InquilinosPanel extends JPanel{
 	
@@ -26,6 +27,7 @@ public class InquilinosPanel extends JPanel{
 	private JButton btnEditarPropietario;
 	private JButton btnRemoverFiltroClientes;
 	private JButton btnRemoverFiltroPropietarios;
+	private JTable tableUsuarios;
 
 	@Inject
 	private InquilinosPanel() {
@@ -96,6 +98,22 @@ public class InquilinosPanel extends JPanel{
         
         btnEditarPropietario = new JButton("Editar propietario");
         panel2.add(btnEditarPropietario);
+        
+        JPanel TabUsuarios = new JPanel();
+        tabbedPane_2.addTab("Usuarios", null, TabUsuarios, null);
+        TabUsuarios.setLayout(new BoxLayout(TabUsuarios, BoxLayout.Y_AXIS));
+        
+        JScrollPane scrollPane = new JScrollPane();
+        TabUsuarios.add(scrollPane);
+        
+        tableUsuarios = new JTable();
+        scrollPane.setColumnHeaderView(tableUsuarios);
+        
+        JPanel panelBotones = new JPanel();
+        TabUsuarios.add(panelBotones);
+        
+        JButton btnAgregarUsuario = new JButton("Agregar usuario");
+        panelBotones.add(btnAgregarUsuario);
         
 	}
 

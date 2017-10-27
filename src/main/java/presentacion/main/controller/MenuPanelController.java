@@ -14,7 +14,7 @@ public class MenuPanelController {
 	@Inject private InmobiliariaPanelController inmobiliariaPanelController;
 	@Inject private PagosPanelController pagosPanelController;
 	@Inject private PropiedadesPanelController propiedadesPanelController;
-	@Inject private InquilinosPanelController inquilinosPanelController;
+	@Inject private PersonasPanelController inquilinosPanelController;
 	@Inject private ReportePanelController reportePanelController;
 	
 	@Inject
