@@ -24,7 +24,7 @@ public class Usuario{
 	private int ID;
 	
 	private String pswHash;
-	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@OneToOne(cascade = {CascadeType.ALL})
 	private Persona persona;
 	
 	@Column

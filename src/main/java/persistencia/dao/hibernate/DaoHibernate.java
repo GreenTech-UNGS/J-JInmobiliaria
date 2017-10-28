@@ -63,7 +63,7 @@ public abstract class DaoHibernate<T> implements Dao<T>{
 	protected synchronized void finishTransaction(){
 		
 		transaction.commit();
-		if(sesion.isOpen())sesion.close();
+		//if(sesion.isOpen())sesion.close();
 		
 	}
 	

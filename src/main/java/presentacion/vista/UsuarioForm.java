@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import presentacion.combo.RolComboBoxModel;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
@@ -21,6 +23,11 @@ public class UsuarioForm extends JDialog {
 	private JTextField tfApellido;
 	private JTextField tfDni;
 	private JTextField tfEmail;
+	private JButton btnAceptar;
+	private JButton btnCancelar;
+	private JComboBox<String> cbRol;
+	
+	private RolComboBoxModel comboModel;
 	
 	@Inject
 	public UsuarioForm(){
@@ -81,16 +88,50 @@ public class UsuarioForm extends JDialog {
 		getContentPane().add(tfEmail);
 		tfEmail.setColumns(10);
 		
-		JComboBox cbRol = new JComboBox();
+		cbRol = new JComboBox<String>();
 		cbRol.setBounds(105, 145, 135, 20);
 		getContentPane().add(cbRol);
 		
-		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBounds(49, 216, 89, 31);
 		getContentPane().add(btnAceptar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(151, 216, 89, 31);
 		getContentPane().add(btnCancelar);
+		
+		comboModel = new RolComboBoxModel();
+		cbRol.setModel(comboModel);
 	}
+
+	public JTextField getTfNombre() {
+		return tfNombre;
+	}
+
+	public JTextField getTfApellido() {
+		return tfApellido;
+	}
+
+	public JTextField getTfDni() {
+		return tfDni;
+	}
+
+	public JTextField getTfEmail() {
+		return tfEmail;
+	}
+
+	public JButton getBtnAceptar() {
+		return btnAceptar;
+	}
+
+	public JButton getBtnCancelar() {
+		return btnCancelar;
+	}
+
+	public RolComboBoxModel getComboModel() {
+		return comboModel;
+	}
+
+	
+	
 }

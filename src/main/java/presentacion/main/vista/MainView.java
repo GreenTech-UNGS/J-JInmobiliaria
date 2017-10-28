@@ -25,7 +25,7 @@ public class MainView {
     @Inject
     public MainView(PropiedadesPanel panelPropiedades,
     		ContratosPanel panelContratos,
-    		InquilinosPanel panelInquilinos,
+    		PersonasPanel panelInquilinos,
     		PagosPanel panelPagos,
     		InmobiliariaPanel panelInmobiliaria,
     		MenuPanel panelMenu,

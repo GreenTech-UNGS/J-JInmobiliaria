@@ -2,6 +2,7 @@ package presentacion.table;
 
 import entities.Persona;
 
+@SuppressWarnings("serial")
 public class PersonaTableModel extends BaseTableModel<Persona>{
 
 	public PersonaTableModel(){

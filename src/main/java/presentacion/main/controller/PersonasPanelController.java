@@ -7,32 +7,38 @@ import filtros.ClienteFiltro;
 import filtros.PropietarioFiltro;
 import model.ClienteService;
 import model.PropietarioService;
+import model.UsuarioService;
 import presentacion.controller.ClienteController;
 import presentacion.controller.PropietarioController;
+import presentacion.controller.UsuarioController;
 import presentacion.controller.filtros.ClienteFiltroController;
 import presentacion.controller.filtros.PropietarioFiltroController;
-import presentacion.main.vista.InquilinosPanel;
+import presentacion.main.vista.PersonasPanel;
 import presentacion.table.ClientesTableModel;
 import presentacion.table.PropietariosTableModel;
+import presentacion.table.UsuariosTableModel;
 
 @Singleton
 public class PersonasPanelController {
 	
-	private InquilinosPanel view;
+	private PersonasPanel view;
 	
 	@Inject private ClienteController clienteController;
 	@Inject private PropietarioController propietarioController;	
 	@Inject private ClienteFiltroController clienteFiltro;
 	@Inject private PropietarioFiltroController propietarioFiltro;
+	@Inject private UsuarioController usuarioController;
 	
 	@Inject private ClienteService clienteService;
 	@Inject private PropietarioService propietarioService;
+	@Inject private UsuarioService usuarioService;
 
 	@Inject private ClientesTableModel tableModelClien;
 	@Inject private PropietariosTableModel propietariosTable;
+	@Inject private UsuariosTableModel usuariosTable;
 	
 	@Inject
-	PersonasPanelController(InquilinosPanel view) {
+	PersonasPanelController(PersonasPanel view) {
 		
 		this.view = view;
 		
@@ -44,6 +50,7 @@ public class PersonasPanelController {
 		this.view.getBtnRemoverFiltroClientes().addActionListener(e  -> removerFiltroCliente());
 		this.view.getBtnAplicarFiltroPropietarios().addActionListener(e -> aplicarFiltroPropietario());
 		this.view.getBtnRemoverFiltroPropietarios().addActionListener(e  -> removerFiltroPropietario());
+		this.view.getBtnAgregarUsuario().addActionListener(e -> agregarUsuario());
 		
 	}
 		
@@ -79,6 +86,13 @@ public class PersonasPanelController {
 		this.propietarioController.showView();
 
 		fillTablePropietarios();
+	}
+	
+	private void agregarUsuario() {
+		this.usuarioController.setModeNew();
+		this.usuarioController.showView();
+		
+		fillTableUsuarios();
 	}
 	
 	private void aplicarFiltroCliente() {
@@ -129,10 +143,20 @@ public class PersonasPanelController {
 		this.view.getTablePropietarios().setColumnModel(propietariosTable.getTableColumnModel());
 		this.view.getTablePropietarios().getTableHeader().setReorderingAllowed(false);
 	}
+	
+	private void fillTableUsuarios(){
+		this.usuariosTable.clean();
+		this.view.getTableUsuarios().setModel(usuariosTable);
+		usuariosTable.actualizeRows(usuarioService.getAll());
+		
+		this.view.getTableUsuarios().setColumnModel(usuariosTable.getTableColumnModel());
+		this.view.getTableUsuarios().getTableHeader().setReorderingAllowed(false);
+	}
 
 	public void showView() {
 		
 		this.view.setVisible(true);
+		fillTableUsuarios();
 		
 	}
 
@@ -146,5 +170,6 @@ public class PersonasPanelController {
 		
 		fillTableClientes();
 		fillTablePropietarios();
+		fillTableUsuarios();
 	}
 }

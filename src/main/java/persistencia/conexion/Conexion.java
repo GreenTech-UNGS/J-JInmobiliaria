@@ -39,7 +39,10 @@ public class Conexion {
 	}*/
 	
 	
-	public  Session getSession(){
+	public synchronized Session getSession(){
+		//if(!session.isOpen())
+		//	return factory.getCurrentSession();
+		
 		return session;
 	}
 	

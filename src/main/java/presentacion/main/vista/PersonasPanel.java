@@ -15,7 +15,7 @@ import com.google.inject.Singleton;
 
 @SuppressWarnings("serial")
 @Singleton
-public class InquilinosPanel extends JPanel{
+public class PersonasPanel extends JPanel{
 	
 	private JTable tableClientes;
 	private JButton btnAgregarCliente;
@@ -28,9 +28,10 @@ public class InquilinosPanel extends JPanel{
 	private JButton btnRemoverFiltroClientes;
 	private JButton btnRemoverFiltroPropietarios;
 	private JTable tableUsuarios;
+	private JButton btnAgregarUsuario;
 
 	@Inject
-	private InquilinosPanel() {
+	private PersonasPanel() {
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
@@ -103,18 +104,22 @@ public class InquilinosPanel extends JPanel{
         tabbedPane_2.addTab("Usuarios", null, TabUsuarios, null);
         TabUsuarios.setLayout(new BoxLayout(TabUsuarios, BoxLayout.Y_AXIS));
         
-        JScrollPane scrollPane = new JScrollPane();
-        TabUsuarios.add(scrollPane);
-        
         tableUsuarios = new JTable();
-        scrollPane.setColumnHeaderView(tableUsuarios);
+        JScrollPane scrollPane = new JScrollPane(tableUsuarios);
+        TabUsuarios.add(scrollPane);
+
+        //scrollPane.setColumnHeaderView(tableUsuarios);
         
         JPanel panelBotones = new JPanel();
         TabUsuarios.add(panelBotones);
         
-        JButton btnAgregarUsuario = new JButton("Agregar usuario");
+        btnAgregarUsuario = new JButton("Agregar usuario");
         panelBotones.add(btnAgregarUsuario);
         
+	}
+
+	public JButton getBtnAgregarUsuario() {
+		return btnAgregarUsuario;
 	}
 
 	public JTable getTableClientes() {
@@ -157,4 +162,8 @@ public class InquilinosPanel extends JPanel{
 		return btnRemoverFiltroPropietarios;
 	}
 
+	public JTable getTableUsuarios() {
+		return tableUsuarios;
+	}
+	
 }
