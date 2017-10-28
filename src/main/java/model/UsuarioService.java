@@ -84,10 +84,17 @@ public class UsuarioService {
 		usuarioDao.save(toSave);
 	}
 	
+	public void editarUsuario(Usuario toEdit) throws LogicaNegocioException {
+		
+		if(!usuarioDao.existeUsuarioCon(toEdit.getPersona().getEmail()))
+			toEdit.setPswHash(getMD5Of(toEdit.getPersona().getCredencial()));
+		
+		usuarioDao.save(toEdit);
+	}
+	
 	public boolean existeClienteCon(Persona t) {
 		
-		return usuarioDao.existeClienteCon(t);
-		
+		return usuarioDao.existeClienteCon(t);	
 	}
 
 	public List<Usuario> getAll(){
@@ -149,5 +156,5 @@ public class UsuarioService {
 		
 		return "";
 	}
-		
+
 }

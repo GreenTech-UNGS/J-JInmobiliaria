@@ -9,7 +9,6 @@ import entities.Usuario;
 import entities.Rol;
 import model.LogicaNegocioException;
 import model.UsuarioService;
-import presentacion.combo.RolComboBoxModel;
 import presentacion.mappers.UsuarioFormMapper;
 import presentacion.validators.MessageShow;
 import presentacion.validators.UsuarioFormValidator;
@@ -65,6 +64,18 @@ public class UsuarioController {
 	private void fillCombos() {
 		view.getComboModel().clearAndActualize(Arrays.asList(Rol.values()));
 		view.getComboModel().setSelected(Rol.EMPLEADO);
+	}
+	
+	public void editUsuario(Usuario u){
+		
+		view.setTitle("Editar usuario");
+		view.getBtnAceptar().setVisible(false);
+		view.getBtnCancelar().setVisible(false);
+		view.getBtnGuardarCambios().setVisible(true);
+		
+		currentUsuario= u;
+		fillCombos();
+		usuarioMapper.fillFields(u);
 	}
 
 }

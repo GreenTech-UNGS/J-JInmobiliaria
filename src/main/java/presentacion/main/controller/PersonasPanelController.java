@@ -51,9 +51,10 @@ public class PersonasPanelController {
 		this.view.getBtnAplicarFiltroPropietarios().addActionListener(e -> aplicarFiltroPropietario());
 		this.view.getBtnRemoverFiltroPropietarios().addActionListener(e  -> removerFiltroPropietario());
 		this.view.getBtnAgregarUsuario().addActionListener(e -> agregarUsuario());
+		this.view.getBtnEditarUsuario().addActionListener(e -> editarUsuario());
 		
 	}
-		
+
 	private void agregarCliente() {
 		this.clienteController.setModeNew();
 		this.clienteController.showView();
@@ -78,6 +79,18 @@ public class PersonasPanelController {
 			propietarioController.editarPropietario(this.propietariosTable.getRow(select));
 			propietarioController.showView();
 			this.fillTablePropietarios();
+		}
+	}
+	
+	
+	private void editarUsuario() {
+		
+		int select = this.view.getTableUsuarios().getSelectedRow();
+		
+		if (select != -1){ 
+			usuarioController.editUsuario(this.usuariosTable.getRow(select));
+			usuarioController.showView();
+			this.fillTableUsuarios();
 		}
 	}
 	

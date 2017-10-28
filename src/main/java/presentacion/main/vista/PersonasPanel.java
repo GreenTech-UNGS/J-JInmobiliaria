@@ -12,6 +12,7 @@ import javax.swing.JTable;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 @Singleton
@@ -29,6 +30,9 @@ public class PersonasPanel extends JPanel{
 	private JButton btnRemoverFiltroPropietarios;
 	private JTable tableUsuarios;
 	private JButton btnAgregarUsuario;
+	private JButton btnEditarUsuario;
+	private JButton btnHabilitar;
+	private JButton btnDeshabilitar;
 
 	@Inject
 	private PersonasPanel() {
@@ -108,13 +112,22 @@ public class PersonasPanel extends JPanel{
         JScrollPane scrollPane = new JScrollPane(tableUsuarios);
         TabUsuarios.add(scrollPane);
 
-        //scrollPane.setColumnHeaderView(tableUsuarios);
-        
         JPanel panelBotones = new JPanel();
         TabUsuarios.add(panelBotones);
         
         btnAgregarUsuario = new JButton("Agregar usuario");
+        btnAgregarUsuario.setFont(new Font("Tahoma", Font.PLAIN, 11));
         panelBotones.add(btnAgregarUsuario);
+        
+        btnEditarUsuario = new JButton("Editar usuario");
+        btnEditarUsuario.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        panelBotones.add(btnEditarUsuario);
+        
+        btnHabilitar = new JButton("Habilitar");
+        panelBotones.add(btnHabilitar);
+        
+        btnDeshabilitar = new JButton("Deshabilitar");
+        panelBotones.add(btnDeshabilitar);
         
 	}
 
@@ -164,6 +177,26 @@ public class PersonasPanel extends JPanel{
 
 	public JTable getTableUsuarios() {
 		return tableUsuarios;
+	}
+
+	public JButton getBtnEditarUsuario() {
+		return btnEditarUsuario;
+	}
+
+	public JButton getBtnHabilitar() {
+		return btnHabilitar;
+	}
+
+	public void setBtnHabilitar(JButton btnHabilitar) {
+		this.btnHabilitar = btnHabilitar;
+	}
+
+	public JButton getBtnDeshabilitar() {
+		return btnDeshabilitar;
+	}
+
+	public void setBtnDeshabilitar(JButton btnDeshabilitar) {
+		this.btnDeshabilitar = btnDeshabilitar;
 	}
 	
 }

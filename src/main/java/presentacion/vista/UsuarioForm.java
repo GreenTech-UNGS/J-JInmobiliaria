@@ -15,6 +15,8 @@ import presentacion.combo.RolComboBoxModel;
 
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 @Singleton
@@ -28,6 +30,7 @@ public class UsuarioForm extends JDialog {
 	private JComboBox<String> cbRol;
 	
 	private RolComboBoxModel comboModel;
+	private JButton btnGuardarCambios;
 	
 	@Inject
 	public UsuarioForm(){
@@ -93,15 +96,24 @@ public class UsuarioForm extends JDialog {
 		getContentPane().add(cbRol);
 		
 		btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBounds(49, 216, 89, 31);
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnAceptar.setBounds(33, 216, 115, 31);
 		getContentPane().add(btnAceptar);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(151, 216, 89, 31);
+		btnCancelar.setBounds(158, 216, 113, 31);
 		getContentPane().add(btnCancelar);
 		
 		comboModel = new RolComboBoxModel();
 		cbRol.setModel(comboModel);
+		
+		btnGuardarCambios = new JButton("Guardar cambios");
+		btnGuardarCambios.setBounds(33, 216, 113, 31);
+		getContentPane().add(btnGuardarCambios);
+		btnGuardarCambios.setVisible(false);
 	}
 
 	public JTextField getTfNombre() {
@@ -132,6 +144,9 @@ public class UsuarioForm extends JDialog {
 		return comboModel;
 	}
 
+	public JButton getBtnGuardarCambios() {
+		return btnGuardarCambios;
+	}
 	
 	
 }
