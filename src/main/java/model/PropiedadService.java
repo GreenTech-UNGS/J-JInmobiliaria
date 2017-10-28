@@ -2,7 +2,6 @@ package model;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.sun.org.glassfish.external.amx.AMXUtil;
 import dto.FichaPropiedadDTO;
 import entities.*;
 import filtros.PropiedadFiltro;
