@@ -94,7 +94,7 @@ public class UsuarioDaoHibernate extends DaoHibernate<Usuario> implements Usuari
 
 	@Override
 	public boolean existeUsuarioCon(String email) {
-initTransaction();
+		initTransaction();
 		
 		Criteria q = sesion.createCriteria(Usuario.class)
 				.createAlias("persona", "p")
@@ -103,5 +103,18 @@ initTransaction();
 		finishTransaction();
 		
 		return q.list().isEmpty() == false;
+	}
+
+	@Override
+	public Usuario getUsuarioBy(String email) {
+		initTransaction();
+		
+		Criteria q = sesion.createCriteria(Usuario.class)
+				.createAlias("persona", "p")
+				.add(Restrictions.eq("p.email", email));
+		
+		finishTransaction();
+		
+		return (Usuario) q.list().get(0);
 	}
 }

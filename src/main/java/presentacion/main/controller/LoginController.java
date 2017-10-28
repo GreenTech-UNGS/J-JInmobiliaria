@@ -8,16 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Action;
+import javax.swing.SwingWorker;
 
 import com.google.inject.Inject;
 import com.google.inject.Key;
 import com.google.inject.Singleton;
 
 import model.LogicaNegocioException;
+import model.MailSenderService;
 import model.UsuarioService;
 import presentacion.main.vista.LoginView;
 import presentacion.main.vista.MainView;
 import presentacion.validators.MessageShow;
+import presentacion.validators.Regex;
 
 @Singleton
 public class LoginController {
@@ -38,6 +41,7 @@ public class LoginController {
 		ActionListener enter = (e -> login());
 		
 		this.view.getBtnLogin().addActionListener(e -> login());
+		this.view.getBtnRecuperarContrasea().addActionListener(e -> recuperarContrasena());
 		this.view.getTextPass().addActionListener(enter);
 		this.view.getTextUsuario().addActionListener(enter);
 		
@@ -65,6 +69,27 @@ public class LoginController {
 			this.view.dispose();
 		} catch (LogicaNegocioException e) {
 			msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
+		}
+		
+	}
+	
+	private void recuperarContrasena(){
+		
+		String email = msgShw.showInputMessage("Ingrese su email", "Recuperar contraseña");
+		
+		if(!email.matches(Regex.email()))
+			msgShw.showErrorMessage("Email invalido", "Error");
+		
+		//TODO: pasar a un thread D:
+		else{
+			try {
+				userService.actualizarContrasenaOf(email);
+				msgShw.showInformationMessage("Contraseña actualizada.\n"
+						+ "Chequee su casilla de email", "Exito");
+				
+			} catch (LogicaNegocioException e) {
+				msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
+			}
 		}
 		
 	}

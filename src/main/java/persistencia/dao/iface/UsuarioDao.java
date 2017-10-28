@@ -9,6 +9,7 @@ public interface UsuarioDao extends Dao<Usuario>{
 	public boolean existeUsuarioCon(String nombre, String pswMd5);
 	public Usuario getUsuarioBy(String nombre, String pswMd5);
 	boolean existeUsuarioCon(String email);
+	public Usuario getUsuarioBy(String email);
 	
 	
 }
