@@ -27,6 +27,7 @@
 		<mapping class="entities.Cliente" />
 		
 		<mapping class="entities.AvisoNotificacion" />
+		<mapping class="entities.Cartel" />
 		<mapping class="entities.Contrato" />
 		<mapping class="entities.ContratoAlquiler" />
 		<mapping class="entities.ContratoVenta" />
