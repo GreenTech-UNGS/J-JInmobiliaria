@@ -2,6 +2,8 @@ package model;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.sun.org.glassfish.external.amx.AMXUtil;
+import dto.FichaPropiedadDTO;
 import entities.*;
 import filtros.PropiedadFiltro;
 import org.joda.time.DateTime;
@@ -166,5 +168,30 @@ public class PropiedadService {
 		return propiedadDao.getAllByFiltro(filtro);
 		
 	}
-	
+
+	public FichaPropiedadDTO fichaPropiedadReporteOf(Propiedad propiedad) {
+
+		FichaPropiedadDTO fichaPropiedad = new FichaPropiedadDTO();
+	//
+	// Aca poner una foto que es la por default si no tiene foto y sino tomar la de portada
+	//
+		String foto = "resources/cityscape.png";//propiedad.getFotos();
+		fichaPropiedad.setCalle(propiedad.getCalle().toString());
+		fichaPropiedad.setFoto(foto);
+		fichaPropiedad.setDepartamento(propiedad.getDpto().toString());
+		fichaPropiedad.setPiso(propiedad.getPiso().toString());
+		fichaPropiedad.setLocalidad(propiedad.getLocalidad().toString());
+		fichaPropiedad.setLat(propiedad.getLat());
+		fichaPropiedad.setLong(propiedad.getLon());
+		fichaPropiedad.setCantidadDeAmbientes(propiedad.getOtrosDatos().getCantidadAmbientes()+"");
+		fichaPropiedad.setObservaciones(propiedad.getObsPublicas());
+		fichaPropiedad.setMetrosCuadrados(propiedad.getOtrosDatos().getMetrosCuadradosCubiertos()+"");
+		fichaPropiedad.setPrecio(propiedad.getPrecioTentativo().toString());
+
+
+		return fichaPropiedad;
+	}
+
+
+
 }
