@@ -33,6 +33,7 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 		
 		finishTransaction();
 		
+		actualizeList(toRet);		
 		return toRet;
 	}
 	
@@ -44,9 +45,11 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 		Criteria q = sesion.createCriteria(Propiedad.class).
 				add(Restrictions.eq("identificador", identificador));
 		
+		boolean toRet = ! (q.list().isEmpty());
+		
 		finishTransaction();
 		
-		return ! (q.list().isEmpty());
+		return toRet;
 		
 	}
 	
@@ -69,9 +72,13 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 				.add(Restrictions.le("precio.monto", filtro.getPrecioHasta()))
 				.add(Restrictions.eqOrIsNull("tipoOfrecimiento", filtro.getTipoOfrecimiento()));
 		
+
+		List<Propiedad> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();		
+		actualizeList(toRet);
+		return toRet;		
 	}
 
 	@Override
@@ -80,8 +87,11 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 		
 		Criteria q = sesion.createCriteria(TipoHabitacion.class);
 		
+		List<TipoHabitacion> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;	
 	}
 }

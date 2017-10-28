@@ -29,9 +29,12 @@ public class PersonaDaoHibernate extends DaoHibernate<Persona> implements Person
 		
 		Criteria q = sesion.createCriteria(Persona.class);
 		
+		List<Persona> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 
 	@Override
@@ -43,12 +46,17 @@ public class PersonaDaoHibernate extends DaoHibernate<Persona> implements Person
 		
 		q.setFirstResult(0);
 		q.setMaxResults(1);
+		
+		List<PersonaBasica> toRet = q.list();
+		
 		finishTransaction();
 		
-		if(q.list().isEmpty())
+		actualizeList(toRet);
+		
+		if(toRet.isEmpty())
 			return null;
 		
-		return ((PersonaBasica)(q.list().get(0))).getTelefonos();
+		return ((toRet.get(0))).getTelefonos();
 	}
 
 	@Override
@@ -61,9 +69,12 @@ public class PersonaDaoHibernate extends DaoHibernate<Persona> implements Person
 				add(Restrictions.eq("credencial", credencial)).
 				add(Restrictions.eq("tipoCred", tipo));
 		
+		List<Persona> toRet = q.list();
+		
 		finishTransaction();
 		
-		return ! (q.list().isEmpty());
+		actualizeList(toRet);
+		return ! (toRet.isEmpty());
 		
 	}
 
@@ -74,14 +85,16 @@ public class PersonaDaoHibernate extends DaoHibernate<Persona> implements Person
 		Criteria q = sesion.createCriteria(Persona.class).
 				add(Restrictions.eq("ID", ID));
 		
+		List<Persona> toRet = q.list();
+		
 		finishTransaction();
 		
-		List<Persona> res = q.list();
+		actualizeList(toRet);
 		
-		if(res.isEmpty())
+		if(toRet.isEmpty())
 			return null;
 		
-		return res.get(0);
+		return toRet.get(0);
 	}
 
 }

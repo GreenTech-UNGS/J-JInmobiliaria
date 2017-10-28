@@ -31,9 +31,12 @@ public class PropietarioDaoHibernate extends DaoHibernate<Propietario> implement
 		initTransaction();
 		Criteria q = sesion.createCriteria(Propietario.class);
 		
+		List<Propietario> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 
 	@Override
@@ -50,9 +53,12 @@ public class PropietarioDaoHibernate extends DaoHibernate<Propietario> implement
 		initTransaction();
 		Criteria q = sesion.createCriteria(PagoPropietario.class).add(Restrictions.eq("estado", PagoPropietario.EstadoPago.PENDIENTE));
 		
+		List<PagoPropietario> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 
 	@Override
@@ -74,11 +80,12 @@ public class PropietarioDaoHibernate extends DaoHibernate<Propietario> implement
 				setFetchMode("persona", FetchMode.JOIN).
 				add(Restrictions.eq("persona.credencial", t.getCredencial()));
 		
+		List<Propietario> toRet = q.list();
+		
 		finishTransaction();
-		
-		List<Propietario> res = q.list();
-		
-		return ! (res.isEmpty());
+				
+		actualizeList(toRet);
+		return ! (toRet.isEmpty());
 	}
 
 	@Override
@@ -92,9 +99,12 @@ public class PropietarioDaoHibernate extends DaoHibernate<Propietario> implement
 				add(Restrictions.like("persona.credencial", filtro.getCredencial(), MatchMode.ANYWHERE)).
 				add(Restrictions.eq("persona.tipoCred", filtro.getTipoCredencial()));
 		
+		List<Propietario> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 	
 

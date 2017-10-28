@@ -38,11 +38,8 @@ public class Conexion {
 		instancia = new Conexion();
 	}*/
 	
-	
-	public synchronized Session getSession(){
-		//if(!session.isOpen())
-		//	return factory.getCurrentSession();
-		
+
+	public  Session getSession(){
 		return session;
 	}
 	

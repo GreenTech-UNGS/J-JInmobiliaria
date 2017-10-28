@@ -19,9 +19,6 @@ public class LocalidadDaoHibernate extends DaoHibernate<Localidad> implements Lo
 	@Inject
 	protected LocalidadDaoHibernate(Conexion conexion) {
 		super(conexion);
-		
-		Localidad l = new Localidad();
-
 	}
 
 	@Override
@@ -31,9 +28,12 @@ public class LocalidadDaoHibernate extends DaoHibernate<Localidad> implements Lo
 		Criteria q = sesion.createCriteria(Localidad.class).
 				add(Restrictions.eq("provincia", p));
 		
+		List<Localidad> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 
 	@Override
@@ -42,9 +42,12 @@ public class LocalidadDaoHibernate extends DaoHibernate<Localidad> implements Lo
 		
 		Criteria q = sesion.createCriteria(Localidad.class);
 		
+		List<Localidad> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 
 }

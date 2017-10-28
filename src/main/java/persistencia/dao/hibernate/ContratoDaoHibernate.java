@@ -30,9 +30,12 @@ public class ContratoDaoHibernate extends DaoHibernate<Contrato> implements Cont
 		
 		Criteria q = sesion.createCriteria(Contrato.class);
 		
+		List<Contrato> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 
 	@Override
@@ -42,11 +45,13 @@ public class ContratoDaoHibernate extends DaoHibernate<Contrato> implements Cont
 		Criteria q = sesion.createCriteria(Contrato.class).
 				add(Restrictions.eq("identificador", identificador));
 		
+		List<Contrato> toRet = q.list();
+		
 		finishTransaction();
 		
-		List<Contrato> res = q.list();
+		actualizeList(toRet);
 		
-		return ! (res.isEmpty());
+		return ! (toRet.isEmpty());
 	}
 
 	@Override
@@ -55,9 +60,12 @@ public class ContratoDaoHibernate extends DaoHibernate<Contrato> implements Cont
 		
 		Criteria q = sesion.createCriteria(ContratoAlquiler.class);
 		
+		List<ContratoAlquiler> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 
 	@Override
@@ -65,10 +73,13 @@ public class ContratoDaoHibernate extends DaoHibernate<Contrato> implements Cont
 		initTransaction();
 		
 		Criteria q = sesion.createCriteria(ContratoVenta.class);
+
+		List<ContratoVenta> toRet = q.list();
 		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 
 	@Override
@@ -78,8 +89,11 @@ public class ContratoDaoHibernate extends DaoHibernate<Contrato> implements Cont
 		Criteria q = sesion.createCriteria(Contrato.class)
 				.add(Restrictions.eqOrIsNull("propiedad", filtro.getPropiedad()));
 		
+		List<ContratoAlquiler> toRet = q.list();
+		
 		finishTransaction();
 		
-		return q.list();
+		actualizeList(toRet);
+		return toRet;
 	}
 }
