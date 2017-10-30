@@ -57,7 +57,7 @@ public class LoginController {
 	
 	private void login() {
 		
-	/*	String nombre = view.getTextUsuario().getText();
+		String nombre = view.getTextUsuario().getText();
 		String password = view.getTextPass().getText();
 		
 		try {
@@ -69,9 +69,9 @@ public class LoginController {
 			this.view.dispose();
 		} catch (LogicaNegocioException e) {
 			msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
-		}*/
-		this.mainViewController.showView();
-		this.view.dispose();
+		}
+		//this.mainViewController.showView();
+		//this.view.dispose();
 	}
 	
 	private void recuperarContrasena(){

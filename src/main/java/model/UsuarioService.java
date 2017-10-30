@@ -40,9 +40,9 @@ public class UsuarioService {
 	
 	public void logearUsuario(String nombre, String password) throws LogicaNegocioException {
 
-		
 		//TODO: harcodeado
-		if(nombre == ""){
+		if(nombre.equals("")){
+			System.out.println("ESTA ENTRANDO CON EL USUARIO DE TEST. SEA CAUTELOSO");
 		logeado = new Usuario();
 		logeado.getRoles().add(Rol.ADMINISTRADOR);
 		return;
@@ -51,7 +51,7 @@ public class UsuarioService {
 		String md5 = getMD5Of(password);
 
 		if(!usuarioDao.existeUsuarioCon(nombre, md5))
-			throw new LogicaNegocioException("Nombre de usuario o contraseÃ±a invalidos");
+			throw new LogicaNegocioException("Nombre de usuario o contraseña invalidos");
 
 		
 		logeado = usuarioDao.getUsuarioBy(nombre, md5);
@@ -80,7 +80,7 @@ public class UsuarioService {
 			throw new LogicaNegocioException("Ya existe un usuario con la misma credencial");
 		
 		if(!usuarioDao.existeUsuarioCon(toSave.getPersona().getEmail()))
-			toSave.setPswHash(getMD5Of(toSave.getPersona().getCredencial()));
+			toSave.setPswHash(getMD5Of(toSave.getPersona().getCredencial().substring(2)));
 		
 		toSave.setEstado(EstadoUsuario.HABILITADO);
 		usuarioDao.save(toSave);

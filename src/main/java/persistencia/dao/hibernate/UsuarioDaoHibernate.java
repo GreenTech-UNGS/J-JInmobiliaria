@@ -11,6 +11,7 @@ import com.google.inject.Singleton;
 
 import entities.Cliente;
 import entities.Persona;
+import entities.Persona.TipoCredencial;
 import entities.Usuario;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.UsuarioDao;
@@ -25,13 +26,14 @@ public class UsuarioDaoHibernate extends DaoHibernate<Usuario> implements Usuari
 	}
 
 	@Override
-	public boolean existeUsuarioCon(String nombre, String pswMd5) {
+	public boolean existeUsuarioCon(String dni, String pswMd5) {
 		initTransaction();
 		
 		Criteria q = sesion.createCriteria(Usuario.class)
 				.createAlias("persona", "p")
+				.add(Restrictions.eq("p.tipoCred", TipoCredencial.DNI))
 				.add(
-						Restrictions.and(Restrictions.eq("p.email", nombre),
+						Restrictions.and(Restrictions.eq("p.credencial", dni),
 								Restrictions.eq("pswHash", pswMd5))
 						);
 		
@@ -44,13 +46,14 @@ public class UsuarioDaoHibernate extends DaoHibernate<Usuario> implements Usuari
 	}
 
 	@Override
-	public Usuario getUsuarioBy(String nombre, String pswMd5) {
+	public Usuario getUsuarioBy(String dni, String pswMd5) {
 		initTransaction();
 		
 		Criteria q = sesion.createCriteria(Usuario.class)
 				.createAlias("persona", "p")
+				.add(Restrictions.eq("p.tipoCred", TipoCredencial.DNI))
 				.add(
-						Restrictions.and(Restrictions.eq("p.email", nombre),
+						Restrictions.and(Restrictions.eq("p.credencial", dni),
 								Restrictions.eq("pswHash", pswMd5))
 						);
 		
@@ -83,7 +86,8 @@ public class UsuarioDaoHibernate extends DaoHibernate<Usuario> implements Usuari
 		Criteria q = sesion.createCriteria(Usuario.class).
 				createAlias("persona", "persona").
 				setFetchMode("persona", FetchMode.JOIN).
-				add(Restrictions.eq("persona.credencial", t.getCredencial()));
+				add(Restrictions.eq("persona.credencial", t.getCredencial())).
+				add(Restrictions.eq("persona.tipoCred", TipoCredencial.DNI));
 		
 		finishTransaction();
 				
