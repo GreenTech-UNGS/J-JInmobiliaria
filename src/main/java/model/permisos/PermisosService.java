@@ -30,7 +30,7 @@ public class PermisosService {
 	public void setupViews(List<Object> viewsClass) {
 		
 		Usuario u = usuarioService.getUsuarioLogeado();
-		//TODO: asumimos que el usuario se logeó
+		//TODO: asumimos que el usuario se loge
 		
 		for (Object view : viewsClass) {
 			
