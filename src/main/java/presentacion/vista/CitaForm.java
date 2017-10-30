@@ -55,6 +55,7 @@ public class CitaForm extends JDialog{
 	
 	@Inject
 	public CitaForm() {
+		setTitle("Crear Cita");
 		getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();

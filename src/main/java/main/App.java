@@ -1,6 +1,9 @@
 package main;
 
+import java.util.TimeZone;
 import java.util.stream.Collectors;
+
+import org.joda.time.DateTimeZone;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -19,6 +22,8 @@ public class App{
     	
     	LoginController controlador = injector.getInstance(LoginController.class);
     	PermisosService permisos = injector.getInstance(PermisosService.class);
+    	
+    	DateTimeZone.setDefault(DateTimeZone.UTC);
 
     	controlador.addLoginListener(() -> permisos.setupViews(injector
     			.getAllBindings()
