@@ -9,18 +9,23 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.border.TitledBorder;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.toedter.calendar.JCalendar;
+import javax.swing.BoxLayout;
+import java.awt.Component;
+import javax.swing.Box;
 
 @Singleton
 public class MainView {
 
     private JFrame frmLpezLpez;
     private JCalendar jCalendar;
+    private JPanel panelNotificaciones;
 
     @Inject
     public MainView(PropiedadesPanel panelPropiedades,
@@ -91,12 +96,30 @@ public class MainView {
         JSeparator separator = new JSeparator();
         separator.setBounds(10, 37, 217, 14);
         panelNotif.add(separator);
+        
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(10, 48, 217, 242);
+        panelNotif.add(scrollPane);
+        
+        panelNotificaciones = new JPanel();
+        scrollPane.setViewportView(panelNotificaciones);
+        panelNotificaciones.setLayout(new BoxLayout(panelNotificaciones, BoxLayout.Y_AXIS));
     }
 
     public void show() {
         this.frmLpezLpez.setVisible(true);
     }
 
-    
 
+	public JFrame getFrmLpezLpez() {
+		return frmLpezLpez;
+	}
+
+	public JCalendar getjCalendar() {
+		return jCalendar;
+	}
+
+	public JPanel getPanelNotificaciones() {
+		return panelNotificaciones;
+	}
 }

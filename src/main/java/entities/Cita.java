@@ -43,6 +43,7 @@ public class Cita {
 	private long lng;
 	
 	private boolean creadorAsiste;
+	private boolean finalizada;
 	
 	private String duracionEstimada;
 	
@@ -169,6 +170,14 @@ public class Cita {
 
 	public void setCreadorAsiste(boolean creadorAsiste) {
 		this.creadorAsiste = creadorAsiste;
+	}
+
+	public boolean isFinalizada() {
+		return finalizada;
+	}
+
+	public void setFinalizada(boolean finalizada) {
+		this.finalizada = finalizada;
 	}
 	
 	

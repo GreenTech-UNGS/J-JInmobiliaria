@@ -1,9 +1,13 @@
 package presentacion.main.controller;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
+import dto.Notificacion;
 import presentacion.main.vista.MainView;
+import presentacion.vista.NotificacionView;
 
+@Singleton
 public class MainViewController {
 	
 	private MainView view;
@@ -26,7 +30,14 @@ public class MainViewController {
 		this.view.show();
 	}
 	
-	
+	public void acceptNotificacion(Notificacion n) {
+		
+		NotificacionView nView = new NotificacionView();
+		nView.getLblTitulo().setText(n.getTitulo());
+		
+		view.getPanelNotificaciones().add(nView);
+		
+	}
 
 
 }

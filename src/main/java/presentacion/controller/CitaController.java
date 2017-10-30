@@ -13,11 +13,9 @@ import com.google.inject.Singleton;
 
 import entities.Cita;
 import entities.Localidad;
-import entities.Moneda;
 import entities.PersonaBasica;
 import entities.Provincia;
 import entities.TipoCita;
-import entities.TipoOfrecimiento;
 import model.CitaService;
 import model.LocalidadService;
 import model.UsuarioService;
