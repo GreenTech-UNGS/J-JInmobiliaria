@@ -3,6 +3,7 @@ package presentacion.main.vista;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
@@ -19,6 +20,7 @@ import com.toedter.calendar.JCalendar;
 import javax.swing.BoxLayout;
 import java.awt.Component;
 import javax.swing.Box;
+import java.awt.BorderLayout;
 
 @Singleton
 public class MainView {
@@ -102,8 +104,15 @@ public class MainView {
         panelNotif.add(scrollPane);
         
         panelNotificaciones = new JPanel();
-        scrollPane.setViewportView(panelNotificaciones);
-        panelNotificaciones.setLayout(new BoxLayout(panelNotificaciones, BoxLayout.Y_AXIS));
+        JPanel borderlaoutpanel = new JPanel();
+        borderlaoutpanel.setLayout(new BorderLayout(0, 0));
+        
+        scrollPane.setViewportView(borderlaoutpanel);
+
+        panelNotificaciones.setLayout(new GridLayout(0, 1, 0, 1));
+        panelNotificaciones.setBackground(Color.gray);
+
+        borderlaoutpanel.add(panelNotificaciones, BorderLayout.NORTH);
     }
 
     public void show() {
