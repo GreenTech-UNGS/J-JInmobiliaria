@@ -22,6 +22,7 @@ public class CitasPanelController {
 	}
 	
 	private void agregarCita() {
+		this.citaController.setModeNew();
 		this.citaController.showView();
 	}
 

@@ -60,7 +60,14 @@ public abstract class BaseTableModel<T> extends DefaultTableModel{
 	
 	public void addRow(T t){
 		this.rows.add(t);
-		this.addRow(toRow(t));
+		super.addRow(toRow(t));
+	}
+	
+	public void removeRow(T t) {
+		if(rows.contains(t)) {
+			super.removeRow(rows.indexOf(t));
+			this.rows.remove(t);
+		}
 	}
 	
 	public T getRow(int i){

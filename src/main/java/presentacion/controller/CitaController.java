@@ -3,6 +3,9 @@ package presentacion.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.AbstractButton;
+import javax.swing.ListSelectionModel;
+
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import com.google.inject.Inject;
@@ -11,6 +14,7 @@ import com.google.inject.Singleton;
 import entities.Cita;
 import entities.Localidad;
 import entities.Moneda;
+import entities.PersonaBasica;
 import entities.Provincia;
 import entities.TipoCita;
 import entities.TipoOfrecimiento;
@@ -43,6 +47,29 @@ public class CitaController {
 		this.view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
 		this.view.getBtnAceptar().addActionListener(e -> agregarCita());
 		this.view.getBtnAgregar().addActionListener(e -> agregarAsistente());
+		this.view.getChckbxAsistir().addActionListener(e -> actualizaAsistenteAlUsuario(((AbstractButton)e.getSource()).isSelected()));
+	
+		this.tableModel = new PersonaBasicaTableModel();
+		
+		view.getTableAsistentes().setModel(tableModel);
+		view.getTableAsistentes().setColumnModel(tableModel.getTableColumnModel());
+		view.getTableAsistentes().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		view.getTableAsistentes().getTableHeader().setReorderingAllowed(false);
+		
+	}
+
+
+	private void actualizaAsistenteAlUsuario(boolean selected) {
+		
+		if(selected) {
+			tableModel.addRow(usuarioService.getUsuarioLogeado().getPersona());
+			currentCita.getAsistentes().add(usuarioService.getUsuarioLogeado().getPersona());
+		}
+		else {
+			tableModel.removeRow(usuarioService.getUsuarioLogeado().getPersona());
+			currentCita.getAsistentes().add(usuarioService.getUsuarioLogeado().getPersona());
+		
+		}
 		
 	}
 
@@ -50,13 +77,15 @@ public class CitaController {
 	public void showView() {
 	
 		fillCombos();
+		fillTables();
 		
 		this.view.setVisible(true);
 
 	}
 	
 	public void setModeNew() {
-		
+
+		currentCita = citaService.getNuevaCita();
 	}
 	
 	private void fillCombos() {
@@ -70,6 +99,10 @@ public class CitaController {
 		cambiaLocalidades();
 		
 	}
+	
+	private void fillTables() {
+		
+	}
 
 	private void cambiaLocalidades() {
 		view.getComboModelLocalidad().removeAllElements();
@@ -81,11 +114,7 @@ public class CitaController {
 	private void agregarCita() {
 		
 		//TODO: falta validator
-		currentCita = citaService.getNuevaCita();
 		mapper.fillBean(currentCita);
-
-		if(view.getChckbxAsistir().isSelected())
-			currentCita.getAsistentes().add(usuarioService.getUsuarioLogeado().getPersona());
 		
 		citaService.saveCita(currentCita);
 		
@@ -93,6 +122,12 @@ public class CitaController {
 		
 	private void agregarAsistente() {
 		elegirAsistente.showView();
+		PersonaBasica asistente = elegirAsistente.getAsistente();
+		
+		if(!currentCita.getAsistentes().contains(asistente)) {
+			tableModel.addRow(asistente);
+			currentCita.getAsistentes().add(asistente);
+		}
 		
 		
 	}

@@ -49,7 +49,7 @@ public class ElegirAsistenteController {
 		this.view.setVisible(true);
 	}
 
-	public PersonaBasica getPersona() {
+	public PersonaBasica getAsistente() {
 		
 		int selected = view.getTablePersonas().getSelectedRow();
 		

@@ -27,6 +27,7 @@ public class ElegirPersonaController {
 		personaTable = new PersonaTableModel();
 
 		view.getBtnSeleccionar().addActionListener(e -> view.setVisible(false));
+		
 		view.getTablePersonas().setModel(personaTable);
 		view.getTablePersonas().setColumnModel(personaTable.getTableColumnModel());
 		view.getTablePersonas().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
