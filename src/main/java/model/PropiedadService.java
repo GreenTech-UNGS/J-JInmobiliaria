@@ -165,30 +165,57 @@ public class PropiedadService {
 	public List<Propiedad> getAllByFiltro(PropiedadFiltro filtro){
 		
 		return propiedadDao.getAllByFiltro(filtro);
-		
+
 	}
 
-	public FichaPropiedadDTO fichaPropiedadReporteOf(Propiedad propiedad) {
+	/*
+	* String TipoPropiedad;
+    * String Foto;
+    * String Precio;
+    * String Provincia;
+    **** String Localidad;
+    * String MetrosCuadrados;
+    * String CantidadDeAmbientes;
+    * String OtrosDatos;
+    * String Observaciones;
+    * String Calle;
+    * String Direccion;
+    * String Piso;
+    * String Departamento;
+    Double Lat;
+    Double Long;
 
+
+	 */
+	public List<FichaPropiedadDTO> fichaPropiedadReporteOf(Propiedad propiedad) {
+
+		List<FichaPropiedadDTO> fichas = null;
 		FichaPropiedadDTO fichaPropiedad = new FichaPropiedadDTO();
 	//
 	// Aca poner una foto que es la por default si no tiene foto y sino tomar la de portada
 	//
+		fichaPropiedad.setTipoPropiedad(propiedad.getTipoOfrecimiento().name().toString());
 		String foto = "resources/cityscape.png";//propiedad.getFotos();
-		fichaPropiedad.setCalle(propiedad.getCalle().toString());
 		fichaPropiedad.setFoto(foto);
-		fichaPropiedad.setDepartamento(propiedad.getDpto().toString());
-		fichaPropiedad.setPiso(propiedad.getPiso().toString());
-		fichaPropiedad.setLocalidad(propiedad.getLocalidad().toString());
-		fichaPropiedad.setLat(propiedad.getLat());
-		fichaPropiedad.setLong(propiedad.getLon());
-		fichaPropiedad.setCantidadDeAmbientes(propiedad.getOtrosDatos().getCantidadAmbientes()+"");
-		fichaPropiedad.setObservaciones(propiedad.getObsPublicas());
-		fichaPropiedad.setMetrosCuadrados(propiedad.getOtrosDatos().getMetrosCuadradosCubiertos()+"");
 		fichaPropiedad.setPrecio(propiedad.getPrecioTentativo().toString());
 
+		fichaPropiedad.setProvincia("BuenosAres");
+		fichaPropiedad.setLocalidad(propiedad.getLocalidad().toString());
+		fichaPropiedad.setMetrosCuadrados("20 m2");
+//		fichaPropiedad.setMetrosCuadrados(propiedad.getOtrosDatos().getMetrosCuadradosCubiertos()+"");
+//		fichaPropiedad.setCantidadDeAmbientes(propiedad.getOtrosDatos().getCantidadAmbientes()+"");
+		fichaPropiedad.setObservaciones(propiedad.getObsPublicas());
+//		fichaPropiedad.setOtrosDatos(propiedad.getOtrosDatos().toString());
+		fichaPropiedad.setOtrosDatos("Ootros datos ver como hacer para que traiga un to string digno");
+		fichaPropiedad.setCalle(propiedad.getCalle().toString());
+		fichaPropiedad.setDireccion(propiedad.getCalle()+""+propiedad.getAltura());
+		fichaPropiedad.setPiso(propiedad.getPiso().toString());
+		fichaPropiedad.setDepartamento(propiedad.getDpto().toString());
+		fichaPropiedad.setLat(propiedad.getLat());
+		fichaPropiedad.setLong(propiedad.getLon());
+		fichas.add(fichaPropiedad);
 
-		return fichaPropiedad;
+		return fichas;
 	}
 
 

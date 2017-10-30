@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FichaPropiedad" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="282e9adc-4b6e-480b-9607-d7e92ecc59f3">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="piso" class="java.lang.String">
+		<fieldDescription><![CDATA[piso]]></fieldDescription>
+	</field>
+	<field name="calle" class="java.lang.String">
+		<fieldDescription><![CDATA[calle]]></fieldDescription>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[direccion]]></fieldDescription>
+	</field>
+	<field name="provincia" class="java.lang.String">
+		<fieldDescription><![CDATA[provincia]]></fieldDescription>
+	</field>
+	<field name="long" class="java.lang.Double">
+		<fieldDescription><![CDATA[long]]></fieldDescription>
+	</field>
+	<field name="precio" class="java.lang.String">
+		<fieldDescription><![CDATA[precio]]></fieldDescription>
+	</field>
+	<field name="cantidadDeAmbientes" class="java.lang.String">
+		<fieldDescription><![CDATA[cantidadDeAmbientes]]></fieldDescription>
+	</field>
+	<field name="foto" class="java.lang.String">
+		<fieldDescription><![CDATA[foto]]></fieldDescription>
+	</field>
+	<field name="otrosDatos" class="java.lang.String">
+		<fieldDescription><![CDATA[otrosDatos]]></fieldDescription>
+	</field>
+	<field name="observaciones" class="java.lang.String">
+		<fieldDescription><![CDATA[observaciones]]></fieldDescription>
+	</field>
+	<field name="tioPropiedad" class="java.lang.String">
+		<fieldDescription><![CDATA[tioPropiedad]]></fieldDescription>
+	</field>
+	<field name="departamento" class="java.lang.String">
+		<fieldDescription><![CDATA[departamento]]></fieldDescription>
+	</field>
+	<field name="localidad" class="java.lang.String">
+		<fieldDescription><![CDATA[localidad]]></fieldDescription>
+	</field>
+	<field name="metrosCuadrados" class="java.lang.String">
+		<fieldDescription><![CDATA[metrosCuadrados]]></fieldDescription>
+	</field>
+	<field name="lat" class="java.lang.Double">
+		<fieldDescription><![CDATA[lat]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#009936" uuid="3af791d9-394d-4319-b3b4-e10c295a1bff"/>
+				<staticText>
+					<reportElement x="20" y="20" width="330" height="43" forecolor="#FFFFFF" uuid="1d3da1d5-caba-4acf-95c5-2972c440a277"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Lopez y Lopez]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="65" width="140" height="20" forecolor="#FFFFFF" uuid="112539ed-2b23-4545-83d1-70bb028a5cb6"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[lopezylopez.com.ar]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="86" width="595" height="1" forecolor="#FFFFFF" uuid="8db73661-594c-4624-ad59-377bfcc7d4c5">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="3.0" lineStyle="Solid"/>
+					</graphicElement>
+				</line>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="71" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="439" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="162" width="550" height="268" uuid="c3da93a0-c550-4800-a30f-3719701a23b5"/>
+				<imageExpression><![CDATA[$F{foto}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="190" y="70" width="370" height="87" uuid="e28d986d-4a95-4488-9b32-5da0965622a4"/>
+				<textFieldExpression><![CDATA[$F{observaciones}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="190" y="45" width="100" height="21" uuid="edb2217f-6e92-4bc6-8ea1-ceea5cbf1e15"/>
+				<text><![CDATA[Observaciones]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="11" width="464" height="30" uuid="b195d448-b87c-4a43-947c-8d382df2c222"/>
+				<textFieldExpression><![CDATA[$F{otrosDatos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-10" y="9" width="80" height="20" uuid="e1577602-e89d-4e68-92b6-9975f49df375"/>
+				<text><![CDATA[Otros Datos]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

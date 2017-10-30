@@ -1,6 +1,7 @@
 package presentacion.controller;
 
 import com.google.inject.Inject;
+import dto.FichaPropiedadDTO;
 import entities.*;
 import misc.Binder;
 import model.LocalidadService;
@@ -15,6 +16,7 @@ import presentacion.combo.LocalidadComboBoxModel;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.ProvinciaComboBoxModel;
 import presentacion.combo.TipoOfrecimientoComboBoxModel;
+import presentacion.reportes.ReporteFichaDePropiedad;
 import presentacion.validators.MessageShow;
 import presentacion.validators.PropiedadFormValidator;
 import presentacion.vista.PropiedadForm;
@@ -37,7 +39,7 @@ public class PropiedadController {
 	private ElegirInmobiliariaController elegirInmobController;
 	private HistorialPropiedadController historialPropController;
 	private LocalizationService localizationService;
-	
+
 	@Inject private PropiedadOtrosDatosController otrosDatosForm;
 	
 	private final Coordinate centerOfMap = new Coordinate(50.064191736659104, 8.96484375);
@@ -89,6 +91,7 @@ public class PropiedadController {
 		view.getBtnGuardarDisponible().addActionListener(e -> savePropiedad());
 		view.getBtnMasDatos().addActionListener(e -> agregarOtrosDatos());
 		view.getBtnBorrador().addActionListener(e -> saveBorrador());
+		view.getBtnImprimirFicha().addActionListener(e -> generaReporteFichaPropiedad());
 		
 	}
 
@@ -349,5 +352,13 @@ public class PropiedadController {
 		view.getComboTipoOfre().setEnabled(bool);
 		view.getBtnGuardarDisponible().setVisible(bool);
 		view.getBtnBorrador().setVisible(bool);
+	}
+
+	private void generaReporteFichaPropiedad() {
+
+		List<FichaPropiedadDTO> dtos;
+		dtos = propiedadService.fichaPropiedadReporteOf(this.currentPropiedad);
+		ReporteFichaDePropiedad reporte = new ReporteFichaDePropiedad(dtos);
+		reporte.mostrar();
 	}
 }

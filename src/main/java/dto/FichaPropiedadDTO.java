@@ -16,7 +16,7 @@ public class FichaPropiedadDTO {
         solo que se agrega la calle, direccion, piso,
         departamento y un mapa de ubicación de la propiedad.
      */
-    String TioPropiedad;
+    String TipoPropiedad;
     String Foto;
     String Precio;
     String Provincia;
@@ -32,12 +32,12 @@ public class FichaPropiedadDTO {
     Double Lat;
     Double Long;
 
-    public String getTioPropiedad() {
-        return TioPropiedad;
+    public String getTipoPropiedad() {
+        return TipoPropiedad;
     }
 
-    public void setTioPropiedad(String tioPropiedad) {
-        TioPropiedad = tioPropiedad;
+    public void setTipoPropiedad(String tipoPropiedad) {
+        TipoPropiedad = tipoPropiedad;
     }
 
     public String getFoto() {
