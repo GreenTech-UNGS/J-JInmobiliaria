@@ -111,7 +111,8 @@ public class UsuarioForm extends JDialog {
 		cbRol.setModel(comboModel);
 		
 		btnGuardarCambios = new JButton("Guardar cambios");
-		btnGuardarCambios.setBounds(33, 216, 113, 31);
+		btnGuardarCambios.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnGuardarCambios.setBounds(33, 216, 121, 31);
 		getContentPane().add(btnGuardarCambios);
 		btnGuardarCambios.setVisible(false);
 	}

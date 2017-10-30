@@ -88,9 +88,6 @@ public class UsuarioService {
 	
 	public void editarUsuario(Usuario toEdit) throws LogicaNegocioException {
 		
-		if(!usuarioDao.existeUsuarioCon(toEdit.getPersona().getEmail()))
-			toEdit.setPswHash(getMD5Of(toEdit.getPersona().getCredencial()));
-		
 		usuarioDao.save(toEdit);
 	}
 	

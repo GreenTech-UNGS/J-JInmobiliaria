@@ -19,7 +19,7 @@ public class UsuariosTableModel extends BaseTableModel<Usuario>{
 		Object[] fila = {t.getPersona().getNombre(),
 				t.getPersona().getApellido(),
 				t.getPersona().getEmail(),
-				t.getRoles(),
+				t.getRoles().get(t.getRoles().size()-1),
 				t.getEstado()};
 
 		return fila;

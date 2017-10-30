@@ -33,6 +33,7 @@ public class UsuarioController {
 		
 		view.getBtnAceptar().addActionListener(e -> saveCurrentUsuario());
 		view.getBtnCancelar().addActionListener(e -> view.setVisible(false));
+		view.getBtnGuardarCambios().addActionListener(e -> guardarCambios());
 	}
 	
 	public void setModeNew() {
@@ -61,6 +62,22 @@ public class UsuarioController {
 		}
 	}
 	
+	private void guardarCambios() {
+		
+		if(usuarioValidator.isValid()) {
+			try {
+				usuarioMapper.fillBean(currentUsuario);
+				usuarioService.editarUsuario(currentUsuario);
+			} catch (LogicaNegocioException e) {
+				msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
+			}
+				view.setVisible(false);
+		}
+		else{
+			msgShw.showErrorMessage(usuarioValidator.getErrorMessage(), "Error");
+		}
+	}
+	
 	private void fillCombos() {
 		view.getComboModel().clearAndActualize(Arrays.asList(Rol.values()));
 		view.getComboModel().setSelected(Rol.EMPLEADO);
@@ -70,12 +87,12 @@ public class UsuarioController {
 		
 		view.setTitle("Editar usuario");
 		view.getBtnAceptar().setVisible(false);
-		view.getBtnCancelar().setVisible(false);
+		view.getBtnCancelar().setVisible(true);
 		view.getBtnGuardarCambios().setVisible(true);
 		
 		currentUsuario= u;
-		fillCombos();
 		usuarioMapper.fillFields(u);
+		fillCombos();
 	}
 
 }
