@@ -55,6 +55,7 @@ public class PropiedadForm extends JDialog{
 	private JButton btnGuardarDisponible;
 	private JButton btnMasDatos;
 	private JButton btnBorrador;
+	private JButton btnImprimirFicha;
 
 	@Inject
 	private PropiedadForm() {
@@ -255,7 +256,7 @@ public class PropiedadForm extends JDialog{
 						
 						btnVerHistorial = new JButton("Ver historial");
 						btnVerHistorial.setFont(new Font("Tahoma", Font.PLAIN, 11));
-						btnVerHistorial.setBounds(557, 24, 102, 19);
+						btnVerHistorial.setBounds(460, 19, 102, 19);
 						AgregarPropiedad.add(btnVerHistorial);
 						
 						tfInmobiliaria = new JTextField();
@@ -334,6 +335,11 @@ public class PropiedadForm extends JDialog{
 										btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 11));
 										btnCancelar.setBounds(405, 565, 130, 33);
 										AgregarPropiedad.add(btnCancelar);
+										
+										btnImprimirFicha = new JButton("Imprimir ficha");
+										btnImprimirFicha.setFont(new Font("Tahoma", Font.PLAIN, 11));
+										btnImprimirFicha.setBounds(572, 18, 102, 20);
+										AgregarPropiedad.add(btnImprimirFicha);
 										btnCancelar.addActionListener(new ActionListener() {
 											public void actionPerformed(ActionEvent arg0) {
 											}
@@ -529,6 +535,10 @@ public class PropiedadForm extends JDialog{
 
 	public void setBtnBorrador(JButton btnBorrador) {
 		this.btnBorrador = btnBorrador;
+	}
+
+	public JButton getBtnImprimirFicha() {
+		return btnImprimirFicha;
 	}
 	
 	
