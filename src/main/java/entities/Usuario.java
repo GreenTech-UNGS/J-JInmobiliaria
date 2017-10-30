@@ -26,6 +26,7 @@ public class Usuario{
 	private String pswHash;
 	@OneToOne(cascade = {CascadeType.ALL})
 	private Persona persona;
+	private EstadoUsuario estado;
 	
 	@Column
 	@Enumerated(EnumType.STRING)
@@ -42,6 +43,13 @@ public class Usuario{
 	public void setPswHash(String pswHash) {
 		this.pswHash = pswHash;
 	}
+	public EstadoUsuario getEstado() {
+		return estado;
+	}
+	public void setEstado( EstadoUsuario estado) {
+		this.estado = estado;
+	}
+	
 	public Persona getPersona() {
 		return persona;
 	}

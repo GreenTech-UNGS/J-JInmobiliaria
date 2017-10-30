@@ -10,6 +10,7 @@ public class UsuariosTableModel extends BaseTableModel<Usuario>{
 		super.addColumn("Apellido", false, 100);
 		super.addColumn("Email", false, 100);
 		super.addColumn("Rol", false, 100);
+		super.addColumn("Estado", false, 100);
 	}
 
 	@Override
@@ -18,7 +19,8 @@ public class UsuariosTableModel extends BaseTableModel<Usuario>{
 		Object[] fila = {t.getPersona().getNombre(),
 				t.getPersona().getApellido(),
 				t.getPersona().getEmail(),
-				t.getRoles()};
+				t.getRoles(),
+				t.getEstado()};
 
 		return fila;
 	}

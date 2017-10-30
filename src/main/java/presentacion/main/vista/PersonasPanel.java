@@ -124,9 +124,11 @@ public class PersonasPanel extends JPanel{
         panelBotones.add(btnEditarUsuario);
         
         btnHabilitar = new JButton("Habilitar");
+        btnHabilitar.setFont(new Font("Tahoma", Font.PLAIN, 11));
         panelBotones.add(btnHabilitar);
         
         btnDeshabilitar = new JButton("Deshabilitar");
+        btnDeshabilitar.setFont(new Font("Tahoma", Font.PLAIN, 11));
         panelBotones.add(btnDeshabilitar);
         
 	}

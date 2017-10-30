@@ -52,6 +52,8 @@ public class PersonasPanelController {
 		this.view.getBtnRemoverFiltroPropietarios().addActionListener(e  -> removerFiltroPropietario());
 		this.view.getBtnAgregarUsuario().addActionListener(e -> agregarUsuario());
 		this.view.getBtnEditarUsuario().addActionListener(e -> editarUsuario());
+		this.view.getBtnHabilitar().addActionListener(e -> habilitarUsuario());
+		this.view.getBtnDeshabilitar().addActionListener(e -> deshabilitarUsuario());
 		
 	}
 
@@ -184,5 +186,25 @@ public class PersonasPanelController {
 		fillTableClientes();
 		fillTablePropietarios();
 		fillTableUsuarios();
+	}
+	
+	private void habilitarUsuario() {
+		
+		int select = this.view.getTableUsuarios().getSelectedRow();
+		
+		if (select != -1){ 
+			usuarioService.habilitarUsuario(this.usuariosTable.getRow(select));
+			this.fillTableUsuarios();
+		}
+	}
+	
+	private void deshabilitarUsuario() {
+		
+		int select = this.view.getTableUsuarios().getSelectedRow();
+		
+		if (select != -1){ 
+			usuarioService.deshabilitarUsuario(this.usuariosTable.getRow(select));
+			this.fillTableUsuarios();
+		}
 	}
 }

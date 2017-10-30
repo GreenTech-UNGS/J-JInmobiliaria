@@ -12,6 +12,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import dto.Mail;
+import entities.EstadoUsuario;
 import entities.Persona;
 import entities.Rol;
 import entities.Usuario;
@@ -81,6 +82,7 @@ public class UsuarioService {
 		if(!usuarioDao.existeUsuarioCon(toSave.getPersona().getEmail()))
 			toSave.setPswHash(getMD5Of(toSave.getPersona().getCredencial()));
 		
+		toSave.setEstado(EstadoUsuario.HABILITADO);
 		usuarioDao.save(toSave);
 	}
 	
@@ -155,6 +157,16 @@ public class UsuarioService {
 		}
 		
 		return "";
+	}
+	
+	public void habilitarUsuario(Usuario usuario){
+		
+		usuario.setEstado(EstadoUsuario.HABILITADO);
+	}
+	
+	public void deshabilitarUsuario(Usuario usuario){
+		
+		usuario.setEstado(EstadoUsuario.DESHABILITADO);
 	}
 
 }
