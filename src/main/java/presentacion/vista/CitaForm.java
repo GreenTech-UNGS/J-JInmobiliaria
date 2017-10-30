@@ -6,6 +6,10 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.toedter.calendar.JDateChooser;
 
+import presentacion.combo.LocalidadComboBoxModel;
+import presentacion.combo.ProvinciaComboBoxModel;
+import presentacion.combo.TipoCitaComboBoxModel;
+
 import java.util.Date;
 
 import javax.swing.BoxLayout;
@@ -24,76 +28,100 @@ import javax.swing.JCheckBox;
 
 @Singleton
 public class CitaForm extends JDialog{
-	private JTable table;
+	
+	private JTable tableAsistentes;
 	private JDateChooser dateChooser;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField tfCalle;
+	private JTextField tfAltura;
+	private JCheckBox chckbxAsistir;
+	private JComboBox<String> comboMotivo;
+	private JButton btnAgregar;
+	private JButton btnBorrar;
+	private JSpinner spinnerHoraMomento;
+	private JSpinner spinnerMinutoMomento;
+	private JSpinner spinnerHoraDuracion;
+	private JSpinner spinnerMinutoDuracion;
+	private JButton btnDesdePropiedad;
+	private JComboBox<String> comboProvincia;
+	private JComboBox<String> comboLocalidad;
+	private JTextArea taNotas;
+	private JSpinner spinnerAvisoLargo;
+	private JSpinner spinnerAvisoCorto;
+	private JButton btnAceptar;
+	
+	private ProvinciaComboBoxModel comboModelProvincia;
+	private LocalidadComboBoxModel comboModelLocalidad;
+	private TipoCitaComboBoxModel comboModelTipoCita;
 	
 	@Inject
 	public CitaForm() {
 		getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(53, 76, 286, 77);
+		scrollPane.setBounds(105, 73, 286, 77);
 		getContentPane().add(scrollPane);
+		setLocationRelativeTo(null);
+		setModal(true);
+		setSize(500, 725);
+		setResizable(false);
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		tableAsistentes = new JTable();
+		scrollPane.setViewportView(tableAsistentes);
 		
-		JButton btnAgregar = new JButton("Agregar");
-		btnAgregar.setBounds(53, 164, 117, 25);
+		btnAgregar = new JButton("Agregar");
+		btnAgregar.setBounds(105, 161, 117, 25);
 		getContentPane().add(btnAgregar);
 		
-		JButton btnBorrar = new JButton("Borrar");
-		btnBorrar.setBounds(222, 164, 117, 25);
+		btnBorrar = new JButton("Borrar");
+		btnBorrar.setBounds(274, 161, 117, 25);
 		getContentPane().add(btnBorrar);
 		
 		JLabel lblFechaYHora = new JLabel("Fecha y hora: ");
-		lblFechaYHora.setBounds(37, 249, 117, 15);
+		lblFechaYHora.setBounds(37, 249, 91, 15);
 		getContentPane().add(lblFechaYHora);
 		
 		dateChooser = new JDateChooser(new Date());
-		dateChooser.setBounds(145, 249, 107, 22);
+		dateChooser.setBounds(135, 249, 107, 22);
 		getContentPane().add(dateChooser);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(0, 0, 23, 1));
-		spinner.setBounds(274, 249, 36, 20);
-		getContentPane().add(spinner);
+		spinnerHoraMomento = new JSpinner();
+		spinnerHoraMomento.setModel(new SpinnerNumberModel(0, 0, 23, 1));
+		spinnerHoraMomento.setBounds(264, 249, 36, 20);
+		getContentPane().add(spinnerHoraMomento);
 		
 		JLabel label = new JLabel(":");
-		label.setBounds(319, 252, 20, 15);
+		label.setBounds(309, 252, 20, 15);
 		getContentPane().add(label);
 		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setModel(new SpinnerNumberModel(0, 0, 59, 1));
-		spinner_1.setBounds(329, 250, 36, 20);
-		getContentPane().add(spinner_1);
+		spinnerMinutoMomento = new JSpinner();
+		spinnerMinutoMomento.setModel(new SpinnerNumberModel(0, 0, 59, 1));
+		spinnerMinutoMomento.setBounds(319, 250, 36, 20);
+		getContentPane().add(spinnerMinutoMomento);
 		
 		JLabel lblDuracion = new JLabel("Duracion: ");
 		lblDuracion.setBounds(37, 284, 91, 15);
 		getContentPane().add(lblDuracion);
 		
-		JSpinner spinner_2 = new JSpinner();
-		spinner_2.setModel(new SpinnerNumberModel(0, 0, 23, 1));
-		spinner_2.setBounds(135, 282, 36, 20);
-		getContentPane().add(spinner_2);
+		spinnerHoraDuracion = new JSpinner();
+		spinnerHoraDuracion.setModel(new SpinnerNumberModel(0, 0, 23, 1));
+		spinnerHoraDuracion.setBounds(135, 282, 36, 20);
+		getContentPane().add(spinnerHoraDuracion);
 		
 		JLabel label_1 = new JLabel(":");
 		label_1.setBounds(175, 284, 20, 15);
 		getContentPane().add(label_1);
 		
-		JSpinner spinner_3 = new JSpinner();
-		spinner_3.setModel(new SpinnerNumberModel(0, 0, 23, 1));
-		spinner_3.setBounds(183, 282, 36, 20);
-		getContentPane().add(spinner_3);
+		spinnerMinutoDuracion = new JSpinner();
+		spinnerMinutoDuracion.setModel(new SpinnerNumberModel(0, 0, 23, 1));
+		spinnerMinutoDuracion.setBounds(183, 282, 36, 20);
+		getContentPane().add(spinnerMinutoDuracion);
 		
 		JLabel lblLocalidad = new JLabel("Localidad: ");
 		lblLocalidad.setBounds(248, 360, 91, 15);
 		getContentPane().add(lblLocalidad);
 		
 		JLabel lblCalle = new JLabel("Calle: ");
-		lblCalle.setBounds(37, 386, 70, 15);
+		lblCalle.setBounds(37, 395, 70, 15);
 		getContentPane().add(lblCalle);
 		
 		JLabel lblProvincia = new JLabel("Provincia: ");
@@ -101,28 +129,28 @@ public class CitaForm extends JDialog{
 		getContentPane().add(lblProvincia);
 		
 		JLabel lblAltura = new JLabel("Altura: ");
-		lblAltura.setBounds(248, 386, 70, 15);
+		lblAltura.setBounds(248, 395, 70, 15);
 		getContentPane().add(lblAltura);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(105, 355, 114, 24);
-		getContentPane().add(comboBox);
+		comboProvincia = new JComboBox<>();
+		comboProvincia.setBounds(105, 355, 114, 24);
+		getContentPane().add(comboProvincia);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(319, 355, 114, 24);
-		getContentPane().add(comboBox_1);
+		comboLocalidad = new JComboBox<>();
+		comboLocalidad.setBounds(319, 355, 114, 24);
+		getContentPane().add(comboLocalidad);
 		
-		textField = new JTextField();
-		textField.setBounds(105, 383, 114, 19);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		tfCalle = new JTextField();
+		tfCalle.setBounds(105, 392, 114, 19);
+		getContentPane().add(tfCalle);
+		tfCalle.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(319, 386, 114, 19);
-		getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		tfAltura = new JTextField();
+		tfAltura.setBounds(319, 395, 114, 19);
+		getContentPane().add(tfAltura);
+		tfAltura.setColumns(10);
 		
-		JButton btnDesdePropiedad = new JButton("Desde propiedad");
+		btnDesdePropiedad = new JButton("Desde propiedad");
 		btnDesdePropiedad.setBounds(300, 322, 156, 15);
 		getContentPane().add(btnDesdePropiedad);
 		
@@ -130,9 +158,9 @@ public class CitaForm extends JDialog{
 		lblMotivo.setBounds(248, 47, 70, 15);
 		getContentPane().add(lblMotivo);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(300, 42, 114, 24);
-		getContentPane().add(comboBox_2);
+		comboMotivo = new JComboBox<>();
+		comboMotivo.setBounds(300, 42, 114, 24);
+		getContentPane().add(comboMotivo);
 		
 		JLabel lblAvisoLargo = new JLabel("Aviso largo: ");
 		lblAvisoLargo.setBounds(37, 489, 72, 14);
@@ -142,20 +170,20 @@ public class CitaForm extends JDialog{
 		lblAvisoCorto.setBounds(248, 489, 70, 14);
 		getContentPane().add(lblAvisoCorto);
 		
-		JSpinner spinner_4 = new JSpinner();
-		spinner_4.setBounds(105, 486, 29, 20);
-		getContentPane().add(spinner_4);
+		spinnerAvisoLargo = new JSpinner();
+		spinnerAvisoLargo.setBounds(105, 486, 40, 20);
+		getContentPane().add(spinnerAvisoLargo);
 		
-		JSpinner spinner_5 = new JSpinner();
-		spinner_5.setBounds(319, 486, 29, 20);
-		getContentPane().add(spinner_5);
+		spinnerAvisoCorto = new JSpinner();
+		spinnerAvisoCorto.setBounds(319, 486, 36, 20);
+		getContentPane().add(spinnerAvisoCorto);
 		
 		JLabel lblDias = new JLabel("dias antes");
-		lblDias.setBounds(145, 489, 74, 14);
+		lblDias.setBounds(155, 489, 74, 14);
 		getContentPane().add(lblDias);
 		
 		JLabel lblHoras = new JLabel("horas antes");
-		lblHoras.setBounds(358, 489, 75, 14);
+		lblHoras.setBounds(365, 489, 75, 14);
 		getContentPane().add(lblHoras);
 		
 		JLabel lblNotas = new JLabel("Notas:");
@@ -166,8 +194,8 @@ public class CitaForm extends JDialog{
 		scrollPane_1.setBounds(96, 539, 337, 77);
 		getContentPane().add(scrollPane_1);
 		
-		JTextArea textArea = new JTextArea();
-		scrollPane_1.setViewportView(textArea);
+		taNotas = new JTextArea();
+		scrollPane_1.setViewportView(taNotas);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(10, 33, 464, 2);
@@ -205,14 +233,114 @@ public class CitaForm extends JDialog{
 		lblOtrosDatos.setBounds(37, 445, 87, 14);
 		getContentPane().add(lblOtrosDatos);
 		
-		JCheckBox chckbxAsistir = new JCheckBox("Asistir");
+		chckbxAsistir = new JCheckBox("Asistir");
 		chckbxAsistir.setBounds(48, 43, 97, 23);
 		getContentPane().add(chckbxAsistir);
 		
-		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBounds(197, 630, 89, 49);
 		getContentPane().add(btnAceptar);
 		
+		JLabel lblHs = new JLabel("hs.");
+		lblHs.setBounds(364, 255, 46, 14);
+		getContentPane().add(lblHs);
 		
+		comboModelProvincia = new ProvinciaComboBoxModel();
+		comboModelLocalidad = new LocalidadComboBoxModel();
+		comboModelTipoCita = new TipoCitaComboBoxModel();
+		
+		comboProvincia.setModel(comboModelProvincia);
+		comboLocalidad.setModel(comboModelLocalidad);
+		comboMotivo.setModel(comboModelTipoCita);
+		
+		
+	}
+
+	public JTable getTableAsistentes() {
+		return tableAsistentes;
+	}
+
+	public JDateChooser getDateChooser() {
+		return dateChooser;
+	}
+
+	public JTextField getTfCalle() {
+		return tfCalle;
+	}
+
+	public JTextField getTfAltura() {
+		return tfAltura;
+	}
+
+	public JCheckBox getChckbxAsistir() {
+		return chckbxAsistir;
+	}
+
+	public JComboBox<String> getComboMotivo() {
+		return comboMotivo;
+	}
+
+	public JButton getBtnAgregar() {
+		return btnAgregar;
+	}
+
+	public JButton getBtnBorrar() {
+		return btnBorrar;
+	}
+
+	public JSpinner getSpinnerHoraMomento() {
+		return spinnerHoraMomento;
+	}
+
+	public JSpinner getSpinnerMinutoMomento() {
+		return spinnerMinutoMomento;
+	}
+
+	public JSpinner getSpinnerHoraDuracion() {
+		return spinnerHoraDuracion;
+	}
+
+	public JSpinner getSpinnerMinutoDuracion() {
+		return spinnerMinutoDuracion;
+	}
+
+	public JButton getBtnDesdePropiedad() {
+		return btnDesdePropiedad;
+	}
+
+	public JComboBox<String> getComboProvincia() {
+		return comboProvincia;
+	}
+
+	public JComboBox<String> getComboLocalidad() {
+		return comboLocalidad;
+	}
+
+	public JTextArea getTaNotas() {
+		return taNotas;
+	}
+
+	public JSpinner getSpinnerAvisoLargo() {
+		return spinnerAvisoLargo;
+	}
+
+	public JSpinner getSpinnerAvisoCorto() {
+		return spinnerAvisoCorto;
+	}
+
+	public JButton getBtnAceptar() {
+		return btnAceptar;
+	}
+
+	public ProvinciaComboBoxModel getComboModelProvincia() {
+		return comboModelProvincia;
+	}
+
+	public LocalidadComboBoxModel getComboModelLocalidad() {
+		return comboModelLocalidad;
+	}
+
+	public TipoCitaComboBoxModel getComboModelTipoCita() {
+		return comboModelTipoCita;
 	}
 }
