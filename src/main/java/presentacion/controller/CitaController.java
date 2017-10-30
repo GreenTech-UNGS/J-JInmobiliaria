@@ -16,7 +16,9 @@ import entities.TipoCita;
 import entities.TipoOfrecimiento;
 import model.CitaService;
 import model.LocalidadService;
+import model.UsuarioService;
 import presentacion.mappers.CitaFormMapper;
+import presentacion.table.PersonaBasicaTableModel;
 import presentacion.vista.CitaForm;
 
 @Singleton
@@ -25,7 +27,12 @@ public class CitaController {
 	private CitaForm view;
 	@Inject private LocalidadService localidadService;
 	@Inject private CitaService citaService;
+	@Inject private UsuarioService usuarioService;
 	@Inject private CitaFormMapper mapper;
+	
+	@Inject private ElegirAsistenteController elegirAsistente;
+	
+	private PersonaBasicaTableModel tableModel;
 	
 	private Cita currentCita;
 	
@@ -35,9 +42,11 @@ public class CitaController {
 		this.view = view;
 		this.view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
 		this.view.getBtnAceptar().addActionListener(e -> agregarCita());
+		this.view.getBtnAgregar().addActionListener(e -> agregarAsistente());
 		
 	}
-	
+
+
 	public void showView() {
 	
 		fillCombos();
@@ -74,9 +83,17 @@ public class CitaController {
 		//TODO: falta validator
 		currentCita = citaService.getNuevaCita();
 		mapper.fillBean(currentCita);
+
+		if(view.getChckbxAsistir().isSelected())
+			currentCita.getAsistentes().add(usuarioService.getUsuarioLogeado().getPersona());
 		
 		citaService.saveCita(currentCita);
 		
 	}
-	
+		
+	private void agregarAsistente() {
+		elegirAsistente.showView();
+		
+		
+	}
 }

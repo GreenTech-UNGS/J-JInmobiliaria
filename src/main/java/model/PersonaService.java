@@ -41,6 +41,10 @@ public class PersonaService {
 	public List<Persona> getAll(){
 		return personaDao.getAll();
 	}
+	
+	public List<PersonaBasica> getBasicas(){
+		return personaDao.getAllBasicas();
+	}
 
 
 	public boolean existePersona(Persona t) {

@@ -10,6 +10,7 @@ import entities.Telefono;
 public interface PersonaDao extends Dao<Persona>{
 	
 	List<Telefono> getAllTelefonosOf(PersonaBasica pb);
+	public List<PersonaBasica> getAllBasicas();
 	boolean existePersonaConCredencial (String credencial, TipoCredencial tipo);
 	Persona getPersonaWith(int ID);
 	

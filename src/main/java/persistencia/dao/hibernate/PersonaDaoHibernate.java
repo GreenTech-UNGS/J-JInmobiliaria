@@ -97,4 +97,18 @@ public class PersonaDaoHibernate extends DaoHibernate<Persona> implements Person
 		return toRet.get(0);
 	}
 
+	@Override
+	public List<PersonaBasica> getAllBasicas() {
+		initTransaction();
+		
+		Criteria q = sesion.createCriteria(PersonaBasica.class);
+		
+		List<PersonaBasica> toRet = q.list();
+		
+		finishTransaction();
+		
+		actualizeList(toRet);
+		return toRet;
+	}
+
 }
