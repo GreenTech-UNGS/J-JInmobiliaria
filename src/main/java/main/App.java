@@ -30,6 +30,7 @@ public class App{
     	startNotificationThread();
     	
     	DateTimeZone.setDefault(DateTimeZone.UTC);
+    	TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 
     	controlador.addLoginListener(() -> permisos.setupViews(injector
     			.getAllBindings()

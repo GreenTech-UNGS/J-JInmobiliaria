@@ -31,8 +31,8 @@ public class TipoCitaComboBoxModel extends BaseComboBoxModel<TipoCita>{
 
 	@Override
 	public void agregaElemento(TipoCita element) {
-		this.addElement(element.toString().replaceAll("_", " "));
-		values.put(element.toString().replaceAll("_", " "), element);
+		this.addElement(element.toString());
+		values.put(element.toString(), element);
 		
 	}
 

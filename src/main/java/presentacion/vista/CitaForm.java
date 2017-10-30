@@ -172,10 +172,12 @@ public class CitaForm extends JDialog{
 		getContentPane().add(lblAvisoCorto);
 		
 		spinnerAvisoLargo = new JSpinner();
+		spinnerAvisoLargo.setModel(new SpinnerNumberModel(1, 1, 10, 1));
 		spinnerAvisoLargo.setBounds(105, 486, 40, 20);
 		getContentPane().add(spinnerAvisoLargo);
 		
 		spinnerAvisoCorto = new JSpinner();
+		spinnerAvisoCorto.setModel(new SpinnerNumberModel(1, 1, 10, 1));
 		spinnerAvisoCorto.setBounds(319, 486, 36, 20);
 		getContentPane().add(spinnerAvisoCorto);
 		

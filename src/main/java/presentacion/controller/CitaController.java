@@ -93,6 +93,7 @@ public class CitaController {
 		mapper.fillBean(currentCita);
 		
 		citaService.saveCita(currentCita);
+		this.view.setVisible(false);
 		
 	}
 		

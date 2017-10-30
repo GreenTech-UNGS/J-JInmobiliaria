@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.border.LineBorder;
+import java.awt.Font;
 
 public class NotificacionView extends JPanel{
 	private JLabel lblTitulo;
@@ -22,6 +23,7 @@ public class NotificacionView extends JPanel{
 		add(lblTitulo);
 		
 		JButton btnOk = new JButton("Ok");
+		btnOk.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		btnOk.setBounds(145, 41, 45, 23);
 		add(btnOk);
 		
