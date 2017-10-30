@@ -45,6 +45,7 @@ public class CitaController {
 		this.view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
 		this.view.getBtnAceptar().addActionListener(e -> agregarCita());
 		this.view.getBtnAgregar().addActionListener(e -> agregarAsistente());
+		this.view.getBtnBorrar().addActionListener(e -> borrarAsistente());
 		this.view.getChckbxAsistir().addActionListener(e -> actualizaAsistenteAlUsuario(((AbstractButton)e.getSource()).isSelected()));
 	
 		this.tableModel = new PersonaBasicaTableModel();
@@ -68,6 +69,45 @@ public class CitaController {
 			currentCita.getAsistentes().add(usuarioService.getUsuarioLogeado().getPersona());
 		
 		}
+		
+	}	
+	
+	private void borrarAsistente() {
+		
+		int selectedIndex = view.getTableAsistentes().getSelectedRow();
+		PersonaBasica selected = tableModel.getRow(selectedIndex);
+		
+		if(selected.equals(usuarioService.getUsuarioLogeado().getPersona()))
+			view.getChckbxAsistir().setSelected(false);
+		
+		if(selectedIndex >= 0) {
+			tableModel.removeRow(selectedIndex);
+			currentCita.getAsistentes().remove(selectedIndex);
+		}
+		
+	}
+	
+	private void agregarCita() {
+		
+		//TODO: falta validator
+		mapper.fillBean(currentCita);
+		
+		citaService.saveCita(currentCita);
+		
+	}
+		
+	private void agregarAsistente() {
+		elegirAsistente.showView();
+		PersonaBasica asistente = elegirAsistente.getAsistente();
+		
+		if(asistente.equals(usuarioService.getUsuarioLogeado().getPersona()))
+			view.getChckbxAsistir().setSelected(true);
+		
+		if(!currentCita.getAsistentes().contains(asistente)) {
+			tableModel.addRow(asistente);
+			currentCita.getAsistentes().add(asistente);
+		}
+		
 		
 	}
 
@@ -109,24 +149,5 @@ public class CitaController {
 		
 	}
 	
-	private void agregarCita() {
-		
-		//TODO: falta validator
-		mapper.fillBean(currentCita);
-		
-		citaService.saveCita(currentCita);
-		
-	}
-		
-	private void agregarAsistente() {
-		elegirAsistente.showView();
-		PersonaBasica asistente = elegirAsistente.getAsistente();
-		
-		if(!currentCita.getAsistentes().contains(asistente)) {
-			tableModel.addRow(asistente);
-			currentCita.getAsistentes().add(asistente);
-		}
-		
-		
-	}
+
 }
