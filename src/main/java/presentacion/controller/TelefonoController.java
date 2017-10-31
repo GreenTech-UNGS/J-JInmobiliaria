@@ -45,7 +45,7 @@ public class TelefonoController {
 		
 		view.getBtnOk().addActionListener(e -> aceptar());
 		view.getBtnCancelar().addActionListener(e -> cancelar());
-		view.getComboTipo().addActionListener(e -> cambiaOpcion());
+
 	}
 	
 	public Telefono getTelefono() {
@@ -83,16 +83,6 @@ public class TelefonoController {
 	private void cancelar() {
 		currentTelefono = null;
 		view.setVisible(false);
-	}
-	
-	private void cambiaOpcion() {
-		boolean otroSelected = comboModel.getSelected().equals(Tipo.OTRO); 
-		view.getLblNotas().setVisible(otroSelected);
-		view.getTextDescr().setVisible(otroSelected);
-		view.getTextDescr().setEnabled(otroSelected);		
-		if (! otroSelected)
-			view.getTextDescr().setText("");
-		
 	}
 	
 }

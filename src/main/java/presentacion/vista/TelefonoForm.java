@@ -104,7 +104,6 @@ public class TelefonoForm extends JDialog{
 		getContentPane().add(lblNotas, gbc_lblNotas);
 		
 		textDescr = new JTextField();
-		//textDescr.setEnabled(false);
 		GridBagConstraints gbc_textDescr = new GridBagConstraints();
 		gbc_textDescr.insets = new Insets(0, 0, 5, 5);
 		gbc_textDescr.fill = GridBagConstraints.HORIZONTAL;
