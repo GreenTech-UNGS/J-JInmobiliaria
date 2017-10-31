@@ -22,11 +22,16 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		String apellido = view.getTfApellido().getText();
 		String credencial = view.getTfCredencial().getText();
 		String email = view.getTfEmail().getText();
+		String metrosCuadrados= view.getTfMetros().getText();
+		String ambientes = view.getTfAmbientes().getText();
+		String precioDesde = view.getTfDesdePrecio().getText();
+		String precioHasta = view.getTfHastaPrecio().getText();
 
 		t.getPersona().setNombre(nombre);
 		t.getPersona().setApellido(apellido);
 		t.getPersona().setCredencial(credencial);
 		t.getPersona().setEmail(email);
+		//t.getPreferencia().setCantidadAmbientes(cantidadAmbientes);
 	}
 
 	@Override
