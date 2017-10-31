@@ -8,6 +8,7 @@ import filtros.PropiedadFiltro;
 import org.joda.time.DateTime;
 import persistencia.dao.iface.PropiedadDao;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -189,24 +190,33 @@ public class PropiedadService {
 	 */
 	public List<FichaPropiedadDTO> fichaPropiedadReporteOf(Propiedad propiedad) {
 
-		List<FichaPropiedadDTO> fichas = null;
+		List<FichaPropiedadDTO> fichas = new ArrayList<FichaPropiedadDTO>();
 		FichaPropiedadDTO fichaPropiedad = new FichaPropiedadDTO();
 	//
 	// Aca poner una foto que es la por default si no tiene foto y sino tomar la de portada
 	//
 		fichaPropiedad.setTipoPropiedad(propiedad.getTipoOfrecimiento().name().toString());
-		String foto = "resources/cityscape.png";//propiedad.getFotos();
+		String foto = "C:\\Users\\alejandro\\IdeaProjects\\J-JInmobiliaria-Dev\\src\\main\\resources\\cityscape.png";//propiedad.getFotos();
 		fichaPropiedad.setFoto(foto);
-		fichaPropiedad.setPrecio(propiedad.getPrecioTentativo().toString());
 
-		fichaPropiedad.setProvincia("BuenosAres");
-		fichaPropiedad.setLocalidad(propiedad.getLocalidad().toString());
-		fichaPropiedad.setMetrosCuadrados("20 m2");
-//		fichaPropiedad.setMetrosCuadrados(propiedad.getOtrosDatos().getMetrosCuadradosCubiertos()+"");
-//		fichaPropiedad.setCantidadDeAmbientes(propiedad.getOtrosDatos().getCantidadAmbientes()+"");
+		DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );
+
+		String dd2dec = df2.format(propiedad.getPrecioTentativo().getMonto());
+
+		fichaPropiedad.setPrecio(dd2dec+" "
+				  				+propiedad.getPrecioTentativo().getMoneda());
+
+		fichaPropiedad.setProvincia(propiedad.getLocalidad().getProvincia().name());
+		fichaPropiedad.setLocalidad(propiedad.getLocalidad().getNombre());
+		fichaPropiedad.setMetrosCuadrados("");
+		fichaPropiedad.setOtrosDatos("");
+		fichaPropiedad.setCantidadDeAmbientes("");
+		if ( propiedad.getOtrosDatos() != null) {
+			fichaPropiedad.setMetrosCuadrados(propiedad.getOtrosDatos().getMetrosCuadradosCubiertos() + " m2");
+			fichaPropiedad.setCantidadDeAmbientes(propiedad.getOtrosDatos().getCantidadAmbientes() + "");
+		}
+
 		fichaPropiedad.setObservaciones(propiedad.getObsPublicas());
-//		fichaPropiedad.setOtrosDatos(propiedad.getOtrosDatos().toString());
-		fichaPropiedad.setOtrosDatos("Ootros datos ver como hacer para que traiga un to string digno");
 		fichaPropiedad.setCalle(propiedad.getCalle().toString());
 		fichaPropiedad.setDireccion(propiedad.getCalle()+""+propiedad.getAltura());
 		fichaPropiedad.setPiso(propiedad.getPiso().toString());

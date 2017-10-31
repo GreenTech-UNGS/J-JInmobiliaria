@@ -1,6 +1,5 @@
 package presentacion.reportes;
 
-import dto.CobrosDeAlquileresDTO;
 import dto.FichaPropiedadDTO;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;

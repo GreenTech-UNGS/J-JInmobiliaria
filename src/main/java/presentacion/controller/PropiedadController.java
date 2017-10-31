@@ -22,6 +22,7 @@ import presentacion.validators.PropiedadFormValidator;
 import presentacion.vista.PropiedadForm;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class PropiedadController {
 	private LocalidadComboBoxModel localidadCombo;
 	private PropiedadFormValidator propiedadValidator;
 	private PropiedadService propiedadService;
+	@Inject private PropiedadService propiedadServiceReport;
 	private LocalidadService localidadService;
 	private ElegirPropietarioController elegirPropController;
 	private ElegirInmobiliariaController elegirInmobController;
@@ -357,8 +359,9 @@ public class PropiedadController {
 	private void generaReporteFichaPropiedad() {
 
 		List<FichaPropiedadDTO> dtos;
-		dtos = propiedadService.fichaPropiedadReporteOf(this.currentPropiedad);
+		dtos = propiedadServiceReport.fichaPropiedadReporteOf(this.currentPropiedad);
 		ReporteFichaDePropiedad reporte = new ReporteFichaDePropiedad(dtos);
+		System.out.println(dtos.get(0).getFoto().toString());
 		reporte.mostrar();
 	}
 }
