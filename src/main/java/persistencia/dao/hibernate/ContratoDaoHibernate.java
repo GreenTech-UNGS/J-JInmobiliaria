@@ -3,7 +3,13 @@ package persistencia.dao.hibernate;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Subqueries;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -11,6 +17,8 @@ import com.google.inject.Singleton;
 import entities.Contrato;
 import entities.ContratoAlquiler;
 import entities.ContratoVenta;
+import entities.EstadoContrato;
+import entities.HistoriaEstadoProp;
 import filtros.ContratoAlquilerFiltro;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.ContratoDao;
@@ -88,6 +96,28 @@ public class ContratoDaoHibernate extends DaoHibernate<Contrato> implements Cont
 		
 		Criteria q = sesion.createCriteria(Contrato.class)
 				.add(Restrictions.eqOrIsNull("propiedad", filtro.getPropiedad()));
+		
+		List<ContratoAlquiler> toRet = q.list();
+		
+		finishTransaction();
+		
+		actualizeList(toRet);
+		return toRet;
+	}
+
+	@Override
+	public List<ContratoAlquiler> getAlquilerVigentes() {
+		initTransaction();
+		
+		
+		Criteria q = sesion.createCriteria(ContratoAlquiler.class, "contr1")
+				.createAlias("estados", "e")
+				.add(Restrictions.eq("e.estado", EstadoContrato.DEFINITIVO))
+				.add(Subqueries.propertyGeAll("e.fecha", DetachedCriteria
+						.forClass(ContratoAlquiler.class, "contr2")
+						.createAlias("estados", "e2")
+						.add(Restrictions.eqProperty("contr1.ID", "contr2.ID"))
+						.setProjection(Projections.property("e2.fecha"))));
 		
 		List<ContratoAlquiler> toRet = q.list();
 		

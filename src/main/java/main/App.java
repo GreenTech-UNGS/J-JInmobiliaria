@@ -11,12 +11,14 @@ import com.google.inject.Injector;
 import misc.ProdModule;
 import model.NotificacionesService;
 import model.permisos.PermisosService;
+import persistencia.dao.iface.ContratoDao;
 import presentacion.main.controller.LoginController;
 import presentacion.main.controller.MainViewController;
 
 public class App{
 	
     static Injector injector = Guice.createInjector(new ProdModule());
+    static long cincoMinutos = 60000 * 5;
     
     public static void main( String[] args ){
         showMainView();
@@ -52,8 +54,8 @@ public class App{
     	Thread t = new Thread(() -> {
     		while(true) {
     		try {
-				Thread.sleep(10000);
 				service.fetch();
+				Thread.sleep(cincoMinutos);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

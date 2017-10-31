@@ -35,6 +35,8 @@ public class MainViewController {
 		NotificacionView nView = new NotificacionView();
 		nView.getLblTitulo().setText(n.getTitulo());
 		
+		view.getPanelNotificaciones().removeAll();
+		
 		view.getPanelNotificaciones().add(nView);
 		
 	}

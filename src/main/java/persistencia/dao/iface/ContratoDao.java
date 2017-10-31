@@ -13,4 +13,5 @@ public interface ContratoDao extends Dao<Contrato>{
 	public List<ContratoAlquiler> getAllAlquiler();
 	public List<ContratoVenta> getAllVenta();
 	public List<ContratoAlquiler> getAllBy(ContratoAlquilerFiltro filtro);
+	public List<ContratoAlquiler> getAlquilerVigentes();
 }

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.joda.time.Instant;
+import org.joda.time.LocalDate;
+import org.joda.time.Period;
 import org.joda.time.YearMonth;
 
 import com.google.inject.Inject;
@@ -307,6 +310,34 @@ public class ContratoService {
 		}
 		
 		c.getEstados().add(nuevoEstado);
+		
+		HistoriaEstadoProp propiedadLiberada = new HistoriaEstadoProp();
+		propiedadLiberada.setEstado(EstadoProp.DISPONIBLE);
+		propiedadLiberada.setFecha(DateTime.now());
+		
+		c.getPropiedad().getEstados().add(propiedadLiberada);
+		
+		contratoDao.save(c);
+		
+	}
+	
+	public List<Contrato> getProximosVencer(){
+		
+		List<Contrato> toRet = new ArrayList<>();
+		
+		contratoDao.getAlquilerVigentes().forEach(c -> {
+		
+			LocalDate fin = c.getPrimerAnioMes().plusMonths(c.getCantMeses()).toLocalDate(1);
+			LocalDate notificacion = fin.minus(c.getAvisoProxVencer().getPeriodo());
+			
+			if(c.getAvisoProxVencer().isHabilitado())
+				if(!notificacion.isAfter(LocalDate.now()))
+					toRet.add(c);
+		
+		});
+		
+		return toRet;
+		
 	}
 
 	public List<ContratoAlquiler> getcontratosAlquilerBy(ContratoAlquilerFiltro filtro) {
