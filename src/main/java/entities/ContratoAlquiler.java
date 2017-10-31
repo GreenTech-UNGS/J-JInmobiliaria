@@ -16,7 +16,8 @@ public class ContratoAlquiler extends Contrato{
 	
 	private int cantMeses;
 	private String primerAnioMes;
-	
+	private String garantia;
+
 	@OneToOne(cascade = {CascadeType.ALL})
 	private Precio cuotaMensual;
 	
@@ -100,6 +101,13 @@ public class ContratoAlquiler extends Contrato{
 		this.primerAnioMes = primerAnioMes.toString();
 	}
 
+	public String getGarantia() {
+		return garantia;
+	}
+
+	public void setGarantia(String garantia) {
+		this.garantia = garantia;
+	}
 
 	
 	

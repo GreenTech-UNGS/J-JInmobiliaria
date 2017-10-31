@@ -41,17 +41,7 @@
 					<textFieldExpression><![CDATA[$F{propietarioStr}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="20" width="90" height="20" uuid="6b9cdb48-9247-4f3e-b652-2fc66968ca23">
-						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					</reportElement>
-					<textElement textAlignment="Left" verticalAlignment="Top">
-						<font fontName="Arial" size="10" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Identificador Contrato]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="89" y="20" width="159" height="20" uuid="75852f01-3da1-4122-bf88-b181359ad036">
+					<reportElement x="67" y="20" width="159" height="20" uuid="75852f01-3da1-4122-bf88-b181359ad036">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
@@ -60,14 +50,14 @@
 					<text><![CDATA[Inmueble]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="250" y="20" width="122" height="20" uuid="4013aaee-b8ed-447f-ae98-3e3f64bb4c78"/>
+					<reportElement x="232" y="20" width="122" height="20" uuid="4013aaee-b8ed-447f-ae98-3e3f64bb4c78"/>
 					<textElement verticalAlignment="Top">
 						<font fontName="Arial" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Cliente]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="370" y="20" width="79" height="20" uuid="669feb80-7dfb-4e82-9439-6608708d98f8"/>
+					<reportElement x="365" y="20" width="79" height="20" uuid="669feb80-7dfb-4e82-9439-6608708d98f8"/>
 					<textElement>
 						<font isBold="true"/>
 					</textElement>
@@ -109,7 +99,7 @@
 				</staticText>
 			</frame>
 			<line>
-				<reportElement x="0" y="69" width="555" height="2" uuid="394caec6-a68f-453c-89b7-8cb072406388">
+				<reportElement x="0" y="69" width="555" height="1" forecolor="#FFFFFF" uuid="394caec6-a68f-453c-89b7-8cb072406388">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 			</line>
@@ -144,19 +134,15 @@
 	<detail>
 		<band height="31" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="7" width="90" height="20" uuid="3025648e-af8d-405f-b89a-93c324469608"/>
-				<textFieldExpression><![CDATA[$F{idContrato}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="89" y="7" width="159" height="20" uuid="cea3c3a6-151d-48b4-bba7-5fa9c94c4969"/>
+				<reportElement x="67" y="7" width="159" height="20" uuid="cea3c3a6-151d-48b4-bba7-5fa9c94c4969"/>
 				<textFieldExpression><![CDATA[$F{propiedadStr}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="248" y="7" width="120" height="20" uuid="0be4389f-8efe-4a3e-9898-b2922203f9c0"/>
+				<reportElement x="230" y="7" width="120" height="20" uuid="0be4389f-8efe-4a3e-9898-b2922203f9c0"/>
 				<textFieldExpression><![CDATA[$F{inquilinoStr}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="370" y="7" width="80" height="20" uuid="70777c04-ac10-4685-b1fe-73989550f0ee"/>
+				<reportElement x="365" y="7" width="80" height="20" uuid="70777c04-ac10-4685-b1fe-73989550f0ee"/>
 				<textFieldExpression><![CDATA[$F{montoStr}]]></textFieldExpression>
 			</textField>
 			<line>

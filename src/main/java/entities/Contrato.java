@@ -26,7 +26,6 @@ public class Contrato {
 	private int ID;
 	private String identificador;
 	private float gastosAdmin;
-	private String garantia;
 	
 	@OneToMany(cascade = {CascadeType.ALL})
 	private List<HistoriaEstadoContrato> estados;
@@ -59,14 +58,6 @@ public class Contrato {
 
 	public void setGastosAdmin(float gastosAdmin) {
 		this.gastosAdmin = gastosAdmin;
-	}
-
-	public String getGarantia() {
-		return garantia;
-	}
-
-	public void setGarantia(String garantia) {
-		this.garantia = garantia;
 	}
 
 	public Propiedad getPropiedad() {

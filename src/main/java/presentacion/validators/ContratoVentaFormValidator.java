@@ -20,9 +20,7 @@ public class ContratoVentaFormValidator implements ValidatorNew{
 		return isIdValid() 
 				&& isPropiedadValid()
 				&& isClienteValid()
-				&& isGarantiaValid()
 				&& isPrecioValid()
-				&& isGarantiaValid()
 				;
 	}
 
@@ -35,8 +33,6 @@ public class ContratoVentaFormValidator implements ValidatorNew{
 			toRet += "\n- No ha seleccionado una propiedad valida";
 		if(!isClienteValid())
 			toRet += "\n- No ha seleccionado un cliente valido";
-		if(!isGarantiaValid())
-			toRet += "\n- La garantia no es valido";
 		if(!isPrecioValid())
 			toRet += "\n- El precio no es valido";
 		if(!isGastosAdmValid())
@@ -73,16 +69,7 @@ public class ContratoVentaFormValidator implements ValidatorNew{
 		
 		return true;
 	}
-	
-	private boolean isGarantiaValid(){
-		String garantia = view.getTfGarantia().getText();
-		
-		if(garantia == null || garantia.equals(""))
-			return false;
-		
-		return true;
-	}
-	
+
 	private boolean isPrecioValid(){
 		return view.getTfPrecio().getText().matches("([0-9]*[\\.])?[0-9]+");
 	}	

@@ -23,7 +23,6 @@ public class ContratoVentaForm extends JDialog{
 	private JTextField tfCliente;
 	private JTextField tfPropiedad;
 	private JTextField tfPrecio;
-	private JTextField tfGarantia;
 	private JButton btnGuardarContVen;
 	private JButton btnCancelarContVen;
 	private JButton btnBuscarCliente;
@@ -71,12 +70,7 @@ public class ContratoVentaForm extends JDialog{
 		lblPjeAdm.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblPjeAdm.setBounds(27, 274, 175, 14);
 		getContentPane().add(lblPjeAdm);
-		
-		JLabel lblGarantia = new JLabel("Garant\u00EDa de pago:");
-		lblGarantia.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblGarantia.setBounds(27, 216, 121, 14);
-		getContentPane().add(lblGarantia);
-		
+
 		JLabel lblDatosGenerales = new JLabel("Datos generales");
 		lblDatosGenerales.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblDatosGenerales.setBounds(27, 30, 108, 14);
@@ -152,11 +146,7 @@ public class ContratoVentaForm extends JDialog{
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(125, 216, 334, 44);
 		getContentPane().add(scrollPane);
-		
-		tfGarantia = new JTextField();
-		scrollPane.setViewportView(tfGarantia);
-		tfGarantia.setColumns(10);
-		
+
 	}
 
 	public JTextField getTfIdContrato() {
@@ -189,14 +179,6 @@ public class ContratoVentaForm extends JDialog{
 
 	public void setTfMonto(JTextField tfMonto) {
 		this.tfPrecio = tfMonto;
-	}
-
-	public JTextField getTfGarantia() {
-		return tfGarantia;
-	}
-
-	public void setTfGarantia(JTextField tfGarantia) {
-		this.tfGarantia = tfGarantia;
 	}
 
 	public JButton getBtnGuardarContVen() {

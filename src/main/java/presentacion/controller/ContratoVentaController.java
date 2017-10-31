@@ -57,9 +57,6 @@ public class ContratoVentaController {
 				v -> view.getTfMonto().setText(v.toString()));
 		binder.bind("monto.moneda", () -> Moneda.valueOf(view.getTfMoneda().getText()),
 				t -> view.getTfMoneda().setText(t.toString()));
-		binder.bind("garantia", view.getTfGarantia()::getText,
-				t -> view.getTfGarantia().setText((String)t));
-		
 		binder.bind("identificador", view.getTfIdContrato());
 		binder.bind("gastosAdmin",
 				view.getSpinnerPorcentaje()::getValue,
