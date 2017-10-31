@@ -48,6 +48,8 @@
 		<mapping class="entities.PropiedadOtrosDatos" />
 		<mapping class="entities.TipoHabitacion" />
 		<mapping class="entities.Cita" />
+		<mapping class="entities.Interesado" />
+		<mapping class="entities.Preferencia" />
 		
 				
     </session-factory>

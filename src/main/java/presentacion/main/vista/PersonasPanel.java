@@ -33,6 +33,11 @@ public class PersonasPanel extends JPanel{
 	private JButton btnEditarUsuario;
 	private JButton btnHabilitar;
 	private JButton btnDeshabilitar;
+	private JPanel panelInteresados;
+	private JScrollPane scrollPane_3;
+	private JPanel panelBotonesInteresados;
+	private JTable tableInteresados;
+	private JButton btnAgregarInteresado;
 
 	@Inject
 	private PersonasPanel() {
@@ -131,6 +136,20 @@ public class PersonasPanel extends JPanel{
         btnDeshabilitar.setFont(new Font("Tahoma", Font.PLAIN, 11));
         panelBotones.add(btnDeshabilitar);
         
+        panelInteresados = new JPanel();
+        tabbedPane_2.addTab("Interesados", null, panelInteresados, null);
+        panelInteresados.setLayout(new BoxLayout(panelInteresados, BoxLayout.Y_AXIS));
+        
+        tableInteresados = new JTable();
+        scrollPane_3 = new JScrollPane(tableInteresados);
+        panelInteresados.add(scrollPane_3);
+       
+        panelBotonesInteresados = new JPanel();
+        panelInteresados.add(panelBotonesInteresados);
+        
+        btnAgregarInteresado = new JButton("Agregar interesado");
+        panelBotonesInteresados.add(btnAgregarInteresado);
+        
 	}
 
 	public JButton getBtnAgregarUsuario() {
@@ -200,5 +219,18 @@ public class PersonasPanel extends JPanel{
 	public void setBtnDeshabilitar(JButton btnDeshabilitar) {
 		this.btnDeshabilitar = btnDeshabilitar;
 	}
+
+	public JButton getBtnAgregarInteresado() {
+		return btnAgregarInteresado;
+	}
+
+	public JTable getTableInteresados() {
+		return tableInteresados;
+	}
+
+	public void setTableInteresados(JTable tableInteresados) {
+		this.tableInteresados = tableInteresados;
+	}
+	
 	
 }

@@ -6,15 +6,18 @@ import com.google.inject.Singleton;
 import filtros.ClienteFiltro;
 import filtros.PropietarioFiltro;
 import model.ClienteService;
+import model.InteresadoService;
 import model.PropietarioService;
 import model.UsuarioService;
 import presentacion.controller.ClienteController;
+import presentacion.controller.InteresadoController;
 import presentacion.controller.PropietarioController;
 import presentacion.controller.UsuarioController;
 import presentacion.controller.filtros.ClienteFiltroController;
 import presentacion.controller.filtros.PropietarioFiltroController;
 import presentacion.main.vista.PersonasPanel;
 import presentacion.table.ClientesTableModel;
+import presentacion.table.InteresadosTableModel;
 import presentacion.table.PropietariosTableModel;
 import presentacion.table.UsuariosTableModel;
 
@@ -28,14 +31,17 @@ public class PersonasPanelController {
 	@Inject private ClienteFiltroController clienteFiltro;
 	@Inject private PropietarioFiltroController propietarioFiltro;
 	@Inject private UsuarioController usuarioController;
+	@Inject private InteresadoController interesadoController;
 	
 	@Inject private ClienteService clienteService;
 	@Inject private PropietarioService propietarioService;
 	@Inject private UsuarioService usuarioService;
+	@Inject private InteresadoService interesadoService;
 
 	@Inject private ClientesTableModel tableModelClien;
 	@Inject private PropietariosTableModel propietariosTable;
 	@Inject private UsuariosTableModel usuariosTable;
+	@Inject private InteresadosTableModel interesadosTable;
 	
 	@Inject
 	PersonasPanelController(PersonasPanel view) {
@@ -54,6 +60,7 @@ public class PersonasPanelController {
 		this.view.getBtnEditarUsuario().addActionListener(e -> editarUsuario());
 		this.view.getBtnHabilitar().addActionListener(e -> habilitarUsuario());
 		this.view.getBtnDeshabilitar().addActionListener(e -> deshabilitarUsuario());
+		this.view.getBtnAgregarInteresado().addActionListener(e -> agregarInteresado());
 		
 	}
 
@@ -110,6 +117,14 @@ public class PersonasPanelController {
 		fillTableUsuarios();
 	}
 	
+
+	private void agregarInteresado() {
+		this.interesadoController.setModeNew();
+		this.interesadoController.showView();
+		fillTableInteresados();
+	}
+
+	
 	private void aplicarFiltroCliente() {
 		clienteFiltro.setModeNew();
 		clienteFiltro.showView();
@@ -133,7 +148,6 @@ public class PersonasPanelController {
 		if(filtro != null) {
 			propietariosTable.actualizeRows(propietarioService.getAllByFiltro(filtro));
 		}
-		
 	}
 	
 	private void removerFiltroPropietario() {
@@ -166,6 +180,15 @@ public class PersonasPanelController {
 		
 		this.view.getTableUsuarios().setColumnModel(usuariosTable.getTableColumnModel());
 		this.view.getTableUsuarios().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTableInteresados(){
+		this.usuariosTable.clean();
+		this.view.getTableInteresados().setModel(interesadosTable);
+		interesadosTable.actualizeRows(interesadoService.getAll());
+		
+		this.view.getTableInteresados().setColumnModel(interesadosTable.getTableColumnModel());
+		this.view.getTableInteresados().getTableHeader().setReorderingAllowed(false);
 	}
 
 	public void showView() {
