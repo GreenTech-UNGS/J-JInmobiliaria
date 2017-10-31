@@ -1,8 +1,11 @@
 package dto;
 
+import entities.AvisoNotificacion;
+
 public class Notificacion {
 
 	private String titulo;
+	private AvisoNotificacion avisoNotif;
 	
 	public Notificacion() {
 		// TODO Auto-generated constructor stub
@@ -14,6 +17,14 @@ public class Notificacion {
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
+	}
+
+	public AvisoNotificacion getAvisoNotif() {
+		return avisoNotif;
+	}
+
+	public void setAvisoNotif(AvisoNotificacion avisoNotif) {
+		this.avisoNotif = avisoNotif;
 	}
 	
 	

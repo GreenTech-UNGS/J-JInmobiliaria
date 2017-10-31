@@ -10,6 +10,7 @@ import java.awt.Font;
 
 public class NotificacionView extends JPanel{
 	private JLabel lblTitulo;
+	private JButton btnOk;
 	public NotificacionView() {
 		setBorder(new LineBorder(new Color(0, 0, 255), 2));
 		
@@ -22,7 +23,7 @@ public class NotificacionView extends JPanel{
 		lblTitulo.setBounds(10, 11, 180, 14);
 		add(lblTitulo);
 		
-		JButton btnOk = new JButton("Ok");
+		btnOk = new JButton("Ok");
 		btnOk.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		btnOk.setBounds(145, 41, 45, 23);
 		add(btnOk);
@@ -30,6 +31,9 @@ public class NotificacionView extends JPanel{
 	}
 	public JLabel getLblTitulo() {
 		return lblTitulo;
+	}
+	public JButton getBtnOk() {
+		return btnOk;
 	}
 
 }

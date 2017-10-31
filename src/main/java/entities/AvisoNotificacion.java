@@ -17,6 +17,7 @@ public class AvisoNotificacion {
 	private String periodo;
 	
 	private boolean isHabilitado;
+	private boolean isVisto;
 	
 	public AvisoNotificacion(){
 		periodo = "P";
@@ -40,6 +41,14 @@ public class AvisoNotificacion {
 
 	public int getID() {
 		return ID;
+	}
+
+	public boolean isVisto() {
+		return isVisto;
+	}
+
+	public void setVisto(boolean isVisto) {
+		this.isVisto = isVisto;
 	}
 
 }

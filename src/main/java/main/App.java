@@ -1,4 +1,3 @@
-
 package main;
 
 import java.util.TimeZone;
@@ -13,6 +12,7 @@ import misc.ProdModule;
 import model.NotificacionesService;
 import model.permisos.PermisosService;
 import persistencia.dao.iface.ContratoDao;
+import presentacion.controller.NotificacionController;
 import presentacion.main.controller.LoginController;
 import presentacion.main.controller.MainViewController;
 
@@ -47,7 +47,7 @@ public class App{
     
     private static void startNotificationThread() {
     	
-    	MainViewController controller = injector.getInstance(MainViewController.class);
+    	NotificacionController controller = injector.getInstance(NotificacionController.class);
     	NotificacionesService service = injector.getInstance(NotificacionesService.class);
     	
     	service.addCallback(n -> controller.acceptNotificacion(n));
@@ -55,6 +55,7 @@ public class App{
     	Thread t = new Thread(() -> {
     		while(true) {
     		try {
+				controller.clear();
 				service.fetch();
 				Thread.sleep(cincoMinutos);
 			} catch (InterruptedException e) {

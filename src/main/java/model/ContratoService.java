@@ -321,9 +321,9 @@ public class ContratoService {
 		
 	}
 	
-	public List<Contrato> getProximosVencer(){
+	public List<ContratoAlquiler> getProximosVencer(){
 		
-		List<Contrato> toRet = new ArrayList<>();
+		List<ContratoAlquiler> toRet = new ArrayList<>();
 		
 		contratoDao.getAlquilerVigentes().forEach(c -> {
 		

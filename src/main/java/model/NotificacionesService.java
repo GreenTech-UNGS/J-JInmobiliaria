@@ -8,6 +8,8 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import dto.Notificacion;
+import entities.AvisoNotificacion;
+import persistencia.dao.iface.NotificacionDao;
 
 @Singleton
 public class NotificacionesService {
@@ -15,6 +17,7 @@ public class NotificacionesService {
 	private List<Consumer<Notificacion>> callbacks;
 	
 	@Inject ContratoService contratoService;
+	@Inject NotificacionDao notificacionDao;
 	
 	@Inject
 	private NotificacionesService() {
@@ -37,17 +40,28 @@ public class NotificacionesService {
 	}
 	
 	private List<Notificacion> fetchContratos(){
-		System.out.println("asd");
 		List<Notificacion> toRet = new ArrayList<>();
 		
 		contratoService.getProximosVencer().forEach(c ->{
-			Notificacion toAdd = new Notificacion();
-			toAdd.setTitulo("Contrato a vencer " + c.getIdentificador());
+			if(!c.getAvisoProxVencer().isVisto()){
+				Notificacion toAdd = new Notificacion();
+				toAdd.setTitulo("Contrato a vencer " + c.getIdentificador());
+				toAdd.setAvisoNotif(c.getAvisoProxVencer());
 			
-			toRet.add(toAdd);
+				toRet.add(toAdd);
+			}
 		});
 		
 		return toRet;
+		
+	}
+	
+	private List<Notificacion> fetchCitas(){
+		return null;
+	}
+
+	public void save(AvisoNotificacion notificacion) {
+		notificacionDao.save(notificacion);
 		
 	}
 	

@@ -4,7 +4,6 @@ import com.google.inject.Binder;
 import com.google.inject.Module;
 import com.google.inject.Singleton;
 
-import model.InteresadoService;
 import model.PagosCobrosService;
 import persistencia.conexion.Conexion;
 import persistencia.dao.hibernate.CitaDaoHibernate;
@@ -14,8 +13,8 @@ import persistencia.dao.hibernate.CuotaDaoHibernate;
 import persistencia.dao.hibernate.EgresoDaoHibernate;
 import persistencia.dao.hibernate.IngresoDaoHibernate;
 import persistencia.dao.hibernate.InmobiliariaDaoHibernate;
-import persistencia.dao.hibernate.InteresadoDaoHibernate;
 import persistencia.dao.hibernate.LocalidadDaoHibernate;
+import persistencia.dao.hibernate.NotificacionDaoHibernate;
 import persistencia.dao.hibernate.PersonaDaoHibernate;
 import persistencia.dao.hibernate.PropiedadDaoHibernate;
 import persistencia.dao.hibernate.PropietarioDaoHibernate;
@@ -28,9 +27,9 @@ import persistencia.dao.iface.CuotaDao;
 import persistencia.dao.iface.EgresoDao;
 import persistencia.dao.iface.IngresoDao;
 import persistencia.dao.iface.InmobiliariaDao;
-import persistencia.dao.iface.InteresadoDao;
 import persistencia.dao.iface.LocalidadDao;
 import persistencia.dao.iface.LocalizationDao;
+import persistencia.dao.iface.NotificacionDao;
 import persistencia.dao.iface.PersonaDao;
 import persistencia.dao.iface.PropiedadDao;
 import persistencia.dao.iface.PropietarioDao;
@@ -41,14 +40,12 @@ import presentacion.controller.ClienteController;
 import presentacion.controller.ContratoAlquilerController;
 import presentacion.controller.ContratoVentaController;
 import presentacion.controller.InmobiliariaController;
-import presentacion.controller.InteresadoController;
 import presentacion.controller.PropiedadController;
 import presentacion.controller.PropietarioController;
 import presentacion.main.vista.MainView;
 import presentacion.vista.ClienteForm;
 import presentacion.vista.ContratoAlquilerForm;
 import presentacion.vista.InmobiliariaForm;
-import presentacion.vista.InteresadoForm;
 import presentacion.vista.PropiedadForm;
 import presentacion.vista.PropietarioForm;
 
@@ -63,7 +60,6 @@ public class ProdModule implements Module{
 		binder.bind(ContratoAlquilerForm.class).in(Singleton.class);
 		binder.bind(PropiedadForm.class).in(Singleton.class);
 		binder.bind(InmobiliariaForm.class).in(Singleton.class);
-		binder.bind(InteresadoForm.class).in(Singleton.class);
 		binder.bind(MainView.class).in(Singleton.class);
 		binder.bind(MainView.class).in(Singleton.class);
 		binder.bind(PropiedadController.class).in(Singleton.class);
@@ -72,10 +68,7 @@ public class ProdModule implements Module{
 		binder.bind(ClienteController.class).in(Singleton.class);
 		binder.bind(PropietarioController.class).in(Singleton.class);
 		binder.bind(InmobiliariaController.class).in(Singleton.class);
-		binder.bind(InteresadoController.class).in(Singleton.class);
 		binder.bind(PagosCobrosService.class).in(Singleton.class);
-		binder.bind(InteresadoService.class).in(Singleton.class);
-		
 		
 		binder.bind(Conexion.class).in(Singleton.class);
 		binder.bind(ClienteDao.class).to(ClienteDaoHibernate.class).in(Singleton.class);
@@ -92,6 +85,8 @@ public class ProdModule implements Module{
 		binder.bind(UsuarioDao.class).to(UsuarioDaoHibernate.class).in(Singleton.class);
 		binder.bind(CitaDao.class).to(CitaDaoHibernate.class).in(Singleton.class);
 		binder.bind(InteresadoDao.class).to(InteresadoDaoHibernate.class).in(Singleton.class);
+
+		binder.bind(NotificacionDao.class).to(NotificacionDaoHibernate.class).in(Singleton.class);
 
 		binder.bind(LocalizationDao.class).to(LocalizationDaoGoogleMaps.class).in(Singleton.class);
 		
