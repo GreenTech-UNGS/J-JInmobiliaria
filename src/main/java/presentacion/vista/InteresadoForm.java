@@ -284,5 +284,30 @@ public class InteresadoForm extends JDialog{
 	public void setTfEmail(JTextField tfEmail) {
 		this.tfEmail = tfEmail;
 	}
+
+	public JTextField getTfMetros() {
+		return tfMetros;
+	}
+
+	public void setTfMetros(JTextField tfMetros) {
+		this.tfMetros = tfMetros;
+	}
+
+	public JTextField getTfDesdePrecio() {
+		return tfDesdePrecio;
+	}
+
+	public void setTfDesdePrecio(JTextField tfDesdePrecio) {
+		this.tfDesdePrecio = tfDesdePrecio;
+	}
+
+	public JTextField getTfHastaPrecio() {
+		return tfHastaPrecio;
+	}
+
+	public void setTfHastaPrecio(JTextField tfHastaPrecio) {
+		this.tfHastaPrecio = tfHastaPrecio;
+	}
+	
 	
 }

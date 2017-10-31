@@ -35,4 +35,13 @@ public class Interesado {
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
+
+	public Preferencia getPreferencia() {
+		return preferencia;
+	}
+
+	public void setPreferencia(Preferencia preferencia) {
+		this.preferencia = preferencia;
+	}
+	
 }
