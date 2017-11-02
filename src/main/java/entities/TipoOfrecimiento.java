@@ -2,7 +2,7 @@ package entities;
 
 public enum TipoOfrecimiento {
 
-	ALQUILER,
-	VENTA,
+	Alquiler,
+	Venta,
 	VENTA_Y_ALQUILER
 }

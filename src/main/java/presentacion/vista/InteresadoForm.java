@@ -6,6 +6,11 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import com.google.inject.Inject;
+
+import presentacion.combo.LocalidadComboBoxModel;
+import presentacion.combo.ProvinciaComboBoxModel;
+import presentacion.combo.TipoCitaComboBoxModel;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -33,6 +38,12 @@ public class InteresadoForm extends JDialog{
 	private JButton btnGuardar;
 	private JButton btnCancelar;
 	private JComboBox<String> cbCredencial;
+	private JComboBox<String> cbLocalidad;
+	private JComboBox<String> cbTipoOfrec;
+	private JComboBox<String> cbProvincia;
+	
+	private ProvinciaComboBoxModel comboModelProvincia;
+	private LocalidadComboBoxModel comboModelLocalidad;
 	
 	@Inject
 	private InteresadoForm(){
@@ -47,7 +58,7 @@ public class InteresadoForm extends JDialog{
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		
-		cbCredencial = new JComboBox<String>();
+		cbCredencial = new JComboBox();
 		cbCredencial.setBounds(197, 69, 67, 20);
 		getContentPane().add(cbCredencial);
 		
@@ -127,20 +138,20 @@ public class InteresadoForm extends JDialog{
 		
 		JLabel lblNewLabel = new JLabel("Localidad:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel.setBounds(30, 292, 60, 14);
+		lblNewLabel.setBounds(217, 295, 60, 14);
 		getContentPane().add(lblNewLabel);
 		
-		JComboBox<String> comboBox_1 = new JComboBox<String>();
-		comboBox_1.setBounds(78, 292, 104, 20);
-		getContentPane().add(comboBox_1);
+		cbLocalidad = new JComboBox<String>();
+		cbLocalidad.setBounds(274, 292, 109, 20);
+		getContentPane().add(cbLocalidad);
 		
 		JLabel lblMetros = new JLabel("Metros2:");
 		lblMetros.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblMetros.setBounds(30, 317, 46, 14);
+		lblMetros.setBounds(217, 339, 46, 14);
 		getContentPane().add(lblMetros);
 		
 		tfMetros = new JTextField();
-		tfMetros.setBounds(78, 314, 104, 20);
+		tfMetros.setBounds(274, 336, 109, 20);
 		getContentPane().add(tfMetros);
 		tfMetros.setColumns(10);
 		
@@ -156,31 +167,32 @@ public class InteresadoForm extends JDialog{
 		
 		JLabel lblTipo = new JLabel("Tipo:");
 		lblTipo.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblTipo.setBounds(218, 292, 46, 14);
+		lblTipo.setBounds(19, 317, 46, 14);
 		getContentPane().add(lblTipo);
 		
 		JLabel lblDesde = new JLabel("Desde precio:");
 		lblDesde.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblDesde.setBounds(23, 342, 67, 14);
+		lblDesde.setBounds(19, 339, 67, 14);
 		getContentPane().add(lblDesde);
 		
 		tfDesdePrecio = new JTextField();
 		tfDesdePrecio.setColumns(10);
-		tfDesdePrecio.setBounds(93, 339, 89, 20);
+		tfDesdePrecio.setBounds(84, 336, 104, 20);
 		getContentPane().add(tfDesdePrecio);
 		
 		JLabel lblHasta = new JLabel("Hasta precio:");
-		lblHasta.setBounds(217, 342, 67, 14);
+		lblHasta.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblHasta.setBounds(19, 361, 67, 14);
 		getContentPane().add(lblHasta);
 		
 		tfHastaPrecio = new JTextField();
-		tfHastaPrecio.setBounds(284, 339, 99, 20);
+		tfHastaPrecio.setBounds(84, 358, 104, 20);
 		getContentPane().add(tfHastaPrecio);
 		tfHastaPrecio.setColumns(10);
 		
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnGuardar.setBounds(93, 387, 109, 34);
+		btnGuardar.setBounds(93, 392, 109, 34);
 		getContentPane().add(btnGuardar);
 		
 		btnCancelar = new JButton("Cancelar");
@@ -189,12 +201,27 @@ public class InteresadoForm extends JDialog{
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnCancelar.setBounds(224, 387, 109, 34);
+		btnCancelar.setBounds(224, 392, 109, 34);
 		getContentPane().add(btnCancelar);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setBounds(274, 289, 109, 20);
-		getContentPane().add(comboBox);
+		cbTipoOfrec = new JComboBox();
+		cbTipoOfrec.setBounds(84, 314, 104, 20);
+		getContentPane().add(cbTipoOfrec);
+		
+		cbProvincia = new JComboBox();
+		cbProvincia.setBounds(84, 292, 104, 20);
+		getContentPane().add(cbProvincia);
+		
+		comboModelProvincia = new ProvinciaComboBoxModel();
+		comboModelLocalidad = new LocalidadComboBoxModel();
+		
+		cbProvincia.setModel(comboModelProvincia);
+		cbLocalidad.setModel(comboModelLocalidad);
+		
+		JLabel lblProvincia = new JLabel("Provincia:");
+		lblProvincia.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblProvincia.setBounds(19, 292, 60, 14);
+		getContentPane().add(lblProvincia);
 	}
 
 	public JButton getBtnAgregarTelefono() {
@@ -237,11 +264,11 @@ public class InteresadoForm extends JDialog{
 		this.tableTel = tableTel;
 	}
 
-	public JComboBox<String> getCbCredencial() {
+	public JComboBox getCbCredencial() {
 		return cbCredencial;
 	}
 
-	public void setCbCredencial(JComboBox<String> cbCredencial) {
+	public void setCbCredencial(JComboBox cbCredencial) {
 		this.cbCredencial = cbCredencial;
 	}
 
@@ -308,6 +335,36 @@ public class InteresadoForm extends JDialog{
 	public void setTfHastaPrecio(JTextField tfHastaPrecio) {
 		this.tfHastaPrecio = tfHastaPrecio;
 	}
+
+	public JComboBox<String> getCbLocalidad() {
+		return cbLocalidad;
+	}
+
+	public void setCbLocalidad(JComboBox<String> cbLocalidad) {
+		this.cbLocalidad = cbLocalidad;
+	}
+
+	public JComboBox<String> getCbTipoOfrec() {
+		return cbTipoOfrec;
+	}
+
+	public void setCbTipoOfrec(JComboBox<String> cbTipoOfrec) {
+		this.cbTipoOfrec = cbTipoOfrec;
+	}
+
+	public JComboBox<String> getCbProvincia() {
+		return cbProvincia;
+	}
+
+	public void setCbProvincia(JComboBox<String> cbProvincia) {
+		this.cbProvincia = cbProvincia;
+	}
 	
-	
+	public ProvinciaComboBoxModel getComboModelProvincia() {
+		return comboModelProvincia;
+	}
+
+	public LocalidadComboBoxModel getComboModelLocalidad() {
+		return comboModelLocalidad;
+	}
 }

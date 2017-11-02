@@ -40,6 +40,7 @@ public class InteresadoFormValidator implements ValidatorNew {
 	}
 	
 	private boolean isCredencialValid(){
+		
 		TipoCredencial tipoCred = TipoCredencial.valueOf((String)view.getCbCredencial().getSelectedItem());
 		String credencial = view.getTfCredencial().getText();
 		if(tipoCred == TipoCredencial.DNI)

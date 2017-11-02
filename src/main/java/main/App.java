@@ -19,7 +19,7 @@ import presentacion.main.controller.MainViewController;
 public class App{
 	
     static Injector injector = Guice.createInjector(new ProdModule());
-    static long cincoMinutos = 60000 * 5;
+    static long cincoMinutos = 5000;//60000 * 5;
     
     public static void main( String[] args ){
         showMainView();

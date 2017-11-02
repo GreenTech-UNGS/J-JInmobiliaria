@@ -209,6 +209,7 @@ public class PersonasPanelController {
 		fillTableClientes();
 		fillTablePropietarios();
 		fillTableUsuarios();
+		fillTableInteresados();
 	}
 	
 	private void habilitarUsuario() {

@@ -75,7 +75,7 @@ public class PropiedadService {
 		Propiedad toRet = new Propiedad();
 		
 		toRet.setPrecioTentativo(new Precio(0, Moneda.PESOS));
-		toRet.setTipoOfrecimiento(TipoOfrecimiento.ALQUILER);
+		toRet.setTipoOfrecimiento(TipoOfrecimiento.Alquiler);
 		
 		return toRet;
 		
@@ -96,7 +96,7 @@ public class PropiedadService {
 
 		
 		List<Propiedad> toRet = allProps.stream().filter(p -> estadosAFiltrar.contains(getCurrentEstado(p)))
-						.filter(p -> p.getTipoOfrecimiento().equals(TipoOfrecimiento.ALQUILER) ||
+						.filter(p -> p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquiler) ||
 				p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA_Y_ALQUILER))
 						.collect(Collectors.toList());	
 
@@ -109,7 +109,7 @@ public class PropiedadService {
 		List<EstadoProp> estadosAFiltrar = Arrays.asList(estados);
 		
 		List<Propiedad> toRet = allProps.stream().filter(p -> estadosAFiltrar.contains(getCurrentEstado(p))).filter
-				(p -> p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA) || p.getTipoOfrecimiento().equals
+				(p -> p.getTipoOfrecimiento().equals(TipoOfrecimiento.Venta) || p.getTipoOfrecimiento().equals
 						(TipoOfrecimiento.VENTA_Y_ALQUILER)).collect(Collectors.toList());
 		return toRet;
 		
@@ -122,7 +122,7 @@ public class PropiedadService {
 	public List<Propiedad> getEnAlquiler(){
 		List<Propiedad> toRet = new ArrayList<Propiedad>();
 		for(Propiedad p : this.getAll()){
-			if(p.getTipoOfrecimiento().equals(TipoOfrecimiento.ALQUILER) || p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA_Y_ALQUILER)){
+			if(p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquiler) || p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA_Y_ALQUILER)){
 				if(this.getCurrentEstado(p).equals(EstadoProp.DISPONIBLE)){
 					toRet.add(p);
 				}
@@ -134,7 +134,7 @@ public class PropiedadService {
 	public List<Propiedad> getEnVenta(){
 		List<Propiedad> toRet = new ArrayList<Propiedad>();
 		for(Propiedad p : this.getAll()){
-			if(p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA) || p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA_Y_ALQUILER)){
+			if(p.getTipoOfrecimiento().equals(TipoOfrecimiento.Venta) || p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA_Y_ALQUILER)){
 				if(this.getCurrentEstado(p).equals(EstadoProp.DISPONIBLE)){
 					toRet.add(p);
 				}

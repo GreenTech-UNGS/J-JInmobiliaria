@@ -7,6 +7,7 @@ import com.google.inject.Singleton;
 
 import entities.Interesado;
 import entities.Persona;
+import entities.Preferencia;
 import persistencia.dao.iface.InteresadoDao;
 import persistencia.dao.iface.PersonaDao;
 
@@ -31,6 +32,9 @@ public class InteresadoService {
 		Persona p = new Persona();
 		p.setTipoCred(Persona.TipoCredencial.DNI);
 		toRet.setPersona(p);
+		Preferencia preferencia = new Preferencia();
+		toRet.setPreferencia(preferencia);
+		
 		return toRet;
 	}
 	

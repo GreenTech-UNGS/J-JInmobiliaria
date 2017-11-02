@@ -48,6 +48,7 @@ import presentacion.main.vista.MainView;
 import presentacion.vista.ClienteForm;
 import presentacion.vista.ContratoAlquilerForm;
 import presentacion.vista.InmobiliariaForm;
+import presentacion.vista.InteresadoForm;
 import presentacion.vista.PropiedadForm;
 import presentacion.vista.PropietarioForm;
 
@@ -62,6 +63,7 @@ public class ProdModule implements Module{
 		binder.bind(ContratoAlquilerForm.class).in(Singleton.class);
 		binder.bind(PropiedadForm.class).in(Singleton.class);
 		binder.bind(InmobiliariaForm.class).in(Singleton.class);
+		binder.bind(InteresadoForm.class).in(Singleton.class);
 		binder.bind(MainView.class).in(Singleton.class);
 		binder.bind(MainView.class).in(Singleton.class);
 		binder.bind(PropiedadController.class).in(Singleton.class);

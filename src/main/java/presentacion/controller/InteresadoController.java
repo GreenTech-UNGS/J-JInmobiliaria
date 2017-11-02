@@ -1,15 +1,27 @@
 package presentacion.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.Interesado;
+import entities.Localidad;
+import entities.Provincia;
 import entities.Telefono;
+import entities.TipoOfrecimiento;
 import entities.Persona.TipoCredencial;
 import model.InteresadoService;
+import model.LocalidadService;
 import model.LogicaNegocioException;
 import model.PersonaService;
+import presentacion.combo.LocalidadComboBoxModel;
+import presentacion.combo.ProvinciaComboBoxModel;
 import presentacion.combo.TipoCredencialComboBoxModel;
+import presentacion.combo.TipoOfrecimientoComboBoxModel;
 import presentacion.mappers.InteresadoFormMapper;
 import presentacion.table.TelefonoTableModel;
 import presentacion.validators.InteresadoFormValidator;
@@ -22,13 +34,17 @@ public class InteresadoController {
 	private InteresadoForm view;
 	@Inject private PersonaService personaService;
 	@Inject private InteresadoService interesadoService;
-	@Inject	private TipoCredencialComboBoxModel tipoCredencialModel;
+	private TipoCredencialComboBoxModel tipoCredencialModel;
 	@Inject private InteresadoFormMapper interesadoMapper;
 	@Inject private InteresadoFormValidator interesadoValidator;
 	@Inject private MessageShow msgShw;
+	@Inject private LocalidadService localidadService;
 	
+	private TipoOfrecimientoComboBoxModel tipoOfrCombo;
+	private ProvinciaComboBoxModel provCombo;
 	private Interesado currentInteresado;
 	private TelefonoTableModel telTable;
+	private LocalidadComboBoxModel localidadModel;
 	@Inject private TelefonoController telefonoController;
 	
 	@Inject	
@@ -36,14 +52,17 @@ public class InteresadoController {
 		this.view = view;
 		this.telTable = new TelefonoTableModel();
 		this.tipoCredencialModel = new TipoCredencialComboBoxModel();
+		this.localidadModel = new LocalidadComboBoxModel();
+		this.provCombo = new ProvinciaComboBoxModel();
+		this.tipoOfrCombo = new TipoOfrecimientoComboBoxModel();
+		this.tipoCredencialModel = new TipoCredencialComboBoxModel();
 		
 		view.getBtnAgregarTelefono().addActionListener(e -> agregaTelefono());
 		view.getBtnBorrarTelefono().addActionListener(e -> borrarTelefono());
 		view.getBtnGuardar().addActionListener(e -> saveCurrentInteresado());
 		view.getBtnCancelar().addActionListener(e -> this.view.setVisible(false));
+		view.getCbProvincia().addActionListener(e -> cambiaLocalidades());
 		
-		fillTables();
-		fillCombos();
 	}
 
 	private void agregaTelefono() {
@@ -77,10 +96,42 @@ public class InteresadoController {
 	}
 	
 	private void fillCombos() {
-		tipoCredencialModel.agregaElemento(TipoCredencial.DNI);
-		tipoCredencialModel.agregaElemento(TipoCredencial.CUIT);
-		tipoCredencialModel.setSelected(TipoCredencial.DNI);
-		view.getCbCredencial().setModel(tipoCredencialModel);
+//		tipoCredencialModel.agregaElemento(TipoCredencial.DNI);
+//		tipoCredencialModel.agregaElemento(TipoCredencial.CUIT);
+//		tipoCredencialModel.setSelected(TipoCredencial.DNI);
+		
+		this.view.getCbCredencial().setModel(tipoCredencialModel);
+		tipoCredencialModel.actualize(Arrays.asList(TipoCredencial.values()));
+		AutoCompleteDecorator.decorate(view.getCbCredencial());
+		
+//		view.getCbCredencial().setModel(tipoCredencialModel);
+		
+//		this.view.getCbProvincia().setModel(provCombo);
+//		provCombo.actualize(Arrays.asList(Provincia.values()));
+//		AutoCompleteDecorator.decorate(view.getCbProvincia());
+
+		this.view.getCbTipoOfrec().setModel(tipoOfrCombo);
+		tipoOfrCombo.actualize(Arrays.asList(TipoOfrecimiento.values()));
+
+//		this.view.getCbLocalidad().setModel(localidadModel);
+//		AutoCompleteDecorator.decorate(view.getCbLocalidad());
+
+		view.getComboModelProvincia().clearAndActualize(Arrays.asList(Provincia.values()));
+		AutoCompleteDecorator.decorate(view.getCbProvincia());
+		
+		AutoCompleteDecorator.decorate(view.getCbLocalidad());
+		cambiaLocalidades();
+	}
+	
+	private void cambiaLocalidades() {
+//		localidadModel.removeAllElements();
+//		List<Localidad> localidades = localidadService.getAllOf(provCombo.getSelected());
+//		localidadModel.actualize(localidades);
+		
+		view.getComboModelLocalidad().removeAllElements();
+		List<Localidad> localidades = localidadService.getAllOf(view.getComboModelProvincia().getSelected());
+		view.getComboModelLocalidad().actualize(localidades);
+		
 	}
 	
 	public void setModeNew() {
@@ -94,12 +145,15 @@ public class InteresadoController {
 	}
 	
 	public void showView(){
+
 		fillTables();
+		fillCombos();
 		view.setVisible(true);
 	}
 	
 	
 	private void saveCurrentInteresado() {
+
 		if(interesadoValidator.isValid()) {
 			interesadoMapper.fillBean(currentInteresado);
 			try {
