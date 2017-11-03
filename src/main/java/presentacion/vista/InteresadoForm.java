@@ -44,6 +44,7 @@ public class InteresadoForm extends JDialog{
 	
 	private ProvinciaComboBoxModel comboModelProvincia;
 	private LocalidadComboBoxModel comboModelLocalidad;
+	private JButton btnGuardarCambios;
 	
 	@Inject
 	private InteresadoForm(){
@@ -145,7 +146,7 @@ public class InteresadoForm extends JDialog{
 		cbLocalidad.setBounds(274, 292, 109, 20);
 		getContentPane().add(cbLocalidad);
 		
-		JLabel lblMetros = new JLabel("Metros2:");
+		JLabel lblMetros = new JLabel("Metros\u00B2:");
 		lblMetros.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblMetros.setBounds(217, 339, 46, 14);
 		getContentPane().add(lblMetros);
@@ -191,8 +192,12 @@ public class InteresadoForm extends JDialog{
 		tfHastaPrecio.setColumns(10);
 		
 		btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnGuardar.setBounds(93, 392, 109, 34);
+		btnGuardar.setBounds(62, 395, 135, 31);
 		getContentPane().add(btnGuardar);
 		
 		btnCancelar = new JButton("Cancelar");
@@ -201,7 +206,7 @@ public class InteresadoForm extends JDialog{
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnCancelar.setBounds(224, 392, 109, 34);
+		btnCancelar.setBounds(224, 392, 136, 34);
 		getContentPane().add(btnCancelar);
 		
 		cbTipoOfrec = new JComboBox();
@@ -222,6 +227,12 @@ public class InteresadoForm extends JDialog{
 		lblProvincia.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblProvincia.setBounds(19, 292, 60, 14);
 		getContentPane().add(lblProvincia);
+		
+		btnGuardarCambios = new JButton("Guardar Cambios");
+		btnGuardarCambios.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnGuardarCambios.setBounds(62, 395, 136, 31);
+		getContentPane().add(btnGuardarCambios);
+		btnGuardarCambios.setVisible(false);
 	}
 
 	public JButton getBtnAgregarTelefono() {
@@ -367,4 +378,11 @@ public class InteresadoForm extends JDialog{
 	public LocalidadComboBoxModel getComboModelLocalidad() {
 		return comboModelLocalidad;
 	}
+
+	public JButton getBtnGuardarCambios() {
+		return btnGuardarCambios;
+	}
+	
+	
+	
 }

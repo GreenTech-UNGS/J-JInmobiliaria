@@ -51,4 +51,9 @@ public class InteresadoService {
 	
 		interesadoDao.save(toSave);
 	}
+	
+public void editInteresado(Interesado toSave) throws LogicaNegocioException {
+		
+		interesadoDao.save(toSave);
+	}
 }

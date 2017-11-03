@@ -61,6 +61,7 @@ public class PersonasPanelController {
 		this.view.getBtnHabilitar().addActionListener(e -> habilitarUsuario());
 		this.view.getBtnDeshabilitar().addActionListener(e -> deshabilitarUsuario());
 		this.view.getBtnAgregarInteresado().addActionListener(e -> agregarInteresado());
+		this.view.getBtnEditarInteresado().addActionListener(e -> editarInteresado());
 		
 	}
 
@@ -78,6 +79,16 @@ public class PersonasPanelController {
 			clienteController.editarCliente(this.tableModelClien.getRow(select));
 			clienteController.showView();
 			this.fillTableClientes();
+		}
+	}
+	
+	private void editarInteresado() {
+		int select = this.view.getTableInteresados().getSelectedRow();
+		
+		if (select!=-1){
+			interesadoController.editarInteresado(this.interesadosTable.getRow(select));
+			interesadoController.showView();
+			this.fillTableInteresados();
 		}
 	}
 	

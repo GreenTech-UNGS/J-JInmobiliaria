@@ -38,6 +38,7 @@ public class PersonasPanel extends JPanel{
 	private JPanel panelBotonesInteresados;
 	private JTable tableInteresados;
 	private JButton btnAgregarInteresado;
+	private JButton btnEditarInteresado;
 
 	@Inject
 	private PersonasPanel() {
@@ -150,6 +151,9 @@ public class PersonasPanel extends JPanel{
         btnAgregarInteresado = new JButton("Agregar interesado");
         panelBotonesInteresados.add(btnAgregarInteresado);
         
+        btnEditarInteresado = new JButton("Editar interesado");
+        panelBotonesInteresados.add(btnEditarInteresado);
+        
 	}
 
 	public JButton getBtnAgregarUsuario() {
@@ -231,6 +235,8 @@ public class PersonasPanel extends JPanel{
 	public void setTableInteresados(JTable tableInteresados) {
 		this.tableInteresados = tableInteresados;
 	}
-	
-	
+
+	public JButton getBtnEditarInteresado() {
+		return btnEditarInteresado;
+	}
 }

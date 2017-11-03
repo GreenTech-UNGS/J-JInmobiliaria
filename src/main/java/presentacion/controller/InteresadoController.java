@@ -62,6 +62,8 @@ public class InteresadoController {
 		view.getBtnGuardar().addActionListener(e -> saveCurrentInteresado());
 		view.getBtnCancelar().addActionListener(e -> this.view.setVisible(false));
 		view.getCbProvincia().addActionListener(e -> cambiaLocalidades());
+		view.getBtnGuardarCambios().addActionListener(e -> guardarCambiosCurrentInteresado());
+	
 		
 	}
 
@@ -166,6 +168,34 @@ public class InteresadoController {
 		else{
 			msgShw.showErrorMessage(interesadoValidator.getErrorMessage(), "Error");
 		}
+	}
+	
+	private void guardarCambiosCurrentInteresado() {
+
+		if(interesadoValidator.isValid()) {
+			interesadoMapper.fillBean(currentInteresado);
+			try {
+				interesadoService.editInteresado(currentInteresado);
+			} catch (LogicaNegocioException e) {
+				msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
+			}
+			view.setVisible(false);
+		}
+		else{
+			msgShw.showErrorMessage(interesadoValidator.getErrorMessage(), "Error");
+		}
+	}
+	
+	public void editarInteresado(Interesado i){
+		
+		view.setTitle("Editar interesado");
+		view.getBtnGuardar().setVisible(false);
+		view.getBtnGuardarCambios().setVisible(true);
+		
+		currentInteresado = i;
+		fillCombos();
+		fillTables();
+		interesadoMapper.fillFields(i);
 	}
 
 }
