@@ -96,14 +96,16 @@ public class UsuarioForm extends JDialog {
 		getContentPane().add(cbRol);
 		
 		btnAceptar = new JButton("Aceptar");
+		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnAceptar.setBounds(33, 216, 115, 31);
+		btnAceptar.setBounds(33, 216, 121, 31);
 		getContentPane().add(btnAceptar);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnCancelar.setBounds(158, 216, 113, 31);
 		getContentPane().add(btnCancelar);
 		

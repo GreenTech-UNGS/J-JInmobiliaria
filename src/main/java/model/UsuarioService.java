@@ -74,6 +74,28 @@ public class UsuarioService {
 		
 	}
 	
+	public void cambiaContrasena(Usuario u, String vieja, String nueva) throws LogicaNegocioException{
+		
+		if(!getMD5Of(vieja).equals(u.getPswHash()))
+			throw new LogicaNegocioException("La contraseña actual es incorrecta");
+		
+		//TODO: cambiar
+		if(!nueva.matches("[0-9]{6,}"))
+			throw new LogicaNegocioException("Formato de contraseña incorrecto");
+		
+		u.setPswHash(getMD5Of(nueva));
+		
+		usuarioDao.save(u);
+		
+	}
+	
+	public void cambiaContrasenaLogueado(String vieja, String nueva) throws LogicaNegocioException{
+		
+		cambiaContrasena(logeado, vieja, nueva);
+		
+	}
+	
+	
 	public void saveUsuario(Usuario toSave) throws LogicaNegocioException {
 		
 		if(existeUsuarioCon(toSave.getPersona()) && usuarioDao.existeUsuarioCon(toSave.getPersona().getEmail()))

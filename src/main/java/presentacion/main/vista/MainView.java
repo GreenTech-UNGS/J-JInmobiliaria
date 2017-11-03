@@ -17,10 +17,18 @@ import javax.swing.border.TitledBorder;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.toedter.calendar.JCalendar;
+
+import model.UsuarioService;
+import presentacion.controller.UsuarioController;
+import presentacion.validators.MessageShow;
+
 import javax.swing.BoxLayout;
 import java.awt.Component;
 import javax.swing.Box;
 import java.awt.BorderLayout;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 @Singleton
 public class MainView {
@@ -28,7 +36,9 @@ public class MainView {
     private JFrame frmLpezLpez;
     private JCalendar jCalendar;
     private JPanel panelNotificaciones;
-
+    private JMenuItem mntmMiCuenta;
+    private JMenuItem mntmCambiarContrasea;
+    
     @Inject
     public MainView(PropiedadesPanel panelPropiedades,
     		ContratosPanel panelContratos,
@@ -37,6 +47,8 @@ public class MainView {
     		InmobiliariaPanel panelInmobiliaria,
     		MenuPanel panelMenu,
     		CitasPanel panelCitas) {  
+    	
+    	this.
     	
     	frmLpezLpez = new JFrame();
         frmLpezLpez.setBackground(new Color(255, 255, 255));
@@ -52,7 +64,7 @@ public class MainView {
 
         JPanel panelContainer = new JPanel();
         panelContainer.setBorder(null);
-        panelContainer.setBounds(93, 11, 692, 483);
+        panelContainer.setBounds(93, 11, 692, 462);
         frmLpezLpez.getContentPane().add(panelContainer);
         panelContainer.setLayout(new CardLayout(0, 0));
 
@@ -113,6 +125,18 @@ public class MainView {
         panelNotificaciones.setBackground(Color.gray);
 
         borderlaoutpanel.add(panelNotificaciones, BorderLayout.NORTH);
+        
+        JMenuBar menuBar = new JMenuBar();
+        frmLpezLpez.setJMenuBar(menuBar);
+        
+        JMenu mnConfiguracion = new JMenu("Configuracion");
+        menuBar.add(mnConfiguracion);
+        
+        mntmMiCuenta = new JMenuItem("Mi cuenta");
+        mnConfiguracion.add(mntmMiCuenta);
+        
+        mntmCambiarContrasea = new JMenuItem("Cambiar contrase\u00F1a");
+        mnConfiguracion.add(mntmCambiarContrasea);
     }
 
     public void show() {
@@ -131,4 +155,14 @@ public class MainView {
 	public JPanel getPanelNotificaciones() {
 		return panelNotificaciones;
 	}
+
+	public JMenuItem getMntmMiCuenta() {
+		return mntmMiCuenta;
+	}
+
+	public JMenuItem getMntmCambiarContrasea() {
+		return mntmCambiarContrasea;
+	}
+	
+	
 }
