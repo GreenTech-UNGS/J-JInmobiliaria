@@ -19,10 +19,10 @@ public class MenuPanel extends JPanel{
 
 	private JButton btnPropiedades;
 	private JButton btnContratos;
-	private JButton btnInquilinos;
+	private JButton btnPersonas;
 	private JButton btnPagos;
 	private JButton btnInmobiliaria;
-	private JButton btnReportes;
+	private JButton btnCitas;
 
 	@Inject
 	private MenuPanel() {
@@ -54,17 +54,17 @@ public class MenuPanel extends JPanel{
         this.add(glue_3);
         this.add(btnContratos);
 
-        btnInquilinos = new JButton("");
-        btnInquilinos.setToolTipText("Clientes");
+        btnPersonas = new JButton("");
+        btnPersonas.setToolTipText("Personas");
 
         Image imgInq = new ImageIcon(this.getClass().getResource("/clientes1.png")).getImage();
-        btnInquilinos.setIcon(new ImageIcon(imgInq));
+        btnPersonas.setIcon(new ImageIcon(imgInq));
         
         Component glue_4 = Box.createGlue();
         this.add(glue_4);
-        btnInquilinos.setPreferredSize(new Dimension(70, 70));
-        btnInquilinos.setBackground(new Color(0, 51, 51));
-        this.add(btnInquilinos);
+        btnPersonas.setPreferredSize(new Dimension(70, 70));
+        btnPersonas.setBackground(new Color(0, 51, 51));
+        this.add(btnPersonas);
 
         this.btnPagos = new JButton("");
         btnPagos.setToolTipText("Pagos");
@@ -78,16 +78,16 @@ public class MenuPanel extends JPanel{
         btnPagos.setBackground(new Color(0, 51, 51));
         this.add(btnPagos);
 
-        btnReportes = new JButton("");
-        btnReportes.setToolTipText("Reportes");
-        Image imgRep = new ImageIcon(this.getClass().getResource("/reportes1.png")).getImage();
+        btnCitas = new JButton("");
+        btnCitas.setToolTipText("Citas");
+        Image imgRep = new ImageIcon(this.getClass().getResource("/reunion.png")).getImage();
         
         Component glue_6 = Box.createGlue();
         this.add(glue_6);
-        btnReportes.setIcon(new ImageIcon(imgRep));
-        btnReportes.setPreferredSize(new Dimension(70, 70));
-        btnReportes.setBackground(new Color(0, 51, 51));
-        this.add(btnReportes);
+        btnCitas.setIcon(new ImageIcon(imgRep));
+        btnCitas.setPreferredSize(new Dimension(70, 70));
+        btnCitas.setBackground(new Color(0, 51, 51));
+        this.add(btnCitas);
         
         btnInmobiliaria = new JButton("");
         btnInmobiliaria.setToolTipText("Inmobiliarias");
@@ -110,7 +110,7 @@ public class MenuPanel extends JPanel{
 	}
 
 	public JButton getBtnInquilinos() {
-		return btnInquilinos;
+		return btnPersonas;
 	}
 
 	public JButton getBtnPagos() {
@@ -122,7 +122,7 @@ public class MenuPanel extends JPanel{
 	}
 
 	public JButton getBtnReportes() {
-		return btnReportes;
+		return btnCitas;
 	}
 	
 }

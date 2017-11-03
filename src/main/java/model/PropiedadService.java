@@ -119,6 +119,16 @@ public class PropiedadService {
 		propiedadDao.actualizePropiedad(propiedadVieja);
 	}
 	
+	public void setDisponible(Propiedad p){
+		
+		HistoriaEstadoProp historia = new HistoriaEstadoProp();
+		historia.setEstado(EstadoProp.DISPONIBLE);
+		historia.setFecha(DateTime.now());
+		
+		p.getEstados().add(historia);
+		propiedadDao.save(p);	
+		}
+	
 	public List<Propiedad> getEnAlquiler(){
 		List<Propiedad> toRet = new ArrayList<Propiedad>();
 		for(Propiedad p : this.getAll()){

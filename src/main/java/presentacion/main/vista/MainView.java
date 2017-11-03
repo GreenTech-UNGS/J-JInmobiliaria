@@ -36,7 +36,7 @@ public class MainView {
     private JFrame frmLpezLpez;
     private JCalendar jCalendar;
     private JPanel panelNotificaciones;
-    private JMenuItem mntmMiCuenta;
+    private JMenuItem mntmEditar;
     private JMenuItem mntmCambiarContrasea;
     
     @Inject
@@ -54,7 +54,7 @@ public class MainView {
         frmLpezLpez.setBackground(new Color(255, 255, 255));
         frmLpezLpez.setTitle("L\u00F3pez & L\u00F3pez");
         frmLpezLpez.setResizable(false);
-        frmLpezLpez.setBounds(100, 100, 1047, 534);
+        frmLpezLpez.setBounds(100, 100, 1047, 559);
         frmLpezLpez.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmLpezLpez.getContentPane().setLayout(null);
         frmLpezLpez.setLocationRelativeTo(null);
@@ -64,7 +64,7 @@ public class MainView {
 
         JPanel panelContainer = new JPanel();
         panelContainer.setBorder(null);
-        panelContainer.setBounds(93, 11, 692, 462);
+        panelContainer.setBounds(93, 11, 692, 487);
         frmLpezLpez.getContentPane().add(panelContainer);
         panelContainer.setLayout(new CardLayout(0, 0));
 
@@ -129,14 +129,25 @@ public class MainView {
         JMenuBar menuBar = new JMenuBar();
         frmLpezLpez.setJMenuBar(menuBar);
         
-        JMenu mnConfiguracion = new JMenu("Configuracion");
-        menuBar.add(mnConfiguracion);
+        JMenu mnMiCuenta = new JMenu("Mi cuenta");
+        mnMiCuenta.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        menuBar.add(mnMiCuenta);
         
-        mntmMiCuenta = new JMenuItem("Mi cuenta");
-        mnConfiguracion.add(mntmMiCuenta);
+        mntmEditar = new JMenuItem("Editar mis datos");
+        mntmEditar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        mnMiCuenta.add(mntmEditar);
         
         mntmCambiarContrasea = new JMenuItem("Cambiar contrase\u00F1a");
-        mnConfiguracion.add(mntmCambiarContrasea);
+        mntmCambiarContrasea.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        mnMiCuenta.add(mntmCambiarContrasea);
+        
+        JMenu mnConfiguracin = new JMenu("Configuraci\u00F3n");
+        mnConfiguracin.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        menuBar.add(mnConfiguracin);
+        
+        JMenuItem mntmBaseDeDatos = new JMenuItem("Base de datos");
+        mntmBaseDeDatos.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        mnConfiguracin.add(mntmBaseDeDatos);
     }
 
     public void show() {
@@ -157,7 +168,7 @@ public class MainView {
 	}
 
 	public JMenuItem getMntmMiCuenta() {
-		return mntmMiCuenta;
+		return mntmEditar;
 	}
 
 	public JMenuItem getMntmCambiarContrasea() {

@@ -9,6 +9,7 @@ import entities.ContratoAlquiler;
 import entities.EstadoContrato;
 import filtros.ContratoAlquilerFiltro;
 import model.ContratoService;
+import model.PropiedadService;
 import presentacion.controller.ContratoAlquilerController;
 import presentacion.controller.filtros.ContratoAlquilerFiltroController;
 import presentacion.main.vista.ContratosAlquilerTab;
@@ -21,7 +22,7 @@ public class ContratosAlquilerTabController {
 	
 	@Inject private ContratoAlquilerController contratoAlqController;
 	@Inject private ContratoService contratoService;
-	
+	@Inject private PropiedadService propiedadService;	
 	@Inject private ContratoAlquilerFiltroController alquilerfiltro; 
 	
 	@Inject private ContratosTableModel contratosTable;
@@ -68,6 +69,7 @@ public class ContratosAlquilerTabController {
 			}
 			ContratoAlquiler seleccion = (contrato);
 			contratoService.cancelarContrato(seleccion);
+			propiedadService.setDisponible(contrato.getPropiedad());
 			fillTableContratosAlquiler();
 		}
 	}	
