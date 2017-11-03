@@ -30,7 +30,7 @@ public class MainViewController {
 		this.menuController.actualizeAll();
 		
 		this.view.getMntmMiCuenta().addActionListener(e -> editarUsuario());
-		this.view.getMntmCambiarContrasea().addActionListener(e -> cambiarContrasenia());
+		this.view.getMntmCambiarContrasea().addActionListener(e -> cambiarContrasena());
 
 	}
 
@@ -44,7 +44,7 @@ public class MainViewController {
 		usuarioController.showView();
 	}
 	
-	private void cambiarContrasenia() {
+	private void cambiarContrasena() {
 		contrasenaController.showView();
 	}
 }

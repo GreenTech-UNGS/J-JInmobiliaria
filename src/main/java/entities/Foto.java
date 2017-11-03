@@ -15,6 +15,7 @@ public class Foto {
 	private int ID;
 	
 	private String path;
+	private String thumbPath;
 	private boolean isPortada;
 	
 	public Foto() {
@@ -35,6 +36,14 @@ public class Foto {
 
 	public void setPortada(boolean isPortada) {
 		this.isPortada = isPortada;
+	}
+
+	public String getThumbPath() {
+		return thumbPath;
+	}
+
+	public void setThumbPath(String thumbPath) {
+		this.thumbPath = thumbPath;
 	}
 	
 	

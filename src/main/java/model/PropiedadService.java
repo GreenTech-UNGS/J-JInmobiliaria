@@ -186,22 +186,6 @@ public class PropiedadService {
 		return propiedadDao.getAllByFiltro(filtro);
 
 	}
-
-	public List<byte[]> getImagesOf(int page){
-		List<byte[]> toRet = new ArrayList<>();
-		
-		for(int i = 0; i<9; i++){
-			try {
-				toRet.add(Files.readAllBytes(Paths.get("imagen1.png")));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		
-		return toRet;
-	}
 	
 	public List<FichaPropiedadDTO> fichaPropiedadReporteOf(Propiedad propiedad) {
 

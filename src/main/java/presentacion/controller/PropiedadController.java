@@ -223,7 +223,7 @@ public class PropiedadController {
 	
 	private void muestraGaleria(){
 		
-		galeriaController.setNew();
+		galeriaController.setNew(currentPropiedad);
 		galeriaController.showView();
 		
 	}

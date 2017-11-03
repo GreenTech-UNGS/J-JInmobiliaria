@@ -8,6 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import entities.Foto;
 import entities.Propiedad;
 import entities.TipoHabitacion;
 import filtros.PropiedadFiltro;
@@ -94,4 +95,5 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 		actualizeList(toRet);
 		return toRet;	
 	}
+
 }

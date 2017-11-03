@@ -25,6 +25,7 @@ public class GaleriaFotosView extends JDialog{
 	private JLabel lblImagen9;
 	private JButton btnPrev;
 	private JButton btnProx;
+	private JButton btnAgregarFoto;
 	
 	
 	public GaleriaFotosView() {
@@ -111,6 +112,9 @@ public class GaleriaFotosView extends JDialog{
 		btnPrev = new JButton("<");
 		panelButtons.add(btnPrev);
 		
+		btnAgregarFoto = new JButton("Agregar Foto");
+		panelButtons.add(btnAgregarFoto);
+		
 		btnProx = new JButton(">");
 		panelButtons.add(btnProx);
 		
@@ -151,6 +155,11 @@ public class GaleriaFotosView extends JDialog{
 			
 		};
 		
+	}
+
+
+	public JButton getBtnAgregarFoto() {
+		return btnAgregarFoto;
 	}
 	
 	
