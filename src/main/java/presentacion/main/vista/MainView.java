@@ -54,7 +54,7 @@ public class MainView {
         frmLpezLpez.setBackground(new Color(255, 255, 255));
         frmLpezLpez.setTitle("L\u00F3pez & L\u00F3pez");
         frmLpezLpez.setResizable(false);
-        frmLpezLpez.setBounds(100, 100, 1047, 559);
+        frmLpezLpez.setBounds(100, 100, 1047, 540);
         frmLpezLpez.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmLpezLpez.getContentPane().setLayout(null);
         frmLpezLpez.setLocationRelativeTo(null);
@@ -64,7 +64,7 @@ public class MainView {
 
         JPanel panelContainer = new JPanel();
         panelContainer.setBorder(null);
-        panelContainer.setBounds(93, 11, 692, 487);
+        panelContainer.setBounds(93, 11, 692, 473);
         frmLpezLpez.getContentPane().add(panelContainer);
         panelContainer.setLayout(new CardLayout(0, 0));
 
@@ -77,7 +77,7 @@ public class MainView {
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
         panelPrincipal.setBackground(new Color(47, 79, 79));
-        panelPrincipal.setBounds(0, 0, 1041, 505);
+        panelPrincipal.setBounds(0, 0, 1041, 490);
         frmLpezLpez.getContentPane().add(panelPrincipal);
         panelPrincipal.setLayout(null);
 
