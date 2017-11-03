@@ -54,7 +54,7 @@ public class MainView {
         frmLpezLpez.setBackground(new Color(255, 255, 255));
         frmLpezLpez.setTitle("L\u00F3pez & L\u00F3pez");
         frmLpezLpez.setResizable(false);
-        frmLpezLpez.setBounds(100, 100, 1047, 540);
+        frmLpezLpez.setBounds(100, 100, 1050, 550);
         frmLpezLpez.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmLpezLpez.getContentPane().setLayout(null);
         frmLpezLpez.setLocationRelativeTo(null);
@@ -64,7 +64,7 @@ public class MainView {
 
         JPanel panelContainer = new JPanel();
         panelContainer.setBorder(null);
-        panelContainer.setBounds(93, 11, 692, 473);
+        panelContainer.setBounds(93, 11, 692, 478);
         frmLpezLpez.getContentPane().add(panelContainer);
         panelContainer.setLayout(new CardLayout(0, 0));
 
@@ -77,12 +77,12 @@ public class MainView {
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
         panelPrincipal.setBackground(new Color(47, 79, 79));
-        panelPrincipal.setBounds(0, 0, 1041, 490);
+        panelPrincipal.setBounds(0, 0, 1041, 500);
         frmLpezLpez.getContentPane().add(panelPrincipal);
         panelPrincipal.setLayout(null);
 
         JPanel panelNotif = new JPanel();
-        panelNotif.setBounds(794, 193, 237, 301);
+        panelNotif.setBounds(794, 193, 237, 296);
         panelPrincipal.add(panelNotif);
         panelNotif.setLayout(null);
 
@@ -112,14 +112,14 @@ public class MainView {
         panelNotif.add(separator);
         
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(10, 48, 217, 242);
+        scrollPane.setBounds(10, 48, 217, 237);
         panelNotif.add(scrollPane);
         
         panelNotificaciones = new JPanel();
         JPanel borderlaoutpanel = new JPanel();
         borderlaoutpanel.setLayout(new BorderLayout(0, 0));
         
-        scrollPane.setViewportView(borderlaoutpanel);
+        scrollPane.setColumnHeaderView(borderlaoutpanel);
 
         panelNotificaciones.setLayout(new GridLayout(0, 1, 0, 1));
         panelNotificaciones.setBackground(Color.gray);
