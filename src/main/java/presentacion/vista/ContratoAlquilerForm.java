@@ -62,7 +62,7 @@ public class ContratoAlquilerForm extends JDialog {
 	private JSpinner spinnerIntimacionEmail;
 	private JButton btnRenovarContrato;
 	private JButton btnBorrador;
-	private JDateChooser inicio;
+	private JDateChooser inicioDate;
 	/*
 	private JYearChooser anio;
 	private JMonthChooser mes;
@@ -406,20 +406,10 @@ public class ContratoAlquilerForm extends JDialog {
 		lblInicio.setBounds(350, 142, 56, 14);
 		agregarContrato.add(lblInicio);
 
-		inicio = new JDateChooser();
-		inicio.setDate(DateTime.now().toDate());
-		inicio.setBounds(480, 144, 114, 20);
-		agregarContrato.add(inicio);
-		/*
-		anio = new JYearChooser();
-		anio.setBounds(517, 144, 57, 20);
-		agregarContrato.add(anio);
-		
-		mes = new JMonthChooser();
-		mes.setBounds(387, 141, 120, 23);
-		agregarContrato.add(mes);
-		*/
-		
+		inicioDate = new JDateChooser();
+		inicioDate.setBounds(480, 144, 114, 20);
+		agregarContrato.add(inicioDate);
+
 	}
 
 
@@ -586,15 +576,6 @@ public class ContratoAlquilerForm extends JDialog {
 		return btnBorrador;
 	}
 
-	public JDateChooser getInicio() { return inicio; }
+	public JDateChooser getInicio() { return inicioDate; }
 
-	/*
-	public JYearChooser getAnio() {
-		return anio;
-	}
-
-	public JMonthChooser getMes() {
-		return mes;
-	}
-	*/
 }
