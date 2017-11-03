@@ -44,6 +44,7 @@ public class ElegirPropiedadController {
 		
 		this.tableModelPropiedad.clean();
 		tableModelPropiedad.actualizeRows(propiedadService.getAlquilerBy(EstadoProp.DISPONIBLE));
+		tableModelPropiedad.addRows(propiedadService.getVentaBy(EstadoProp.DISPONIBLE));
 	}
 	
 	private void fillTablePropVenta(){

@@ -1,5 +1,6 @@
 package main;
 
+import java.util.Date;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -46,7 +47,6 @@ public class ActualizadorCuotas {
 		YearMonth today = YearMonth.now();
 		
 		for (ContratoAlquiler contratoAlquiler : contratos) {
-			
 			YearMonth desde = contratoAlquiler.getPrimerAnioMes();
 			YearMonth hasta = contratoAlquiler.getPrimerAnioMes().plusMonths(contratoAlquiler.getCantMeses());
 			

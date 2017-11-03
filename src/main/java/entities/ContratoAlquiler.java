@@ -7,7 +7,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 import org.joda.time.YearMonth;
+
+import java.util.Date;
 
 @Entity
 @Table(name="contratosAlquiler")
@@ -15,7 +19,11 @@ public class ContratoAlquiler extends Contrato{
 
 	
 	private int cantMeses;
-	private String primerAnioMes;
+
+	//private String primerAnioMes;
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	DateTime inicio;
+
 	private String garantia;
 
 	@OneToOne(cascade = {CascadeType.ALL})
@@ -35,7 +43,20 @@ public class ContratoAlquiler extends Contrato{
 
 	@OneToOne(cascade = {CascadeType.ALL})
 	private DatosActualizacionContrato datoActualizacion;
-	
+
+	public DateTime getInicio() {
+		return inicio;
+	}
+
+	public YearMonth getPrimerAnioMes()
+	{
+		YearMonth anioMes = new YearMonth(this.getInicio());
+		return anioMes;
+	}
+
+	public void setInicio(DateTime inicio) {
+		this.inicio = inicio;
+	}
 
 	public int getCantMeses() {
 		return cantMeses;
@@ -92,7 +113,7 @@ public class ContratoAlquiler extends Contrato{
 	public void setDatoActualizacion(DatosActualizacionContrato datoActualizacion) {
 		this.datoActualizacion = datoActualizacion;
 	}
-
+/*
 	public YearMonth getPrimerAnioMes() {
 		return YearMonth.parse(primerAnioMes);
 	}
@@ -100,7 +121,7 @@ public class ContratoAlquiler extends Contrato{
 	public void setPrimerAnioMes(YearMonth primerAnioMes) {
 		this.primerAnioMes = primerAnioMes.toString();
 	}
-
+*/
 	public String getGarantia() {
 		return garantia;
 	}

@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -173,7 +174,7 @@ public class ContratoService {
 		
 		toRet.getEstados().add(nuevo);
 		
-		toRet.setPrimerAnioMes(YearMonth.now().plusMonths(1));
+		toRet.setInicio( DateTime.now().plusMonths(1));
 		
 		return toRet;
 	}
@@ -286,8 +287,12 @@ public class ContratoService {
 		
 		toRet.getEstados().add(nuevo);
 		
-		toRet.setPrimerAnioMes(c.getPrimerAnioMes().plusMonths(c.getCantMeses() + 1));
-		
+		DateTime inicio = new DateTime(c.getPrimerAnioMes().getYear(),
+				c.getPrimerAnioMes().getMonthOfYear(),
+				1, 12, 0, 0, 0).plusMonths(1);
+
+		toRet.setInicio(inicio);
+
 		return toRet;
 		
 	}
