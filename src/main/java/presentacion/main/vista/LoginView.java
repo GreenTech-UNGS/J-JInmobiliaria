@@ -31,6 +31,7 @@ public class LoginView {
 		gridBagLayout.columnWeights = new double[]{1.0 ,0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		loginFrame.getContentPane().setLayout(gridBagLayout);
+		loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		loginFrame.setSize(450, 300);
 		loginFrame.setResizable(false);

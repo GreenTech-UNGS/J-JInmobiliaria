@@ -67,7 +67,7 @@ public class App{
     		
     	});
     	
-    	//t.setDaemon(true);
+    	t.setDaemon(true);
     	t.start();
     	
     }

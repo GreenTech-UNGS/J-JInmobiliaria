@@ -1,8 +1,14 @@
 package model;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+
+import org.joda.time.DateTime;
+import org.joda.time.Period;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -22,6 +28,23 @@ public class NotificacionesService {
 	@Inject ContratoService contratoService;
 	@Inject private CitaService citaService;
 	@Inject NotificacionDao notificacionDao;
+	
+	private static final PeriodFormatter dateFormat =
+		    new PeriodFormatterBuilder()
+		        .appendDays()
+		        .appendSuffix(" dia", " dias")
+		        .appendSeparator(" ")
+		        .printZeroIfSupported()
+		        .minimumPrintedDigits(2)
+		        .appendHours()
+		        .appendSeparator(":")
+		        .appendMinutes()
+		        .printZeroIfSupported()
+		        .minimumPrintedDigits(2)
+		        .appendSeparator(":")
+		        .appendSeconds()
+		        .minimumPrintedDigits(2)
+		        .toFormatter();
 	
 	@Inject
 	private NotificacionesService() {
@@ -67,11 +90,15 @@ public class NotificacionesService {
 		List <Cita> citas = citaService.getProximasLogueado();
 		
 		for (Cita cita : citas) {
+			
+			Period tiempo = new Period(DateTime.now(), cita.getFechaHora());
+			
 			for(NotificacionCita notificacion: cita.getAvisos()){
 				
 				if(notificacion.getTipo() == TipoNotificacion.SISTEMA 
 						&& !notificacion.isVisto()){
 					Notificacion toAdd = new Notificacion();
+					toAdd.setTitulo("Tiene una cita en " + tiempo.toString(dateFormat));
 					toAdd.setAvisoNotif(notificacion);
 					
 					toRet.add(toAdd);
