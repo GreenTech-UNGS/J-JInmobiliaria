@@ -50,6 +50,7 @@
 		<mapping class="entities.Cita" />
 		<mapping class="entities.Interesado" />
 		<mapping class="entities.Preferencia" />
+		<mapping class="entities.NotificacionCita" />
 		
 				
     </session-factory>

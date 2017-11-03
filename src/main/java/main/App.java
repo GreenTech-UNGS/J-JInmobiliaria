@@ -57,6 +57,7 @@ public class App{
     		try {
 				controller.clear();
 				service.fetch();
+				System.out.println("asd");
 				Thread.sleep(cincoMinutos);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block

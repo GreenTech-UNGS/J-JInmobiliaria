@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Type;
@@ -53,14 +54,16 @@ public class Cita {
 	@Column(length = 1000)
 	private String descripcion;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	private AvisoNotificacion avisoCorto;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<NotificacionCita> avisoCorto;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	private AvisoNotificacion avisoLargo;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<NotificacionCita> avisoLargo;
 	
 	public Cita() {
 		
+		avisoCorto = new ArrayList<>();
+		avisoLargo = new ArrayList<>();
 		asistentes = new ArrayList<>();
 	}
 
@@ -144,22 +147,6 @@ public class Cita {
 		this.descripcion = descripcion;
 	}
 
-	public AvisoNotificacion getAvisoCorto() {
-		return avisoCorto;
-	}
-
-	public void setAvisoCorto(AvisoNotificacion avisoCorto) {
-		this.avisoCorto = avisoCorto;
-	}
-
-	public AvisoNotificacion getAvisoLargo() {
-		return avisoLargo;
-	}
-
-	public void setAvisoLargo(AvisoNotificacion avisoLargo) {
-		this.avisoLargo = avisoLargo;
-	}
-
 	public int getID() {
 		return ID;
 	}
@@ -178,6 +165,22 @@ public class Cita {
 
 	public void setFinalizada(boolean finalizada) {
 		this.finalizada = finalizada;
+	}
+
+	public List<NotificacionCita> getAvisoCorto() {
+		return avisoCorto;
+	}
+
+	public void setAvisoCorto(List<NotificacionCita> avisoCorto) {
+		this.avisoCorto = avisoCorto;
+	}
+
+	public List<NotificacionCita> getAvisoLargo() {
+		return avisoLargo;
+	}
+
+	public void setAvisoLargo(List<NotificacionCita> avisoLargo) {
+		this.avisoLargo = avisoLargo;
 	}
 	
 	

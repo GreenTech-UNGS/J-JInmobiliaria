@@ -51,7 +51,7 @@ public class UsuarioService {
 		String md5 = getMD5Of(password);
 
 		if(!usuarioDao.existeUsuarioCon(nombre, md5))
-			throw new LogicaNegocioException("Nombre de usuario o contraseña invalidos");
+			throw new LogicaNegocioException("Nombre de usuario o contraseï¿½a invalidos");
 
 		
 		logeado = usuarioDao.getUsuarioBy(nombre, md5);
@@ -76,7 +76,7 @@ public class UsuarioService {
 	
 	public void saveUsuario(Usuario toSave) throws LogicaNegocioException {
 		
-		if(existeClienteCon(toSave.getPersona()) && usuarioDao.existeUsuarioCon(toSave.getPersona().getEmail()))
+		if(existeUsuarioCon(toSave.getPersona()) && usuarioDao.existeUsuarioCon(toSave.getPersona().getEmail()))
 			throw new LogicaNegocioException("Ya existe un usuario con la misma credencial");
 		
 		if(!usuarioDao.existeUsuarioCon(toSave.getPersona().getEmail()))
@@ -91,9 +91,9 @@ public class UsuarioService {
 		usuarioDao.save(toEdit);
 	}
 	
-	public boolean existeClienteCon(Persona t) {
+	public boolean existeUsuarioCon(Persona t) {
 		
-		return usuarioDao.existeClienteCon(t);	
+		return usuarioDao.existeUsuarioCon(t);	
 	}
 
 	public List<Usuario> getAll(){

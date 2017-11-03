@@ -80,7 +80,7 @@ public class UsuarioDaoHibernate extends DaoHibernate<Usuario> implements Usuari
 	}
 
 	@Override
-	public boolean existeClienteCon(Persona t) {
+	public boolean existeUsuarioCon(Persona t) {
 		initTransaction();
 		
 		Criteria q = sesion.createCriteria(Usuario.class).

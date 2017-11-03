@@ -7,6 +7,7 @@ import javax.swing.AbstractButton;
 import javax.swing.ListSelectionModel;
 
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import org.joda.time.Period;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -91,6 +92,10 @@ public class CitaController {
 		
 		//TODO: falta validator
 		mapper.fillBean(currentCita);
+		
+		int avisoCorto = (int)view.getSpinnerAvisoCorto().getValue();
+		int avisoLargo = (int)view.getSpinnerAvisoLargo().getValue();
+		citaService.crearNotificaciones(currentCita, avisoCorto, avisoLargo);
 		
 		citaService.saveCita(currentCita);
 		this.view.setVisible(false);

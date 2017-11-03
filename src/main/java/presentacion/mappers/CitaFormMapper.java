@@ -44,20 +44,7 @@ public class CitaFormMapper implements Mapper<Cita>{
 		
 		String notas = convierteString(view.getTaNotas().getText());
 		
-		Period avisoCorto = Period.hours((int)view.getSpinnerAvisoCorto().getValue());
-		Period avisoLargo = Period.hours((int)view.getSpinnerAvisoLargo().getValue());
-		
-		AvisoNotificacion corto = new AvisoNotificacion();
-		corto.setHabilitado(true);
-		corto.setPeriodo(avisoCorto);
-		
-		AvisoNotificacion largo = new AvisoNotificacion();
-		largo.setHabilitado(true);
-		largo.setPeriodo(avisoLargo);
-		
 		t.setAltura(altura);
-		t.setAvisoCorto(corto);
-		t.setAvisoLargo(largo);
 		t.setCalle(calle);
 		t.setCreadorAsiste(asiste);
 		t.setDescripcion(notas);

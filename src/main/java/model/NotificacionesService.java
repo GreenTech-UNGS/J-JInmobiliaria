@@ -9,6 +9,9 @@ import com.google.inject.Singleton;
 
 import dto.Notificacion;
 import entities.AvisoNotificacion;
+import entities.Cita;
+import entities.NotificacionCita;
+import entities.NotificacionCita.TipoNotificacion;
 import persistencia.dao.iface.NotificacionDao;
 
 @Singleton
@@ -17,6 +20,7 @@ public class NotificacionesService {
 	private List<Consumer<Notificacion>> callbacks;
 	
 	@Inject ContratoService contratoService;
+	@Inject private CitaService citaService;
 	@Inject NotificacionDao notificacionDao;
 	
 	@Inject
@@ -32,6 +36,7 @@ public class NotificacionesService {
 		
 		List<Notificacion> notificaciones = new ArrayList<>();
 		notificaciones.addAll(fetchContratos());
+		notificaciones.addAll(fetchCitas());
 		
 		callbacks.forEach(c -> 
 			notificaciones.forEach(n -> c.accept(n))
@@ -57,7 +62,39 @@ public class NotificacionesService {
 	}
 	
 	private List<Notificacion> fetchCitas(){
-		return null;
+		List<Notificacion> toRet = new ArrayList<>();
+		
+		List <Cita> citas = citaService.getProximasLogueado();
+		
+		for (Cita cita : citas) {
+			for(NotificacionCita notificacion: cita.getAvisoLargo()){
+				
+				if(notificacion.getTipo() == TipoNotificacion.SISTEMA 
+						&& !notificacion.isVisto()){
+					Notificacion toAdd = new Notificacion();
+					toAdd.setAvisoNotif(notificacion);
+					
+					toRet.add(toAdd);
+				}
+				
+			}
+			
+			for(NotificacionCita notificacion: cita.getAvisoCorto()){
+				
+				if(notificacion.getTipo() == TipoNotificacion.SISTEMA 
+						&& !notificacion.isVisto()){
+					Notificacion toAdd = new Notificacion();
+					toAdd.setAvisoNotif(notificacion);
+					
+					toRet.add(toAdd);
+				}
+				
+			}
+		}
+		
+		return toRet;
+		
+		
 	}
 
 	public void save(AvisoNotificacion notificacion) {
