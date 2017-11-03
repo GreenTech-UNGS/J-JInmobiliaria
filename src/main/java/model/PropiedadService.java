@@ -8,6 +8,14 @@ import filtros.PropiedadFiltro;
 import org.joda.time.DateTime;
 import persistencia.dao.iface.PropiedadDao;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -179,25 +187,22 @@ public class PropiedadService {
 
 	}
 
-	/*
-	* String TipoPropiedad;
-    * String Foto;
-    * String Precio;
-    * String Provincia;
-    **** String Localidad;
-    * String MetrosCuadrados;
-    * String CantidadDeAmbientes;
-    * String OtrosDatos;
-    * String Observaciones;
-    * String Calle;
-    * String Direccion;
-    * String Piso;
-    * String Departamento;
-    Double Lat;
-    Double Long;
-
-
-	 */
+	public List<byte[]> getImagesOf(int page){
+		List<byte[]> toRet = new ArrayList<>();
+		
+		for(int i = 0; i<9; i++){
+			try {
+				toRet.add(Files.readAllBytes(Paths.get("imagen1.png")));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return toRet;
+	}
+	
 	public List<FichaPropiedadDTO> fichaPropiedadReporteOf(Propiedad propiedad) {
 
 		List<FichaPropiedadDTO> fichas = new ArrayList<FichaPropiedadDTO>();

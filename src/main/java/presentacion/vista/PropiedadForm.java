@@ -56,6 +56,7 @@ public class PropiedadForm extends JDialog{
 	private JButton btnMasDatos;
 	private JButton btnBorrador;
 	private JButton btnImprimirFicha;
+	private JButton btnVerGaleria;
 
 	@Inject
 	private PropiedadForm() {
@@ -287,7 +288,7 @@ public class PropiedadForm extends JDialog{
 								lblReservada = new JLabel("Propiedad Reservada");
 								lblReservada.setForeground(new Color(204, 0, 0));
 								lblReservada.setFont(new Font("Tahoma", Font.BOLD, 12));
-								lblReservada.setBounds(293, 11, 145, 27);
+								lblReservada.setBounds(181, 17, 145, 27);
 								AgregarPropiedad.add(lblReservada);
 								
 								JScrollPane scrollPane = new JScrollPane();
@@ -340,6 +341,11 @@ public class PropiedadForm extends JDialog{
 										btnImprimirFicha.setFont(new Font("Tahoma", Font.PLAIN, 11));
 										btnImprimirFicha.setBounds(572, 18, 102, 20);
 										AgregarPropiedad.add(btnImprimirFicha);
+										
+										btnVerGaleria = new JButton("Ver Galeria");
+										btnVerGaleria.setFont(new Font("Dialog", Font.PLAIN, 11));
+										btnVerGaleria.setBounds(352, 19, 96, 18);
+										AgregarPropiedad.add(btnVerGaleria);
 										btnCancelar.addActionListener(new ActionListener() {
 											public void actionPerformed(ActionEvent arg0) {
 											}
@@ -540,6 +546,8 @@ public class PropiedadForm extends JDialog{
 	public JButton getBtnImprimirFicha() {
 		return btnImprimirFicha;
 	}
-	
-	
+
+	public JButton getBtnVerGaleria() {
+		return btnVerGaleria;
+	}
 }
