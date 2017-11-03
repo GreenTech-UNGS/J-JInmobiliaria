@@ -55,15 +55,12 @@ public class Cita {
 	private String descripcion;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<NotificacionCita> avisoCorto;
+	private List<NotificacionCita> avisos;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<NotificacionCita> avisoLargo;
 	
 	public Cita() {
 		
-		avisoCorto = new ArrayList<>();
-		avisoLargo = new ArrayList<>();
+		avisos = new ArrayList<>();
 		asistentes = new ArrayList<>();
 	}
 
@@ -167,20 +164,12 @@ public class Cita {
 		this.finalizada = finalizada;
 	}
 
-	public List<NotificacionCita> getAvisoCorto() {
-		return avisoCorto;
+	public List<NotificacionCita> getAvisos() {
+		return avisos;
 	}
 
-	public void setAvisoCorto(List<NotificacionCita> avisoCorto) {
-		this.avisoCorto = avisoCorto;
-	}
-
-	public List<NotificacionCita> getAvisoLargo() {
-		return avisoLargo;
-	}
-
-	public void setAvisoLargo(List<NotificacionCita> avisoLargo) {
-		this.avisoLargo = avisoLargo;
+	public void setAvisos(List<NotificacionCita> avisoCorto) {
+		this.avisos = avisoCorto;
 	}
 	
 	

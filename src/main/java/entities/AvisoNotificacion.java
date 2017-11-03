@@ -15,9 +15,7 @@ import javax.persistence.Table;
 import org.joda.time.Period;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue("notificacion")
+@Inheritance(strategy=InheritanceType.JOINED)
 @Table(name = "notificaciones")
 public class AvisoNotificacion {
 	

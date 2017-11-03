@@ -67,19 +67,7 @@ public class NotificacionesService {
 		List <Cita> citas = citaService.getProximasLogueado();
 		
 		for (Cita cita : citas) {
-			for(NotificacionCita notificacion: cita.getAvisoLargo()){
-				
-				if(notificacion.getTipo() == TipoNotificacion.SISTEMA 
-						&& !notificacion.isVisto()){
-					Notificacion toAdd = new Notificacion();
-					toAdd.setAvisoNotif(notificacion);
-					
-					toRet.add(toAdd);
-				}
-				
-			}
-			
-			for(NotificacionCita notificacion: cita.getAvisoCorto()){
+			for(NotificacionCita notificacion: cita.getAvisos()){
 				
 				if(notificacion.getTipo() == TipoNotificacion.SISTEMA 
 						&& !notificacion.isVisto()){

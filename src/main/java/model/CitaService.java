@@ -16,12 +16,14 @@ import entities.Persona;
 import entities.PersonaBasica;
 import entities.Usuario;
 import persistencia.dao.iface.CitaDao;
+import persistencia.dao.iface.NotificacionDao;
 
 @Singleton
 public class CitaService {
 	
 	@Inject private CitaDao citaDao;
 	@Inject private UsuarioService usuariosService;
+	@Inject NotificacionDao notificacionDao;
 
 	@Inject
 	private CitaService() {
@@ -29,6 +31,8 @@ public class CitaService {
 	}
 	
 	public void saveCita(Cita c) {
+		
+		c.getAvisos().forEach(aviso -> notificacionDao.save(aviso));
 		
 		citaDao.save(c);
 	}
@@ -63,7 +67,7 @@ public class CitaService {
 			largo.setPeriodo(Period.days(avisoLargo));
 			
 			if(p instanceof Persona && usuariosService.existeUsuarioCon((Persona)p)){
-
+				System.out.println(p.getNombre());
 				corto.setTipo(TipoNotificacion.SISTEMA);
 				largo.setTipo(TipoNotificacion.SISTEMA);
 			}
@@ -73,8 +77,8 @@ public class CitaService {
 				largo.setTipo(TipoNotificacion.EMAIL);
 			}
 			
-			c.getAvisoCorto().add(corto);
-			c.getAvisoLargo().add(largo);
+			c.getAvisos().add(corto);
+			c.getAvisos().add(largo);
 			
 		}
 		

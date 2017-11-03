@@ -17,8 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@DiscriminatorValue("notificacionCita")
-@Table(name = "notificaciones")
+@Table(name = "notificacionesCita")
 public class NotificacionCita extends AvisoNotificacion{
 
 	public enum TipoNotificacion{
@@ -51,13 +50,6 @@ public class NotificacionCita extends AvisoNotificacion{
 		this.tipoNotificacion = tipo;
 	}
 
-	public TipoNotificacion getTipoNotificacion() {
-		return tipoNotificacion;
-	}
-
-	public void setTipoNotificacion(TipoNotificacion tipoNotificacion) {
-		this.tipoNotificacion = tipoNotificacion;
-	}
 	
 	
 }
