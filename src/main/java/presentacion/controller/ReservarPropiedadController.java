@@ -38,7 +38,6 @@ public class ReservarPropiedadController {
         view.getBtnSelecCliente().addActionListener(e -> selectCliente());
         view.getBtnSelecPropiedad().addActionListener(e -> selectPropiedad());
 
-
     }
 
     private void reservarPropiedad() {

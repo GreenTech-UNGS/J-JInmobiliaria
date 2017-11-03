@@ -371,7 +371,12 @@ public class PropiedadController {
 		List<FichaPropiedadDTO> dtos;
 		dtos = propiedadServiceReport.fichaPropiedadReporteOf(this.currentPropiedad);
 		ReporteFichaDePropiedad reporte = new ReporteFichaDePropiedad(dtos);
-		System.out.println(dtos.get(0).getFoto().toString());
+
+		view.setModal(false);
+
 		reporte.mostrar();
+
+		view.setModal(true);
+
 	}
 }

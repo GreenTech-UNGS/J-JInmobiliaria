@@ -1,5 +1,6 @@
 package presentacion.mappers;
 
+import org.joda.time.DateTime;
 import org.joda.time.Period;
 import org.joda.time.YearMonth;
 
@@ -10,6 +11,8 @@ import entities.ContratoAlquiler;
 import entities.Moneda;
 import entities.TipoContratoAlquiler;
 import presentacion.vista.ContratoAlquilerForm;
+
+import java.util.Date;
 
 @Singleton
 public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
@@ -51,13 +54,10 @@ public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
 		String vencimientoMesesStr = view.getSpinnerVencimientoEmail().getValue().toString();
 		Period intimacionPeriod = Period.days(Integer.parseInt(intimacionDiasStr));
 		Period vencimientoPeriod = Period.months(Integer.parseInt(vencimientoMesesStr));
-		
-		YearMonth inicio = new YearMonth(view.getAnio().getYear(), view.getMes().getMonth() + 1);
-		
+
+		DateTime inicio = new DateTime( view.getInicio().toString()).plusMonths(1);
 //		Propiedad propiedad = view.getTfIdPropiedad();
-		
-		
-		
+
 		t.setIdentificador(identificador);
 		t.setGarantia(garantia);
 		t.setTipoContratoAlquiler(tipoContrato);
@@ -80,14 +80,13 @@ public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
 		t.getAvisoProxVencer().setHabilitado(vencimientoHabilitado);
 		t.getAvisoProxVencer().setPeriodo(vencimientoPeriod);
 		
-		t.setPrimerAnioMes(inicio);
+		t.setInicio(inicio);
 		
 	}
 
 	@Override
 	public void fillFields(ContratoAlquiler t) {
 
-		
 		String identificador = t.getIdentificador();
 		String garantia = t.getGarantia();
 		TipoContratoAlquiler tipoContrato = t.getTipoContratoAlquiler();
@@ -146,11 +145,9 @@ public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
 		view.getChckbxVencimiento().setSelected(vencimientoHabilitado);
 		view.getSpinnerIntimacionEmail().setValue(intimacionDias);
 		view.getSpinnerVencimientoEmail().setValue(vencimientoMeses);
-		
-		view.getAnio().setYear(anio);
-		view.getMes().setMonth(mes);
-		
-		
+
+		view.getInicio().setDate(DateTime.now().toDate());
+
 	}
 	
 	private String getStringOf(String s){

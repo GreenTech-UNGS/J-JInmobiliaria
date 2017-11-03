@@ -101,21 +101,31 @@ public class PropiedadForm extends JDialog{
 						lblProvincia.setFont(new Font("Tahoma", Font.PLAIN, 11));
 						lblProvincia.setBounds(474, 182, 61, 14);
 						AgregarPropiedad.add(lblProvincia);
-						
+
+						JLabel lblPiso = new JLabel("Piso:");
+						lblPiso.setFont(new Font("Tahoma", Font.PLAIN, 11));
+						lblPiso.setBounds(30, 207, 46, 14);
+						AgregarPropiedad.add(lblPiso);
+
 						JLabel lblAltura = new JLabel("Altura:");
 						lblAltura.setFont(new Font("Tahoma", Font.PLAIN, 11));
-						lblAltura.setBounds(30, 207, 46, 14);
+						lblAltura.setBounds(274, 182, 122, 14);
 						AgregarPropiedad.add(lblAltura);
-						
+
+						this.tfAltura = new JTextField();
+						tfAltura.setBounds(305, 179, 122, 20);
+						AgregarPropiedad.add(tfAltura);
+						tfAltura.setColumns(10);
+
+						tfPiso = new JTextField();
+						tfPiso.setColumns(10);
+						tfPiso.setBounds(86, 204, 31, 20);
+						AgregarPropiedad.add(tfPiso);
+
 						JLabel lblPrecio = new JLabel("Precio:");
 						lblPrecio.setFont(new Font("Tahoma", Font.PLAIN, 11));
 						lblPrecio.setBounds(266, 62, 46, 14);
 						AgregarPropiedad.add(lblPrecio);
-						
-						this.tfAltura = new JTextField();
-						tfAltura.setBounds(86, 204, 117, 20);
-						AgregarPropiedad.add(tfAltura);
-						tfAltura.setColumns(10);
 						
 						tfCalle = new JTextField();
 						tfCalle.setBounds(86, 179, 117, 20);
@@ -199,16 +209,6 @@ public class PropiedadForm extends JDialog{
 						lblInmobiliariaAmiga.setFont(new Font("Tahoma", Font.PLAIN, 11));
 						lblInmobiliariaAmiga.setBounds(439, 93, 96, 14);
 						AgregarPropiedad.add(lblInmobiliariaAmiga);
-						
-						JLabel lblPiso = new JLabel("Piso:");
-						lblPiso.setFont(new Font("Tahoma", Font.PLAIN, 11));
-						lblPiso.setBounds(274, 182, 31, 14);
-						AgregarPropiedad.add(lblPiso);
-						
-						tfPiso = new JTextField();
-						tfPiso.setColumns(10);
-						tfPiso.setBounds(305, 179, 122, 20);
-						AgregarPropiedad.add(tfPiso);
 						
 						JLabel lblDepartamento = new JLabel("Dpto.:");
 						lblDepartamento.setFont(new Font("Tahoma", Font.PLAIN, 11));

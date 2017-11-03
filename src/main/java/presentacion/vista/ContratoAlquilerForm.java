@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,9 +24,11 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JMonthChooser;
 import com.toedter.calendar.JYearChooser;
 
+import org.joda.time.DateTime;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.TipoContratoAlqComboBoxModel;
 
@@ -59,8 +62,11 @@ public class ContratoAlquilerForm extends JDialog {
 	private JSpinner spinnerIntimacionEmail;
 	private JButton btnRenovarContrato;
 	private JButton btnBorrador;
+	private JDateChooser inicioDate;
+	/*
 	private JYearChooser anio;
 	private JMonthChooser mes;
+	*/
 	private TipoContratoAlqComboBoxModel comboTipoContratoModel;
 	private MonedaComboBoxModel monedaComboModel;
 	
@@ -399,16 +405,11 @@ public class ContratoAlquilerForm extends JDialog {
 		JLabel lblInicio = new JLabel("Inicio: ");
 		lblInicio.setBounds(350, 142, 56, 14);
 		agregarContrato.add(lblInicio);
-		
-		anio = new JYearChooser();
-		anio.setBounds(517, 144, 57, 20);
-		agregarContrato.add(anio);
-		
-		mes = new JMonthChooser();
-		mes.setBounds(387, 141, 120, 23);
-		agregarContrato.add(mes);
-		
-		
+
+		inicioDate = new JDateChooser();
+		inicioDate.setBounds(480, 144, 114, 20);
+		agregarContrato.add(inicioDate);
+
 	}
 
 
@@ -575,13 +576,6 @@ public class ContratoAlquilerForm extends JDialog {
 		return btnBorrador;
 	}
 
+	public JDateChooser getInicio() { return inicioDate; }
 
-	public JYearChooser getAnio() {
-		return anio;
-	}
-
-
-	public JMonthChooser getMes() {
-		return mes;
-	}
 }

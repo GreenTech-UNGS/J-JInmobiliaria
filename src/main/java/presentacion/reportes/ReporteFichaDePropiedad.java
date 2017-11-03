@@ -5,7 +5,9 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import org.eclipse.jdt.internal.compiler.impl.Constant;
 
+import javax.swing.*;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ReporteFichaDePropiedad {
+public class ReporteFichaDePropiedad extends JDialog{
 
     private JasperReport reporte;
     private JasperViewer reporteViewer;
@@ -43,7 +45,7 @@ public class ReporteFichaDePropiedad {
     }
 
     public void mostrar(){
-        this.reporteViewer = new JasperViewer(this.reporteLleno,false);
+        this.reporteViewer = new JasperViewer(this.reporteLleno);
         this.reporteViewer.setTitle("Ficha de la propiedad");
         this.reporteViewer.setVisible(true);
     }

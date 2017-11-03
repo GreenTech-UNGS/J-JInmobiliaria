@@ -131,11 +131,12 @@ public class ContratoAlquilerFormValidator implements ValidatorNew{
 	}
 	
 	private boolean isAnioMesValid() {
-		
-		YearMonth inicio = new YearMonth(view.getAnio().getYear(), view.getMes().getMonth() + 1);
-		
-		return !YearMonth.now().isAfter(inicio);
-		
+
+		YearMonth anioMes = new YearMonth(view.getInicio().getDate());
+		YearMonth inicioAnioMes = new YearMonth(anioMes.getYear(), anioMes.getMonthOfYear() + 1);
+
+		return !YearMonth.now().isAfter(inicioAnioMes);
+
 	}
 
 }
