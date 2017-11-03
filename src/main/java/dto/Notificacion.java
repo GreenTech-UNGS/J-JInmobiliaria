@@ -5,6 +5,7 @@ import entities.AvisoNotificacion;
 public class Notificacion {
 
 	private String titulo;
+	private String descripcion;
 	private AvisoNotificacion avisoNotif;
 	
 	public Notificacion() {
@@ -25,6 +26,14 @@ public class Notificacion {
 
 	public void setAvisoNotif(AvisoNotificacion avisoNotif) {
 		this.avisoNotif = avisoNotif;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	
 	

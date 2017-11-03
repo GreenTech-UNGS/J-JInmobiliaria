@@ -25,9 +25,9 @@ public class NotificacionesService {
 
 	private List<Consumer<Notificacion>> callbacks;
 	
-	@Inject ContratoService contratoService;
+	@Inject private ContratoService contratoService;
 	@Inject private CitaService citaService;
-	@Inject NotificacionDao notificacionDao;
+	@Inject private NotificacionDao notificacionDao;
 	
 	private static final PeriodFormatter dateFormat =
 		    new PeriodFormatterBuilder()
@@ -95,10 +95,12 @@ public class NotificacionesService {
 			
 			for(NotificacionCita notificacion: cita.getAvisos()){
 				
-				if(notificacion.getTipo() == TipoNotificacion.SISTEMA 
-						&& !notificacion.isVisto()){
+				if(seAvisaSistema(cita, notificacion)){
+					
 					Notificacion toAdd = new Notificacion();
-					toAdd.setTitulo("Tiene una cita en " + tiempo.toString(dateFormat));
+					toAdd.setTitulo("Tiene una cita en :");
+					toAdd.setDescripcion(
+							"<html><body>"+tiempo.toString(dateFormat)+"<br>Para " + cita.getTipo().toString()+ "</body></html>");
 					toAdd.setAvisoNotif(notificacion);
 					
 					toRet.add(toAdd);
@@ -110,6 +112,14 @@ public class NotificacionesService {
 		return toRet;
 		
 		
+	}
+	
+	private boolean seAvisaSistema(Cita c, NotificacionCita n){
+		DateTime momentoAvisar = c.getFechaHora().minus(n.getPeriodo()); 
+		
+		return n.getTipo() == TipoNotificacion.SISTEMA 
+				//&& !DateTime.now().isBefore(momentoAvisar)
+				&& !n.isVisto();
 	}
 
 	public void save(AvisoNotificacion notificacion) {

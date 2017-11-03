@@ -53,6 +53,10 @@ public class CitaService {
 	
 	}
 	
+	public List<Cita> getProximas(){
+		return citaDao.getProximas();
+	}
+	
 	public void crearNotificaciones(Cita c, int avisoCorto, int avisoLargo){
 		
 		for(PersonaBasica p: c.getAsistentes()){

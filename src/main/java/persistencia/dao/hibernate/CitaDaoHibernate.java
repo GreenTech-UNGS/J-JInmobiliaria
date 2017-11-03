@@ -70,4 +70,20 @@ public class CitaDaoHibernate extends DaoHibernate<Cita> implements CitaDao{
 		return toRet;
 	}
 
+	@Override
+	public List<Cita> getProximas() {
+		initTransaction();
+		
+		Criteria q = sesion.createCriteria(Cita.class)
+				.createAlias("asistentes", "asisit")
+				.add(Restrictions.ge("fechaHora", DateTime.now()));
+		
+		List<Cita> toRet = q.list();
+		
+		finishTransaction();
+		
+		actualizeList(toRet);
+		return toRet;
+	}
+
 }

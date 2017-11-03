@@ -11,12 +11,13 @@ import java.awt.Font;
 public class NotificacionView extends JPanel{
 	private JLabel lblTitulo;
 	private JButton btnOk;
+	private JLabel lblDescripcion;
 	public NotificacionView() {
 		setBorder(new LineBorder(new Color(0, 0, 255), 2));
 		
 		this.setBounds(0, 0, 200, 75);
 		this.setBackground(new Color(0, 204, 255));
-		this.setPreferredSize(new Dimension(200,75));
+		this.setPreferredSize(new Dimension(200, 125));
 		setLayout(null);
 		
 		lblTitulo = new JLabel("Test");
@@ -28,6 +29,10 @@ public class NotificacionView extends JPanel{
 		btnOk.setBounds(145, 41, 45, 23);
 		add(btnOk);
 		
+		lblDescripcion = new JLabel("descripcion");
+		lblDescripcion.setBounds(12, 26, 133, 87);
+		add(lblDescripcion);
+		
 	}
 	public JLabel getLblTitulo() {
 		return lblTitulo;
@@ -35,5 +40,7 @@ public class NotificacionView extends JPanel{
 	public JButton getBtnOk() {
 		return btnOk;
 	}
-
+	public JLabel getLblDescripcion() {
+		return lblDescripcion;
+	}
 }

@@ -41,6 +41,7 @@ public class NotificacionController {
 		
 		NotificacionView notifView = new NotificacionView();
 		notifView.getLblTitulo().setText(n.getTitulo());
+		notifView.getLblDescripcion().setText(n.getDescripcion());
 		
 		notificaciones.put(notifView, n);
 		

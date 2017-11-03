@@ -39,7 +39,7 @@ public class CitaFormMapper implements Mapper<Cita>{
 		Period duracion = new Period((int)view.getSpinnerHoraDuracion().getValue(), (int)view.getSpinnerMinutoDuracion().getValue(), 0, 0);
 		
 		String calle = convierteString(view.getTfCalle().getText());
-		String altura = convierteString(view.getTfCalle().getText());
+		String altura = convierteString(view.getTfAltura().getText());
 		Localidad localidad = view.getComboModelLocalidad().getSelected();
 		
 		String notas = convierteString(view.getTaNotas().getText());
