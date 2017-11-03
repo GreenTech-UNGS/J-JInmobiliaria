@@ -41,6 +41,8 @@ public class PropiedadController {
 	private ElegirInmobiliariaController elegirInmobController;
 	private HistorialPropiedadController historialPropController;
 	private LocalizationService localizationService;
+	
+	@Inject private GaleriaController galeriaController;
 
 	@Inject private PropiedadOtrosDatosController otrosDatosForm;
 	
@@ -94,6 +96,7 @@ public class PropiedadController {
 		view.getBtnMasDatos().addActionListener(e -> agregarOtrosDatos());
 		view.getBtnBorrador().addActionListener(e -> saveBorrador());
 		view.getBtnImprimirFicha().addActionListener(e -> generaReporteFichaPropiedad());
+		view.getBtnVerGaleria().addActionListener(e -> muestraGaleria());
 		
 	}
 
@@ -215,6 +218,13 @@ public class PropiedadController {
 		
 		currentPropiedad.setLat(punto.getLat());
 		currentPropiedad.setLon(punto.getLon());
+		
+	}
+	
+	private void muestraGaleria(){
+		
+		galeriaController.setNew();
+		galeriaController.showView();
 		
 	}
 	
