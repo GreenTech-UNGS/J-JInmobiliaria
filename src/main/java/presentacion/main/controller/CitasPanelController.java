@@ -57,7 +57,7 @@ public class CitasPanelController {
 	private void fillTable() {
 		
 		tableModel.clean();
-		tableModel.actualizeRows(citaService.getAll());
+		tableModel.actualizeRows(citaService.getProximas());
 		
 	}
 	

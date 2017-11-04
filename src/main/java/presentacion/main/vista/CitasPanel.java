@@ -16,6 +16,7 @@ import javax.swing.Box;
 public class CitasPanel extends JPanel{
 	private JTable table;
 	private JButton btnNueva;
+	private JButton btnCancelarCita;
 
 	@Inject
 	private CitasPanel() {
@@ -44,6 +45,12 @@ public class CitasPanel extends JPanel{
 		btnNueva = new JButton("Crear cita");
 		panelButtons.add(btnNueva);
 		
+		Component horizontalGlue_2 = Box.createHorizontalGlue();
+		panelButtons.add(horizontalGlue_2);
+		
+		btnCancelarCita = new JButton("Cancelar Cita");
+		panelButtons.add(btnCancelarCita);
+		
 		Component horizontalGlue_1 = Box.createHorizontalGlue();
 		panelButtons.add(horizontalGlue_1);
 		
@@ -55,6 +62,10 @@ public class CitasPanel extends JPanel{
 
 	public JButton getBtnNueva() {
 		return btnNueva;
+	}
+
+	public JButton getBtnCancelarCita() {
+		return btnCancelarCita;
 	}
 	
 }
