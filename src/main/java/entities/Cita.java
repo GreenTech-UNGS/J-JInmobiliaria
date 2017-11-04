@@ -40,8 +40,8 @@ public class Cita {
 	private String calle;
 	private String altura;
 	
-	private long lat;
-	private long lng;
+	private double lat;
+	private double lng;
 	
 	private boolean creadorAsiste;
 	private boolean finalizada;
@@ -104,19 +104,19 @@ public class Cita {
 		this.altura = altura;
 	}
 
-	public long getLat() {
+	public double getLat() {
 		return lat;
 	}
 
-	public void setLat(long lat) {
-		this.lat = lat;
+	public void setLat(double d) {
+		this.lat = d;
 	}
 
-	public long getLng() {
+	public double getLng() {
 		return lng;
 	}
 
-	public void setLng(long lng) {
+	public void setLng(double lng) {
 		this.lng = lng;
 	}
 

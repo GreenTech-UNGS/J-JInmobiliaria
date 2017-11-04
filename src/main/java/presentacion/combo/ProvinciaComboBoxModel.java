@@ -21,7 +21,7 @@ public class ProvinciaComboBoxModel extends BaseComboBoxModel<Provincia>{
 		}
 		else{
 			
-		String nombre = toSelect.toString();
+		String nombre = toSelect.toString().replaceAll("_", " ");
 		
 		this.setSelectedItem(nombre);
 		

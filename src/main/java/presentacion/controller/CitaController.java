@@ -4,10 +4,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.AbstractButton;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.joda.time.Period;
+import org.openstreetmap.gui.jmapviewer.Coordinate;
+import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -15,11 +18,14 @@ import com.google.inject.Singleton;
 import entities.Cita;
 import entities.Localidad;
 import entities.PersonaBasica;
+import entities.Propiedad;
 import entities.Provincia;
 import entities.TipoCita;
 import model.CitaService;
 import model.LocalidadService;
+import model.LocalizationService;
 import model.UsuarioService;
+import persistencia.dao.iface.LocalizationDao.MapPoint;
 import presentacion.mappers.CitaFormMapper;
 import presentacion.table.PersonaBasicaTableModel;
 import presentacion.vista.CitaForm;
@@ -31,13 +37,18 @@ public class CitaController {
 	@Inject private LocalidadService localidadService;
 	@Inject private CitaService citaService;
 	@Inject private UsuarioService usuarioService;
+	@Inject private LocalizationService localizationService;
+	
 	@Inject private CitaFormMapper mapper;
 	
 	@Inject private ElegirAsistenteController elegirAsistente;
+	@Inject private ElegirPropiedadController elegirPropiedad;
 	
 	private PersonaBasicaTableModel tableModel;
 	
 	private Cita currentCita;
+	
+	private final Coordinate centerOfMap = new Coordinate(50.064191736659104, 8.96484375);
 	
 	@Inject
 	private CitaController(CitaForm view) {
@@ -48,6 +59,8 @@ public class CitaController {
 		this.view.getBtnAgregar().addActionListener(e -> agregarAsistente());
 		this.view.getBtnBorrar().addActionListener(e -> borrarAsistente());
 		this.view.getChckbxAsistir().addActionListener(e -> actualizaAsistenteAlUsuario(((AbstractButton)e.getSource()).isSelected()));
+		this.view.getBtnDesdePropiedad().addActionListener(e -> desdePropiedad());
+		this.view.getBtnActualizar().addActionListener(e -> actualizaMapa());
 	
 		this.tableModel = new PersonaBasicaTableModel();
 		
@@ -93,6 +106,8 @@ public class CitaController {
 		//TODO: falta validator
 		mapper.fillBean(currentCita);
 		
+		actualizaMapaThread();
+		
 		int avisoCorto = (int)view.getSpinnerAvisoCorto().getValue();
 		int avisoLargo = (int)view.getSpinnerAvisoLargo().getValue();
 		citaService.crearNotificaciones(currentCita, avisoCorto, avisoLargo);
@@ -116,6 +131,61 @@ public class CitaController {
 		
 		
 	}
+	
+	private void desdePropiedad() {
+		elegirPropiedad.showViewProp();
+		
+		Propiedad p = elegirPropiedad.getPropiedad();
+		
+		if(p != null) {
+			view.getTfCalle().setText(p.getCalle());
+			view.getTfAltura().setText(p.getAltura());
+			view.getComboModelLocalidad().setSelected(p.getLocalidad());
+			view.getComboModelProvincia().setSelected(p.getLocalidad().getProvincia());
+			
+			actualizaMapa();
+		}
+		
+	}
+	
+	private void actualizaMapa() {
+
+		Thread t = new Thread(() -> actualizaMapaThread());
+		t.start();
+	}
+	
+	private void actualizaMapaThread() {
+		
+		String calle = view.getTfCalle().getText();
+		String altura = view.getTfAltura().getText();
+		Localidad localidad = view.getComboModelLocalidad().getSelected();
+		
+		if(calle == null || altura == null || localidad == null || localidad.getNombre() == null) {
+			JOptionPane.showMessageDialog(view, "No se puede actualizar el mapa, faltan datos de ubcaci�n", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		MapPoint punto = localizationService.getLocalizationOf(calle, altura, localidad);
+	
+		if(punto == null) {
+			JOptionPane.showMessageDialog(view, "No se encontro la ubicacion", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		}	
+		Coordinate localizacion = new Coordinate(punto.getLat(), punto.getLon());
+		restartMapa();
+		
+		view.getMapa().addMapMarker(new MapMarkerDot(localizacion));
+		view.getMapa().setDisplayPosition(localizacion, 15);
+		
+		currentCita.setLat(punto.getLat());
+		currentCita.setLng(punto.getLon());
+		
+	}
+	
+	private void restartMapa() {
+		
+		view.getMapa().removeAllMapMarkers();
+		view.getMapa().setDisplayPosition(centerOfMap, 3);
+	}
 
 
 	public void showView() {
@@ -130,6 +200,7 @@ public class CitaController {
 	public void setModeNew() {
 
 		currentCita = citaService.getNuevaCita();
+		restartMapa();
 	}
 	
 	private void fillCombos() {
