@@ -19,11 +19,20 @@ import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.border.LineBorder;
+
+import org.openstreetmap.gui.jmapviewer.JMapViewer;
+
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JSeparator;
+
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JCheckBox;
 
 @Singleton
@@ -52,6 +61,8 @@ public class CitaForm extends JDialog{
 	private ProvinciaComboBoxModel comboModelProvincia;
 	private LocalidadComboBoxModel comboModelLocalidad;
 	private TipoCitaComboBoxModel comboModelTipoCita;
+	private JMapViewer mapa;
+	private JButton btnActualizar;
 	
 	@Inject
 	public CitaForm() {
@@ -59,149 +70,149 @@ public class CitaForm extends JDialog{
 		getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(105, 73, 286, 77);
+		scrollPane.setBounds(261, 76, 236, 77);
 		getContentPane().add(scrollPane);
 		setLocationRelativeTo(null);
 		setModal(true);
-		setSize(500, 725);
+		setSize(850, 620);
 		setResizable(false);
 		
 		tableAsistentes = new JTable();
 		scrollPane.setViewportView(tableAsistentes);
 		
 		btnAgregar = new JButton("Agregar");
-		btnAgregar.setBounds(105, 161, 117, 25);
+		btnAgregar.setBounds(271, 164, 97, 25);
 		getContentPane().add(btnAgregar);
 		
 		btnBorrar = new JButton("Borrar");
-		btnBorrar.setBounds(274, 161, 117, 25);
+		btnBorrar.setBounds(399, 164, 91, 25);
 		getContentPane().add(btnBorrar);
 		
 		JLabel lblFechaYHora = new JLabel("Fecha y hora: ");
-		lblFechaYHora.setBounds(37, 249, 91, 15);
+		lblFechaYHora.setBounds(37, 250, 91, 15);
 		getContentPane().add(lblFechaYHora);
 		
 		dateChooser = new JDateChooser(new Date());
-		dateChooser.setBounds(135, 249, 107, 22);
+		dateChooser.setBounds(134, 250, 107, 22);
 		getContentPane().add(dateChooser);
 		
 		spinnerHoraMomento = new JSpinner();
-		spinnerHoraMomento.setModel(new SpinnerNumberModel(0, 0, 23, 1));
-		spinnerHoraMomento.setBounds(264, 249, 36, 20);
+		spinnerHoraMomento.setModel(new SpinnerNumberModel(12, 0, 23, 1));
+		spinnerHoraMomento.setBounds(251, 252, 36, 20);
 		getContentPane().add(spinnerHoraMomento);
 		
 		JLabel label = new JLabel(":");
-		label.setBounds(309, 252, 20, 15);
+		label.setBounds(290, 256, 20, 15);
 		getContentPane().add(label);
 		
 		spinnerMinutoMomento = new JSpinner();
 		spinnerMinutoMomento.setModel(new SpinnerNumberModel(0, 0, 59, 1));
-		spinnerMinutoMomento.setBounds(319, 250, 36, 20);
+		spinnerMinutoMomento.setBounds(297, 252, 36, 20);
 		getContentPane().add(spinnerMinutoMomento);
 		
 		JLabel lblDuracion = new JLabel("Duracion: ");
-		lblDuracion.setBounds(37, 284, 91, 15);
+		lblDuracion.setBounds(549, 255, 91, 15);
 		getContentPane().add(lblDuracion);
 		
 		spinnerHoraDuracion = new JSpinner();
 		spinnerHoraDuracion.setModel(new SpinnerNumberModel(0, 0, 23, 1));
-		spinnerHoraDuracion.setBounds(135, 282, 36, 20);
+		spinnerHoraDuracion.setBounds(610, 252, 36, 20);
 		getContentPane().add(spinnerHoraDuracion);
 		
 		JLabel label_1 = new JLabel(":");
-		label_1.setBounds(175, 284, 20, 15);
+		label_1.setBounds(650, 254, 20, 15);
 		getContentPane().add(label_1);
 		
 		spinnerMinutoDuracion = new JSpinner();
 		spinnerMinutoDuracion.setModel(new SpinnerNumberModel(0, 0, 23, 1));
-		spinnerMinutoDuracion.setBounds(183, 282, 36, 20);
+		spinnerMinutoDuracion.setBounds(658, 252, 36, 20);
 		getContentPane().add(spinnerMinutoDuracion);
 		
 		JLabel lblLocalidad = new JLabel("Localidad: ");
-		lblLocalidad.setBounds(248, 360, 91, 15);
+		lblLocalidad.setBounds(646, 347, 91, 15);
 		getContentPane().add(lblLocalidad);
 		
 		JLabel lblCalle = new JLabel("Calle: ");
-		lblCalle.setBounds(37, 395, 70, 15);
+		lblCalle.setBounds(36, 347, 70, 15);
 		getContentPane().add(lblCalle);
 		
 		JLabel lblProvincia = new JLabel("Provincia: ");
-		lblProvincia.setBounds(37, 360, 91, 15);
+		lblProvincia.setBounds(439, 347, 91, 15);
 		getContentPane().add(lblProvincia);
 		
 		JLabel lblAltura = new JLabel("Altura: ");
-		lblAltura.setBounds(248, 395, 70, 15);
+		lblAltura.setBounds(244, 344, 70, 15);
 		getContentPane().add(lblAltura);
 		
 		comboProvincia = new JComboBox<>();
-		comboProvincia.setBounds(105, 355, 114, 24);
+		comboProvincia.setBounds(507, 342, 114, 24);
 		getContentPane().add(comboProvincia);
 		
 		comboLocalidad = new JComboBox<>();
-		comboLocalidad.setBounds(319, 355, 114, 24);
+		comboLocalidad.setBounds(711, 342, 114, 24);
 		getContentPane().add(comboLocalidad);
 		
 		tfCalle = new JTextField();
-		tfCalle.setBounds(105, 392, 114, 19);
+		tfCalle.setBounds(101, 341, 114, 19);
 		getContentPane().add(tfCalle);
 		tfCalle.setColumns(10);
 		
 		tfAltura = new JTextField();
-		tfAltura.setBounds(319, 395, 114, 19);
+		tfAltura.setBounds(315, 344, 114, 19);
 		getContentPane().add(tfAltura);
 		tfAltura.setColumns(10);
 		
 		btnDesdePropiedad = new JButton("Desde propiedad");
-		btnDesdePropiedad.setBounds(300, 322, 156, 15);
+		btnDesdePropiedad.setBounds(111, 304, 156, 15);
 		getContentPane().add(btnDesdePropiedad);
 		
 		JLabel lblMotivo = new JLabel("Motivo: ");
-		lblMotivo.setBounds(248, 47, 70, 15);
+		lblMotivo.setBounds(20, 51, 70, 15);
 		getContentPane().add(lblMotivo);
 		
 		comboMotivo = new JComboBox<>();
-		comboMotivo.setBounds(300, 42, 114, 24);
+		comboMotivo.setBounds(100, 46, 151, 24);
 		getContentPane().add(comboMotivo);
 		
 		JLabel lblAvisoLargo = new JLabel("Aviso largo: ");
-		lblAvisoLargo.setBounds(37, 489, 72, 14);
+		lblAvisoLargo.setBounds(20, 84, 72, 14);
 		getContentPane().add(lblAvisoLargo);
 		
 		JLabel lblAvisoCorto = new JLabel("Aviso corto:");
-		lblAvisoCorto.setBounds(248, 489, 70, 14);
+		lblAvisoCorto.setBounds(20, 112, 70, 14);
 		getContentPane().add(lblAvisoCorto);
 		
 		spinnerAvisoLargo = new JSpinner();
 		spinnerAvisoLargo.setModel(new SpinnerNumberModel(1, 1, 10, 1));
-		spinnerAvisoLargo.setBounds(105, 486, 40, 20);
+		spinnerAvisoLargo.setBounds(88, 81, 40, 20);
 		getContentPane().add(spinnerAvisoLargo);
 		
 		spinnerAvisoCorto = new JSpinner();
 		spinnerAvisoCorto.setModel(new SpinnerNumberModel(1, 1, 10, 1));
-		spinnerAvisoCorto.setBounds(319, 486, 36, 20);
+		spinnerAvisoCorto.setBounds(91, 109, 36, 20);
 		getContentPane().add(spinnerAvisoCorto);
 		
 		JLabel lblDias = new JLabel("dias antes");
-		lblDias.setBounds(155, 489, 74, 14);
+		lblDias.setBounds(138, 84, 74, 14);
 		getContentPane().add(lblDias);
 		
 		JLabel lblHoras = new JLabel("horas antes");
-		lblHoras.setBounds(365, 489, 75, 14);
+		lblHoras.setBounds(137, 112, 70, 14);
 		getContentPane().add(lblHoras);
 		
 		JLabel lblNotas = new JLabel("Notas:");
-		lblNotas.setBounds(37, 545, 46, 14);
+		lblNotas.setBounds(549, 51, 46, 14);
 		getContentPane().add(lblNotas);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(96, 539, 337, 77);
+		scrollPane_1.setBounds(595, 51, 230, 77);
 		getContentPane().add(scrollPane_1);
 		
 		taNotas = new JTextArea();
 		scrollPane_1.setViewportView(taNotas);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 33, 464, 2);
+		separator.setBounds(10, 33, 824, 2);
 		getContentPane().add(separator);
 		
 		JLabel lblAsistentes_1 = new JLabel("Asistentes");
@@ -210,43 +221,49 @@ public class CitaForm extends JDialog{
 		getContentPane().add(lblAsistentes_1);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(10, 236, 464, 2);
+		separator_1.setBounds(10, 237, 816, 2);
 		getContentPane().add(separator_1);
 		
 		JLabel lblMomentoYDuracion = new JLabel("Momento y duracion");
 		lblMomentoYDuracion.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblMomentoYDuracion.setBounds(37, 211, 140, 14);
+		lblMomentoYDuracion.setBounds(37, 212, 140, 14);
 		getContentPane().add(lblMomentoYDuracion);
 		
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(10, 346, 464, 3);
+		separator_2.setBounds(10, 329, 815, 2);
 		getContentPane().add(separator_2);
 		
 		JLabel lblUbicacion = new JLabel("Ubicacion");
 		lblUbicacion.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblUbicacion.setBounds(37, 321, 91, 14);
+		lblUbicacion.setBounds(37, 303, 91, 14);
 		getContentPane().add(lblUbicacion);
 		
-		JSeparator separator_3 = new JSeparator();
-		separator_3.setBounds(10, 470, 464, 2);
-		getContentPane().add(separator_3);
-		
-		JLabel lblOtrosDatos = new JLabel("Otros datos");
-		lblOtrosDatos.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblOtrosDatos.setBounds(37, 445, 87, 14);
-		getContentPane().add(lblOtrosDatos);
-		
 		chckbxAsistir = new JCheckBox("Asistir");
-		chckbxAsistir.setBounds(48, 43, 97, 23);
+		chckbxAsistir.setBounds(261, 46, 97, 23);
 		getContentPane().add(chckbxAsistir);
 		
 		btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBounds(197, 630, 89, 49);
+		btnAceptar.setBounds(382, 529, 89, 49);
 		getContentPane().add(btnAceptar);
 		
 		JLabel lblHs = new JLabel("hs.");
-		lblHs.setBounds(364, 255, 46, 14);
+		lblHs.setBounds(337, 256, 46, 14);
 		getContentPane().add(lblHs);
+		
+		mapa = new JMapViewer();
+		mapa.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		mapa.setZoomContolsVisible(false);
+		mapa.setBounds(116, 377, 621, 141);
+		getContentPane().add(mapa);
+		
+		btnActualizar = new JButton("Actualizar mapa");
+		btnActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnActualizar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnActualizar.setBounds(495, 11, 116, 23);
+		mapa.add(btnActualizar);
 		
 		comboModelProvincia = new ProvinciaComboBoxModel();
 		comboModelLocalidad = new LocalidadComboBoxModel();
@@ -345,5 +362,13 @@ public class CitaForm extends JDialog{
 
 	public TipoCitaComboBoxModel getComboModelTipoCita() {
 		return comboModelTipoCita;
+	}
+
+	public JMapViewer getMapa() {
+		return mapa;
+	}
+
+	public JButton getBtnActualizar() {
+		return btnActualizar;
 	}
 }
