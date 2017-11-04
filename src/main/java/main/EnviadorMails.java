@@ -82,7 +82,7 @@ public class EnviadorMails {
 		
 		for (Cita cita : citas) for(NotificacionCita notificacion: cita.getAvisos()){
 				
-				if(true ||seAvisaMail(cita, notificacion)){
+				if(seAvisaMail(cita, notificacion)){
 					
 					Mail toSend = new Mail(notificacion.getPersona().getEmail(),"Cita" , 
 							"Usted tiene una cita en " + 
@@ -101,7 +101,7 @@ public class EnviadorMails {
 					
 					System.out.println(toSend.getBody());
 					
-					new Thread(() -> sendMail(toSend)).start();
+					//new Thread(() -> sendMail(toSend)).start();
 				}
 				
 		}
