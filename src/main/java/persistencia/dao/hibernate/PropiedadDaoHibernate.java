@@ -34,7 +34,8 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 		
 		finishTransaction();
 		
-		actualizeList(toRet);		
+		actualizeList(toRet);
+		
 		return toRet;
 	}
 	

@@ -45,7 +45,7 @@ public class Propiedad {
 	@OneToMany(cascade = {CascadeType.ALL})
 	private List<HistoriaEstadoProp> estados;
 	
-	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+	@OneToMany(cascade = {CascadeType.ALL})
 	private List<Foto> fotos;
 	
 	@Column(nullable = true, insertable = true, updatable = true)

@@ -33,8 +33,8 @@ public class GaleriaController {
 		
 		this.view = view;
 		
-		this.view.getBtnPrev().addActionListener(e -> proxPagina());
-		this.view.getBtnProx().addActionListener(e -> prevPagina());
+		this.view.getBtnPrev().addActionListener(e -> prevPagina());
+		this.view.getBtnProx().addActionListener(e -> proxPagina());
 		
 		this.view.getBtnAgregarFoto().addActionListener(e -> agregarFoto());
 		
@@ -44,13 +44,17 @@ public class GaleriaController {
 	}
 
 	private void prevPagina() {
-		page --;
-		actualizePage();
+		if(page > 0) {
+			page --;
+			actualizePage();
+		}
 	}
 
 	private void proxPagina() {
-		page++;
-		actualizePage();
+		if(!isUltimaPagina()) {
+			page++;
+			actualizePage();
+		}
 	}
 	
 	
@@ -63,6 +67,8 @@ public class GaleriaController {
 		if(f != null){
 			galeriaService.saveFoto(currentPropiedad, f);
 		}
+		
+		actualizePage();
 	}
 
 	public void setNew(Propiedad p){
@@ -83,12 +89,24 @@ public class GaleriaController {
 		JLabel[] labels = view.getImagesLabels();
 		List<byte[]> imagenes = galeriaService.getImagesOf(currentPropiedad, page);
 		
+		Arrays.asList(labels).forEach(l -> l.setIcon(null));
+		
 		for(int i = 0; i < imagenes.size(); i++){
 			labels[i].setIcon(new ImageIcon(imagenes.get(i)));
 		}
 		
 		
 		this.view.revalidate();
+	}
+	
+	private boolean isUltimaPagina() {
+		boolean toRet = true;
+		
+		for(JLabel label : view.getImagesLabels()) {
+			toRet = toRet && label.getIcon() == null;
+		}
+		
+		return toRet;
 	}
 
 }
