@@ -27,4 +27,9 @@ public class MessageShow {
 		
 	}
 	
+	public boolean showYesNoMessage(String msg, String title) {
+
+		return JOptionPane.showConfirmDialog(null, msg, title, JOptionPane.OK_CANCEL_OPTION) == 0;
+	}
+	
 }

@@ -29,13 +29,13 @@ public class Cita {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	private List<PersonaBasica> asistentes;
 	
 	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime fechaHora;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Localidad localidad;
 	private String calle;
 	private String altura;
@@ -45,6 +45,7 @@ public class Cita {
 	
 	private boolean creadorAsiste;
 	private boolean finalizada;
+	private boolean seBorra;
 	
 	private String duracionEstimada;
 	
@@ -170,6 +171,14 @@ public class Cita {
 
 	public void setAvisos(List<NotificacionCita> avisoCorto) {
 		this.avisos = avisoCorto;
+	}
+
+	public boolean isSeBorra() {
+		return seBorra;
+	}
+
+	public void setSeBorra(boolean seBorra) {
+		this.seBorra = seBorra;
 	}
 	
 	

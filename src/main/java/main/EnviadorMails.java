@@ -84,7 +84,7 @@ public class EnviadorMails {
 				
 				if(seAvisaMail(cita, notificacion)){
 					
-					Mail toSend = new Mail(notificacion.getPersona().getEmail(),"Cita" , 
+					Mail toSend = new Mail(notificacion.getPersona().getEmail(),"Recordatorio de Cita" , 
 							"Usted tiene una cita en " + 
 							cita.getCalle() + " " + cita.getAltura() + ", " + cita.getLocalidad().getNombre()+
 							", " + cita.getLocalidad().getProvincia().toString().replaceAll("_", " ") +
@@ -102,6 +102,26 @@ public class EnviadorMails {
 					System.out.println(toSend.getBody());
 					
 					//new Thread(() -> sendMail(toSend)).start();
+				}
+				
+				if(seAvisaCancela(cita, notificacion)) {
+					Mail toSend = new Mail(notificacion.getPersona().getEmail(),"Cita Cancelada" , 
+							"Su cita en " + 
+							cita.getCalle() + " " + cita.getAltura() + ", " + cita.getLocalidad().getNombre()+
+							", " + cita.getLocalidad().getProvincia().toString().replaceAll("_", " ") +
+							" a las " + cita.getFechaHora().toString("hh:mm") + " del dia " + 
+							cita.getFechaHora().toString("dd-MM-YYYY") + ".\n"+
+							"Con el motivo de " + cita.getTipo().toString() + "\n"
+							+"Queda cancelada.\n\n"+
+							"Gracias. \n-Inmobiliaria");
+					
+					notificacion.setVisto(true);
+					notificacionesService.save(notificacion);
+					citaService.delete(cita);
+					
+					System.out.println(toSend.getBody());
+					
+					new Thread(() -> sendMail(toSend)).start();
 				}
 				
 		}
@@ -126,7 +146,16 @@ public class EnviadorMails {
 		
 		return n.getTipo() == TipoNotificacion.EMAIL 
 				&& !DateTime.now().isBefore(momentoAvisar)
-				&& !n.isVisto();
+				&& !n.isVisto()
+				&& !c.isSeBorra();
+	}
+	
+	private static boolean seAvisaCancela(Cita c, NotificacionCita n) {
+		
+		return (n.getTipo() == TipoNotificacion.EMAIL 
+				&& n.isVisto()
+				&& c.isSeBorra()) || 
+				n.getTipo() == TipoNotificacion.SISTEMA ;
 	}
 
 }

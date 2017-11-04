@@ -105,6 +105,17 @@ public class CitaService {
 		return toRet;
 		
 	}
+
+	public void cancelarCita(Cita c) {
+		
+		c.setSeBorra(true);
+		citaDao.save(c);
+		
+	}
+
+	public void delete(Cita cita) {
+		citaDao.remove(cita);
+	}
 	
 	
 }
