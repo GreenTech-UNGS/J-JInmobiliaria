@@ -1,5 +1,7 @@
 package model;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,6 +88,15 @@ public class CitaService {
 			
 		}
 		
+	}
+	
+	public String getMapaLink(Cita c) {
+		
+		String locationUnecoded = "https://www.google.com/maps/search/?api=1&query=+"+ c.getLat() + "," + c.getLng();
+		
+		
+		
+		return locationUnecoded;
 	}
 	
 	public Cita getNuevaCita() {

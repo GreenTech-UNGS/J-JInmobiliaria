@@ -82,9 +82,7 @@ public class EnviadorMails {
 		
 		for (Cita cita : citas) for(NotificacionCita notificacion: cita.getAvisos()){
 				
-				if(seAvisaMail(cita, notificacion)){
-					
-					Period tiempo = new Period(DateTime.now(), cita.getFechaHora());
+				if(true ||seAvisaMail(cita, notificacion)){
 					
 					Mail toSend = new Mail(notificacion.getPersona().getEmail(),"Cita" , 
 							"Usted tiene una cita en " + 
@@ -93,7 +91,9 @@ public class EnviadorMails {
 							" a las " + cita.getFechaHora().toString("hh:mm") + " del dia " + 
 							cita.getFechaHora().toString("dd-MM-YYYY") + ".\n"+
 							"Con el motivo de " + cita.getTipo().toString() + "\n"
-							+"Observaciones: " + cita.getDescripcion()+"\n\n"
+							+"Observaciones: " + cita.getDescripcion()+"\n\n"+
+							"Para abrir un mapa con la ubicacion, haga click en el siguiente link: \n"+
+							citaService.getMapaLink(cita) + "\n\n"
 							+"Gracias. \n-Inmobiliaria");
 					
 					notificacion.setVisto(true);
@@ -101,7 +101,7 @@ public class EnviadorMails {
 					
 					System.out.println(toSend.getBody());
 					
-					//new Thread(() -> sendMail(toSend)).start();
+					new Thread(() -> sendMail(toSend)).start();
 				}
 				
 		}
