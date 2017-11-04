@@ -33,7 +33,7 @@ public class ContratoDaoHibernate extends DaoHibernate<Contrato> implements Cont
 	}
 
 	@Override
-	public List<Contrato> getAll() {
+	public synchronized List<Contrato> getAll() {
 		initTransaction();
 		
 		Criteria q = sesion.createCriteria(Contrato.class);
@@ -47,7 +47,7 @@ public class ContratoDaoHibernate extends DaoHibernate<Contrato> implements Cont
 	}
 
 	@Override
-	public boolean existeContratoConIdentificador(String identificador) {
+	public synchronized boolean existeContratoConIdentificador(String identificador) {
 		initTransaction();
 		
 		Criteria q = sesion.createCriteria(Contrato.class).
@@ -63,7 +63,7 @@ public class ContratoDaoHibernate extends DaoHibernate<Contrato> implements Cont
 	}
 
 	@Override
-	public List<ContratoAlquiler> getAllAlquiler() {
+	public synchronized List<ContratoAlquiler> getAllAlquiler() {
 		initTransaction();
 		
 		Criteria q = sesion.createCriteria(ContratoAlquiler.class);
@@ -77,7 +77,7 @@ public class ContratoDaoHibernate extends DaoHibernate<Contrato> implements Cont
 	}
 
 	@Override
-	public List<ContratoVenta> getAllVenta() {
+	public synchronized List<ContratoVenta> getAllVenta() {
 		initTransaction();
 		
 		Criteria q = sesion.createCriteria(ContratoVenta.class);
@@ -91,7 +91,7 @@ public class ContratoDaoHibernate extends DaoHibernate<Contrato> implements Cont
 	}
 
 	@Override
-	public List<ContratoAlquiler> getAllBy(ContratoAlquilerFiltro filtro) {
+	public synchronized List<ContratoAlquiler> getAllBy(ContratoAlquilerFiltro filtro) {
 		initTransaction();
 		
 		Criteria q = sesion.createCriteria(Contrato.class)
@@ -106,7 +106,7 @@ public class ContratoDaoHibernate extends DaoHibernate<Contrato> implements Cont
 	}
 
 	@Override
-	public List<ContratoAlquiler> getAlquilerVigentes() {
+	public synchronized List<ContratoAlquiler> getAlquilerVigentes() {
 		initTransaction();
 		
 		

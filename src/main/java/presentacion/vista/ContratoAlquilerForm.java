@@ -179,7 +179,7 @@ public class ContratoAlquilerForm extends JDialog {
 		
 		tfCliente = new JTextField();
 		tfCliente.setEditable(false);
-		tfCliente.setBounds(430, 48, 128, 17);
+		tfCliente.setBounds(400, 50, 140, 17);
 		agregarContrato.add(tfCliente);
 		tfCliente.setColumns(10);
 		
@@ -231,7 +231,7 @@ public class ContratoAlquilerForm extends JDialog {
 		
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(430, 75, 166, 55);
+		scrollPane.setBounds(400, 72, 195, 70);
 		scrollPane.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
 		agregarContrato.add(scrollPane);
 		

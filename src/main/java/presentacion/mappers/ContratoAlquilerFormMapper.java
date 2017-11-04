@@ -55,7 +55,7 @@ public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
 		Period intimacionPeriod = Period.days(Integer.parseInt(intimacionDiasStr));
 		Period vencimientoPeriod = Period.months(Integer.parseInt(vencimientoMesesStr));
 
-		DateTime inicio = new DateTime( view.getInicio().toString()).plusMonths(1);
+		DateTime inicio = new DateTime( view.getInicio().getDate()).plusMonths(1);
 //		Propiedad propiedad = view.getTfIdPropiedad();
 
 		t.setIdentificador(identificador);
