@@ -72,7 +72,8 @@ public class GaleriaController {
 	}
 	
 	public void showView(){
-		
+
+		actualizePage();
 		this.view.setVisible(true);
 		
 	}
@@ -82,7 +83,7 @@ public class GaleriaController {
 		JLabel[] labels = view.getImagesLabels();
 		List<byte[]> imagenes = galeriaService.getImagesOf(currentPropiedad, page);
 		
-		for(int i = 0; i < 9; i++){
+		for(int i = 0; i < imagenes.size(); i++){
 			labels[i].setIcon(new ImageIcon(imagenes.get(i)));
 		}
 		

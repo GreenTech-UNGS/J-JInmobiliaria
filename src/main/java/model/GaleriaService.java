@@ -18,12 +18,13 @@ import entities.Propiedad;
 import net.coobird.thumbnailator.Thumbnailator;
 import net.coobird.thumbnailator.Thumbnails;
 import persistencia.dao.iface.DAOftp;
+import persistencia.dao.iface.FotoDao;
 import persistencia.dao.iface.PropiedadDao;
 
 @Singleton
 public class GaleriaService {
 	
-	@Inject private PropiedadDao propiedadDao;
+	@Inject private FotoDao fotoDao;
 	@Inject private DAOftp ftp;
 	
 	private Random random;
@@ -68,8 +69,8 @@ public class GaleriaService {
 		image.setThumbPath(fileNameThumb);
 		
 		p.getFotos().add(image);
-		
-		propiedadDao.save(p);
+
+		fotoDao.save(image);
 		
 	}
 	
@@ -90,8 +91,10 @@ public class GaleriaService {
 		List<byte[]> toRet = new ArrayList<>();
 		
 		for(int i = page * fotosPorPagina; i < fotosPorPagina; i++){
-			if(i > thumbnails.size())
-				return toRet;
+			System.out.println(i);
+			System.out.println(thumbnails.size());
+			if(i >= thumbnails.size())
+				break;
 			
 			try {
 				toRet.add(Files.readAllBytes(thumbnails.get(i).toPath()));
