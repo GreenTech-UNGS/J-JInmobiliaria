@@ -3,7 +3,9 @@ package persistencia.dao.hibernate;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.ResultTransformer;
 import org.joda.time.DateTime;
 
 import com.google.inject.Inject;
@@ -43,7 +45,8 @@ public class CitaDaoHibernate extends DaoHibernate<Cita> implements CitaDao{
 		
 		Criteria q = sesion.createCriteria(Cita.class)
 				.createAlias("asistentes", "asisit")
-				.add(Restrictions.eq("asisit.ID", u.getID()));
+				.add(Restrictions.eq("asisit.ID", u.getID()))
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		
 		List<Cita> toRet = q.list();
 		
@@ -60,7 +63,8 @@ public class CitaDaoHibernate extends DaoHibernate<Cita> implements CitaDao{
 		Criteria q = sesion.createCriteria(Cita.class)
 				.createAlias("asistentes", "asisit")
 				.add(Restrictions.eq("asisit.ID", u.getID())).
-				add(Restrictions.ge("fechaHora", DateTime.now()));
+				add(Restrictions.ge("fechaHora", DateTime.now()))
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);;
 		
 		List<Cita> toRet = q.list();
 		
@@ -76,7 +80,8 @@ public class CitaDaoHibernate extends DaoHibernate<Cita> implements CitaDao{
 		
 		Criteria q = sesion.createCriteria(Cita.class)
 				.createAlias("asistentes", "asisit")
-				.add(Restrictions.ge("fechaHora", DateTime.now()));
+				.add(Restrictions.ge("fechaHora", DateTime.now()))
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);;
 		
 		List<Cita> toRet = q.list();
 		
