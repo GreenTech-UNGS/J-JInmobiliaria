@@ -99,9 +99,7 @@ public class EnviadorMails {
 					notificacion.setVisto(true);
 					notificacionesService.save(notificacion);
 					
-					System.out.println(toSend.getBody());
-					
-					//new Thread(() -> sendMail(toSend)).start();
+					new Thread(() -> sendMail(toSend)).start();
 				}
 				
 				if(seAvisaCancela(cita, notificacion)) {
@@ -118,8 +116,6 @@ public class EnviadorMails {
 					notificacion.setVisto(true);
 					notificacionesService.save(notificacion);
 					citaService.delete(cita);
-					
-					System.out.println(toSend.getBody());
 					
 					new Thread(() -> sendMail(toSend)).start();
 				}
