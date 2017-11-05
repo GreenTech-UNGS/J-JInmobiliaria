@@ -59,10 +59,27 @@ public class CitaFormMapper implements Mapper<Cita>{
 	@Override
 	public void fillFields(Cita t) {
 		
-		boolean asiste = t.isCreadorAsiste();
-		TipoCita motivo = t.getTipo();
-		DateTime fechaHora = t.getFechaHora();
 		Period duracion = Period.parse(t.getDuracionEstimada());
+		
+		view.getChckbxAsistir().setSelected(t.isCreadorAsiste());
+		view.getComboModelTipoCita().setSelected(t.getTipo());
+		view.getDateChooser().setDate(t.getFechaHora().toDate());
+		view.getSpinnerHoraMomento().setValue(t.getFechaHora().getHourOfDay());
+		view.getSpinnerMinutoMomento().setValue(t.getFechaHora().getMinuteOfHour());
+		
+		view.getSpinnerHoraDuracion().setValue(duracion.getHours());
+		view.getSpinnerMinutoDuracion().setValue(duracion.getMinutes());
+		
+		view.getTfCalle().setText(t.getCalle());
+		view.getTfAltura().setText(t.getAltura());
+		view.getComboModelLocalidad().setSelected(t.getLocalidad());
+		if(t.getLocalidad() != null)
+			view.getComboModelProvincia().setSelected(t.getLocalidad().getProvincia());
+		
+		view.getTaNotas().setText(t.getDescripcion());
+		
+		view.revalidate();
+		
 	}
 	
 	private String convierteString(String s) {

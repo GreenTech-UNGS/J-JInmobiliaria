@@ -24,10 +24,12 @@ import entities.TipoCita;
 import model.CitaService;
 import model.LocalidadService;
 import model.LocalizationService;
+import model.LogicaNegocioException;
 import model.UsuarioService;
 import persistencia.dao.iface.LocalizationDao.MapPoint;
 import presentacion.mappers.CitaFormMapper;
 import presentacion.table.PersonaBasicaTableModel;
+import presentacion.validators.MessageShow;
 import presentacion.vista.CitaForm;
 
 @Singleton
@@ -43,6 +45,8 @@ public class CitaController {
 	
 	@Inject private ElegirAsistenteController elegirAsistente;
 	@Inject private ElegirPropiedadController elegirPropiedad;
+	
+	@Inject private MessageShow msgShw;
 	
 	private PersonaBasicaTableModel tableModel;
 	
@@ -61,7 +65,7 @@ public class CitaController {
 		this.view.getChckbxAsistir().addActionListener(e -> actualizaAsistenteAlUsuario(((AbstractButton)e.getSource()).isSelected()));
 		this.view.getBtnDesdePropiedad().addActionListener(e -> desdePropiedad());
 		this.view.getBtnActualizar().addActionListener(e -> actualizaMapa());
-	
+		
 		this.tableModel = new PersonaBasicaTableModel();
 		
 		view.getTableAsistentes().setModel(tableModel);
@@ -155,29 +159,27 @@ public class CitaController {
 	}
 	
 	private void actualizaMapaThread() {
-		
+
 		String calle = view.getTfCalle().getText();
 		String altura = view.getTfAltura().getText();
 		Localidad localidad = view.getComboModelLocalidad().getSelected();
+
+		System.out.println(localidad);
 		
-		if(calle == null || altura == null || localidad == null || localidad.getNombre() == null) {
-			JOptionPane.showMessageDialog(view, "No se puede actualizar el mapa, faltan datos de ubcaci�n", "Error", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
-		MapPoint punto = localizationService.getLocalizationOf(calle, altura, localidad);
-	
-		if(punto == null) {
-			JOptionPane.showMessageDialog(view, "No se encontro la ubicacion", "Error", JOptionPane.ERROR_MESSAGE);
-			return;
+		MapPoint punto = null;
+		try {
+			punto = localizationService.getLocalizationOf(calle, altura, localidad);
+			Coordinate localizacion = new Coordinate(punto.getLat(), punto.getLon());
+			restartMapa();
+			
+			view.getMapa().addMapMarker(new MapMarkerDot(localizacion));
+			view.getMapa().setDisplayPosition(localizacion, 15);
+			
+			currentCita.setLat(punto.getLat());
+			currentCita.setLng(punto.getLon());
+		} catch (LogicaNegocioException e) {
+			msgShw.showErrorMessage(e.getMessage(), "Error");
 		}	
-		Coordinate localizacion = new Coordinate(punto.getLat(), punto.getLon());
-		restartMapa();
-		
-		view.getMapa().addMapMarker(new MapMarkerDot(localizacion));
-		view.getMapa().setDisplayPosition(localizacion, 15);
-		
-		currentCita.setLat(punto.getLat());
-		currentCita.setLng(punto.getLon());
 		
 	}
 	
@@ -189,18 +191,34 @@ public class CitaController {
 
 
 	public void showView() {
-	
-		fillCombos();
-		fillTables();
-		
+
 		this.view.setVisible(true);
 
 	}
 	
 	public void setModeNew() {
 
+		view.setTitle("Crear Cita");
+		
 		currentCita = citaService.getNuevaCita();
+		fillCombos();
+		fillTables();
+		mapper.fillFields(currentCita);
 		restartMapa();
+	}	
+	
+	public void setModeEdit(Cita cita) {
+		
+		view.setTitle("Editar Cita");
+		
+		currentCita = cita;
+		fillCombos();
+		fillTables();
+		
+		mapper.fillFields(currentCita);
+		restartMapa();
+		actualizaMapa();
+		
 	}
 	
 	private void fillCombos() {
@@ -217,6 +235,10 @@ public class CitaController {
 	
 	private void fillTables() {
 		
+		tableModel.clean();
+		
+		currentCita.getAsistentes().forEach(a -> tableModel.addRow(a));
+		
 	}
 
 	private void cambiaLocalidades() {
@@ -225,6 +247,9 @@ public class CitaController {
 		view.getComboModelLocalidad().actualize(localidades);
 		
 	}
+
+
+
 	
 
 }

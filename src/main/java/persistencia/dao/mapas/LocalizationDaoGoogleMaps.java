@@ -31,7 +31,7 @@ public class LocalizationDaoGoogleMaps implements LocalizationDao{
 		String https_url = "https://maps.googleapis.com/maps/api/geocode/json?address="
 				+ encodedLocation + ""
 				+ "&key=" + key;
-		
+		System.out.println(https_url);
 		JsonObject jsonObj = getJson(https_url);
 		
 		String status = jsonObj.getAsJsonPrimitive("status").getAsString();

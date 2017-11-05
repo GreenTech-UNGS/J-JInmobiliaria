@@ -200,24 +200,22 @@ public class PropiedadController {
 		String altura = view.getTfAltura().getText();
 		Localidad localidad = localidadCombo.getSelected();
 		
-		if(calle == null || altura == null || localidad == null || localidad.getNombre() == null) {
-			JOptionPane.showMessageDialog(view, "No se puede actualizar el mapa, faltan datos de ubcaci�n", "Error", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
-		MapPoint punto = localizationService.getLocalizationOf(calle, altura, localidad);
-	
-		if(punto == null) {
-			JOptionPane.showMessageDialog(view, "No se encontro la ubicacion", "Error", JOptionPane.ERROR_MESSAGE);
-			return;
+		MapPoint punto = null;
+		try {
+			punto = localizationService.getLocalizationOf(calle, altura, localidad);
+		} catch (LogicaNegocioException e) {
+			msgShw.showErrorMessage(e.getMessage(), "Error");
+			Coordinate localizacion = new Coordinate(punto.getLat(), punto.getLon());
+			restartMapa();
+			
+			view.getMapa().addMapMarker(new MapMarkerDot(localizacion));
+			view.getMapa().setDisplayPosition(localizacion, 15);
+			
+			currentPropiedad.setLat(punto.getLat());
+			currentPropiedad.setLon(punto.getLon());
 		}	
-		Coordinate localizacion = new Coordinate(punto.getLat(), punto.getLon());
-		restartMapa();
 		
-		view.getMapa().addMapMarker(new MapMarkerDot(localizacion));
-		view.getMapa().setDisplayPosition(localizacion, 15);
 		
-		currentPropiedad.setLat(punto.getLat());
-		currentPropiedad.setLon(punto.getLon());
 		
 	}
 	

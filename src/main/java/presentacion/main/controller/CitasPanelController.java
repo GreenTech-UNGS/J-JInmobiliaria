@@ -31,6 +31,7 @@ public class CitasPanelController {
 		
 		this.view.getBtnNueva().addActionListener(e -> agregarCita());
 		this.view.getBtnCancelarCita().addActionListener(e -> cancelarCita());
+		this.view.getBtnEditar().addActionListener(e -> editarCita());
 		
 		this.tableModel = new CitasTableModel();
 		view.getTable().setModel(tableModel);
@@ -39,6 +40,19 @@ public class CitasPanelController {
 		view.getTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	}
 	
+	private void editarCita() {
+		
+
+		Cita selectedCita = getSelected();
+		
+		if(selectedCita != null) {
+			citaController.setModeEdit(selectedCita);
+			citaController.showView();
+		}
+		
+		
+	}
+
 	private void agregarCita() {
 		this.citaController.setModeNew();
 		this.citaController.showView();
@@ -46,17 +60,21 @@ public class CitasPanelController {
 	}
 	
 	private void cancelarCita() {
+
+		Cita selectedCita = getSelected();
 		
+		if(selectedCita != null && 
+				msgShw.showYesNoMessage("¿Quiere cancelar la cita?",
+						"Cancelar cita")) citaService.cancelarCita(selectedCita);
+		
+	}
+	
+	private Cita getSelected() {
 		int selected = view.getTable().getSelectedRow();
 		
-		if(selected >= 0 && 
-				msgShw.showYesNoMessage("¿Quiere cancelar la cita?", "Cancelar cita")) {
-			
-			Cita selectedCita = tableModel.getRow(selected);
-			citaService.cancelarCita(selectedCita);
-			
-		}
+		if(selected >= 0 )return tableModel.getRow(selected);
 		
+		return null;
 	}
 
 	public void showView(){

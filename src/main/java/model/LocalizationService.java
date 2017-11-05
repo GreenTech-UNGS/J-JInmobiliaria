@@ -19,8 +19,13 @@ public class LocalizationService {
 		
 	}
 	
-	public MapPoint getLocalizationOf(String calle, String altura, Localidad localidad) {
+	public MapPoint getLocalizationOf(String calle, String altura, Localidad localidad) throws LogicaNegocioException {
+		
+		if(calle == null || altura == null || localidad == null || localidad.getNombre() == null)
+			throw new LogicaNegocioException("No se puede actualizar el mapa, faltan datos de ubcacion");
 
+			
+		
 		String loc = altura +
 				" " + calle +
 				"," + localidad.getNombre() +
@@ -29,7 +34,12 @@ public class LocalizationService {
 		
 		loc = loc.replaceAll(" ", "+");
 		
-		return locDao.getLocationOf(loc);
+		MapPoint point = locDao.getLocationOf(loc);
+		
+		if(point == null)
+			throw new LogicaNegocioException("No se encontro la ubicacion");
+		
+		return point;
 		
 	}
 	

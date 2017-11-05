@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.joda.time.Period;
 
 import com.google.inject.Inject;
@@ -101,6 +102,8 @@ public class CitaService {
 	
 	public Cita getNuevaCita() {
 		Cita toRet = new Cita();
+		toRet.setDuracionEstimada(Period.ZERO.toString());
+		toRet.setFechaHora(DateTime.now().plusDays(1)); //Mañana
 		
 		return toRet;
 		
