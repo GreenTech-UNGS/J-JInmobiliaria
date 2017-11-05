@@ -29,6 +29,7 @@ import model.UsuarioService;
 import persistencia.dao.iface.LocalizationDao.MapPoint;
 import presentacion.mappers.CitaFormMapper;
 import presentacion.table.PersonaBasicaTableModel;
+import presentacion.validators.CitaFormValidator;
 import presentacion.validators.MessageShow;
 import presentacion.vista.CitaForm;
 
@@ -42,6 +43,7 @@ public class CitaController {
 	@Inject private LocalizationService localizationService;
 	
 	@Inject private CitaFormMapper mapper;
+	@Inject private CitaFormValidator validator;
 	
 	@Inject private ElegirAsistenteController elegirAsistente;
 	@Inject private ElegirPropiedadController elegirPropiedad;
@@ -107,17 +109,22 @@ public class CitaController {
 	
 	private void agregarCita() {
 		
-		//TODO: falta validator
-		mapper.fillBean(currentCita);
+		if(validator.isValid()) {
+			mapper.fillBean(currentCita);
 		
-		actualizaMapaThread();
+			actualizaMapaThread();
+			
+			int avisoCorto = (int)view.getSpinnerAvisoCorto().getValue();
+			int avisoLargo = (int)view.getSpinnerAvisoLargo().getValue();
+			citaService.crearNotificaciones(currentCita, avisoCorto, avisoLargo);
+			
+			citaService.saveCita(currentCita);
+			this.view.setVisible(false);
+		}
+		else {
+			msgShw.showErrorMessage(validator.getErrorMessage(), "Error");
+		}
 		
-		int avisoCorto = (int)view.getSpinnerAvisoCorto().getValue();
-		int avisoLargo = (int)view.getSpinnerAvisoLargo().getValue();
-		citaService.crearNotificaciones(currentCita, avisoCorto, avisoLargo);
-		
-		citaService.saveCita(currentCita);
-		this.view.setVisible(false);
 		
 	}
 		

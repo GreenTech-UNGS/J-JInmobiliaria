@@ -70,7 +70,7 @@ public class CitaForm extends JDialog{
 		getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(261, 76, 236, 77);
+		scrollPane.setBounds(281, 81, 236, 77);
 		getContentPane().add(scrollPane);
 		setLocationRelativeTo(null);
 		setModal(true);
@@ -81,11 +81,11 @@ public class CitaForm extends JDialog{
 		scrollPane.setViewportView(tableAsistentes);
 		
 		btnAgregar = new JButton("Agregar");
-		btnAgregar.setBounds(271, 164, 97, 25);
+		btnAgregar.setBounds(291, 169, 97, 25);
 		getContentPane().add(btnAgregar);
 		
 		btnBorrar = new JButton("Borrar");
-		btnBorrar.setBounds(399, 164, 91, 25);
+		btnBorrar.setBounds(419, 169, 91, 25);
 		getContentPane().add(btnBorrar);
 		
 		JLabel lblFechaYHora = new JLabel("Fecha y hora: ");
@@ -189,7 +189,7 @@ public class CitaForm extends JDialog{
 		
 		spinnerAvisoCorto = new JSpinner();
 		spinnerAvisoCorto.setModel(new SpinnerNumberModel(1, 1, 10, 1));
-		spinnerAvisoCorto.setBounds(91, 109, 36, 20);
+		spinnerAvisoCorto.setBounds(88, 109, 39, 20);
 		getContentPane().add(spinnerAvisoCorto);
 		
 		JLabel lblDias = new JLabel("dias antes");
@@ -239,7 +239,7 @@ public class CitaForm extends JDialog{
 		getContentPane().add(lblUbicacion);
 		
 		chckbxAsistir = new JCheckBox("Asistir");
-		chckbxAsistir.setBounds(261, 46, 97, 23);
+		chckbxAsistir.setBounds(281, 51, 97, 23);
 		getContentPane().add(chckbxAsistir);
 		
 		btnAceptar = new JButton("Aceptar");
