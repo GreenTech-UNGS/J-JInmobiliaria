@@ -5,6 +5,7 @@ import javax.swing.JDialog;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -14,8 +15,8 @@ import java.awt.Font;
 @SuppressWarnings("serial")
 @Singleton
 public class ContrasenaForm extends JDialog {
-	private JTextField tfContActual;
-	private JTextField tfNuevaCont;
+	private JPasswordField tfContActual;
+	private JPasswordField tfNuevaCont;
 	private JButton btnGuardar;
 	private JButton btnCancelar;
 	
@@ -48,12 +49,12 @@ public class ContrasenaForm extends JDialog {
 		btnCancelar.setBounds(179, 106, 101, 36);
 		getContentPane().add(btnCancelar);
 		
-		tfContActual = new JTextField();
+		tfContActual = new JPasswordField();
 		tfContActual.setBounds(149, 31, 150, 20);
 		getContentPane().add(tfContActual);
 		tfContActual.setColumns(10);
 		
-		tfNuevaCont = new JTextField();
+		tfNuevaCont = new JPasswordField();
 		tfNuevaCont.setBounds(149, 56, 150, 20);
 		getContentPane().add(tfNuevaCont);
 		tfNuevaCont.setColumns(10);

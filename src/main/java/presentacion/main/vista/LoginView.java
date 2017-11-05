@@ -11,13 +11,14 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 
 @Singleton
 public class LoginView {
 
 	private JFrame loginFrame;
 	private JTextField textUsuario;
-	private JTextField textPass;
+	private JPasswordField textPass;
 	private JButton btnLogin;
 	private JButton btnRecuperarContrasea;
 	
@@ -63,7 +64,7 @@ public class LoginView {
 		gbc_lblContrasea.gridy = 4;
 		loginFrame.getContentPane().add(lblContrasea, gbc_lblContrasea);
 		
-		textPass = new JTextField();
+		textPass = new JPasswordField();
 		GridBagConstraints gbc_textPass = new GridBagConstraints();
 		gbc_textPass.gridwidth = 5;
 		gbc_textPass.insets = new Insets(0, 0, 5, 5);
@@ -73,7 +74,7 @@ public class LoginView {
 		loginFrame.getContentPane().add(textPass, gbc_textPass);
 		textPass.setColumns(10);
 		
-		btnRecuperarContrasea = new JButton("Recuperar contraseña");
+		btnRecuperarContrasea = new JButton("Recuperar contrase\u00F1a");
 		GridBagConstraints gbc_btnRecuperarContrasea = new GridBagConstraints();
 		gbc_btnRecuperarContrasea.gridwidth = 2;
 		gbc_btnRecuperarContrasea.insets = new Insets(0, 0, 5, 5);
