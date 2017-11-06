@@ -22,7 +22,6 @@ public class LocalidadComboBoxModel extends BaseComboBoxModel<Localidad>{
 		else{
 			
 		String nombre = toSelect.getNombre();
-		System.out.println(nombre);
 		this.setSelectedItem(nombre);
 		
 		}

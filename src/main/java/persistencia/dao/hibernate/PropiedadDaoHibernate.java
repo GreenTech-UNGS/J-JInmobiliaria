@@ -40,12 +40,13 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 	}
 	
 	@Override
-	public boolean existePropiedadConIdentificador(String identificador) {
+	public boolean existePropiedadConIdentificador(int IdExcluir, String identificador) {
 		
 		initTransaction();
 		
 		Criteria q = sesion.createCriteria(Propiedad.class).
-				add(Restrictions.eq("identificador", identificador));
+				add(Restrictions.eq("identificador", identificador)).
+				add(Restrictions.ne("ID", IdExcluir));
 		
 		boolean toRet = ! (q.list().isEmpty());
 		
@@ -96,5 +97,6 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 		actualizeList(toRet);
 		return toRet;	
 	}
+
 
 }
