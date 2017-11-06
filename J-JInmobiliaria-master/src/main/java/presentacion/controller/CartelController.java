@@ -59,7 +59,7 @@ public class CartelController {
 	}
 
 	public void editarCartel(Cartel c){
-		view.setTitle("Editar cliente");
+		view.setTitle("Editar cartel");
 		view.getBtnAceptar().setVisible(true);
 		
 		currentCartel = c;
