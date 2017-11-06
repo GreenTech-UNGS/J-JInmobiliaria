@@ -12,11 +12,16 @@ import javax.swing.JTable;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+
+import entities.Rol;
+import model.permisos.PermissableField;
+import model.permisos.PermissionView;
+
 import java.awt.Font;
 
 @SuppressWarnings("serial")
 @Singleton
-public class PersonasPanel extends JPanel{
+public class PersonasPanel extends JPanel implements PermissionView{
 	
 	private JTable tableClientes;
 	private JButton btnAgregarCliente;
@@ -47,17 +52,21 @@ public class PersonasPanel extends JPanel{
 	private JButton btnAplicarFiltroInteresados;
 	private JButton btnRemoverFiltroInteresados;
 	private Component glue;
+	
+	@PermissableField(roles = { Rol.ADMINISTRADOR })
+	private JPanel TabUsuarios;
+	private JTabbedPane tabbedPane;
 
 	@Inject
 	private PersonasPanel() {
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
-        JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
-        this.add(tabbedPane_2);
+        tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+        this.add(tabbedPane);
 		
         JPanel TabCliente = new JPanel();
-        tabbedPane_2.addTab("Clientes", null, TabCliente, null);
+        tabbedPane.addTab("Clientes", null, TabCliente, null);
         TabCliente.setLayout(new BoxLayout(TabCliente, BoxLayout.Y_AXIS));
         
         JPanel panlBotonFiltroClientes = new JPanel();
@@ -88,7 +97,7 @@ public class PersonasPanel extends JPanel{
         panel.add(btnEditarCliente);
                 
         JPanel TabPropietarios = new JPanel();
-        tabbedPane_2.addTab("Propietarios", null, TabPropietarios, null);
+        tabbedPane.addTab("Propietarios", null, TabPropietarios, null);
         TabPropietarios.setLayout(new BoxLayout(TabPropietarios, BoxLayout.Y_AXIS));
         
         JPanel panlBotonFiltroPropietarios = new JPanel();
@@ -118,8 +127,8 @@ public class PersonasPanel extends JPanel{
         btnEditarPropietario = new JButton("Editar propietario");
         panel2.add(btnEditarPropietario);
         
-        JPanel TabUsuarios = new JPanel();
-        tabbedPane_2.addTab("Usuarios", null, TabUsuarios, null);
+        TabUsuarios = new JPanel();
+        tabbedPane.addTab("Usuarios", null, TabUsuarios, null);
         TabUsuarios.setLayout(new BoxLayout(TabUsuarios, BoxLayout.Y_AXIS));
         
         panel_1 = new JPanel();
@@ -161,7 +170,7 @@ public class PersonasPanel extends JPanel{
         panelBotones.add(btnDeshabilitar);
         
         panelInteresados = new JPanel();
-        tabbedPane_2.addTab("Interesados", null, panelInteresados, null);
+        tabbedPane.addTab("Interesados", null, panelInteresados, null);
         panelInteresados.setLayout(new BoxLayout(panelInteresados, BoxLayout.Y_AXIS));
         
         panel_2 = new JPanel();
@@ -292,6 +301,14 @@ public class PersonasPanel extends JPanel{
 
 	public JButton getBtnRemoverFiltroInteresados() {
 		return btnRemoverFiltroInteresados;
+	}
+
+	@Override
+	public void ocultarComponente(Object o) {
+		Component componente = (Component) o; 
+		
+		tabbedPane.remove(componente);
+		componente.setVisible(false);
 	}
 	
 }
