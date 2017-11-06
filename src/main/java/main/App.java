@@ -60,12 +60,10 @@ public class App{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-    		}
-    		
+    		}	
     	});
     	
     	t.setDaemon(true);
-    	t.start();
-    	
+    	t.start();	
     }
 }

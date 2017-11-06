@@ -5,9 +5,12 @@ import java.util.List;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import entities.Cliente;
 import entities.Interesado;
 import entities.Persona;
 import entities.Preferencia;
+import filtros.ClienteFiltro;
+import filtros.InteresadoFiltro;
 import persistencia.dao.iface.InteresadoDao;
 import persistencia.dao.iface.PersonaDao;
 
@@ -52,8 +55,14 @@ public class InteresadoService {
 		interesadoDao.save(toSave);
 	}
 	
-public void editInteresado(Interesado toSave) throws LogicaNegocioException {
+	public void editInteresado(Interesado toSave) throws LogicaNegocioException {
 		
 		interesadoDao.save(toSave);
 	}
+
+	public List<Interesado> getAllByFiltro(InteresadoFiltro filtro){
+	
+	return interesadoDao.getAllByFiltro(filtro);
+	
+}
 }

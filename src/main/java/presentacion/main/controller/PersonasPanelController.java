@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import filtros.ClienteFiltro;
+import filtros.InteresadoFiltro;
 import filtros.PropietarioFiltro;
 import filtros.UsuarioFiltro;
 import model.ClienteService;
@@ -15,6 +16,7 @@ import presentacion.controller.InteresadoController;
 import presentacion.controller.PropietarioController;
 import presentacion.controller.UsuarioController;
 import presentacion.controller.filtros.ClienteFiltroController;
+import presentacion.controller.filtros.InteresadoFiltroController;
 import presentacion.controller.filtros.PropietarioFiltroController;
 import presentacion.controller.filtros.UsuarioFiltroController;
 import presentacion.main.vista.PersonasPanel;
@@ -33,6 +35,7 @@ public class PersonasPanelController {
 	@Inject private ClienteFiltroController clienteFiltro;
 	@Inject private PropietarioFiltroController propietarioFiltro;
 	@Inject private UsuarioFiltroController usuarioFiltro;
+	@Inject private InteresadoFiltroController interesadoFiltro;
 	@Inject private UsuarioController usuarioController;
 	@Inject private InteresadoController interesadoController;
 	
@@ -67,7 +70,8 @@ public class PersonasPanelController {
 		this.view.getBtnEditarInteresado().addActionListener(e -> editarInteresado());
 		this.view.getBtnAplicarFiltroUsuarios().addActionListener(e -> aplicarFiltroUsuario());
 		this.view.getBtnRemoverFiltroUsuarios().addActionListener(e -> removerFiltroUsuarios());
-		
+		this.view.getBtnAplicarFiltroInteresados().addActionListener(e -> aplicarFiltroInteresado());
+		this.view.getBtnRemoverFiltroInteresados().addActionListener(e -> removerFiltroInteresados());
 	}
 
 	private void agregarCliente() {
@@ -163,12 +167,27 @@ public class PersonasPanelController {
 		
 	}
 	
+	private void aplicarFiltroInteresado() {
+		interesadoFiltro.setModeNew();
+		interesadoFiltro.showView();
+		
+		InteresadoFiltro filtro = interesadoFiltro.getFiltro();
+		if(filtro != null) {
+			interesadosTable.actualizeRows(interesadoService.getAllByFiltro(filtro));
+		}
+		
+	}
+	
 	private void removerFiltroUsuarios(){
 		fillTableUsuarios();
 	}
 	
 	private void removerFiltroCliente() {
 		fillTableClientes();
+	}
+	
+	private void removerFiltroInteresados(){
+		fillTableInteresados();
 	}
 	
 	private void aplicarFiltroPropietario() {
