@@ -2,8 +2,10 @@ package main;
 
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.YearMonth;
 
 import com.google.inject.Guice;
@@ -30,6 +32,9 @@ public class ActualizadorCuotas {
 	
 	  public static void main( String[] args ){
 		  
+    	DateTimeZone.setDefault(DateTimeZone.UTC);
+    	TimeZone.setDefault(TimeZone.getTimeZone("UTC"));  
+		
 		injector = Guice.createInjector(new ActualizadorModule());
 		
 		cuotaService = injector.getInstance(CuotaService.class);

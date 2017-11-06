@@ -111,8 +111,7 @@ public class CuotaDaoHibernate extends DaoHibernate<CuotaAlquiler> implements Cu
 		
 		Criteria q = sesion.createCriteria(CuotaAlquiler.class)
 				.createAlias("contrato", "contr")
-				.createAlias("cliente", "cli")
-				.add(Restrictions.eq("cli", c))
+				.add(Restrictions.eq("contr.cliente", c))
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		
 		List<CuotaAlquiler> toRet = q.list();
