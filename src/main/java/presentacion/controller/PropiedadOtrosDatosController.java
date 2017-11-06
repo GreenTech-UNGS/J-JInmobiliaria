@@ -35,6 +35,7 @@ public class PropiedadOtrosDatosController {
 		view.getBtnAceptar().addActionListener(e -> aceptar());
 		view.getBtnAgergar().addActionListener(e -> agregaHabitacion());
 		view.getBtnBorrar().addActionListener(e -> borraHabitacion());
+		view.getBtnCancelar().addActionListener(e -> view.setVisible(false));
 		
 		fillCombo();
 		
