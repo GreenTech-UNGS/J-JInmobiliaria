@@ -86,10 +86,17 @@ public class PropiedadOtrosDatosController {
 		this.view.getTipoCombo().actualize(Arrays.asList(TipoPropiedad.values()));
 	}
 	
-	public void setModeNew() {
+	public void editOtrosDatos(PropiedadOtrosDatos otrosDatos) {
 		okWasPressed = false;
-		currentDatos = new PropiedadOtrosDatos();
-		currentDatos.setTipo(TipoPropiedad.Otro);
+		
+		if(otrosDatos == null) {
+			System.out.println("asd");
+			currentDatos = new PropiedadOtrosDatos();
+			currentDatos.setTipo(TipoPropiedad.Otro);
+		}
+		else {
+			currentDatos = otrosDatos;
+		}
 		
 		mapper.fillFields(currentDatos);
 	}

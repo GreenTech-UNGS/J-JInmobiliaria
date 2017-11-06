@@ -86,8 +86,13 @@ public class PropiedadService {
 	public Propiedad getEmptyPropiedad() {
 		Propiedad toRet = new Propiedad();
 		
+
+		PropiedadOtrosDatos otrosDatos = new PropiedadOtrosDatos();
+		otrosDatos.setTipo(TipoPropiedad.Otro);
+		
 		toRet.setPrecioTentativo(new Precio(0, Moneda.PESOS));
 		toRet.setTipoOfrecimiento(TipoOfrecimiento.Alquiler);
+		toRet.setOtrosDatos(otrosDatos);
 		
 		return toRet;
 		

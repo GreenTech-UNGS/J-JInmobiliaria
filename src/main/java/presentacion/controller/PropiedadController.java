@@ -264,6 +264,7 @@ public class PropiedadController {
 		currentPropiedad = p;
 		binder.setObjective(currentPropiedad);
 		binder.fillFields();
+		
 	}
 
 	private void savePropiedad() {
@@ -301,10 +302,10 @@ public class PropiedadController {
 	}
 	
 	private void agregarOtrosDatos() {
-		otrosDatosForm.setModeNew();
+		otrosDatosForm.editOtrosDatos(currentPropiedad.getOtrosDatos());
 		otrosDatosForm.showView();
-		PropiedadOtrosDatos otrosDatos = otrosDatosForm.getOtrosDatos();
 		
+		PropiedadOtrosDatos otrosDatos = otrosDatosForm.getOtrosDatos();
 		if(otrosDatos != null)currentPropiedad.setOtrosDatos(otrosDatos);
 		
 	}
@@ -323,6 +324,7 @@ public class PropiedadController {
 		view.getTfPropietario().setText("");
 		view.getTfInmobiliaria().setText("");
 		view.getLblReservada().setVisible(false);
+		
 	}
 
 	public void setModeView(Propiedad propiedad) {
@@ -343,6 +345,7 @@ public class PropiedadController {
 		
 		if(propiedadService.getCurrentEstado(currentPropiedad).equals(EstadoProp.RESERVADA))
 			view.getLblReservada().setVisible(true);
+		
 	}
 
 	public void showView(){
