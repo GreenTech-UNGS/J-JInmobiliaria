@@ -10,6 +10,8 @@ public class ClientesTableModel extends BaseTableModel<Cliente> {
 	super.addColumn("Credencial", false, 100);
 	super.addColumn("Nombre", false, 100);
 	super.addColumn("Apellido", false, 100);
+	super.addColumn("Calificacion", false, 100);
+	
 	}
 
 	@Override
@@ -19,7 +21,8 @@ public class ClientesTableModel extends BaseTableModel<Cliente> {
 		
 		Object[] fila = {credencial,
 				t.getPersona().getNombre(),
-				t.getPersona().getApellido()};
+				t.getPersona().getApellido(),
+				t.getCalificacion().toString()};
 
 		return fila;
 	}
