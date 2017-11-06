@@ -12,7 +12,9 @@ import com.google.inject.Injector;
 import entities.ContratoAlquiler;
 import entities.CuotaAlquiler;
 import entities.EstadoContrato;
+import entities.EstadoCuota;
 import entities.HistoriaEstadoContrato;
+import entities.HistoriaEstadoCuota;
 import entities.InteresPunitorioCuota;
 import misc.ActualizadorModule;
 import model.ContratoService;
@@ -86,9 +88,12 @@ public class ActualizadorCuotas {
 				
 		for(CuotaAlquiler cuota : vencidas){
 			
-			
 			InteresPunitorioCuota interes = cuotaService.getInteresCalculado(cuota, today);
+			HistoriaEstadoCuota estadoVenciado = new HistoriaEstadoCuota();
+			estadoVenciado.setEstado(EstadoCuota.ATRASADA);
+			estadoVenciado.setFecha(DateTime.now());
 			
+			cuotaService.saveCuota(cuota);
 			cuotaService.saveInteres(interes);
 			
 		}

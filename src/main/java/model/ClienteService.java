@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.inject.Inject;
 
+import entities.CalificacionCliente;
 import entities.Cliente;
 import entities.Persona;
 import filtros.ClienteFiltro;
@@ -29,6 +30,7 @@ public class ClienteService {
 		toRet.setHabilitado(true);
 		
 		toRet.setPersona(p);
+		toRet.setCalificacion(CalificacionCliente.C);
 		
 		return toRet;
 	}

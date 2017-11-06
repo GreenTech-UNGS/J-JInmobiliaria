@@ -9,6 +9,7 @@ import org.joda.time.YearMonth;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import entities.Cliente;
 import entities.ContratoAlquiler;
 import entities.CuotaAlquiler;
 import entities.InteresPunitorioCuota;
@@ -89,8 +90,7 @@ public class CuotaDaoHibernate extends DaoHibernate<CuotaAlquiler> implements Cu
 	}
 
 	@Override
-	public List<CuotaAlquiler> getCuotasOf(ContratoAlquiler c) {
-		initTransaction();
+	public List<CuotaAlquiler> getCuotasOf(ContratoAlquiler c) {initTransaction();
 		
 		Criteria q = sesion.createCriteria(CuotaAlquiler.class)
 				.add(Restrictions.eq("contrato", c));
@@ -101,7 +101,26 @@ public class CuotaDaoHibernate extends DaoHibernate<CuotaAlquiler> implements Cu
 		
 		actualizeList(toRet);
 		return toRet;
+
 		
+	}
+
+	@Override
+	public List<CuotaAlquiler> getAllCuotasOf(Cliente c) {
+				initTransaction();
+		
+		Criteria q = sesion.createCriteria(CuotaAlquiler.class)
+				.createAlias("contrato", "contr")
+				.createAlias("cliente", "cli")
+				.add(Restrictions.eq("cli", c))
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		
+		List<CuotaAlquiler> toRet = q.list();
+		
+		finishTransaction();
+		
+		actualizeList(toRet);
+		return toRet;
 	}
 
 
