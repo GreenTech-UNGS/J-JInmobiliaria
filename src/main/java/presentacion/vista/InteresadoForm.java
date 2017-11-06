@@ -45,6 +45,8 @@ public class InteresadoForm extends JDialog{
 	private ProvinciaComboBoxModel comboModelProvincia;
 	private LocalidadComboBoxModel comboModelLocalidad;
 	private JButton btnGuardarCambios;
+	private JLabel lblMoneda;
+	private JComboBox<String> comboBox;
 	
 	@Inject
 	private InteresadoForm(){
@@ -232,6 +234,15 @@ public class InteresadoForm extends JDialog{
 		btnGuardarCambios.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnGuardarCambios.setBounds(62, 395, 136, 31);
 		getContentPane().add(btnGuardarCambios);
+		
+		lblMoneda = new JLabel("Moneda:");
+		lblMoneda.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblMoneda.setBounds(217, 364, 46, 14);
+		getContentPane().add(lblMoneda);
+		
+		comboBox = new JComboBox<String>();
+		comboBox.setBounds(274, 358, 109, 20);
+		getContentPane().add(comboBox);
 		btnGuardarCambios.setVisible(false);
 	}
 

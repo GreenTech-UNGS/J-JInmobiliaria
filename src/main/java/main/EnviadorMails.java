@@ -60,6 +60,7 @@ public class EnviadorMails {
 			try {
 				while(true){
 					enviaMailsCitas();
+					
 					Thread.sleep(cincoMinutos);
 				}
 			} catch (InterruptedException e) {
@@ -122,11 +123,11 @@ public class EnviadorMails {
 				
 		}
 		
-		
-		
 	}
 	
-	public static void sendMail(Mail m){
+	//private static void enviaMails
+	
+	private static void sendMail(Mail m){
 		
 		MailSenderService mailSender = injector.getInstance(MailSenderService.class);
 		try {

@@ -6,6 +6,8 @@ import dto.FichaPropiedadDTO;
 import entities.*;
 import filtros.PropiedadFiltro;
 import org.joda.time.DateTime;
+
+import persistencia.dao.iface.DAOftp;
 import persistencia.dao.iface.PropiedadDao;
 
 import java.awt.Graphics;
@@ -27,6 +29,8 @@ public class PropiedadService {
 
 	@Inject
 	PropiedadDao propiedadDao;
+	
+	@Inject private DAOftp ftp;
 	
 	@Inject
 	private PropiedadService() {
@@ -82,8 +86,13 @@ public class PropiedadService {
 	public Propiedad getEmptyPropiedad() {
 		Propiedad toRet = new Propiedad();
 		
+
+		PropiedadOtrosDatos otrosDatos = new PropiedadOtrosDatos();
+		otrosDatos.setTipo(TipoPropiedad.Otro);
+		
 		toRet.setPrecioTentativo(new Precio(0, Moneda.PESOS));
 		toRet.setTipoOfrecimiento(TipoOfrecimiento.Alquiler);
+		toRet.setOtrosDatos(otrosDatos);
 		
 		return toRet;
 		
@@ -105,7 +114,7 @@ public class PropiedadService {
 		
 		List<Propiedad> toRet = allProps.stream().filter(p -> estadosAFiltrar.contains(getCurrentEstado(p)))
 						.filter(p -> p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquiler) ||
-				p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA_Y_ALQUILER))
+				p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquileryventa))
 						.collect(Collectors.toList());	
 
 		return toRet;
@@ -118,7 +127,7 @@ public class PropiedadService {
 		
 		List<Propiedad> toRet = allProps.stream().filter(p -> estadosAFiltrar.contains(getCurrentEstado(p))).filter
 				(p -> p.getTipoOfrecimiento().equals(TipoOfrecimiento.Venta) || p.getTipoOfrecimiento().equals
-						(TipoOfrecimiento.VENTA_Y_ALQUILER)).collect(Collectors.toList());
+						(TipoOfrecimiento.Alquileryventa)).collect(Collectors.toList());
 		return toRet;
 		
 	}
@@ -140,7 +149,7 @@ public class PropiedadService {
 	public List<Propiedad> getEnAlquiler(){
 		List<Propiedad> toRet = new ArrayList<Propiedad>();
 		for(Propiedad p : this.getAll()){
-			if(p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquiler) || p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA_Y_ALQUILER)){
+			if(p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquiler) || p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquileryventa)){
 				if(this.getCurrentEstado(p).equals(EstadoProp.DISPONIBLE)){
 					toRet.add(p);
 				}
@@ -152,7 +161,7 @@ public class PropiedadService {
 	public List<Propiedad> getEnVenta(){
 		List<Propiedad> toRet = new ArrayList<Propiedad>();
 		for(Propiedad p : this.getAll()){
-			if(p.getTipoOfrecimiento().equals(TipoOfrecimiento.Venta) || p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA_Y_ALQUILER)){
+			if(p.getTipoOfrecimiento().equals(TipoOfrecimiento.Venta) || p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquileryventa)){
 				if(this.getCurrentEstado(p).equals(EstadoProp.DISPONIBLE)){
 					toRet.add(p);
 				}
@@ -187,15 +196,33 @@ public class PropiedadService {
 
 	}
 	
+	public File getPortadaFileOf(Propiedad p) {
+		
+		Foto portada = null;
+		
+		for(Foto f: p.getFotos())
+			if(f.isPortada())
+				portada = f;
+		
+		File tempFile = null;
+		try {
+			tempFile = File.createTempFile(portada.getPath(), ".tmp");
+		ftp.retrieveFile(portada.getPath(), tempFile.getAbsolutePath());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return tempFile;
+	}
+	
 	public List<FichaPropiedadDTO> fichaPropiedadReporteOf(Propiedad propiedad) {
 
 		List<FichaPropiedadDTO> fichas = new ArrayList<FichaPropiedadDTO>();
 		FichaPropiedadDTO fichaPropiedad = new FichaPropiedadDTO();
-	//
-	// Aca poner una foto que es la por default si no tiene foto y sino tomar la de portada
-	//
+
 		fichaPropiedad.setTipoPropiedad(propiedad.getTipoOfrecimiento().name().toString());
-		String foto = "C:\\Users\\alejandro\\IdeaProjects\\J-JInmobiliaria-Dev\\src\\main\\resources\\cityscape.png";//propiedad.getFotos();
+		String foto = getPortadaFileOf(propiedad).getAbsolutePath();
 		fichaPropiedad.setFoto(foto);
 
 		DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );

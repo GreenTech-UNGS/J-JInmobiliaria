@@ -2,8 +2,10 @@ package main;
 
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.YearMonth;
 
 import com.google.inject.Guice;
@@ -12,7 +14,9 @@ import com.google.inject.Injector;
 import entities.ContratoAlquiler;
 import entities.CuotaAlquiler;
 import entities.EstadoContrato;
+import entities.EstadoCuota;
 import entities.HistoriaEstadoContrato;
+import entities.HistoriaEstadoCuota;
 import entities.InteresPunitorioCuota;
 import misc.ActualizadorModule;
 import model.ContratoService;
@@ -28,6 +32,9 @@ public class ActualizadorCuotas {
 	
 	  public static void main( String[] args ){
 		  
+    	DateTimeZone.setDefault(DateTimeZone.UTC);
+    	TimeZone.setDefault(TimeZone.getTimeZone("UTC"));  
+		
 		injector = Guice.createInjector(new ActualizadorModule());
 		
 		cuotaService = injector.getInstance(CuotaService.class);
@@ -86,9 +93,12 @@ public class ActualizadorCuotas {
 				
 		for(CuotaAlquiler cuota : vencidas){
 			
-			
 			InteresPunitorioCuota interes = cuotaService.getInteresCalculado(cuota, today);
+			HistoriaEstadoCuota estadoVenciado = new HistoriaEstadoCuota();
+			estadoVenciado.setEstado(EstadoCuota.ATRASADA);
+			estadoVenciado.setFecha(DateTime.now());
 			
+			cuotaService.saveCuota(cuota);
 			cuotaService.saveInteres(interes);
 			
 		}

@@ -9,20 +9,18 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="carteles")
+@Table(name="gastosFijos")
 @Inheritance(strategy=InheritanceType.JOINED)
-public class Cartel {
+public class GastoFijo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID;
-	private int alto;
-	private int ancho;
-	private String identificador;
+	private String nombre;
 	private float monto;
 	private String descripcion;
 	
-	public Cartel() {		
+	public GastoFijo() {		
 	}
 
 	public int getID() {
@@ -33,28 +31,12 @@ public class Cartel {
 		ID = iD;
 	}
 	
-	public int getAlto() {
-		return alto;
-	}
-	
-	public void setAlto(int largo) {
-		this.alto = largo;
-	}
-	
-	public int getAncho() {
-		return ancho;
-	}
-	
-	public void setAncho(int ancho) {
-		this.ancho = ancho;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public String getIdentificador() {
-		return identificador;
-	}
-
-	public void setIdentificador(String identificador) {
-		this.identificador = identificador;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public float getMonto() {

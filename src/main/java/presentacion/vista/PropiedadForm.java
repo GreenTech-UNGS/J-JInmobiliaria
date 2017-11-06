@@ -64,6 +64,7 @@ public class PropiedadForm extends JDialog{
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setModal(true);
+		setModalityType(ModalityType.MODELESS);
 		setSize(new Dimension(706, 660));
 		setResizable(false);
 		setLocationRelativeTo(null);

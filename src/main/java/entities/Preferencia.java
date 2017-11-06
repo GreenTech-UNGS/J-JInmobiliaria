@@ -26,8 +26,9 @@ public class Preferencia {
 	
 	private int metrosCuadrados;
 	private int cantidadAmbientes;
-	private int PrecioDesde;
-	private int PrecioHasta;
+	private double precioDesde;
+	private double precioHasta;
+	private Moneda moneda;
 	
 	public Preferencia(){
 		
@@ -73,20 +74,28 @@ public class Preferencia {
 		this.cantidadAmbientes = cantidadAmbientes;
 	}
 
-	public int getPrecioDesde() {
-		return PrecioDesde;
+	public double getPrecioDesde() {
+		return precioDesde;
 	}
 
 	public void setPrecioDesde(int precioDesde) {
-		PrecioDesde = precioDesde;
+		this.precioDesde = precioDesde;
 	}
 
-	public int getPrecioHasta() {
-		return PrecioHasta;
+	public double getPrecioHasta() {
+		return precioHasta;
 	}
 
 	public void setPrecioHasta(int precioHasta) {
-		PrecioHasta = precioHasta;
+		this.precioHasta = precioHasta;
+	}
+
+	public Moneda getMoneda() {
+		return moneda;
+	}
+
+	public void setMoneda(Moneda moneda) {
+		this.moneda = moneda;
 	}
 	
 }

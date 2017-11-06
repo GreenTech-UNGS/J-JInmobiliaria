@@ -21,10 +21,12 @@ public class TipoOfrecimientoComboBoxModel extends BaseComboBoxModel<TipoOfrecim
 		else{
 			
 
-			String str = toSelect.toString().toLowerCase();
-			str = str.substring(0, 1).toUpperCase() + str.substring(1);
-			str = str.replaceAll("_", " ");
-		
+//			String str = toSelect.toString().toLowerCase();
+//			str = str.substring(0, 1).toUpperCase() + str.substring(1);
+//			str = str.replaceAll("_", " ");
+			
+			String str = toSelect.toString();
+			
 			this.setSelectedItem(str);
 		
 		}

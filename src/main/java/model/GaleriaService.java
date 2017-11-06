@@ -64,7 +64,7 @@ public class GaleriaService {
 				.toFile(foto);
 		} catch (UnsupportedFormatException e) {
 			
-			throw new LogicaNegocioException("El archivo " + file.getName() + " no es una foto");
+			throw new LogicaNegocioException("El archivo " + file.getName() + " no es una imagen");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

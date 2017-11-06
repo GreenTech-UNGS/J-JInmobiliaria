@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import com.google.inject.Inject;
@@ -12,6 +13,8 @@ import com.google.inject.Singleton;
 import entities.Cliente;
 import entities.Interesado;
 import entities.Persona;
+import filtros.ClienteFiltro;
+import filtros.InteresadoFiltro;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.InteresadoDao;
 
@@ -54,6 +57,24 @@ public class InteresadoDaoHibernate extends DaoHibernate<Interesado> implements 
 		actualizeList(toRet);
 
 		return ! (toRet.isEmpty());
+	}
+	
+	@Override
+	public List<Interesado> getAllByFiltro(InteresadoFiltro filtro) {
+		initTransaction();
+		Criteria q = sesion.createCriteria(Interesado.class)
+				.createAlias("preferencia", "pref")
+				.add(Restrictions.eqOrIsNull("pref.localidad", filtro.getLocalidad()))
+				.add(Restrictions.ge("pref.precioDesde", filtro.getPrecioDesde()))
+				.add(Restrictions.le("pref.precioHasta", filtro.getPrecioHasta()))
+				.add(Restrictions.eqOrIsNull("pref.tipoOfrecimiento", filtro.getTipoOfrecimiento()));
+		
+		List<Interesado> toRet = q.list();
+		
+		finishTransaction();
+		
+		actualizeList(toRet);
+		return toRet;
 	}
 
 }
