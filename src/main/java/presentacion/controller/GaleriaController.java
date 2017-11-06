@@ -13,11 +13,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -25,7 +28,9 @@ import com.google.inject.Singleton;
 import entities.Foto;
 import entities.Propiedad;
 import model.GaleriaService;
+import model.LogicaNegocioException;
 import model.PropiedadService;
+import presentacion.validators.MessageShow;
 import presentacion.vista.GaleriaFotosView;
 
 @Singleton
@@ -35,6 +40,7 @@ public class GaleriaController {
 	private JFileChooser fileChooser;
 	@Inject private GaleriaService galeriaService;
 	@Inject private FotoController fotoController;
+	@Inject private MessageShow messageShow;
 	
 	private int page;
 	private Propiedad currentPropiedad;
@@ -54,6 +60,8 @@ public class GaleriaController {
 		initLabelsListeners();
 
 		this.fileChooser = new JFileChooser();
+		this.fileChooser.setMultiSelectionEnabled(true);
+		this.fileChooser.setFileFilter(new FileNameExtensionFilter("Imagenes", ImageIO.getReaderFileSuffixes()));
 		
 	}
 
@@ -76,10 +84,14 @@ public class GaleriaController {
 		
 		fileChooser.showOpenDialog(view);
 		
-		File f = fileChooser.getSelectedFile();
+		File[] f = fileChooser.getSelectedFiles();
 		
-		if(f != null){
-			galeriaService.saveFoto(currentPropiedad, f);
+		for (File file : f) {
+			try {
+				galeriaService.saveFoto(currentPropiedad, file);
+			} catch (LogicaNegocioException e) {
+				messageShow.showErrorMessage(e.getMessage(), "Error");
+			}
 		}
 		
 		actualizePage();
@@ -106,7 +118,7 @@ public class GaleriaController {
 	
 	
 	public void showView(){
-
+		
 		actualizePage();
 		this.view.setVisible(true);
 		

@@ -161,6 +161,7 @@ public class GaleriaFotosView extends JDialog{
 	public JButton getBtnAgregarFoto() {
 		return btnAgregarFoto;
 	}
+
 	
 	
 

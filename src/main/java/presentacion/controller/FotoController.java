@@ -8,6 +8,7 @@ import com.google.inject.Singleton;
 import entities.Foto;
 import entities.Propiedad;
 import model.GaleriaService;
+import presentacion.validators.MessageShow;
 import presentacion.vista.FotoView;
 
 @Singleton
@@ -16,6 +17,7 @@ public class FotoController {
 	private FotoView view;
 	
 	@Inject private GaleriaService galeriaService;
+	@Inject private MessageShow messageShow;
 	
 	private Foto currentFoto;
 	private Propiedad currentProp;
@@ -26,11 +28,13 @@ public class FotoController {
 		this.view = view;
 		
 		this.view.getBtnPortada().addActionListener(e -> setPortada());
+		this.view.getBtnBorrarFoto().addActionListener(e -> borrarFoto());
 		
 	}
 	
 	private void setPortada() {
 		galeriaService.setPortada(currentFoto, currentProp);
+		messageShow.showInformationMessage("Se ha definido la foto como portada", "Exito");
 	}
 	
 	public void setFoto(Foto f, Propiedad p) {
@@ -38,6 +42,16 @@ public class FotoController {
 		currentProp = p;
 		
 		view.getLblFoto().setIcon(new ImageIcon(galeriaService.getImagen(currentFoto)));
+		view.ajustarSize();
+	}
+	
+	public void borrarFoto() {
+		
+		if(messageShow.showYesNoMessage("¿Quiere borrar la foto actual?\nEsta accion no se puede deshacer", "Borrar foto")) {
+			galeriaService.borrarFoto(currentProp, currentFoto);
+			view.setVisible(false);
+		}
+		
 	}
 	
 	public void showView() {
@@ -47,12 +61,14 @@ public class FotoController {
 	public void setEditMode() {
 		
 		view.getBtnPortada().setVisible(true);
+		view.getBtnBorrarFoto().setVisible(true);
 		
 	}
 
 	public void setViewMode() {
 
 		view.getBtnPortada().setVisible(false);
+		view.getBtnBorrarFoto().setVisible(false);
 		
 	}
 	

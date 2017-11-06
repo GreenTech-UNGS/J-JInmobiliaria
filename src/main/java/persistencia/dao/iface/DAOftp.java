@@ -6,7 +6,9 @@ import java.util.List;
 public interface DAOftp {
 
     public void storeFile(File file, String fileName);
-
+    
+    public void deleteFile(String remoteFile);
+    
     public void retrieveFile(String remoteFile, String newFilePathAndName);
 
     public List<String> listFiles();
