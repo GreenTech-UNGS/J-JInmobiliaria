@@ -107,12 +107,16 @@ public class CartelForm extends JDialog{
 		return textDescripcion;
 	}
 
-	public JSpinner getSpinnerLargo() {
+	public JSpinner getSpinnerAlto() {
 		return spinnerAlto;
 	}
 
 	public JSpinner getSpinnerAncho() {
 		return spinnerAncho;
+	}
+	
+	public JSpinner getSpinnerMonto() {
+		return spinnerMonto;
 	}
 
 	public JButton getBtnAceptar() {
