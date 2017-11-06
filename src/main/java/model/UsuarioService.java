@@ -12,11 +12,14 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import dto.Mail;
+import entities.Cliente;
 import entities.EstadoUsuario;
 import entities.Persona;
 import entities.Rol;
 import entities.Usuario;
 import entities.Persona.TipoCredencial;
+import filtros.ClienteFiltro;
+import filtros.UsuarioFiltro;
 import persistencia.dao.iface.UsuarioDao;
 
 @Singleton
@@ -186,6 +189,12 @@ public class UsuarioService {
 	public void deshabilitarUsuario(Usuario usuario){
 		
 		usuario.setEstado(EstadoUsuario.DESHABILITADO);
+	}
+	
+	public List<Usuario> getAllByFiltro(UsuarioFiltro filtro){
+		
+		return usuarioDao.getAllByFiltro(filtro);
+		
 	}
 
 }

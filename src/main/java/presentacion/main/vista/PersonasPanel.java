@@ -39,6 +39,10 @@ public class PersonasPanel extends JPanel{
 	private JTable tableInteresados;
 	private JButton btnAgregarInteresado;
 	private JButton btnEditarInteresado;
+	private JPanel panel_1;
+	private JButton btnAplicarFiltroUsuarios;
+	private JButton btnRemoverFiltroUsuarios;
+	private Component horizontalGlue;
 
 	@Inject
 	private PersonasPanel() {
@@ -113,6 +117,21 @@ public class PersonasPanel extends JPanel{
         JPanel TabUsuarios = new JPanel();
         tabbedPane_2.addTab("Usuarios", null, TabUsuarios, null);
         TabUsuarios.setLayout(new BoxLayout(TabUsuarios, BoxLayout.Y_AXIS));
+        
+        panel_1 = new JPanel();
+        TabUsuarios.add(panel_1);
+        panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.LINE_AXIS));
+        
+        horizontalGlue = Box.createHorizontalGlue();
+        panel_1.add(horizontalGlue);
+        
+        btnAplicarFiltroUsuarios = new JButton("Aplicar filtro");
+        btnAplicarFiltroUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        panel_1.add(btnAplicarFiltroUsuarios);
+        
+        btnRemoverFiltroUsuarios = new JButton("Remover filtro");
+        btnRemoverFiltroUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        panel_1.add(btnRemoverFiltroUsuarios);
         
         tableUsuarios = new JTable();
         JScrollPane scrollPane = new JScrollPane(tableUsuarios);
@@ -239,4 +258,13 @@ public class PersonasPanel extends JPanel{
 	public JButton getBtnEditarInteresado() {
 		return btnEditarInteresado;
 	}
+
+	public JButton getBtnAplicarFiltroUsuarios() {
+		return btnAplicarFiltroUsuarios;
+	}
+
+	public JButton getBtnRemoverFiltroUsuarios() {
+		return btnRemoverFiltroUsuarios;
+	}
+	
 }

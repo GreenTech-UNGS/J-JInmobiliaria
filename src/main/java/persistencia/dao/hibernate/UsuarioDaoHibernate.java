@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import com.google.inject.Inject;
@@ -12,6 +13,8 @@ import com.google.inject.Singleton;
 import entities.Cliente;
 import entities.Persona;
 import entities.Persona.TipoCredencial;
+import filtros.ClienteFiltro;
+import filtros.UsuarioFiltro;
 import entities.Usuario;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.UsuarioDao;
@@ -120,5 +123,24 @@ public class UsuarioDaoHibernate extends DaoHibernate<Usuario> implements Usuari
 		finishTransaction();
 		
 		return (Usuario) q.list().get(0);
+	}
+	
+	@Override
+	public List<Usuario> getAllByFiltro(UsuarioFiltro filtro) {
+		initTransaction();
+		Criteria q = sesion.createCriteria(Usuario.class).
+				createAlias("persona", "persona").
+				setFetchMode("persona", FetchMode.JOIN).
+				add(Restrictions.like("persona.nombre", filtro.getNombre(), MatchMode.ANYWHERE)).
+				add(Restrictions.like("persona.apellido", filtro.getApellido(), MatchMode.ANYWHERE)).
+				add(Restrictions.like("persona.credencial", filtro.getCredencial(), MatchMode.ANYWHERE)).
+				add(Restrictions.eq("persona.tipoCred", filtro.getTipoCredencial()));
+		
+		List<Usuario> toRet = q.list();
+		
+		finishTransaction();
+		
+		actualizeList(toRet);
+		return toRet;
 	}
 }

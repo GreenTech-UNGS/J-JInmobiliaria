@@ -5,6 +5,7 @@ import com.google.inject.Singleton;
 
 import filtros.ClienteFiltro;
 import filtros.PropietarioFiltro;
+import filtros.UsuarioFiltro;
 import model.ClienteService;
 import model.InteresadoService;
 import model.PropietarioService;
@@ -15,6 +16,7 @@ import presentacion.controller.PropietarioController;
 import presentacion.controller.UsuarioController;
 import presentacion.controller.filtros.ClienteFiltroController;
 import presentacion.controller.filtros.PropietarioFiltroController;
+import presentacion.controller.filtros.UsuarioFiltroController;
 import presentacion.main.vista.PersonasPanel;
 import presentacion.table.ClientesTableModel;
 import presentacion.table.InteresadosTableModel;
@@ -30,6 +32,7 @@ public class PersonasPanelController {
 	@Inject private PropietarioController propietarioController;	
 	@Inject private ClienteFiltroController clienteFiltro;
 	@Inject private PropietarioFiltroController propietarioFiltro;
+	@Inject private UsuarioFiltroController usuarioFiltro;
 	@Inject private UsuarioController usuarioController;
 	@Inject private InteresadoController interesadoController;
 	
@@ -62,6 +65,8 @@ public class PersonasPanelController {
 		this.view.getBtnDeshabilitar().addActionListener(e -> deshabilitarUsuario());
 		this.view.getBtnAgregarInteresado().addActionListener(e -> agregarInteresado());
 		this.view.getBtnEditarInteresado().addActionListener(e -> editarInteresado());
+		this.view.getBtnAplicarFiltroUsuarios().addActionListener(e -> aplicarFiltroUsuario());
+		this.view.getBtnRemoverFiltroUsuarios().addActionListener(e -> removerFiltroUsuarios());
 		
 	}
 
@@ -145,6 +150,21 @@ public class PersonasPanelController {
 			tableModelClien.actualizeRows(clienteService.getAllByFiltro(filtro));
 		}
 		
+	}
+	
+	private void aplicarFiltroUsuario() {
+		usuarioFiltro.setModeNew();
+		usuarioFiltro.showView();
+		
+		UsuarioFiltro filtro = usuarioFiltro.getFiltro();
+		if(filtro != null) {
+			usuariosTable.actualizeRows(usuarioService.getAllByFiltro(filtro));
+		}
+		
+	}
+	
+	private void removerFiltroUsuarios(){
+		fillTableUsuarios();
 	}
 	
 	private void removerFiltroCliente() {

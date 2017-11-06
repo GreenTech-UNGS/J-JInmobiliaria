@@ -22,7 +22,7 @@ public class UsuarioFiltroMapper implements Mapper<UsuarioFiltro>{
 		String nombre = this.view.getTfNombre().getText();
 		String apellido = this.view.getTfApellido().getText();
 		String credencial = this.view.getTfCredencial().getText();
-		TipoCredencial tipoCred = TipoCredencial.valueOf((String) view.getTipoComboBox().getSelectedItem());
+		TipoCredencial tipoCred = (TipoCredencial) view.getTipoComboBox().getSelectedItem();
 		
 		t.setNombre(nombre);
 		t.setApellido(apellido);
