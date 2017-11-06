@@ -42,7 +42,7 @@ public class UsuarioService {
 	}
 	
 	public void logearUsuario(String nombre, String password) throws LogicaNegocioException {
-
+		/**
 		//TODO: harcodeado
 		if(nombre.equals("")){
 			System.out.println("ESTA ENTRANDO CON EL USUARIO DE TEST. SEA CAUTELOSO");
@@ -50,11 +50,11 @@ public class UsuarioService {
 		logeado.getRoles().add(Rol.ADMINISTRADOR);
 		return;
 		}
-		
+		**/
 		String md5 = getMD5Of(password);
 
 		if(!usuarioDao.existeUsuarioCon(nombre, md5))
-			throw new LogicaNegocioException("Nombre de usuario o contraseï¿½a invalidos");
+			throw new LogicaNegocioException("Nombre de usuario o contraseña invalidos");
 
 		
 		logeado = usuarioDao.getUsuarioBy(nombre, md5);
