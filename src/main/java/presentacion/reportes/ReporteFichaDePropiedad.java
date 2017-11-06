@@ -45,7 +45,7 @@ public class ReporteFichaDePropiedad extends JDialog{
     }
 
     public void mostrar(){
-        this.reporteViewer = new JasperViewer(this.reporteLleno);
+        this.reporteViewer = new JasperViewer(this.reporteLleno, false);
         this.reporteViewer.setTitle("Ficha de la propiedad");
         this.reporteViewer.setVisible(true);
     }

@@ -372,7 +372,7 @@ public class PropiedadController {
 		view.getComboTipoOfre().setEnabled(bool);
 		view.getBtnGuardarDisponible().setVisible(bool);
 		view.getBtnBorrador().setVisible(bool);
-		view.getBtnImprimirFicha().setVisible(bool);
+		view.getBtnImprimirFicha().setVisible(!bool);
 	}
 
 	private void generaReporteFichaPropiedad() {
