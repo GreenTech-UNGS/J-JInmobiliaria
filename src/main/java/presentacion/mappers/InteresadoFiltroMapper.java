@@ -20,13 +20,13 @@ public class InteresadoFiltroMapper implements Mapper<InteresadoFiltro>{
 	@Override
 	public void fillBean(InteresadoFiltro t) {
 		String nombre = this.view.getTextNombre().getText();
-		String apellido = this.view.getTextApellido().getText();
-		String credencial = this.view.getTextCredencial().getText();
+//		String apellido = this.view.getTextApellido().getText();
+//		String credencial = this.view.getTextCredencial().getText();
 		TipoCredencial tipoCred = (TipoCredencial) view.getTipoComboBox().getSelectedItem();
 		
 		t.setNombre(nombre);
-		t.setApellido(apellido);
-		t.setCredencial(credencial);
+//		t.setApellido(apellido);
+//		t.setCredencial(credencial);
 		t.setTipoCredencial(tipoCred);
 	}
 
@@ -39,8 +39,8 @@ public class InteresadoFiltroMapper implements Mapper<InteresadoFiltro>{
 		TipoCredencial tipoCred = t.getTipoCredencial();
 		
 		this.view.getTextNombre().setText(nombre);
-		this.view.getTextApellido().setText(apellido);
-		this.view.getTextCredencial().setText(credencial);
+//		this.view.getTextApellido().setText(apellido);
+//		this.view.getTextCredencial().setText(credencial);
 		this.view.getTipoComboBox().setSelectedItem(tipoCred);
 		
 	}
