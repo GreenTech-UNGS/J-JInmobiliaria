@@ -26,6 +26,7 @@ public class ClienteFiltroController {
 		wasOkPressed = false;
 		
 		view.getBtnAceptar().addActionListener(e -> aceptar());
+		view.getBtnCancelar().addActionListener(e -> view.setVisible(false));
 		
 	}
 	
