@@ -40,6 +40,7 @@ public class PropiedadOtrosDatosForm extends JDialog{
 		getContentPane().setLayout(null);
 		setModal(true);
 		setLocationRelativeTo(null);
+		setResizable(false);
 		setSize(new Dimension(460, 540));
 		
 		JLabel lblTipo = new JLabel("Tipo: ");
