@@ -244,7 +244,6 @@ public class PersonasPanelController {
 	public void showView() {
 		
 		this.view.setVisible(true);
-		fillTableUsuarios();
 		
 	}
 
@@ -256,9 +255,9 @@ public class PersonasPanelController {
 
 	public void actualize() {
 		
+		fillTableUsuarios();
 		fillTableClientes();
 		fillTablePropietarios();
-		fillTableUsuarios();
 		fillTableInteresados();
 	}
 	

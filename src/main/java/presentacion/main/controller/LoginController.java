@@ -76,7 +76,10 @@ public class LoginController {
 	
 	private void recuperarContrasena(){
 		
-		String email = msgShw.showInputMessage("Ingrese su email", "Recuperar contraseÃ±a");
+		String email = msgShw.showInputMessage("Ingrese su email", "Recuperar contraseña");
+		
+		if(email == null)
+			return;
 		
 		if(!email.matches(Regex.email()))
 			msgShw.showErrorMessage("Email invalido", "Error");
