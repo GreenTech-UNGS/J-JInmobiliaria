@@ -16,6 +16,8 @@ public class Cartel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID;
+	private int alto;
+	private int ancho;
 	private String identificador;
 	private float monto;
 	private String descripcion;
@@ -29,6 +31,22 @@ public class Cartel {
 
 	public void setID(int iD) {
 		ID = iD;
+	}
+	
+	public int getAlto() {
+		return alto;
+	}
+	
+	public void setAlto(int largo) {
+		this.alto = largo;
+	}
+	
+	public int getAncho() {
+		return ancho;
+	}
+	
+	public void setAncho(int ancho) {
+		this.ancho = ancho;
 	}
 
 	public String getIdentificador() {
