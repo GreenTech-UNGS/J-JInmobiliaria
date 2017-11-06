@@ -6,7 +6,11 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.Cartel;
+import entities.Cliente;
+import model.CartelService;
+import model.LogicaNegocioException;
 import presentacion.mappers.CartelMapper;
+import presentacion.validators.MessageShow;
 import presentacion.vista.CartelForm;
 
 @Singleton
@@ -15,23 +19,53 @@ public class CartelController {
 	private CartelForm view;
 	
 	@Inject CartelMapper mapper;
-
+	
+	private CartelService cartelService;
 	private Cartel currentCartel;
+	private MessageShow msgShw;
 	private boolean okWasPressed;
 	
 	@Inject
-	private CartelController(CartelForm view) {
+	private CartelController(CartelForm view,
+			CartelService cartelService,
+			MessageShow msgShw) {
 		this.view = view;
+		this.cartelService = cartelService;
+		this.msgShw = msgShw;
+		this.view.getBtnAceptar().addActionListener(e -> saveCurrentCartel());
+
+	}
+	
+	private void saveCurrentCartel() {
 		
-		this.view.getBtnAceptar().addActionListener(e -> aceptar());
+		if(currentCartel.getAlto() > 0 && currentCartel.getAncho() > 0 && currentCartel.getMonto() > 0) { // Falta validator
+			mapper.fillBean(currentCartel);
+			try {
+				cartelService.saveCartel(currentCartel);
+			} catch (LogicaNegocioException e) {
+				msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
+			}
+			view.setVisible(false);
+		}
+		else{
+			msgShw.showErrorMessage("Los datos no son correctos", "Error");
+		}
+	}
+	
+	private void setEditCampos(boolean b) {
 
+		view.getTextIdentificador().setEditable(true);
+		view.getTextDescripcion().setEditable(true);
 	}
 
-	private void aceptar() {
-		okWasPressed = true;
-		this.view.setVisible(false);
+	public void editarCartel(Cartel c){
+		view.setTitle("Editar cliente");
+		view.getBtnAceptar().setVisible(true);
+		
+		currentCartel = c;
+		mapper.fillFields(c);
 	}
-
+	
 	public void showView() {
 		this.view.setVisible(true);
 	}
@@ -49,8 +83,7 @@ public class CartelController {
 
 	public void setModeNew() {
 		okWasPressed = false;
-		currentCartel = new Cartel();
-		
+		currentCartel = cartelService.getEmptyCartel();		
 		mapper.fillFields(currentCartel);
 		
 	}
