@@ -6,6 +6,7 @@ import entities.Cliente;
 import entities.Propiedad;
 import entities.Reserva;
 import model.ReservaService;
+import presentacion.validators.MessageShow;
 import presentacion.validators.ReservarPropiedadFormValidator;
 import presentacion.vista.ReservarPropiedadForm;
 
@@ -20,18 +21,22 @@ public class ReservarPropiedadController {
     private Reserva currentReserva;
     private Propiedad currentPropiedad;
     private Cliente currentCliente;
+    private MessageShow msgShw;
+
 
     @Inject
     public ReservarPropiedadController(ReservarPropiedadForm view,
                                        ReservaService reservaService,
                                        ReservarPropiedadFormValidator reservaValidator,
                                        ElegirClienteController clienteController,
-                                       ElegirPropiedadController propiedadController) {
+                                       ElegirPropiedadController propiedadController,
+                                       MessageShow msgShw) {
         this.view = view;
         this.reservaService = reservaService;
         this.reservaValidator = reservaValidator;
         this.clienteController = clienteController;
         this.propiedadController = propiedadController;
+        this.msgShw = msgShw;
 
         view.getBtnCancelar().addActionListener(e -> closeView());
         view.getBtnGuardar().addActionListener(e -> reservarPropiedad());
@@ -47,6 +52,9 @@ public class ReservarPropiedadController {
             reservaService.saveReserva(currentReserva);
     		closeView();
         }
+        else{
+          msgShw.showErrorMessage(reservaValidator.getErrorMessage(), "Error");
+      }
     }
 
     private void selectPropiedad() {

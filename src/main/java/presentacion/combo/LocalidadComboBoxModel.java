@@ -11,7 +11,6 @@ public class LocalidadComboBoxModel extends BaseComboBoxModel<Localidad>{
 	public void actualize(List<Localidad> list) {
 		
 		list.forEach(e -> agregaElemento(e));
-		
 	}
 
 	@Override

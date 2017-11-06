@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.Inmobiliaria;
+import entities.Localidad;
 import presentacion.vista.InmobiliariaForm;
 
 @Singleton
@@ -25,6 +26,7 @@ public class InmobiliariaFormMapper implements Mapper<Inmobiliaria>{
 		String piso = view.getTfPiso().getText();
 		String depto = view.getTfDepto().getText();
 		String email = view.getTfEmail().getText();
+		Localidad localidad = (Localidad) view.getCbLocalidad().getSelectedItem();
 		
 		t.setCUIT(CUIT);
 		t.setNombre(nombre);
@@ -32,7 +34,8 @@ public class InmobiliariaFormMapper implements Mapper<Inmobiliaria>{
 		t.setAltura(altura);
 		t.setPiso(piso);
 		t.setDepto(depto);
-		t.setEmail(email);	
+		t.setEmail(email);
+		t.setLocalidad(localidad);
 	}
 
 	@Override
@@ -52,6 +55,7 @@ public class InmobiliariaFormMapper implements Mapper<Inmobiliaria>{
 		view.getTfPiso().setText(piso);
 		view.getTfDepto().setText(depto);
 		view.getTfEmail().setText(email);
+		view.getCbLocalidad().setSelectedItem(t.getLocalidad());
 //		view.getCbLocalidad().setSelectedItem(t.getLocalidad());
 //		view.getCbProvincia().setSelectedItem(t.getLocalidad().getProvincia());
 //		view.getCbLocalidad().getModel().setSelectedItem(t.getLocalidad());

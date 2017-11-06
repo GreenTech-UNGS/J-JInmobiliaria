@@ -18,7 +18,7 @@ public class ReservarPropiedadFormValidator implements ValidatorNew{
 	@Override
 	public boolean isValid() {
 		
-		return isPropiedadSelected();
+		return isPropiedadSelected() && isClienteSelected();
 	}
 
 	@Override
@@ -34,11 +34,11 @@ public class ReservarPropiedadFormValidator implements ValidatorNew{
 	}
 	
 	private boolean isPropiedadSelected(){
-		return ! (view.getTfPropiedad() == null || view.getTfPropiedad().equals(""));    		
+		return ! (view.getTfPropiedad() == null || view.getTfCliente().getText().equals(""));
 	}
 	
 	private boolean isClienteSelected(){
-		return ! (view.getTfCliente() == null || view.getTfCliente().equals(""));    		
+		return ! (view.getTfCliente() == null || view.getTfCliente().getText().equals(""));
 	}
 
 }
