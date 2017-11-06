@@ -1,50 +1,75 @@
 package filtros;
 
-import entities.Persona.TipoCredencial;
+import entities.Localidad;
+import entities.Moneda;
+import entities.TipoOfrecimiento;
 
 public class InteresadoFiltro {
-	
-	String nombre;
-	String apellido;
-	String credencial;
-	TipoCredencial tipoCredencial;
+	double precioDesde;
+	double precioHasta;
+	Moneda moneda;
+	Localidad localidad;
+	TipoOfrecimiento tipoOfrecimiento;
+	int metros;
+	int ambientes;
 	
 	public InteresadoFiltro(){
 		
 	}
 
-	public String getNombre() {
-		return nombre;
+	public Localidad getLocalidad() {
+		return localidad;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setLocalidad(Localidad localidad) {
+		this.localidad = localidad;
 	}
 
-	public String getApellido() {
-		return apellido;
+	public double getPrecioDesde() {
+		return precioDesde;
 	}
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setPrecioDesde(double precioDesde) {
+		this.precioDesde = precioDesde;
 	}
 
-	public String getCredencial() {
-		return credencial;
+	public double getPrecioHasta() {
+		return precioHasta;
 	}
 
-	public void setCredencial(String credencial) {
-		this.credencial = credencial;
+	public void setPrecioHasta(double precioHasta) {
+		this.precioHasta = precioHasta;
 	}
 
-	public TipoCredencial getTipoCredencial() {
-		return tipoCredencial;
+	public TipoOfrecimiento getTipoOfrecimiento() {
+		return tipoOfrecimiento;
 	}
 
-	public void setTipoCredencial(TipoCredencial tipoCredencial) {
-		this.tipoCredencial = tipoCredencial;
+	public void setTipoOfrecimiento(TipoOfrecimiento tipoOfrecimiento) {
+		this.tipoOfrecimiento = tipoOfrecimiento;
 	}
-	
-	
 
+	public Moneda getMoneda() {
+		return moneda;
+	}
+
+	public void setMoneda(Moneda moneda) {
+		this.moneda = moneda;
+	}
+
+	public int getMetros() {
+		return metros;
+	}
+
+	public void setMetros(int metros) {
+		this.metros = metros;
+	}
+
+	public int getAmbientes() {
+		return ambientes;
+	}
+
+	public void setAmbientes(int ambientes) {
+		this.ambientes = ambientes;
+	}
 }

@@ -109,7 +109,7 @@ public class PropiedadService {
 		
 		List<Propiedad> toRet = allProps.stream().filter(p -> estadosAFiltrar.contains(getCurrentEstado(p)))
 						.filter(p -> p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquiler) ||
-				p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA_Y_ALQUILER))
+				p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquileryventa))
 						.collect(Collectors.toList());	
 
 		return toRet;
@@ -122,7 +122,7 @@ public class PropiedadService {
 		
 		List<Propiedad> toRet = allProps.stream().filter(p -> estadosAFiltrar.contains(getCurrentEstado(p))).filter
 				(p -> p.getTipoOfrecimiento().equals(TipoOfrecimiento.Venta) || p.getTipoOfrecimiento().equals
-						(TipoOfrecimiento.VENTA_Y_ALQUILER)).collect(Collectors.toList());
+						(TipoOfrecimiento.Alquileryventa)).collect(Collectors.toList());
 		return toRet;
 		
 	}
@@ -144,7 +144,7 @@ public class PropiedadService {
 	public List<Propiedad> getEnAlquiler(){
 		List<Propiedad> toRet = new ArrayList<Propiedad>();
 		for(Propiedad p : this.getAll()){
-			if(p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquiler) || p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA_Y_ALQUILER)){
+			if(p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquiler) || p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquileryventa)){
 				if(this.getCurrentEstado(p).equals(EstadoProp.DISPONIBLE)){
 					toRet.add(p);
 				}
@@ -156,7 +156,7 @@ public class PropiedadService {
 	public List<Propiedad> getEnVenta(){
 		List<Propiedad> toRet = new ArrayList<Propiedad>();
 		for(Propiedad p : this.getAll()){
-			if(p.getTipoOfrecimiento().equals(TipoOfrecimiento.Venta) || p.getTipoOfrecimiento().equals(TipoOfrecimiento.VENTA_Y_ALQUILER)){
+			if(p.getTipoOfrecimiento().equals(TipoOfrecimiento.Venta) || p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquileryventa)){
 				if(this.getCurrentEstado(p).equals(EstadoProp.DISPONIBLE)){
 					toRet.add(p);
 				}

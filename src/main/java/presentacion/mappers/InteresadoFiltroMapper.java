@@ -3,7 +3,9 @@ package presentacion.mappers;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import entities.Persona.TipoCredencial;
+import entities.Localidad;
+import entities.Moneda;
+import entities.TipoOfrecimiento;
 import filtros.InteresadoFiltro;
 import presentacion.vista.filtros.InteresadoFiltroView;
 
@@ -19,29 +21,41 @@ public class InteresadoFiltroMapper implements Mapper<InteresadoFiltro>{
 	
 	@Override
 	public void fillBean(InteresadoFiltro t) {
-		String nombre = this.view.getTextNombre().getText();
-//		String apellido = this.view.getTextApellido().getText();
-//		String credencial = this.view.getTextCredencial().getText();
-		TipoCredencial tipoCred = (TipoCredencial) view.getTipoComboBox().getSelectedItem();
 		
-		t.setNombre(nombre);
-//		t.setApellido(apellido);
-//		t.setCredencial(credencial);
-		t.setTipoCredencial(tipoCred);
+		double precioDesde =  Double.parseDouble(getStringNumber(view.getTfPrecioDesde().getText()));
+		double precioHasta =  Double.parseDouble(getStringNumber(view.getTfPrecioHasta().getText()));
+		Moneda moneda = view.getMonedaCombo().getSelected();
+		Localidad localidad = view.getLocalidadCombo().getSelected(); 
+		TipoOfrecimiento ofrecimiento = view.getTipoOfrCombo().getSelected();
+		
+		t.setPrecioDesde(precioDesde);
+		t.setPrecioHasta(precioHasta);
+		t.setMoneda(moneda);
+		t.setLocalidad(localidad);
+		t.setTipoOfrecimiento(ofrecimiento);
 	}
 
 	@Override
 	public void fillFields(InteresadoFiltro t) {
 		
-		String nombre = t.getNombre();
-		String apellido = t.getApellido();
-		String credencial = t.getCredencial();
-		TipoCredencial tipoCred = t.getTipoCredencial();
+		String precioDesde = Double.toString(t.getPrecioDesde());
+		String precioHasta = Double.toString(t.getPrecioDesde());
+		Moneda moneda = t.getMoneda();
+		Localidad localidad = t.getLocalidad();
+		TipoOfrecimiento tipoOfrec = t.getTipoOfrecimiento();
 		
-		this.view.getTextNombre().setText(nombre);
-//		this.view.getTextApellido().setText(apellido);
-//		this.view.getTextCredencial().setText(credencial);
-		this.view.getTipoComboBox().setSelectedItem(tipoCred);
-		
+		this.view.getTfPrecioDesde().setText(precioDesde);
+		this.view.getTfPrecioHasta().setText(precioHasta);
+		this.view.getMonedaCombo().setSelectedItem(moneda);
+		view.getLocalidadCombo().setSelected(localidad);
+		view.getTipoOfrCombo().setSelected(tipoOfrec);	
+	}
+	
+	private String getStringNumber(String s) {
+		if(s == null)
+			return "0";
+		if(s.matches("\\b*"))
+			return "0";
+		return s;
 	}
 }

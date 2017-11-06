@@ -62,13 +62,12 @@ public class InteresadoDaoHibernate extends DaoHibernate<Interesado> implements 
 	@Override
 	public List<Interesado> getAllByFiltro(InteresadoFiltro filtro) {
 		initTransaction();
-		Criteria q = sesion.createCriteria(Interesado.class).
-				createAlias("persona", "persona").
-				setFetchMode("persona", FetchMode.JOIN).
-				add(Restrictions.like("persona.nombre", filtro.getNombre(), MatchMode.ANYWHERE)).
-				add(Restrictions.like("persona.apellido", filtro.getApellido(), MatchMode.ANYWHERE)).
-				add(Restrictions.like("persona.credencial", filtro.getCredencial(), MatchMode.ANYWHERE)).
-				add(Restrictions.eq("persona.tipoCred", filtro.getTipoCredencial()));
+		Criteria q = sesion.createCriteria(Interesado.class)
+				.createAlias("preferencia", "pref")
+				.add(Restrictions.eqOrIsNull("pref.localidad", filtro.getLocalidad()))
+				.add(Restrictions.ge("pref.precioDesde", filtro.getPrecioDesde()))
+				.add(Restrictions.le("pref.precioHasta", filtro.getPrecioHasta()))
+				.add(Restrictions.eqOrIsNull("pref.tipoOfrecimiento", filtro.getTipoOfrecimiento()));
 		
 		List<Interesado> toRet = q.list();
 		

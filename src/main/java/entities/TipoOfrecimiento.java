@@ -4,5 +4,5 @@ public enum TipoOfrecimiento {
 
 	Alquiler,
 	Venta,
-	VENTA_Y_ALQUILER
+	Alquileryventa
 }
