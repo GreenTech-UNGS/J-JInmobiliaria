@@ -11,10 +11,8 @@ import com.google.inject.Injector;
 import misc.ProdModule;
 import model.NotificacionesService;
 import model.permisos.PermisosService;
-import persistencia.dao.iface.ContratoDao;
 import presentacion.controller.NotificacionController;
 import presentacion.main.controller.LoginController;
-import presentacion.main.controller.MainViewController;
 
 public class App{
 	

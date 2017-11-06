@@ -16,6 +16,7 @@ import com.google.inject.Singleton;
 
 import presentacion.combo.TipoCredencialComboBoxModel;
 
+@SuppressWarnings("serial")
 @Singleton
 public class ClienteFiltroView extends JDialog{
 	
