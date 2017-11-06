@@ -37,6 +37,20 @@ public class DAOFTPFileZilla implements DAOftp{
         }
         closeConnection();
     }
+    
+    public void deleteFile(String remoteFile) {
+        if(remoteFile == null)
+            return;
+
+        innitConnection();
+        try {
+        	cliente.deleteFile(remoteFile);
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+    }
 
     public void retrieveFile(String remoteFileName, String newFilePath){
         innitConnection();
@@ -61,7 +75,6 @@ public class DAOFTPFileZilla implements DAOftp{
             files = cliente.listFiles();
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
         }
 
         if (files != null && files.length != 0) {

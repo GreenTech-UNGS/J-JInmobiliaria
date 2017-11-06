@@ -36,7 +36,6 @@ public class ConexionFTP{
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
-        System.out.println(ftpClient.isConnected());
     }
 
     public String serverReplay(){

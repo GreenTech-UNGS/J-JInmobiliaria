@@ -19,6 +19,7 @@ import entities.Foto;
 import entities.Propiedad;
 import net.coobird.thumbnailator.Thumbnailator;
 import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.tasks.UnsupportedFormatException;
 import persistencia.dao.iface.DAOftp;
 import persistencia.dao.iface.FotoDao;
 import persistencia.dao.iface.PropiedadDao;
@@ -26,25 +27,21 @@ import persistencia.dao.iface.PropiedadDao;
 @Singleton
 public class GaleriaService {
 	
-	@Inject private FotoDao fotoDao;
+	@Inject private PropiedadDao propiedadDao;
 	@Inject private DAOftp ftp;
 	
 	private Random random;
 	private int fotosPorPagina = 9;
 	
-	private Map<Foto, File> fotosEnMemoria;
-	private Map<Foto, File> thumbnailsEnMemoria;
 	
 	@Inject
 	private GaleriaService() {
 		random = new Random();
 		
-		fotosEnMemoria = new HashMap<>();
-		thumbnailsEnMemoria = new HashMap<>();
 		
 	}
 	
-	public void saveFoto(Propiedad p, File file){
+	public void saveFoto(Propiedad p, File file) throws LogicaNegocioException{
 		
 		int numImagesNew = p.getFotos().size() + 1;
 		
@@ -56,18 +53,27 @@ public class GaleriaService {
 		
 		
 		File thumbnail = new File("./"+fileNameThumb);
+		File foto = new File("./"+fileName);
 		
 		try {
 			Thumbnails.of(file)
 				.size(100, 100)
 				.toFile(thumbnail);
+			Thumbnails.of(file)
+				.size(1024, 600)
+				.toFile(foto);
+		} catch (UnsupportedFormatException e) {
+			
+			throw new LogicaNegocioException("El archivo " + file.getName() + " no es una foto");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-
-		ftp.storeFile(file, fileName);
+		ftp.storeFile(foto, fileName);
 		ftp.storeFile(thumbnail, fileNameThumb);
+		
+		thumbnail.delete();
+		foto.delete();
 		
 		Foto image = new Foto();
 		image.setPath(fileName);
@@ -89,41 +95,47 @@ public class GaleriaService {
 	public List<Foto> getFotosOf(Propiedad p, int page){
 		
 		int desde = page * fotosPorPagina;
-		int hasta = (desde + fotosPorPagina) > p.getFotos().size() - 1?
-				p.getFotos().size() - 1 : (desde + fotosPorPagina) ;
+		int hasta = (desde + fotosPorPagina) >= p.getFotos().size()?
+				p.getFotos().size() : (desde + fotosPorPagina) ;
 		
 		return p.getFotos().subList(desde, hasta);
 	}
 	
-	public byte[] getThumbnail(Foto f) {
+	public void borrarFoto(Propiedad p, Foto f) {
 		
-		if(!thumbnailsEnMemoria.containsKey(f)) {
-			thumbnailsEnMemoria.put(f, new File("./"+f.getThumbPath()));
-			ftp.retrieveFile(f.getThumbPath(), "./"+f.getThumbPath());
-		}
+		ftp.deleteFile(f.getPath());
+
+		ftp.deleteFile(f.getThumbPath());
 		
+		p.getFotos().remove(f);
+		
+		propiedadDao.save(p);
+		
+	}
 	
+	public byte[] getThumbnail(Foto f) {
+
 		try {
-			return Files.readAllBytes(thumbnailsEnMemoria.get(f).toPath());
-		} catch (IOException e) {
-			e.printStackTrace();
+			File tempFile = File.createTempFile(f.getThumbPath(), ".tmp");
+			ftp.retrieveFile(f.getThumbPath(), tempFile.getAbsolutePath());
+			return Files.readAllBytes(tempFile.toPath());
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
+		
 		
 		return null;
 	}	
 	
 	public byte[] getImagen(Foto f) {
-		if(!fotosEnMemoria.containsKey(f)) {
-			fotosEnMemoria.put(f, new File("./"+f.getPath()));
-			ftp.retrieveFile(f.getPath(), "./"+f.getPath());
+		try {
+			File tempFile = File.createTempFile(f.getPath(), ".tmp");
+			ftp.retrieveFile(f.getPath(), tempFile.getAbsolutePath());
+			return Files.readAllBytes(tempFile.toPath());
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 		
-	
-		try {
-			return Files.readAllBytes(fotosEnMemoria.get(f).toPath());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		
 		return null;
 	}
