@@ -32,13 +32,15 @@ public class GaleriaService {
 	private Random random;
 	private int fotosPorPagina = 9;
 	
-	private List<Foto> fotosEnMemoria;
+	private Map<Foto, File> fotosEnMemoria;
+	private Map<Foto, File> thumbnailsEnMemoria;
 	
 	@Inject
 	private GaleriaService() {
 		random = new Random();
 		
-		fotosEnMemoria = new ArrayList<>();
+		fotosEnMemoria = new HashMap<>();
+		thumbnailsEnMemoria = new HashMap<>();
 		
 	}
 	
@@ -75,38 +77,65 @@ public class GaleriaService {
 
 	}
 	
-	public List<byte[]> getImagesOf(Propiedad p, int page){
+	public void setPortada(Foto f, Propiedad p) {
 		
-		List<Foto> fotos = p.getFotos();
-		List<File> thumbnails = new ArrayList<>();
-		List<byte[]> toRet = new ArrayList<>();
+		p.getFotos().forEach(foto -> foto.setPortada(false));
 		
-		for (Foto foto : fotos) {
-			if(!fotosEnMemoria.contains(foto)) {
-				fotosEnMemoria.add(foto);
-				ftp.retrieveFile(foto.getThumbPath(), "./"+foto.getThumbPath());
-				thumbnails.add(new File("./"+foto.getThumbPath()));
-			}
-			
-			else {
-				thumbnails.add(new File("./"+foto.getThumbPath()));
-			}
+		f.setPortada(true);
+		
+		
+	}
+	
+	public List<Foto> getFotosOf(Propiedad p, int page){
+		
+		int desde = page * fotosPorPagina;
+		int hasta = (desde + fotosPorPagina) > p.getFotos().size() - 1?
+				p.getFotos().size() - 1 : (desde + fotosPorPagina) ;
+		
+		return p.getFotos().subList(desde, hasta);
+	}
+	
+	public byte[] getThumbnail(Foto f) {
+		
+		if(!thumbnailsEnMemoria.containsKey(f)) {
+			thumbnailsEnMemoria.put(f, new File("./"+f.getThumbPath()));
+			ftp.retrieveFile(f.getThumbPath(), "./"+f.getThumbPath());
 		}
 		
-		for(int i = page * fotosPorPagina; i < (page * fotosPorPagina) + fotosPorPagina; i++){
-			if(i >= thumbnails.size())
-				break;
-			
-			try {
-				toRet.add(Files.readAllBytes(thumbnails.get(i).toPath()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	
+		try {
+			return Files.readAllBytes(thumbnailsEnMemoria.get(f).toPath());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
+		return null;
+	}	
+	
+	public byte[] getImagen(Foto f) {
+		if(!fotosEnMemoria.containsKey(f)) {
+			fotosEnMemoria.put(f, new File("./"+f.getPath()));
+			ftp.retrieveFile(f.getPath(), "./"+f.getPath());
+		}
 		
-		return toRet;
+	
+		try {
+			return Files.readAllBytes(fotosEnMemoria.get(f).toPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public boolean isUltimaPagina(int pagina, Propiedad p) {
+		
+		int cantFotos = p.getFotos().size();
+		int totalPaginas = cantFotos / fotosPorPagina;
+		
+		return totalPaginas <= pagina;
+		
+		
 	}
 
 }

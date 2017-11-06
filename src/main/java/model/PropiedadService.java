@@ -44,14 +44,14 @@ public class PropiedadService {
 	
 	public boolean existePropiedadConIdentificador(Propiedad t) {
 		
-		return propiedadDao.existePropiedadConIdentificador(t.getIdentificador());		
+		
+		return propiedadDao.existePropiedadConIdentificador(t.getID(), t.getIdentificador());		
 	}
 	
 	public void savePropiedad(Propiedad p) throws LogicaNegocioException {
 		
 		if(existePropiedadConIdentificador(p))
 			throw new LogicaNegocioException("Ya existe una propiedad con el identificador ingresado");
-
 
 		if(p.getPropietario() == null)
 			throw new LogicaNegocioException("La propiedad debe tener un propietario");

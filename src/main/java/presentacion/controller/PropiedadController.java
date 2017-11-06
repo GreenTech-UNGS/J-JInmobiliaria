@@ -45,6 +45,7 @@ public class PropiedadController {
 	@Inject private GaleriaController galeriaController;
 
 	@Inject private PropiedadOtrosDatosController otrosDatosForm;
+	private boolean isEdit;
 	
 	private final Coordinate centerOfMap = new Coordinate(50.064191736659104, 8.96484375);
 		
@@ -215,11 +216,14 @@ public class PropiedadController {
 			currentPropiedad.setLon(punto.getLon());
 		}	
 		
-		
-		
 	}
 	
 	private void muestraGaleria(){
+		
+		if(isEdit)
+			galeriaController.setEditMode();
+		else
+			galeriaController.setViewMode();
 		
 		galeriaController.setNew(currentPropiedad);
 		galeriaController.showView();
@@ -251,6 +255,8 @@ public class PropiedadController {
 
 	public void editPropiedad(Propiedad p){
 
+		isEdit = true;
+		
 		view.setTitle("Editar Propiedad");
 		view.getBtnCancelar().setVisible(true);
 		view.getBtnGuardarDisponible().setVisible(true);
@@ -305,6 +311,8 @@ public class PropiedadController {
 	
 	public void setModeNew() {
 		
+		isEdit = true;
+		
 		view.setTitle("Agregar Propiedad");
 		currentPropiedad = propiedadService.getEmptyPropiedad();
 		binder.setObjective(currentPropiedad);
@@ -319,6 +327,8 @@ public class PropiedadController {
 
 	public void setModeView(Propiedad propiedad) {
 
+		isEdit = false;
+		
 		view.setTitle("Detalle de propiedad");
 
 		currentPropiedad = propiedad;
@@ -362,6 +372,7 @@ public class PropiedadController {
 		view.getComboTipoOfre().setEnabled(bool);
 		view.getBtnGuardarDisponible().setVisible(bool);
 		view.getBtnBorrador().setVisible(bool);
+		view.getBtnImprimirFicha().setVisible(bool);
 	}
 
 	private void generaReporteFichaPropiedad() {
