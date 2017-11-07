@@ -204,10 +204,13 @@ public class PropiedadService {
 			if(f.isPortada())
 				portada = f;
 		
+		if(portada == null)
+			return new File(".\\img\\noFoto.jpg");
+		
 		File tempFile = null;
 		try {
 			tempFile = File.createTempFile(portada.getPath(), ".tmp");
-		ftp.retrieveFile(portada.getPath(), tempFile.getAbsolutePath());
+			ftp.retrieveFile(portada.getPath(), tempFile.getAbsolutePath());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
