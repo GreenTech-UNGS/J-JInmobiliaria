@@ -256,7 +256,7 @@ public class ContratoAlquilerForm extends JDialog {
 		
 		JLabel lblTiempoDeAlquiler = new JLabel("Duracion:");
 		lblTiempoDeAlquiler.setFont(new Font("Dialog", Font.PLAIN, 11));
-		lblTiempoDeAlquiler.setBounds(22, 102, 75, 15);
+		lblTiempoDeAlquiler.setBounds(22, 129, 75, 15);
 		agregarContrato.add(lblTiempoDeAlquiler);
 		
 		spinnerTiempoPago = new JSpinner();
@@ -306,22 +306,7 @@ public class ContratoAlquilerForm extends JDialog {
 		JLabel label_1 = new JLabel("%");
 		label_1.setBounds(165, 347, 22, 15);
 		agregarContrato.add(label_1);
-		
-		JLabel label_2 = new JLabel("Meses");
-		label_2.setFont(new Font("Dialog", Font.PLAIN, 11));
-		label_2.setBounds(152, 107, 56, 15);
-		agregarContrato.add(label_2);
-		
-		JSeparator separator_4 = new JSeparator();
-		separator_4.setBounds(22, 410, 574, 2);
-		agregarContrato.add(separator_4);
-		
-		spinnerPorcentajePunitorio = new JSpinner();
-		spinnerPorcentajePunitorio.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		spinnerPorcentajePunitorio.setBounds(142, 461, 46, 20);
-		spinnerPorcentajePunitorio.setModel(new SpinnerNumberModel(new Float(0.5), new Float(0), new Float(100), new Float(0.1)));
-		agregarContrato.add(spinnerPorcentajePunitorio);
-		
+
 		JLabel label_3 = new JLabel("%");
 		label_3.setBounds(205, 465, 22, 15);
 		agregarContrato.add(label_3);
@@ -335,14 +320,31 @@ public class ContratoAlquilerForm extends JDialog {
 
 		JLabel lblTipo = new JLabel("Tipo:");
 		lblTipo.setFont(new Font("Dialog", Font.PLAIN, 11));
-		lblTipo.setBounds(22, 129, 75, 15);
+		lblTipo.setBounds(22, 107, 75, 15);
 
 		agregarContrato.add(lblTipo);
 
 		comboTipoContrato = new JComboBox<>();
 		comboTipoContrato.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		comboTipoContrato.setBounds(102, 129, 167, 18);
+		comboTipoContrato.setBounds(102, 107, 167, 18);
 		agregarContrato.add(comboTipoContrato);
+
+
+		JLabel label_2 = new JLabel("Meses");
+		label_2.setFont(new Font("Dialog", Font.PLAIN, 11));
+		label_2.setBounds(152, 129, 56, 15);
+		agregarContrato.add(label_2);
+
+		JSeparator separator_4 = new JSeparator();
+		separator_4.setBounds(22, 410, 574, 2);
+		agregarContrato.add(separator_4);
+
+		spinnerPorcentajePunitorio = new JSpinner();
+		spinnerPorcentajePunitorio.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		spinnerPorcentajePunitorio.setBounds(142, 461, 46, 20);
+		spinnerPorcentajePunitorio.setModel(new SpinnerNumberModel(new Float(0.5), new Float(0), new Float(100), new Float(0.1)));
+		agregarContrato.add(spinnerPorcentajePunitorio);
+
 
 		JLabel lblMeses = new JLabel("Meses");
 		lblMeses.setFont(new Font("Dialog", Font.PLAIN, 11));
@@ -350,7 +352,7 @@ public class ContratoAlquilerForm extends JDialog {
 		agregarContrato.add(lblMeses);
 
 		spinnerDuracionContrato = new JSpinner();
-		spinnerDuracionContrato.setBounds(102, 102, 45, 20);
+		spinnerDuracionContrato.setBounds(102, 129, 45, 20);
 		spinnerDuracionContrato.setModel(new SpinnerNumberModel(24, 0, Integer.MAX_VALUE, 1));
 		agregarContrato.add(spinnerDuracionContrato);
 
