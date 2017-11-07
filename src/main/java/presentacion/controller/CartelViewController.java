@@ -27,7 +27,6 @@ public class CartelViewController {
 		this.tableModel = new CartelesTableModel();
 			
 		view.getTable().setModel(tableModel);
-		view.getTable().getTableHeader().setColumnModel(tableModel.getTableColumnModel());
 		view.getTable().getTableHeader().setReorderingAllowed(false);
 		view.getTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	}
@@ -35,6 +34,7 @@ public class CartelViewController {
 	private void agregarCartel() {
 		cartelcontroller.setModeNew();
 		cartelcontroller.showView();
+		fillTables();
 		
 	}
 

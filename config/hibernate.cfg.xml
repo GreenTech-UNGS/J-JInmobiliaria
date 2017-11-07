@@ -25,6 +25,7 @@
 		<mapping class="entities.Foto" />
 		<mapping class="entities.Telefono" />
 		<mapping class="entities.Cliente" />
+		<mapping class="entities.GastoFijo" />
 		
 		<mapping class="entities.AvisoNotificacion" />
 		<mapping class="entities.Cartel" />

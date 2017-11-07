@@ -36,7 +36,7 @@ public class GastoFijoController {
 	
 	private void saveCurrentGastoFijo() {
 		
-		if(currentGastoFijo.getMonto() > 0) { // Falta validator
+		if(currentGastoFijo.getMonto() <= 0) { // Falta validator
 			mapper.fillBean(currentGastoFijo);
 			try {
 				gastoFijoService.saveGastoFijo(currentGastoFijo);

@@ -29,6 +29,9 @@ import java.awt.BorderLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
 
 @Singleton
 public class MainView {
@@ -39,6 +42,7 @@ public class MainView {
     private JMenuItem mntmEditar;
     private JMenuItem mntmCambiarContrasea;
     private JMenuItem mntmCarteles;
+    private JMenuItem mntmGastosFijos;
     
     @Inject
     public MainView(PropiedadesPanel panelPropiedades,
@@ -157,6 +161,10 @@ public class MainView {
         mntmCarteles = new JMenuItem("Carteles");
         mntmCarteles.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         mnAdministrar.add(mntmCarteles);
+        
+        mntmGastosFijos = new JMenuItem("Gastos fijos");
+        mntmGastosFijos.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        mnAdministrar.add(mntmGastosFijos);
     }
 
     public void show() {
@@ -186,5 +194,9 @@ public class MainView {
 
 	public JMenuItem getMntmCarteles() {
 		return mntmCarteles;
+	}
+
+	public JMenuItem getMntmGastosFijos() {
+		return mntmGastosFijos;
 	}
 }

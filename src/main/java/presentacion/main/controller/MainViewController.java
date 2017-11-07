@@ -7,6 +7,7 @@ import model.UsuarioService;
 import presentacion.controller.CartelController;
 import presentacion.controller.CartelViewController;
 import presentacion.controller.ContrasenaController;
+import presentacion.controller.GastioFijoViewController;
 import presentacion.controller.UsuarioController;
 import presentacion.main.vista.MainView;
 import presentacion.validators.MessageShow;
@@ -18,6 +19,7 @@ public class MainViewController {
 	private MenuPanelController menuController;
 	@Inject private UsuarioController usuarioController;
     @Inject private UsuarioService usuarioService;
+    @Inject private GastioFijoViewController gastosController;
     @Inject MessageShow msgShw;
     
     @Inject ContrasenaController contrasenaController;
@@ -37,12 +39,17 @@ public class MainViewController {
 		this.view.getMntmCambiarContrasea().addActionListener(e -> cambiarContrasena());
 		
 		this.view.getMntmCarteles().addActionListener(e -> administrarCarteles());
+		this.view.getMntmGastosFijos().addActionListener(e -> administrarGastos());
 
 	}
 
 	private void administrarCarteles() {
 		cartelController.showView();
 	
+	}
+	
+	private void administrarGastos() {
+		gastosController.showView();
 	}
 
 	public void showView(){

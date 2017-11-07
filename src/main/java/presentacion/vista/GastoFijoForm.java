@@ -50,7 +50,7 @@ public class GastoFijoForm extends JDialog{
 		textNombre.setColumns(10);
 		
 		spinnerMonto = new JSpinner();
-		spinnerMonto.setModel(new SpinnerNumberModel(1, 1, 2147483647, 1));
+		spinnerMonto.setModel(new SpinnerNumberModel(new Float(1), new Float(1), new Float(2147483647), new Float(1)));
 		spinnerMonto.setBounds(300, 30, 50, 20);
 		getContentPane().add(spinnerMonto);
 		
