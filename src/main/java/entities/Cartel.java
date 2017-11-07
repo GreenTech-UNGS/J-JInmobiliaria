@@ -10,7 +10,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="carteles")
-@Inheritance(strategy=InheritanceType.JOINED)
 public class Cartel {
 
 	@Id

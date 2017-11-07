@@ -63,6 +63,7 @@ public class ProdModule implements Module{
 		binder.bind(InteresadoDao.class).to(InteresadoDaoHibernate.class).in(Singleton.class);
 		binder.bind(DAOftp.class).to(DAOFTPFileZilla.class).in(Singleton.class);
 		binder.bind(FotoDao.class).to(FotoDaoHibernate.class).in(Singleton.class);
+		binder.bind(CartelDao.class).to(CartelDaoHibernate.class).in(Singleton.class);
 
 
 		binder.bind(NotificacionDao.class).to(NotificacionDaoHibernate.class).in(Singleton.class);

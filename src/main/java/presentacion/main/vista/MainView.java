@@ -38,6 +38,7 @@ public class MainView {
     private JPanel panelNotificaciones;
     private JMenuItem mntmEditar;
     private JMenuItem mntmCambiarContrasea;
+    private JMenuItem mntmCarteles;
     
     @Inject
     public MainView(PropiedadesPanel panelPropiedades,
@@ -148,6 +149,14 @@ public class MainView {
         JMenuItem mntmBaseDeDatos = new JMenuItem("Base de datos");
         mntmBaseDeDatos.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         mnConfiguracin.add(mntmBaseDeDatos);
+        
+        JMenu mnAdministrar = new JMenu("Administrar");
+        mnAdministrar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        menuBar.add(mnAdministrar);
+        
+        mntmCarteles = new JMenuItem("Carteles");
+        mntmCarteles.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        mnAdministrar.add(mntmCarteles);
     }
 
     public void show() {
@@ -174,6 +183,8 @@ public class MainView {
 	public JMenuItem getMntmCambiarContrasea() {
 		return mntmCambiarContrasea;
 	}
-	
-	
+
+	public JMenuItem getMntmCarteles() {
+		return mntmCarteles;
+	}
 }

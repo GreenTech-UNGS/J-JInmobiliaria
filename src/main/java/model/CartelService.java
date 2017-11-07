@@ -3,11 +3,13 @@ package model;
 import java.util.List;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
 import entities.Cartel;
 import persistencia.dao.iface.CartelDao;
 import persistencia.dao.iface.PersonaDao;
 
+@Singleton
 public class CartelService {
 	
 	CartelDao cartelDao;

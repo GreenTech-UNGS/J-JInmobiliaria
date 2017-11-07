@@ -4,6 +4,8 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import model.UsuarioService;
+import presentacion.controller.CartelController;
+import presentacion.controller.CartelViewController;
 import presentacion.controller.ContrasenaController;
 import presentacion.controller.UsuarioController;
 import presentacion.main.vista.MainView;
@@ -17,8 +19,10 @@ public class MainViewController {
 	@Inject private UsuarioController usuarioController;
     @Inject private UsuarioService usuarioService;
     @Inject MessageShow msgShw;
+    
     @Inject ContrasenaController contrasenaController;
-	
+	@Inject CartelViewController cartelController;
+    
 	@Inject
 	private MainViewController(MainView view,
 			MenuPanelController menuController){
@@ -31,7 +35,14 @@ public class MainViewController {
 		
 		this.view.getMntmMiCuenta().addActionListener(e -> editarUsuario());
 		this.view.getMntmCambiarContrasea().addActionListener(e -> cambiarContrasena());
+		
+		this.view.getMntmCarteles().addActionListener(e -> administrarCarteles());
 
+	}
+
+	private void administrarCarteles() {
+		cartelController.showView();
+	
 	}
 
 	public void showView(){
