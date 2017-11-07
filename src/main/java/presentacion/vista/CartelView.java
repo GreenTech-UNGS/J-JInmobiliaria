@@ -11,11 +11,13 @@ import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
+import java.awt.FlowLayout;
 
 @Singleton
 public class CartelView extends JDialog{
-	private JTable table;
 	private JButton btnAgregar;
+	private JTable table;
 	
 	@Inject
 	private CartelView() {
@@ -27,9 +29,10 @@ public class CartelView extends JDialog{
 		
 		JPanel panelTabla = new JPanel();
 		getContentPane().add(panelTabla);
-		panelTabla.setLayout(new BoxLayout(panelTabla, BoxLayout.X_AXIS));
+		panelTabla.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(0, 0, 394, 248);
 		panelTabla.add(scrollPane);
 		
 		table = new JTable();

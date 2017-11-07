@@ -16,7 +16,7 @@ public class HabitacionTableModel extends BaseTableModel<Habitacion>{
 		
 		String medidas = t.getLargo() + " x " +t.getAncho() + " mts.";
 		
-		Object[] toRet = {t.getTipo().toString(),
+		Object[] toRet = {t.getTipo().getNombre(),
 				medidas,
 				t.getDescripcion()};
 		

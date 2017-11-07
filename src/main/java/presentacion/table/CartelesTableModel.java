@@ -9,7 +9,7 @@ public class CartelesTableModel extends BaseTableModel<Cartel>{
 		super.addColumn("Codigo", false, 100);
 		super.addColumn("Monto", false, 100);
 		super.addColumn("Medidas", false, 100);
-		super.addColumn("Descripcion", false, 100);
+		super.addColumn("Descripcion", false, 300);
 	}
 	
 	@Override

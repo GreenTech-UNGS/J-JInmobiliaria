@@ -384,11 +384,8 @@ public class PropiedadController {
 		dtos = propiedadServiceReport.fichaPropiedadReporteOf(this.currentPropiedad);
 		ReporteFichaDePropiedad reporte = new ReporteFichaDePropiedad(dtos);
 
-		view.setModal(false);
-
 		reporte.mostrar();
 
-		view.setModal(true);
 
 	}
 }

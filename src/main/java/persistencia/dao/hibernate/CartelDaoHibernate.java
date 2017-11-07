@@ -36,8 +36,6 @@ public class CartelDaoHibernate extends DaoHibernate<Cartel> implements CartelDa
 		initTransaction();
 		
 		Criteria q = sesion.createCriteria(Cartel.class).
-				createAlias("identificador", "identificador").
-				setFetchMode("identificador", FetchMode.JOIN).
 				add(Restrictions.eq("identificador", identificador));
 		
 		finishTransaction();

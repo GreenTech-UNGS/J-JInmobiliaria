@@ -38,7 +38,7 @@ public class CartelController {
 	
 	private void saveCurrentCartel() {
 		
-		if(currentCartel.getAlto() > 0 && currentCartel.getAncho() > 0 && currentCartel.getMonto() > 0) { // Falta validator
+		if(currentCartel.getAlto() <= 0 || currentCartel.getAncho() <= 0 || currentCartel.getMonto() <= 0) { // Falta validator
 			mapper.fillBean(currentCartel);
 			try {
 				cartelService.saveCartel(currentCartel);
@@ -83,6 +83,7 @@ public class CartelController {
 
 	public void setModeNew() {
 		okWasPressed = false;
+		view.setTitle("Nuevo cartel");
 		currentCartel = cartelService.getEmptyCartel();		
 		mapper.fillFields(currentCartel);
 		
