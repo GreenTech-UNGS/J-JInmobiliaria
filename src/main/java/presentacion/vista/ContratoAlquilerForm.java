@@ -351,7 +351,7 @@ public class ContratoAlquilerForm extends JDialog {
 
 		spinnerDuracionContrato = new JSpinner();
 		spinnerDuracionContrato.setBounds(102, 102, 45, 20);
-		spinnerDuracionContrato.setModel(new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1));
+		spinnerDuracionContrato.setModel(new SpinnerNumberModel(24, 0, Integer.MAX_VALUE, 1));
 		agregarContrato.add(spinnerDuracionContrato);
 
 		chckbxVencimiento = new JCheckBox("Vencimiento");

@@ -90,7 +90,8 @@ public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
 		String identificador = t.getIdentificador();
 		String garantia = t.getGarantia();
 		TipoContratoAlquiler tipoContrato = t.getTipoContratoAlquiler();
-		int cantidadMeses = t.getCantMeses();
+
+		int cantidadMeses = t.getCantMeses() == 0 ? 24 : t.getCantMeses();
 		float gatosAdmin = t.getGastosAdmin();
 		double cuotaMensualMonto = t.getCuotaMensual().getMonto();
 		Moneda cuotaMensualMoneda = t.getCuotaMensual().getMoneda();
@@ -120,8 +121,8 @@ public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
 
 		String cliente = t.getCliente() == null ? "": t.getCliente().getPersona().getCredencial();
 		view.getTfCliente().setText(cliente);
-		
-		
+
+
 		view.getTextIdContrato().setText(identificador);
 		view.getTextGarantia().setText(garantia);
 		view.getComboTipoContratoModel().setSelected(tipoContrato);

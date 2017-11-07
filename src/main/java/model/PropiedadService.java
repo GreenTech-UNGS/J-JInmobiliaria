@@ -241,6 +241,9 @@ public class PropiedadService {
 		fichaPropiedad.setOtrosDatos("");
 		fichaPropiedad.setCantidadDeAmbientes("");
 		if ( propiedad.getOtrosDatos() != null) {
+			fichaPropiedad.setOtrosDatos(
+					 propiedad.getOtrosDatos().isAptoCredito() ? "Propiedad apta para credito!" :""
+			);
 			fichaPropiedad.setMetrosCuadrados(propiedad.getOtrosDatos().getMetrosCuadradosCubiertos() + " m2");
 			fichaPropiedad.setCantidadDeAmbientes(propiedad.getOtrosDatos().getCantidadAmbientes() + "");
 		}
