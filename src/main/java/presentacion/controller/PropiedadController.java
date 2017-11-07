@@ -204,8 +204,6 @@ public class PropiedadController {
 		MapPoint punto = null;
 		try {
 			punto = localizationService.getLocalizationOf(calle, altura, localidad);
-		} catch (LogicaNegocioException e) {
-			msgShw.showErrorMessage(e.getMessage(), "Error");
 			Coordinate localizacion = new Coordinate(punto.getLat(), punto.getLon());
 			restartMapa();
 			
@@ -214,6 +212,8 @@ public class PropiedadController {
 			
 			currentPropiedad.setLat(punto.getLat());
 			currentPropiedad.setLon(punto.getLon());
+		} catch (LogicaNegocioException e) {
+			msgShw.showErrorMessage(e.getMessage(), "Error");
 		}	
 		
 	}
