@@ -61,8 +61,8 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		String email = t.getPersona().getEmail();
 		String metrosCuadrados = String.valueOf(t.getPreferencia().getMetrosCuadrados());
 		String ambientes = String.valueOf(t.getPreferencia().getCantidadAmbientes());
-		String precioDesde = String.valueOf(t.getPreferencia().getPrecioDesde());
-		String precioHasta = String.valueOf(t.getPreferencia().getPrecioHasta());
+		String precioDesde = String.valueOf(0);
+		String precioHasta = String.valueOf(0);
 		
 		String tipoCred = String.valueOf(t.getPersona().getTipoCred());	
 		TipoOfrecimiento tipoOfrec = t.getPreferencia().getTipoOfrecimiento();	

@@ -580,4 +580,11 @@ public class ContratoAlquilerForm extends JDialog {
 
 	public JDateChooser getInicio() { return inicioDate; }
 
+
+	public JComboBox<String> getComboTipoContrato() {
+		return comboTipoContrato;
+	}
+	
+	
+
 }

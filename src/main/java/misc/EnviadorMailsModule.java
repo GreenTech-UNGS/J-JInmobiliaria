@@ -5,6 +5,7 @@ import com.google.inject.Module;
 import com.google.inject.Singleton;
 
 import persistencia.conexion.Conexion;
+import persistencia.dao.ftp.DAOFTPFileZilla;
 import persistencia.dao.hibernate.CitaDaoHibernate;
 import persistencia.dao.hibernate.ClienteDaoHibernate;
 import persistencia.dao.hibernate.ContratoDaoHibernate;
@@ -24,6 +25,7 @@ import persistencia.dao.iface.CitaDao;
 import persistencia.dao.iface.ClienteDao;
 import persistencia.dao.iface.ContratoDao;
 import persistencia.dao.iface.CuotaDao;
+import persistencia.dao.iface.DAOftp;
 import persistencia.dao.iface.EgresoDao;
 import persistencia.dao.iface.IngresoDao;
 import persistencia.dao.iface.InmobiliariaDao;
@@ -56,6 +58,7 @@ public class EnviadorMailsModule implements Module{
 		binder.bind(UsuarioDao.class).to(UsuarioDaoHibernate.class).in(Singleton.class);
 		binder.bind(CitaDao.class).to(CitaDaoHibernate.class).in(Singleton.class);
 		binder.bind(InteresadoDao.class).to(InteresadoDaoHibernate.class).in(Singleton.class);
+		binder.bind(DAOftp.class).to(DAOFTPFileZilla.class).in(Singleton.class);
 
 		binder.bind(NotificacionDao.class).to(NotificacionDaoHibernate.class).in(Singleton.class);
 

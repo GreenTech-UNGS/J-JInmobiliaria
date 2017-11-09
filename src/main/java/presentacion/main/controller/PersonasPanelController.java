@@ -72,6 +72,7 @@ public class PersonasPanelController {
 		this.view.getBtnRemoverFiltroUsuarios().addActionListener(e -> removerFiltroUsuarios());
 		this.view.getBtnAplicarFiltroInteresados().addActionListener(e -> aplicarFiltroInteresado());
 		this.view.getBtnRemoverFiltroInteresados().addActionListener(e -> removerFiltroInteresados());
+		
 	}
 
 	private void agregarCliente() {
@@ -233,7 +234,7 @@ public class PersonasPanelController {
 	}
 	
 	private void fillTableInteresados(){
-		this.usuariosTable.clean();
+		this.interesadosTable.clean();
 		this.view.getTableInteresados().setModel(interesadosTable);
 		interesadosTable.actualizeRows(interesadoService.getAll());
 		
@@ -244,6 +245,8 @@ public class PersonasPanelController {
 	public void showView() {
 		
 		this.view.setVisible(true);
+		fillTableUsuarios();
+		System.out.println("la concha del mono");
 		
 	}
 

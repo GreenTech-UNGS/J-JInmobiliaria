@@ -38,14 +38,14 @@ public class InteresadoFiltroMapper implements Mapper<InteresadoFiltro>{
 	@Override
 	public void fillFields(InteresadoFiltro t) {
 		
-		String precioDesde = Double.toString(t.getPrecioDesde());
-		String precioHasta = Double.toString(t.getPrecioDesde());
+//		String precioDesde = Double.toString(0.0);
+//		String precioHasta = Double.toString(0.0);
 		Moneda moneda = t.getMoneda();
 		Localidad localidad = t.getLocalidad();
 		TipoOfrecimiento tipoOfrec = t.getTipoOfrecimiento();
 		
-		this.view.getTfPrecioDesde().setText(precioDesde);
-		this.view.getTfPrecioHasta().setText(precioHasta);
+//		this.view.getTfPrecioDesde().setText(precioDesde);
+//		this.view.getTfPrecioHasta().setText(precioHasta);
 		this.view.getMonedaCombo().setSelectedItem(moneda);
 		view.getLocalidadCombo().setSelected(localidad);
 		view.getTipoOfrCombo().setSelected(tipoOfrec);	

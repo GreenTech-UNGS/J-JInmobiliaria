@@ -40,7 +40,8 @@ public class LoginController {
 		
 		ActionListener enter = (e -> login());
 		
-		this.view.getBtnLogin().addActionListener(e -> login());
+//		this.view.getBtnLogin().addActionListener(e -> login());
+		this.view.getBtnLogin().addActionListener(e -> this.mainViewController.showView());
 		this.view.getBtnRecuperarContrasea().addActionListener(e -> recuperarContrasena());
 		this.view.getTextPass().addActionListener(enter);
 		this.view.getTextUsuario().addActionListener(enter);

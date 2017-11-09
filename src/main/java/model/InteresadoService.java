@@ -5,11 +5,9 @@ import java.util.List;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import entities.Cliente;
 import entities.Interesado;
 import entities.Persona;
 import entities.Preferencia;
-import filtros.ClienteFiltro;
 import filtros.InteresadoFiltro;
 import persistencia.dao.iface.InteresadoDao;
 import persistencia.dao.iface.PersonaDao;

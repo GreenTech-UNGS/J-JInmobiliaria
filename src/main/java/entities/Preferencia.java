@@ -26,8 +26,8 @@ public class Preferencia {
 	
 	private int metrosCuadrados;
 	private int cantidadAmbientes;
-	private double precioDesde;
-	private double precioHasta;
+	private int precioDesde;
+	private int precioHasta;
 	private Moneda moneda;
 	
 	public Preferencia(){

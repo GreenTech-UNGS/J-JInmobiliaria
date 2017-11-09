@@ -62,11 +62,21 @@ public class ContratoAlquilerController {
 		view.getBtnCancelarContrato().addActionListener(e -> view.setVisible(false));
 		view.getBtnRenovarContrato().addActionListener(e -> renovarContrato());
 		view.getBtnBorrador().addActionListener(e -> guardarEnBorrador());
+		view.getComboTipoContrato().addActionListener(e -> setearMeses());
 
 		fillCombos();
 		
 	}
 	
+	private void setearMeses() {
+		if(view.getComboTipoContrato().getSelectedItem().equals("Vivienda")){
+			view.getSpinnerDuracionContrato().setValue(24);
+		}
+		else{
+			view.getSpinnerDuracionContrato().setValue(36);
+		}
+	}
+
 	private void seleccionaCliente() {
 		eligeCliente.showView();
 		Cliente cliente = eligeCliente.getCliente();
