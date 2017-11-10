@@ -21,15 +21,18 @@ public class ReporteFichaDePropiedad extends JDialog{
     private JasperViewer reporteViewer;
     private JasperPrint	reporteLleno;
 
-    private final static String jasperTemplate = "reportesJasper"+File.separatorChar+"FichaPropiedad.jrxml";
-    private final static String reporteLocation = "reportesJasper"+File.separatorChar+"FichaPropiedad.jasper";
+ //   private final static String jasperTemplate = "reportesJasper"+File.separatorChar+"FichaPropiedad.jrxml";
+ //   private final static String reporteLocation = "reportesJasper"+File.separatorChar+"FichaPropiedad.jasper";
 
     //Recibe la ficha de la propiedad para armar el reporte
-    public ReporteFichaDePropiedad(List<FichaPropiedadDTO> fichasPropiedades){
+    public ReporteFichaDePropiedad(List<FichaPropiedadDTO> fichasPropiedades,String reportName){
         Map<String, Object> parametersMap = new HashMap<String, Object>();
         parametersMap.put("Fecha", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 
         try		{
+            String jasperTemplate = "reportesJasper"+File.separatorChar+reportName+".jrxml";
+            String reporteLocation = "reportesJasper"+File.separatorChar+reportName+".jasper";
+
             if (! new File(reporteLocation).exists())JasperCompileManager.compileReportToFile(
                     jasperTemplate,
                     reporteLocation);

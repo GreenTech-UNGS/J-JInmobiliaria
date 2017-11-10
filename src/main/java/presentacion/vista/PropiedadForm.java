@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -56,6 +55,7 @@ public class PropiedadForm extends JFrame{
 	private JButton btnMasDatos;
 	private JButton btnBorrador;
 	private JButton btnImprimirFicha;
+	private JButton btnImprimirFichaVisita;
 	private JButton btnVerGaleria;
 
 	@Inject
@@ -342,7 +342,12 @@ public class PropiedadForm extends JFrame{
 										btnImprimirFicha.setFont(new Font("Tahoma", Font.PLAIN, 11));
 										btnImprimirFicha.setBounds(572, 18, 102, 20);
 										AgregarPropiedad.add(btnImprimirFicha);
-										
+
+										btnImprimirFichaVisita = new JButton("Ficha Visita");
+										btnImprimirFichaVisita.setFont(new Font("Tahoma", Font.PLAIN, 11));
+										btnImprimirFichaVisita.setBounds(172, 18, 102, 20);
+										AgregarPropiedad.add(btnImprimirFichaVisita);
+
 										btnVerGaleria = new JButton("Ver Galeria");
 										btnVerGaleria.setFont(new Font("Dialog", Font.PLAIN, 11));
 										btnVerGaleria.setBounds(352, 19, 96, 18);
@@ -546,6 +551,10 @@ public class PropiedadForm extends JFrame{
 
 	public JButton getBtnImprimirFicha() {
 		return btnImprimirFicha;
+	}
+
+	public JButton getBtnImprimirFichaVisita() {
+		return btnImprimirFichaVisita;
 	}
 
 	public JButton getBtnVerGaleria() {

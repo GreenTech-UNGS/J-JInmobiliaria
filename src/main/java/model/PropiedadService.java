@@ -259,7 +259,4 @@ public class PropiedadService {
 
 		return fichas;
 	}
-
-
-
 }

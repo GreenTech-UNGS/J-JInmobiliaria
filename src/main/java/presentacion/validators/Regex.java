@@ -23,7 +23,7 @@ public class Regex {
 	}
 	
 	public static String CUIT(){
-		return "(20|23|24|27|30|33|34)-[1-9][0-9]{7}-[1-9]";
+		return "(20|23|24|27|30|33|34)[1-9][0-9]{7}[1-9]";
 		
 	}
 	

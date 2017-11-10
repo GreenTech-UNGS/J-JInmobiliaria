@@ -21,8 +21,6 @@ import presentacion.validators.MessageShow;
 import presentacion.validators.PropiedadFormValidator;
 import presentacion.vista.PropiedadForm;
 
-import javax.swing.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -96,7 +94,9 @@ public class PropiedadController {
 		view.getBtnGuardarDisponible().addActionListener(e -> savePropiedad());
 		view.getBtnMasDatos().addActionListener(e -> agregarOtrosDatos());
 		view.getBtnBorrador().addActionListener(e -> saveBorrador());
-		view.getBtnImprimirFicha().addActionListener(e -> generaReporteFichaPropiedad());
+		view.getBtnImprimirFicha().addActionListener(e -> generaReporteFichaPropiedad("FichaPropiedad"));
+		view.getBtnImprimirFichaVisita().addActionListener(e -> generaReporteFichaPropiedad("FichaPropiedadEmpleado"));
+
 		view.getBtnVerGaleria().addActionListener(e -> muestraGaleria());
 		
 	}
@@ -185,7 +185,6 @@ public class PropiedadController {
 		this.view.getComboLocalidad().setModel(localidadCombo);
 		AutoCompleteDecorator.decorate(view.getComboLocalidad());
 		cambiaLocalidades();
-
 		
 	}
 	
@@ -378,14 +377,10 @@ public class PropiedadController {
 		view.getBtnImprimirFicha().setVisible(bool);
 	}
 
-	private void generaReporteFichaPropiedad() {
-
+	private void generaReporteFichaPropiedad(String reportName) {
 		List<FichaPropiedadDTO> dtos;
 		dtos = propiedadServiceReport.fichaPropiedadReporteOf(this.currentPropiedad);
-		ReporteFichaDePropiedad reporte = new ReporteFichaDePropiedad(dtos);
-
+		ReporteFichaDePropiedad reporte = new ReporteFichaDePropiedad(dtos, reportName);
 		reporte.mostrar();
-
-
 	}
 }
