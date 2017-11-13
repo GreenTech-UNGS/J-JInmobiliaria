@@ -1,28 +1,16 @@
 package presentacion.vista;
 
-import java.awt.Dimension;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SpinnerNumberModel;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import javax.swing.SwingConstants;
+import javax.swing.*;
+import java.awt.*;
 
 @Singleton
 public class CartelForm extends JDialog{
 	private JTextField textIdentificador;
 	private JSpinner spinnerAlto;
 	private JSpinner spinnerAncho;
-	private JSpinner spinnerMonto;
 	private JTextArea textDescripcion;
 	private JButton btnAceptar;
 	
@@ -38,10 +26,6 @@ public class CartelForm extends JDialog{
 		lblIdentificador.setBounds(30, 30, 50, 20);
 		getContentPane().add(lblIdentificador);	
 
-		JLabel lblMonto = new JLabel("Monto:");
-		lblMonto.setBounds(250, 30, 50, 20);
-		getContentPane().add(lblMonto);
-		
 		JLabel lblAlto = new JLabel("Alto:");
 		lblAlto.setBounds(30, 80, 40, 20);
 		getContentPane().add(lblAlto);
@@ -68,12 +52,7 @@ public class CartelForm extends JDialog{
 		textIdentificador.setBounds(80, 30, 150, 20);
 		getContentPane().add(textIdentificador);
 		textIdentificador.setColumns(10);
-		
-		spinnerMonto = new JSpinner();
-		spinnerMonto.setModel(new SpinnerNumberModel(new Float(1), new Float(1), new Float(2147483647), new Float(1)));
-		spinnerMonto.setBounds(300, 30, 50, 20);
-		getContentPane().add(spinnerMonto);
-		
+
 		spinnerAlto = new JSpinner();
 		spinnerAlto.setModel(new SpinnerNumberModel(1, 1, 2147483647, 1));
 		spinnerAlto.setBounds(70, 80, 50, 20);
@@ -113,10 +92,6 @@ public class CartelForm extends JDialog{
 
 	public JSpinner getSpinnerAncho() {
 		return spinnerAncho;
-	}
-	
-	public JSpinner getSpinnerMonto() {
-		return spinnerMonto;
 	}
 
 	public JButton getBtnAceptar() {

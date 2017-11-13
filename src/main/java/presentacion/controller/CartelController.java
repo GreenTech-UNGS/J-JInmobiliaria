@@ -1,12 +1,8 @@
 package presentacion.controller;
 
-import java.util.Arrays;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
 import entities.Cartel;
-import entities.Cliente;
 import model.CartelService;
 import model.LogicaNegocioException;
 import presentacion.mappers.CartelMapper;
@@ -38,7 +34,7 @@ public class CartelController {
 	
 	private void saveCurrentCartel() {
 		
-		if(currentCartel.getAlto() <= 0 || currentCartel.getAncho() <= 0 || currentCartel.getMonto() <= 0) { // Falta validator
+		if(currentCartel.getAlto() <= 0 || currentCartel.getAncho() <= 0) { // Falta validator
 			mapper.fillBean(currentCartel);
 			try {
 				cartelService.saveCartel(currentCartel);

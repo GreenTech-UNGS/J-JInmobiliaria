@@ -21,13 +21,11 @@ public class CartelMapper implements Mapper<Cartel>{
 		
 		int alto = (int) view.getSpinnerAlto().getValue();
 		int ancho = (int) view.getSpinnerAncho().getValue();
-		float monto = (float) view.getSpinnerMonto().getValue();
 		String identificador = view.getTextIdentificador().getText();
 		String descripcion = view.getTextDescripcion().getText();
 		
 		t.setAncho(ancho);
 		t.setAlto(alto);
-		t.setMonto(monto);
 		t.setIdentificador(identificador);
 		t.setDescripcion(descripcion);
 		
@@ -38,13 +36,11 @@ public class CartelMapper implements Mapper<Cartel>{
 		
 		int alto = t.getAlto() == 0? 1 : t.getAlto();
 		int ancho = t.getAncho() == 0? 1 : t.getAncho();
-		float monto = t.getMonto() == 0? 1 : t.getMonto();
 		String identificador = t.getIdentificador();
 		String descripcion = t.getDescripcion();
 		
 		view.getSpinnerAncho().setValue(ancho);
 		view.getSpinnerAlto().setValue(alto);
-		view.getSpinnerMonto().setValue(monto);
 		view.getTextIdentificador().setText(identificador);
 		view.getTextDescripcion().setText(descripcion);
 		
