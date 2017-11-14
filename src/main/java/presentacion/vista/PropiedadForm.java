@@ -12,11 +12,17 @@ import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import com.google.inject.Inject;
 import javax.swing.JTabbedPane;
 import javax.swing.BoxLayout;
+
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+
 import javax.swing.Box;
 import javax.swing.SwingConstants;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 
 @SuppressWarnings("serial")
 public class PropiedadForm extends JFrame{
