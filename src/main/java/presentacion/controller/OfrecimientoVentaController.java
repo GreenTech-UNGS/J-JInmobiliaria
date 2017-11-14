@@ -24,6 +24,7 @@ public class OfrecimientoVentaController {
 	private OfrecimientoVentaController(PrecontratoVentaForm view) {
 		
 		this.view = view;
+		fillCombos();
 	
 	}
 	

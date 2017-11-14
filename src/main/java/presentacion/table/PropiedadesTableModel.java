@@ -31,11 +31,11 @@ public class PropiedadesTableModel extends BaseTableModel<Propiedad>{
 		String precioAlquiler = "";
 		
 		if(t.getOfrecimientoVenta().isHabilitada())
-			precioVenta = t.getOfrecimientoVenta().getPrecio().getMonto() + 
+			precioVenta = t.getOfrecimientoVenta().getPrecio().getMonto() + " " + 
 			t.getOfrecimientoVenta().getPrecio().getMoneda().toString();
 		
 		if(t.getOfrecimientoAlquiler().isHabilitada())
-			precioAlquiler = t.getOfrecimientoAlquiler().getPrecio().getMonto() + 
+			precioAlquiler = t.getOfrecimientoAlquiler().getPrecio().getMonto() + " " +
 			t.getOfrecimientoAlquiler().getPrecio().getMoneda().toString();
 		
 		

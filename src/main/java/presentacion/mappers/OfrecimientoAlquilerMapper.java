@@ -40,7 +40,7 @@ public class OfrecimientoAlquilerMapper implements Mapper<OfrecimientoAlquiler>{
 	@Override
 	public void fillFields(OfrecimientoAlquiler t) {
 		
-		view.getChckbxAcumulativo().setSelected(t.isHabilitada());
+		view.getChckbxHabilitar().setSelected(t.isHabilitada());
 		view.getTfPrecio().setText(t.getPrecio().getMonto() + "");
 		view.getTfMonto().setText(t.getOtrosGastos().getMonto() + "");
 		view.getMonedaBasico().setSelected(t.getPrecio().getMoneda());
