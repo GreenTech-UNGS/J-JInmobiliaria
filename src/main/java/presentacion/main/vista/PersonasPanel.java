@@ -47,6 +47,8 @@ public class PersonasPanel extends JPanel implements PermissionView{
 	private JPanel panel_1;
 	private JButton btnAplicarFiltroUsuarios;
 	private JButton btnRemoverFiltroUsuarios;
+
+	private JButton btnEliminarInteresado;
 	private Component horizontalGlue;
 	private JPanel panel_2;
 	private JButton btnAplicarFiltroInteresados;
@@ -201,9 +203,13 @@ public class PersonasPanel extends JPanel implements PermissionView{
         
         btnAgregarInteresado = new JButton("Agregar interesado");
         panelBotonesInteresados.add(btnAgregarInteresado);
-        
+
         btnEditarInteresado = new JButton("Editar interesado");
         panelBotonesInteresados.add(btnEditarInteresado);
+        
+        btnEliminarInteresado = new JButton("Eliminar interesado");
+        panelBotonesInteresados.add(btnEliminarInteresado);
+
         
 	}
 
@@ -289,6 +295,10 @@ public class PersonasPanel extends JPanel implements PermissionView{
 
 	public JButton getBtnEditarInteresado() {
 		return btnEditarInteresado;
+	}
+	
+	public JButton getBtnEliminarInteresado() {
+		return btnEliminarInteresado;
 	}
 
 	public JButton getBtnAplicarFiltroUsuarios() {
