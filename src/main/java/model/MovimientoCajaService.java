@@ -63,11 +63,19 @@ public class MovimientoCajaService {
 		return ret;
 	}
 	
-	public void saveEgreso(Egreso e){
+	public void saveEgreso(Egreso e) throws LogicaNegocioException{
+		
+		if(e.getFecha().isBeforeNow())
+			throw new LogicaNegocioException("La fecha es posterior a hoy");
+		
 		egresoDao.save(e);
 	}
 	
-	public void saveIngreso(Ingreso i){
+	public void saveIngreso(Ingreso i) throws LogicaNegocioException{
+		
+		if(i.getFecha().isBeforeNow())
+			throw new LogicaNegocioException("La fecha es posterior a hoy");
+		
 		ingresoDao.save(i);
 	}
 	

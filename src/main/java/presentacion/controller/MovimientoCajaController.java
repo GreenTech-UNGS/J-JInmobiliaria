@@ -8,6 +8,7 @@ import com.google.inject.Singleton;
 import entities.Egreso;
 import entities.Ingreso;
 import entities.Moneda;
+import model.LogicaNegocioException;
 import model.MovimientoCajaService;
 import presentacion.mappers.EgresoMapper;
 import presentacion.mappers.IngresoMapper;
@@ -45,15 +46,19 @@ public class MovimientoCajaController {
 
 	private void saveMovimiento() {
 		if(validator.isValid()) {
-			if(ingreso) {
 				ingresoMapper.fillBean(currentIngreso);
-				movCajaService.saveIngreso(currentIngreso);
-			}
-			else {
-				egresoMapper.fillBean(currentEgreso);
-				movCajaService.saveEgreso(currentEgreso);
 				
-			}
+		
+				try {
+					if(ingreso)
+						movCajaService.saveIngreso(currentIngreso);
+					else 
+						movCajaService.saveEgreso(currentEgreso);
+				} catch (LogicaNegocioException e) {
+
+					msgShw.showErrorMessage(e.getMessage(), "Error");
+				}
+						
 			hideView();
 		}
 		
