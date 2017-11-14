@@ -12,6 +12,7 @@ import entities.ContratoAlquiler;
 import entities.EstadoContrato;
 import entities.HistoriaEstadoContrato;
 import entities.Moneda;
+import entities.OfrecimientoAlquiler;
 import entities.Propiedad;
 import entities.TipoContratoAlquiler;
 import model.ContratoService;
@@ -25,36 +26,21 @@ import presentacion.vista.ContratoAlquilerForm;
 @Singleton
 public class ContratoAlquilerController {
 
-	ContratoService contratoService;
-	ReservaService reservaService;
-	ContratoAlquilerForm view;
-	ElegirClienteController eligeCliente;
-	ElegirPropiedadController elegirPropiedadController;
-	ContratoAlquilerFormMapper mapper;
+	private ContratoAlquilerForm view;
+	@Inject private ContratoService contratoService;
+	@Inject private ElegirClienteController eligeCliente;
+	@Inject private ElegirPropiedadController elegirPropiedadController;
+	@Inject private ContratoAlquilerFormMapper mapper;
 	
-	ContratoAlquiler currentContrato;
-	ContratoAlquilerFormValidator contratoAlquilerValidator;
+	private ContratoAlquiler currentContrato;
+	@Inject private ContratoAlquilerFormValidator contratoAlquilerValidator;
 	
-	MessageShow msgShw;
+	@Inject private MessageShow msgShw;
 	
 	@Inject
-	private ContratoAlquilerController(ContratoService contratoService,
-								ContratoAlquilerForm view,
-								ReservaService reservaService,
-								ElegirClienteController eligeCliente,
-								ContratoAlquilerFormValidator contratoAlquilerValidator,
-								ElegirPropiedadController elegirPropiedadController,
-								ContratoAlquilerFormMapper mapper,
-								MessageShow msgShw) {
+	private ContratoAlquilerController(ContratoAlquilerForm view) {
 		
-		this.contratoService = contratoService;
 		this.view = view;
-		this.eligeCliente = eligeCliente;
-		this.contratoAlquilerValidator = contratoAlquilerValidator;
-		this.reservaService = reservaService;
-		this.elegirPropiedadController = elegirPropiedadController;
-		this.mapper = mapper;
-		this.msgShw = msgShw;
 		
 		view.getBtnGuardarContrato().addActionListener(e -> guardaContratoDefinitivo());
 		view.getBtnLupaCliente().addActionListener(e -> seleccionaCliente());
@@ -97,7 +83,22 @@ public class ContratoAlquilerController {
 			currentContrato.setPropiedad(propiedad);
 			view.getTextPrecio().setText(propiedad.getOfrecimientoAlquiler().getPrecio().getMonto() + "");
 			view.getMonedaComboModel().setSelected(propiedad.getOfrecimientoAlquiler().getPrecio().getMoneda());
+
+			llenaDatosOfrecimiento();
 		}
+		
+	}
+	
+	private void llenaDatosOfrecimiento(){
+		
+		OfrecimientoAlquiler o = currentContrato.getPropiedad().getOfrecimientoAlquiler();
+		
+		view.getTextPrecio().setText(o.getPrecio().getMonto() + "");
+		view.getMonedaComboModel().setSelected(o.getPrecio().getMoneda());
+		
+		view.getSpinnerDuracionContrato().setValue(o.getCantidadMeses());
+		view.getSpinnerActualizaContrato().setValue(o.getIntervaloActualizacion());
+		view.getChckbxAcumulativoActualiza().setSelected(o.isAcumulativo());
 	}
 	
 	private void guardaContratoDefinitivo() {
