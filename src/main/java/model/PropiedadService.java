@@ -94,7 +94,7 @@ public class PropiedadService {
 		OfrecimientoVenta ofrecimientoVenta = new OfrecimientoVenta();
 		ofrecimientoVenta.setPrecio(new Precio(0, Moneda.PESOS));
 		
-		toRet.setTipoOfrecimiento(TipoOfrecimiento.Alquiler);
+		//toRet.setTipoOfrecimiento(TipoOfrecimiento.Alquiler);
 		
 		toRet.setOfrecimientoVenta(ofrecimientoVenta);
 		toRet.setOtrosDatos(otrosDatos);
@@ -117,10 +117,8 @@ public class PropiedadService {
 
 		List<EstadoProp> estadosAFiltrar = Arrays.asList(estados);
 
-		
 		List<Propiedad> toRet = allProps.stream().filter(p -> estadosAFiltrar.contains(getCurrentEstado(p)))
-						.filter(p -> p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquiler) ||
-				p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquileryventa))
+						.filter(p -> p.getOfrecimientoAlquiler().isHabilitada())
 						.collect(Collectors.toList());	
 
 		return toRet;
@@ -131,9 +129,10 @@ public class PropiedadService {
 		
 		List<EstadoProp> estadosAFiltrar = Arrays.asList(estados);
 		
-		List<Propiedad> toRet = allProps.stream().filter(p -> estadosAFiltrar.contains(getCurrentEstado(p))).filter
-				(p -> p.getTipoOfrecimiento().equals(TipoOfrecimiento.Venta) || p.getTipoOfrecimiento().equals
-						(TipoOfrecimiento.Alquileryventa)).collect(Collectors.toList());
+		List<Propiedad> toRet = allProps.stream().filter(p -> estadosAFiltrar.contains(getCurrentEstado(p)))
+				.filter(p -> p.getOfrecimientoVenta().isHabilitada())
+				.collect(Collectors.toList());
+		
 		return toRet;
 		
 	}
@@ -155,7 +154,7 @@ public class PropiedadService {
 	public List<Propiedad> getEnAlquiler(){
 		List<Propiedad> toRet = new ArrayList<Propiedad>();
 		for(Propiedad p : this.getAll()){
-			if(p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquiler) || p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquileryventa)){
+			if(p.getOfrecimientoAlquiler().isHabilitada()){
 				if(this.getCurrentEstado(p).equals(EstadoProp.DISPONIBLE)){
 					toRet.add(p);
 				}
@@ -167,7 +166,7 @@ public class PropiedadService {
 	public List<Propiedad> getEnVenta(){
 		List<Propiedad> toRet = new ArrayList<Propiedad>();
 		for(Propiedad p : this.getAll()){
-			if(p.getTipoOfrecimiento().equals(TipoOfrecimiento.Venta) || p.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquileryventa)){
+			if(p.getOfrecimientoVenta().isHabilitada()){
 				if(this.getCurrentEstado(p).equals(EstadoProp.DISPONIBLE)){
 					toRet.add(p);
 				}
@@ -230,7 +229,8 @@ public class PropiedadService {
 		List<FichaPropiedadDTO> fichas = new ArrayList<FichaPropiedadDTO>();
 		FichaPropiedadDTO fichaPropiedad = new FichaPropiedadDTO();
 
-		fichaPropiedad.setTipoPropiedad(propiedad.getTipoOfrecimiento().name().toString());
+		//TODO
+		fichaPropiedad.setTipoPropiedad("");
 		String foto = getPortadaFileOf(propiedad).getAbsolutePath();
 		fichaPropiedad.setFoto(foto);
 

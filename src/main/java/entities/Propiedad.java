@@ -32,11 +32,6 @@ public class Propiedad {
 	@OneToMany(cascade = {CascadeType.ALL})
 	private List<Foto> fotos;
 	
-	@Column(nullable = true, insertable = true, updatable = true)
-
-	@Enumerated(EnumType.ORDINAL)
-	private TipoOfrecimiento tipoOfrecimiento;
-	
 	@OneToOne(cascade = {CascadeType.MERGE})//TODO: podriamos ponerle persist
 	private Localidad localidad;
 	
@@ -143,14 +138,6 @@ public class Propiedad {
 
 	public void setFotos(List<Foto> fotos) {
 		this.fotos = fotos;
-	}
-
-	public TipoOfrecimiento getTipoOfrecimiento() {
-		return tipoOfrecimiento;
-	}
-
-	public void setTipoOfrecimiento(TipoOfrecimiento tipoOfrecimiento) {
-		this.tipoOfrecimiento = tipoOfrecimiento;
 	}
 
 	public Localidad getLocalidad() {
