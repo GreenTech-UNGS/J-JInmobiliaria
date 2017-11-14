@@ -25,8 +25,19 @@ public class PropiedadesTableModel extends BaseTableModel<Propiedad>{
 	@Override
 	protected Object[] toRow(Propiedad t) {
 		//FIXME Esto da error null pointer cuando el combo de provincia está vacío
-		//TODO
-		String precio = "asd";//t.getPrecioTentativo().getMonto() + " " + t.getPrecioTentativo().getMoneda();
+		
+		String precioVenta = "";
+		String precioAlquiler = "";
+		
+		if(t.getOfrecimientoVenta().isHabilitada())
+			precioVenta = "Venta: " + t.getOfrecimientoVenta().getPrecio() + 
+			t.getOfrecimientoVenta().getPrecio().getMoneda().toString();
+		
+		if(t.getOfrecimientoAlquiler().isHabilitada())
+			precioVenta = "Venta: " + t.getOfrecimientoAlquiler().getPrecio() + 
+			t.getOfrecimientoAlquiler().getPrecio().getMoneda().toString();
+		
+		String precio = precioVenta + " " + precioAlquiler;
 		String piso = "";
 		String depto = "";
 		if(!t.getPiso().equals("")){

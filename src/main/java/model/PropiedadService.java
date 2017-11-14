@@ -233,11 +233,12 @@ public class PropiedadService {
 
 		DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );
 
-		//TODO
-		String dd2dec = "";//df2.format(propiedad.getPrecioTentativo().getMonto());
+		String dd2dec = "Venta: " + df2.format(propiedad.getOfrecimientoVenta().getPrecio().getMonto()) + 
+				propiedad.getOfrecimientoVenta().getPrecio().getMoneda() + 
+				"\nAlquiler" + df2.format(propiedad.getOfrecimientoAlquiler().getPrecio().getMonto()) + 
+				propiedad.getOfrecimientoAlquiler().getPrecio().getMoneda();
 
-		fichaPropiedad.setPrecio(dd2dec);//+" "
-				  				//+propiedad.getPrecioTentativo().getMoneda());
+		fichaPropiedad.setPrecio(dd2dec);
 
 		fichaPropiedad.setProvincia(propiedad.getLocalidad().getProvincia().name());
 		fichaPropiedad.setLocalidad(propiedad.getLocalidad().getNombre());
