@@ -26,7 +26,10 @@ public class InmobiliariaFormMapper implements Mapper<Inmobiliaria>{
 		String piso = view.getTfPiso().getText();
 		String depto = view.getTfDepto().getText();
 		String email = view.getTfEmail().getText();
-		Localidad localidad = (Localidad) view.getCbLocalidad().getSelectedItem();
+		
+		Localidad localidad = view.getComboModelLocalidad().getSelected();
+		
+		
 		
 		t.setCUIT(CUIT);
 		t.setNombre(nombre);
@@ -55,7 +58,12 @@ public class InmobiliariaFormMapper implements Mapper<Inmobiliaria>{
 		view.getTfPiso().setText(piso);
 		view.getTfDepto().setText(depto);
 		view.getTfEmail().setText(email);
-		view.getCbLocalidad().setSelectedItem(t.getLocalidad());
+
+//		view.getComboModelLocalidad().setSelected(t.getLocalidad());
+		
+		view.getComboModelLocalidad().setSelected(t.getLocalidad());
+		if(t.getLocalidad() != null)
+			view.getComboModelProvincia().setSelected(t.getLocalidad().getProvincia());
 //		view.getCbLocalidad().setSelectedItem(t.getLocalidad());
 //		view.getCbProvincia().setSelectedItem(t.getLocalidad().getProvincia());
 //		view.getCbLocalidad().getModel().setSelectedItem(t.getLocalidad());

@@ -28,6 +28,13 @@ public class LocalidadComboBoxModel extends BaseComboBoxModel<Localidad>{
 
 	@Override
 	public void agregaElemento(Localidad element) {
+		
+		if (element == null ){
+
+			this.addElement("--Nada--");
+			values.put("--Nada--", element); 
+			return;
+		}
 		this.addElement(element.getNombre());
 		values.put(element.getNombre(), element);
 		

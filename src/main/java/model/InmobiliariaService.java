@@ -9,6 +9,7 @@ import com.google.inject.Singleton;
 
 import entities.Inmobiliaria;
 import entities.Telefono;
+import filtros.InmobiliariaFiltro;
 import persistencia.dao.iface.InmobiliariaDao;
 
 @Singleton
@@ -46,6 +47,12 @@ public class InmobiliariaService {
 			toRet = new ArrayList<>();
 		
 		return toRet;
+		
+	}
+	
+	public List<Inmobiliaria> getAllByFiltro(InmobiliariaFiltro filtro){
+		
+		return inmobiliariaDao.getAllByFiltro(filtro);
 		
 	}
 	

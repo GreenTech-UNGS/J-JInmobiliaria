@@ -10,6 +10,8 @@ import javax.swing.JTable;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import java.awt.Component;
+import java.awt.FlowLayout;
 
 @Singleton
 public class InmobiliariaPanel extends JPanel{
@@ -17,10 +19,26 @@ public class InmobiliariaPanel extends JPanel{
 	private JTable tableInmobiliaria;
 	private JButton btnAgregarInmobiliaria;
 	private JButton btnEditarInmobiliaria;
+	private JPanel panel;
+	private JButton btnAplicarFiltro;
+	private JButton btnRemoverFiltro;
 
 	@Inject
 	public InmobiliariaPanel() {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        
+        panel = new JPanel();
+        FlowLayout flowLayout = (FlowLayout) panel.getLayout();
+        flowLayout.setAlignment(FlowLayout.RIGHT);
+        add(panel);
+        
+        btnAplicarFiltro = new JButton("Aplicar filtro");
+        btnAplicarFiltro.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        panel.add(btnAplicarFiltro);
+        
+        btnRemoverFiltro = new JButton("Remover filtro");
+        btnRemoverFiltro.setFont(new Font("Tahoma", Font.PLAIN, 11));
+        panel.add(btnRemoverFiltro);
         
         tableInmobiliaria = new JTable();
         
@@ -49,6 +67,22 @@ public class InmobiliariaPanel extends JPanel{
 
 	public JButton getBtnEditarInmobiliaria() {
 		return btnEditarInmobiliaria;
+	}
+
+	public JButton getBtnAplicarFiltro() {
+		return btnAplicarFiltro;
+	}
+
+	public void setBtnAplicarFiltro(JButton btnAplicarFiltro) {
+		this.btnAplicarFiltro = btnAplicarFiltro;
+	}
+
+	public JButton getBtnRemoverFiltro() {
+		return btnRemoverFiltro;
+	}
+
+	public void setBtnRemoverFiltro(JButton btnRemoverFiltro) {
+		this.btnRemoverFiltro = btnRemoverFiltro;
 	}
 	
 }

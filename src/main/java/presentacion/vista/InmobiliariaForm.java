@@ -17,6 +17,10 @@ import javax.swing.JTextField;
 
 import com.google.inject.Inject;
 
+import presentacion.combo.LocalidadComboBoxModel;
+import presentacion.combo.ProvinciaComboBoxModel;
+import presentacion.combo.TipoCitaComboBoxModel;
+
 public class InmobiliariaForm extends JDialog {
 	/**
 	 * 
@@ -38,6 +42,9 @@ public class InmobiliariaForm extends JDialog {
 	private JButton btnAgregarTel;
 	private JButton btnBorrarTel;
 	private JTable tableTel;
+	
+	private LocalidadComboBoxModel comboModelLocalidad;
+	private ProvinciaComboBoxModel comboModelProvincia;
 	
 	@Inject
 	private InmobiliariaForm(){
@@ -200,6 +207,12 @@ public class InmobiliariaForm extends JDialog {
 		btnGuardarCambios.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnGuardarCambios.setBounds(176, 339, 123, 35);
 		getContentPane().add(btnGuardarCambios);
+		
+		comboModelProvincia = new ProvinciaComboBoxModel();
+		comboModelLocalidad = new LocalidadComboBoxModel();
+		
+		cbProvincia.setModel(comboModelProvincia);
+		cbLocalidad.setModel(comboModelLocalidad);
 	}
 
 	public JTextField getTfEmail() {
@@ -322,5 +335,21 @@ public class InmobiliariaForm extends JDialog {
 		this.btnBorrarTel = btnBorrarTel;
 	}
 
+	public LocalidadComboBoxModel getComboModelLocalidad() {
+		return comboModelLocalidad;
+	}
+
+	public void setComboModelLocalidad(LocalidadComboBoxModel comboModelLocalidad) {
+		this.comboModelLocalidad = comboModelLocalidad;
+	}
+
+	public ProvinciaComboBoxModel getComboModelProvincia() {
+		return comboModelProvincia;
+	}
+
+	public void setComboModelProvincia(ProvinciaComboBoxModel comboModelProvincia) {
+		this.comboModelProvincia = comboModelProvincia;
+	}
+	
 	
 }

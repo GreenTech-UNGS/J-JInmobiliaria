@@ -3,8 +3,11 @@ package presentacion.main.controller;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import filtros.InmobiliariaFiltro;
+import filtros.UsuarioFiltro;
 import model.InmobiliariaService;
 import presentacion.controller.InmobiliariaController;
+import presentacion.controller.filtros.InmobiliariaFiltroController;
 import presentacion.main.vista.InmobiliariaPanel;
 import presentacion.table.InmobiliariaTableModel;
 
@@ -15,6 +18,7 @@ public class InmobiliariaPanelController {
 	@Inject private InmobiliariaController inmobiliariaController;
 	@Inject private InmobiliariaTableModel tableInmobiliaria;
 	@Inject private InmobiliariaService inmobiliariaService;
+	@Inject private InmobiliariaFiltroController inmobiliariaFiltro;
 	
 	@Inject
 	InmobiliariaPanelController(InmobiliariaPanel view) {
@@ -24,8 +28,11 @@ public class InmobiliariaPanelController {
 		this.view.getBtnAgregarInmobiliaria().addActionListener(e -> agregarInmobiliaria());
 		this.view.getBtnEditarInmobiliaria().addActionListener(e -> editarInmobiliaria());
 		
+		this.view.getBtnAplicarFiltro().addActionListener(e -> aplicarFiltro());
+		this.view.getBtnRemoverFiltro().addActionListener(e -> removerFiltro());
+		
 	}
-	
+
 		private void agregarInmobiliaria() {
 		this.inmobiliariaController.setModeNew();
 		this.inmobiliariaController.showView();
@@ -63,6 +70,21 @@ public class InmobiliariaPanelController {
 	}
 
 	public void actualize() {
+		fillTableInmobiliarias();
+	}
+	
+	private void aplicarFiltro() {
+		inmobiliariaFiltro.setModeNew();
+		inmobiliariaFiltro.showView();
+		
+		InmobiliariaFiltro filtro = inmobiliariaFiltro.getFiltro();
+		if(filtro != null) {
+			tableInmobiliaria.actualizeRows(inmobiliariaService.getAllByFiltro(filtro));
+		}
+		
+	}
+	
+	private void removerFiltro(){
 		fillTableInmobiliarias();
 	}
 }

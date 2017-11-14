@@ -92,12 +92,9 @@ public class InmobiliariaController {
 	
 	private void fillCombo() {
 	
-		this.view.getCbProvincia().setModel(provCombo);
-		provCombo.actualize(Arrays.asList(Provincia.values()));
+		view.getComboModelProvincia().clearAndActualize(Arrays.asList(Provincia.values()));
 		AutoCompleteDecorator.decorate(view.getCbProvincia());
 		
-		view.getCbLocalidad().setModel(localidadCombo);
-		AutoCompleteDecorator.decorate(view.getCbLocalidad());
 		cambiaLocalidades();
 		
 	}
@@ -115,9 +112,9 @@ public class InmobiliariaController {
 
 	private void cambiaLocalidades() {
 		
-		localidadCombo.removeAllElements();
-		List<Localidad> localidades = localidadService.getAllOf(provCombo.getSelected());
-		localidadCombo.actualize(localidades);	
+		view.getComboModelLocalidad().removeAllElements();
+		List<Localidad> localidades = localidadService.getAllOf(view.getComboModelProvincia().getSelected());
+		view.getComboModelLocalidad().clearAndActualize(localidades);
 	}
 	
 	public void editInmobiliaria(Inmobiliaria i){

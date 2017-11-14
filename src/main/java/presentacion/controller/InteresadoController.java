@@ -10,6 +10,7 @@ import com.google.inject.Singleton;
 
 import entities.Interesado;
 import entities.Localidad;
+import entities.Moneda;
 import entities.Provincia;
 import entities.Telefono;
 import entities.TipoOfrecimiento;
@@ -19,6 +20,7 @@ import model.LocalidadService;
 import model.LogicaNegocioException;
 import model.PersonaService;
 import presentacion.combo.LocalidadComboBoxModel;
+import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.ProvinciaComboBoxModel;
 import presentacion.combo.TipoCredencialComboBoxModel;
 import presentacion.combo.TipoOfrecimientoComboBoxModel;
@@ -45,6 +47,7 @@ public class InteresadoController {
 	private Interesado currentInteresado;
 	private TelefonoTableModel telTable;
 	private LocalidadComboBoxModel localidadModel;
+	private MonedaComboBoxModel monedaModel;
 	@Inject private TelefonoController telefonoController;
 	
 	@Inject	
@@ -56,6 +59,7 @@ public class InteresadoController {
 		this.provCombo = new ProvinciaComboBoxModel();
 		this.tipoOfrCombo = new TipoOfrecimientoComboBoxModel();
 		this.tipoCredencialModel = new TipoCredencialComboBoxModel();
+		this.monedaModel = new MonedaComboBoxModel();
 		
 		view.getBtnAgregarTelefono().addActionListener(e -> agregaTelefono());
 		view.getBtnBorrarTelefono().addActionListener(e -> borrarTelefono());
@@ -98,42 +102,34 @@ public class InteresadoController {
 	}
 	
 	private void fillCombos() {
-//		tipoCredencialModel.agregaElemento(TipoCredencial.DNI);
-//		tipoCredencialModel.agregaElemento(TipoCredencial.CUIT);
-//		tipoCredencialModel.setSelected(TipoCredencial.DNI);
-		
-		this.view.getCbCredencial().setModel(tipoCredencialModel);
+			
 		tipoCredencialModel.actualize(Arrays.asList(TipoCredencial.values()));
 		AutoCompleteDecorator.decorate(view.getCbCredencial());
 		
-//		view.getCbCredencial().setModel(tipoCredencialModel);
-		
-//		this.view.getCbProvincia().setModel(provCombo);
-//		provCombo.actualize(Arrays.asList(Provincia.values()));
-//		AutoCompleteDecorator.decorate(view.getCbProvincia());
-
+		this.view.getCbTipoOfrec().removeAllItems();
 		this.view.getCbTipoOfrec().setModel(tipoOfrCombo);
 		tipoOfrCombo.actualize(Arrays.asList(TipoOfrecimiento.values()));
-
-//		this.view.getCbLocalidad().setModel(localidadModel);
-//		AutoCompleteDecorator.decorate(view.getCbLocalidad());
+		
+		this.view.getCbCredencial().removeAllItems();
+		this.view.getCbCredencial().setModel(tipoCredencialModel);
+		tipoCredencialModel.actualize(Arrays.asList(TipoCredencial.values()));
+		tipoCredencialModel.setSelected(TipoCredencial.DNI);
+		
+		view.getCbMoneda().removeAllItems();
+		this.view.getCbMoneda().setModel(monedaModel);
+		monedaModel.actualize(Arrays.asList(Moneda.values()));
 
 		view.getComboModelProvincia().clearAndActualize(Arrays.asList(Provincia.values()));
 		AutoCompleteDecorator.decorate(view.getCbProvincia());
 		
-		AutoCompleteDecorator.decorate(view.getCbLocalidad());
 		cambiaLocalidades();
 	}
 	
 	private void cambiaLocalidades() {
-//		localidadModel.removeAllElements();
-//		List<Localidad> localidades = localidadService.getAllOf(provCombo.getSelected());
-//		localidadModel.actualize(localidades);
 		
 		view.getComboModelLocalidad().removeAllElements();
 		List<Localidad> localidades = localidadService.getAllOf(view.getComboModelProvincia().getSelected());
-		view.getComboModelLocalidad().actualize(localidades);
-		
+		view.getComboModelLocalidad().clearAndActualize(localidades);
 	}
 	
 	public void setModeNew() {

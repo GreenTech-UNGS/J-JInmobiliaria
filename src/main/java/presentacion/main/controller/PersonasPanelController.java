@@ -246,8 +246,6 @@ public class PersonasPanelController {
 		
 		this.view.setVisible(true);
 		fillTableUsuarios();
-		System.out.println("la concha del mono");
-		
 	}
 
 	public void hideView() {
