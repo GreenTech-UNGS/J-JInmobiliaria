@@ -56,6 +56,7 @@ public class PersonasPanel extends JPanel implements PermissionView{
 	@PermissableField(roles = { Rol.ADMINISTRADOR })
 	private JPanel TabUsuarios;
 	private JTabbedPane tabbedPane;
+	private JButton btnGenerarReporte;
 
 	@Inject
 	private PersonasPanel() {
@@ -126,6 +127,9 @@ public class PersonasPanel extends JPanel implements PermissionView{
         
         btnEditarPropietario = new JButton("Editar propietario");
         panel2.add(btnEditarPropietario);
+        
+        btnGenerarReporte = new JButton("Generar reporte");
+        panel2.add(btnGenerarReporte);
         
         TabUsuarios = new JPanel();
         tabbedPane.addTab("Usuarios", null, TabUsuarios, null);
@@ -309,6 +313,10 @@ public class PersonasPanel extends JPanel implements PermissionView{
 		
 		tabbedPane.remove(componente);
 		componente.setVisible(false);
+	}
+
+	public JButton getBtnGenerarReporte() {
+		return btnGenerarReporte;
 	}
 	
 }
