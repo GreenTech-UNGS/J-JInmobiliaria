@@ -18,7 +18,8 @@ public class InteresadoFormValidator implements ValidatorNew {
 
 	@Override
 	public boolean isValid() {
-		return isCredencialValid() 
+		return hasMedioContacto()
+				&& isCredencialValid() 
 				&& isEmailValid()
 				&& isNombreValid()
 				&& isApellidoValid();
@@ -63,7 +64,7 @@ public class InteresadoFormValidator implements ValidatorNew {
 	private boolean isEmailValid(){
 		String email = view.getTfEmail().getText();
 		
-		if(email == null || !email.matches(Regex.email()))
+		if(email != null && !(email.equals("")) && !email.matches(Regex.email()))
 			return false;
 		
 		return true;
@@ -95,11 +96,7 @@ public class InteresadoFormValidator implements ValidatorNew {
 
 		String email = view.getTfEmail().getText();
 		
-		if(email != null && email.matches(Regex.email())){
-			return true;
-		}
-		
-		if(view.getTableTel().getRowCount() != 0){
+		if( (email != null && !(email.equals(""))) || view.getTableTel().getRowCount() > 0){
 			return true;
 		}
 
