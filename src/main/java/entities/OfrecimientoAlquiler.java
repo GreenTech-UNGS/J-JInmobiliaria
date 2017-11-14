@@ -28,7 +28,10 @@ public class OfrecimientoAlquiler {
 	
 	
 	public OfrecimientoAlquiler() {
-		// TODO Auto-generated constructor stub
+		
+		cantidadMeses = 1;
+		intervaloActualizacion = 1;
+		
 	}
 
 

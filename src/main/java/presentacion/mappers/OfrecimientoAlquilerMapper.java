@@ -15,7 +15,7 @@ public class OfrecimientoAlquilerMapper implements Mapper<OfrecimientoAlquiler>{
 	@Override
 	public void fillBean(OfrecimientoAlquiler t) {
 		
-		boolean habilitado = view.getChckbxAcumulativo().isSelected();
+		boolean habilitado = view.getChckbxHabilitar().isSelected();
 		float precioBascio = Float.parseFloat(view.getTfPrecio().getText());
 		float precioOtro = Float.parseFloat(view.getTfMonto().getText());
 		Moneda monedaBasico = view.getMonedaBasico().getSelected();
@@ -24,7 +24,6 @@ public class OfrecimientoAlquilerMapper implements Mapper<OfrecimientoAlquiler>{
 		int intervaloMeses = (int)view.getSpinnerIntervalo().getValue();
 		float porcentaje = (float)view.getSpinnerPorcentaje().getValue();
 		boolean acumulativo = view.getChckbxAcumulativo().isSelected();
-		
 		
 		t.setHabilitada(habilitado);
 		t.getPrecio().setMonto(precioBascio);
