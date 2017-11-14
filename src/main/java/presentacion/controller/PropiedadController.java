@@ -40,6 +40,7 @@ public class PropiedadController {
 	
 	@Inject private GaleriaController galeriaController;
 	@Inject private OfrecimientoAlquilerController ofrecimientoAlquiler;
+	@Inject private OfrecimientoVentaController ofrecimientoVenta;
 	
 	@Inject private PropiedadOtrosDatosController otrosDatosForm;
 	private boolean isEdit;
@@ -243,6 +244,7 @@ public class PropiedadController {
 		currentPropiedad = p;
 		
 		ofrecimientoAlquiler.setEditMode(p.getOfrecimientoAlquiler());
+		ofrecimientoVenta.setEditMode(p.getOfrecimientoVenta());
 		
 		binder.setObjective(currentPropiedad);
 		binder.fillFields();
@@ -254,6 +256,7 @@ public class PropiedadController {
 		if(propiedadValidator.isValid()){
 			binder.fillBean();
 			ofrecimientoAlquiler.save();
+			ofrecimientoVenta.save();
 			actualizaMapaThread();
 			try {
 				propiedadService.savePropiedad(currentPropiedad);
@@ -272,6 +275,7 @@ public class PropiedadController {
 		if(propiedadValidator.isValid()){
 			binder.fillBean();
 			ofrecimientoAlquiler.save();
+			ofrecimientoVenta.save();
 			actualizaMapaThread();
 			try {
 				propiedadService.savePropiedadNoDisp(currentPropiedad);
@@ -304,6 +308,7 @@ public class PropiedadController {
 		binder.fillFields();
 		
 		ofrecimientoAlquiler.setEditMode(currentPropiedad.getOfrecimientoAlquiler());
+		ofrecimientoVenta.setEditMode(currentPropiedad.getOfrecimientoVenta());
 		
 		setEnabled(true);
 		restartMapa();
@@ -333,7 +338,7 @@ public class PropiedadController {
 			view.getLblReservada().setVisible(true);
 
 		ofrecimientoAlquiler.setEditMode(currentPropiedad.getOfrecimientoAlquiler());
-		
+		ofrecimientoVenta.setEditMode(currentPropiedad.getOfrecimientoVenta());
 	}
 
 	public void showView(){
