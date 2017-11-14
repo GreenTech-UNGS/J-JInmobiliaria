@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import presentacion.combo.MonedaComboBoxModel;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JSeparator;
@@ -23,6 +25,10 @@ import javax.swing.SpinnerNumberModel;
 @Singleton
 public class PrecontratoVentaForm extends JPanel{
 	private JTextField tfPrecio;
+	private JCheckBox chckbxHabilitar;
+	private JSpinner spinnerComprador;
+	private JSpinner spinnerVendedor;
+	private MonedaComboBoxModel monedaCombo;
 	
 	@Inject
 	private PrecontratoVentaForm(){
@@ -32,7 +38,7 @@ public class PrecontratoVentaForm extends JPanel{
 		this.setPreferredSize(new Dimension(700, 170));
 		setLayout(null);
 		
-		JCheckBox chckbxHabilitar = new JCheckBox("Habilitar");
+		chckbxHabilitar = new JCheckBox("Habilitar");
 		chckbxHabilitar.setBounds(32, 0, 65, 23);
 		add(chckbxHabilitar);
 		
@@ -60,7 +66,7 @@ public class PrecontratoVentaForm extends JPanel{
 		lblMoneda.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		add(lblMoneda);
 		
-		JComboBox cbMoneda = new JComboBox();
+		JComboBox<String> cbMoneda = new JComboBox<String>();
 		cbMoneda.setBounds(260, 65, 96, 20);
 		add(cbMoneda);
 		
@@ -78,21 +84,44 @@ public class PrecontratoVentaForm extends JPanel{
 		lblComprador.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		add(lblComprador);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(108, 125, 47, 20);
-		spinner.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(100), new Float(1)));
-		add(spinner);
+		spinnerComprador = new JSpinner();
+		spinnerComprador.setBounds(108, 125, 47, 20);
+		spinnerComprador.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(100), new Float(1)));
+		add(spinnerComprador);
 		
 		JLabel lblVendedor = new JLabel("Vendedor:");
 		lblVendedor.setBounds(205, 128, 50, 14);
 		lblVendedor.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		add(lblVendedor);
 		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setBounds(260, 125, 47, 20);
-		spinner_1.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(100), new Float(1)));
-		add(spinner_1);
+		spinnerVendedor = new JSpinner();
+		spinnerVendedor.setBounds(260, 125, 47, 20);
+		spinnerVendedor.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(100), new Float(1)));
+		add(spinnerVendedor);
 		
+		monedaCombo = new MonedaComboBoxModel();
+		cbMoneda.setModel(monedaCombo);
+		
+	}
+
+	public JTextField getTfPrecio() {
+		return tfPrecio;
+	}
+
+	public JCheckBox getChckbxHabilitar() {
+		return chckbxHabilitar;
+	}
+
+	public JSpinner getSpinnerComprador() {
+		return spinnerComprador;
+	}
+
+	public JSpinner getSpinnerVendedor() {
+		return spinnerVendedor;
+	}
+
+	public MonedaComboBoxModel getMonedaCombo() {
+		return monedaCombo;
 	}
 
 }
