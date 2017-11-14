@@ -28,8 +28,6 @@ public class PropiedadController {
 	
 	private PropiedadForm view;
 	private ProvinciaComboBoxModel provCombo;
-	private MonedaComboBoxModel monedaCombo;
-	private TipoOfrecimientoComboBoxModel tipoOfrCombo;
 	private LocalidadComboBoxModel localidadCombo;
 	private PropiedadFormValidator propiedadValidator;
 	private PropiedadService propiedadService;
@@ -41,7 +39,8 @@ public class PropiedadController {
 	private LocalizationService localizationService;
 	
 	@Inject private GaleriaController galeriaController;
-
+	@Inject private OfrecimientoAlquilerController ofrecimientoAlquiler;
+	
 	@Inject private PropiedadOtrosDatosController otrosDatosForm;
 	private boolean isEdit;
 	
@@ -77,8 +76,6 @@ public class PropiedadController {
 		this.msgShw = msgShw;
 		
 		this.provCombo = new ProvinciaComboBoxModel();
-		this.monedaCombo = new MonedaComboBoxModel();
-		this.tipoOfrCombo = new TipoOfrecimientoComboBoxModel();
 		this.localidadCombo = new LocalidadComboBoxModel();
 		this.localidadCombo = new LocalidadComboBoxModel();
 
@@ -96,6 +93,7 @@ public class PropiedadController {
 		view.getBtnBorrador().addActionListener(e -> saveBorrador());
 		view.getBtnImprimirFicha().addActionListener(e -> generaReporteFichaPropiedad("FichaPropiedad"));
 		view.getBtnImprimirFichaVisita().addActionListener(e -> generaReporteFichaPropiedad("FichaPropiedadEmpleado"));
+
 
 		view.getBtnVerGaleria().addActionListener(e -> muestraGaleria());
 		
@@ -126,18 +124,6 @@ public class PropiedadController {
 		binder.bind("obsPrivadas",
 				view.getTaDescPriv()::getText,
 				t -> view.getTaDescPriv().setText((String)t));
-		
-		binder.bind("precioTentativo.moneda",
-				monedaCombo::getSelected,
-				t -> monedaCombo.setSelected((Moneda)t));
-		
-		binder.bind("precioTentativo.monto",
-				() -> Double.parseDouble((view.getTfPrecio().getText())),
-				t -> view.getTfPrecio().setText(t.toString()));
-
-		binder.bind("tipoOfrecimiento",
-				tipoOfrCombo::getSelected,
-				t -> tipoOfrCombo.setSelected((TipoOfrecimiento)t));
 
 		binder.bind("localidad",
 				localidadCombo::getSelected,
@@ -175,12 +161,6 @@ public class PropiedadController {
 		this.view.getComboProvincia().setModel(provCombo);
 		provCombo.actualize(Arrays.asList(Provincia.values()));
 		AutoCompleteDecorator.decorate(view.getComboProvincia());
-		
-		this.view.getComboTipoOfre().setModel(tipoOfrCombo);
-		tipoOfrCombo.actualize(Arrays.asList(TipoOfrecimiento.values()));
-		
-		this.view.getComboMoneda().setModel(monedaCombo);
-		monedaCombo.actualize(Arrays.asList(Moneda.values()));
 		
 		this.view.getComboLocalidad().setModel(localidadCombo);
 		AutoCompleteDecorator.decorate(view.getComboLocalidad());
@@ -261,6 +241,9 @@ public class PropiedadController {
 		view.getBtnGuardarDisponible().setVisible(true);
 		fillCombos();
 		currentPropiedad = p;
+		
+		ofrecimientoAlquiler.setEditMode(p.getOfrecimientoAlquiler());
+		
 		binder.setObjective(currentPropiedad);
 		binder.fillFields();
 		
@@ -270,6 +253,7 @@ public class PropiedadController {
 
 		if(propiedadValidator.isValid()){
 			binder.fillBean();
+			ofrecimientoAlquiler.save();
 			actualizaMapaThread();
 			try {
 				propiedadService.savePropiedad(currentPropiedad);
@@ -287,6 +271,7 @@ public class PropiedadController {
 
 		if(propiedadValidator.isValid()){
 			binder.fillBean();
+			ofrecimientoAlquiler.save();
 			actualizaMapaThread();
 			try {
 				propiedadService.savePropiedadNoDisp(currentPropiedad);
@@ -318,6 +303,8 @@ public class PropiedadController {
 		binder.setObjective(currentPropiedad);
 		binder.fillFields();
 		
+		ofrecimientoAlquiler.setEditMode(currentPropiedad.getOfrecimientoAlquiler());
+		
 		setEnabled(true);
 		restartMapa();
 		view.getTfPropietario().setText("");
@@ -344,6 +331,8 @@ public class PropiedadController {
 		
 		if(propiedadService.getCurrentEstado(currentPropiedad).equals(EstadoProp.RESERVADA))
 			view.getLblReservada().setVisible(true);
+
+		ofrecimientoAlquiler.setEditMode(currentPropiedad.getOfrecimientoAlquiler());
 		
 	}
 
@@ -355,9 +344,7 @@ public class PropiedadController {
 		
 		view.getTfAltura().setEditable(bool);
 		view.getTfCalle().setEditable(bool);
-		view.getTfPrecio().setEditable(bool);
 		view.getTfIdentificador().setEditable(bool);
-		view.getTfEntrecalles().setEditable(bool);
 		view.getTfPiso().setEditable(bool);
 		view.getTfDepto().setEditable(bool);
 		view.getTaDescPubl().setEditable(bool);
@@ -369,9 +356,7 @@ public class PropiedadController {
 		view.getBtnActualizar().setVisible(bool);
 		view.getBotonLupitaInmobiliaria().setVisible(bool);
 		view.getComboLocalidad().setEnabled(bool);
-		view.getComboMoneda().setEnabled(bool);
 		view.getComboProvincia().setEnabled(bool);
-		view.getComboTipoOfre().setEnabled(bool);
 		view.getBtnGuardarDisponible().setVisible(bool);
 		view.getBtnBorrador().setVisible(bool);
 		view.getBtnImprimirFicha().setVisible(bool);

@@ -17,7 +17,6 @@ public class OfrecimientoVenta {
 	private int ID;
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Precio precio;
-	@ManyToOne(cascade = CascadeType.ALL)
 	
 	private boolean isHabilitada;
 	private float comisionComprador;

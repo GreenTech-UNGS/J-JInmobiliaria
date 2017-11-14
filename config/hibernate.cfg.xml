@@ -52,6 +52,8 @@
 		<mapping class="entities.Interesado" />
 		<mapping class="entities.Preferencia" />
 		<mapping class="entities.NotificacionCita" />
+		<mapping class="entities.OfrecimientoAlquiler" />
+		<mapping class="entities.OfrecimientoVenta" />
 		
 				
     </session-factory>

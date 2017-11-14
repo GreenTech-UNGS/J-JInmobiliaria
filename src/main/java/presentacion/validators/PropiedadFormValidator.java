@@ -52,7 +52,7 @@ public class PropiedadFormValidator implements ValidatorNew{
 	}
 	
 	private boolean isPrecioValid(){
-		return view.getTfPrecio().getText().matches("([0-9]*[\\.])?[0-9]+");
+		return true;// view.getTfPrecio().getText().matches("([0-9]*[\\.])?[0-9]+");
 	}
 	
 	private boolean isCalleValid(){

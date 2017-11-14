@@ -26,6 +26,37 @@ public class Propiedad {
 	@OneToOne(cascade = CascadeType.ALL)
 	private PropiedadOtrosDatos otrosDatos;
 	
+	@OneToMany(cascade = {CascadeType.ALL})
+	private List<HistoriaEstadoProp> estados;
+	
+	@OneToMany(cascade = {CascadeType.ALL})
+	private List<Foto> fotos;
+	
+	@Column(nullable = true, insertable = true, updatable = true)
+
+	@Enumerated(EnumType.ORDINAL)
+	private TipoOfrecimiento tipoOfrecimiento;
+	
+	@OneToOne(cascade = {CascadeType.MERGE})//TODO: podriamos ponerle persist
+	private Localidad localidad;
+	
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private Inmobiliaria inmobiliaria;
+	
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private Propietario propietario;
+	
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private OfrecimientoAlquiler ofrecimientoAlquiler;
+	
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private OfrecimientoVenta ofrecimientoVenta;
+	
+	public Propiedad() {
+		this.fotos = new ArrayList<>();
+		this.estados = new ArrayList<>();
+	}	
+	
 	public double getLat() {
 		return lat;
 	}
@@ -40,34 +71,6 @@ public class Propiedad {
 
 	public void setLon(double lon) {
 		this.lon = lon;
-	}
-
-	@OneToMany(cascade = {CascadeType.ALL})
-	private List<HistoriaEstadoProp> estados;
-	
-	@OneToMany(cascade = {CascadeType.ALL})
-	private List<Foto> fotos;
-	
-	@Column(nullable = true, insertable = true, updatable = true)
-
-	@Enumerated(EnumType.ORDINAL)
-	private TipoOfrecimiento tipoOfrecimiento;
-	
-	@OneToOne(cascade = {CascadeType.ALL})
-	private Precio precioTentativo;
-	
-	@OneToOne(cascade = {CascadeType.MERGE})//TODO: podriamos ponerle persist
-	private Localidad localidad;
-	
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	private Inmobiliaria inmobiliaria;
-	
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	private Propietario propietario;
-	
-	public Propiedad() {
-		this.fotos = new ArrayList<>();
-		this.estados = new ArrayList<>();
 	}
 
 	public String getIdentificador() {
@@ -108,14 +111,6 @@ public class Propiedad {
 
 	public void setDpto(String dpto) {
 		this.dpto = dpto;
-	}
-
-	public Precio getPrecioTentativo() {
-		return precioTentativo;
-	}
-
-	public void setPrecioTentativo(Precio precioTentativo) {
-		this.precioTentativo = precioTentativo;
 	}
 
 	public String getObsPublicas() {
@@ -192,5 +187,21 @@ public class Propiedad {
 
 	public void setOtrosDatos(PropiedadOtrosDatos otrosDatos) {
 		this.otrosDatos = otrosDatos;
+	}
+
+	public OfrecimientoAlquiler getOfrecimientoAlquiler() {
+		return ofrecimientoAlquiler;
+	}
+
+	public void setOfrecimientoAlquiler(OfrecimientoAlquiler ofrecimientoAlquiler) {
+		this.ofrecimientoAlquiler = ofrecimientoAlquiler;
+	}
+
+	public OfrecimientoVenta getOfrecimientoVenta() {
+		return ofrecimientoVenta;
+	}
+
+	public void setOfrecimientoVenta(OfrecimientoVenta ofrecimientoVenta) {
+		this.ofrecimientoVenta = ofrecimientoVenta;
 	}	
 }

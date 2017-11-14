@@ -85,14 +85,17 @@ public class PropiedadService {
 	
 	public Propiedad getEmptyPropiedad() {
 		Propiedad toRet = new Propiedad();
-		
-
+	
 		PropiedadOtrosDatos otrosDatos = new PropiedadOtrosDatos();
 		otrosDatos.setTipo(TipoPropiedad.Otro);
 		
-		toRet.setPrecioTentativo(new Precio(0, Moneda.PESOS));
+		OfrecimientoAlquiler ofrecimientoAlquiler = new OfrecimientoAlquiler();
+		ofrecimientoAlquiler.setOtrosGastos(new Precio(0, Moneda.PESOS));
+		ofrecimientoAlquiler.setPrecio(new Precio(0, Moneda.PESOS));
+		
 		toRet.setTipoOfrecimiento(TipoOfrecimiento.Alquiler);
 		toRet.setOtrosDatos(otrosDatos);
+		toRet.setOfrecimientoAlquiler(ofrecimientoAlquiler);
 		
 		return toRet;
 		
@@ -230,10 +233,11 @@ public class PropiedadService {
 
 		DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );
 
-		String dd2dec = df2.format(propiedad.getPrecioTentativo().getMonto());
+		//TODO
+		String dd2dec = "";//df2.format(propiedad.getPrecioTentativo().getMonto());
 
-		fichaPropiedad.setPrecio(dd2dec+" "
-				  				+propiedad.getPrecioTentativo().getMoneda());
+		fichaPropiedad.setPrecio(dd2dec);//+" "
+				  				//+propiedad.getPrecioTentativo().getMoneda());
 
 		fichaPropiedad.setProvincia(propiedad.getLocalidad().getProvincia().name());
 		fichaPropiedad.setLocalidad(propiedad.getLocalidad().getNombre());

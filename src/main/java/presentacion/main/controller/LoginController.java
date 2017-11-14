@@ -40,8 +40,8 @@ public class LoginController {
 		
 		ActionListener enter = (e -> login());
 		
-//		this.view.getBtnLogin().addActionListener(e -> login());
-		this.view.getBtnLogin().addActionListener(e -> this.mainViewController.showView());
+		this.view.getBtnLogin().addActionListener(e -> login());
+//		this.view.getBtnLogin().addActionListener(e -> this.mainViewController.showView());
 		this.view.getBtnRecuperarContrasea().addActionListener(e -> recuperarContrasena());
 		this.view.getTextPass().addActionListener(enter);
 		this.view.getTextUsuario().addActionListener(enter);
@@ -71,8 +71,6 @@ public class LoginController {
 		} catch (LogicaNegocioException e) {
 			msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
 		}
-		//this.mainViewController.showView();
-		//this.view.dispose();
 	}
 	
 	private void recuperarContrasena(){

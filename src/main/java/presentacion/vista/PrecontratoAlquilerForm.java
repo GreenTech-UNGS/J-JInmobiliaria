@@ -7,6 +7,10 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
+import presentacion.combo.MonedaComboBoxModel;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JSeparator;
@@ -14,119 +18,176 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 import javax.swing.JSpinner;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.SpinnerNumberModel;
 
 @SuppressWarnings("serial")
+@Singleton
 public class PrecontratoAlquilerForm extends JPanel{
 	private JTextField tfPrecio;
 	private JTextField tfMonto;
+	private JCheckBox chckbxHabilitar;
+	private JSpinner spinnerMeses;
+	private JSpinner spinnerIntervalo;
+	private JSpinner spinnerPorcentaje;
+	private JCheckBox chckbxAcumulativo;
+	
+	private MonedaComboBoxModel monedaBasico;
+	private MonedaComboBoxModel monedaOtros;
 	
 	@Inject
 	private PrecontratoAlquilerForm(){
 		super();
 		
-		this.setBounds(0, 0, 200, 75);
-		this.setPreferredSize(new Dimension(404, 368));
+		this.setPreferredSize(new Dimension(700, 210));
 		setLayout(null);
+		
+		chckbxHabilitar = new JCheckBox("Habilitar");
+		chckbxHabilitar.setBounds(33, 2, 65, 23);
+		add(chckbxHabilitar);
 		
 		
 		JLabel lblDatosBsicos = new JLabel("Datos b\u00E1sicos:");
+		lblDatosBsicos.setBounds(33, 30, 81, 14);
 		lblDatosBsicos.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDatosBsicos.setBounds(33, 30, 89, 14);
 		add(lblDatosBsicos);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(33, 57, 335, 2);
+		separator.setBounds(33, 49, 659, 2);
 		add(separator);
 		
-		JLabel lblPrecio = new JLabel("Precio:");
-		lblPrecio.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPrecio.setBounds(33, 70, 46, 14);
-		add(lblPrecio);
-		
 		tfPrecio = new JTextField();
-		tfPrecio.setBounds(73, 67, 89, 17);
+		tfPrecio.setBounds(134, 56, 86, 20);
 		add(tfPrecio);
 		tfPrecio.setColumns(10);
 		
+		JLabel lblPrecio = new JLabel("Precio:");
+		lblPrecio.setBounds(33, 59, 33, 14);
+		lblPrecio.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		add(lblPrecio);
+		
 		JLabel lblMoneda = new JLabel("Moneda:");
+		lblMoneda.setBounds(265, 59, 56, 14);
 		lblMoneda.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblMoneda.setBounds(205, 70, 46, 14);
 		add(lblMoneda);
 		
+		JComboBox<String> comboMonedaBasico = new JComboBox<>();
+		comboMonedaBasico.setBounds(326, 56, 102, 20);
+		add(comboMonedaBasico);
+		
 		JLabel lblMeses = new JLabel("Meses:");
+		lblMeses.setBounds(463, 59, 34, 14);
 		lblMeses.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblMeses.setBounds(33, 95, 46, 14);
 		add(lblMeses);
 		
-		JComboBox tfMoneda = new JComboBox();
-		tfMoneda.setBounds(261, 67, 89, 20);
-		add(tfMoneda);
-		
-		JCheckBox chckbxHabilitar = new JCheckBox("Habilitar");
-		chckbxHabilitar.setBounds(202, 93, 97, 23);
-		add(chckbxHabilitar);
+		spinnerMeses = new JSpinner();
+		spinnerMeses.setBounds(521, 56, 31, 20);
+		spinnerMeses.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		add(spinnerMeses);
 		
 		JLabel lblActualizacion = new JLabel("Actualizacion:");
+		lblActualizacion.setBounds(33, 81, 96, 14);
 		lblActualizacion.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblActualizacion.setBounds(33, 151, 89, 14);
 		add(lblActualizacion);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(33, 176, 335, 2);
+		separator_1.setBounds(33, 105, 659, 2);
 		add(separator_1);
 		
 		JLabel lblCada = new JLabel("Intervalo en meses:");
+		lblCada.setBounds(33, 116, 96, 14);
 		lblCada.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblCada.setBounds(33, 189, 97, 14);
 		add(lblCada);
 		
-		JSpinner spinnerIntervalo = new JSpinner();
-		spinnerIntervalo.setBounds(133, 186, 29, 20);
+		spinnerIntervalo = new JSpinner();
+		spinnerIntervalo.setBounds(164, 113, 31, 20);
+		spinnerIntervalo.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		add(spinnerIntervalo);
 		
-		JCheckBox chckbxAcumulativo = new JCheckBox("Acumulativo");
-		chckbxAcumulativo.setBounds(205, 185, 97, 23);
-		add(chckbxAcumulativo);
-		
 		JLabel lblPorcentaje = new JLabel("Porcentaje:");
+		lblPorcentaje.setBounds(265, 116, 56, 14);
 		lblPorcentaje.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPorcentaje.setBounds(33, 214, 69, 14);
 		add(lblPorcentaje);
 		
-		JSpinner spinnerPorcentaje = new JSpinner();
-		spinnerPorcentaje.setBounds(133, 211, 29, 20);
+		spinnerPorcentaje = new JSpinner();
+		spinnerPorcentaje.setBounds(326, 113, 47, 20);
+		spinnerPorcentaje.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(100), new Float(0.5)));
 		add(spinnerPorcentaje);
 		
+		chckbxAcumulativo = new JCheckBox("Acumulativo");
+		chckbxAcumulativo.setBounds(433, 112, 83, 23);
+		add(chckbxAcumulativo);
+		
 		JLabel lblOtrosDatos = new JLabel("Otros gastos:");
+		lblOtrosDatos.setBounds(33, 140, 96, 14);
 		lblOtrosDatos.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblOtrosDatos.setBounds(33, 262, 97, 14);
 		add(lblOtrosDatos);
 		
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(33, 287, 335, 2);
+		separator_2.setBounds(33, 159, 659, 2);
 		add(separator_2);
 		
 		JLabel lblMonto = new JLabel("Monto:");
+		lblMonto.setBounds(33, 169, 34, 14);
 		lblMonto.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblMonto.setBounds(33, 300, 46, 14);
 		add(lblMonto);
 		
 		tfMonto = new JTextField();
+		tfMonto.setBounds(134, 166, 86, 20);
 		tfMonto.setColumns(10);
-		tfMonto.setBounds(73, 300, 89, 17);
 		add(tfMonto);
 		
 		JLabel label = new JLabel("Moneda:");
+		label.setBounds(265, 166, 56, 14);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label.setBounds(205, 300, 46, 14);
 		add(label);
 		
-		JComboBox cbMonedaMonto = new JComboBox();
-		cbMonedaMonto.setBounds(261, 300, 89, 20);
-		add(cbMonedaMonto);
+		JComboBox<String> cbMonedaOtros = new JComboBox<>();
+		cbMonedaOtros.setBounds(326, 166, 102, 20);
+		add(cbMonedaOtros);
 		
-		JSpinner spinnerMeses = new JSpinner();
-		spinnerMeses.setBounds(73, 92, 29, 20);
-		add(spinnerMeses);
+		monedaBasico = new MonedaComboBoxModel();
+		monedaOtros = new MonedaComboBoxModel();
+		
+		comboMonedaBasico.setModel(monedaBasico);
+		cbMonedaOtros.setModel(monedaOtros);
+	}
+
+	public JTextField getTfPrecio() {
+		return tfPrecio;
+	}
+
+	public JTextField getTfMonto() {
+		return tfMonto;
+	}
+
+	public JCheckBox getChckbxHabilitar() {
+		return chckbxHabilitar;
+	}
+
+	public JSpinner getSpinnerMeses() {
+		return spinnerMeses;
+	}
+
+	public JSpinner getSpinnerIntervalo() {
+		return spinnerIntervalo;
+	}
+
+	public JSpinner getSpinnerPorcentaje() {
+		return spinnerPorcentaje;
+	}
+
+	public JCheckBox getChckbxAcumulativo() {
+		return chckbxAcumulativo;
+	}
+
+	public MonedaComboBoxModel getMonedaBasico() {
+		return monedaBasico;
+	}
+
+	public MonedaComboBoxModel getMonedaOtros() {
+		return monedaOtros;
 	}
 }
