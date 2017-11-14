@@ -39,23 +39,19 @@ public class InteresadoService {
 		return toRet;
 	}
 	
-	public boolean existeInteresadoCon(Persona t) {
-		
-		return interesadoDao.existeInteresadoCon(t);
-		
-	}
-	
 	public void saveInteresado(Interesado toSave) throws LogicaNegocioException {
-		
-		if(existeInteresadoCon(toSave.getPersona()))
-			throw new LogicaNegocioException("Ya existe un interesado con la misma credencial.");
-	
+			
 		interesadoDao.save(toSave);
 	}
 	
 	public void editInteresado(Interesado toSave) throws LogicaNegocioException {
 		
 		interesadoDao.save(toSave);
+	}
+
+	public void removeInteresado(Interesado toRemove){
+		
+		interesadoDao.remove(toRemove);
 	}
 
 	public List<Interesado> getAllByFiltro(InteresadoFiltro filtro){
