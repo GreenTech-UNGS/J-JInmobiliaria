@@ -95,7 +95,8 @@ public class ContratoAlquilerController {
 		
 			view.getTfIdPropiedad().setText(propiedad.getIdentificador());
 			currentContrato.setPropiedad(propiedad);
-			view.getTextPrecio().setText(propiedad.getPrecioTentativo().getMonto() + "");
+			//TODO
+			//view.getTextPrecio().setText(propiedad.getPrecioTentativo().getMonto() + "");
 			
 		}
 	}

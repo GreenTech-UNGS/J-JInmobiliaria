@@ -87,8 +87,9 @@ public class ContratoVentaController {
 		if(propiedad != null) {
 		
 			view.getTfPropiedad().setText(propiedad.getIdentificador());
-			view.getTfPrecio().setText(String.valueOf(propiedad.getPrecioTentativo().getMonto()));
-			view.getTfMoneda().setText(propiedad.getPrecioTentativo().getMoneda().toString());
+			//TODO
+			//view.getTfPrecio().setText(String.valueOf(propiedad.getPrecioTentativo().getMonto()));
+			//view.getTfMoneda().setText(propiedad.getPrecioTentativo().getMoneda().toString());
 			currentContrato.setPropiedad(propiedad);
 		}	
 	}
