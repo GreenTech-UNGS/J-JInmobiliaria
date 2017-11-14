@@ -16,8 +16,9 @@ public class PropiedadesTableModel extends BaseTableModel<Propiedad>{
 	public PropiedadesTableModel() {
 		super();
 		super.addColumn("Codigo", false, 100);
-		super.addColumn("Direccion", false, 400);
-		super.addColumn("Precio", false, 100);
+		super.addColumn("Direccion", false, 350);
+		super.addColumn("Precio Venta", false, 125);
+		super.addColumn("Precio Alquiler", false, 125);
 		super.addColumn("Estado", false, 100);
 		
 	}
@@ -30,14 +31,14 @@ public class PropiedadesTableModel extends BaseTableModel<Propiedad>{
 		String precioAlquiler = "";
 		
 		if(t.getOfrecimientoVenta().isHabilitada())
-			precioVenta = "Venta: " + t.getOfrecimientoVenta().getPrecio() + 
+			precioVenta = t.getOfrecimientoVenta().getPrecio().getMonto() + 
 			t.getOfrecimientoVenta().getPrecio().getMoneda().toString();
 		
 		if(t.getOfrecimientoAlquiler().isHabilitada())
-			precioVenta = "Venta: " + t.getOfrecimientoAlquiler().getPrecio() + 
+			precioVenta = t.getOfrecimientoAlquiler().getPrecio().getMonto() + 
 			t.getOfrecimientoAlquiler().getPrecio().getMoneda().toString();
 		
-		String precio = precioVenta + " " + precioAlquiler;
+		
 		String piso = "";
 		String depto = "";
 		if(!t.getPiso().equals("")){
@@ -49,7 +50,8 @@ public class PropiedadesTableModel extends BaseTableModel<Propiedad>{
 		
 		Object[] fila = {t.getIdentificador(),
 						direccion,
-						precio,
+						precioVenta,
+						precioAlquiler,
 						propService.getCurrentEstado(t).toString()};
 		
 		return fila;

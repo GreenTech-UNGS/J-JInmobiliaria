@@ -81,8 +81,6 @@ public class PropiedadService {
 		propiedadDao.save(p);
 	}
 	
-	
-	
 	public Propiedad getEmptyPropiedad() {
 		Propiedad toRet = new Propiedad();
 	
@@ -93,7 +91,12 @@ public class PropiedadService {
 		ofrecimientoAlquiler.setOtrosGastos(new Precio(0, Moneda.PESOS));
 		ofrecimientoAlquiler.setPrecio(new Precio(0, Moneda.PESOS));
 		
+		OfrecimientoVenta ofrecimientoVenta = new OfrecimientoVenta();
+		ofrecimientoVenta.setPrecio(new Precio(0, Moneda.PESOS));
+		
 		toRet.setTipoOfrecimiento(TipoOfrecimiento.Alquiler);
+		
+		toRet.setOfrecimientoVenta(ofrecimientoVenta);
 		toRet.setOtrosDatos(otrosDatos);
 		toRet.setOfrecimientoAlquiler(ofrecimientoAlquiler);
 		

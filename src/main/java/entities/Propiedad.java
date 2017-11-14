@@ -46,10 +46,10 @@ public class Propiedad {
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private Propietario propietario;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne(cascade = {CascadeType.ALL})
 	private OfrecimientoAlquiler ofrecimientoAlquiler;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne(cascade = {CascadeType.ALL})
 	private OfrecimientoVenta ofrecimientoVenta;
 	
 	public Propiedad() {
