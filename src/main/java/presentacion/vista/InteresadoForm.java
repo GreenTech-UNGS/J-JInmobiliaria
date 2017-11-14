@@ -65,8 +65,8 @@ public class InteresadoForm extends JDialog{
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		
-		cbCredencial = new JComboBox();
-		cbCredencial.setBounds(237, 69, 67, 20);
+		cbCredencial = new JComboBox<>();
+		cbCredencial.setBounds(197, 69, 67, 20);
 		getContentPane().add(cbCredencial);
 		
 		JLabel lblDatosPersonales = new JLabel("Datos personales");
@@ -219,12 +219,12 @@ public class InteresadoForm extends JDialog{
 		btnCancelar.setBounds(237, 415, 136, 34);
 		getContentPane().add(btnCancelar);
 		
-		cbTipoOfrec = new JComboBox();
-		cbTipoOfrec.setBounds(93, 262, 124, 20);
+		cbTipoOfrec = new JComboBox<>();
+		cbTipoOfrec.setBounds(84, 314, 104, 20);
 		getContentPane().add(cbTipoOfrec);
 		
-		cbProvincia = new JComboBox();
-		cbProvincia.setBounds(93, 287, 124, 20);
+		cbProvincia = new JComboBox<>();
+		cbProvincia.setBounds(84, 292, 104, 20);
 		getContentPane().add(cbProvincia);
 		
 		comboModelProvincia = new ProvinciaComboBoxModel();
@@ -317,12 +317,8 @@ public class InteresadoForm extends JDialog{
 		this.tableTel = tableTel;
 	}
 
-	public JComboBox getCbCredencial() {
+	public JComboBox<String> getCbCredencial() {
 		return cbCredencial;
-	}
-
-	public void setCbCredencial(JComboBox cbCredencial) {
-		this.cbCredencial = cbCredencial;
 	}
 
 	public JTextField getTfCredencial() {

@@ -102,22 +102,13 @@ public class InteresadoController {
 	}
 	
 	private void fillCombos() {
-			
-		tipoCredencialModel.actualize(Arrays.asList(TipoCredencial.values()));
-		AutoCompleteDecorator.decorate(view.getCbCredencial());
 		
-		this.view.getCbTipoOfrec().removeAllItems();
+		this.view.getCbCredencial().setModel(tipoCredencialModel);
+		tipoCredencialModel.clearAndActualize(Arrays.asList(TipoCredencial.values()));
+		AutoCompleteDecorator.decorate(view.getCbCredencial());
+
 		this.view.getCbTipoOfrec().setModel(tipoOfrCombo);
 		tipoOfrCombo.actualize(Arrays.asList(TipoOfrecimiento.values()));
-		
-		this.view.getCbCredencial().removeAllItems();
-		this.view.getCbCredencial().setModel(tipoCredencialModel);
-		tipoCredencialModel.actualize(Arrays.asList(TipoCredencial.values()));
-		tipoCredencialModel.setSelected(TipoCredencial.DNI);
-		
-		view.getCbMoneda().removeAllItems();
-		this.view.getCbMoneda().setModel(monedaModel);
-		monedaModel.actualize(Arrays.asList(Moneda.values()));
 
 		view.getComboModelProvincia().clearAndActualize(Arrays.asList(Provincia.values()));
 		AutoCompleteDecorator.decorate(view.getCbProvincia());
