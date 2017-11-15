@@ -31,7 +31,7 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		String precioHasta = view.getTfHastaPrecio().getText();
 		
 		TipoCredencial tipoCred = TipoCredencial.valueOf((String) view.getCbCredencial().getSelectedItem());
-		TipoOfrecimiento tipoOfrec = TipoOfrecimiento.valueOf((String) view.getCbTipoOfrec().getSelectedItem());
+		TipoOfrecimiento tipoOfrec = view.getComboModelOfrecimiento().getSelected();
 		
 		Localidad localidad = view.getComboModelLocalidad().getSelected();
 		
