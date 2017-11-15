@@ -11,6 +11,7 @@ import presentacion.combo.LocalidadComboBoxModel;
 import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.ProvinciaComboBoxModel;
 import presentacion.combo.TipoCitaComboBoxModel;
+import presentacion.combo.TipoOfrecimientoComboBoxModel;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -46,6 +47,7 @@ public class InteresadoForm extends JDialog{
 	private ProvinciaComboBoxModel comboModelProvincia;
 	private LocalidadComboBoxModel comboModelLocalidad;
 	private MonedaComboBoxModel comboModelMoneda;
+	private TipoOfrecimientoComboBoxModel comboModelOfrecimiento;
 	private JButton btnGuardarCambios;
 	private JLabel lblMoneda;
 	private JComboBox<String> cbMoneda;
@@ -65,8 +67,8 @@ public class InteresadoForm extends JDialog{
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		
-		cbCredencial = new JComboBox<>();
-		cbCredencial.setBounds(197, 69, 67, 20);
+		cbCredencial = new JComboBox();
+		cbCredencial.setBounds(237, 69, 67, 20);
 		getContentPane().add(cbCredencial);
 		
 		JLabel lblDatosPersonales = new JLabel("Datos personales");
@@ -219,12 +221,12 @@ public class InteresadoForm extends JDialog{
 		btnCancelar.setBounds(237, 415, 136, 34);
 		getContentPane().add(btnCancelar);
 		
-		cbTipoOfrec = new JComboBox<>();
-		cbTipoOfrec.setBounds(84, 314, 104, 20);
+		cbTipoOfrec = new JComboBox();
+		cbTipoOfrec.setBounds(93, 262, 124, 20);
 		getContentPane().add(cbTipoOfrec);
 		
-		cbProvincia = new JComboBox<>();
-		cbProvincia.setBounds(84, 292, 104, 20);
+		cbProvincia = new JComboBox();
+		cbProvincia.setBounds(93, 287, 124, 20);
 		getContentPane().add(cbProvincia);
 		
 		comboModelProvincia = new ProvinciaComboBoxModel();
@@ -275,6 +277,15 @@ public class InteresadoForm extends JDialog{
 		tfHastaMetros.setBounds(108, 362, 109, 20);
 		getContentPane().add(tfHastaMetros);
 		tfHastaMetros.setColumns(10);
+
+		
+		comboModelOfrecimiento = new TipoOfrecimientoComboBoxModel();
+		cbTipoOfrec.setModel(comboModelOfrecimiento);
+		
+	}
+
+	public TipoOfrecimientoComboBoxModel getComboModelOfrecimiento() {
+		return comboModelOfrecimiento;
 	}
 
 	public JButton getBtnAgregarTelefono() {
@@ -317,8 +328,12 @@ public class InteresadoForm extends JDialog{
 		this.tableTel = tableTel;
 	}
 
-	public JComboBox<String> getCbCredencial() {
+	public JComboBox getCbCredencial() {
 		return cbCredencial;
+	}
+
+	public void setCbCredencial(JComboBox cbCredencial) {
+		this.cbCredencial = cbCredencial;
 	}
 
 	public JTextField getTfCredencial() {
