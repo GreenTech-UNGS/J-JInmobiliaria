@@ -16,9 +16,15 @@ import javax.swing.JTextField;
 
 import com.google.inject.Singleton;
 
+import presentacion.combo.MonedaComboBoxModel;
+
+import javax.swing.JComboBox;
+import javax.swing.SpinnerNumberModel;
+
 @SuppressWarnings("serial")
 @Singleton
 public class ContratoVentaForm extends JDialog{
+	
 	private JTextField tfIdContrato;
 	private JTextField tfCliente;
 	private JTextField tfPropiedad;
@@ -27,8 +33,9 @@ public class ContratoVentaForm extends JDialog{
 	private JButton btnCancelarContVen;
 	private JButton btnBuscarCliente;
 	private JButton btnBuscarPropiedad;
-	private JTextField tfMoneda;
-	private JSpinner spinnerPorcentaje;
+	private JSpinner spinnerComprador;
+	private JSpinner spinnerVendedor;
+	private MonedaComboBoxModel monedaCombo;
 	
 	public ContratoVentaForm() {
 		super();
@@ -58,18 +65,13 @@ public class ContratoVentaForm extends JDialog{
 		
 		JLabel lblPrecio = new JLabel("Precio:");
 		lblPrecio.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPrecio.setBounds(287, 69, 45, 14);
+		lblPrecio.setBounds(256, 72, 45, 14);
 		getContentPane().add(lblPrecio);
 		
 		JLabel lblMoneda = new JLabel("Moneda:");
 		lblMoneda.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblMoneda.setBounds(287, 94, 46, 14);
+		lblMoneda.setBounds(256, 94, 77, 14);
 		getContentPane().add(lblMoneda);
-		
-		JLabel lblPjeAdm = new JLabel("Porcentaje gastos administrativos:");
-		lblPjeAdm.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPjeAdm.setBounds(27, 274, 175, 14);
-		getContentPane().add(lblPjeAdm);
 
 		JLabel lblDatosGenerales = new JLabel("Datos generales");
 		lblDatosGenerales.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -122,10 +124,6 @@ public class ContratoVentaForm extends JDialog{
 		btnCancelarContVen.setBounds(256, 299, 113, 36);
 		getContentPane().add(btnCancelarContVen);
 		
-		spinnerPorcentaje = new JSpinner();
-		spinnerPorcentaje.setBounds(206, 271, 45, 20);
-		getContentPane().add(spinnerPorcentaje);
-		
 		btnBuscarPropiedad = new JButton("");
 		btnBuscarPropiedad.setBounds(192, 115, 27, 23);
 		Image imgLup = new ImageIcon(this.getClass().getResource("/buscar.png")).getImage();
@@ -137,15 +135,32 @@ public class ContratoVentaForm extends JDialog{
 		btnBuscarCliente.setIcon(new ImageIcon(imgLup));
 		getContentPane().add(btnBuscarCliente);
 		
-		tfMoneda = new JTextField();
-		tfMoneda.setBounds(332, 91, 127, 20);
-		getContentPane().add(tfMoneda);
-		tfMoneda.setColumns(10);
-		tfMoneda.setEditable(false);
+		JComboBox<String> cbMoneda = new JComboBox<>();
+		cbMoneda.setBounds(332, 88, 127, 24);
+		getContentPane().add(cbMoneda);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(125, 216, 334, 44);
-		getContentPane().add(scrollPane);
+		JLabel lblComisionComprador = new JLabel("Comision comprador:");
+		lblComisionComprador.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblComisionComprador.setBounds(27, 216, 137, 15);
+		getContentPane().add(lblComisionComprador);
+		
+		JLabel lblComisionVendedro = new JLabel("Comision vendedor:");
+		lblComisionVendedro.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblComisionVendedro.setBounds(27, 243, 127, 15);
+		getContentPane().add(lblComisionVendedro);
+		
+		spinnerComprador = new JSpinner();
+		spinnerComprador.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(100), new Float(0.5)));
+		spinnerComprador.setBounds(182, 213, 49, 20);
+		getContentPane().add(spinnerComprador);
+		
+		spinnerVendedor = new JSpinner();
+		spinnerVendedor.setBounds(182, 240, 49, 20);
+		spinnerVendedor.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(100), new Float(0.5)));
+		getContentPane().add(spinnerVendedor);
+		
+		monedaCombo = new MonedaComboBoxModel();
+		cbMoneda.setModel(monedaCombo);
 
 	}
 
@@ -229,15 +244,15 @@ public class ContratoVentaForm extends JDialog{
 		this.tfPrecio = tfPrecio;
 	}
 
-	public JTextField getTfMoneda() {
-		return tfMoneda;
+	public JSpinner getSpinnerComprador() {
+		return spinnerComprador;
 	}
 
-	public void setTfMoneda(JTextField tfMoneda) {
-		this.tfMoneda = tfMoneda;
+	public JSpinner getSpinnerVendedor() {
+		return spinnerVendedor;
 	}
 
-	public JSpinner getSpinnerPorcentaje() {
-		return spinnerPorcentaje;
+	public MonedaComboBoxModel getMonedaCombo() {
+		return monedaCombo;
 	}
 }

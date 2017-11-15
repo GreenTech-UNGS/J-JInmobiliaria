@@ -20,8 +20,7 @@ public class ContratoVentaFormValidator implements ValidatorNew{
 		return isIdValid() 
 				&& isPropiedadValid()
 				&& isClienteValid()
-				&& isPrecioValid()
-				;
+				&& isPrecioValid();
 	}
 
 	@Override
@@ -35,8 +34,6 @@ public class ContratoVentaFormValidator implements ValidatorNew{
 			toRet += "\n- No ha seleccionado un cliente valido";
 		if(!isPrecioValid())
 			toRet += "\n- El precio no es valido";
-		if(!isGastosAdmValid())
-			toRet += "\n- El porcentaje de gastos administrativos debe ser mayor a cero";	
 		
 		return toRet;
 		
@@ -73,8 +70,5 @@ public class ContratoVentaFormValidator implements ValidatorNew{
 	private boolean isPrecioValid(){
 		return view.getTfPrecio().getText().matches("([0-9]*[\\.])?[0-9]+");
 	}	
-		
-	private boolean isGastosAdmValid(){
-		return ((float) view.getSpinnerPorcentaje().getValue() > 0);
-	}
+
 }

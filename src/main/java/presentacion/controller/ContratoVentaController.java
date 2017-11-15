@@ -5,69 +5,49 @@ import com.google.inject.Inject;
 import entities.Cliente;
 import entities.ContratoVenta;
 import entities.Moneda;
+import entities.OfrecimientoVenta;
 import entities.Propiedad;
 import misc.Binder;
 import model.ContratoService;
 import model.LogicaNegocioException;
 import model.ReservaService;
+import presentacion.mappers.ContratoVentaMapper;
 import presentacion.validators.ContratoVentaFormValidator;
 import presentacion.validators.MessageShow;
 import presentacion.vista.ContratoVentaForm;
 
 public class ContratoVentaController {
 	
-	public static ContratoVentaController instance;
 	private ContratoVentaForm view;
-	ElegirClienteController elegirCliente;
-	ElegirPropiedadController elegirProp;
-	ContratoVenta currentContrato;
-	ContratoService contratoService;
-	ReservaService reservaService;
+	@Inject private ElegirClienteController elegirCliente;
+	@Inject private ElegirPropiedadController elegirProp;
+	@Inject private ContratoService contratoService;
+	@Inject private ReservaService reservaService;
+
+	@Inject private ContratoVentaFormValidator contratoVentaValidator;
+	@Inject private ContratoVentaMapper mapper;
+	
+	@Inject private MessageShow msgShw;
+
+	private ContratoVenta currentContrato;
 	
 	@Inject
-	ContratoVentaFormValidator contratoVentaValidator;
-	
-	Binder<ContratoVenta> binder;
-	
-	MessageShow msgShw;
-	
-	@Inject
-	private ContratoVentaController(ContratoVentaForm view,
-			ElegirClienteController elegirCliente,
-			ElegirPropiedadController elegirProp, 
-			ContratoService contratoService,
-			ReservaService reservaService,
-			MessageShow msgShw){
+	private ContratoVentaController(ContratoVentaForm view){
 		
 		this.view = view;
-		this.elegirCliente = elegirCliente;
-		this.elegirProp = elegirProp;
-		this.contratoService = contratoService;
-		this.reservaService = reservaService;
-		this.msgShw = msgShw;
-		
-		this.binder = new Binder<>();
 		
 		view.getBtnCancelarContVen().addActionListener(e -> view.setVisible(false));
 		view.getBtnBuscarCliente().addActionListener(e -> elegirCliente());
 		view.getBtnBuscarPropiedad().addActionListener(e -> elegirPropiedad());
 		view.getBtnGuardarContVen().addActionListener(e -> guardarContrato());
 
-		binder.bind("monto.monto", () -> Double.parseDouble(view.getTfMonto().getText()),
-				v -> view.getTfMonto().setText(v.toString()));
-		binder.bind("monto.moneda", () -> Moneda.valueOf(view.getTfMoneda().getText()),
-				t -> view.getTfMoneda().setText(t.toString()));
-		binder.bind("identificador", view.getTfIdContrato());
-		binder.bind("gastosAdmin",
-				view.getSpinnerPorcentaje()::getValue,
-				f -> view.getSpinnerPorcentaje().setValue(f));
 		
 	}
 	
 	public void showView(){
 			
 			view.setVisible(true);
-		}
+	}
 	
 	private void elegirCliente(){
 		
@@ -87,19 +67,29 @@ public class ContratoVentaController {
 		if(propiedad != null) {
 		
 			view.getTfPropiedad().setText(propiedad.getIdentificador());
-			view.getTfPrecio().setText(String.valueOf(propiedad.getOfrecimientoVenta().getPrecio().getMonto()));
-			view.getTfMoneda().setText(propiedad.getOfrecimientoVenta().getPrecio().getMoneda().toString());
 			currentContrato.setPropiedad(propiedad);
+			
+			llenaDatosOfrecimiento();
 		}	
 	}
 	
+	private void llenaDatosOfrecimiento() {
+		
+		OfrecimientoVenta o = currentContrato.getPropiedad().getOfrecimientoVenta();
+		
+		view.getTfPrecio().setText(o.getPrecio().getMonto() + "");
+		view.getMonedaCombo().setSelected(o.getPrecio().getMoneda());
+		view.getSpinnerComprador().setValue(o.getComisionComprador());
+		view.getSpinnerVendedor().setValue(o.getComisionVendedor());
+		
+	}
+
 	public void guardarContrato(){
 		
 		//tendria que pasar por el validador
 		if(!view.getTfIdContrato().equals("")){		
 			currentContrato.setIdentificador(view.getTfIdContrato().getText());
-			binder.setObjective(currentContrato);
-			binder.fillBean();
+			mapper.fillBean(currentContrato);
 			
 			try {
 				contratoService.saveContratoVenta(currentContrato);
@@ -118,8 +108,8 @@ public class ContratoVentaController {
 	public void setModeNew(){
 		
 		currentContrato = contratoService.getNewContratoVenta();
-		binder.setObjective(currentContrato);
-		binder.fillFields();
+		
+		mapper.fillFields(currentContrato);
 		
 		view.getTfCliente().setText("");
 		view.getTfPropiedad().setText("");
