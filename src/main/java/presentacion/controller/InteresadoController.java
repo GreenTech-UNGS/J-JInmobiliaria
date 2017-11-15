@@ -107,9 +107,10 @@ public class InteresadoController {
 		tipoCredencialModel.clearAndActualize(Arrays.asList(TipoCredencial.values()));
 		AutoCompleteDecorator.decorate(view.getCbCredencial());
 
-		this.view.getCbTipoOfrec().setModel(tipoOfrCombo);
-		tipoOfrCombo.actualize(Arrays.asList(TipoOfrecimiento.values()));
+		view.getComboModelOfrecimiento().clearAndActualize(Arrays.asList(TipoOfrecimiento.values()));
 
+		this.view.getComboModelMoneda().clearAndActualize(Arrays.asList(Moneda.values()));
+		
 		view.getComboModelProvincia().clearAndActualize(Arrays.asList(Provincia.values()));
 		AutoCompleteDecorator.decorate(view.getCbProvincia());
 		
