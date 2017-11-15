@@ -4,5 +4,9 @@ public enum TipoOfrecimiento {
 
 	Alquiler,
 	Venta,
-	Alquileryventa
+	Alquileryventa {@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Alquiler y Venta";
+	}}
 }
