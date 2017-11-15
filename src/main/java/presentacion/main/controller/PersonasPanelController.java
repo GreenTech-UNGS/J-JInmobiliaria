@@ -68,7 +68,6 @@ public class PersonasPanelController {
 		this.view.getBtnDeshabilitar().addActionListener(e -> deshabilitarUsuario());
 		this.view.getBtnAgregarInteresado().addActionListener(e -> agregarInteresado());
 		this.view.getBtnEditarInteresado().addActionListener(e -> editarInteresado());
-		this.view.getBtnEliminarInteresado().addActionListener(e -> eliminarInteresado());
 		this.view.getBtnAplicarFiltroUsuarios().addActionListener(e -> aplicarFiltroUsuario());
 		this.view.getBtnRemoverFiltroUsuarios().addActionListener(e -> removerFiltroUsuarios());
 		this.view.getBtnAplicarFiltroInteresados().addActionListener(e -> aplicarFiltroInteresado());
@@ -102,16 +101,7 @@ public class PersonasPanelController {
 			this.fillTableInteresados();
 		}
 	}
-
-	private void eliminarInteresado() {
-		int select = this.view.getTableInteresados().getSelectedRow();
-		
-		if (select!=-1){
-			interesadoService.removeInteresado(this.interesadosTable.getRow(select));
-			this.fillTableInteresados();
-		}
-	}
-
+	
 	private void editarPropietario() {
 		int select = this.view.getTablePropietarios().getSelectedRow();
 		

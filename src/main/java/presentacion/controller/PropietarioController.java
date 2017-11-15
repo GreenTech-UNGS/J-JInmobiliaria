@@ -1,7 +1,6 @@
 package presentacion.controller;
 
 import com.google.inject.Inject;
-
 import entities.Persona;
 import entities.Persona.TipoCredencial;
 import entities.Propietario;
@@ -26,7 +25,6 @@ public class PropietarioController {
 	private PropietarioFormValidator propietarioValidator;
 	
 	@Inject
-	
 	private TipoCredencialComboBoxModel tipoCredencialModel;
 	private TelefonoTableModel telTable;
 	
@@ -34,7 +32,6 @@ public class PropietarioController {
 	private ElegirPersonaController elegirPersona;
 	private Propietario currentPropietario;
 	private Binder<Propietario> binder;
-	
 	private MessageShow msgShw;
 	
 	@Inject
@@ -62,8 +59,7 @@ public class PropietarioController {
 		view.getBtnAgregarTelefono().addActionListener(e -> agregaTelefono());
 		view.getBtnBorrarTelefono().addActionListener(e -> borrarTelefono());
 		view.getBtnGuardarCambios().addActionListener(e -> actualizarPropietario());
-		
-		
+
 		binder.bind("persona.nombre",
 				view.getTextNombre()::getText,
 				s -> view.getTextNombre().setText((String)s));
@@ -79,8 +75,7 @@ public class PropietarioController {
 		binder.bind("persona.tipoCred",
 				tipoCredencialModel::getSelected,
 				t -> tipoCredencialModel.setSelected((TipoCredencial)t));
-		
-		
+
 		fillCombos();
 		fillTables();		
 	}
@@ -208,4 +203,6 @@ public class PropietarioController {
 	public void closeView() {
 		view.setVisible(false);
 	}
+
+
 }

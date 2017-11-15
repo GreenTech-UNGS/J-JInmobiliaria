@@ -1,19 +1,20 @@
 package presentacion.controller;
 
-import javax.swing.ListSelectionModel;
-
 import com.google.inject.Inject;
-
 import entities.Propietario;
 import model.PropietarioService;
 import presentacion.table.PropietariosTableModel;
 import presentacion.vista.ElegirPropietarioView;
+
+import javax.swing.*;
 
 public class ElegirPropietarioController{
 	
 	private ElegirPropietarioView view;
 	private PropietarioService propietarioService;
 	private PropietariosTableModel tableModelProp;
+
+
 	PropietarioController propietarioController;
 	
 	@Inject
@@ -28,7 +29,7 @@ public class ElegirPropietarioController{
 		fillTableProp();
 		
 		this.view.getBtnAgregarOtro().addActionListener(e -> agregarOtroPropietario());
-		
+
 	}
 	private void agregarOtroPropietario() {
 		propietarioController.setModeNew();

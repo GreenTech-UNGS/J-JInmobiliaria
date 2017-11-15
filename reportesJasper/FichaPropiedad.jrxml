@@ -2,14 +2,9 @@
 <!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FichaPropiedad" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="282e9adc-4b6e-480b-9607-d7e92ecc59f3">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<property name="net.sf.jasperreports.components.map.key" value=" AIzaSyDbgE9mCGl6AFP71iq-M1vUe8cTwhf8HOo "/>
-	<property name="net.sf.jasperreports.components.map.version" value=""/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="metrosCuadrados" class="java.lang.String">
-		<fieldDescription><![CDATA[metrosCuadrados]]></fieldDescription>
-	</field>
 	<field name="tipoPropiedad" class="java.lang.String">
 		<fieldDescription><![CDATA[tipoPropiedad]]></fieldDescription>
 	</field>
@@ -49,7 +44,7 @@
 	<field name="localidad" class="java.lang.String">
 		<fieldDescription><![CDATA[localidad]]></fieldDescription>
 	</field>
-	<field name="metrosCuadrados_1" class="java.lang.String">
+	<field name="metrosCuadrados" class="java.lang.String">
 		<fieldDescription><![CDATA[metrosCuadrados]]></fieldDescription>
 	</field>
 	<field name="lat" class="java.lang.Double">
@@ -133,13 +128,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{provincia}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="380" y="36" width="174" height="30" uuid="7312897c-2349-4d31-92de-4ed4dc319916"/>
-				<textElement>
-					<font fontName="Arial" size="14" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="380" y="10" width="170" height="18" uuid="94b1faf6-650f-4db8-a660-c2f7abf75316"/>
 				<textElement textAlignment="Center">
@@ -176,6 +164,13 @@
 				</textElement>
 				<text><![CDATA[Cantidad de Ambientes:]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="380" y="36" width="174" height="30" uuid="7312897c-2349-4d31-92de-4ed4dc319916"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

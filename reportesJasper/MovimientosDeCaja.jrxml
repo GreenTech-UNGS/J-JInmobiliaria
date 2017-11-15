@@ -77,7 +77,7 @@
 					<textFieldExpression><![CDATA[$V{monto1}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="343" y="2" width="77" height="20" uuid="5d539b66-56b9-4539-ad55-1cf85a56b16b"/>
+					<reportElement x="343" y="2" width="77" height="18" uuid="5d539b66-56b9-4539-ad55-1cf85a56b16b"/>
 					<textElement>
 						<font fontName="Arial" size="10" isBold="true"/>
 					</textElement>
@@ -152,14 +152,14 @@
 		<band/>
 	</columnFooter>
 	<pageFooter>
-		<band height="17">
+		<band height="25">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="543f269c-e640-4303-bf6b-ecee88c76636"/>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="21" backcolor="#E6E6E6" uuid="543f269c-e640-4303-bf6b-ecee88c76636"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="f6cc8abf-e078-4b5c-bbc0-46bf375d4e87"/>
+				<reportElement mode="Opaque" x="515" y="6" width="40" height="13" backcolor="#E6E6E6" uuid="f6cc8abf-e078-4b5c-bbc0-46bf375d4e87"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">

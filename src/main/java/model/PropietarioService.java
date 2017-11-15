@@ -1,21 +1,17 @@
 package model;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+import dto.PendientesPropietariosDTO;
+import dto.PropietariosDTO;
+import entities.*;
+import entities.Persona.TipoCredencial;
+import filtros.PropietarioFiltro;
+import persistencia.dao.iface.PropietarioDao;
+
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
-
-import dto.PendientesPropietariosDTO;
-import entities.PagoPropietario;
-import entities.Persona;
-import entities.Persona.TipoCredencial;
-import entities.Precio;
-import entities.Propiedad;
-import entities.Propietario;
-import filtros.PropietarioFiltro;
-import persistencia.dao.iface.PropietarioDao;
 
 @Singleton
 public class PropietarioService {
@@ -118,5 +114,37 @@ public class PropietarioService {
 		return toRet;
 		
 	}
-	
+
+	public List<PropietariosDTO> propietariosReporte() {
+
+		List<Propietario> lista = propietarioDao.getAll();
+		List<PropietariosDTO> toRet;
+		toRet = lista.stream()
+			.map((Propietario p) ->
+				{
+				PropietariosDTO dto = new PropietariosDTO();
+				Persona persona = p.getPersona();
+				dto.setApellido( persona.getApellido());
+				dto.setEmail(persona.getEmail());
+				dto.setNombre(persona.getNombre());
+				dto.setTipoCredencial(persona.getTipoCred().toString());
+				dto.setCredencialStr(persona.getCredencial());
+				String telephones = getTelefonosString(p.getPersona());
+				dto.setTelefonos( telephones );
+				return dto;
+			}).sorted((p1, p2) -> p1.getApellido().compareTo(p2.getApellido()))
+			.collect(Collectors.toList());
+		return toRet;
+	}
+
+	private String getTelefonosString(Persona p){
+		String toRet  = "";
+
+		for (Telefono t : p.getTelefonos()) {
+			toRet += t.getNumero() + " " + t.getTipo() + " ";
+		}
+
+		return toRet;
+	}
+
 }
