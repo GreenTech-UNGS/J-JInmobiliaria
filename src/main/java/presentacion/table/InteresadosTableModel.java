@@ -7,9 +7,10 @@ public class InteresadosTableModel extends BaseTableModel<Interesado> {
 	
 	public InteresadosTableModel(){
 		
-		super.addColumn("Credencial", false, 100);
+		super.addColumn("Fecha", false, 100);
 		super.addColumn("Nombre", false, 100);
 		super.addColumn("Apellido", false, 100);
+		super.addColumn("Operacion", false, 100);
 	}
 
 	@Override
@@ -17,9 +18,10 @@ public class InteresadosTableModel extends BaseTableModel<Interesado> {
 		
 		String credencial = t.getPersona().getTipoCred().toString() + " " + t.getPersona().getCredencial();
 		
-		Object[] fila = {credencial,
+		Object[] fila = {"Fecha de alta",
 				t.getPersona().getNombre(),
 				t.getPersona().getApellido(),
+				t.getPreferencia().getTipoOfrecimiento().toString(),
 				"yolo"};
 
 		return fila;
