@@ -37,6 +37,22 @@ public class LocalidadDaoHibernate extends DaoHibernate<Localidad> implements Lo
 	}
 
 	@Override
+	public List<Provincia> getProvincias(){
+		
+		initTransaction();
+		
+		Criteria q = sesion.createCriteria(Provincia.class);
+		
+		List<Provincia> toRet = q.list();
+		
+		finishTransaction();
+		
+		actualizeList(toRet);
+		return toRet;
+		
+	}
+
+	@Override
 	public List<Localidad> getAll() {
 		initTransaction();
 		

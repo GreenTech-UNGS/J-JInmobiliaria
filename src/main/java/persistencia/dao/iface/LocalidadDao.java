@@ -8,5 +8,6 @@ import entities.Provincia;
 public interface LocalidadDao extends Dao<Localidad>{
 
 	List<Localidad> getAllOf(Provincia p);
+	List<Provincia> getProvincias();
 	
 }

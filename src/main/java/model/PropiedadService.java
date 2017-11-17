@@ -243,7 +243,7 @@ public class PropiedadService {
 
 		fichaPropiedad.setPrecio(dd2dec);
 
-		fichaPropiedad.setProvincia(propiedad.getLocalidad().getProvincia().name());
+		fichaPropiedad.setProvincia(propiedad.getLocalidad().getProvincia().getNombre());
 		fichaPropiedad.setLocalidad(propiedad.getLocalidad().getNombre());
 		fichaPropiedad.setMetrosCuadrados("");
 		fichaPropiedad.setOtrosDatos("");

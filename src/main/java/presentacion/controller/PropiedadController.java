@@ -160,7 +160,7 @@ public class PropiedadController {
 	private void fillCombos() {
 		
 		this.view.getComboProvincia().setModel(provCombo);
-		provCombo.actualize(Arrays.asList(Provincia.values()));
+		provCombo.actualize(localidadService.getProvincias());
 		AutoCompleteDecorator.decorate(view.getComboProvincia());
 		
 		this.view.getComboLocalidad().setModel(localidadCombo);

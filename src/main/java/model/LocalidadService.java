@@ -35,4 +35,8 @@ public class LocalidadService {
 		
 	}
 	
+	public List<Provincia> getProvincias(){
+		return localidadDao.getProvincias();
+	}
+	
 }

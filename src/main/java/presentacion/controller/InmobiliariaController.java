@@ -92,7 +92,7 @@ public class InmobiliariaController {
 	
 	private void fillCombo() {
 	
-		view.getComboModelProvincia().clearAndActualize(Arrays.asList(Provincia.values()));
+		view.getComboModelProvincia().clearAndActualize(localidadService.getProvincias());
 		AutoCompleteDecorator.decorate(view.getCbProvincia());
 		
 		cambiaLocalidades();

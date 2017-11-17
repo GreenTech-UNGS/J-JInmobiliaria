@@ -71,7 +71,7 @@ public class PropiedadFiltroController {
 	}
 	private void fillCombos() {
 		
-		view.getProvCombo().clearAndActualize(Arrays.asList(Provincia.values()));
+		view.getProvCombo().clearAndActualize(localidadService.getProvincias());
 		AutoCompleteDecorator.decorate(view.getCbProvincia());
 		
 		view.getMonedaCombo().clearAndActualize(Arrays.asList(Moneda.values()));
