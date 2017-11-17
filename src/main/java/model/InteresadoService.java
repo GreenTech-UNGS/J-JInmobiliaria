@@ -2,6 +2,8 @@ package model;
 
 import java.util.List;
 
+import org.joda.time.DateTime;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -35,6 +37,7 @@ public class InteresadoService {
 		toRet.setPersona(p);
 		Preferencia preferencia = new Preferencia();
 		toRet.setPreferencia(preferencia);
+		toRet.setFechaAlta(DateTime.now());		
 		
 		return toRet;
 	}
