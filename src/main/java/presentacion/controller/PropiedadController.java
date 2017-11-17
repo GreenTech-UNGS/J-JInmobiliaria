@@ -94,7 +94,8 @@ public class PropiedadController {
 		view.getBtnBorrador().addActionListener(e -> saveBorrador());
 		view.getBtnImprimirFicha().addActionListener(e -> generaReporteFichaPropiedad("FichaPropiedad"));
 		view.getBtnImprimirFichaVisita().addActionListener(e -> generaReporteFichaPropiedad("FichaPropiedadEmpleado"));
-
+		
+		view.getComboProvincia().addActionListener(e -> actualizeSellado());
 
 		view.getBtnVerGaleria().addActionListener(e -> muestraGaleria());
 		
@@ -217,6 +218,12 @@ public class PropiedadController {
 		view.getMapa().addMapMarker(new MapMarkerDot(localizacion));
 		view.getMapa().setDisplayPosition(localizacion, 15);
 		
+	}
+	
+	private void actualizeSellado(){
+		float valor = provCombo.getSelected().getImpuesto();
+		
+		ofrecimientoAlquiler.actualizeSellado(valor);
 	}
 	
 	private void restartMapa() {

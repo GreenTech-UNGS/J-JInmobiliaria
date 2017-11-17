@@ -42,6 +42,12 @@ public class OfrecimientoAlquilerController {
 		mapper.fillBean(currentOfrecimiento);
 	}
 	
+	public void actualizeSellado(float valor){
+		
+		this.view.getSpinnerSellado().setValue(valor);
+		
+	}
+	
 	private void fillCombos() {
 		this.view.getMonedaBasico().actualize(Arrays.asList(Moneda.values()));
 		this.view.getMonedaOtros().actualize(Arrays.asList(Moneda.values()));
