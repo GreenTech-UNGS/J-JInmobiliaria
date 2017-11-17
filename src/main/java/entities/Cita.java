@@ -1,26 +1,12 @@
 package entities;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Cita {
@@ -32,8 +18,8 @@ public class Cita {
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	private List<PersonaBasica> asistentes;
 	
-	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	private DateTime fechaHora;
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
+	private LocalDateTime fechaHora;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Localidad localidad;
@@ -74,11 +60,11 @@ public class Cita {
 	}
 
 	public DateTime getFechaHora() {
-		return fechaHora;
+		return fechaHora.toDateTime();
 	}
 
 	public void setFechaHora(DateTime fechaHora) {
-		this.fechaHora = fechaHora;
+		this.fechaHora = fechaHora.toLocalDateTime();
 	}
 
 	public Localidad getLocalidad() {
