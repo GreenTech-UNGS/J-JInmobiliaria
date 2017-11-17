@@ -1,20 +1,17 @@
 package persistencia.dao.hibernate;
 
-import java.util.List;
-
-import org.hibernate.Criteria;
-import org.hibernate.FetchMode;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.transform.ResultTransformer;
-import org.joda.time.DateTime;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
 import entities.Cita;
 import entities.Usuario;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 import persistencia.conexion.Conexion;
 import persistencia.dao.iface.CitaDao;
+
+import java.util.List;
 
 @Singleton
 public class CitaDaoHibernate extends DaoHibernate<Cita> implements CitaDao{
@@ -80,7 +77,7 @@ public class CitaDaoHibernate extends DaoHibernate<Cita> implements CitaDao{
 		
 		Criteria q = sesion.createCriteria(Cita.class)
 				.createAlias("asistentes", "asisit")
-				.add(Restrictions.ge("fechaHora", DateTime.now()))
+				.add(Restrictions.ge("fechaHora", LocalDateTime.now()))
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);;
 		
 		List<Cita> toRet = q.list();
