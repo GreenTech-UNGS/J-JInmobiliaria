@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.google.inject.Inject;
@@ -31,10 +32,10 @@ public class InteresadoDaoHibernate extends DaoHibernate<Interesado> implements 
 		
 		initTransaction();
 		
-		Criteria q = sesion.createCriteria(Interesado.class);
+		Criteria q = sesion.createCriteria(Interesado.class).addOrder(Order.asc("fechaAlta"));
 		
 		List<Interesado> toRet = q.list();
-		
+				
 		finishTransaction();
 		
 		actualizeList(toRet);
