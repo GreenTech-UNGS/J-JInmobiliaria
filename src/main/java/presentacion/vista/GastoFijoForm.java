@@ -1,27 +1,17 @@
 package presentacion.vista;
 
-import java.awt.Dimension;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SpinnerNumberModel;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
-import javax.swing.SwingConstants;
+import javax.swing.*;
+import java.awt.*;
 
 @Singleton
 public class GastoFijoForm extends JDialog{
 	private JTextField textNombre;
 	private JSpinner spinnerMonto;
 	private JTextArea textDescripcion;
+	private JSpinner spinnerDia;
 	private JButton btnAceptar;
 	
 	@Inject
@@ -53,7 +43,12 @@ public class GastoFijoForm extends JDialog{
 		spinnerMonto.setModel(new SpinnerNumberModel(new Float(1), new Float(1), new Float(2147483647), new Float(1)));
 		spinnerMonto.setBounds(300, 30, 50, 20);
 		getContentPane().add(spinnerMonto);
-		
+
+		spinnerDia = new JSpinner();
+		spinnerDia.setModel(new SpinnerNumberModel(1, 1, 31, 1));
+		spinnerDia.setBounds(400, 30, 50, 20);
+		getContentPane().add(spinnerDia);
+
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBounds(155, 160, 90, 23);
 		getContentPane().add(btnAceptar);
@@ -76,6 +71,8 @@ public class GastoFijoForm extends JDialog{
 	public JTextArea getTextDescripcion() {
 		return textDescripcion;
 	}
+
+	public JSpinner getSpinnerDia() { return spinnerDia; }
 	
 	public JSpinner getSpinnerMonto() {
 		return spinnerMonto;
