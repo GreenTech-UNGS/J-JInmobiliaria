@@ -15,8 +15,8 @@ public class MenuPanelController {
 	@Inject private PagosPanelController pagosPanelController;
 	@Inject private PropiedadesPanelController propiedadesPanelController;
 	@Inject private PersonasPanelController inquilinosPanelController;
-	@Inject private ReportePanelController reportePanelController;
 	@Inject private CitasPanelController citasPanelController;
+	@Inject private EscritorioPanelController escritorioPanelController;
 	
 	@Inject
 	MenuPanelController(MenuPanel view) {
@@ -34,7 +34,8 @@ public class MenuPanelController {
 		view.getBtnReportes().addActionListener(e -> cambiaPanelCitas());
      
 		view.getBtnInmobiliaria().addActionListener(e -> cambiaPanelInmobiliaria());
-	  
+		
+		view.getBtnHome().addActionListener(e -> cambiaPanelEscritorio());
 	}
 	
 	public void showView() {
@@ -52,12 +53,12 @@ public class MenuPanelController {
 		citasPanelController.showView();
 		citasPanelController.actualize();
 	}
-
-	/*private void cambiaPanelReportes() {
+	
+	private void cambiaPanelEscritorio(){
 		hideAll();
-		reportePanelController.showView();
-		reportePanelController.actualize();
-	}*/
+		escritorioPanelController.showView();
+		System.out.println("la concha de todo");
+	}
 
 	private void cambiaPanelPagos() {
 		hideAll();
@@ -90,7 +91,6 @@ public class MenuPanelController {
 		propiedadesPanelController.actualize();
 		inquilinosPanelController.actualize();
 		citasPanelController.actualize();
-		//reportePanelController.actualize();
 	}
 	
 	private void hideAll(){
@@ -100,6 +100,6 @@ public class MenuPanelController {
 		propiedadesPanelController.hideView();
 		inquilinosPanelController.hideView();
 		citasPanelController.hideView();
-		//reportePanelController.hideView();
+		escritorioPanelController.hideView();
 	}
 }

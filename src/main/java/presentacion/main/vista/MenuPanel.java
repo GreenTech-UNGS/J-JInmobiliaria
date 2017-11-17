@@ -23,32 +23,47 @@ public class MenuPanel extends JPanel{
 	private JButton btnPagos;
 	private JButton btnInmobiliaria;
 	private JButton btnCitas;
+	private JButton btnHome;
+	private Component glue;
 
 	@Inject
 	private MenuPanel() {
-		this.setMaximumSize(new Dimension(100, 100));
-		this.setMinimumSize(new Dimension(100, 100));
+		this.setMaximumSize(new Dimension(200, 200));
+		this.setMinimumSize(new Dimension(200, 200));
 		this.setBackground(new Color(47, 79, 79));
 		
-		btnPropiedades = new JButton("");
-        btnPropiedades.setToolTipText("Propiedades");
+		 this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         Image imgProp = new ImageIcon(this.getClass().getResource("/props1.png")).getImage();
-        btnPropiedades.setIcon(new ImageIcon(imgProp));
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        btnPropiedades.setPreferredSize(new Dimension(70, 70));
-        btnPropiedades.setMaximumSize(new Dimension(100, 100));
-        btnPropiedades.setMinimumSize(new Dimension(100, 100));
-        btnPropiedades.setBackground(new Color(0, 51, 51));
-        this.add(btnPropiedades);
+       
+        btnHome = new JButton("");
+        btnHome.setToolTipText("Escritorio");
+        btnHome.setPreferredSize(new Dimension(70, 70));
+        btnHome.setBackground(new Color(0, 51, 51));
+        Image imgHome = new ImageIcon(this.getClass().getResource("/escritorio.png")).getImage();
+        btnHome.setIcon(new ImageIcon(imgHome));
+        this.add(btnHome);
+        
 
         btnContratos = new JButton("");
-        btnContratos.setToolTipText("contratos");
+        btnContratos.setToolTipText("Contratos");
         Image imgCon = new ImageIcon(this.getClass().getResource("/contratos1.png")).getImage();
         btnContratos.setIcon(new ImageIcon(imgCon));
 
         btnContratos.setPreferredSize(new Dimension(70, 70));
         btnContratos.setBackground(new Color(0, 51, 51));
+		
+		Component glue_95 = Box.createGlue();
+		this.add(glue_95);
+        
+		 
+		btnPropiedades = new JButton("");
+		btnPropiedades.setToolTipText("Propiedades");
+		btnPropiedades.setIcon(new ImageIcon(imgProp));
+		
+		btnPropiedades.setPreferredSize(new Dimension(70, 70));
+		btnPropiedades.setBackground(new Color(0, 51, 51));
+		this.add(btnPropiedades);
         
         Component glue_3 = Box.createGlue();
         this.add(glue_3);
@@ -124,5 +139,8 @@ public class MenuPanel extends JPanel{
 	public JButton getBtnReportes() {
 		return btnCitas;
 	}
-	
+
+	public JButton getBtnHome() {
+		return btnHome;
+	}
 }
