@@ -13,15 +13,12 @@ import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 import persistencia.dao.iface.LocalizationDao.MapPoint;
 import presentacion.combo.LocalidadComboBoxModel;
-import presentacion.combo.MonedaComboBoxModel;
 import presentacion.combo.ProvinciaComboBoxModel;
-import presentacion.combo.TipoOfrecimientoComboBoxModel;
 import presentacion.reportes.ReporteFichaDePropiedad;
 import presentacion.validators.MessageShow;
 import presentacion.validators.PropiedadFormValidator;
 import presentacion.vista.PropiedadForm;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class PropiedadController {
@@ -92,9 +89,10 @@ public class PropiedadController {
 		view.getBtnGuardarDisponible().addActionListener(e -> savePropiedad());
 		view.getBtnMasDatos().addActionListener(e -> agregarOtrosDatos());
 		view.getBtnBorrador().addActionListener(e -> saveBorrador());
-		view.getBtnImprimirFicha().addActionListener(e -> generaReporteFichaPropiedad("FichaPropiedad"));
+		view.getBtnImprimirFicha().addActionListener(e -> generaReporteFichaPropiedad("Ficha"));
 		view.getBtnImprimirFichaVisita().addActionListener(e -> generaReporteFichaPropiedad("FichaPropiedadEmpleado"));
-
+		
+		view.getComboProvincia().addActionListener(e -> actualizeSellado());
 
 		view.getBtnVerGaleria().addActionListener(e -> muestraGaleria());
 		
@@ -160,7 +158,7 @@ public class PropiedadController {
 	private void fillCombos() {
 		
 		this.view.getComboProvincia().setModel(provCombo);
-		provCombo.actualize(Arrays.asList(Provincia.values()));
+		provCombo.actualize(localidadService.getProvincias());
 		AutoCompleteDecorator.decorate(view.getComboProvincia());
 		
 		this.view.getComboLocalidad().setModel(localidadCombo);
@@ -217,6 +215,12 @@ public class PropiedadController {
 		view.getMapa().addMapMarker(new MapMarkerDot(localizacion));
 		view.getMapa().setDisplayPosition(localizacion, 15);
 		
+	}
+	
+	private void actualizeSellado(){
+		float valor = provCombo.getSelected().getImpuesto();
+		
+		ofrecimientoAlquiler.actualizeSellado(valor);
 	}
 	
 	private void restartMapa() {

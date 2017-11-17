@@ -36,16 +36,17 @@ public class PrecontratoAlquilerForm extends JPanel{
 	
 	private MonedaComboBoxModel monedaBasico;
 	private MonedaComboBoxModel monedaOtros;
+	private JSpinner spinnerSellado;
 	
 	@Inject
 	private PrecontratoAlquilerForm(){
 		super();
 		
-		this.setPreferredSize(new Dimension(700, 210));
+		this.setPreferredSize(new Dimension(700, 260));
 		setLayout(null);
 		
 		chckbxHabilitar = new JCheckBox("Habilitar");
-		chckbxHabilitar.setBounds(33, 2, 65, 23);
+		chckbxHabilitar.setBounds(33, 2, 96, 23);
 		add(chckbxHabilitar);
 		
 		
@@ -64,7 +65,7 @@ public class PrecontratoAlquilerForm extends JPanel{
 		tfPrecio.setColumns(10);
 		
 		JLabel lblPrecio = new JLabel("Precio:");
-		lblPrecio.setBounds(33, 59, 33, 14);
+		lblPrecio.setBounds(33, 59, 65, 14);
 		lblPrecio.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		add(lblPrecio);
 		
@@ -78,12 +79,12 @@ public class PrecontratoAlquilerForm extends JPanel{
 		add(comboMonedaBasico);
 		
 		JLabel lblMeses = new JLabel("Meses:");
-		lblMeses.setBounds(463, 59, 34, 14);
+		lblMeses.setBounds(446, 59, 53, 14);
 		lblMeses.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		add(lblMeses);
 		
 		spinnerMeses = new JSpinner();
-		spinnerMeses.setBounds(521, 56, 31, 20);
+		spinnerMeses.setBounds(504, 56, 48, 20);
 		spinnerMeses.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		add(spinnerMeses);
 		
@@ -102,7 +103,7 @@ public class PrecontratoAlquilerForm extends JPanel{
 		add(lblCada);
 		
 		spinnerIntervalo = new JSpinner();
-		spinnerIntervalo.setBounds(164, 113, 31, 20);
+		spinnerIntervalo.setBounds(147, 113, 48, 20);
 		spinnerIntervalo.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		add(spinnerIntervalo);
 		
@@ -117,7 +118,7 @@ public class PrecontratoAlquilerForm extends JPanel{
 		add(spinnerPorcentaje);
 		
 		chckbxAcumulativo = new JCheckBox("Acumulativo");
-		chckbxAcumulativo.setBounds(433, 112, 83, 23);
+		chckbxAcumulativo.setBounds(433, 112, 119, 23);
 		add(chckbxAcumulativo);
 		
 		JLabel lblOtrosDatos = new JLabel("Otros gastos:");
@@ -130,7 +131,7 @@ public class PrecontratoAlquilerForm extends JPanel{
 		add(separator_2);
 		
 		JLabel lblMonto = new JLabel("Monto:");
-		lblMonto.setBounds(33, 169, 34, 14);
+		lblMonto.setBounds(33, 169, 56, 17);
 		lblMonto.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		add(lblMonto);
 		
@@ -153,6 +154,17 @@ public class PrecontratoAlquilerForm extends JPanel{
 		
 		comboMonedaBasico.setModel(monedaBasico);
 		cbMonedaOtros.setModel(monedaOtros);
+		
+		JLabel lblSellado = new JLabel("Sellado:");
+		lblSellado.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblSellado.setBounds(33, 198, 70, 15);
+		add(lblSellado);
+		
+		spinnerSellado = new JSpinner();
+		spinnerSellado.setEnabled(true);
+		spinnerSellado.setBounds(134, 195, 53, 20);
+		spinnerSellado.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(100), new Float(0.5)));
+		add(spinnerSellado);
 	}
 
 	public JTextField getTfPrecio() {
@@ -189,5 +201,9 @@ public class PrecontratoAlquilerForm extends JPanel{
 
 	public MonedaComboBoxModel getMonedaOtros() {
 		return monedaOtros;
+	}
+
+	public JSpinner getSpinnerSellado() {
+		return spinnerSellado;
 	}
 }

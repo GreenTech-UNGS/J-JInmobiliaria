@@ -20,6 +20,12 @@ public enum TipoCita {
 			return "Celebrar Contrato";
 		}
 	},
+	ESCRITURAR{
+		@Override
+		public String toString() {
+			return "Escriturar";
+		}
+	},
 	OTRO{
 		@Override
 		public String toString() {

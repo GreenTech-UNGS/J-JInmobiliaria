@@ -21,7 +21,7 @@ public class ProvinciaComboBoxModel extends BaseComboBoxModel<Provincia>{
 		}
 		else{
 			
-		String nombre = toSelect.toString().replaceAll("_", " ");
+		String nombre = toSelect.getNombre().replaceAll("_", " ");
 		
 		this.setSelectedItem(nombre);
 		
@@ -30,8 +30,8 @@ public class ProvinciaComboBoxModel extends BaseComboBoxModel<Provincia>{
 
 	@Override
 	public void agregaElemento(Provincia element) {
-		this.addElement(element.toString().replaceAll("_", " "));
-		values.put(element.toString().replaceAll("_", " "), element);
+		this.addElement(element.getNombre().replaceAll("_", " "));
+		values.put(element.getNombre().replaceAll("_", " "), element);
 		
 	}
 

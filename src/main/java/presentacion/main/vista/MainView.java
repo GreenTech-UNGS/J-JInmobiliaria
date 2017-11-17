@@ -50,6 +50,7 @@ public class MainView {
     		PersonasPanel panelInquilinos,
     		PagosPanel panelPagos,
     		InmobiliariaPanel panelInmobiliaria,
+    		EscritorioPanel panelEscritorio,
     		MenuPanel panelMenu,
     		CitasPanel panelCitas) {  
     	
@@ -72,12 +73,14 @@ public class MainView {
         panelContainer.setBounds(93, 11, 692, 545);
         frmLpezLpez.getContentPane().add(panelContainer);
         panelContainer.setLayout(new CardLayout(0, 0));
-
+        
+        panelContainer.add(panelEscritorio);
         panelContainer.add(panelPropiedades, "name_1084621145273363");
         panelContainer.add(panelContratos, "name_1084753155363088");
         panelContainer.add(panelInquilinos, "name_1084846370736461");
         panelContainer.add(panelPagos, "name_1283035568116550");
         panelContainer.add(panelInmobiliaria);
+        
        
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));

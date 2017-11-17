@@ -111,7 +111,7 @@ public class InteresadoController {
 
 		this.view.getComboModelMoneda().clearAndActualize(Arrays.asList(Moneda.values()));
 		
-		view.getComboModelProvincia().clearAndActualize(Arrays.asList(Provincia.values()));
+		view.getComboModelProvincia().clearAndActualize(localidadService.getProvincias());
 		AutoCompleteDecorator.decorate(view.getCbProvincia());
 		
 		cambiaLocalidades();

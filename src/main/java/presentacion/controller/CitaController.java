@@ -232,7 +232,7 @@ public class CitaController {
 		
 		view.getComboModelTipoCita().clearAndActualize(Arrays.asList(TipoCita.values()));
 		
-		view.getComboModelProvincia().clearAndActualize(Arrays.asList(Provincia.values()));
+		view.getComboModelProvincia().clearAndActualize(localidadService.getProvincias());
 		AutoCompleteDecorator.decorate(view.getComboProvincia());
 		
 		AutoCompleteDecorator.decorate(view.getComboLocalidad());

@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+
 @Entity
 @Table(name = "interesados")
 public class Interesado {
@@ -21,6 +24,9 @@ public class Interesado {
 	
 	@OneToOne(cascade = {CascadeType.ALL})
 	private Preferencia preferencia;
+	
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	DateTime fechaAlta;
 	
 	//preferencias.......raro
 	
@@ -42,6 +48,14 @@ public class Interesado {
 
 	public void setPreferencia(Preferencia preferencia) {
 		this.preferencia = preferencia;
+	}
+
+	public DateTime getFechaAlta() {
+		return fechaAlta;
+	}
+	
+	public void setFechaAlta(DateTime fechaAlta) {
+		this.fechaAlta = fechaAlta;
 	}
 	
 }

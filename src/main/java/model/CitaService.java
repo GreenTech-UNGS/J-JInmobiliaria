@@ -119,6 +119,4 @@ public class CitaService {
 	public void delete(Cita cita) {
 		citaDao.remove(cita);
 	}
-	
-	
 }
