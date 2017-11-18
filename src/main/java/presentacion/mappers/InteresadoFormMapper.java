@@ -25,8 +25,10 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		String apellido = view.getTfApellido().getText();
 		String credencial = view.getTfCredencial().getText();
 		String email = view.getTfEmail().getText();
-		String metrosCuadrados= view.getTfMetros().getText();
-		String ambientes = view.getTfAmbientes().getText();
+		String metrosCuadradosDesde = view.getTfDesdeMetros().getText();
+		String metrosCuadradosHasta = view.getTfHastaMetros().getText();
+		String ambientesDesde = view.getTfDesdeAmbientes().getText();
+		String ambientesHasta = view.getTfHastaAmbientes().getText();
 		String precioDesde = view.getTfDesdePrecio().getText();
 		String precioHasta = view.getTfHastaPrecio().getText();
 		
@@ -40,8 +42,10 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		t.getPersona().setApellido(apellido);
 		t.getPersona().setCredencial(credencial);
 		t.getPersona().setEmail(email);
-		t.getPreferencia().setMetrosCuadrados(Integer.parseInt(metrosCuadrados));
-		t.getPreferencia().setCantidadAmbientes(Integer.parseInt(ambientes));
+		t.getPreferencia().setMetrosCuadradosDesde(Integer.parseInt(metrosCuadradosDesde));
+		t.getPreferencia().setMetrosCuadradosHasta(Integer.parseInt(metrosCuadradosHasta));
+		t.getPreferencia().setCantidadAmbientesDesde(Integer.parseInt(ambientesDesde));
+		t.getPreferencia().setCantidadAmbientesHasta(Integer.parseInt(ambientesHasta));
 		t.getPreferencia().setPrecioDesde(Integer.parseInt(precioDesde));
 		t.getPreferencia().setPrecioHasta(Integer.parseInt(precioHasta));
 		
@@ -59,8 +63,10 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		String apellido = t.getPersona().getApellido();
 		String credencial = t.getPersona().getCredencial();
 		String email = t.getPersona().getEmail();
-		String metrosCuadrados = String.valueOf(t.getPreferencia().getMetrosCuadrados());
-		String ambientes = String.valueOf(t.getPreferencia().getCantidadAmbientes());
+		String metrosCuadradosDesde = String.valueOf(t.getPreferencia().getMetrosCuadradosDesde());
+		String metrosCuadradosHasta = String.valueOf(t.getPreferencia().getMetrosCuadradosHasta());
+		String ambientesDesde = String.valueOf(t.getPreferencia().getCantidadAmbientesDesde());
+		String ambientesHasta = String.valueOf(t.getPreferencia().getCantidadAmbientesHasta());
 		String precioDesde = String.valueOf(0);
 		String precioHasta = String.valueOf(0);
 		
@@ -72,8 +78,10 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		view.getTfApellido().setText(apellido);
 		view.getTfCredencial().setText(credencial);
 		view.getTfEmail().setText(email);
-		view.getTfMetros().setText(metrosCuadrados);
-		view.getTfAmbientes().setText(ambientes);
+		view.getTfDesdeMetros().setText(metrosCuadradosDesde);
+		view.getTfHastaMetros().setText(metrosCuadradosHasta);
+		view.getTfDesdeAmbientes().setText(ambientesDesde);
+		view.getTfHastaAmbientes().setText(ambientesHasta);
 		view.getTfDesdePrecio().setText(precioDesde);
 		view.getTfHastaPrecio().setText(precioHasta);
 		
