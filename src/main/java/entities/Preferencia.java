@@ -24,7 +24,7 @@ public class Preferencia {
 	@Enumerated(EnumType.ORDINAL)
 	private TipoOfrecimiento tipoOfrecimiento;
 	
-	private int metrosCuadrados;
+	private int metrosCuadrados; // Lote
 	private int cantidadAmbientes;
 	private int precioDesde;
 	private int precioHasta;

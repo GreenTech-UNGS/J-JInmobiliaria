@@ -59,6 +59,7 @@ public class PersonasPanel extends JPanel implements PermissionView{
 	private JPanel TabUsuarios;
 	private JTabbedPane tabbedPane;
 	private JButton btnGenerarReporte;
+	private JButton btnVerPropiedades;
 
 	@Inject
 	private PersonasPanel() {
@@ -209,6 +210,9 @@ public class PersonasPanel extends JPanel implements PermissionView{
         
         btnEliminarInteresado = new JButton("Eliminar interesado");
         panelBotonesInteresados.add(btnEliminarInteresado);
+        
+        btnVerPropiedades = new JButton("Ver Propiedades");
+        panelBotonesInteresados.add(btnVerPropiedades);
 
         
 	}
