@@ -23,9 +23,11 @@ public class Preferencia {
 	
 	@Enumerated(EnumType.ORDINAL)
 	private TipoOfrecimiento tipoOfrecimiento;
-	
-	private int metrosCuadrados; // Lote
-	private int cantidadAmbientes;
+
+	private int metrosCuadradosDesde;
+	private int metrosCuadradosHasta;
+	private int cantidadAmbientesDesde;
+	private int cantidadAmbientesHasta;
 	private int precioDesde;
 	private int precioHasta;
 	private Moneda moneda;
@@ -58,20 +60,36 @@ public class Preferencia {
 		this.tipoOfrecimiento = tipoOfrecimiento;
 	}
 
-	public int getMetrosCuadrados() {
-		return metrosCuadrados;
+	public int getMetrosCuadradosDesde() {
+		return metrosCuadradosDesde;
 	}
 
-	public void setMetrosCuadrados(int metrosCuadrados) {
-		this.metrosCuadrados = metrosCuadrados;
+	public int getMetrosCuadradosHasta() {
+		return metrosCuadradosHasta;
 	}
 
-	public int getCantidadAmbientes() {
-		return cantidadAmbientes;
+	public int getCantidadAmbientesDesde() {
+		return cantidadAmbientesDesde;
 	}
 
-	public void setCantidadAmbientes(int cantidadAmbientes) {
-		this.cantidadAmbientes = cantidadAmbientes;
+	public int getCantidadAmbientesHasta() {
+		return cantidadAmbientesHasta;
+	}
+
+	public void setMetrosCuadradosDesde(int metrosCuadradosDesde) {
+		this.metrosCuadradosDesde = metrosCuadradosDesde;
+	}
+
+	public void setMetrosCuadradosHasta(int metrosCuadradosHasta) {
+		this.metrosCuadradosHasta = metrosCuadradosHasta;
+	}
+
+	public void setCantidadAmbientesDesde(int cantidadAmbientesDesde) {
+		this.cantidadAmbientesDesde = cantidadAmbientesDesde;
+	}
+
+	public void setCantidadAmbientesHasta(int cantidadAmbientesHasta) {
+		this.cantidadAmbientesHasta = cantidadAmbientesHasta;
 	}
 
 	public double getPrecioDesde() {
