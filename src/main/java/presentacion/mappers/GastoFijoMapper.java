@@ -22,8 +22,8 @@ public class GastoFijoMapper implements Mapper<GastoFijo>{
 		float monto = (float) view.getSpinnerMonto().getValue();
 		String nombre = view.getTextNombre().getText();
 		String descripcion = view.getTextDescripcion().getText();
-		int dia = (int)view.getSpinnerDia().getValue();
-		t.setDia(dia);
+//		int dia = (int)view.getSpinnerDia().getValue();
+//		t.setDia(dia);
 		t.setMonto(monto);
 		t.setNombre(nombre);
 		t.setDescripcion(descripcion);
@@ -41,7 +41,7 @@ public class GastoFijoMapper implements Mapper<GastoFijo>{
 		view.getSpinnerMonto().setValue(monto);
 		view.getTextNombre().setText(nombre);
 		view.getTextDescripcion().setText(descripcion);
-		view.getSpinnerDia().setValue(dia);
+//		view.getSpinnerDia().setValue(dia);
 	}
 
 }
