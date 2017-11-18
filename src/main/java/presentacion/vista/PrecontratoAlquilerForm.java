@@ -22,6 +22,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.JButton;
 
 @SuppressWarnings("serial")
 @Singleton
@@ -37,6 +38,7 @@ public class PrecontratoAlquilerForm extends JPanel{
 	private MonedaComboBoxModel monedaBasico;
 	private MonedaComboBoxModel monedaOtros;
 	private JSpinner spinnerSellado;
+	private JButton btnVerValorEntrada;
 	
 	@Inject
 	private PrecontratoAlquilerForm(){
@@ -165,6 +167,10 @@ public class PrecontratoAlquilerForm extends JPanel{
 		spinnerSellado.setBounds(134, 195, 53, 20);
 		spinnerSellado.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(100), new Float(0.5)));
 		add(spinnerSellado);
+		
+		btnVerValorEntrada = new JButton("Ver valor entrada");
+		btnVerValorEntrada.setBounds(481, 223, 167, 14);
+		add(btnVerValorEntrada);
 	}
 
 	public JTextField getTfPrecio() {
@@ -205,5 +211,9 @@ public class PrecontratoAlquilerForm extends JPanel{
 
 	public JSpinner getSpinnerSellado() {
 		return spinnerSellado;
+	}
+
+	public JButton getBtnVerValorEntrada() {
+		return btnVerValorEntrada;
 	}
 }

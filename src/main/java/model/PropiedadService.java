@@ -30,6 +30,8 @@ public class PropiedadService {
 	@Inject
 	PropiedadDao propiedadDao;
 	
+	@Inject private CuotaService cuotaService;
+	
 	@Inject private DAOftp ftp;
 	
 	@Inject

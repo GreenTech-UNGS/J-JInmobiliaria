@@ -15,10 +15,14 @@ public class OfrecimientoAlquiler {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Precio precio;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Precio otrosGastos;
+	
+	private float porcentajeSellado;
 	
 	private boolean isHabilitada;
 	private int cantidadMeses;
@@ -107,6 +111,16 @@ public class OfrecimientoAlquiler {
 
 	public void setHabilitada(boolean isHabilitada) {
 		this.isHabilitada = isHabilitada;
+	}
+
+
+	public float getPorcentajeSellado() {
+		return porcentajeSellado;
+	}
+
+
+	public void setPorcentajeSellado(float porcentajeSellado) {
+		this.porcentajeSellado = porcentajeSellado;
 	}
 
 }
