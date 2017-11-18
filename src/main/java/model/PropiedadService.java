@@ -10,14 +10,8 @@ import org.joda.time.DateTime;
 import persistencia.dao.iface.DAOftp;
 import persistencia.dao.iface.PropiedadDao;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -272,8 +266,6 @@ public class PropiedadService {
 	
 	public boolean matches(Propiedad p, Preferencia t) {
 		
-		int score = 0;
-		
 		if(t.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquiler) && p.getOfrecimientoAlquiler().isHabilitada() == false) {
 			return false;
 		}
@@ -289,14 +281,19 @@ public class PropiedadService {
 		if(p.getOfrecimientoVenta().getPrecio().getMonto() > t.getPrecioDesde()) {
 			return false;
 		}
-		
-		if(p.getOtrosDatos().getCantidadAmbientes() == t.getCantidadAmbientes()) {
-			score += 1;
-		}	
-		if(p.getOtrosDatos().getMetrosCuadradosLote() == t.getMetrosCuadrados()) {
-			score += 1;		
+		if(p.getOtrosDatos().getCantidadAmbientes() < t.getCantidadAmbientesDesde()) {
+			return false;
+		}
+		if(p.getOtrosDatos().getCantidadAmbientes() > t.getCantidadAmbientesHasta()) {
+			return false;
+		}		
+		if(p.getOtrosDatos().getMetrosCuadradosLote() < t.getMetrosCuadradosDesde()) {
+			return false;
+		}
+		if(p.getOtrosDatos().getMetrosCuadradosLote() > t.getMetrosCuadradosHasta()) {
+			return false;
 		}
 		
-		return false;
+		return true;
 	}
 }
