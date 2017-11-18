@@ -269,4 +269,34 @@ public class PropiedadService {
 
 		return fichas;
 	}
+	
+	public boolean matches(Propiedad p, Preferencia t) {
+		
+		int score = 0;
+		
+		if(t.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquiler) && p.getOfrecimientoAlquiler().isHabilitada() == false) {
+			return false;
+		}
+		if(t.getTipoOfrecimiento().equals(TipoOfrecimiento.Venta) && p.getOfrecimientoVenta().isHabilitada() == false) {
+			return false;
+		}
+		if( ! (p.getOfrecimientoVenta().getPrecio().getMoneda().equals(t.getMoneda())) ) {
+			return false;
+		}
+		if(p.getOfrecimientoVenta().getPrecio().getMonto() < t.getPrecioDesde()) {
+			return false;
+		}
+		if(p.getOfrecimientoVenta().getPrecio().getMonto() > t.getPrecioDesde()) {
+			return false;
+		}
+		
+		if(p.getOtrosDatos().getCantidadAmbientes() == t.getCantidadAmbientes()) {
+			score += 1;
+		}	
+		if(p.getOtrosDatos().getMetrosCuadradosLote() == t.getMetrosCuadrados()) {
+			score += 1;		
+		}
+		
+		return false;
+	}
 }
