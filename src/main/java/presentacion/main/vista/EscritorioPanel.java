@@ -16,6 +16,8 @@ import javax.swing.JTable;
 public class EscritorioPanel extends JPanel{
 	private JTable tableMisCitas;
 	private JTable tableContratos;
+	private JTable tableCuotasMes;
+	private JTable tableCuotasVencidas;
 
 	@Inject
 	public EscritorioPanel() {
@@ -41,9 +43,25 @@ public class EscritorioPanel extends JPanel{
 		JButton btnHolo = new JButton("Holo");
 		panelBotonesCitas.add(btnHolo);
 		
-		JPanel panelCuo = new JPanel();
-		tabbedPane.addTab("Cuotas", null, panelCuo, null);
-		panelCuo.setLayout(new BoxLayout(panelCuo, BoxLayout.Y_AXIS));
+		JPanel panelCuotas = new JPanel();
+		tabbedPane.addTab("Cuotas del mes", null, panelCuotas, null);
+		panelCuotas.setLayout(new BoxLayout(panelCuotas, BoxLayout.Y_AXIS));
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		panelCuotas.add(scrollPane_2);
+		
+		tableCuotasMes = new JTable();
+		scrollPane_2.setColumnHeaderView(tableCuotasMes);
+		
+		JPanel panelCuotasVencidas = new JPanel();
+		tabbedPane.addTab("Cuotas vencidas", null, panelCuotasVencidas, null);
+		panelCuotasVencidas.setLayout(new BoxLayout(panelCuotasVencidas, BoxLayout.Y_AXIS));
+		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		panelCuotasVencidas.add(scrollPane_3);
+		
+		tableCuotasVencidas = new JTable();
+		scrollPane_3.setColumnHeaderView(tableCuotasVencidas);
 		
 		JPanel panelContratos = new JPanel();
 		tabbedPane.addTab("Contratos a vencer", null, panelContratos, null);

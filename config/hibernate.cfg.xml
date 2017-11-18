@@ -54,6 +54,7 @@
 		<mapping class="entities.NotificacionCita" />
 		<mapping class="entities.OfrecimientoAlquiler" />
 		<mapping class="entities.OfrecimientoVenta" />
+		<mapping class="entities.Provincia" />
 		
 				
     </session-factory>

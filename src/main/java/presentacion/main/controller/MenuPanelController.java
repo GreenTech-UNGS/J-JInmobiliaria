@@ -57,7 +57,6 @@ public class MenuPanelController {
 	private void cambiaPanelEscritorio(){
 		hideAll();
 		escritorioPanelController.showView();
-		System.out.println("la concha de todo");
 	}
 
 	private void cambiaPanelPagos() {
