@@ -360,14 +360,22 @@ public class InteresadoForm extends JDialog{
 		this.tfApellido = tfApellido;
 	}
 
-	public JTextField getTfAmbientes() {
+	public JTextField getTfDesdeAmbientes() {
 		return tfDesdeAmbientes;
 	}
 
-	public void setTfAmbientes(JTextField tfAmbientes) {
+	public void setTfDesdeAmbientes(JTextField tfAmbientes) {
 		this.tfDesdeAmbientes = tfAmbientes;
 	}
 
+	public JTextField getTfHastaAmbientes() {
+		return tfHastaAmbientes;
+	}
+
+	public void setTfHastaAmbientes(JTextField tfAmbientes) {
+		this.tfHastaAmbientes = tfAmbientes;
+	}
+	
 	public JTextField getTfEmail() {
 		return tfEmail;
 	}
@@ -376,12 +384,20 @@ public class InteresadoForm extends JDialog{
 		this.tfEmail = tfEmail;
 	}
 
-	public JTextField getTfMetros() {
+	public JTextField getTfDesdeMetros() {
 		return tfDesdeMetros;
 	}
 
-	public void setTfMetros(JTextField tfMetros) {
+	public void setTfDesdeMetros(JTextField tfMetros) {
 		this.tfDesdeMetros = tfMetros;
+	}
+	
+	public JTextField getTfHastaMetros() {
+		return tfHastaMetros;
+	}
+
+	public void setTfHastaMetros(JTextField tfMetros) {
+		this.tfHastaMetros = tfMetros;
 	}
 
 	public JTextField getTfDesdePrecio() {
