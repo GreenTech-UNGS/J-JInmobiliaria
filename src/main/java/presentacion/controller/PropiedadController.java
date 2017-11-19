@@ -319,7 +319,7 @@ public class PropiedadController {
 		view.getTfPropietario().setText("");
 		view.getTfInmobiliaria().setText("");
 		view.getLblReservada().setVisible(false);
-		
+		actualizeSellado();
 	}
 
 	public void setModeView(Propiedad propiedad) {

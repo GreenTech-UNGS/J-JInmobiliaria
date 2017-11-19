@@ -29,7 +29,7 @@ public class LocalizationService {
 		String loc = altura +
 				" " + calle +
 				"," + localidad.getNombre() +
-				"," + localidad.getProvincia().toString().replaceAll("_", " ") +
+				"," + localidad.getProvincia().getNombre()+
 				" " + "Argentina";
 		
 		loc = loc.replaceAll(" ", "+");

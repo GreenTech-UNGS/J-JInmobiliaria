@@ -1,5 +1,6 @@
 package presentacion.controller;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 import com.google.inject.Inject;
@@ -24,6 +25,8 @@ public class OfrecimientoAlquilerController {
 	@Inject private MessageShow msgShw;
 	
 	private OfrecimientoAlquiler currentOfrecimiento;
+
+    private DecimalFormat df = new DecimalFormat("#.##");
 	
 	@Inject
 	private OfrecimientoAlquilerController(PrecontratoAlquilerForm view) {
@@ -60,7 +63,19 @@ public class OfrecimientoAlquilerController {
 		
 		try {
 			Precio valor = ofrecimientoService.getPrecioParaEntrar(currentOfrecimiento);
-			msgShw.showInformationMessage(valor.getMonto() + " " + valor.getMoneda(), "Monto para entrar");
+			Precio primerMes = ofrecimientoService.getPrimerMes(currentOfrecimiento);
+			Precio deposito = ofrecimientoService.getDeposito(currentOfrecimiento);
+			Precio sellado = ofrecimientoService.getSelladoPesos(currentOfrecimiento);
+			Precio otros = ofrecimientoService.getOtrosGastos(currentOfrecimiento);
+			
+			
+			String gastosStr = "Primer mes: " + df.format(primerMes.getMonto()) + " " + primerMes.getMoneda()+
+					"\nDeposito: " + df.format(deposito.getMonto()) + " " + deposito.getMoneda()+
+					"\nSellado: " + df.format(sellado.getMonto()) + " " + sellado.getMoneda()+
+					"\nOtros: " + df.format(otros.getMonto()) + " " + otros.getMoneda()+
+					"\n**Total**: " + df.format(valor.getMonto()) + " " + valor.getMoneda();
+			
+			msgShw.showInformationMessage(gastosStr, "Monto para entrar");
 		} catch (LogicaNegocioException e) {
 			msgShw.showErrorMessage(e.getMessage(), "Error");
 		}

@@ -23,6 +23,7 @@ public class OfrecimientoAlquilerMapper implements Mapper<OfrecimientoAlquiler>{
 		int cantidadMeses = (int)view.getSpinnerMeses().getValue();
 		int intervaloMeses = (int)view.getSpinnerIntervalo().getValue();
 		float porcentaje = (float)view.getSpinnerPorcentaje().getValue();
+		float sellado = (float)view.getSpinnerSellado().getValue();
 		boolean acumulativo = view.getChckbxAcumulativo().isSelected();
 		
 		t.setHabilitada(habilitado);
@@ -33,6 +34,7 @@ public class OfrecimientoAlquilerMapper implements Mapper<OfrecimientoAlquiler>{
 		t.setCantidadMeses(cantidadMeses);
 		t.setIntervaloActualizacion(intervaloMeses);
 		t.setProcentajeActualizacion(porcentaje);
+		t.setPorcentajeSellado(sellado);
 		t.setAcumulativo(acumulativo);
 		
 	}
@@ -48,6 +50,7 @@ public class OfrecimientoAlquilerMapper implements Mapper<OfrecimientoAlquiler>{
 		view.getSpinnerMeses().setValue(t.getCantidadMeses());
 		view.getSpinnerIntervalo().setValue(t.getIntervaloActualizacion());
 		view.getSpinnerPorcentaje().setValue(t.getProcentajeActualizacion());
+		view.getSpinnerSellado().setValue(t.getPorcentajeSellado());
 		view.getChckbxAcumulativo().setSelected(t.isAcumulativo());
 		
 	}

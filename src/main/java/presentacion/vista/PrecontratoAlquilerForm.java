@@ -169,7 +169,7 @@ public class PrecontratoAlquilerForm extends JPanel{
 		add(spinnerSellado);
 		
 		btnVerValorEntrada = new JButton("Ver valor entrada");
-		btnVerValorEntrada.setBounds(481, 223, 167, 14);
+		btnVerValorEntrada.setBounds(477, 199, 119, 23);
 		add(btnVerValorEntrada);
 	}
 

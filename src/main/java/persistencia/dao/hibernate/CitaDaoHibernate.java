@@ -60,7 +60,7 @@ public class CitaDaoHibernate extends DaoHibernate<Cita> implements CitaDao{
 		Criteria q = sesion.createCriteria(Cita.class)
 				.createAlias("asistentes", "asisit")
 				.add(Restrictions.eq("asisit.ID", u.getID())).
-				add(Restrictions.ge("fechaHora", DateTime.now()))
+				add(Restrictions.ge("fechaHora", LocalDateTime.now()))
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);;
 		
 		List<Cita> toRet = q.list();
