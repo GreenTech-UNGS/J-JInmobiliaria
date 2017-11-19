@@ -45,12 +45,9 @@ public class CitaController {
 	@Inject private CitaFormMapper mapper;
 	@Inject private CitaFormValidator validator;
 	
-	@Inject private ElegirAsistenteController elegirAsistente;
 	@Inject private ElegirPropiedadController elegirPropiedad;
 	
 	@Inject private MessageShow msgShw;
-	
-	private PersonaBasicaTableModel tableModel;
 	
 	private Cita currentCita;
 	
@@ -62,56 +59,19 @@ public class CitaController {
 		this.view = view;
 		this.view.getComboProvincia().addActionListener(e -> cambiaLocalidades());
 		this.view.getBtnAceptar().addActionListener(e -> agregarCita());
-		this.view.getBtnAgregar().addActionListener(e -> agregarAsistente());
-		this.view.getBtnBorrar().addActionListener(e -> borrarAsistente());
-		this.view.getChckbxAsistir().addActionListener(e -> actualizaAsistenteAlUsuario(((AbstractButton)e.getSource()).isSelected()));
 		this.view.getBtnDesdePropiedad().addActionListener(e -> desdePropiedad());
 		this.view.getBtnActualizar().addActionListener(e -> actualizaMapa());
 		
-		this.tableModel = new PersonaBasicaTableModel();
 		
-		view.getTableAsistentes().setModel(tableModel);
-		view.getTableAsistentes().setColumnModel(tableModel.getTableColumnModel());
-		view.getTableAsistentes().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		view.getTableAsistentes().getTableHeader().setReorderingAllowed(false);
 		
 	}
 
-
-	private void actualizaAsistenteAlUsuario(boolean selected) {
-		
-		if(selected) {
-			tableModel.addRow(usuarioService.getUsuarioLogeado().getPersona());
-			currentCita.getAsistentes().add(usuarioService.getUsuarioLogeado().getPersona());
-		}
-		else {
-			tableModel.removeRow(usuarioService.getUsuarioLogeado().getPersona());
-			currentCita.getAsistentes().add(usuarioService.getUsuarioLogeado().getPersona());
-		
-		}
-		
-	}	
-	
-	private void borrarAsistente() {
-		
-		int selectedIndex = view.getTableAsistentes().getSelectedRow();
-		PersonaBasica selected = tableModel.getRow(selectedIndex);
-		
-		if(selected.equals(usuarioService.getUsuarioLogeado().getPersona()))
-			view.getChckbxAsistir().setSelected(false);
-		
-		if(selectedIndex >= 0) {
-			tableModel.removeRow(selectedIndex);
-			currentCita.getAsistentes().remove(selectedIndex);
-		}
-		
-	}
-	
 	private void agregarCita() {
 		
 		if(validator.isValid()) {
 			mapper.fillBean(currentCita);
-		
+			if(view.getChckbxAsistir().isSelected())
+				currentCita.setAsistente(usuarioService.getUsuarioLogeado());
 			actualizaMapaThread();
 			
 			int avisoCorto = (int)view.getSpinnerAvisoCorto().getValue();
@@ -123,21 +83,6 @@ public class CitaController {
 		}
 		else {
 			msgShw.showErrorMessage(validator.getErrorMessage(), "Error");
-		}
-		
-		
-	}
-		
-	private void agregarAsistente() {
-		elegirAsistente.showView();
-		PersonaBasica asistente = elegirAsistente.getAsistente();
-		
-		if(asistente.equals(usuarioService.getUsuarioLogeado().getPersona()))
-			view.getChckbxAsistir().setSelected(true);
-		
-		if(!currentCita.getAsistentes().contains(asistente)) {
-			tableModel.addRow(asistente);
-			currentCita.getAsistentes().add(asistente);
 		}
 		
 		
@@ -209,7 +154,6 @@ public class CitaController {
 		
 		currentCita = citaService.getNuevaCita();
 		fillCombos();
-		fillTables();
 		mapper.fillFields(currentCita);
 		restartMapa();
 	}	
@@ -220,7 +164,6 @@ public class CitaController {
 		
 		currentCita = cita;
 		fillCombos();
-		fillTables();
 		
 		mapper.fillFields(currentCita);
 		restartMapa();
@@ -237,14 +180,6 @@ public class CitaController {
 		
 		AutoCompleteDecorator.decorate(view.getComboLocalidad());
 		cambiaLocalidades();
-		
-	}
-	
-	private void fillTables() {
-		
-		tableModel.clean();
-		
-		currentCita.getAsistentes().forEach(a -> tableModel.addRow(a));
 		
 	}
 

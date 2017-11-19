@@ -31,7 +31,6 @@ public class CitaFormMapper implements Mapper<Cita>{
 	@Override
 	public void fillBean(Cita t) {
 		
-		boolean asiste = view.getChckbxAsistir().isSelected();
 		TipoCita motivo = view.getComboModelTipoCita().getSelected();
 		LocalDate fecha = new LocalDate(view.getDateChooser().getDate());
 		LocalTime horaMomento = new LocalTime((int)view.getSpinnerHoraMomento().getValue(), (int)view.getSpinnerMinutoMomento().getValue());
@@ -46,7 +45,6 @@ public class CitaFormMapper implements Mapper<Cita>{
 		
 		t.setAltura(altura);
 		t.setCalle(calle);
-		t.setCreadorAsiste(asiste);
 		t.setDescripcion(notas);
 		t.setDuracionEstimada(duracion.toString());
 		t.setFechaHora(fechaHora);
@@ -61,7 +59,7 @@ public class CitaFormMapper implements Mapper<Cita>{
 		
 		Period duracion = Period.parse(t.getDuracionEstimada());
 		
-		view.getChckbxAsistir().setSelected(t.isCreadorAsiste());
+		view.getChckbxAsistir().setSelected(t.getAsistente() == null);
 		view.getComboModelTipoCita().setSelected(t.getTipo());
 		view.getDateChooser().setDate(t.getFechaHora().toDate());
 		view.getSpinnerHoraMomento().setValue(t.getFechaHora().getHourOfDay());

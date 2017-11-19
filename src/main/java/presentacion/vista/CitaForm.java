@@ -37,15 +37,11 @@ import javax.swing.JCheckBox;
 
 @Singleton
 public class CitaForm extends JDialog{
-	
-	private JTable tableAsistentes;
 	private JDateChooser dateChooser;
 	private JTextField tfCalle;
 	private JTextField tfAltura;
 	private JCheckBox chckbxAsistir;
 	private JComboBox<String> comboMotivo;
-	private JButton btnAgregar;
-	private JButton btnBorrar;
 	private JSpinner spinnerHoraMomento;
 	private JSpinner spinnerMinutoMomento;
 	private JSpinner spinnerHoraDuracion;
@@ -68,136 +64,121 @@ public class CitaForm extends JDialog{
 	public CitaForm() {
 		setTitle("Crear Cita");
 		getContentPane().setLayout(null);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(281, 81, 236, 77);
-		getContentPane().add(scrollPane);
 		setLocationRelativeTo(null);
 		setModal(true);
-		setSize(850, 620);
+		setSize(850, 550);
 		setResizable(false);
 		
-		tableAsistentes = new JTable();
-		scrollPane.setViewportView(tableAsistentes);
-		
-		btnAgregar = new JButton("Agregar");
-		btnAgregar.setBounds(291, 169, 97, 25);
-		getContentPane().add(btnAgregar);
-		
-		btnBorrar = new JButton("Borrar");
-		btnBorrar.setBounds(419, 169, 91, 25);
-		getContentPane().add(btnBorrar);
-		
 		JLabel lblFechaYHora = new JLabel("Fecha y hora: ");
-		lblFechaYHora.setBounds(37, 250, 91, 15);
+		lblFechaYHora.setBounds(37, 177, 91, 15);
 		getContentPane().add(lblFechaYHora);
 		
 		dateChooser = new JDateChooser(new Date());
-		dateChooser.setBounds(134, 250, 107, 22);
+		dateChooser.setBounds(134, 177, 107, 22);
 		getContentPane().add(dateChooser);
 		
 		spinnerHoraMomento = new JSpinner();
 		spinnerHoraMomento.setModel(new SpinnerNumberModel(12, 0, 23, 1));
-		spinnerHoraMomento.setBounds(251, 252, 36, 20);
+		spinnerHoraMomento.setBounds(251, 179, 36, 20);
 		getContentPane().add(spinnerHoraMomento);
 		
 		JLabel label = new JLabel(":");
-		label.setBounds(290, 256, 20, 15);
+		label.setBounds(290, 183, 20, 15);
 		getContentPane().add(label);
 		
 		spinnerMinutoMomento = new JSpinner();
 		spinnerMinutoMomento.setModel(new SpinnerNumberModel(0, 0, 59, 1));
-		spinnerMinutoMomento.setBounds(297, 252, 36, 20);
+		spinnerMinutoMomento.setBounds(297, 179, 36, 20);
 		getContentPane().add(spinnerMinutoMomento);
 		
 		JLabel lblDuracion = new JLabel("Duracion: ");
-		lblDuracion.setBounds(549, 255, 91, 15);
+		lblDuracion.setBounds(549, 182, 91, 15);
 		getContentPane().add(lblDuracion);
 		
 		spinnerHoraDuracion = new JSpinner();
 		spinnerHoraDuracion.setModel(new SpinnerNumberModel(0, 0, 23, 1));
-		spinnerHoraDuracion.setBounds(610, 252, 36, 20);
+		spinnerHoraDuracion.setBounds(610, 179, 36, 20);
 		getContentPane().add(spinnerHoraDuracion);
 		
 		JLabel label_1 = new JLabel(":");
-		label_1.setBounds(650, 254, 20, 15);
+		label_1.setBounds(650, 181, 20, 15);
 		getContentPane().add(label_1);
 		
 		spinnerMinutoDuracion = new JSpinner();
 		spinnerMinutoDuracion.setModel(new SpinnerNumberModel(0, 0, 23, 1));
-		spinnerMinutoDuracion.setBounds(658, 252, 36, 20);
+		spinnerMinutoDuracion.setBounds(658, 179, 36, 20);
 		getContentPane().add(spinnerMinutoDuracion);
 		
 		JLabel lblLocalidad = new JLabel("Localidad: ");
-		lblLocalidad.setBounds(646, 347, 91, 15);
+		lblLocalidad.setBounds(646, 274, 91, 15);
 		getContentPane().add(lblLocalidad);
 		
 		JLabel lblCalle = new JLabel("Calle: ");
-		lblCalle.setBounds(36, 347, 70, 15);
+		lblCalle.setBounds(36, 274, 70, 15);
 		getContentPane().add(lblCalle);
 		
 		JLabel lblProvincia = new JLabel("Provincia: ");
-		lblProvincia.setBounds(439, 347, 91, 15);
+		lblProvincia.setBounds(439, 274, 91, 15);
 		getContentPane().add(lblProvincia);
 		
 		JLabel lblAltura = new JLabel("Altura: ");
-		lblAltura.setBounds(244, 344, 70, 15);
+		lblAltura.setBounds(244, 271, 70, 15);
 		getContentPane().add(lblAltura);
 		
 		comboProvincia = new JComboBox<>();
-		comboProvincia.setBounds(507, 342, 114, 24);
+		comboProvincia.setBounds(507, 269, 114, 24);
 		getContentPane().add(comboProvincia);
 		
 		comboLocalidad = new JComboBox<>();
-		comboLocalidad.setBounds(711, 342, 114, 24);
+		comboLocalidad.setBounds(711, 269, 114, 24);
 		getContentPane().add(comboLocalidad);
 		
 		tfCalle = new JTextField();
-		tfCalle.setBounds(101, 341, 114, 19);
+		tfCalle.setBounds(101, 268, 114, 19);
 		getContentPane().add(tfCalle);
 		tfCalle.setColumns(10);
 		
 		tfAltura = new JTextField();
-		tfAltura.setBounds(315, 344, 114, 19);
+		tfAltura.setBounds(315, 271, 114, 19);
 		getContentPane().add(tfAltura);
 		tfAltura.setColumns(10);
 		
 		btnDesdePropiedad = new JButton("Desde propiedad");
-		btnDesdePropiedad.setBounds(111, 304, 156, 15);
+		btnDesdePropiedad.setBounds(111, 231, 156, 15);
 		getContentPane().add(btnDesdePropiedad);
 		
 		JLabel lblMotivo = new JLabel("Motivo: ");
-		lblMotivo.setBounds(20, 51, 70, 15);
+		lblMotivo.setBounds(20, 93, 70, 15);
 		getContentPane().add(lblMotivo);
 		
 		comboMotivo = new JComboBox<>();
-		comboMotivo.setBounds(100, 46, 151, 24);
+		comboMotivo.setBounds(100, 88, 151, 24);
 		getContentPane().add(comboMotivo);
 		
 		JLabel lblAvisoLargo = new JLabel("Aviso largo: ");
-		lblAvisoLargo.setBounds(20, 84, 72, 14);
+		lblAvisoLargo.setBounds(296, 54, 72, 14);
 		getContentPane().add(lblAvisoLargo);
 		
 		JLabel lblAvisoCorto = new JLabel("Aviso corto:");
-		lblAvisoCorto.setBounds(20, 112, 70, 14);
+		lblAvisoCorto.setBounds(296, 82, 70, 14);
 		getContentPane().add(lblAvisoCorto);
 		
 		spinnerAvisoLargo = new JSpinner();
 		spinnerAvisoLargo.setModel(new SpinnerNumberModel(1, 1, 10, 1));
-		spinnerAvisoLargo.setBounds(88, 81, 40, 20);
+		spinnerAvisoLargo.setBounds(364, 51, 40, 20);
 		getContentPane().add(spinnerAvisoLargo);
 		
 		spinnerAvisoCorto = new JSpinner();
 		spinnerAvisoCorto.setModel(new SpinnerNumberModel(1, 1, 10, 1));
-		spinnerAvisoCorto.setBounds(88, 109, 39, 20);
+		spinnerAvisoCorto.setBounds(364, 79, 39, 20);
 		getContentPane().add(spinnerAvisoCorto);
 		
 		JLabel lblDias = new JLabel("dias antes");
-		lblDias.setBounds(138, 84, 74, 14);
+		lblDias.setBounds(414, 54, 74, 14);
 		getContentPane().add(lblDias);
 		
 		JLabel lblHoras = new JLabel("horas antes");
-		lblHoras.setBounds(137, 112, 70, 14);
+		lblHoras.setBounds(413, 82, 70, 14);
 		getContentPane().add(lblHoras);
 		
 		JLabel lblNotas = new JLabel("Notas:");
@@ -221,39 +202,39 @@ public class CitaForm extends JDialog{
 		getContentPane().add(lblAsistentes_1);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(10, 237, 816, 2);
+		separator_1.setBounds(10, 164, 816, 2);
 		getContentPane().add(separator_1);
 		
 		JLabel lblMomentoYDuracion = new JLabel("Momento y duracion");
 		lblMomentoYDuracion.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblMomentoYDuracion.setBounds(37, 212, 140, 14);
+		lblMomentoYDuracion.setBounds(37, 139, 140, 14);
 		getContentPane().add(lblMomentoYDuracion);
 		
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(10, 329, 815, 2);
+		separator_2.setBounds(10, 256, 815, 2);
 		getContentPane().add(separator_2);
 		
 		JLabel lblUbicacion = new JLabel("Ubicacion");
 		lblUbicacion.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblUbicacion.setBounds(37, 303, 91, 14);
+		lblUbicacion.setBounds(37, 230, 91, 14);
 		getContentPane().add(lblUbicacion);
 		
 		chckbxAsistir = new JCheckBox("Asistir");
-		chckbxAsistir.setBounds(281, 51, 97, 23);
+		chckbxAsistir.setBounds(20, 47, 97, 23);
 		getContentPane().add(chckbxAsistir);
 		
 		btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBounds(382, 529, 89, 49);
+		btnAceptar.setBounds(382, 456, 89, 49);
 		getContentPane().add(btnAceptar);
 		
 		JLabel lblHs = new JLabel("hs.");
-		lblHs.setBounds(337, 256, 46, 14);
+		lblHs.setBounds(337, 183, 46, 14);
 		getContentPane().add(lblHs);
 		
 		mapa = new JMapViewer();
 		mapa.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		mapa.setZoomContolsVisible(false);
-		mapa.setBounds(116, 377, 621, 141);
+		mapa.setBounds(116, 304, 621, 141);
 		getContentPane().add(mapa);
 		
 		btnActualizar = new JButton("Actualizar mapa");
@@ -276,10 +257,6 @@ public class CitaForm extends JDialog{
 		
 	}
 
-	public JTable getTableAsistentes() {
-		return tableAsistentes;
-	}
-
 	public JDateChooser getDateChooser() {
 		return dateChooser;
 	}
@@ -298,14 +275,6 @@ public class CitaForm extends JDialog{
 
 	public JComboBox<String> getComboMotivo() {
 		return comboMotivo;
-	}
-
-	public JButton getBtnAgregar() {
-		return btnAgregar;
-	}
-
-	public JButton getBtnBorrar() {
-		return btnBorrar;
 	}
 
 	public JSpinner getSpinnerHoraMomento() {

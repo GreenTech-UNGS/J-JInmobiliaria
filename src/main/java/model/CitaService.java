@@ -62,32 +62,32 @@ public class CitaService {
 	
 	public void crearNotificaciones(Cita c, int avisoCorto, int avisoLargo){
 		
-		for(PersonaBasica p: c.getAsistentes()){
+		Persona p = c.getAsistente().getPersona();
 			
-			NotificacionCita corto = new NotificacionCita();
-			NotificacionCita largo = new NotificacionCita();
-			
-			corto.setPersona(p);
-			largo.setPersona(p);
-			
-			corto.setPeriodo(Period.hours(avisoCorto));
-			largo.setPeriodo(Period.days(avisoLargo));
-			
-			if(p instanceof Persona && usuariosService.existeUsuarioCon((Persona)p)){
-				System.out.println(p.getNombre());
-				corto.setTipo(TipoNotificacion.SISTEMA);
-				largo.setTipo(TipoNotificacion.SISTEMA);
-			}
-			else{
-
-				corto.setTipo(TipoNotificacion.EMAIL);
-				largo.setTipo(TipoNotificacion.EMAIL);
-			}
-			
-			c.getAvisos().add(corto);
-			c.getAvisos().add(largo);
-			
+		NotificacionCita corto = new NotificacionCita();
+		NotificacionCita largo = new NotificacionCita();
+		
+		corto.setPersona(p);
+		largo.setPersona(p);
+		
+		corto.setPeriodo(Period.hours(avisoCorto));
+		largo.setPeriodo(Period.days(avisoLargo));
+		
+		if(p instanceof Persona && usuariosService.existeUsuarioCon((Persona)p)){
+			System.out.println(p.getNombre());
+			corto.setTipo(TipoNotificacion.SISTEMA);
+			largo.setTipo(TipoNotificacion.SISTEMA);
 		}
+		else{
+
+			corto.setTipo(TipoNotificacion.EMAIL);
+			largo.setTipo(TipoNotificacion.EMAIL);
+		}
+		
+		c.getAvisos().add(corto);
+		c.getAvisos().add(largo);
+		
+		
 		
 	}
 	

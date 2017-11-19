@@ -16,7 +16,7 @@ public class Cita {
 	private int ID;
 	
 	@ManyToMany(cascade = CascadeType.PERSIST)
-	private List<PersonaBasica> asistentes;
+	private Usuario asistente;
 	
 	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
 	private LocalDateTime fechaHora;
@@ -29,7 +29,7 @@ public class Cita {
 	private double lat;
 	private double lng;
 	
-	private boolean creadorAsiste;
+	//private boolean creadorAsiste;
 	private boolean finalizada;
 	private boolean seBorra;
 	
@@ -48,15 +48,6 @@ public class Cita {
 	public Cita() {
 		
 		avisos = new ArrayList<>();
-		asistentes = new ArrayList<>();
-	}
-
-	public List<PersonaBasica> getAsistentes() {
-		return asistentes;
-	}
-
-	public void setAsistentes(List<PersonaBasica> asistentes) {
-		this.asistentes = asistentes;
 	}
 
 	public DateTime getFechaHora() {
@@ -135,14 +126,6 @@ public class Cita {
 		return ID;
 	}
 
-	public boolean isCreadorAsiste() {
-		return creadorAsiste;
-	}
-
-	public void setCreadorAsiste(boolean creadorAsiste) {
-		this.creadorAsiste = creadorAsiste;
-	}
-
 	public boolean isFinalizada() {
 		return finalizada;
 	}
@@ -165,6 +148,14 @@ public class Cita {
 
 	public void setSeBorra(boolean seBorra) {
 		this.seBorra = seBorra;
+	}
+
+	public Usuario getAsistente() {
+		return asistente;
+	}
+
+	public void setAsistente(Usuario asistente) {
+		this.asistente = asistente;
 	}
 	
 	
