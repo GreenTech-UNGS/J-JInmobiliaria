@@ -33,6 +33,7 @@ public class OfrecimientoAlquilerController {
 		this.view = view;
 		
 		view.getBtnVerValorEntrada().addActionListener(e -> muestraValorEntrada());
+		view.getChckbxHabilitar().addActionListener(e -> habilitaCampos());
 		
 		fillCombos();
 	}
@@ -41,12 +42,16 @@ public class OfrecimientoAlquilerController {
 		
 		this.currentOfrecimiento = ofrecimiento;
 		mapper.fillFields(ofrecimiento);
+
+		habilitaCampos();
 		
 	}
 	
 	public void setViewMode(OfrecimientoAlquiler ofrecimiento) {
 		this.currentOfrecimiento = ofrecimiento;
 		mapper.fillFields(ofrecimiento);
+
+		habilitaCampos();
 	}
 	
 	public void save() {
@@ -80,8 +85,20 @@ public class OfrecimientoAlquilerController {
 			msgShw.showErrorMessage(e.getMessage(), "Error");
 		}
 		
+	}
+	
+	private void habilitaCampos() {
+		boolean isHabilitado = view.getChckbxHabilitar().isSelected();
 		
-		
+		view.getTfPrecio().setEnabled(isHabilitado);
+		view.getComboMonedaBasico().setEnabled(isHabilitado);
+		view.getSpinnerMeses().setEnabled(isHabilitado);
+		view.getSpinnerIntervalo().setEnabled(isHabilitado);
+		view.getSpinnerPorcentaje().setEnabled(isHabilitado);
+		view.getChckbxAcumulativo().setEnabled(isHabilitado);
+		view.getTfMonto().setEnabled(isHabilitado);
+		view.getCbMonedaOtros().setEnabled(isHabilitado);
+		view.getSpinnerSellado().setEnabled(isHabilitado);
 	}
 	
 	private void fillCombos() {

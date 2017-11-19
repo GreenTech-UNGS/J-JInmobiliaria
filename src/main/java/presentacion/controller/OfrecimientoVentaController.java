@@ -24,24 +24,43 @@ public class OfrecimientoVentaController {
 	private OfrecimientoVentaController(PrecontratoVentaForm view) {
 		
 		this.view = view;
+		
+		this.view.getChckbxHabilitar().addActionListener(e -> habilitaCampos());
+		
 		fillCombos();
 	
 	}
-	
+
 	public void setEditMode(OfrecimientoVenta ofrecimiento) {
 		
 		this.currentOfrecimiento = ofrecimiento;
 		mapper.fillFields(ofrecimiento);
+		
+		habilitaCampos();
 		
 	}
 	
 	public void setViewMode(OfrecimientoVenta ofrecimiento) {
 		this.currentOfrecimiento = ofrecimiento;
 		mapper.fillFields(ofrecimiento);
+		
+		habilitaCampos();
 	}
 	
 	public void save() {
 		mapper.fillBean(currentOfrecimiento);
+	}
+	
+	
+	private void habilitaCampos() {
+		
+		boolean isHabilitado = view.getChckbxHabilitar().isSelected();
+		
+		view.getTfPrecio().setEnabled(isHabilitado);
+		view.getSpinnerComprador().setEnabled(isHabilitado);
+		view.getSpinnerVendedor().setEnabled(isHabilitado);
+		view.getCbMoneda().setEnabled(isHabilitado);
+		
 	}
 	
 	private void fillCombos() {

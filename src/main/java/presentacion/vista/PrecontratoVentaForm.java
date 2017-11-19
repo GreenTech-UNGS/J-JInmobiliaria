@@ -29,6 +29,7 @@ public class PrecontratoVentaForm extends JPanel{
 	private JSpinner spinnerComprador;
 	private JSpinner spinnerVendedor;
 	private MonedaComboBoxModel monedaCombo;
+	private JComboBox<String> cbMoneda;
 	
 	@Inject
 	private PrecontratoVentaForm(){
@@ -66,7 +67,7 @@ public class PrecontratoVentaForm extends JPanel{
 		lblMoneda.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		add(lblMoneda);
 		
-		JComboBox<String> cbMoneda = new JComboBox<String>();
+		cbMoneda = new JComboBox<String>();
 		cbMoneda.setBounds(260, 65, 96, 20);
 		add(cbMoneda);
 		
@@ -122,6 +123,10 @@ public class PrecontratoVentaForm extends JPanel{
 
 	public MonedaComboBoxModel getMonedaCombo() {
 		return monedaCombo;
+	}
+
+	public JComboBox<String> getCbMoneda() {
+		return cbMoneda;
 	}
 
 }

@@ -39,6 +39,8 @@ public class PrecontratoAlquilerForm extends JPanel{
 	private MonedaComboBoxModel monedaOtros;
 	private JSpinner spinnerSellado;
 	private JButton btnVerValorEntrada;
+	private JComboBox<String> comboMonedaBasico;
+	private JComboBox<String> cbMonedaOtros;
 	
 	@Inject
 	private PrecontratoAlquilerForm(){
@@ -76,7 +78,7 @@ public class PrecontratoAlquilerForm extends JPanel{
 		lblMoneda.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		add(lblMoneda);
 		
-		JComboBox<String> comboMonedaBasico = new JComboBox<>();
+		comboMonedaBasico = new JComboBox<>();
 		comboMonedaBasico.setBounds(326, 56, 102, 20);
 		add(comboMonedaBasico);
 		
@@ -147,7 +149,7 @@ public class PrecontratoAlquilerForm extends JPanel{
 		label.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		add(label);
 		
-		JComboBox<String> cbMonedaOtros = new JComboBox<>();
+		cbMonedaOtros = new JComboBox<>();
 		cbMonedaOtros.setBounds(326, 166, 102, 20);
 		add(cbMonedaOtros);
 		
@@ -215,5 +217,13 @@ public class PrecontratoAlquilerForm extends JPanel{
 
 	public JButton getBtnVerValorEntrada() {
 		return btnVerValorEntrada;
+	}
+
+	public JComboBox<String> getComboMonedaBasico() {
+		return comboMonedaBasico;
+	}
+
+	public JComboBox<String> getCbMonedaOtros() {
+		return cbMonedaOtros;
 	}
 }
