@@ -26,8 +26,10 @@ import entities.EstadoProp;
 import entities.HistoriaEstadoContrato;
 import entities.HistoriaEstadoCuota;
 import entities.HistoriaEstadoProp;
+import entities.Ingreso;
 import entities.InteresPunitorioCuota;
 import entities.Moneda;
+import entities.OfrecimientoAlquiler;
 import entities.Precio;
 import entities.Propiedad;
 import entities.Reserva;
@@ -42,6 +44,7 @@ public class ContratoService {
 
 	ReservaService reservaService;
 	@Inject CuotaService cuotaService;
+	@Inject private MovimientoCajaService cajaService;
 	
 	ContratoDao contratoDao;
 	PropiedadDao propiedadDao;
@@ -80,6 +83,7 @@ public class ContratoService {
 		propiedad.getEstados().add(estado);
 		
 		creaCuotas(c);
+		cajaService.creaIngresos(c);
 		
 		propiedadDao.save(propiedad);
 	}

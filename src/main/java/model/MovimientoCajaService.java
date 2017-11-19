@@ -14,6 +14,8 @@ import java.util.List;
 @Singleton
 public class MovimientoCajaService {
 
+	@Inject private OfrecimientoService ofrecimientoService;
+	
 	IngresoDao ingresoDao;
 	EgresoDao egresoDao;
 	
@@ -77,6 +79,35 @@ public class MovimientoCajaService {
 			throw new LogicaNegocioException("La fecha es posterior a hoy");
 		
 		ingresoDao.save(i);
+	}
+	
+	
+	public void creaIngresos(ContratoAlquiler c) {
+		
+		OfrecimientoAlquiler ofrecimientoTrucho = new OfrecimientoAlquiler();
+		ofrecimientoTrucho.setAcumulativo(c.getDatoActualizacion().isAcumulativo());
+		ofrecimientoTrucho.setCantidadMeses(c.getCantMeses());
+		ofrecimientoTrucho.setHabilitada(true);
+		ofrecimientoTrucho.setIntervaloActualizacion(c.getDatoActualizacion().getActualizacionMeses());
+		ofrecimientoTrucho.setOtrosGastos(c.getPropiedad().getOfrecimientoAlquiler().getOtrosGastos());
+		ofrecimientoTrucho.setPorcentajeSellado(c.getPropiedad().getOfrecimientoAlquiler().getPorcentajeSellado());
+		ofrecimientoTrucho.setPrecio(c.getCuotaMensual());
+		ofrecimientoTrucho.setProcentajeActualizacion(c.getDatoActualizacion().getPorcentaje());
+		
+		Precio valor = null;
+		try {
+			valor = ofrecimientoService.getPrecioParaEntrar(ofrecimientoTrucho);
+		} catch (LogicaNegocioException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Ingreso valorIngreso = new Ingreso();
+		valorIngreso.setFecha(DateTime.now());
+		valorIngreso.setDetalle("Pago del monto para entrar del contrato " + c.getIdentificador());
+		valorIngreso.setMonto(valor);
+		ingresoDao.save(valorIngreso);
+		
 	}
 	
 	public Ingreso getNewIngreso() {
