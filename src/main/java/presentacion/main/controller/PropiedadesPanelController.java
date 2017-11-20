@@ -12,11 +12,15 @@ import com.google.inject.Singleton;
 
 import entities.EstadoProp;
 import entities.HistoriaEstadoProp;
+import entities.Interesado;
 import entities.Propiedad;
 import entities.Reserva;
 import filtros.PropiedadFiltro;
 import model.PropiedadService;
 import model.ReservaService;
+import presentacion.controller.ElegirInteresadoController;
+import presentacion.controller.ElegirPropiedadController;
+import presentacion.controller.InteresadoController;
 import presentacion.controller.PropiedadController;
 import presentacion.controller.ReservarPropiedadController;
 import presentacion.controller.filtros.PropiedadFiltroController;
@@ -29,7 +33,8 @@ public class PropiedadesPanelController {
 
 	private PropiedadesPanel view;
 	
-	@Inject private PropiedadController propiedadController;
+	@Inject private PropiedadController propiedadController;	
+	@Inject private InteresadoController interesadoController;
 	@Inject private ReservarPropiedadController reservaController;
 	
 	@Inject private PropiedadService propiedadService;
@@ -44,6 +49,8 @@ public class PropiedadesPanelController {
 	
 	@Inject private PropiedadFiltroController propiedadFiltro;
 	
+	@Inject private ElegirInteresadoController elegirInteresadoController;
+	
 	private PropiedadFiltro currentPropiedadFiltro;
 	
 	@Inject
@@ -57,6 +64,7 @@ public class PropiedadesPanelController {
 		this.view.getBtnEditarPropiedad().addActionListener(e -> editarPropiedad());
 		this.view.getBtnFiltrar().addActionListener(e -> filtrarPropiedades());
 		this.view.getBtnRemoverFiltro().addActionListener(e -> removerFiltro());
+		this.view.getBtnVerInteresados().addActionListener(e -> verInteresados());
 	
 	
 		selectDetalleProp();
@@ -145,6 +153,31 @@ public class PropiedadesPanelController {
 				}
 			}
 		});
+	}
+	
+	private void verInteresados(){
+		
+	int select = this.view.getTablePropiedades().getSelectedRow();
+		
+		if (select!=-1){
+			seleccionaInteresado(this.tableModelProp.getRow(select));
+			Interesado interesado = elegirInteresadoController.getInteresado();
+			if(interesado != null) {				
+				interesadoController.editarInteresado(interesado);
+				interesadoController.showView();
+			}
+		}
+	}
+	
+	private void seleccionaInteresado(Propiedad propiedad) {
+		elegirInteresadoController.showViewPropiedad(propiedad);
+		Interesado interesado = elegirInteresadoController.getInteresado();
+		
+		if(propiedad != null) {
+			interesadoController.editarInteresado(interesado);
+			interesadoController.showView();
+		}
+		
 	}
 	
 	private void fillTableProp(){
