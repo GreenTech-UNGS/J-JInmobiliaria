@@ -205,7 +205,6 @@ public class PersonasPanelController {
 	private void verPropiedades(){
 		
 	int select = this.view.getTableInteresados().getSelectedRow();
-
 		
 		if (select!=-1){
 			seleccionaPropiedad(this.interesadosTable.getRow(select));
@@ -215,8 +214,6 @@ public class PersonasPanelController {
 				propiedadController.showView();
 			}
 		}
-		
-
 	}
 	
 	private void aplicarFiltroPropietario() {
@@ -238,7 +235,8 @@ public class PersonasPanelController {
 		Propiedad propiedad = elegirPropiedadController.getPropiedad();
 		
 		if(propiedad != null) {
-		
+			propiedadController.editPropiedad(propiedad);
+			propiedadController.showView();
 		}
 		
 	}
