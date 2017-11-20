@@ -40,6 +40,9 @@ public class MainViewController {
 		
 		this.view.getMntmCarteles().addActionListener(e -> administrarCarteles());
 		this.view.getMntmGastosFijos().addActionListener(e -> administrarGastos());
+		
+		this.view.getMntmImportar().addActionListener(e -> System.out.println("importar"));
+		this.view.getMntmExportar().addActionListener(e -> System.out.println("exportar"));
 
 	}
 

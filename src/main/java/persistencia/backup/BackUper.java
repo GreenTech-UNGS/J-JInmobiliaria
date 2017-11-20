@@ -14,7 +14,7 @@ public class BackUper {
     private DAOFTPFileZilla fileZilla;
 
     private final String DIRECTORY_NAME = "BackUp";
-    private final String PHOTOS_DIRECTORY = DIRECTORY_NAME + File.separatorChar + "FTPServer";//Este no necesariamente tiene que ponerse en properties
+    private final String PHOTOS_DIRECTORY = "C:" + File.separatorChar + "ftp";//Este no necesariamente tiene que ponerse en properties
     private final String DATABASE_DIRECTORY = DIRECTORY_NAME + File.separatorChar + "DataBase";
     private final String DATABASE_SCRIPT_EXPORT = "export.sh";
     private final String DATABASE_SCRIPT_IMPORT = "import.sh";

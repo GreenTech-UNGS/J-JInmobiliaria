@@ -43,6 +43,8 @@ public class MainView {
     private JMenuItem mntmCambiarContrasea;
     private JMenuItem mntmCarteles;
     private JMenuItem mntmGastosFijos;
+    private JMenuItem mntmExportar;
+    private JMenuItem mntmImportar;
     
     @Inject
     public MainView(PropiedadesPanel panelPropiedades,
@@ -168,6 +170,18 @@ public class MainView {
         mntmGastosFijos = new JMenuItem("Gastos fijos");
         mntmGastosFijos.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         mnAdministrar.add(mntmGastosFijos);
+        
+        JMenu mnBackup = new JMenu("Backup");
+        mnBackup.setFont(new Font("Dialog", Font.PLAIN, 12));
+        menuBar.add(mnBackup);
+        
+        mntmImportar = new JMenuItem("Importar");
+        mntmImportar.setFont(new Font("Dialog", Font.PLAIN, 12));
+        mnBackup.add(mntmImportar);
+        
+        mntmExportar = new JMenuItem("Exportar");
+        mntmExportar.setFont(new Font("Dialog", Font.PLAIN, 12));
+        mnBackup.add(mntmExportar);
     }
 
     public void show() {
@@ -201,5 +215,17 @@ public class MainView {
 
 	public JMenuItem getMntmGastosFijos() {
 		return mntmGastosFijos;
+	}
+
+	public JMenuItem getMntmEditar() {
+		return mntmEditar;
+	}
+
+	public JMenuItem getMntmExportar() {
+		return mntmExportar;
+	}
+
+	public JMenuItem getMntmImportar() {
+		return mntmImportar;
 	}
 }
