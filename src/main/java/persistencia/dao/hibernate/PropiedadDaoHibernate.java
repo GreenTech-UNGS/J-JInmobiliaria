@@ -9,6 +9,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.Foto;
+import entities.Localidad;
 import entities.Propiedad;
 import entities.TipoHabitacion;
 import filtros.PropiedadFiltro;
@@ -61,6 +62,21 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 		sesion.saveOrUpdate(toActualize);
 		finishTransaction();
 		
+	}
+	
+	@Override
+	public List<Propiedad> getAllByLocalidad(Localidad localidad){
+		initTransaction();
+
+		Criteria q = sesion.createCriteria(Propiedad.class).
+				add(Restrictions.eq("localidad", localidad));
+		
+		List<Propiedad> toRet = q.list();
+		
+		finishTransaction();
+		
+		actualizeList(toRet);
+		return toRet;		
 	}
 	
 	@Override
