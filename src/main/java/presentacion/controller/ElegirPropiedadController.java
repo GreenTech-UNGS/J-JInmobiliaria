@@ -5,6 +5,7 @@ import javax.swing.ListSelectionModel;
 import com.google.inject.Inject;
 
 import entities.EstadoProp;
+import entities.Interesado;
 import entities.Propiedad;
 import model.PropiedadService;
 import presentacion.table.PropiedadesTableModel;
@@ -52,6 +53,11 @@ public class ElegirPropiedadController {
 		tableModelPropiedad.actualizeRows(propiedadService.getVentaBy(EstadoProp.DISPONIBLE));
 	}
 	
+	private void fillTablePropInteresado(Interesado interesado){
+		this.tableModelPropiedad.clean();
+		tableModelPropiedad.actualizeRows(propiedadService.getAllByInteresado(interesado));
+	}
+	
 	public void showViewAll() {
 
 		fillTablePropAll();
@@ -65,6 +71,11 @@ public class ElegirPropiedadController {
 
 	public void showViewProp(){
 		fillTableProp();
+		view.setVisible(true);
+	}
+	
+	public void showViewInteresado(Interesado interesado){
+		fillTablePropInteresado(interesado);
 		view.setVisible(true);
 	}
 	
