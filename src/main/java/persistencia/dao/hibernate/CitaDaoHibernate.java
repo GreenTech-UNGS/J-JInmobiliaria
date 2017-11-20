@@ -41,8 +41,7 @@ public class CitaDaoHibernate extends DaoHibernate<Cita> implements CitaDao{
 		initTransaction();
 		
 		Criteria q = sesion.createCriteria(Cita.class)
-				.createAlias("asistentes", "asisit")
-				.add(Restrictions.eq("asisit.ID", u.getID()))
+				.add(Restrictions.eq("asisitente.ID", u.getID()))
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		
 		List<Cita> toRet = q.list();
@@ -58,8 +57,7 @@ public class CitaDaoHibernate extends DaoHibernate<Cita> implements CitaDao{
 		initTransaction();
 		
 		Criteria q = sesion.createCriteria(Cita.class)
-				.createAlias("asistentes", "asisit")
-				.add(Restrictions.eq("asisit.ID", u.getID())).
+				.add(Restrictions.eq("asisitente.ID", u.getID())).
 				add(Restrictions.ge("fechaHora", LocalDateTime.now()))
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);;
 		
@@ -76,7 +74,6 @@ public class CitaDaoHibernate extends DaoHibernate<Cita> implements CitaDao{
 		initTransaction();
 		
 		Criteria q = sesion.createCriteria(Cita.class)
-				.createAlias("asistentes", "asisit")
 				.add(Restrictions.ge("fechaHora", LocalDateTime.now()))
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);;
 		
