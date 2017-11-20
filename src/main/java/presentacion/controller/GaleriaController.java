@@ -30,6 +30,8 @@ import entities.Propiedad;
 import model.GaleriaService;
 import model.LogicaNegocioException;
 import model.PropiedadService;
+import presentacion.filechooser.ImageFileView;
+import presentacion.filechooser.ImagePreview;
 import presentacion.validators.MessageShow;
 import presentacion.vista.GaleriaFotosView;
 
@@ -61,6 +63,8 @@ public class GaleriaController {
 
 		this.fileChooser = new JFileChooser();
 		this.fileChooser.setMultiSelectionEnabled(true);
+		this.fileChooser.setFileView(new ImageFileView());
+		this.fileChooser.setAccessory(new ImagePreview(fileChooser));
 		this.fileChooser.setFileFilter(new FileNameExtensionFilter("Imagenes", ImageIO.getReaderFileSuffixes()));
 		
 	}

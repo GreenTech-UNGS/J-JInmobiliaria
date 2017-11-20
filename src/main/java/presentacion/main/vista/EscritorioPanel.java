@@ -38,7 +38,7 @@ public class EscritorioPanel extends JPanel{
 	
 		
 		JPanel panelBotonesCitas = new JPanel();
-		panelMisCitas.add(panelBotonesCitas);
+		//panelMisCitas.add(panelBotonesCitas);
 		
 		JButton btnHolo = new JButton("Holo");
 		panelBotonesCitas.add(btnHolo);

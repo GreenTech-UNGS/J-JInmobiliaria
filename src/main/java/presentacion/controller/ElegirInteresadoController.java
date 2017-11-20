@@ -31,6 +31,7 @@ public class ElegirInteresadoController{
 		
 		this.view.getBtnAgregarOtro().addActionListener(e -> agregarOtroInteresado());
 
+		view.getBtnAceptar().addActionListener(e -> view.setVisible(false));
 	}
 	private void agregarOtroInteresado() {
 		interesadoController.setModeNew();
@@ -45,7 +46,6 @@ public class ElegirInteresadoController{
 		
 		this.tableModelInteresado.clean();
 		tableModelInteresado.actualizeRows(interesadoService.getAll());
-		view.getBtnAceptar().addActionListener(e -> view.setVisible(false));
 	}
 	private void fillTableInteresadoPropiedad(Propiedad propiedad) {
 		
@@ -55,7 +55,6 @@ public class ElegirInteresadoController{
 		
 		this.tableModelInteresado.clean();
 		tableModelInteresado.actualizeRows(interesadoService.getAllByPropiedad(propiedad));
-		view.getBtnAceptar().addActionListener(e -> view.setVisible(false));
 	}
 	public void showView(){
 		fillTableInteresado();
