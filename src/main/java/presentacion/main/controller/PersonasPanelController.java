@@ -18,6 +18,7 @@ import presentacion.controller.ClienteController;
 import presentacion.controller.ElegirPropiedadController;
 import presentacion.controller.ElegirPropietarioController;
 import presentacion.controller.InteresadoController;
+import presentacion.controller.PropiedadController;
 import presentacion.controller.PropietarioController;
 import presentacion.controller.UsuarioController;
 import presentacion.controller.filtros.ClienteFiltroController;
@@ -43,6 +44,7 @@ public class PersonasPanelController {
 	@Inject private InteresadoFiltroController interesadoFiltro;
 	@Inject private UsuarioController usuarioController;
 	@Inject private InteresadoController interesadoController;
+	@Inject private PropiedadController propiedadController;
 	
 	@Inject private ClienteService clienteService;
 	@Inject private PropietarioService propietarioService;
@@ -203,10 +205,15 @@ public class PersonasPanelController {
 	private void verPropiedades(){
 		
 	int select = this.view.getTableInteresados().getSelectedRow();
+
 		
 		if (select!=-1){
 			seleccionaPropiedad(this.interesadosTable.getRow(select));
-			
+			Propiedad propiedad = elegirPropiedadController.getPropiedad();
+			if(propiedad != null) {				
+				propiedadController.editPropiedad(propiedad);
+				propiedadController.showView();
+			}
 		}
 		
 
