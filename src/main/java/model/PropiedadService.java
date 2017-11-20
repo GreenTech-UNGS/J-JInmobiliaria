@@ -191,6 +191,16 @@ public class PropiedadService {
 		return toRet;
 	}
 	
+	public List<Propiedad> getAllByInteresado(Interesado interesado){
+		List<Propiedad> toRet = new ArrayList<Propiedad>();
+		for(Propiedad p : propiedadDao.getAllByLocalidad(interesado.getPreferencia().getLocalidad())){
+			if(this.matches(p, interesado.getPreferencia())){
+				toRet.add(p);
+			}
+		}				
+		return toRet;
+	}
+	
 	public List<Propiedad> getAllByFiltro(PropiedadFiltro filtro){
 		
 		return propiedadDao.getAllByFiltro(filtro);
