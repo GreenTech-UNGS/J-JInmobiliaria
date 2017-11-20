@@ -1,27 +1,32 @@
 package persistencia.backup;
 
+import model.LogicaNegocioException;
 import org.zeroturnaround.zip.commons.FileUtils;
+import persistencia.dao.ftp.DAOFTPFileZilla;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class BackUper {
     private Zipper zipper;
-    private final String DIRECTORY_NAME = "BackUp"; //TODO: esto podría ser un propperties
+    private DAOFTPFileZilla fileZilla;
+
+    private final String DIRECTORY_NAME = "BackUp";
     private final String PHOTOS_DIRECTORY = DIRECTORY_NAME + File.separatorChar + "FTPServer";//Este no necesariamente tiene que ponerse en properties
-    private final String OUTPUT_COMPRESS_FILE = "backUp.zip";
-    private final String FTP_FOLDER = "/home/lucas/Documentos/test";
     private final String DATABASE_DIRECTORY = DIRECTORY_NAME + File.separatorChar + "DataBase";
-    private final String DATABASE_SCRIPT_EXPORT = "inmo_exporter.sh";
-    private final String DATABASE_SCRIPT_IMPORT = "inmo_importer.sh";
+    private final String DATABASE_SCRIPT_EXPORT = "export.sh";
+    private final String DATABASE_SCRIPT_IMPORT = "import.sh";
 
     public BackUper(){
         zipper = new Zipper();
+        fileZilla = new DAOFTPFileZilla();
     }
 
-    public void exportBackUp(File exportDirectory){
+    public void exportBackUp(File exportDirectory, String backUpName) throws LogicaNegocioException {
         if (!existDirectory(exportDirectory))
-            throw new RuntimeException("No existe archivo"); //TODO cambiar por lógica de negocio exception
+            throw new LogicaNegocioException("No existe archivo");
 
         String givenDirectory = exportDirectory.getAbsolutePath();
 
@@ -31,7 +36,7 @@ public class BackUper {
         createNewDirectory(PHOTOS_DIRECTORY);
 
         //copiar fotos al directorio
-        copyPhotos(FTP_FOLDER, PHOTOS_DIRECTORY);
+        copyPhotosFromFTP(PHOTOS_DIRECTORY);
 
         //crear directorio de la base de datos
         createNewDirectory(DATABASE_DIRECTORY);
@@ -40,23 +45,23 @@ public class BackUper {
         executeCommandLineScript(DATABASE_SCRIPT_EXPORT);
 
         //Zipear
-        zipper.zipIt(givenDirectory + File.separatorChar + OUTPUT_COMPRESS_FILE, DIRECTORY_NAME);
+        zipper.zipIt(givenDirectory + File.separatorChar + backUpName +".zip", DIRECTORY_NAME);
 
         //Borrar el directorio
         deleteDirectory(DIRECTORY_NAME);
     }
 
-    public void importBackUp(File archivoZip){
-        //crear carpeta
+    public void importBackUp(File archivoZip) throws LogicaNegocioException {
+
+        if(!archivoZip.isFile())
+            throw new LogicaNegocioException("No se ha seleccionado un archivo");
+
         createNewDirectory(DIRECTORY_NAME);
-        //Corroborrar que sea un archivo .zip
-        //UNZIP the file
+
         zipper.unzipIt(archivoZip.getAbsolutePath(), DIRECTORY_NAME);
-        //Copiar imágenes en la carpeta de FTP
-        copyPhotos(PHOTOS_DIRECTORY, FTP_FOLDER);
-        //Correr script para cargar base de datos
+        copyPhotosToFTP(PHOTOS_DIRECTORY);
         executeCommandLineScript(DATABASE_SCRIPT_IMPORT);
-        //Borrar directorio
+
         deleteDirectory(DIRECTORY_NAME);
     }
 
@@ -70,14 +75,20 @@ public class BackUper {
         direct.mkdir();
     }
 
-    private void copyPhotos(String fromDirectory, String toDirectory){
-        File fromDirect= new File(fromDirectory);
-        File toDirect = new File(toDirectory);
-        try {
-            FileUtils.copyDirectory(fromDirect, toDirect);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void copyPhotosFromFTP(String toDirectory){
+        List<String> filesName = fileZilla.listFiles();
+        System.out.println(toDirectory);
+        System.out.println(filesName);
+
+        filesName.forEach(fname -> fileZilla.retrieveFile(fname, toDirectory + File.separatorChar +
+        fname));
+    }
+
+    private void copyPhotosToFTP(String fromDirectory){
+        File from = new File(fromDirectory);
+        List<File> allFiles = Arrays.asList(from.listFiles());
+
+        allFiles.forEach(file -> fileZilla.storeFile(file, file.getName()));
     }
 
     private void deleteDirectory(String directory){
@@ -92,8 +103,9 @@ public class BackUper {
     private void executeCommandLineScript(String script){
         //PARA WINDOWS Runtime.getRuntime().exec("cmd /c start \"\" build.bat");
         //TODO se puede cachear el int de la salida del proceso
+        System.out.println(script);
         try {
-            Runtime.getRuntime().exec("sh "+ script).waitFor();
+            Runtime.getRuntime().exec("sh " + script).waitFor();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
