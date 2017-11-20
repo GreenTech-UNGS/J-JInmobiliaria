@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 import org.joda.time.Period;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
@@ -40,9 +41,6 @@ public class NotificacionesService {
 		        .appendSeparator(":")
 		        .appendMinutes()
 		        .printZeroIfSupported()
-		        .minimumPrintedDigits(2)
-		        .appendSeparator(":")
-		        .appendSeconds()
 		        .minimumPrintedDigits(2)
 		        .toFormatter();
 	

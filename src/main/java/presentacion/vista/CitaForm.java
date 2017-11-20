@@ -87,7 +87,7 @@ public class CitaForm extends JDialog{
 		getContentPane().add(label);
 		
 		spinnerMinutoMomento = new JSpinner();
-		spinnerMinutoMomento.setModel(new SpinnerNumberModel(0, 0, 59, 1));
+		spinnerMinutoMomento.setModel(new SpinnerNumberModel(0, 0, 59, 5));
 		spinnerMinutoMomento.setBounds(297, 179, 36, 20);
 		getContentPane().add(spinnerMinutoMomento);
 		
@@ -105,7 +105,7 @@ public class CitaForm extends JDialog{
 		getContentPane().add(label_1);
 		
 		spinnerMinutoDuracion = new JSpinner();
-		spinnerMinutoDuracion.setModel(new SpinnerNumberModel(0, 0, 23, 1));
+		spinnerMinutoDuracion.setModel(new SpinnerNumberModel(0, 0, 23, 5));
 		spinnerMinutoDuracion.setBounds(658, 179, 36, 20);
 		getContentPane().add(spinnerMinutoDuracion);
 		
