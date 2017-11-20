@@ -3,6 +3,8 @@ package presentacion.main.controller;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
+import entities.Interesado;
+import entities.Propiedad;
 import filtros.ClienteFiltro;
 import filtros.InteresadoFiltro;
 import filtros.PropietarioFiltro;
@@ -13,6 +15,8 @@ import model.PropiedadService;
 import model.PropietarioService;
 import model.UsuarioService;
 import presentacion.controller.ClienteController;
+import presentacion.controller.ElegirPropiedadController;
+import presentacion.controller.ElegirPropietarioController;
 import presentacion.controller.InteresadoController;
 import presentacion.controller.PropietarioController;
 import presentacion.controller.UsuarioController;
@@ -50,6 +54,8 @@ public class PersonasPanelController {
 	@Inject private PropietariosTableModel propietariosTable;
 	@Inject private UsuariosTableModel usuariosTable;
 	@Inject private InteresadosTableModel interesadosTable;
+	
+	@Inject private ElegirPropiedadController elegirPropiedadController;
 	
 	@Inject
 	PersonasPanelController(PersonasPanel view) {
@@ -199,7 +205,7 @@ public class PersonasPanelController {
 	int select = this.view.getTableInteresados().getSelectedRow();
 		
 		if (select!=-1){
-			propiedadService.getAllByInteresado(this.interesadosTable.getRow(select));
+			seleccionaPropiedad(this.interesadosTable.getRow(select));
 			
 		}
 		
@@ -218,6 +224,16 @@ public class PersonasPanelController {
 	
 	private void removerFiltroPropietario() {
 		fillTablePropietarios();
+	}
+	
+	private void seleccionaPropiedad(Interesado interesado) {
+		elegirPropiedadController.showViewInteresado(interesado);
+		Propiedad propiedad = elegirPropiedadController.getPropiedad();
+		
+		if(propiedad != null) {
+		
+		}
+		
 	}
 	
 	private void fillTableClientes() {
