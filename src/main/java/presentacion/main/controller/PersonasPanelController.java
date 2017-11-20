@@ -9,6 +9,7 @@ import filtros.PropietarioFiltro;
 import filtros.UsuarioFiltro;
 import model.ClienteService;
 import model.InteresadoService;
+import model.PropiedadService;
 import model.PropietarioService;
 import model.UsuarioService;
 import presentacion.controller.ClienteController;
@@ -43,6 +44,7 @@ public class PersonasPanelController {
 	@Inject private PropietarioService propietarioService;
 	@Inject private UsuarioService usuarioService;
 	@Inject private InteresadoService interesadoService;
+	@Inject private PropiedadService propiedadService;
 
 	@Inject private ClientesTableModel tableModelClien;
 	@Inject private PropietariosTableModel propietariosTable;
@@ -72,6 +74,7 @@ public class PersonasPanelController {
 		this.view.getBtnRemoverFiltroUsuarios().addActionListener(e -> removerFiltroUsuarios());
 		this.view.getBtnAplicarFiltroInteresados().addActionListener(e -> aplicarFiltroInteresado());
 		this.view.getBtnRemoverFiltroInteresados().addActionListener(e -> removerFiltroInteresados());
+		this.view.getBtnVerPropiedades().addActionListener(e -> verPropiedades());
 		
 	}
 
@@ -189,6 +192,18 @@ public class PersonasPanelController {
 	
 	private void removerFiltroInteresados(){
 		fillTableInteresados();
+	}
+	
+	private void verPropiedades(){
+		
+	int select = this.view.getTableInteresados().getSelectedRow();
+		
+		if (select!=-1){
+			propiedadService.getAllByInteresado(this.interesadosTable.getRow(select));
+			
+		}
+		
+
 	}
 	
 	private void aplicarFiltroPropietario() {
