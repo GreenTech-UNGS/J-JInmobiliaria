@@ -321,6 +321,10 @@ public class PersonasPanel extends JPanel implements PermissionView{
 		return btnRemoverFiltroInteresados;
 	}
 
+	public JButton getBtnVerPropiedades() {
+		return btnVerPropiedades;
+	}
+
 	@Override
 	public void ocultarComponente(Object o) {
 		Component componente = (Component) o; 
