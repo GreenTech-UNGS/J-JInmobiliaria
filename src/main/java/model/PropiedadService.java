@@ -266,33 +266,36 @@ public class PropiedadService {
 	
 	public boolean matches(Propiedad p, Preferencia t) {
 		
-		if(t.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquiler) && p.getOfrecimientoAlquiler().isHabilitada() == false) {
+		if( ! (this.getCurrentEstado(p).equals(EstadoProp.DISPONIBLE)) )
 			return false;
-		}
-		if(t.getTipoOfrecimiento().equals(TipoOfrecimiento.Venta) && p.getOfrecimientoVenta().isHabilitada() == false) {
+		
+		if(t.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquiler) && p.getOfrecimientoAlquiler().isHabilitada() == false)
 			return false;
-		}
-		if( ! (p.getOfrecimientoVenta().getPrecio().getMoneda().equals(t.getMoneda())) ) {
+		
+		if(t.getTipoOfrecimiento().equals(TipoOfrecimiento.Venta) && p.getOfrecimientoVenta().isHabilitada() == false)
 			return false;
-		}
-		if(p.getOfrecimientoVenta().getPrecio().getMonto() < t.getPrecioDesde()) {
+		
+		if( ! (p.getOfrecimientoVenta().getPrecio().getMoneda().equals(t.getMoneda())) )
 			return false;
-		}
-		if(p.getOfrecimientoVenta().getPrecio().getMonto() > t.getPrecioDesde()) {
+		
+		if(p.getOfrecimientoVenta().getPrecio().getMonto() < t.getPrecioDesde())
 			return false;
-		}
-		if(p.getOtrosDatos().getCantidadAmbientes() < t.getCantidadAmbientesDesde()) {
+		
+		if(p.getOfrecimientoVenta().getPrecio().getMonto() > t.getPrecioDesde())
 			return false;
-		}
-		if(p.getOtrosDatos().getCantidadAmbientes() > t.getCantidadAmbientesHasta()) {
+		
+		if(p.getOtrosDatos().getCantidadAmbientes() < t.getCantidadAmbientesDesde())
 			return false;
-		}		
-		if(p.getOtrosDatos().getMetrosCuadradosLote() < t.getMetrosCuadradosDesde()) {
+		
+		if(p.getOtrosDatos().getCantidadAmbientes() > t.getCantidadAmbientesHasta())
 			return false;
-		}
-		if(p.getOtrosDatos().getMetrosCuadradosLote() > t.getMetrosCuadradosHasta()) {
+				
+		if(p.getOtrosDatos().getMetrosCuadradosLote() < t.getMetrosCuadradosDesde())
 			return false;
-		}
+		
+		if(p.getOtrosDatos().getMetrosCuadradosLote() > t.getMetrosCuadradosHasta())
+			return false;
+		
 		
 		return true;
 	}
