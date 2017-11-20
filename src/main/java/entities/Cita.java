@@ -15,7 +15,7 @@ public class Cita {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID;
 	
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = CascadeType.PERSIST)
 	private Usuario asistente;
 	
 	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
