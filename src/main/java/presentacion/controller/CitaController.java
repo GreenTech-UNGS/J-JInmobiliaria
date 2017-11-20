@@ -21,6 +21,7 @@ import entities.PersonaBasica;
 import entities.Propiedad;
 import entities.Provincia;
 import entities.TipoCita;
+import entities.UnidadTiempo;
 import model.CitaService;
 import model.LocalidadService;
 import model.LocalizationService;
@@ -76,7 +77,9 @@ public class CitaController {
 			
 			int avisoCorto = (int)view.getSpinnerAvisoCorto().getValue();
 			int avisoLargo = (int)view.getSpinnerAvisoLargo().getValue();
-			citaService.crearNotificaciones(currentCita, avisoCorto, avisoLargo);
+			UnidadTiempo avisoCortoUnidad = view.getUnidadCorta().getSelected();
+			UnidadTiempo avisoLargoUnidad = view.getUnidadLarga().getSelected();
+			citaService.crearNotificaciones(currentCita, avisoCorto, avisoCortoUnidad, avisoLargo, avisoLargoUnidad);
 			
 			citaService.saveCita(currentCita);
 			this.view.setVisible(false);

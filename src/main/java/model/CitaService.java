@@ -17,6 +17,7 @@ import entities.NotificacionCita;
 import entities.NotificacionCita.TipoNotificacion;
 import entities.Persona;
 import entities.PersonaBasica;
+import entities.UnidadTiempo;
 import entities.Usuario;
 import persistencia.dao.iface.CitaDao;
 import persistencia.dao.iface.NotificacionDao;
@@ -60,7 +61,7 @@ public class CitaService {
 		return citaDao.getProximas();
 	}
 	
-	public void crearNotificaciones(Cita c, int avisoCorto, int avisoLargo){
+	public void crearNotificaciones(Cita c, int avisoCorto, UnidadTiempo unidadCorta, int avisoLargo, UnidadTiempo unidadLarga){
 		
 		Persona p = c.getAsistente().getPersona();
 			
@@ -70,9 +71,9 @@ public class CitaService {
 		corto.setPersona(p);
 		largo.setPersona(p);
 		
-		corto.setPeriodo(Period.hours(avisoCorto));
-		largo.setPeriodo(Period.days(avisoLargo));
-		
+		corto.setPeriodo(getPeriod(avisoCorto, unidadCorta));
+		largo.setPeriodo(getPeriod(avisoLargo, unidadLarga));
+			
 		if(p instanceof Persona && usuariosService.existeUsuarioCon((Persona)p)){
 			System.out.println(p.getNombre());
 			corto.setTipo(TipoNotificacion.SISTEMA);
@@ -91,6 +92,20 @@ public class CitaService {
 		
 	}
 	
+	private Period getPeriod(int cantidad, UnidadTiempo unidad){
+		
+		switch (unidad) {
+		case DIA:return Period.days(cantidad);
+
+		case HORA:return Period.hours(cantidad);
+			
+		case SEMANA:return Period.weeks(cantidad);
+		
+		default:return null;
+	}
+		
+	}
+	
 	public String getMapaLink(Cita c) {
 		
 		String locationUnecoded = "https://www.google.com/maps/search/?api=1&query=+"+ c.getLat() + "," + c.getLng();
@@ -103,7 +118,7 @@ public class CitaService {
 	public Cita getNuevaCita() {
 		Cita toRet = new Cita();
 		toRet.setDuracionEstimada(Period.ZERO.toString());
-		toRet.setFechaHora(DateTime.now().plusDays(1)); //Mañana
+		toRet.setFechaHora(DateTime.now().plusDays(1)); //Maï¿½ana
 		
 		return toRet;
 		

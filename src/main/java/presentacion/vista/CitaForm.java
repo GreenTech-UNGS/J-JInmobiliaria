@@ -9,6 +9,7 @@ import com.toedter.calendar.JDateChooser;
 import presentacion.combo.LocalidadComboBoxModel;
 import presentacion.combo.ProvinciaComboBoxModel;
 import presentacion.combo.TipoCitaComboBoxModel;
+import presentacion.combo.UnidadTiempoComboBoxModel;
 
 import java.util.Date;
 
@@ -57,8 +58,13 @@ public class CitaForm extends JDialog{
 	private ProvinciaComboBoxModel comboModelProvincia;
 	private LocalidadComboBoxModel comboModelLocalidad;
 	private TipoCitaComboBoxModel comboModelTipoCita;
+	private UnidadTiempoComboBoxModel unidadLarga;
+	private UnidadTiempoComboBoxModel unidadCorta;
+	
 	private JMapViewer mapa;
 	private JButton btnActualizar;
+	private JComboBox<String> comboTiempoLargo;
+	private JComboBox<String> comboTiempoCorto;
 	
 	@Inject
 	public CitaForm() {
@@ -70,6 +76,7 @@ public class CitaForm extends JDialog{
 		setResizable(false);
 		
 		JLabel lblFechaYHora = new JLabel("Fecha y hora: ");
+		lblFechaYHora.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblFechaYHora.setBounds(37, 177, 91, 15);
 		getContentPane().add(lblFechaYHora);
 		
@@ -92,7 +99,8 @@ public class CitaForm extends JDialog{
 		getContentPane().add(spinnerMinutoMomento);
 		
 		JLabel lblDuracion = new JLabel("Duracion: ");
-		lblDuracion.setBounds(549, 182, 91, 15);
+		lblDuracion.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblDuracion.setBounds(535, 182, 70, 15);
 		getContentPane().add(lblDuracion);
 		
 		spinnerHoraDuracion = new JSpinner();
@@ -110,18 +118,22 @@ public class CitaForm extends JDialog{
 		getContentPane().add(spinnerMinutoDuracion);
 		
 		JLabel lblLocalidad = new JLabel("Localidad: ");
+		lblLocalidad.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblLocalidad.setBounds(646, 274, 91, 15);
 		getContentPane().add(lblLocalidad);
 		
 		JLabel lblCalle = new JLabel("Calle: ");
+		lblCalle.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblCalle.setBounds(36, 274, 70, 15);
 		getContentPane().add(lblCalle);
 		
 		JLabel lblProvincia = new JLabel("Provincia: ");
+		lblProvincia.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblProvincia.setBounds(439, 274, 91, 15);
 		getContentPane().add(lblProvincia);
 		
 		JLabel lblAltura = new JLabel("Altura: ");
+		lblAltura.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblAltura.setBounds(244, 271, 70, 15);
 		getContentPane().add(lblAltura);
 		
@@ -148,7 +160,8 @@ public class CitaForm extends JDialog{
 		getContentPane().add(btnDesdePropiedad);
 		
 		JLabel lblMotivo = new JLabel("Motivo: ");
-		lblMotivo.setBounds(20, 93, 70, 15);
+		lblMotivo.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblMotivo.setBounds(36, 94, 70, 15);
 		getContentPane().add(lblMotivo);
 		
 		comboMotivo = new JComboBox<>();
@@ -156,37 +169,42 @@ public class CitaForm extends JDialog{
 		getContentPane().add(comboMotivo);
 		
 		JLabel lblAvisoLargo = new JLabel("Aviso largo: ");
-		lblAvisoLargo.setBounds(296, 54, 72, 14);
+		lblAvisoLargo.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblAvisoLargo.setBounds(269, 75, 72, 14);
 		getContentPane().add(lblAvisoLargo);
 		
 		JLabel lblAvisoCorto = new JLabel("Aviso corto:");
-		lblAvisoCorto.setBounds(296, 82, 70, 14);
+		lblAvisoCorto.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblAvisoCorto.setBounds(269, 102, 70, 14);
 		getContentPane().add(lblAvisoCorto);
 		
 		spinnerAvisoLargo = new JSpinner();
 		spinnerAvisoLargo.setModel(new SpinnerNumberModel(1, 1, 10, 1));
-		spinnerAvisoLargo.setBounds(364, 51, 40, 20);
+		spinnerAvisoLargo.setBounds(351, 72, 40, 20);
 		getContentPane().add(spinnerAvisoLargo);
 		
 		spinnerAvisoCorto = new JSpinner();
 		spinnerAvisoCorto.setModel(new SpinnerNumberModel(1, 1, 10, 1));
-		spinnerAvisoCorto.setBounds(364, 79, 39, 20);
+		spinnerAvisoCorto.setBounds(351, 99, 39, 20);
 		getContentPane().add(spinnerAvisoCorto);
 		
-		JLabel lblDias = new JLabel("dias antes");
-		lblDias.setBounds(414, 54, 74, 14);
+		JLabel lblDias = new JLabel("antes");
+		lblDias.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblDias.setBounds(508, 75, 55, 14);
 		getContentPane().add(lblDias);
 		
-		JLabel lblHoras = new JLabel("horas antes");
-		lblHoras.setBounds(413, 82, 70, 14);
+		JLabel lblHoras = new JLabel("antes");
+		lblHoras.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblHoras.setBounds(507, 102, 55, 14);
 		getContentPane().add(lblHoras);
 		
 		JLabel lblNotas = new JLabel("Notas:");
-		lblNotas.setBounds(549, 51, 46, 14);
+		lblNotas.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblNotas.setBounds(575, 49, 46, 14);
 		getContentPane().add(lblNotas);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(595, 51, 230, 77);
+		scrollPane_1.setBounds(595, 75, 230, 77);
 		getContentPane().add(scrollPane_1);
 		
 		taNotas = new JTextArea();
@@ -238,22 +256,29 @@ public class CitaForm extends JDialog{
 		getContentPane().add(mapa);
 		
 		btnActualizar = new JButton("Actualizar mapa");
-		btnActualizar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnActualizar.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnActualizar.setBounds(495, 11, 116, 23);
 		mapa.add(btnActualizar);
 		
+		comboTiempoLargo = new JComboBox<String>();
+		comboTiempoLargo.setBounds(401, 69, 97, 24);
+		getContentPane().add(comboTiempoLargo);
+		
+		comboTiempoCorto = new JComboBox<String>();
+		comboTiempoCorto.setBounds(400, 98, 98, 24);
+		getContentPane().add(comboTiempoCorto);
+		
 		comboModelProvincia = new ProvinciaComboBoxModel();
 		comboModelLocalidad = new LocalidadComboBoxModel();
 		comboModelTipoCita = new TipoCitaComboBoxModel();
+		unidadLarga = new UnidadTiempoComboBoxModel();
+		unidadCorta = new UnidadTiempoComboBoxModel();
 		
 		comboProvincia.setModel(comboModelProvincia);
 		comboLocalidad.setModel(comboModelLocalidad);
 		comboMotivo.setModel(comboModelTipoCita);
-		
+		comboTiempoCorto.setModel(unidadCorta);
+		comboTiempoLargo.setModel(unidadLarga);
 		
 	}
 
@@ -339,5 +364,21 @@ public class CitaForm extends JDialog{
 
 	public JButton getBtnActualizar() {
 		return btnActualizar;
+	}
+
+	public UnidadTiempoComboBoxModel getUnidadLarga() {
+		return unidadLarga;
+	}
+
+	public UnidadTiempoComboBoxModel getUnidadCorta() {
+		return unidadCorta;
+	}
+
+	public JComboBox<String> getComboTiempoLargo() {
+		return comboTiempoLargo;
+	}
+
+	public JComboBox<String> getComboTiempoCorto() {
+		return comboTiempoCorto;
 	}
 }
