@@ -95,6 +95,9 @@ public class PropiedadesPanel extends JPanel{
        btnVerInteresados.setFont(new Font("Tahoma", Font.BOLD, 11));
        panelButtons.add(btnVerInteresados);
        
+       Component glue2 = Box.createGlue();
+       panelButtons.add(glue);
+       
        JPanel panelEnAlquiler = new JPanel();
        tabbedPane_1.addTab("En alquiler", null, panelEnAlquiler, null);
        panelEnAlquiler.setLayout(new BoxLayout(panelEnAlquiler, BoxLayout.Y_AXIS));
