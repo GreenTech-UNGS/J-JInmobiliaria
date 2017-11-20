@@ -1,5 +1,7 @@
 package presentacion.main.controller;
 
+import java.io.File;
+
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -8,6 +10,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import model.BackUpService;
+import model.LogicaNegocioException;
 import model.UsuarioService;
 import presentacion.controller.CartelController;
 import presentacion.controller.CartelViewController;
@@ -53,18 +56,40 @@ public class MainViewController {
 		
 		this.fileChooser = new JFileChooser();
 		this.fileChooser.setMultiSelectionEnabled(true);
-		this.fileChooser.setFileFilter(new FileNameExtensionFilter("Imagenes", ImageIO.getReaderFileSuffixes()));
 		
 
 	}
 
 	private void exportar() {
+		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		fileChooser.setAcceptAllFileFilterUsed(false);
+		File f = fileChooser.getCurrentDirectory();
 		
+		if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+			try {
+				backup.createBackUp(f);
+			} catch (LogicaNegocioException e) {
+				msgShw.showErrorMessage(e.getMessage(), "Error");
+			}
+		}
 		
 	}
 
 	private void importar() {
-		
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		fileChooser.setAcceptAllFileFilterUsed(true);
+		fileChooser.showOpenDialog(null);
+		File f = fileChooser.getSelectedFile();
+
+		if(f!=null) {
+			try {
+				backup.importBackUp(f);
+				msgShw.showInformationMessage("Importacion exitosa. \nel sistema se cerrará para que los cambios tomen efecto", "Exito");
+				System.exit(0);
+			} catch (LogicaNegocioException e) {
+				msgShw.showErrorMessage(e.getMessage(), "Error");
+			}
+		}
 	}
 
 	private void administrarCarteles() {

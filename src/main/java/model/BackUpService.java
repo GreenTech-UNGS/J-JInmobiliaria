@@ -1,6 +1,7 @@
 package model;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.joda.time.LocalDateTime;
 
@@ -19,6 +20,14 @@ public class BackUpService {
 	}
 	
 	public void createBackUp(File toFile) throws LogicaNegocioException{
+		
+		if(!toFile.exists())
+			try {
+				toFile.createNewFile();
+			} catch (IOException e) {
+				throw new LogicaNegocioException("No se pudo crear el archivo");
+			}
+		
 		backup.exportBackUp(toFile, "backup_inmobiliaria" + LocalDateTime.now().toString("yyyyMMddss"));
 	}
 	
