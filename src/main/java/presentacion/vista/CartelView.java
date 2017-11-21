@@ -1,24 +1,17 @@
 package presentacion.vista;
 
-import javax.swing.JDialog;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import java.awt.Component;
-import javax.swing.Box;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ScrollPaneConstants;
-import java.awt.FlowLayout;
+
+import javax.swing.*;
+import java.awt.*;
 
 @Singleton
 public class CartelView extends JDialog{
 	private JButton btnAgregar;
 	private JTable table;
-	
+	private JButton btnImprimir;
+
 	@Inject
 	private CartelView() {
 		
@@ -47,7 +40,10 @@ public class CartelView extends JDialog{
 		
 		btnAgregar = new JButton("Agregar");
 		panelBotones.add(btnAgregar);
-		
+
+		btnImprimir = new JButton("Imprimir");
+		getContentPane().add(btnImprimir);
+
 		Component horizontalGlue = Box.createHorizontalGlue();
 		panelBotones.add(horizontalGlue);
 		
@@ -59,6 +55,10 @@ public class CartelView extends JDialog{
 
 	public JButton getBtnAgregar() {
 		return btnAgregar;
+	}
+
+	public JButton getBtnImprimir() {
+		return btnImprimir;
 	}
 
 }

@@ -34,31 +34,31 @@
 		<groupHeader>
 			<band height="65">
 				<rectangle>
-					<reportElement x="0" y="34" width="561" height="31" uuid="b1163c17-641a-407a-8d02-c5e62f2342eb"/>
+					<reportElement x="0" y="40" width="561" height="25" uuid="b1163c17-641a-407a-8d02-c5e62f2342eb"/>
 				</rectangle>
 				<textField>
-					<reportElement x="0" y="0" width="555" height="32" forecolor="#006699" uuid="212fb667-5e99-454e-83ee-ba4c4ddde18b"/>
+					<reportElement x="0" y="0" width="555" height="30" forecolor="#006699" uuid="212fb667-5e99-454e-83ee-ba4c4ddde18b"/>
 					<textElement>
 						<font size="20" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="7" y="40" width="100" height="20" forecolor="#666666" uuid="d1d7185a-3749-4f08-a381-fb07f3180837"/>
+					<reportElement x="7" y="43" width="100" height="20" forecolor="#666666" uuid="d1d7185a-3749-4f08-a381-fb07f3180837"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
 					<text><![CDATA[Fecha]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="115" y="40" width="100" height="20" forecolor="#666666" uuid="bee5bab9-bbb9-4c04-99de-fb85f2d2c2eb"/>
+					<reportElement x="115" y="43" width="100" height="20" forecolor="#666666" uuid="bee5bab9-bbb9-4c04-99de-fb85f2d2c2eb"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
 					<text><![CDATA[Detalle]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="453" y="41" width="100" height="20" forecolor="#666666" uuid="2a997906-b5c2-4e7b-af3f-712f924f54db"/>
+					<reportElement x="453" y="43" width="100" height="20" forecolor="#666666" uuid="2a997906-b5c2-4e7b-af3f-712f924f54db"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>

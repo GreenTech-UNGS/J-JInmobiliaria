@@ -1,13 +1,14 @@
 package model;
 
-import java.util.List;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
+import dto.CartelDTO;
 import entities.Cartel;
 import persistencia.dao.iface.CartelDao;
 import persistencia.dao.iface.PersonaDao;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Singleton
 public class CartelService {
@@ -42,5 +43,20 @@ public class CartelService {
 	public List<Cartel> getAll(){
 		return cartelDao.getAll();
 	}
-	
+
+	public List<CartelDTO> fichaPropiedadReporteOf(List<Cartel> carteles) {
+
+		List<CartelDTO> dtos = new ArrayList<CartelDTO>();
+
+		for (Cartel cartel : carteles) {
+			CartelDTO cart = new CartelDTO();
+
+			cart.setAlto(cartel.getAlto());
+			cart.setAncho(cartel.getAncho());
+			cart.setDescripcion(cartel.getDescripcion());
+			dtos.add(cart);
+		}
+		return dtos;
+	}
+
 }

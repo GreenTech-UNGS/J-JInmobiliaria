@@ -13,7 +13,7 @@ public class CartelForm extends JDialog{
 	private JSpinner spinnerAncho;
 	private JTextArea textDescripcion;
 	private JButton btnAceptar;
-	
+
 	@Inject
 	private CartelForm() {
 		setTitle("Agregar cartel");
@@ -44,7 +44,7 @@ public class CartelForm extends JDialog{
 		lblCmAncho.setBounds(300, 80, 40, 20);
 		getContentPane().add(lblCmAncho);
 		
-		JLabel lblDescripcion = new JLabel("Descripcion:");
+		JLabel lblDescripcion = new JLabel("Descripción:");
 		lblDescripcion.setBounds(30, 130, 80, 20);
 		getContentPane().add(lblDescripcion);
 		
@@ -97,4 +97,5 @@ public class CartelForm extends JDialog{
 	public JButton getBtnAceptar() {
 		return btnAceptar;
 	}
+
 }
