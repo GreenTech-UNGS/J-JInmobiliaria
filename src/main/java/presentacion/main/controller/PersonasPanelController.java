@@ -208,11 +208,6 @@ public class PersonasPanelController {
 		
 		if (select!=-1){
 			seleccionaPropiedad(this.interesadosTable.getRow(select));
-			Propiedad propiedad = elegirPropiedadController.getPropiedad();
-			if(propiedad != null) {				
-				propiedadController.editPropiedad(propiedad);
-				propiedadController.showView();
-			}
 		}
 	}
 	

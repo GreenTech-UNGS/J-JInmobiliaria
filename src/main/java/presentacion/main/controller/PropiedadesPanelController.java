@@ -161,11 +161,6 @@ public class PropiedadesPanelController {
 		
 		if (select!=-1){
 			seleccionaInteresado(this.tableModelProp.getRow(select));
-			Interesado interesado = elegirInteresadoController.getInteresado();
-			if(interesado != null) {				
-				interesadoController.editarInteresado(interesado);
-				interesadoController.showView();
-			}
 		}
 	}
 	
