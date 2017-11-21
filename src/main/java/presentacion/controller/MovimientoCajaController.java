@@ -2,12 +2,16 @@ package presentacion.controller;
 
 import java.util.Arrays;
 
+import org.joda.time.DateTime;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.Egreso;
+import entities.GastoFijo;
 import entities.Ingreso;
 import entities.Moneda;
+import entities.Precio;
 import model.LogicaNegocioException;
 import model.MovimientoCajaService;
 import presentacion.mappers.EgresoMapper;
@@ -26,6 +30,7 @@ public class MovimientoCajaController {
 	@Inject private EgresoMapper egresoMapper;
 	@Inject	private MovimientoCajaService movCajaService;
 	@Inject private MovimientoCajaFormValidator validator;
+	@Inject private ElegirGastoFijoController elegirGastoFijo;
 	@Inject private MessageShow msgShw;
 	
 	private Ingreso currentIngreso;
@@ -34,11 +39,25 @@ public class MovimientoCajaController {
 	@Inject
 	private MovimientoCajaController(MovimientoCajaForm view) {
 		this.view = view;
+		
 		view.getBtnGuardar().addActionListener(e -> saveMovimiento());
+		view.getBtnGastoFijo().addActionListener(e -> desdeGastoFijjo());
 		
 		fillCombos();
 	}
 	
+	private void desdeGastoFijjo() {
+		
+		elegirGastoFijo.showView();
+		GastoFijo gastoFijo = elegirGastoFijo.getGastoFijo();
+		
+		currentEgreso.setFecha(DateTime.now());
+		currentEgreso.setMonto(new Precio(gastoFijo.getMonto(), Moneda.PESOS));
+		currentEgreso.setDetalle("Pago del servicio " + gastoFijo.getNombre());
+		
+		
+	}
+
 	private void fillCombos() {
 		view.getMonedaModel().actualize(Arrays.asList(Moneda.values()));
 		
@@ -69,6 +88,7 @@ public class MovimientoCajaController {
 	
 	public void setModeNewEgreso(){
 		view.setTitle("Registrar Egreso de Capital");
+		view.getBtnGastoFijo().setVisible(false);
 		ingreso = false;
 
 		currentEgreso = movCajaService.getNewEgreso();
@@ -77,7 +97,9 @@ public class MovimientoCajaController {
 	
 	public void setModeNewIngreso(){
 		view.setTitle("Registrar Ingreso de Capital");
+		view.getBtnGastoFijo().setVisible(true);
 		ingreso = true;
+		
 		currentIngreso = movCajaService.getNewIngreso();
 		ingresoMapper.fillFields(currentIngreso);
 	}	

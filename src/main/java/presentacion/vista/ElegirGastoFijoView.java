@@ -14,17 +14,16 @@ import javax.swing.JTable;
 
 import com.google.inject.Inject;
 
-@SuppressWarnings("serial")
-public class ElegirClienteView extends JDialog {
+public class ElegirGastoFijoView extends JDialog{
+	
 	private JTable table;
 	private JButton btnAceptar;
-	private JButton btnAgregarOtro;
 	
 	@Inject
-	private ElegirClienteView() {
+	private ElegirGastoFijoView() {
 		super();
 		
-		setTitle("Elegir Cliente");
+		setTitle("Elegir Gasto Fijo");
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setModal(true);
@@ -50,12 +49,6 @@ public class ElegirClienteView extends JDialog {
 		
 		Component horizontalGlue_2 = Box.createHorizontalGlue();
 		panelBotones.add(horizontalGlue_2);
-		
-		btnAgregarOtro = new JButton("Agregar otro");
-		panelBotones.add(btnAgregarOtro);
-		
-		Component horizontalGlue_1 = Box.createHorizontalGlue();
-		panelBotones.add(horizontalGlue_1);
 	}
 
 	public JTable getTable() {
@@ -72,10 +65,6 @@ public class ElegirClienteView extends JDialog {
 
 	public void setBtnAceptar(JButton btnAceptar) {
 		this.btnAceptar = btnAceptar;
-	}
-
-	public JButton getBtnAgregarOtro() {
-		return btnAgregarOtro;
 	}
 
 }
