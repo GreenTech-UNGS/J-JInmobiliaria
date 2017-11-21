@@ -17,9 +17,12 @@ public class Preferencia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID;
-	
+
 	@OneToOne(cascade = {CascadeType.MERGE})//TODO: podriamos ponerle persist
 	private Localidad localidad;
+	@OneToOne(cascade = {CascadeType.MERGE})//TODO: podriamos ponerle persist
+	private Provincia provincia;
+	
 	
 	@Enumerated(EnumType.ORDINAL)
 	private TipoOfrecimiento tipoOfrecimiento;
@@ -50,6 +53,14 @@ public class Preferencia {
 
 	public void setLocalidad(Localidad localidad) {
 		this.localidad = localidad;
+	}
+
+	public Provincia getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
 	}
 
 	public TipoOfrecimiento getTipoOfrecimiento() {
