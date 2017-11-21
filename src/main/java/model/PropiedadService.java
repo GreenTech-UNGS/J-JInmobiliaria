@@ -291,7 +291,7 @@ public class PropiedadService {
 		if(p.getOfrecimientoVenta().getPrecio().getMonto() < t.getPrecioDesde())
 			return false;
 		
-		if(p.getOfrecimientoVenta().getPrecio().getMonto() > t.getPrecioDesde())
+		if(p.getOfrecimientoVenta().getPrecio().getMonto() > t.getPrecioHasta())
 			return false;
 		
 		if(p.getOtrosDatos().getCantidadAmbientes() < t.getCantidadAmbientesDesde())
