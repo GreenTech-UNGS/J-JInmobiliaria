@@ -46,6 +46,7 @@ public class CitaService {
 	}
 	
 	public List<Cita> getAllOfLogueado(){
+		
 		return citaDao.getCitasOf(usuariosService.getUsuarioLogeado());
 	}
 	

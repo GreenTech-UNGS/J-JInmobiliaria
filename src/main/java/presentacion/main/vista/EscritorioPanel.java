@@ -47,21 +47,22 @@ public class EscritorioPanel extends JPanel{
 		tabbedPane.addTab("Cuotas del mes", null, panelCuotas, null);
 		panelCuotas.setLayout(new BoxLayout(panelCuotas, BoxLayout.Y_AXIS));
 		
-		JScrollPane scrollPane_2 = new JScrollPane();
+		tableCuotasMes = new JTable();
+//		scrollPane_2.setColumnHeaderView(tableCuotasMes);
+		
+		JScrollPane scrollPane_2 = new JScrollPane(tableCuotasMes);
 		panelCuotas.add(scrollPane_2);
 		
-		tableCuotasMes = new JTable();
-		scrollPane_2.setColumnHeaderView(tableCuotasMes);
 		
 		JPanel panelCuotasVencidas = new JPanel();
 		tabbedPane.addTab("Cuotas vencidas", null, panelCuotasVencidas, null);
 		panelCuotasVencidas.setLayout(new BoxLayout(panelCuotasVencidas, BoxLayout.Y_AXIS));
 		
-		JScrollPane scrollPane_3 = new JScrollPane();
-		panelCuotasVencidas.add(scrollPane_3);
-		
 		tableCuotasVencidas = new JTable();
-		scrollPane_3.setColumnHeaderView(tableCuotasVencidas);
+//		scrollPane_3.setColumnHeaderView(tableCuotasVencidas);
+		
+		JScrollPane scrollPane_3 = new JScrollPane(tableCuotasVencidas);
+		panelCuotasVencidas.add(scrollPane_3);
 		
 		JPanel panelContratos = new JPanel();
 		tabbedPane.addTab("Contratos a vencer", null, panelContratos, null);
@@ -83,6 +84,14 @@ public class EscritorioPanel extends JPanel{
 
 	public JTable getTableContratos() {
 		return tableContratos;
+	}
+
+	public JTable getTableCuotasMes() {
+		return tableCuotasMes;
+	}
+
+	public JTable getTableCuotasVencidas() {
+		return tableCuotasVencidas;
 	}
 	
 	

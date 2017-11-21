@@ -103,6 +103,7 @@ public class MainViewController {
 
 	public void showView(){
 		this.view.show();
+		this.menuController.cambiaPanelEscritorio();
 	}
 	
 	private void editarUsuario() {

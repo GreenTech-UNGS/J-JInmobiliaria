@@ -23,6 +23,8 @@ public class MenuPanelController {
 		
 		this.view = view;
 		
+		view.getBtnHome().addActionListener(e -> cambiaPanelEscritorio());
+		
 		view.getBtnPropiedades().addActionListener(e -> cambiaPanelPropiedades());
 	
 		view.getBtnContratos().addActionListener(e -> cambiaPanelContratos());
@@ -35,7 +37,7 @@ public class MenuPanelController {
      
 		view.getBtnInmobiliaria().addActionListener(e -> cambiaPanelInmobiliaria());
 		
-		view.getBtnHome().addActionListener(e -> cambiaPanelEscritorio());
+		
 	}
 	
 	public void showView() {
@@ -54,9 +56,10 @@ public class MenuPanelController {
 		citasPanelController.actualize();
 	}
 	
-	private void cambiaPanelEscritorio(){
+	public void cambiaPanelEscritorio(){
 		hideAll();
 		escritorioPanelController.showView();
+		escritorioPanelController.actualize();
 	}
 
 	private void cambiaPanelPagos() {

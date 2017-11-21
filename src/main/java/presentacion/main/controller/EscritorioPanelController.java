@@ -5,27 +5,35 @@ import com.google.inject.Singleton;
 
 import model.CitaService;
 import model.ContratoService;
+import model.CuotaService;
 import presentacion.main.vista.EscritorioPanel;
 import presentacion.table.CitasTableModel;
 import presentacion.table.ContratosTableModel;
+import presentacion.table.CuotasTableModel;
 
 @Singleton
 public class EscritorioPanelController {
 	
 	private EscritorioPanel view;
 	
-	@Inject CitasTableModel citaTableModel;
+	private CitasTableModel citaTableModel;
 	@Inject private CitaService citaService;
-	@Inject private ContratosTableModel contratosTableModel;
+	private ContratosTableModel contratosTableModel;
 	@Inject private ContratoService contratoService;
+	private CuotasTableModel cuotasMesTableModel;
+	@Inject CuotaService cuotaService;
+	private CuotasTableModel cuotasVencidasTableModel;
 	
 	@Inject
 	private EscritorioPanelController(EscritorioPanel view){
 		this.view = view;
+		citaTableModel = new CitasTableModel();
+		contratosTableModel = new ContratosTableModel();
+		cuotasMesTableModel = new CuotasTableModel(cuotaService);
+		cuotasVencidasTableModel = new CuotasTableModel(cuotaService);
 	}
 	
 	public void showView() {
-		fillTables();
 		this.view.setVisible(true);
 	}
 	
@@ -38,6 +46,8 @@ public class EscritorioPanelController {
 	private void fillTables(){
 		fillTableCitas();
 		fillTableContratos();
+		fillTableCuotasMes();
+		fillTableCuotasVencidas();
 	}
 	
 	private void fillTableContratos(){
@@ -54,5 +64,26 @@ public class EscritorioPanelController {
 		
 		citaService.getAllOfLogueado().forEach(e -> citaTableModel.addRow(e));
 		this.view.getTableMisCitas().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTableCuotasMes(){
+		this.cuotasMesTableModel.clean();
+		this.view.getTableCuotasMes().setModel(cuotasMesTableModel);
+		
+		cuotaService.getAllOfNow().forEach(e -> cuotasMesTableModel.addRow(e));
+		this.view.getTableCuotasMes().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	private void fillTableCuotasVencidas(){
+		this.cuotasVencidasTableModel.clean();
+		this.view.getTableCuotasVencidas().setModel(cuotasVencidasTableModel);
+		
+		cuotaService.getVencidas().forEach(e -> cuotasVencidasTableModel.addRow(e));
+		this.view.getTableCuotasVencidas().getTableHeader().setReorderingAllowed(false);
+	}
+	
+	public void actualize() {
+		fillTables();
+		
 	}
 }
