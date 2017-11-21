@@ -28,6 +28,7 @@ public class UsuarioFormMapper implements Mapper<Usuario> {
 		t.getPersona().setNombre(nombre);
 		t.getPersona().setApellido(apellido);
 		t.getPersona().setEmail(email);
+		t.getRoles().clear();
 		t.getRoles().add(rol);
 		t.getPersona().setCredencial(dni);
 	}
@@ -38,8 +39,7 @@ public class UsuarioFormMapper implements Mapper<Usuario> {
 		String nombre = t.getPersona().getNombre();
 		String apellido = t.getPersona().getApellido();
 		String email = t.getPersona().getEmail();
-		//Rol rol = t.getRoles().get(0);
-		Rol rol = null;
+		Rol rol = t.getRoles().get(0);
 		String Dni = t.getPersona().getCredencial();
 		
 		view.getTfNombre().setText(nombre);
