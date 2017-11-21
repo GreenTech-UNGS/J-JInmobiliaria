@@ -5,7 +5,9 @@ import com.google.inject.Singleton;
 
 import entities.Interesado;
 import entities.Localidad;
+import entities.Moneda;
 import entities.Persona.TipoCredencial;
+import entities.Provincia;
 import entities.TipoOfrecimiento;
 import presentacion.vista.InteresadoForm;
 
@@ -34,8 +36,10 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		
 		TipoCredencial tipoCred = TipoCredencial.valueOf((String) view.getCbCredencial().getSelectedItem());
 		TipoOfrecimiento tipoOfrec = view.getComboModelOfrecimiento().getSelected();
-		
+		Moneda moneda = view.getComboModelMoneda().getSelected();
+
 		Localidad localidad = view.getComboModelLocalidad().getSelected();
+		Provincia provincia = view.getComboModelProvincia().getSelected();
 		
 		
 		t.getPersona().setNombre(nombre);
@@ -51,7 +55,9 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		
 		t.getPersona().setTipoCred(tipoCred);
 		t.getPreferencia().setTipoOfrecimiento(tipoOfrec);	
+		t.getPreferencia().setMoneda(moneda);
 		t.getPreferencia().setLocalidad(localidad);
+		t.getPreferencia().setProvincia(provincia);
 		
 
 	}
@@ -72,7 +78,9 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		
 		String tipoCred = String.valueOf(t.getPersona().getTipoCred());	
 		TipoOfrecimiento tipoOfrec = t.getPreferencia().getTipoOfrecimiento();	
-		Localidad loc = t.getPreferencia().getLocalidad();
+		Moneda moneda = t.getPreferencia().getMoneda();
+		Localidad localidad = t.getPreferencia().getLocalidad();
+		Provincia provincia = t.getPreferencia().getProvincia();
 		
 		view.getTfNombre().setText(nombre);
 		view.getTfApellido().setText(apellido);
@@ -87,7 +95,9 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		
 		view.getCbCredencial().setSelectedItem(tipoCred);
 		view.getCbTipoOfrec().setSelectedItem(String.valueOf(tipoOfrec));
-		view.getCbLocalidad().setSelectedItem(String.valueOf(loc));
+		view.getCbMoneda().setSelectedItem(String.valueOf(moneda));
+		view.getCbLocalidad().setSelectedItem(String.valueOf(localidad));
+		view.getCbProvincia().setSelectedItem(String.valueOf(provincia));
 	}
 
 }
