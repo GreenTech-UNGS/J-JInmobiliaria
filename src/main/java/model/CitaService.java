@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.joda.time.DateTime;
 import org.joda.time.Period;
@@ -47,12 +48,14 @@ public class CitaService {
 	
 	public List<Cita> getAllOfLogueado(){
 		
-		return citaDao.getCitasOf(usuariosService.getUsuarioLogeado());
+		return citaDao.getCitasOf(usuariosService.getUsuarioLogeado())
+				.stream().filter(c -> !c.isSeBorra()).collect(Collectors.toList());
 	}
 	
 	public List<Cita> getProximasLogueado(){
 		Usuario logueado = usuariosService.getUsuarioLogeado();
-		if(logueado != null)return citaDao.getProximasOf(usuariosService.getUsuarioLogeado());
+		if(logueado != null)return citaDao.getProximasOf(usuariosService.getUsuarioLogeado())
+				.stream().filter(c -> !c.isSeBorra()).collect(Collectors.toList());;
 	
 		return new ArrayList<>();
 	

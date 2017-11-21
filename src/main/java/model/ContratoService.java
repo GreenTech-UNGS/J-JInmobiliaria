@@ -81,6 +81,7 @@ public class ContratoService {
 		
 		Propiedad propiedad = c.getPropiedad();
 		propiedad.getEstados().add(estado);
+		propiedad.getOfrecimientoAlquiler().setHabilitada(false);
 		
 		creaCuotas(c);
 		cajaService.creaIngresos(c);
@@ -194,6 +195,7 @@ public class ContratoService {
 			Propiedad propiedad = c.getPropiedad();
 			propiedad.getEstados().add(estado);
 			
+			propiedad.getOfrecimientoVenta().setHabilitada(false);
 			//TODO
 			
 			Reserva r = reservaService.getReservaOf(c.getPropiedad());
