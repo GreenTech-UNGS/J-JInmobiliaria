@@ -205,11 +205,20 @@ public class PersonasPanel extends JPanel implements PermissionView{
         btnAgregarInteresado = new JButton("Agregar interesado");
         panelBotonesInteresados.add(btnAgregarInteresado);
 
+        glue = Box.createGlue();
+        panelBotonesInteresados.add(glue);
+        
         btnEditarInteresado = new JButton("Editar interesado");
         panelBotonesInteresados.add(btnEditarInteresado);
         
+        glue = Box.createGlue();
+        panelBotonesInteresados.add(glue);
+        
         btnEliminarInteresado = new JButton("Eliminar interesado");
         panelBotonesInteresados.add(btnEliminarInteresado);
+        
+        glue = Box.createGlue();
+        panelBotonesInteresados.add(glue);
         
         btnVerPropiedades = new JButton("Ver Propiedades");
         panelBotonesInteresados.add(btnVerPropiedades);
