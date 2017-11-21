@@ -9,7 +9,7 @@ import model.CuotaService;
 import presentacion.main.vista.EscritorioPanel;
 import presentacion.table.CitasTableModel;
 import presentacion.table.ContratosTableModel;
-import presentacion.table.CuotasTableModel;
+import presentacion.table.CuotasCalifTableModel;
 
 @Singleton
 public class EscritorioPanelController {
@@ -20,17 +20,17 @@ public class EscritorioPanelController {
 	@Inject private CitaService citaService;
 	private ContratosTableModel contratosTableModel;
 	@Inject private ContratoService contratoService;
-	private CuotasTableModel cuotasMesTableModel;
+	private CuotasCalifTableModel cuotasMesTableModel;
 	@Inject CuotaService cuotaService;
-	private CuotasTableModel cuotasVencidasTableModel;
+	private CuotasCalifTableModel cuotasVencidasTableModel;
 	
 	@Inject
 	private EscritorioPanelController(EscritorioPanel view){
 		this.view = view;
 		citaTableModel = new CitasTableModel();
 		contratosTableModel = new ContratosTableModel();
-		cuotasMesTableModel = new CuotasTableModel(cuotaService);
-		cuotasVencidasTableModel = new CuotasTableModel(cuotaService);
+		cuotasMesTableModel = new CuotasCalifTableModel(cuotaService);
+		cuotasVencidasTableModel = new CuotasCalifTableModel(cuotaService);
 	}
 	
 	public void showView() {
