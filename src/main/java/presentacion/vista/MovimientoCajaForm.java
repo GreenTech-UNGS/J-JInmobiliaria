@@ -35,6 +35,7 @@ public class MovimientoCajaForm extends JDialog{
 	private JButton btnGuardar;
 	
 	private MonedaComboBoxModel monedaModel;
+	private JButton btnGastoFijo;
 	
 	@Inject
 	public MovimientoCajaForm() {
@@ -42,7 +43,7 @@ public class MovimientoCajaForm extends JDialog{
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		setResizable(false);
 		//setLocationRelativeTo(null);
-		setSize(new Dimension(300, 250));
+		setSize(new Dimension(350, 250));
 		
 		setModal(true);
 		
@@ -61,6 +62,14 @@ public class MovimientoCajaForm extends JDialog{
 		gbc_verticalStrut.gridx = 2;
 		gbc_verticalStrut.gridy = 0;
 		mainPanel.add(verticalStrut, gbc_verticalStrut);
+		
+		btnGastoFijo = new JButton("Gasto Fijo");
+		GridBagConstraints gbc_btnGastoFijo = new GridBagConstraints();
+		gbc_btnGastoFijo.anchor = GridBagConstraints.NORTH;
+		gbc_btnGastoFijo.insets = new Insets(0, 0, 5, 0);
+		gbc_btnGastoFijo.gridx = 3;
+		gbc_btnGastoFijo.gridy = 0;
+		mainPanel.add(btnGastoFijo, gbc_btnGastoFijo);
 		
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		GridBagConstraints gbc_horizontalStrut = new GridBagConstraints();
@@ -166,5 +175,9 @@ public class MovimientoCajaForm extends JDialog{
 
 	public MonedaComboBoxModel getMonedaModel() {
 		return monedaModel;
+	}
+
+	public JButton getBtnGastoFijo() {
+		return btnGastoFijo;
 	}
 }
