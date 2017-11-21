@@ -20,8 +20,6 @@ public class Preferencia {
 
 	@OneToOne(cascade = {CascadeType.MERGE})//TODO: podriamos ponerle persist
 	private Localidad localidad;
-	@OneToOne(cascade = {CascadeType.MERGE})//TODO: podriamos ponerle persist
-	private Provincia provincia;
 	
 	
 	@Enumerated(EnumType.ORDINAL)
@@ -53,14 +51,6 @@ public class Preferencia {
 
 	public void setLocalidad(Localidad localidad) {
 		this.localidad = localidad;
-	}
-
-	public Provincia getProvincia() {
-		return provincia;
-	}
-
-	public void setProvincia(Provincia provincia) {
-		this.provincia = provincia;
 	}
 
 	public TipoOfrecimiento getTipoOfrecimiento() {
