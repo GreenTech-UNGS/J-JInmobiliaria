@@ -57,7 +57,7 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		t.getPreferencia().setTipoOfrecimiento(tipoOfrec);	
 		t.getPreferencia().setMoneda(moneda);
 		t.getPreferencia().setLocalidad(localidad);
-		t.getPreferencia().setProvincia(provincia);
+		t.getPreferencia().getLocalidad().setProvincia(provincia);
 		
 
 	}
@@ -80,7 +80,7 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		TipoOfrecimiento tipoOfrec = t.getPreferencia().getTipoOfrecimiento();	
 		Moneda moneda = t.getPreferencia().getMoneda();
 		Localidad localidad = t.getPreferencia().getLocalidad();
-		Provincia provincia = t.getPreferencia().getProvincia();
+		Provincia provincia = t.getPreferencia().getLocalidad().getProvincia();
 		
 		view.getTfNombre().setText(nombre);
 		view.getTfApellido().setText(apellido);
