@@ -8,6 +8,7 @@ import model.ContratoService;
 import model.CuotaService;
 import presentacion.main.vista.EscritorioPanel;
 import presentacion.table.CitasTableModel;
+import presentacion.table.ContratosEscritorioTableModel;
 import presentacion.table.ContratosTableModel;
 import presentacion.table.CuotasCalifTableModel;
 
@@ -18,7 +19,7 @@ public class EscritorioPanelController {
 	
 	private CitasTableModel citaTableModel;
 	@Inject private CitaService citaService;
-	private ContratosTableModel contratosTableModel;
+	private ContratosEscritorioTableModel contratosTableModel;
 	@Inject private ContratoService contratoService;
 	private CuotasCalifTableModel cuotasMesTableModel;
 	@Inject CuotaService cuotaService;
@@ -28,7 +29,7 @@ public class EscritorioPanelController {
 	private EscritorioPanelController(EscritorioPanel view){
 		this.view = view;
 		citaTableModel = new CitasTableModel();
-		contratosTableModel = new ContratosTableModel();
+		contratosTableModel = new ContratosEscritorioTableModel();
 		cuotasMesTableModel = new CuotasCalifTableModel(cuotaService);
 		cuotasVencidasTableModel = new CuotasCalifTableModel(cuotaService);
 	}

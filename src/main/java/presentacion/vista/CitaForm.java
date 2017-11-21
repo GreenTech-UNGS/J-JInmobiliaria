@@ -66,6 +66,9 @@ public class CitaForm extends JDialog{
 	private JComboBox<String> comboTiempoLargo;
 	private JComboBox<String> comboTiempoCorto;
 	
+	private UnidadTiempoComboBoxModel unidadComboModel;
+	private UnidadTiempoComboBoxModel unidadComboModel2;
+	
 	@Inject
 	public CitaForm() {
 		setTitle("Crear Cita");

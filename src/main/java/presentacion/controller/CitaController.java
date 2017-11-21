@@ -177,6 +177,8 @@ public class CitaController {
 	private void fillCombos() {
 		
 		view.getComboModelTipoCita().clearAndActualize(Arrays.asList(TipoCita.values()));
+		view.getUnidadCorta().clearAndActualize(Arrays.asList(UnidadTiempo.values()));
+		view.getUnidadLarga().clearAndActualize(Arrays.asList(UnidadTiempo.values()));
 		
 		view.getComboModelProvincia().clearAndActualize(localidadService.getProvincias());
 		AutoCompleteDecorator.decorate(view.getComboProvincia());
