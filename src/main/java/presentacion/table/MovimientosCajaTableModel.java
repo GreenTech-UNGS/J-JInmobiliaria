@@ -7,6 +7,7 @@ import entities.MovimientoCaja;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
+import java.text.DecimalFormat;
 
 public class MovimientosCajaTableModel extends BaseTableModel<MovimientoCaja>{
 
@@ -22,6 +23,9 @@ public class MovimientosCajaTableModel extends BaseTableModel<MovimientoCaja>{
 		}
 	}
 	
+
+	private DecimalFormat format = new DecimalFormat("#.##");
+	
 	public MovimientosCajaTableModel() {
 		super.addColumn("Fecha", false, 100);
 		super.addColumn("Monto", false, 100);
@@ -32,7 +36,7 @@ public class MovimientosCajaTableModel extends BaseTableModel<MovimientoCaja>{
 	protected Object[] toRow(MovimientoCaja t) {
 		
 		String fecha = t.getFecha().toString("dd-MM-yyyy");
-		String monto = t.getMonto().getMonto() + " " + t.getMonto().getMoneda().toString();
+		String monto = format.format(t.getMonto().getMonto()) + " " + t.getMonto().getMoneda().toString();
 		String descripcion = t.getDetalle();
 		
 		if(t instanceof Ingreso) {

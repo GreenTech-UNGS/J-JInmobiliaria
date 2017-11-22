@@ -51,11 +51,12 @@ public class MovimientoCajaController {
 		elegirGastoFijo.showView();
 		GastoFijo gastoFijo = elegirGastoFijo.getGastoFijo();
 		
-		currentEgreso.setFecha(DateTime.now());
-		currentEgreso.setMonto(new Precio(gastoFijo.getMonto(), Moneda.PESOS));
-		currentEgreso.setDetalle("Pago del servicio " + gastoFijo.getNombre());
-		
-		
+		if( gastoFijo!=null){
+			currentEgreso.setFecha(DateTime.now());
+			currentEgreso.setMonto(new Precio(gastoFijo.getMonto(), Moneda.PESOS));
+			currentEgreso.setDetalle("Pago del servicio " + gastoFijo.getNombre());
+			egresoMapper.fillFields(currentEgreso);
+		}
 	}
 
 	private void fillCombos() {
@@ -65,14 +66,16 @@ public class MovimientoCajaController {
 
 	private void saveMovimiento() {
 		if(validator.isValid()) {
-				ingresoMapper.fillBean(currentIngreso);
 				
-		
 				try {
-					if(ingreso)
+					if(ingreso){
+						ingresoMapper.fillBean(currentIngreso);
 						movCajaService.saveIngreso(currentIngreso);
-					else 
+					}
+					else {
+						egresoMapper.fillBean(currentEgreso);
 						movCajaService.saveEgreso(currentEgreso);
+					}
 				} catch (LogicaNegocioException e) {
 
 					msgShw.showErrorMessage(e.getMessage(), "Error");
@@ -88,7 +91,7 @@ public class MovimientoCajaController {
 	
 	public void setModeNewEgreso(){
 		view.setTitle("Registrar Egreso de Capital");
-		view.getBtnGastoFijo().setVisible(false);
+		view.getBtnGastoFijo().setVisible(true);
 		ingreso = false;
 
 		currentEgreso = movCajaService.getNewEgreso();
@@ -97,7 +100,7 @@ public class MovimientoCajaController {
 	
 	public void setModeNewIngreso(){
 		view.setTitle("Registrar Ingreso de Capital");
-		view.getBtnGastoFijo().setVisible(true);
+		view.getBtnGastoFijo().setVisible(false);
 		ingreso = true;
 		
 		currentIngreso = movCajaService.getNewIngreso();

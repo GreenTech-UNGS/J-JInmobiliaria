@@ -33,7 +33,6 @@ public class ElegirGastoFijoController {
 	
 	private void ok() {
 		okPressed = true;
-		fillTable();
 		view.setVisible(false);
 	}
 
@@ -46,7 +45,7 @@ public class ElegirGastoFijoController {
 
 	public void showView(){
 		okPressed = false;
-		
+		fillTable();
 		view.setVisible(true);
 	}
 	
