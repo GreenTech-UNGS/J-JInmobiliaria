@@ -25,7 +25,7 @@ public class OfrecimientoAlquilerController {
 	
 	private OfrecimientoAlquiler currentOfrecimiento;
 
-    private DecimalFormat df = new DecimalFormat("#.##");
+    private DecimalFormat df = new DecimalFormat("##,###,###.00");
 	
 	@Inject
 	private OfrecimientoAlquilerController(PrecontratoAlquilerForm view) {
@@ -71,13 +71,13 @@ public class OfrecimientoAlquilerController {
 			Precio deposito = ofrecimientoService.getDeposito(currentOfrecimiento);
 			Precio sellado = ofrecimientoService.getSelladoPesos(currentOfrecimiento);
 			Precio otros = ofrecimientoService.getOtrosGastos(currentOfrecimiento);
-
 			String gastosStr =
-					" Primer mes: " + df.format(primerMes.getMonto()) + "\t " + primerMes.getMoneda()+
-					"\n Deposito: " + df.format(deposito.getMonto()) + "\t " + deposito.getMoneda()+
-					"\n  Sellado: " + df.format(sellado.getMonto()) + "\t " + sellado.getMoneda()+
-					"\n    Otros: " + df.format(otros.getMonto()) + "\t " + otros.getMoneda()+
-					"\n**Total**: " + df.format(valor.getMonto()) + "\t " + valor.getMoneda();
+					"      Moneda "+ primerMes.getMoneda()+
+					"\n Primer mes: " + df.format(primerMes.getMonto()) + " " +
+					"\n   Deposito: " + df.format(deposito.getMonto()) + " " +
+					"\n     Sellado: " + df.format(sellado.getMonto()) + " " +
+					"\n        Otros: " + df.format(otros.getMonto()) + " " +
+					"\n **Total**: " + df.format(valor.getMonto()) + " "  ;
 			msgShw.showInformationMessage(gastosStr, "Monto para entrar");
 		} catch (LogicaNegocioException e) {
 			msgShw.showErrorMessage(e.getMessage(), "Error");
