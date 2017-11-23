@@ -40,7 +40,8 @@ public class PrecontratoVentaForm extends JPanel{
 		setLayout(null);
 		
 		chckbxHabilitar = new JCheckBox("Habilitar");
-		chckbxHabilitar.setBounds(32, 0, 65, 23);
+		chckbxHabilitar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		chckbxHabilitar.setBounds(32, 0, 92, 23);
 		add(chckbxHabilitar);
 		
 		JLabel lblComisiones = new JLabel("Datos generales");
@@ -104,11 +105,13 @@ public class PrecontratoVentaForm extends JPanel{
 		cbMoneda.setModel(monedaCombo);
 		
 		JLabel label = new JLabel("%");
+		label.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		label.setBounds(157, 129, 26, 15);
 		add(label);
 		
 		JLabel label_1 = new JLabel("%");
-		label_1.setBounds(313, 129, 26, 15);
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		label_1.setBounds(310, 128, 46, 14);
 		add(label_1);
 		
 	}

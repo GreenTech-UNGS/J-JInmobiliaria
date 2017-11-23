@@ -1,24 +1,15 @@
 package presentacion.main.controller;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.Action;
-import javax.swing.SwingWorker;
-
 import com.google.inject.Inject;
-import com.google.inject.Key;
 import com.google.inject.Singleton;
 
 import model.LogicaNegocioException;
-import model.MailSenderService;
 import model.UsuarioService;
 import presentacion.main.vista.LoginView;
-import presentacion.main.vista.MainView;
 import presentacion.validators.MessageShow;
 import presentacion.validators.Regex;
 

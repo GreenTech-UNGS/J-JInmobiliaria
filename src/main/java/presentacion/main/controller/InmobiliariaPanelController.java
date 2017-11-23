@@ -4,7 +4,6 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import filtros.InmobiliariaFiltro;
-import filtros.UsuarioFiltro;
 import model.InmobiliariaService;
 import presentacion.controller.InmobiliariaController;
 import presentacion.controller.filtros.InmobiliariaFiltroController;

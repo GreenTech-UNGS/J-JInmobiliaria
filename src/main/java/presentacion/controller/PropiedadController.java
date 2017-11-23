@@ -14,6 +14,8 @@ import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 import persistencia.dao.iface.LocalizationDao.MapPoint;
 import presentacion.combo.LocalidadComboBoxModel;
 import presentacion.combo.ProvinciaComboBoxModel;
+import presentacion.main.controller.PropiedadesPanelController;
+import presentacion.main.vista.PropiedadesPanel;
 import presentacion.reportes.ReporteFichaDePropiedad;
 import presentacion.validators.MessageShow;
 import presentacion.validators.PropiedadFormValidator;
@@ -91,11 +93,30 @@ public class PropiedadController {
 		view.getBtnBorrador().addActionListener(e -> saveBorrador());
 		view.getBtnImprimirFicha().addActionListener(e -> generaReporteFichaPropiedad("Ficha"));
 		view.getBtnImprimirFichaVisita().addActionListener(e -> generaReporteFichaPropiedad("FichaPropiedad"));
+		view.getBtnSiguiente().addActionListener(e -> cambiaPestaña());
+		view.getBtnAtras().addActionListener(e -> panelAnterior());
 		
 		view.getComboProvincia().addActionListener(e -> actualizeSellado());
 
 		view.getBtnVerGaleria().addActionListener(e -> muestraGaleria());
 		
+	}
+
+	private void cambiaPestaña() {
+//		view.getTabbedPane().setSelectedIndex(1); 
+		view.getBtnAtras().setVisible(true);
+		view.getAgregarPropiedad().setVisible(false);
+		view.getPanelOfrecimientos().setVisible(true);
+		view.getBtnGuardarDisponible().setVisible(true);
+		view.getBtnSiguiente().setVisible(false);
+	}
+	
+	private void panelAnterior(){
+		view.getPanelOfrecimientos().setVisible(false);
+		view.getAgregarPropiedad().setVisible(true);
+		view.getBtnGuardarDisponible().setVisible(false);
+		view.getBtnAtras().setVisible(false);
+		view.getBtnSiguiente().setVisible(true);
 	}
 
 	private void initBinder() {
@@ -244,8 +265,13 @@ public class PropiedadController {
 		view.setTitle("Editar Propiedad");
 		view.getBtnCancelar().setVisible(true);
 		view.getBtnGuardarDisponible().setVisible(true);
+		view.getBtnVerHistorial().setVisible(false);
+		view.getBtnImprimirFicha().setVisible(false);
+		view.getBtnImprimirFichaVisita().setVisible(false);
 		fillCombos();
 		currentPropiedad = p;
+		view.getAgregarPropiedad().setVisible(true);
+		view.getBtnSiguiente().setVisible(true);
 		
 		ofrecimientoAlquiler.setEditMode(p.getOfrecimientoAlquiler());
 		ofrecimientoVenta.setEditMode(p.getOfrecimientoVenta());
@@ -262,6 +288,11 @@ public class PropiedadController {
 			ofrecimientoAlquiler.save();
 			ofrecimientoVenta.save();
 			actualizaMapaThread();
+			
+			if(!ofrecimientoAlquiler.isSelected() && !ofrecimientoVenta.isSelected()){
+				msgShw.showErrorMessage("Error", "Debe seleccionar un tipo de ofrecimiento para guardar como disponible.");
+				return;
+			}
 			try {
 				propiedadService.savePropiedad(currentPropiedad);
 				view.setVisible(false);
@@ -320,6 +351,9 @@ public class PropiedadController {
 		view.getTfInmobiliaria().setText("");
 		view.getLblReservada().setVisible(false);
 		actualizeSellado();
+		view.getBtnImprimirFicha().setVisible(false);
+		view.getBtnImprimirFichaVisita().setVisible(false);
+		view.getBtnSiguiente().setVisible(true);
 	}
 
 	public void setModeView(Propiedad propiedad) {
@@ -343,9 +377,16 @@ public class PropiedadController {
 
 		ofrecimientoAlquiler.setEditMode(currentPropiedad.getOfrecimientoAlquiler());
 		ofrecimientoVenta.setEditMode(currentPropiedad.getOfrecimientoVenta());
+		view.getBtnVerHistorial().setVisible(true);
+		view.getBtnImprimirFicha().setVisible(true);
+		view.getBtnImprimirFichaVisita().setVisible(true);
+		view.getBtnSiguiente().setVisible(false);
 	}
 
 	public void showView(){
+		view.getBtnAtras().setVisible(false);
+		view.getPanelOfrecimientos().setVisible(false);
+		view.getBtnGuardarDisponible().setVisible(false);
 		view.setVisible(true);
 	}
 	
@@ -359,16 +400,14 @@ public class PropiedadController {
 		view.getTaDescPubl().setEditable(bool);
 		view.getTaDescPriv().setEditable(bool);
 		view.getBtnCancelar().setVisible(bool);
-		view.getBtnLupita().setVisible(bool);
 		view.getBtnVerHistorial().setVisible(!bool);
-		view.getBtnVerHistorial().setVisible(!bool);	
+		view.getBtnLupita().setVisible(bool);	
 		view.getBtnActualizar().setVisible(bool);
 		view.getBotonLupitaInmobiliaria().setVisible(bool);
 		view.getComboLocalidad().setEnabled(bool);
 		view.getComboProvincia().setEnabled(bool);
 		view.getBtnGuardarDisponible().setVisible(bool);
 		view.getBtnBorrador().setVisible(bool);
-		view.getBtnImprimirFicha().setVisible(bool);
 	}
 
 	private void generaReporteFichaPropiedad(String reportName) {

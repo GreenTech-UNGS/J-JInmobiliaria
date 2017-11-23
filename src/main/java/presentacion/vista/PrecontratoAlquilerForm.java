@@ -33,7 +33,8 @@ public class PrecontratoAlquilerForm extends JPanel{
 		setLayout(null);
 		
 		chckbxHabilitar = new JCheckBox("Habilitar");
-		chckbxHabilitar.setBounds(33, 2, 96, 23);
+		chckbxHabilitar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		chckbxHabilitar.setBounds(33, 2, 127, 23);
 		add(chckbxHabilitar);
 		
 		
@@ -159,6 +160,7 @@ public class PrecontratoAlquilerForm extends JPanel{
 		add(lblPorSellado);
 
 		btnVerValorEntrada = new JButton("Ver valor entrada");
+		btnVerValorEntrada.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnVerValorEntrada.setBounds(477, 199, 119, 23);
 		add(btnVerValorEntrada);
 	}

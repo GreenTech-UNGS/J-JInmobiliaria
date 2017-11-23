@@ -67,4 +67,10 @@ public class OfrecimientoVentaController {
 		this.view.getMonedaCombo().actualize(Arrays.asList(Moneda.values()));
 	}
 	
+	public boolean isSelected(){
+		if(view.getChckbxHabilitar().isSelected()){
+			return true;
+		}
+		return false;
+	}
 }

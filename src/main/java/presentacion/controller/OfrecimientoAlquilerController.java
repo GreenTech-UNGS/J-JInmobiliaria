@@ -104,6 +104,12 @@ public class OfrecimientoAlquilerController {
 		this.view.getMonedaOtros().actualize(Arrays.asList(Moneda.values()));
 	}
 	
+	public boolean isSelected(){
+		if(view.getChckbxHabilitar().isSelected()){
+			return true;
+		}
+		return false;
+	}
 	
 }
 

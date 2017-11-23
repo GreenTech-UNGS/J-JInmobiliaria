@@ -13,6 +13,7 @@ import javax.swing.JTable;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import java.awt.BorderLayout;
 
 @Singleton
 public class PropiedadesPanel extends JPanel{
@@ -54,6 +55,7 @@ public class PropiedadesPanel extends JPanel{
         btnFiltrar.setFont(new Font("Tahoma", Font.PLAIN, 11));
         
         btnRemoverFiltro = new JButton("Remover Filtro");
+        btnRemoverFiltro.setFont(new Font("Tahoma", Font.PLAIN, 11));
         panelFiltrosTodas.add(btnRemoverFiltro);
         
         JScrollPane scrollPane = new JScrollPane();
@@ -129,8 +131,11 @@ public class PropiedadesPanel extends JPanel{
        
        JPanel panel_1 = new JPanel();
        panelReservas.add(panel_1);
+       panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
        
        btnDesreservar = new JButton("Desreservar");
+       btnDesreservar.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+       btnDesreservar.setAlignmentX(Component.CENTER_ALIGNMENT);
        panel_1.add(btnDesreservar);
        
        JPanel panelAlquiladas = new JPanel();

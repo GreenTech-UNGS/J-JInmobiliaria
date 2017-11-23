@@ -76,7 +76,7 @@ public class PropiedadesPanelController {
 		fillAllTables();
 	}
 	
-	private void fillAllTables() {
+	public void fillAllTables() {
 		fillTableProp();
 		fillTableReservas();
 		fillTableEnAlquiler();
