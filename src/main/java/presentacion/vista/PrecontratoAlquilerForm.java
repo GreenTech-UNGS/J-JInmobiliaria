@@ -1,28 +1,11 @@
 package presentacion.vista;
 
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
 import presentacion.combo.MonedaComboBoxModel;
 
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JCheckBox;
-import javax.swing.JSpinner;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JButton;
+import javax.swing.*;
+import java.awt.*;
 
 @SuppressWarnings("serial")
 @Singleton
@@ -89,7 +72,7 @@ public class PrecontratoAlquilerForm extends JPanel{
 		
 		spinnerMeses = new JSpinner();
 		spinnerMeses.setBounds(504, 56, 48, 20);
-		spinnerMeses.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		spinnerMeses.setModel(new SpinnerNumberModel(24,  1, null, new Integer(1)));
 		add(spinnerMeses);
 		
 		JLabel lblActualizacion = new JLabel("Actualizacion:");
@@ -169,7 +152,12 @@ public class PrecontratoAlquilerForm extends JPanel{
 		spinnerSellado.setBounds(134, 195, 53, 20);
 		spinnerSellado.setModel(new SpinnerNumberModel(new Float(0), new Float(0), new Float(100), new Float(0.5)));
 		add(spinnerSellado);
-		
+
+		JLabel lblPorSellado = new JLabel("%");
+		lblPorSellado.setFont(new Font("Dialog", Font.PLAIN, 11));
+		lblPorSellado.setBounds(193, 198, 10, 20);
+		add(lblPorSellado);
+
 		btnVerValorEntrada = new JButton("Ver valor entrada");
 		btnVerValorEntrada.setBounds(477, 199, 119, 23);
 		add(btnVerValorEntrada);

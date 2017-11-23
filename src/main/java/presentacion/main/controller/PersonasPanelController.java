@@ -72,9 +72,13 @@ public class PersonasPanelController {
 		this.view.getBtnAplicarFiltroInteresados().addActionListener(e -> aplicarFiltroInteresado());
 		this.view.getBtnRemoverFiltroInteresados().addActionListener(e -> removerFiltroInteresados());
 		this.view.getBtnVerPropiedades().addActionListener(e -> verPropiedades());
-		this.view.getBtnGenerarReporte().addActionListener(e -> );
+		this.view.getBtnGenerarReporte().addActionListener(e -> reportPropietarios());
 	}
 
+	private void reportPropietarios()
+	{
+		this.propietarioController.generaReportePropietarios();
+	}
 	private void agregarCliente() {
 		this.clienteController.setModeNew();
 		this.clienteController.showView();
@@ -301,4 +305,5 @@ public class PersonasPanelController {
 			this.fillTableUsuarios();
 		}
 	}
+
 }

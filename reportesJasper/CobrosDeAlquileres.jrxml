@@ -80,12 +80,12 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="4" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="38" splitType="Stretch">
 			<rectangle>
-				<reportElement x="-20" y="4" width="591" height="31" uuid="e8884634-5356-45c7-ad70-c42f70a3ca76"/>
+				<reportElement x="-20" y="4" width="591" height="31" backcolor="#099360" uuid="e8884634-5356-45c7-ad70-c42f70a3ca76"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="-14" y="9" width="50" height="20" uuid="6b9cdb48-9247-4f3e-b652-2fc66968ca23">
@@ -98,7 +98,7 @@
 				<text><![CDATA[Código]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="172" y="9" width="114" height="20" uuid="4013aaee-b8ed-447f-ae98-3e3f64bb4c78"/>
+				<reportElement x="157" y="9" width="114" height="20" uuid="4013aaee-b8ed-447f-ae98-3e3f64bb4c78"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
@@ -119,7 +119,7 @@
 				<text><![CDATA[Interes]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="40" y="9" width="127" height="20" uuid="75852f01-3da1-4122-bf88-b181359ad036">
+				<reportElement x="40" y="9" width="110" height="20" uuid="75852f01-3da1-4122-bf88-b181359ad036">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -135,23 +135,23 @@
 				<text><![CDATA[Total]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="290" y="8" width="45" height="21" uuid="7bb8c48d-caf1-4501-bc33-03242e6af8b2"/>
+				<reportElement x="279" y="8" width="45" height="21" uuid="7bb8c48d-caf1-4501-bc33-03242e6af8b2"/>
 				<text><![CDATA[Estado]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="38" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<textField>
-				<reportElement x="40" y="3" width="127" height="20" uuid="a2831ca8-9148-4dbc-8a09-213ef5136eef"/>
+				<reportElement x="38" y="2" width="112" height="20" uuid="a2831ca8-9148-4dbc-8a09-213ef5136eef"/>
 				<textFieldExpression><![CDATA[$F{propiedadStr}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="170" y="4" width="120" height="20" uuid="4afec545-1b7f-4b98-8442-62156570d0b4"/>
+				<reportElement x="154" y="3" width="120" height="20" uuid="4afec545-1b7f-4b98-8442-62156570d0b4"/>
 				<textFieldExpression><![CDATA[$F{inquilinoStr}]]></textFieldExpression>
 			</textField>
 			<textField pattern="###,###,##0.00">
-				<reportElement x="342" y="5" width="80" height="20" uuid="73fb5886-c3f3-4a89-a9a5-05371f45aee6"/>
+				<reportElement x="345" y="5" width="80" height="20" uuid="73fb5886-c3f3-4a89-a9a5-05371f45aee6"/>
 				<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -159,7 +159,7 @@
 				<textFieldExpression><![CDATA[$F{idContrato}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="426" y="5" width="72" height="20" uuid="b9abb4f8-5f21-49de-81cb-bacecbbb030f"/>
+				<reportElement x="428" y="5" width="72" height="20" uuid="b9abb4f8-5f21-49de-81cb-bacecbbb030f"/>
 				<textFieldExpression><![CDATA[$F{interesStr}]]></textFieldExpression>
 			</textField>
 			<textField pattern="####,###,##0.00">
@@ -167,13 +167,13 @@
 				<textFieldExpression><![CDATA[$F{montoTotal}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="294" y="5" width="41" height="18" uuid="6304a817-746a-4151-80e8-f245f258a05a"/>
+				<reportElement x="278" y="4" width="63" height="18" uuid="6304a817-746a-4151-80e8-f245f258a05a"/>
 				<textFieldExpression><![CDATA[$F{estadoStr}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="52" splitType="Stretch">
+		<band height="42" splitType="Stretch">
 			<textField pattern="####,###,##0.00#">
 				<reportElement x="440" y="11" width="130" height="21" uuid="0d416313-2f1b-4daf-947a-ec3f5b8e2c5d"/>
 				<textElement>
@@ -188,7 +188,7 @@
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch">
+		<band height="46" splitType="Stretch">
 			<textField>
 				<reportElement x="360" y="10" width="100" height="30" uuid="4d9050c4-3824-43e5-a51a-d29d33af7825"/>
 				<textElement textAlignment="Right"/>

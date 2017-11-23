@@ -1,6 +1,7 @@
 package presentacion.controller;
 
 import com.google.inject.Inject;
+import dto.PropietariosDTO;
 import entities.Persona;
 import entities.Persona.TipoCredencial;
 import entities.Propietario;
@@ -10,10 +11,13 @@ import model.LogicaNegocioException;
 import model.PersonaService;
 import model.PropietarioService;
 import presentacion.combo.TipoCredencialComboBoxModel;
+import presentacion.reportes.ReportePropietarios;
 import presentacion.table.TelefonoTableModel;
 import presentacion.validators.MessageShow;
 import presentacion.validators.PropietarioFormValidator;
 import presentacion.vista.PropietarioForm;
+
+import java.util.List;
 
 public class PropietarioController {
 	
@@ -33,7 +37,7 @@ public class PropietarioController {
 	private Propietario currentPropietario;
 	private Binder<Propietario> binder;
 	private MessageShow msgShw;
-	
+	@Inject PropietarioService propietarioServiceReport;
 	@Inject
 	private PropietarioController(PropietarioForm view,
 								 PropietarioService propietarioService,
@@ -204,5 +208,11 @@ public class PropietarioController {
 		view.setVisible(false);
 	}
 
+	public void generaReportePropietarios() {
+		List<PropietariosDTO> dtos;
+		dtos = propietarioServiceReport.propietariosReporte();
+		ReportePropietarios reporte = new ReportePropietarios(dtos);
+		reporte.mostrar();
+	}
 
 }
