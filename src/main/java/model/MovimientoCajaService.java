@@ -29,6 +29,12 @@ public class MovimientoCajaService {
 
 	public List<MovimientoDeCajaDTO> getReporteMovimientoDeCaja(){
 		List<MovimientoDeCajaDTO> ret = new ArrayList<MovimientoDeCajaDTO>();
+
+		//Aca se tendría que tomar los egresos
+		// en caso de que sea un mes proyectado tiene que traer los datos de
+		// los alquileres que se cobrarán ese mes y los gastos fijos
+
+
 		List<Ingreso> ingresos = ingresoDao.getAll();
 		List<Egreso> engresos = egresoDao.getAll();
 		for (Ingreso ingreso : ingresos
@@ -62,6 +68,8 @@ public class MovimientoCajaService {
 			return m2Str.compareTo(m1Str);
 		});
 		//Collections.reverse(ret);
+
+
 		return ret;
 	}
 	

@@ -29,13 +29,13 @@
 	<variable name="monto2" class="java.lang.Double" resetType="Page" calculation="Sum">
 		<variableExpression><![CDATA[$F{monto}]]></variableExpression>
 	</variable>
+	<variable name="monto3" class="java.lang.Double" resetType="Group" resetGroup="GroupMoneda" calculation="Sum">
+		<variableExpression><![CDATA[$F{monto}]]></variableExpression>
+	</variable>
 	<group name="Group3">
 		<groupExpression><![CDATA[$F{tipo}]]></groupExpression>
 		<groupHeader>
-			<band height="65">
-				<rectangle>
-					<reportElement x="0" y="40" width="561" height="25" uuid="b1163c17-641a-407a-8d02-c5e62f2342eb"/>
-				</rectangle>
+			<band height="32">
 				<textField>
 					<reportElement x="0" y="0" width="555" height="30" forecolor="#006699" uuid="212fb667-5e99-454e-83ee-ba4c4ddde18b"/>
 					<textElement>
@@ -43,43 +43,81 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
 				</textField>
-				<staticText>
-					<reportElement x="7" y="43" width="100" height="20" forecolor="#666666" uuid="d1d7185a-3749-4f08-a381-fb07f3180837"/>
-					<textElement>
-						<font size="12"/>
-					</textElement>
-					<text><![CDATA[Fecha]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="115" y="43" width="100" height="20" forecolor="#666666" uuid="bee5bab9-bbb9-4c04-99de-fb85f2d2c2eb"/>
-					<textElement>
-						<font size="12"/>
-					</textElement>
-					<text><![CDATA[Detalle]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="453" y="43" width="100" height="20" forecolor="#666666" uuid="2a997906-b5c2-4e7b-af3f-712f924f54db"/>
-					<textElement>
-						<font size="12"/>
-					</textElement>
-					<text><![CDATA[Importe]]></text>
-				</staticText>
 			</band>
 		</groupHeader>
 		<groupFooter>
 			<band/>
-			<band height="25">
+			<band height="33">
 				<textField pattern="###,###,##0.00#">
-					<reportElement x="431" y="2" width="124" height="18" uuid="fe0bf39b-c19f-4094-a050-d80b25f16364"/>
+					<reportElement x="431" y="12" width="124" height="18" uuid="fe0bf39b-c19f-4094-a050-d80b25f16364"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font fontName="Arial" size="10" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{monto1}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="343" y="2" width="77" height="18" uuid="5d539b66-56b9-4539-ad55-1cf85a56b16b"/>
+					<reportElement x="343" y="12" width="77" height="18" uuid="5d539b66-56b9-4539-ad55-1cf85a56b16b"/>
 					<textElement>
 						<font fontName="Arial" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<line>
+					<reportElement positionType="FixRelativeToBottom" x="-2" y="5" width="555" height="1" uuid="9c81ef15-6a2d-4809-a986-e6546d435c95"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="GroupMoneda">
+		<groupExpression><![CDATA[$F{monedaStr}]]></groupExpression>
+		<groupHeader>
+			<band height="63">
+				<rectangle>
+					<reportElement x="0" y="35" width="561" height="25" backcolor="#11A82D" uuid="4ff486d1-bb8f-4fea-bbd6-36db4aafef67"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="114" y="38" width="100" height="20" forecolor="#FFFFFF" uuid="e32bf0f2-88bc-4503-9481-e53e983e662e"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Detalle]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="453" y="38" width="100" height="20" forecolor="#FFFFFF" uuid="aad6a672-2ceb-4df2-819e-24da5e26afff"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Importe]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="7" y="38" width="100" height="20" forecolor="#FFFFFF" uuid="f4f5a814-df05-4299-bf94-1c22005075e2"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="297" y="3" width="260" height="29" forecolor="#006699" uuid="b9394f5b-ae6a-4223-93e7-63ea4a3f62fa"/>
+					<textElement>
+						<font fontName="Arial" size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{monedaStr}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="28">
+				<textField>
+					<reportElement x="454" y="3" width="100" height="20" uuid="ad022727-1a7a-4ab3-a7ee-d9f532a9e3c9"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{monto3}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="371" y="4" width="69" height="19" uuid="06c7d619-8347-4c09-87d0-01a06237855b"/>
+					<textElement>
+						<font fontName="Arial" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Total]]></text>
 				</staticText>
@@ -121,7 +159,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="24">
+		<band height="29">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="23" width="555" height="1" uuid="e99839bb-c152-4e4c-83c0-bc1dd73f8a36"/>
 			</line>
@@ -160,6 +198,7 @@
 			</textField>
 			<textField evaluationTime="Report">
 				<reportElement mode="Opaque" x="515" y="6" width="40" height="13" backcolor="#E6E6E6" uuid="f6cc8abf-e078-4b5c-bbc0-46bf375d4e87"/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
