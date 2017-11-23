@@ -98,6 +98,7 @@ public class ContratoAlquilerController {
 		
 		view.getSpinnerDuracionContrato().setValue(o.getCantidadMeses());
 		view.getSpinnerActualizaContrato().setValue(o.getIntervaloActualizacion());
+		view.getSpinnerPorcenajeActualiza().setValue(o.getProcentajeActualizacion());
 		view.getChckbxAcumulativoActualiza().setSelected(o.isAcumulativo());
 	}
 	

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.joda.time.DateTime;
 import org.joda.time.Instant;
 import org.joda.time.LocalDate;
@@ -45,6 +47,7 @@ public class ContratoService {
 	ReservaService reservaService;
 	@Inject CuotaService cuotaService;
 	@Inject private MovimientoCajaService cajaService;
+	@Inject private PropiedadService propeidadService;
 	
 	ContratoDao contratoDao;
 	PropiedadDao propiedadDao;
@@ -303,7 +306,11 @@ public class ContratoService {
 		
 	}
 	
-	public void cancelarContrato (Contrato c){
+	public void cancelarContrato (Contrato c) throws LogicaNegocioException{
+		
+		if (getEstadoOf(c) != EstadoContrato.DEFINITIVO)
+			throw new LogicaNegocioException("Solo se pueden cancelar los contratos definitivos");
+			 
 		
 		HistoriaEstadoContrato nuevoEstado = new HistoriaEstadoContrato();
 		nuevoEstado.setEstado(EstadoContrato.CANCELADO);
@@ -322,11 +329,7 @@ public class ContratoService {
 		
 		c.getEstados().add(nuevoEstado);
 		
-		HistoriaEstadoProp propiedadLiberada = new HistoriaEstadoProp();
-		propiedadLiberada.setEstado(EstadoProp.DISPONIBLE);
-		propiedadLiberada.setFecha(DateTime.now());
-		
-		c.getPropiedad().getEstados().add(propiedadLiberada);
+		propeidadService.setDisponible(c.getPropiedad());
 		
 		contratoDao.save(c);
 		

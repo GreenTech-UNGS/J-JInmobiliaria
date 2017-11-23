@@ -9,11 +9,13 @@ import entities.ContratoAlquiler;
 import entities.EstadoContrato;
 import filtros.ContratoAlquilerFiltro;
 import model.ContratoService;
+import model.LogicaNegocioException;
 import model.PropiedadService;
 import presentacion.controller.ContratoAlquilerController;
 import presentacion.controller.filtros.ContratoAlquilerFiltroController;
 import presentacion.main.vista.ContratosAlquilerTab;
 import presentacion.table.ContratosTableModel;
+import presentacion.validators.MessageShow;
 
 @Singleton
 public class ContratosAlquilerTabController {
@@ -26,6 +28,8 @@ public class ContratosAlquilerTabController {
 	@Inject private ContratoAlquilerFiltroController alquilerfiltro; 
 	
 	@Inject private ContratosTableModel contratosTable;
+	
+	@Inject private MessageShow msgShw;
 	
 	ContratoAlquilerFiltro currentAlqFiltro;
 	
@@ -59,18 +63,17 @@ public class ContratosAlquilerTabController {
 	}
 	
 	private void cancelarContrato() {
-		if (this.view.getTablaContratoAlquiler().getSelectedRow()!=-1){
-			
-			ContratoAlquiler contrato = (ContratoAlquiler) contratosTable.getRow(this.view.getTablaContratoAlquiler().getSelectedRow());
-			
-			if (contratoService.getEstadoOf(contrato)!=EstadoContrato.DEFINITIVO){
-				 JOptionPane.showMessageDialog(null, "Solo se pueden cancelar contratos definitivos");
-				return;
+		int selected = this.view.getTablaContratoAlquiler().getSelectedRow();
+		if (selected !=-1){
+			try{
+				ContratoAlquiler contrato = (ContratoAlquiler) contratosTable.getRow(selected);
+				boolean acepta = msgShw.showYesNoMessage("¿Quiere cancelar el contrato "+ "?", "Confirmar");
+				if(acepta)contratoService.cancelarContrato(contrato);
+				
+				fillTableContratosAlquiler();
+			}catch(LogicaNegocioException e){
+				msgShw.showErrorMessage(e.getMessage(), "Error");
 			}
-			ContratoAlquiler seleccion = (contrato);
-			contratoService.cancelarContrato(seleccion);
-			propiedadService.setDisponible(contrato.getPropiedad());
-			fillTableContratosAlquiler();
 		}
 	}	
 	
