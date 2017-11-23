@@ -2,25 +2,14 @@ package presentacion.main.controller;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
 import entities.Interesado;
 import entities.Propiedad;
 import filtros.ClienteFiltro;
 import filtros.InteresadoFiltro;
 import filtros.PropietarioFiltro;
 import filtros.UsuarioFiltro;
-import model.ClienteService;
-import model.InteresadoService;
-import model.PropiedadService;
-import model.PropietarioService;
-import model.UsuarioService;
-import presentacion.controller.ClienteController;
-import presentacion.controller.ElegirPropiedadController;
-import presentacion.controller.ElegirPropietarioController;
-import presentacion.controller.InteresadoController;
-import presentacion.controller.PropiedadController;
-import presentacion.controller.PropietarioController;
-import presentacion.controller.UsuarioController;
+import model.*;
+import presentacion.controller.*;
 import presentacion.controller.filtros.ClienteFiltroController;
 import presentacion.controller.filtros.InteresadoFiltroController;
 import presentacion.controller.filtros.PropietarioFiltroController;
@@ -83,7 +72,7 @@ public class PersonasPanelController {
 		this.view.getBtnAplicarFiltroInteresados().addActionListener(e -> aplicarFiltroInteresado());
 		this.view.getBtnRemoverFiltroInteresados().addActionListener(e -> removerFiltroInteresados());
 		this.view.getBtnVerPropiedades().addActionListener(e -> verPropiedades());
-		
+		this.view.getBtnGenerarReporte().addActionListener(e -> );
 	}
 
 	private void agregarCliente() {

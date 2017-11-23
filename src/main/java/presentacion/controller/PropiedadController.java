@@ -90,7 +90,7 @@ public class PropiedadController {
 		view.getBtnMasDatos().addActionListener(e -> agregarOtrosDatos());
 		view.getBtnBorrador().addActionListener(e -> saveBorrador());
 		view.getBtnImprimirFicha().addActionListener(e -> generaReporteFichaPropiedad("Ficha"));
-		view.getBtnImprimirFichaVisita().addActionListener(e -> generaReporteFichaPropiedad("FichaPropiedadEmpleado"));
+		view.getBtnImprimirFichaVisita().addActionListener(e -> generaReporteFichaPropiedad("FichaPropiedad"));
 		
 		view.getComboProvincia().addActionListener(e -> actualizeSellado());
 
