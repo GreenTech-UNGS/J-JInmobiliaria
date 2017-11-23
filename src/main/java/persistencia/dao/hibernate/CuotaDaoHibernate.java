@@ -3,6 +3,8 @@ package persistencia.dao.hibernate;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.joda.time.YearMonth;
 
@@ -107,7 +109,7 @@ public class CuotaDaoHibernate extends DaoHibernate<CuotaAlquiler> implements Cu
 
 	@Override
 	public List<CuotaAlquiler> getAllCuotasOf(Cliente c) {
-				initTransaction();
+		initTransaction();
 		
 		Criteria q = sesion.createCriteria(CuotaAlquiler.class)
 				.createAlias("contrato", "contr")
@@ -119,6 +121,22 @@ public class CuotaDaoHibernate extends DaoHibernate<CuotaAlquiler> implements Cu
 		finishTransaction();
 		
 		actualizeList(toRet);
+		return toRet;
+	}
+
+	@Override
+	public int getCantidadCuotasOf(ContratoAlquiler c) {
+		initTransaction();
+		
+		Criteria q = sesion.createCriteria(CuotaAlquiler.class)
+				.createAlias("contrato", "contr")
+				.add(Restrictions.eq("contr.cliente", c))
+				.setProjection(Projections.rowCount())
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		
+		int toRet = Integer.parseInt(q.uniqueResult() + "");
+		finishTransaction();
+		
 		return toRet;
 	}
 

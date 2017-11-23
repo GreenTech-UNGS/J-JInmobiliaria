@@ -17,5 +17,6 @@ public interface CuotaDao extends Dao<CuotaAlquiler>{
 	public void saveInteres(InteresPunitorioCuota interes);
 	public List<CuotaAlquiler> getAllCuotasOf(Cliente c);
 	public List<CuotaAlquiler> getCuotasOf(ContratoAlquiler c);
+	public int getCantidadCuotasOf(ContratoAlquiler c);
 	
 }

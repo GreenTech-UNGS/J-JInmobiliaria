@@ -7,9 +7,11 @@ import java.util.stream.Collectors;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
+import org.joda.time.Period;
 import org.joda.time.YearMonth;
 
 import com.google.inject.Inject;
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 import entities.ContratoAlquiler;
 import entities.CuotaAlquiler;
@@ -116,6 +118,17 @@ public class CuotaService {
 	
 	public List<CuotaAlquiler> getcuotasOf(ContratoAlquiler c){
 		return cuotaDao.getCuotasOf(c);
+	}
+	
+	public int getNumeroCuota(CuotaAlquiler c){
+		
+		//TODO se puede hacer con menor complejidad computacional
+		return getcuotasOf(c.getContrato()).indexOf(c) + 1;
+		
+	}
+	
+	public int getCantidadCuotasOf(ContratoAlquiler c){
+		return cuotaDao.getCantidadCuotasOf(c);
 	}
 
 	public InteresPunitorioCuota getInteresOf(CuotaAlquiler cuota) {

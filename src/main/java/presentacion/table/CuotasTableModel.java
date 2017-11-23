@@ -31,6 +31,8 @@ public class CuotasTableModel extends BaseTableModel<CuotaAlquiler> {
 		double temp = t.getMonto().getMonto();
 		String valor = t.getMonto().getMoneda().toString()+ " " + temp;
 		
+		String numeroCuota = t.getAnioMes() + " " + cuotaService.getNumeroCuota(t) + " de " + cuotaService.getCantidadCuotasOf(t.getContrato());
+		
 		String credencial = t.getContrato().getCliente().getPersona().getTipoCred().toString() + " " +
 					t.getContrato().getCliente().getPersona().getCredencial();
 		
@@ -42,7 +44,7 @@ public class CuotasTableModel extends BaseTableModel<CuotaAlquiler> {
 						format.format(interes.getMonto().getMonto() + t.getMonto().getMonto());
 		
 		Object[] fila = {
-				t.getAnioMes(),
+				numeroCuota,
 				credencial,
 				t.getContrato().getPropiedad().getIdentificador(),
 				t.getContrato().getIdentificador(),
