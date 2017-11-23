@@ -45,7 +45,7 @@ public class OfrecimientoService {
 		int intervaloActualizacion = o.getIntervaloActualizacion();
 		
 		double porcentaje = o.getProcentajeActualizacion() / 100.0;
-		int cantActualizacones = cantMeses/intervaloActualizacion;
+		int cantActualizacones = (cantMeses/intervaloActualizacion) - 1;
 		boolean isAcumualtivo = o.isAcumulativo();
 		
 		if(isAcumualtivo)
@@ -82,14 +82,15 @@ public class OfrecimientoService {
 		double porcentaje = o.getProcentajeActualizacion() / 100.0;
 		
 		for(int i = 1; i <= o.getCantidadMeses(); i++){
+			sumaCuotas += monto;
+			
 			if(i % o.getIntervaloActualizacion() == 0){
 				if(isAcumulativo)
-					monto = monto + (montoInicial * porcentaje);
-				else
 					monto = monto + (monto * porcentaje);
+				else
+					monto = monto + (montoInicial * porcentaje);
+					
 			}
-			
-			sumaCuotas += monto;
 		}
 		
 		return sumaCuotas;
