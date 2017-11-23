@@ -103,7 +103,6 @@ public class ContratoVentaForm extends JDialog{
 		tfPrecio.setColumns(10);
 		tfPrecio.setBounds(332, 66, 127, 20);
 		getContentPane().add(tfPrecio);
-		tfPrecio.setEditable(false);
 		
 		JLabel lblOtrosDatos = new JLabel("Otros datos");
 		lblOtrosDatos.setFont(new Font("Tahoma", Font.BOLD, 11));

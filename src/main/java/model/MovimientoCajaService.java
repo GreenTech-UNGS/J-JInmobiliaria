@@ -4,6 +4,8 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import dto.MovimientoDeCajaDTO;
 import entities.*;
+
+import org.hamcrest.core.Is;
 import org.joda.time.DateTime;
 import persistencia.dao.iface.EgresoDao;
 import persistencia.dao.iface.IngresoDao;
@@ -149,6 +151,33 @@ public class MovimientoCajaService {
 		toRet.sort((m1, m2) -> m2.getFecha().compareTo(m1.getFecha()));
 		
 		return toRet;
+	}
+
+	public void generaMovimientos(ContratoVenta c) {
+		
+		Moneda m = c.getMonto().getMoneda();
+		double monto = c.getMonto().getMonto();
+		
+		double montoComprador = monto * (c.getComisionComprador() / 100);
+		double montoVendedor = monto * (c.getComisionVendedor() / 100);
+		
+		Precio comprador = new Precio(montoComprador, m);
+		Precio vendedor = new Precio(montoVendedor, m);
+		
+		Ingreso iComprador = new Ingreso();
+		Ingreso iVendedor = new Ingreso();
+		
+		iComprador.setDetalle("Comision del comprador del contrato " + c.getIdentificador());
+		iComprador.setFecha(DateTime.now());
+		iComprador.setMonto(comprador);
+		
+		iVendedor.setDetalle("Comision del vendedor del contrato " + c.getIdentificador());
+		iVendedor.setFecha(DateTime.now());
+		iVendedor.setMonto(vendedor);
+		
+		ingresoDao.save(iVendedor);
+		ingresoDao.save(iComprador);
+		
 	}
 	
 }

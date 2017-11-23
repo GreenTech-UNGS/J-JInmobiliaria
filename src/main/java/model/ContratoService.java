@@ -189,28 +189,29 @@ public class ContratoService {
 	
 	public void saveContratoVenta(ContratoVenta c) throws LogicaNegocioException{
 			
-			contratoDao.save(c);
-			
-			HistoriaEstadoProp estado = new HistoriaEstadoProp();
-			estado.setEstado(EstadoProp.VENDIDA);
-			estado.setFecha(DateTime.now());
-			
-			Propiedad propiedad = c.getPropiedad();
-			propiedad.getEstados().add(estado);
-			
-			propiedad.getOfrecimientoVenta().setHabilitada(false);
-			//TODO
-			
-			Reserva r = reservaService.getReservaOf(c.getPropiedad());
-			if( r != null) {
-				if(r.getReservador().getID() != c.getCliente().getPersona().getID()) {
-					throw new LogicaNegocioException("La propiedad esta reservada. El cliente debe ser el reservador");
-				}
-			}
-			
-			
-			propiedadDao.save(propiedad);
+		Reserva r = reservaService.getReservaOf(c.getPropiedad());
+		
+		if( r != null) {
+			if(r.getReservador().getID() != c.getCliente().getPersona().getID()) {
+				throw new LogicaNegocioException("La propiedad esta reservada. El cliente debe ser el reservador");	
+			}	
 		}
+		
+		
+		HistoriaEstadoProp estado = new HistoriaEstadoProp();
+		estado.setEstado(EstadoProp.VENDIDA);
+		estado.setFecha(DateTime.now());
+		
+		Propiedad propiedad = c.getPropiedad();
+		propiedad.getEstados().add(estado);
+		
+		propiedad.getOfrecimientoVenta().setHabilitada(false);
+		
+		cajaService.generaMovimientos(c);
+		
+		contratoDao.save(c);
+		propiedadDao.save(propiedad);
+	}
 	
 	public ContratoVenta getNewContratoVenta(){
 		

@@ -1,5 +1,7 @@
 package presentacion.controller;
 
+import java.util.Arrays;
+
 import com.google.inject.Inject;
 
 import entities.Cliente;
@@ -45,10 +47,15 @@ public class ContratoVentaController {
 	}
 	
 	public void showView(){
-			
-			view.setVisible(true);
+		fillCombos();	
+		view.setVisible(true);
 	}
 	
+	private void fillCombos() {
+		view.getMonedaCombo().clearAndActualize(Arrays.asList(Moneda.values()));
+		
+	}
+
 	private void elegirCliente(){
 		
 		elegirCliente.showView();

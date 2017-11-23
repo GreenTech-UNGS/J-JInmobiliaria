@@ -103,6 +103,14 @@ public class PrecontratoVentaForm extends JPanel{
 		monedaCombo = new MonedaComboBoxModel();
 		cbMoneda.setModel(monedaCombo);
 		
+		JLabel label = new JLabel("%");
+		label.setBounds(157, 129, 26, 15);
+		add(label);
+		
+		JLabel label_1 = new JLabel("%");
+		label_1.setBounds(313, 129, 26, 15);
+		add(label_1);
+		
 	}
 
 	public JTextField getTfPrecio() {
@@ -128,5 +136,4 @@ public class PrecontratoVentaForm extends JPanel{
 	public JComboBox<String> getCbMoneda() {
 		return cbMoneda;
 	}
-
 }
