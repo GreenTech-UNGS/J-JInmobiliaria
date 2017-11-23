@@ -48,6 +48,7 @@ public class ContratoService {
 	@Inject CuotaService cuotaService;
 	@Inject private MovimientoCajaService cajaService;
 	@Inject private PropiedadService propeidadService;
+	@Inject private PropietarioService propietarioService;
 	
 	ContratoDao contratoDao;
 	PropiedadDao propiedadDao;
@@ -204,6 +205,8 @@ public class ContratoService {
 		
 		Propiedad propiedad = c.getPropiedad();
 		propiedad.getEstados().add(estado);
+		
+		propiedad.setPropietario(propietarioService.desdePersona(c.getCliente().getPersona()));
 		
 		propiedad.getOfrecimientoVenta().setHabilitada(false);
 		

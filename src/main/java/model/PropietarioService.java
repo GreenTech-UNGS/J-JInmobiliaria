@@ -84,6 +84,17 @@ public class PropietarioService {
 		
 	}
 	
+	public Propietario desdePersona(Persona p){
+		if(existePropietarioCon(p))
+			return propietarioDao.getPropietarioOf(p);
+		
+		Propietario toRet = getNewPropietarioFrom(p);
+		propietarioDao.save(toRet);
+		
+		return toRet;
+		
+	}
+	
 	public List<PendientesPropietariosDTO> pagosPendientesReporte() {
 		
 		DecimalFormat format = new DecimalFormat("#.##");

@@ -106,6 +106,19 @@ public class PropietarioDaoHibernate extends DaoHibernate<Propietario> implement
 		actualizeList(toRet);
 		return toRet;
 	}
+
+	@Override
+	public Propietario getPropietarioOf(Persona p) {
+		initTransaction();
+		Criteria q = sesion.createCriteria(Propietario.class).
+				add(Restrictions.eq("persona", p));
+		
+		Propietario toRet = (Propietario) q.list().get(0);
+		
+		finishTransaction();
+		
+		return toRet;
+	}
 	
 
 }
