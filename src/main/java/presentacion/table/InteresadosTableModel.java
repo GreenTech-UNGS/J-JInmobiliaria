@@ -18,11 +18,11 @@ public class InteresadosTableModel extends BaseTableModel<Interesado> {
 		
 		String credencial = t.getPersona().getTipoCred().toString() + " " + t.getPersona().getCredencial();
 		
-		Object[] fila = {"Fecha de alta",
+		Object[] fila = {
+				t.getFechaAlta().toString("dd/MM/YYYY"),
 				t.getPersona().getNombre(),
 				t.getPersona().getApellido(),
-				t.getPreferencia().getTipoOfrecimiento().toString(),
-				"yolo"};
+				t.getPreferencia().getTipoOfrecimiento().toString()};
 
 		return fila;
 	}

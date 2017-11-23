@@ -9,6 +9,7 @@ import entities.Moneda;
 import entities.Persona.TipoCredencial;
 import entities.Provincia;
 import entities.TipoOfrecimiento;
+import org.joda.time.DateTime;
 import presentacion.vista.InteresadoForm;
 
 @Singleton
@@ -52,11 +53,13 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		t.getPreferencia().setCantidadAmbientesHasta(Integer.parseInt(ambientesHasta));
 		t.getPreferencia().setPrecioDesde(Integer.parseInt(precioDesde));
 		t.getPreferencia().setPrecioHasta(Integer.parseInt(precioHasta));
+
 		
 		t.getPersona().setTipoCred(tipoCred);
 		t.getPreferencia().setTipoOfrecimiento(tipoOfrec);	
 		t.getPreferencia().setMoneda(moneda);
 		t.getPreferencia().setLocalidad(localidad);
+		t.setFechaAlta(DateTime.now());
 //		t.getPreferencia().getLocalidad().setProvincia(provincia);
 		
 
@@ -73,8 +76,8 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		String metrosCuadradosHasta = String.valueOf(t.getPreferencia().getMetrosCuadradosHasta());
 		String ambientesDesde = String.valueOf(t.getPreferencia().getCantidadAmbientesDesde());
 		String ambientesHasta = String.valueOf(t.getPreferencia().getCantidadAmbientesHasta());
-		String precioDesde = String.valueOf(0);
-		String precioHasta = String.valueOf(0);
+		String precioDesde = String.valueOf(t.getPreferencia().getPrecioDesde());
+		String precioHasta = String.valueOf(t.getPreferencia().getPrecioHasta());
 		
 		String tipoCred = String.valueOf(t.getPersona().getTipoCred());	
 		TipoOfrecimiento tipoOfrec = t.getPreferencia().getTipoOfrecimiento();	
