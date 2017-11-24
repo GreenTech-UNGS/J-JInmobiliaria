@@ -93,7 +93,7 @@ public class PropiedadController {
 		view.getBtnBorrador().addActionListener(e -> saveBorrador());
 		view.getBtnImprimirFicha().addActionListener(e -> generaReporteFichaPropiedad("Ficha"));
 		view.getBtnImprimirFichaVisita().addActionListener(e -> generaReporteFichaPropiedad("FichaPropiedad"));
-		view.getBtnSiguiente().addActionListener(e -> cambiaPestaña());
+		view.getBtnSiguiente().addActionListener(e -> cambiaPestania());
 		view.getBtnAtras().addActionListener(e -> panelAnterior());
 		
 		view.getComboProvincia().addActionListener(e -> actualizeSellado());
@@ -102,7 +102,7 @@ public class PropiedadController {
 		
 	}
 
-	private void cambiaPestaña() {
+	private void cambiaPestania() {
 //		view.getTabbedPane().setSelectedIndex(1); 
 		view.getBtnAtras().setVisible(true);
 		view.getAgregarPropiedad().setVisible(false);
