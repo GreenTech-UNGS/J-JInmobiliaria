@@ -29,9 +29,12 @@ public class Preferencia {
 	private int metrosCuadradosHasta;
 	private int cantidadAmbientesDesde;
 	private int cantidadAmbientesHasta;
-	private int precioDesde;
-	private int precioHasta;
-	private Moneda moneda;
+	private int precioVentaDesde;
+	private int precioVentaHasta;
+	private int precioAlquilerDesde;
+	private int precioAlquilerHasta;
+	private Moneda monedaVenta;
+	private Moneda monedaAlquiler;
 	
 	public Preferencia(){
 		
@@ -92,29 +95,53 @@ public class Preferencia {
 	public void setCantidadAmbientesHasta(int cantidadAmbientesHasta) {
 		this.cantidadAmbientesHasta = cantidadAmbientesHasta;
 	}
-
-	public int getPrecioDesde() {
-		return precioDesde;
+	
+	public double getPrecioVentaDesde() {
+		return precioVentaDesde;
 	}
 
-	public void setPrecioDesde(int precioDesde) {
-		this.precioDesde = precioDesde;
+	public void setPrecioVentaDesde(int precioVentaDesde) {
+		this.precioVentaDesde = precioVentaDesde;
 	}
 
-	public int getPrecioHasta() {
-		return precioHasta;
+	public double getPrecioVentaHasta() {
+		return precioVentaHasta;
 	}
 
-	public void setPrecioHasta(int precioHasta) {
-		this.precioHasta = precioHasta;
+	public void setPrecioVentaHasta(int precioVentaHasta) {
+		this.precioVentaHasta = precioVentaHasta;
 	}
 
-	public Moneda getMoneda() {
-		return moneda;
+	public int getPrecioAlquilerDesde() {
+		return precioAlquilerDesde;
 	}
 
-	public void setMoneda(Moneda moneda) {
-		this.moneda = moneda;
+	public void setPrecioAlquilerDesde(int precioAlquilerDesde) {
+		this.precioAlquilerDesde = precioAlquilerDesde;
+	}
+
+	public int getPrecioAlquilerHasta() {
+		return precioAlquilerHasta;
+	}
+
+	public void setPrecioAlquilerHasta(int precioAlquilerHasta) {
+		this.precioAlquilerHasta = precioAlquilerHasta;
+	}
+
+	public Moneda getMonedaVenta() {
+		return monedaVenta;
+	}
+
+	public void setMonedaVenta(Moneda moneda) {
+		this.monedaVenta = moneda;
+	}
+	
+	public Moneda getMonedaAlquiler() {
+		return monedaAlquiler;
+	}
+
+	public void setMonedaAlquiler(Moneda moneda) {
+		this.monedaAlquiler = moneda;
 	}
 	
 }
