@@ -57,7 +57,7 @@ public class PagosCobrosService {
 		p.setMonto(ingresoMonto);
 		
 		ingreso.setCuota(cuota);
-		ingreso.setDetalle("Pago de cuota al dia " + fechaNueva.toDate().toString());
+		ingreso.setDetalle("Pago de cuota al dia " + fechaNueva.toString("dd/MM/YYYY"));
 		ingreso.setFecha(fechaNueva);
 		ingreso.setMonto(p);
 		

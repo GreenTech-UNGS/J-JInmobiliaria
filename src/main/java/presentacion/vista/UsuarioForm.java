@@ -150,6 +150,10 @@ public class UsuarioForm extends JDialog {
 	public JButton getBtnGuardarCambios() {
 		return btnGuardarCambios;
 	}
+
+	public JComboBox<String> getCbRol() {
+		return cbRol;
+	}
 	
 	
 }

@@ -7,7 +7,7 @@ public class ReservaTableModel extends BaseTableModel<Reserva>{
 	public ReservaTableModel(){
 		super.addColumn("Fecha", false, 100);
 		super.addColumn("Reservador", false, 100);
-		super.addColumn("Código propiedad", false, 100);
+		super.addColumn("Codigo propiedad", false, 100);
 		super.addColumn("Direccion", false, 100);
 	}
 

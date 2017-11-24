@@ -93,7 +93,7 @@ public class Preferencia {
 		this.cantidadAmbientesHasta = cantidadAmbientesHasta;
 	}
 
-	public double getPrecioDesde() {
+	public int getPrecioDesde() {
 		return precioDesde;
 	}
 
@@ -101,7 +101,7 @@ public class Preferencia {
 		this.precioDesde = precioDesde;
 	}
 
-	public double getPrecioHasta() {
+	public int getPrecioHasta() {
 		return precioHasta;
 	}
 

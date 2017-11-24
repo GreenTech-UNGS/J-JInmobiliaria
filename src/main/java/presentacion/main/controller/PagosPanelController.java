@@ -21,6 +21,7 @@ import presentacion.reportes.ReporteMovimientosDeCaja;
 import presentacion.reportes.ReportePropietariosPagosPendientes;
 import presentacion.table.CuotasTableModel;
 import presentacion.table.PagosPropietariosTableModel;
+import presentacion.validators.MessageShow;
 
 import javax.swing.*;
 import java.util.List;
@@ -38,6 +39,8 @@ public class PagosPanelController {
 	@Inject private PagosCobrosService pagoCobroService;
 	@Inject private RegistrarCobroController cobroController;
 	@Inject private CuotaFiltroController cuotaFiltro;
+	
+	@Inject private MessageShow msgShw;
 	
 	@Inject private MovimientoCajaController movimientoController;
 	
@@ -85,9 +88,7 @@ public class PagosPanelController {
 		if (select!=-1){
 			PagoPropietario p = pagopropTable.getRow(select);
 			
-			int option = JOptionPane.showConfirmDialog(null, "Â¿Desea registrar el pago al propietario?", "Resgistrar Pago", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-			
-			if(option == 0) {
+			if(msgShw.showYesNoMessage("¿Desea registrar el pago al propietario?", "Resgistrar Pago")) {
 				pagoCobroService.registrarpagoPropietario(p);
 				this.fillTablePagosProps();
 			}			

@@ -38,7 +38,7 @@ public class UsuarioController {
 	
 	public void setModeNew() {
 		currentUsuario = usuarioService.getNuevoUsuario();
-		usuarioMapper.fillFields(currentUsuario);
+//		usuarioMapper.fillFields(currentUsuario);
 		fillCombos();
 	}
 	
@@ -92,7 +92,6 @@ public class UsuarioController {
 		
 		currentUsuario= u;
 		usuarioMapper.fillFields(u);
-		fillCombos();
 	}
 
 }

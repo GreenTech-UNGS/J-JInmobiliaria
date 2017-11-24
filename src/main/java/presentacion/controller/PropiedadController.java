@@ -336,8 +336,9 @@ public class PropiedadController {
 	public void setModeNew() {
 		
 		isEdit = true;
-		
+		fillCombos();
 		view.setTitle("Agregar Propiedad");
+		view.getAgregarPropiedad().setVisible(true);
 		currentPropiedad = propiedadService.getEmptyPropiedad();
 		binder.setObjective(currentPropiedad);
 		binder.fillFields();

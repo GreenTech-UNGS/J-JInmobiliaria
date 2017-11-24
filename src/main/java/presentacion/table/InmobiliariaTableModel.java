@@ -10,6 +10,8 @@ public class InmobiliariaTableModel extends BaseTableModel<Inmobiliaria>{
 		addColumn("CUIT", false, 100);
 		addColumn("Nombre", false, 100);
 		addColumn("Direccion", false, 300);
+		addColumn("Localidad", false, 100);
+		addColumn("Provincia", false, 100);
 	}
 	
 	@Override
@@ -24,7 +26,9 @@ public class InmobiliariaTableModel extends BaseTableModel<Inmobiliaria>{
 		
 		Object[] toRet = {t.getCUIT(),
 						t.getNombre(),
-						direccion};
+						direccion, 
+						t.getLocalidad().getNombre(),
+						t.getLocalidad().getProvincia().getNombre()};
 		
 		return toRet;
 		

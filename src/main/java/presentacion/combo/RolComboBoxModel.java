@@ -32,11 +32,8 @@ public class RolComboBoxModel extends BaseComboBoxModel<Rol>{
 			this.setSelectedItem(null);
 		}
 		else{
-			String str = toSelect.toString().toLowerCase();
-			str = str.substring(0, 1).toUpperCase() + str.substring(1);
-			str = str.replaceAll("_", " ");
-		
-			this.setSelectedItem(str);
+			System.out.println(toSelect.toString());
+			this.setSelectedItem(toSelect.toString());
 		}	
 	}
 }
