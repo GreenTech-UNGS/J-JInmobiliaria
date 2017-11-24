@@ -76,31 +76,40 @@ public class InteresadoService {
 	
 	public boolean matches(Preferencia t, Propiedad p) {
 		
-		if(t.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquiler) && p.getOfrecimientoAlquiler().isHabilitada() == false)
+		if( true && (t.getTipoOfrecimiento().equals(TipoOfrecimiento.Alquiler) && p.getOfrecimientoAlquiler().isHabilitada() == false))
 			return false;
 		
-		if(t.getTipoOfrecimiento().equals(TipoOfrecimiento.Venta) && p.getOfrecimientoVenta().isHabilitada() == false)
+		if( true && (t.getTipoOfrecimiento().equals(TipoOfrecimiento.Venta) && p.getOfrecimientoVenta().isHabilitada() == false))
 			return false;
 		
-		if( ! (p.getOfrecimientoVenta().getPrecio().getMoneda().equals(t.getMoneda())) )
+		if( p.getOfrecimientoVenta().getPrecio().getMoneda() != null && ( ! (p.getOfrecimientoVenta().getPrecio().getMoneda().equals(t.getMonedaVenta())) ))
 			return false;
 		
-		if(p.getOfrecimientoVenta().getPrecio().getMonto() < t.getPrecioDesde())
+		if( p.getOfrecimientoVenta().getPrecio().getMonto() > 0 && (p.getOfrecimientoVenta().getPrecio().getMonto() < t.getPrecioVentaDesde()))
 			return false;
 		
-		if(p.getOfrecimientoVenta().getPrecio().getMonto() > t.getPrecioHasta())
+		if( p.getOfrecimientoVenta().getPrecio().getMonto() > 0 && (p.getOfrecimientoVenta().getPrecio().getMonto() > t.getPrecioVentaHasta()))
 			return false;
 		
-		if(p.getOtrosDatos().getCantidadAmbientes() < t.getCantidadAmbientesDesde())
+		if( p.getOfrecimientoAlquiler().getPrecio().getMoneda() != null && ( ! (p.getOfrecimientoAlquiler().getPrecio().getMoneda().equals(t.getMonedaAlquiler())) ))
 			return false;
 		
-		if(p.getOtrosDatos().getCantidadAmbientes() > t.getCantidadAmbientesHasta())
+		if( p.getOfrecimientoAlquiler().getPrecio().getMonto() > 0 && (p.getOfrecimientoAlquiler().getPrecio().getMonto() < t.getPrecioAlquilerDesde()))
+			return false;
+		
+		if( p.getOfrecimientoAlquiler().getPrecio().getMonto() > 0 && (p.getOfrecimientoAlquiler().getPrecio().getMonto() > t.getPrecioAlquilerHasta()))
+			return false;
+		
+		if( p.getOtrosDatos().getCantidadAmbientes() > 0 && (p.getOtrosDatos().getCantidadAmbientes() < t.getCantidadAmbientesDesde()))
+			return false;
+		
+		if( p.getOtrosDatos().getCantidadAmbientes() > 0 && (p.getOtrosDatos().getCantidadAmbientes() > t.getCantidadAmbientesHasta()))
 			return false;
 				
-		if(p.getOtrosDatos().getMetrosCuadradosLote() < t.getMetrosCuadradosDesde())
+		if( p.getOtrosDatos().getMetrosCuadradosLote() > 0 && (p.getOtrosDatos().getMetrosCuadradosLote() < t.getMetrosCuadradosDesde()))
 			return false;
 		
-		if(p.getOtrosDatos().getMetrosCuadradosLote() > t.getMetrosCuadradosHasta())
+		if( p.getOtrosDatos().getMetrosCuadradosLote() > 0 && (p.getOtrosDatos().getMetrosCuadradosLote() > t.getMetrosCuadradosHasta()))
 			return false;
 		
 		
