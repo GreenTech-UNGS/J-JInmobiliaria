@@ -1,5 +1,6 @@
 package model;
 
+import java.time.Year;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -122,8 +123,12 @@ public class CuotaService {
 	
 	public int getNumeroCuota(CuotaAlquiler c){
 		
-		//TODO se puede hacer con menor complejidad computacional
-		return getcuotasOf(c.getContrato()).indexOf(c) + 1;
+		YearMonth inicio = c.getContrato().getPrimerAnioMes();
+		YearMonth mes = c.getAnioMes();
+		
+		Period p = new Period(inicio, mes);
+		
+		return p.getMonths() + 1;
 		
 	}
 	
