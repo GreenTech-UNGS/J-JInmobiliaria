@@ -24,7 +24,6 @@ public class UsuarioController {
 	@Inject private UsuarioFormValidator usuarioValidator;
 	@Inject private MessageShow msgShw;
 	@Inject private UsuarioFormMapper usuarioMapper;
-	
 	@Inject
 	private UsuarioController(UsuarioForm view, UsuarioService usuarioService){
 		

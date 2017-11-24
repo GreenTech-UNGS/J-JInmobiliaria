@@ -77,7 +77,7 @@ public class PagosPanelController {
 				cobroController.setCuota(c);
 			
 				cobroController.showView();
-				this.fillTableCuotas();
+				actualize();
 			}			
 		}		
 	}	
@@ -90,7 +90,7 @@ public class PagosPanelController {
 			
 			if(msgShw.showYesNoMessage("¿Desea registrar el pago al propietario?", "Resgistrar Pago")) {
 				pagoCobroService.registrarpagoPropietario(p);
-				this.fillTablePagosProps();
+				actualize();
 			}			
 		}
 	}
@@ -137,7 +137,7 @@ public class PagosPanelController {
 		if(isIngreso)movimientoController.setModeNewIngreso();
 		else movimientoController.setModeNewEgreso();
 		movimientoController.showView();
-		fillTableMovimientosCaja();
+		actualize();
 	}
 		
 	private void generaReportePropietarios() {

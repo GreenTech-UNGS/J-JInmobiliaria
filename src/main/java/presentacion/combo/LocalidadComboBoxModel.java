@@ -20,9 +20,9 @@ public class LocalidadComboBoxModel extends BaseComboBoxModel<Localidad>{
 		}
 		else{
 			
-		String nombre = toSelect.getNombre();
-		this.setSelectedItem(nombre);
-		
+			String nombre = toSelect.getNombre();
+			this.setSelectedItem(nombre);
+			
 		}
 	}
 

@@ -26,11 +26,11 @@ public class NotificacionView extends JPanel{
 		
 		btnOk = new JButton("Ok");
 		btnOk.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		btnOk.setBounds(145, 41, 45, 23);
+		btnOk.setBounds(77, 102, 53, 19);
 		add(btnOk);
 		
 		lblDescripcion = new JLabel("descripcion");
-		lblDescripcion.setBounds(12, 26, 133, 87);
+		lblDescripcion.setBounds(12, 26, 178, 76);
 		add(lblDescripcion);
 		
 	}

@@ -44,6 +44,8 @@ public class PropiedadController {
 	@Inject private PropiedadOtrosDatosController otrosDatosForm;
 	private boolean isEdit;
 	
+	private boolean isOk;
+
 	private final Coordinate centerOfMap = new Coordinate(50.064191736659104, 8.96484375);
 		
 	Propiedad currentPropiedad;
@@ -99,6 +101,9 @@ public class PropiedadController {
 		view.getComboProvincia().addActionListener(e -> actualizeSellado());
 
 		view.getBtnVerGaleria().addActionListener(e -> muestraGaleria());
+		
+		this.view.getComboProvincia().setModel(provCombo);
+		this.view.getComboLocalidad().setModel(localidadCombo);
 		
 	}
 
@@ -178,11 +183,9 @@ public class PropiedadController {
 
 	private void fillCombos() {
 		
-		this.view.getComboProvincia().setModel(provCombo);
-		provCombo.actualize(localidadService.getProvincias());
+		provCombo.clearAndActualize(localidadService.getProvincias());
 		AutoCompleteDecorator.decorate(view.getComboProvincia());
 		
-		this.view.getComboLocalidad().setModel(localidadCombo);
 		AutoCompleteDecorator.decorate(view.getComboLocalidad());
 		cambiaLocalidades();
 		
@@ -239,9 +242,9 @@ public class PropiedadController {
 	}
 	
 	private void actualizeSellado(){
-		float valor = provCombo.getSelected().getImpuesto();
+	//	float valor = provCombo.getSelected().getImpuesto();
 		
-		ofrecimientoAlquiler.actualizeSellado(valor);
+	//	ofrecimientoAlquiler.actualizeSellado(valor);
 	}
 	
 	private void restartMapa() {
@@ -254,7 +257,9 @@ public class PropiedadController {
 		
 		localidadCombo.removeAllElements();
 		List<Localidad> localidades = localidadService.getAllOf(provCombo.getSelected());
+		localidadCombo.agregaElemento(null);
 		localidadCombo.actualize(localidades);
+		localidadCombo.setSelected(localidades.get(0));
 		
 	}
 
@@ -282,7 +287,7 @@ public class PropiedadController {
 	}
 
 	private void savePropiedad() {
-
+		
 		if(propiedadValidator.isValid()){
 			binder.fillBean();
 			ofrecimientoAlquiler.save();
@@ -296,6 +301,8 @@ public class PropiedadController {
 			try {
 				propiedadService.savePropiedad(currentPropiedad);
 				view.setVisible(false);
+
+				isOk = true;
 			} catch (LogicaNegocioException e) {
 				msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
 			}
@@ -314,6 +321,8 @@ public class PropiedadController {
 			actualizaMapaThread();
 			try {
 				propiedadService.savePropiedadNoDisp(currentPropiedad);
+
+				isOk = true;
 			} catch (LogicaNegocioException e) {
 				msgShw.showErrorMessage(e.getMessage(), "Error de negocio");
 			}
@@ -336,7 +345,6 @@ public class PropiedadController {
 	public void setModeNew() {
 		
 		isEdit = true;
-		fillCombos();
 		view.setTitle("Agregar Propiedad");
 		view.getAgregarPropiedad().setVisible(true);
 		currentPropiedad = propiedadService.getEmptyPropiedad();
@@ -347,14 +355,15 @@ public class PropiedadController {
 		ofrecimientoVenta.setEditMode(currentPropiedad.getOfrecimientoVenta());
 		
 		setEnabled(true);
-		restartMapa();
 		view.getTfPropietario().setText("");
 		view.getTfInmobiliaria().setText("");
 		view.getLblReservada().setVisible(false);
-		actualizeSellado();
 		view.getBtnImprimirFicha().setVisible(false);
 		view.getBtnImprimirFichaVisita().setVisible(false);
 		view.getBtnSiguiente().setVisible(true);
+		
+		restartMapa();
+		actualizeSellado();
 	}
 
 	public void setModeView(Propiedad propiedad) {
@@ -385,6 +394,8 @@ public class PropiedadController {
 	}
 
 	public void showView(){
+		isOk = false;
+		
 		view.getBtnAtras().setVisible(false);
 		view.getPanelOfrecimientos().setVisible(false);
 		view.getBtnGuardarDisponible().setVisible(false);
@@ -416,5 +427,9 @@ public class PropiedadController {
 		dtos = propiedadServiceReport.fichaPropiedadReporteOf(this.currentPropiedad);
 		ReporteFichaDePropiedad reporte = new ReporteFichaDePropiedad(dtos, reportName);
 		reporte.mostrar();
+	}
+	
+	public boolean isOk() {
+		return isOk;
 	}
 }
