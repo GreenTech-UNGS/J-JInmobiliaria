@@ -26,11 +26,22 @@ public class Propiedad {
 	@OneToOne(cascade = CascadeType.ALL)
 	private PropiedadOtrosDatos otrosDatos;
 	
+	public Foto getFotoMapa() {
+		return fotoMapa;
+	}
+
+	public void setFotoMapa(Foto fotoMapa) {
+		this.fotoMapa = fotoMapa;
+	}
+
 	@OneToMany(cascade = {CascadeType.ALL})
 	private List<HistoriaEstadoProp> estados;
 	
 	@OneToMany(cascade = {CascadeType.ALL})
 	private List<Foto> fotos;
+	
+	@OneToOne(cascade = {CascadeType.ALL})
+	private Foto fotoMapa;
 	
 	@OneToOne(cascade = {CascadeType.MERGE})//TODO: podriamos ponerle persist
 	private Localidad localidad;

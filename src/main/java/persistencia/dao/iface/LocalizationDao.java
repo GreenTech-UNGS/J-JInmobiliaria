@@ -1,5 +1,9 @@
 package persistencia.dao.iface;
 
+import java.io.File;
+
+import model.LogicaNegocioException;
+
 public interface LocalizationDao {
 
 	public class MapPoint{
@@ -22,6 +26,7 @@ public interface LocalizationDao {
 	}
 	
 	MapPoint getLocationOf(String location);
+	File getImageOf(MapPoint m) throws LogicaNegocioException;
 	
 	
 }

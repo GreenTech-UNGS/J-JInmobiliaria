@@ -97,8 +97,6 @@ public class PropiedadController {
 		view.getBtnImprimirFichaVisita().addActionListener(e -> generaReporteFichaPropiedad("FichaPropiedad"));
 		view.getBtnSiguiente().addActionListener(e -> cambiaPestania());
 		view.getBtnAtras().addActionListener(e -> panelAnterior());
-		
-		view.getComboProvincia().addActionListener(e -> actualizeSellado());
 
 		view.getBtnVerGaleria().addActionListener(e -> muestraGaleria());
 		
@@ -109,6 +107,7 @@ public class PropiedadController {
 
 	private void cambiaPestania() {
 //		view.getTabbedPane().setSelectedIndex(1); 
+		actualizeSellado();
 		view.getBtnAtras().setVisible(true);
 		view.getAgregarPropiedad().setVisible(false);
 		view.getPanelOfrecimientos().setVisible(true);
@@ -242,9 +241,9 @@ public class PropiedadController {
 	}
 	
 	private void actualizeSellado(){
-	//	float valor = provCombo.getSelected().getImpuesto();
+		float valor = provCombo.getSelected().getImpuesto();
 		
-	//	ofrecimientoAlquiler.actualizeSellado(valor);
+		ofrecimientoAlquiler.actualizeSellado(valor);
 	}
 	
 	private void restartMapa() {

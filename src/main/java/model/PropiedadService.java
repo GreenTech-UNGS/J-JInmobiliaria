@@ -8,6 +8,8 @@ import filtros.PropiedadFiltro;
 import org.joda.time.DateTime;
 
 import persistencia.dao.iface.DAOftp;
+import persistencia.dao.iface.LocalizationDao;
+import persistencia.dao.iface.LocalizationDao.MapPoint;
 import persistencia.dao.iface.PropiedadDao;
 
 import java.io.File;
@@ -21,12 +23,9 @@ import java.util.stream.Collectors;
 @Singleton
 public class PropiedadService {
 
-	@Inject
-	PropiedadDao propiedadDao;
-	
-	@Inject private CuotaService cuotaService;
-	
+	@Inject private PropiedadDao propiedadDao;
 	@Inject private DAOftp ftp;
+	@Inject private LocalizationDao localizationDao;
 	
 	@Inject
 	private PropiedadService() {
@@ -61,6 +60,9 @@ public class PropiedadService {
 		historia.setFecha(DateTime.now());
 		
 		p.getEstados().add(historia);
+		
+		generateFotoMapa(p);
+		
 		propiedadDao.save(p);
 	}
 	
@@ -74,6 +76,9 @@ public class PropiedadService {
 		historia.setFecha(DateTime.now());
 		
 		p.getEstados().add(historia);
+		
+		generateFotoMapa(p);
+		
 		propiedadDao.save(p);
 	}
 	
@@ -205,6 +210,19 @@ public class PropiedadService {
 		
 		return propiedadDao.getAllByFiltro(filtro);
 
+	}
+	
+	public void generateFotoMapa(Propiedad p) throws LogicaNegocioException{
+		
+		File f = localizationDao.getImageOf(new MapPoint(p.getLat(), p.getLon()));
+		Foto foto = new Foto();
+		foto.setPortada(false);
+		foto.setPath(f.getName());
+		foto.setThumbPath(f.getName());
+		
+		ftp.storeFile(f, f.getName());
+		
+		p.setFotoMapa(foto);
 	}
 	
 	public File getPortadaFileOf(Propiedad p) {
