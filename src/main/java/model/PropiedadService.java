@@ -248,6 +248,21 @@ public class PropiedadService {
 		return tempFile;
 	}
 	
+	public File getFotoMapaOf(Propiedad p){
+		Foto mapa = p.getFotoMapa();
+		
+		File tempFile = null;
+		try {
+			tempFile = File.createTempFile(mapa.getPath(), ".tmp");
+			ftp.retrieveFile(mapa.getPath(), tempFile.getAbsolutePath());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return tempFile;
+	}
+	
 	public List<FichaPropiedadDTO> fichaPropiedadReporteOf(Propiedad propiedad) {
 
 		List<FichaPropiedadDTO> fichas = new ArrayList<FichaPropiedadDTO>();
@@ -255,7 +270,7 @@ public class PropiedadService {
 
 		//TODO
 		fichaPropiedad.setTipoPropiedad("");
-		String foto = getPortadaFileOf(propiedad).getAbsolutePath();
+		String foto = getFotoMapaOf(propiedad).getAbsolutePath();
 		fichaPropiedad.setFoto(foto);
 
 		DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );

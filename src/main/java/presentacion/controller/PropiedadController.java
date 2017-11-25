@@ -258,7 +258,6 @@ public class PropiedadController {
 		List<Localidad> localidades = localidadService.getAllOf(provCombo.getSelected());
 		localidadCombo.agregaElemento(null);
 		localidadCombo.actualize(localidades);
-		localidadCombo.setSelected(localidades.get(0));
 		
 	}
 
