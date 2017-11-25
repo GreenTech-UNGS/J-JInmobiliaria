@@ -1,5 +1,6 @@
 package presentacion.controller;
 
+import java.awt.Component;
 import java.util.Arrays;
 
 import org.joda.time.DateTime;
@@ -118,7 +119,7 @@ public class ContratoAlquilerController {
 	}
 	
 	public void renovarContrato() {
-		
+		setEnabled(true);
 		mapper.fillBean(currentContrato);
 		guardaCurrentContrato();
 		closeView();
@@ -169,7 +170,14 @@ public class ContratoAlquilerController {
 		
 		currentContrato = contratoService.getNewContratoAlquiler();
 		mapper.fillFields(currentContrato);
+		setEnabled(true);
 		
+	}
+	
+	public void setModeEdit(ContratoAlquiler c){
+		currentContrato = c;
+		mapper.fillFields(c);
+		setEnabled(false);
 	}
 
 	public void editarContrato(ContratoAlquiler contrato){
@@ -181,7 +189,9 @@ public class ContratoAlquilerController {
 		fillCombos();
 
 		currentContrato = contrato;
+		setEnabled(true);
 		mapper.fillFields(currentContrato);
+		
 	}
 
 	public void showView() {
@@ -210,4 +220,33 @@ public class ContratoAlquilerController {
 		showView();
 		
 		}
+	
+	public void setEnabled(boolean bool){
+		this.view.getBtnBorrador().setVisible(bool);
+		this.view.getBtnCancelarContrato().setVisible(bool);
+		this.view.getBtnGuardarContrato().setVisible(bool);
+		this.view.getBtnRenovarContrato().setVisible(bool);
+		this.view.getBtnLupaCliente().setVisible(bool);
+		this.view.getBtnLupaPropiedad().setVisible(bool);
+		
+		this.view.getSpinnerActualizaContrato().setEnabled(bool);
+		this.view.getSpinnerDuracionContrato().setEnabled(bool);
+		this.view.getSpinnerGastosAdmin().setEnabled(bool);
+		this.view.getSpinnerIntimacionEmail().setEnabled(bool);
+		this.view.getSpinnerPorcenajeActualiza().setEnabled(bool);
+		this.view.getSpinnerPorcentajePunitorio().setEnabled(bool);
+		this.view.getSpinnerTiempoPago().setEnabled(bool);
+		this.view.getSpinnerVencimientoEmail().setEnabled(bool);
+		
+		this.view.getTextGarantia().setEnabled(bool);
+		this.view.getTextIdContrato().setEnabled(bool);
+		this.view.getTextPrecio().setEnabled(bool);
+		
+		this.view.getChckbxAcumulativoActualiza().setEnabled(bool);
+		this.view.getChckbxIntimacion().setEnabled(bool);
+		this.view.getChckbxVencimiento().setEnabled(bool);
+		this.view.getChkbxAcumulativoPunitorio().setEnabled(bool);
+		
+		this.view.getComboTipoContrato().setEnabled(bool);
+	}
 }

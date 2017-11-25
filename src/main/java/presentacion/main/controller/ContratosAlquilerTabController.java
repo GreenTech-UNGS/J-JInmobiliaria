@@ -1,5 +1,8 @@
 package presentacion.main.controller;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JOptionPane;
 
 import com.google.inject.Inject;
@@ -46,6 +49,8 @@ public class ContratosAlquilerTabController {
 		
 		this.view.getBtnAplicarFiltro().addActionListener(e -> aplicarFiltroAlq());
 		this.view.getBtnRemoverFiltro().addActionListener(e -> removerFiltroAlq());
+		
+		this.view.getTablaContratoAlquiler().addMouseListener(new DoubleClickListener(() -> verContrato()));
 		
 	}
 	
@@ -98,6 +103,17 @@ public class ContratosAlquilerTabController {
 			contratoAlqController.showView();
 			
 			this.fillTableContratosAlquiler();
+		}
+	}
+	
+	private void verContrato(){
+		int selected = view.getTablaContratoAlquiler().getSelectedRow();
+		
+		if(selected >= 0){
+			ContratoAlquiler seleccionado = (ContratoAlquiler) contratosTable.getRow(selected);
+			
+			contratoAlqController.setModeEdit(seleccionado);
+			contratoAlqController.showView();
 		}
 	}
 	
