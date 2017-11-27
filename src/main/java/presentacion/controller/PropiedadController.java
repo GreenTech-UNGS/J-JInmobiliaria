@@ -100,6 +100,8 @@ public class PropiedadController {
 
 		view.getBtnVerGaleria().addActionListener(e -> muestraGaleria());
 		
+		view.getComboProvincia().addActionListener(e -> actualizeSellado());
+		
 		this.view.getComboProvincia().setModel(provCombo);
 		this.view.getComboLocalidad().setModel(localidadCombo);
 		
@@ -107,7 +109,7 @@ public class PropiedadController {
 
 	private void cambiaPestania() {
 //		view.getTabbedPane().setSelectedIndex(1); 
-		actualizeSellado();
+		//actualizeSellado();
 		view.getBtnAtras().setVisible(true);
 		view.getAgregarPropiedad().setVisible(false);
 		view.getPanelOfrecimientos().setVisible(true);
@@ -152,6 +154,7 @@ public class PropiedadController {
 		binder.bind("localidad",
 				localidadCombo::getSelected,
 				t -> localidadCombo.setSelected((Localidad)t));
+		
 	}
 
 	private void selectPropietario() {
@@ -241,6 +244,7 @@ public class PropiedadController {
 	}
 	
 	private void actualizeSellado(){
+		System.out.println(provCombo.getSelected());
 		float valor = provCombo.getSelected().getImpuesto();
 		
 		ofrecimientoAlquiler.actualizeSellado(valor);
@@ -264,6 +268,8 @@ public class PropiedadController {
 	public void editPropiedad(Propiedad p){
 
 		isEdit = true;
+		this.provCombo.setSelected(p.getLocalidad().getProvincia());
+		//fillCombos();
 		
 		view.setTitle("Editar Propiedad");
 		view.getBtnCancelar().setVisible(true);
@@ -271,7 +277,6 @@ public class PropiedadController {
 		view.getBtnVerHistorial().setVisible(false);
 		view.getBtnImprimirFicha().setVisible(false);
 		view.getBtnImprimirFichaVisita().setVisible(false);
-		fillCombos();
 		currentPropiedad = p;
 		view.getAgregarPropiedad().setVisible(true);
 		view.getBtnSiguiente().setVisible(true);
@@ -361,7 +366,7 @@ public class PropiedadController {
 		view.getBtnSiguiente().setVisible(true);
 		
 		restartMapa();
-		actualizeSellado();
+		//actualizeSellado();
 	}
 
 	public void setModeView(Propiedad propiedad) {

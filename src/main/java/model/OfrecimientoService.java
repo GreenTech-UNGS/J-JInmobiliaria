@@ -1,31 +1,38 @@
 package model;
 
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.Moneda;
 import entities.OfrecimientoAlquiler;
 import entities.Precio;
 import entities.Propiedad;
+import persistencia.dao.iface.ValorDolarDao;
 
 @Singleton
 public class OfrecimientoService {
 	
-	private double valorDolar = 10;
+	@Inject private ValorDolarDao valorDolarDao;
 
 	public Precio getPrecioParaEntrar(OfrecimientoAlquiler o) throws LogicaNegocioException{
 		
 		if(!o.isHabilitada())
-			throw new LogicaNegocioException("La propiedad no est√° para alquiler");
+			throw new LogicaNegocioException("La propiedad no est· para alquiler");
 		
 		Precio pPesos = new Precio(0, Moneda.PESOS);
 		
-		double primerMesPesos = getPrimerMes(o).getMonto();
-		double comisionPesos = getComisionOf(o).getMonto();
-		double depositoPesos = getDeposito(o).getMonto();
-		double certificadosPesos = getOtrosGastos(o).getMonto();
-		double selladoPesos = getSelladoPesos(o).getMonto();
+		Precio primerMesPesos = getPrecioInARS(getPrimerMes(o));
+		Precio comisionPesos = getPrecioInARS(getComisionOf(o));
+		Precio depositoPesos = getPrecioInARS(getDeposito(o));
+		Precio certificadosPesos = getPrecioInARS(getOtrosGastos(o));
+		Precio selladoPesos = getPrecioInARS(getSelladoPesos(o));
 		
-		pPesos.setMonto(primerMesPesos + comisionPesos + depositoPesos + certificadosPesos + selladoPesos);
+		pPesos.setMonto(primerMesPesos.getMonto() +
+				comisionPesos.getMonto() +
+				depositoPesos.getMonto() +
+				certificadosPesos.getMonto() +
+				selladoPesos.getMonto());
+		
 		return pPesos;
 		
 	}
@@ -66,11 +73,7 @@ public class OfrecimientoService {
 		double valorTotal = getValorTotal(o) * (o.getPorcentajeSellado() / 100.0);
 		Moneda m = o.getPrecio().getMoneda();
 		
-		if(m.equals(Moneda.USD)){
-			valorTotal = valorTotal * valorDolar;
-		}
-		
-		return new Precio(valorTotal, Moneda.PESOS);
+		return getPrecioInARS(valorTotal, m);
 	}
 	
 	private double getValorTotal(OfrecimientoAlquiler o){
@@ -103,6 +106,21 @@ public class OfrecimientoService {
 		Moneda m = o.getOtrosGastos().getMoneda();
 		
 		return new Precio(monto, m);
+	}
+	
+	private Precio getPrecioInARS(double monto, Moneda moneda) {
+		double valorDolar = valorDolarDao.getValorDolar();
+		double montoVerdadero = monto;
+		
+		if(moneda == Moneda.USD) {
+			montoVerdadero = montoVerdadero * valorDolar;
+		}
+		
+		return new Precio(montoVerdadero, Moneda.PESOS);
+	}
+	
+	private Precio getPrecioInARS(Precio p) {
+		return getPrecioInARS(p.getMonto(), p.getMoneda());
 	}
 	
 }

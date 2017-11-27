@@ -6,6 +6,7 @@ import com.google.inject.Singleton;
 
 import model.PagosCobrosService;
 import persistencia.conexion.Conexion;
+import persistencia.dao.exchanges.ValorDolarOpenExchangesDao;
 import persistencia.dao.ftp.DAOFTPFileZilla;
 import persistencia.dao.hibernate.*;
 import persistencia.dao.iface.*;
@@ -70,6 +71,7 @@ public class ProdModule implements Module{
 		binder.bind(NotificacionDao.class).to(NotificacionDaoHibernate.class).in(Singleton.class);
 
 		binder.bind(LocalizationDao.class).to(LocalizationDaoGoogleMaps.class).in(Singleton.class);
+		binder.bind(ValorDolarDao.class).to(ValorDolarOpenExchangesDao.class).in(Singleton.class);
 		
 	}
 	

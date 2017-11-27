@@ -1,5 +1,6 @@
 package presentacion.validators;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import com.google.inject.Inject;
@@ -18,7 +19,7 @@ public class MessageShow {
 	}
 	
 	public void showInformationMessage(String msg, String title){
-		JOptionPane.showMessageDialog(null, msg, title, JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, new JLabel(msg), title, JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	public  String showInputMessage(String msg, String title) {
