@@ -1,5 +1,6 @@
 package presentacion.combo;
 
+import java.util.Collection;
 import java.util.List;
 
 import entities.Provincia;
@@ -33,6 +34,14 @@ public class ProvinciaComboBoxModel extends BaseComboBoxModel<Provincia>{
 		this.addElement(element.getNombre().replaceAll("_", " "));
 		values.put(element.getNombre().replaceAll("_", " "), element);
 		
+	}
+	
+	public Provincia getPorNombre(String nombre) {
+		return values.get(nombre);
+	}
+	
+	public Collection<Provincia> getProvincias(){
+		return values.values();
 	}
 
 }

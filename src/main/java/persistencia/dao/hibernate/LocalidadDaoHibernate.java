@@ -66,4 +66,14 @@ public class LocalidadDaoHibernate extends DaoHibernate<Localidad> implements Lo
 		return toRet;
 	}
 
+	@Override
+	public void saveProvincia(Provincia p) {
+		initTransaction();
+		
+		sesion.saveOrUpdate(p);
+		
+		finishTransaction();
+		
+	}
+
 }

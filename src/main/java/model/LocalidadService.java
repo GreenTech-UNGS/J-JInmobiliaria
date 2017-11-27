@@ -35,6 +35,12 @@ public class LocalidadService {
 		
 	}
 	
+	public void saveSelladoProvincia(Provincia p, float f) {
+		p.setImpuesto(f);
+		System.out.println("desde servicio: "+p.getNombre() + f);
+		localidadDao.saveProvincia(p);
+	}
+	
 	public List<Provincia> getProvincias(){
 		return localidadDao.getProvincias();
 	}

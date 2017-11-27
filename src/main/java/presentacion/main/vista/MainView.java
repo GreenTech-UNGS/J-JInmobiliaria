@@ -45,6 +45,7 @@ public class MainView {
     private JMenuItem mntmGastosFijos;
     private JMenuItem mntmExportar;
     private JMenuItem mntmImportar;
+    private JMenuItem mntmValoresDeSellado;
     
     @Inject
     public MainView(PropiedadesPanel panelPropiedades,
@@ -159,6 +160,10 @@ public class MainView {
         mntmBaseDeDatos.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         mnConfiguracin.add(mntmBaseDeDatos);
         
+        mntmValoresDeSellado = new JMenuItem("Valores de sellado");
+        mntmValoresDeSellado.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        mnConfiguracin.add(mntmValoresDeSellado);
+        
         JMenu mnAdministrar = new JMenu("Administrar");
         mnAdministrar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         menuBar.add(mnAdministrar);
@@ -227,5 +232,9 @@ public class MainView {
 
 	public JMenuItem getMntmImportar() {
 		return mntmImportar;
+	}
+
+	public JMenuItem getMntmValoresDeSellado() {
+		return mntmValoresDeSellado;
 	}
 }

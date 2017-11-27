@@ -16,6 +16,7 @@ import presentacion.controller.CartelController;
 import presentacion.controller.CartelViewController;
 import presentacion.controller.ContrasenaController;
 import presentacion.controller.GastioFijoViewController;
+import presentacion.controller.ProvinciaFormController;
 import presentacion.controller.UsuarioController;
 import presentacion.main.vista.MainView;
 import presentacion.validators.MessageShow;
@@ -29,10 +30,11 @@ public class MainViewController {
     @Inject private UsuarioService usuarioService;
     @Inject private GastioFijoViewController gastosController;
     @Inject private BackUpService backup;
-    @Inject MessageShow msgShw;
+    @Inject ProvinciaFormController provinciaController;
+    @Inject private MessageShow msgShw;
     
-    @Inject ContrasenaController contrasenaController;
-	@Inject CartelViewController cartelController;
+    @Inject private ContrasenaController contrasenaController;
+	@Inject private CartelViewController cartelController;
 	private JFileChooser fileChooser;
     
 	@Inject
@@ -53,6 +55,7 @@ public class MainViewController {
 		
 		this.view.getMntmImportar().addActionListener(e -> importar());
 		this.view.getMntmExportar().addActionListener(e -> exportar());
+		this.view.getMntmValoresDeSellado().addActionListener(e -> editarSellados());
 		
 		this.fileChooser = new JFileChooser();
 		this.fileChooser.setMultiSelectionEnabled(true);
@@ -90,6 +93,11 @@ public class MainViewController {
 				msgShw.showErrorMessage(e.getMessage(), "Error");
 			}
 		}
+	}
+	
+	private void editarSellados() {
+		
+		provinciaController.showView();
 	}
 
 	private void administrarCarteles() {

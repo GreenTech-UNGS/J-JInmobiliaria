@@ -27,7 +27,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class PropiedadForm extends JDialog{
+public class PropiedadForm extends JFrame{
 
 	private JPanel AgregarPropiedad;
 	private JTextField tfAltura;
@@ -67,7 +67,6 @@ public class PropiedadForm extends JDialog{
 		super();
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setModal(true);
 		//setModalityType(ModalityType.MODELESS);
 		setSize(new Dimension(706, 655));
 		setResizable(false);

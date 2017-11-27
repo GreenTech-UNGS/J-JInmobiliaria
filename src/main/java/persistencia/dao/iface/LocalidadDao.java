@@ -10,5 +10,6 @@ public interface LocalidadDao extends Dao<Localidad>{
 	List<Localidad> getAllOf(Provincia p);
 
 	List<Provincia> getProvincias();
+	void saveProvincia(Provincia p);
 	
 }
