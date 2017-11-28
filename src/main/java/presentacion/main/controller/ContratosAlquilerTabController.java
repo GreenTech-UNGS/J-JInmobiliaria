@@ -1,10 +1,7 @@
 package presentacion.main.controller;
 
-import javax.swing.JOptionPane;
-
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
 import entities.ContratoAlquiler;
 import entities.EstadoContrato;
 import filtros.ContratoAlquilerFiltro;
@@ -16,6 +13,8 @@ import presentacion.controller.filtros.ContratoAlquilerFiltroController;
 import presentacion.main.vista.ContratosAlquilerTab;
 import presentacion.table.ContratosTableModel;
 import presentacion.validators.MessageShow;
+
+import javax.swing.*;
 
 @Singleton
 public class ContratosAlquilerTabController {
@@ -44,7 +43,7 @@ public class ContratosAlquilerTabController {
 		
 		this.view.getBtnAgregarContratoAlq().addActionListener(e -> agregarContratoAlq());
 		this.view.getBtnEditarContrato().addActionListener(e -> editarContrato());
-		
+
 		this.view.getBtnAplicarFiltro().addActionListener(e -> aplicarFiltroAlq());
 		this.view.getBtnRemoverFiltro().addActionListener(e -> removerFiltroAlq());
 		
