@@ -82,6 +82,7 @@ public class GastoFijoForm extends JDialog{
 		JLabel lblMesVto = new JLabel("/ " + new DateTime().now().toString("MM"));
 		lblMesVto.setBounds(158, 70, 40, 20);
 		getContentPane().add(lblMesVto);
+		lblMesVto.setVisible(false);
 		
 	}
 
@@ -89,7 +90,7 @@ public class GastoFijoForm extends JDialog{
 		return textNombre;
 	}
 	
-	public JSpinner getTextVencimento() {
+	public JSpinner getSpinnerVencimento() {
 		return spinnerVencimiento;
 	}
 	
@@ -104,4 +105,5 @@ public class GastoFijoForm extends JDialog{
 	public JButton getBtnAceptar() {
 		return btnAceptar;
 	}
+
 }
