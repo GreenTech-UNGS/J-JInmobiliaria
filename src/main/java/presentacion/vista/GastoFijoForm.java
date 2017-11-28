@@ -71,7 +71,7 @@ public class GastoFijoForm extends JDialog{
 		scrollPane.setViewportView(textDescripcion);
 		
 		spinnerVencimiento = new JSpinner();
-		spinnerVencimiento.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), new Integer(31), new Integer(1)));
+		spinnerVencimiento.setModel(new SpinnerNumberModel(1, 0, 31, 1));
 		spinnerVencimiento.setBounds(110, 70, 40, 20);
 		getContentPane().add(spinnerVencimiento);
 		
@@ -79,10 +79,10 @@ public class GastoFijoForm extends JDialog{
 		lblVto.setBounds(30, 70, 80, 20);
 		getContentPane().add(lblVto);
 		
-		JLabel lblMesVto = new JLabel("/ " + new DateTime().now().toString("MM"));
-		lblMesVto.setBounds(158, 70, 40, 20);
-		getContentPane().add(lblMesVto);
-		lblMesVto.setVisible(false);
+//		JLabel lblMesVto = new JLabel("/ " + new DateTime().now().toString("MM"));
+//		lblMesVto.setBounds(158, 70, 40, 20);
+//		getContentPane().add(lblMesVto);
+//		lblMesVto.setVisible(false);
 		
 	}
 
