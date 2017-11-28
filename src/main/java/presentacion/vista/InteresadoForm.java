@@ -266,7 +266,7 @@ public class InteresadoForm extends JDialog{
 		cbMonedaAlquiler = new JComboBox<String>();
 		cbMonedaAlquiler.setBounds(230, 527, 124, 20);
 		getContentPane().add(cbMonedaAlquiler);
-		cbMonedaAlquiler.setVisible(false);
+		btnGuardarCambios.setVisible(false);
 		
 		comboModelMonedaAlquiler = new MonedaComboBoxModel();
 		cbMonedaAlquiler.setModel(comboModelMonedaAlquiler);		
