@@ -23,14 +23,13 @@ public class EscritorioPanelController {
 	@Inject private ContratoService contratoService;
 	@Inject private CuotasCalifTableModel cuotasMesTableModel;
 	@Inject CuotaService cuotaService;
-	private CuotasCalifTableModel cuotasVencidasTableModel;
+	@Inject private CuotasCalifTableModel cuotasVencidasTableModel;
 	
 	@Inject
 	private EscritorioPanelController(EscritorioPanel view){
 		this.view = view;
 		citaTableModel = new CitasTableModel();
 		contratosTableModel = new ContratosEscritorioTableModel();
-		cuotasVencidasTableModel = new CuotasCalifTableModel(cuotaService);
 	}
 	
 	public void showView() {

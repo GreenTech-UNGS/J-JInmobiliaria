@@ -11,12 +11,11 @@ import model.CuotaService;
 @SuppressWarnings("serial")
 public class CuotasCalifTableModel extends BaseTableModel<CuotaAlquiler> {
 	
-	CuotaService cuotaService;
+	@Inject CuotaService cuotaService;
 	
 	@Inject
-	public CuotasCalifTableModel(CuotaService cuotaService){
+	public CuotasCalifTableModel(){
 		
-		this.cuotaService = cuotaService;
 		super.addColumn("N° de cuota", false, 100);
 		super.addColumn("DNI Inquilino", false, 100);
 		super.addColumn("Calificacion inquilino", false, 100);

@@ -1,6 +1,34 @@
 
 package presentacion.controller;
 
+import java.awt.Component;
+import java.util.Arrays;
+
+import org.joda.time.DateTime;
+
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
+import entities.Cliente;
+import entities.ContratoAlquiler;
+import entities.EstadoContrato;
+import entities.HistoriaEstadoContrato;
+import entities.Moneda;
+import entities.OfrecimientoAlquiler;
+import entities.Propiedad;
+import entities.TipoContratoAlquiler;
+import model.ContratoService;
+import model.LogicaNegocioException;
+import model.ReservaService;
+import presentacion.mappers.ContratoAlquilerFormMapper;
+import presentacion.validators.ContratoAlquilerFormValidator;
+import presentacion.validators.MessageShow;
+import presentacion.vista.ContratoAlquilerForm;
+/***
+ * 
+ * 
+ * package presentacion.controller;
+
 import java.util.Arrays;
 
 import org.joda.time.DateTime;
@@ -182,13 +210,7 @@ public class ContratoAlquilerController {
 		
 	}
 	
-	public void setModeView(ContratoAlquiler c){
-		view.setTitle("Ver contrato de alquier");
-		currentContrato = c;
-		mapper.fillFields(c);
-		setEnabled(false);
-		view.getBtnVerCuotas().setVisible(true);
-	}
+
 
 	public void editarContrato(ContratoAlquiler contrato){
 		view.setTitle("Editar Contrato de alquier");
@@ -263,32 +285,9 @@ public class ContratoAlquilerController {
 	}
 }
 =======
-package presentacion.controller;
-
-import java.awt.Component;
-import java.util.Arrays;
-
-import org.joda.time.DateTime;
-
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
-
-import entities.Cliente;
-import entities.ContratoAlquiler;
-import entities.EstadoContrato;
-import entities.HistoriaEstadoContrato;
-import entities.Moneda;
-import entities.OfrecimientoAlquiler;
-import entities.Propiedad;
-import entities.TipoContratoAlquiler;
-import model.ContratoService;
-import model.LogicaNegocioException;
-import model.ReservaService;
-import presentacion.mappers.ContratoAlquilerFormMapper;
-import presentacion.validators.ContratoAlquilerFormValidator;
-import presentacion.validators.MessageShow;
-import presentacion.vista.ContratoAlquilerForm;
-
+ * @author Leandro
+ *
+ */
 @Singleton
 public class ContratoAlquilerController {
 
@@ -296,6 +295,7 @@ public class ContratoAlquilerController {
 	@Inject private ContratoService contratoService;
 	@Inject private ElegirClienteController eligeCliente;
 	@Inject private ElegirPropiedadController elegirPropiedadController;
+	@Inject private VerCuotasContratoController verCuotasController;
 	@Inject private ContratoAlquilerFormMapper mapper;
 	
 	private ContratoAlquiler currentContrato;
@@ -315,6 +315,7 @@ public class ContratoAlquilerController {
 		view.getBtnRenovarContrato().addActionListener(e -> renovarContrato());
 		view.getBtnBorrador().addActionListener(e -> guardarEnBorrador());
 		view.getComboTipoContrato().addActionListener(e -> setearMeses());
+		view.getBtnVerCuotas().addActionListener(e -> verCuotas());
 		view.getBtnRenovarContrato();
 
 		fillCombos();
@@ -328,6 +329,11 @@ public class ContratoAlquilerController {
 		else{
 			view.getSpinnerDuracionContrato().setValue(36);
 		}
+	}
+	
+	private void verCuotas(){
+		verCuotasController.setModeView(currentContrato);
+		verCuotasController.showView();
 	}
 
 	private void seleccionaCliente() {
@@ -439,6 +445,14 @@ public class ContratoAlquilerController {
 		mapper.fillFields(currentContrato);
 		setEnabled(true);
 		
+	}
+	
+	public void setModeView(ContratoAlquiler c){
+		view.setTitle("Ver contrato de alquier");
+		currentContrato = c;
+		mapper.fillFields(c);
+		setEnabled(false);
+		view.getBtnVerCuotas().setVisible(true);
 	}
 	
 	public void setModeEdit(ContratoAlquiler c){
