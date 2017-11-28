@@ -48,6 +48,11 @@ public class ElegirPropiedadController {
 		tableModelPropiedad.addRows(propiedadService.getVentaBy(EstadoProp.DISPONIBLE));
 	}
 	
+	private void fillTablePropAlquiler(){
+		this.tableModelPropiedad.clean();
+		tableModelPropiedad.actualizeRows(propiedadService.getAlquilerBy(EstadoProp.DISPONIBLE));
+	}
+	
 	private void fillTablePropVenta(){
 		this.tableModelPropiedad.clean();
 		tableModelPropiedad.actualizeRows(propiedadService.getVentaBy(EstadoProp.DISPONIBLE));
@@ -66,6 +71,11 @@ public class ElegirPropiedadController {
 
 	public void showViewVenta(){
 		fillTablePropVenta();
+		view.setVisible(true);
+	}
+	
+	public void showViewAlquiler() {
+		fillTablePropAlquiler();
 		view.setVisible(true);
 	}
 

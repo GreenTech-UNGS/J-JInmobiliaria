@@ -43,7 +43,7 @@ public class ContratoAlquilerFormValidator implements ValidatorNew{
 		if(!isClienteValid())
 			toRet += "\n- No ha seleccionado un cliente valido";
 		if(!isGarantiaValid())
-			toRet += "\n- La garantia no es valido";
+			toRet += "\n- La garantia no es valida";
 		if(!isPrecioValid())
 			toRet += "\n- El precio no es valido";
 		if(!isCantMesesValid())
@@ -133,7 +133,7 @@ public class ContratoAlquilerFormValidator implements ValidatorNew{
 	private boolean isAnioMesValid() {
 
 		YearMonth anioMes = new YearMonth(view.getInicio().getDate());
-		YearMonth inicioAnioMes = new YearMonth(anioMes.getYear(), anioMes.getMonthOfYear() - 1);
+		YearMonth inicioAnioMes = new YearMonth(anioMes.getYear(), anioMes.getMonthOfYear());
 
 		return !YearMonth.now().isAfter(inicioAnioMes);
 

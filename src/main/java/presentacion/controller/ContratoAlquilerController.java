@@ -75,7 +75,7 @@ public class ContratoAlquilerController {
 	}
 	
 	private void seleccionaPropiedad() {
-		elegirPropiedadController.showViewProp();
+		elegirPropiedadController.showViewAlquiler();
 		Propiedad propiedad = elegirPropiedadController.getPropiedad();
 		
 		if(propiedad != null) {

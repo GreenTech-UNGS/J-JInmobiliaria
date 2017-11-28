@@ -121,7 +121,7 @@ public class PropiedadService {
 		List<Propiedad> toRet = allProps.stream().filter(p -> estadosAFiltrar.contains(getCurrentEstado(p)))
 						.filter(p -> p.getOfrecimientoAlquiler().isHabilitada())
 						.collect(Collectors.toList());	
-
+		
 		return toRet;
 		
 	}

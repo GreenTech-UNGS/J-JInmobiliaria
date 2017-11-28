@@ -183,7 +183,7 @@ public class ContratoService {
 		
 		toRet.getEstados().add(nuevo);
 		
-		toRet.setInicio(DateTime.now().plusMonths(1));
+		toRet.setInicio(DateTime.now());
 		
 		return toRet;
 	}
