@@ -21,7 +21,7 @@ public class ValorDolarOpenExchangesDao implements ValorDolarDao{
 	@Override
 	public double getValorDolar() {
 		String https_url = "https://openexchangerates.org/api/latest.json?app_id=" + key;
-		
+		System.out.println("request");
 		JsonObject jsonObj = getJson(https_url);
 		
 		JsonObject rates = jsonObj.getAsJsonObject("rates");

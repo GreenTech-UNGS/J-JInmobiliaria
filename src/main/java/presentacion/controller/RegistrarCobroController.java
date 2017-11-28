@@ -10,6 +10,7 @@ import com.google.inject.Singleton;
 
 import entities.CuotaAlquiler;
 import entities.InteresPunitorioCuota;
+import entities.Moneda;
 import model.CuotaService;
 import model.PagosCobrosService;
 import presentacion.validators.MessageShow;
@@ -67,6 +68,7 @@ public class RegistrarCobroController {
 				currentCuota.getContrato().getPropiedad().getIdentificador() + " "
 				+ currentCuota.getContrato().getPropiedad().getLocalidad().getNombre());
 		
+		actualizaInteres();
 		view.setVisible(true);
 		
 	}
@@ -75,12 +77,21 @@ public class RegistrarCobroController {
 		DateTime fecha = new DateTime(view.getDateChooser().getDate());
 		InteresPunitorioCuota interes = cuotaService.getInteresCalculado(currentCuota, fecha);
 		
+		double monto = currentCuota.getMonto().getMonto();
+		Moneda moneda = currentCuota.getMonto().getMoneda();
+		
 		if(interes != null) {
 			currentInteres = interes;
 			view.getTextInteres().setText(format.format(interes.getMonto().getMonto()) +
 					" " + interes.getMonto().getMoneda().toString());
+		
+			monto += interes.getMonto().getMonto();
+		}
+		else {
+			view.getTextInteres().setText("0");
 		}
 		
+		view.getTextTotal().setText(format.format(monto)+ " " + moneda.toString());
 	
 	}
 	

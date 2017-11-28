@@ -27,19 +27,21 @@ public class RegistrarCobroForm extends JDialog{
 	private JTextField textInteres;
 	private JTextField textPropiedad;
 	private JTextField textCliente;
+	private JLabel lblTotal;
+	private JTextField textTotal;
 	
 	@Inject
 	private RegistrarCobroForm() {
 		setTitle("Registrar cobro de alquiler");
 		setModal(true);
-		setSize(new Dimension(450, 275));
+		setSize(new Dimension(450, 300));
 		setResizable(false);
 		setLocationRelativeTo(null);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 136, 113, 0, 0};
-		gridBagLayout.rowHeights = new int[]{53, 15, 23, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{53, 15, 23, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
 		horizontalStrut = Box.createHorizontalStrut(20);
@@ -86,12 +88,30 @@ public class RegistrarCobroForm extends JDialog{
 		getContentPane().add(textInteres, gbc_textInteres);
 		textInteres.setColumns(10);
 		
+		lblTotal = new JLabel("Total: ");
+		GridBagConstraints gbc_lblTotal = new GridBagConstraints();
+		gbc_lblTotal.anchor = GridBagConstraints.WEST;
+		gbc_lblTotal.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTotal.gridx = 1;
+		gbc_lblTotal.gridy = 4;
+		getContentPane().add(lblTotal, gbc_lblTotal);
+		
+		textTotal = new JTextField();
+		textTotal.setEditable(false);
+		GridBagConstraints gbc_textTotal = new GridBagConstraints();
+		gbc_textTotal.insets = new Insets(0, 0, 5, 5);
+		gbc_textTotal.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textTotal.gridx = 2;
+		gbc_textTotal.gridy = 4;
+		getContentPane().add(textTotal, gbc_textTotal);
+		textTotal.setColumns(10);
+		
 		JLabel lblPropiedad = new JLabel("Propiedad: ");
 		GridBagConstraints gbc_lblPropiedad = new GridBagConstraints();
 		gbc_lblPropiedad.anchor = GridBagConstraints.WEST;
 		gbc_lblPropiedad.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPropiedad.gridx = 1;
-		gbc_lblPropiedad.gridy = 4;
+		gbc_lblPropiedad.gridy = 5;
 		getContentPane().add(lblPropiedad, gbc_lblPropiedad);
 		
 		textPropiedad = new JTextField();
@@ -100,7 +120,7 @@ public class RegistrarCobroForm extends JDialog{
 		gbc_textPropiedad.insets = new Insets(0, 0, 5, 5);
 		gbc_textPropiedad.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textPropiedad.gridx = 2;
-		gbc_textPropiedad.gridy = 4;
+		gbc_textPropiedad.gridy = 5;
 		getContentPane().add(textPropiedad, gbc_textPropiedad);
 		textPropiedad.setColumns(10);
 		
@@ -109,7 +129,7 @@ public class RegistrarCobroForm extends JDialog{
 		gbc_lblCliente.anchor = GridBagConstraints.WEST;
 		gbc_lblCliente.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCliente.gridx = 1;
-		gbc_lblCliente.gridy = 5;
+		gbc_lblCliente.gridy = 6;
 		getContentPane().add(lblCliente, gbc_lblCliente);
 		
 		textCliente = new JTextField();
@@ -118,7 +138,7 @@ public class RegistrarCobroForm extends JDialog{
 		gbc_textCliente.insets = new Insets(0, 0, 5, 5);
 		gbc_textCliente.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textCliente.gridx = 2;
-		gbc_textCliente.gridy = 5;
+		gbc_textCliente.gridy = 6;
 		getContentPane().add(textCliente, gbc_textCliente);
 		textCliente.setColumns(10);
 		
@@ -128,7 +148,7 @@ public class RegistrarCobroForm extends JDialog{
 		gbc_btnOk.anchor = GridBagConstraints.NORTH;
 		gbc_btnOk.gridwidth = 2;
 		gbc_btnOk.gridx = 1;
-		gbc_btnOk.gridy = 7;
+		gbc_btnOk.gridy = 8;
 		getContentPane().add(btnOk, gbc_btnOk);
 	}
 
@@ -154,5 +174,9 @@ public class RegistrarCobroForm extends JDialog{
 
 	public JTextField getTextCliente() {
 		return textCliente;
+	}
+
+	public JTextField getTextTotal() {
+		return textTotal;
 	}
 }
