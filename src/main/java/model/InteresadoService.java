@@ -81,38 +81,48 @@ public class InteresadoService {
 		
 		if( true && (t.getTipoOfrecimiento().equals(TipoOfrecimiento.Venta) && p.getOfrecimientoVenta().isHabilitada() == false))
 			return false;
+	
+		if(p.getOfrecimientoVenta().isHabilitada()){
+	
+			if( ! (p.getOfrecimientoVenta().getPrecio().getMoneda().equals(t.getMonedaVenta())) )
+				return false;
+			
+			if( t.getPrecioVentaDesde() != null && (p.getOfrecimientoVenta().getPrecio().getMonto() < t.getPrecioVentaDesde()))
+				return false;
+			
+			if( t.getPrecioVentaHasta() != null && (p.getOfrecimientoVenta().getPrecio().getMonto() > t.getPrecioVentaHasta()))
+				return false;
+		}
+
+		if(p.getOfrecimientoAlquiler().isHabilitada()){
 		
-		if( p.getOfrecimientoVenta().getPrecio().getMoneda() != null && ( ! (p.getOfrecimientoVenta().getPrecio().getMoneda().equals(t.getMonedaVenta())) ))
+			if( t.getMonedaAlquiler() != null && ( ! (p.getOfrecimientoAlquiler().getPrecio().getMoneda().equals(t.getMonedaAlquiler())) ))
+				return false;
+			
+			if( t.getPrecioAlquilerDesde() != null && (p.getOfrecimientoAlquiler().getPrecio().getMonto() < t.getPrecioAlquilerDesde()))
+				return false;
+			
+			if( t.getPrecioAlquilerHasta() != null && (p.getOfrecimientoAlquiler().getPrecio().getMonto() > t.getPrecioAlquilerHasta()))
+				return false;
+		}
+		
+		if( t.getCantidadAmbientesDesde() != null && p.getOtrosDatos().getCantidadAmbientes() != null && (p.getOtrosDatos().getCantidadAmbientes() < t.getCantidadAmbientesDesde()))
 			return false;
 		
-		if( p.getOfrecimientoVenta().getPrecio().getMonto() > 0 && (p.getOfrecimientoVenta().getPrecio().getMonto() < t.getPrecioVentaDesde()))
-			return false;
-		
-		if( p.getOfrecimientoVenta().getPrecio().getMonto() > 0 && (p.getOfrecimientoVenta().getPrecio().getMonto() > t.getPrecioVentaHasta()))
-			return false;
-		
-		if( p.getOfrecimientoAlquiler().getPrecio().getMoneda() != null && ( ! (p.getOfrecimientoAlquiler().getPrecio().getMoneda().equals(t.getMonedaAlquiler())) ))
-			return false;
-		
-		if( p.getOfrecimientoAlquiler().getPrecio().getMonto() > 0 && (p.getOfrecimientoAlquiler().getPrecio().getMonto() < t.getPrecioAlquilerDesde()))
-			return false;
-		
-		if( p.getOfrecimientoAlquiler().getPrecio().getMonto() > 0 && (p.getOfrecimientoAlquiler().getPrecio().getMonto() > t.getPrecioAlquilerHasta()))
-			return false;
-		
-		if( p.getOtrosDatos().getCantidadAmbientes() > 0 && (p.getOtrosDatos().getCantidadAmbientes() < t.getCantidadAmbientesDesde()))
-			return false;
-		
-		if( p.getOtrosDatos().getCantidadAmbientes() > 0 && (p.getOtrosDatos().getCantidadAmbientes() > t.getCantidadAmbientesHasta()))
+		if( t.getCantidadAmbientesHasta() != null && p.getOtrosDatos().getCantidadAmbientes() != null && (p.getOtrosDatos().getCantidadAmbientes() > t.getCantidadAmbientesHasta()))
 			return false;
 				
-		if( p.getOtrosDatos().getMetrosCuadradosLote() > 0 && (p.getOtrosDatos().getMetrosCuadradosLote() < t.getMetrosCuadradosDesde()))
+		if( t.getMetrosCuadradosDesde() != null && p.getOtrosDatos().getMetrosCuadradosLote() != null && (p.getOtrosDatos().getMetrosCuadradosLote() < t.getMetrosCuadradosDesde()))
 			return false;
 		
-		if( p.getOtrosDatos().getMetrosCuadradosLote() > 0 && (p.getOtrosDatos().getMetrosCuadradosLote() > t.getMetrosCuadradosHasta()))
+		if( checkNull(t.getMetrosCuadradosHasta()) && p.getOtrosDatos().getMetrosCuadradosLote() != null && (p.getOtrosDatos().getMetrosCuadradosLote() > t.getMetrosCuadradosHasta()))
 			return false;
 		
 		
 		return true;
+	}
+	
+	private boolean checkNull(Object obj){
+		return obj != null;
 	}
 }
