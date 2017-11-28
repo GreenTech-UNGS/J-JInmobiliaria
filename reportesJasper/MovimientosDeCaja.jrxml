@@ -107,7 +107,7 @@
 		</groupHeader>
 		<groupFooter>
 			<band height="28">
-				<textField>
+				<textField pattern="###,###,##0.00#">
 					<reportElement x="454" y="3" width="100" height="20" uuid="ad022727-1a7a-4ab3-a7ee-d9f532a9e3c9"/>
 					<textElement textAlignment="Right">
 						<font fontName="Arial" size="8" isBold="true"/>
@@ -216,7 +216,7 @@
 				</textElement>
 				<text><![CDATA[TOTAL General]]></text>
 			</staticText>
-			<textField pattern="###,###,##0.00#">
+			<textField pattern="###,###,###,##0.00#">
 				<reportElement x="400" y="8" width="155" height="22" uuid="72834196-bb81-473b-9363-7dcfeac35272"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Arial" isBold="true"/>
