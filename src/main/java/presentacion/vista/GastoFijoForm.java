@@ -25,7 +25,7 @@ public class GastoFijoForm extends JDialog{
 	private JSpinner spinnerMonto;
 	private JTextArea textDescripcion;
 	private JButton btnAceptar;
-	private JTextField textVencimiento;
+	private JSpinner spinnerVencimiento;
 	
 	@Inject
 	private GastoFijoForm() {
@@ -70,17 +70,17 @@ public class GastoFijoForm extends JDialog{
 		textDescripcion.setLineWrap(true);
 		scrollPane.setViewportView(textDescripcion);
 		
-		textVencimiento = new JTextField();
-		textVencimiento.setColumns(10);
-		textVencimiento.setBounds(110, 70, 40, 20);
-		getContentPane().add(textVencimiento);
+		spinnerVencimiento = new JSpinner();
+		spinnerVencimiento.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), new Integer(31), new Integer(1)));
+		spinnerVencimiento.setBounds(110, 70, 40, 20);
+		getContentPane().add(spinnerVencimiento);
 		
 		JLabel lblVto = new JLabel("Vencimiento:");
 		lblVto.setBounds(30, 70, 80, 20);
 		getContentPane().add(lblVto);
 		
-		JLabel lblMesVto = new JLabel("//" + new DateTime().now().toString("MM"));
-		lblMesVto.setBounds(158, 70, 80, 20);
+		JLabel lblMesVto = new JLabel("/ " + new DateTime().now().toString("MM"));
+		lblMesVto.setBounds(158, 70, 40, 20);
 		getContentPane().add(lblMesVto);
 		
 	}
@@ -89,8 +89,8 @@ public class GastoFijoForm extends JDialog{
 		return textNombre;
 	}
 	
-	public JTextField getTextVencimento() {
-		return textVencimiento;
+	public JSpinner getTextVencimento() {
+		return spinnerVencimiento;
 	}
 	
 	public JTextArea getTextDescripcion() {
