@@ -18,9 +18,6 @@ public class FichaPropiedadDTO {
      */
     String TipoPropiedad;
     String Foto;
-    String Precio;
-    String Provincia;
-    String Localidad;
     String MetrosCuadrados;
     String CantidadDeAmbientes;
     String OtrosDatos;
@@ -29,8 +26,122 @@ public class FichaPropiedadDTO {
     String Direccion;
     String Piso;
     String Departamento;
+    String Localidad;
+    String Provincia;
+    String Precio;
     Double Lat;
     Double Long;
+    boolean printPrecio;
+    //Venta
+    boolean isVenta;
+    Double PrecioVenta;
+    float ComisionComprador;
+    float ComisionVendedor;
+
+    //Alquiler
+    boolean isAlquiler;
+    Double otrosGastos;
+    float porcentajeSellado;
+    int cantidadMeses;
+    int intervaloActualizacion;
+    Double procentajeActualizacion;
+    boolean isAcumulativo;
+
+    public boolean isPrintPrecio() {
+        return printPrecio;
+    }
+
+    public void setPrintPrecio(boolean printPrecio) {
+        this.printPrecio = printPrecio;
+    }
+
+    public boolean isVenta() {
+        return isVenta;
+    }
+
+    public void setVenta(boolean venta) {
+        isVenta = venta;
+    }
+
+    public Double getPrecioVenta() {
+        return PrecioVenta;
+    }
+
+    public void setPrecioVenta(Double precioVenta) {
+        PrecioVenta = precioVenta;
+    }
+
+    public float getComisionComprador() {
+        return ComisionComprador;
+    }
+
+    public void setComisionComprador(float comisionComprador) {
+        ComisionComprador = comisionComprador;
+    }
+
+    public float getComisionVendedor() {
+        return ComisionVendedor;
+    }
+
+    public void setComisionVendedor(float comisionVendedor) {
+        ComisionVendedor = comisionVendedor;
+    }
+
+    public boolean isAlquiler() {
+        return isAlquiler;
+    }
+
+    public void setAlquiler(boolean alquiler) {
+        isAlquiler = alquiler;
+    }
+
+    public Double getOtrosGastos() {
+        return otrosGastos;
+    }
+
+    public void setOtrosGastos(Double otrosGastos) {
+        this.otrosGastos = otrosGastos;
+    }
+
+    public float getPorcentajeSellado() {
+        return porcentajeSellado;
+    }
+
+    public void setPorcentajeSellado(float porcentajeSellado) {
+        this.porcentajeSellado = porcentajeSellado;
+    }
+
+    public int getCantidadMeses() {
+        return cantidadMeses;
+    }
+
+    public void setCantidadMeses(int cantidadMeses) {
+        this.cantidadMeses = cantidadMeses;
+    }
+
+    public int getIntervaloActualizacion() {
+        return intervaloActualizacion;
+    }
+
+    public void setIntervaloActualizacion(int intervaloActualizacion) {
+        this.intervaloActualizacion = intervaloActualizacion;
+    }
+
+    public Double getProcentajeActualizacion() {
+        return procentajeActualizacion;
+    }
+
+    public void setProcentajeActualizacion(Double procentajeActualizacion) {
+        this.procentajeActualizacion = procentajeActualizacion;
+    }
+
+    public boolean isAcumulativo() {
+        return isAcumulativo;
+    }
+
+    public void setAcumulativo(boolean acumulativo) {
+        isAcumulativo = acumulativo;
+    }
 
     public String getTipoPropiedad() {
         return TipoPropiedad;

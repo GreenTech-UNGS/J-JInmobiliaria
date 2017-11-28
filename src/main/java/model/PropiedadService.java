@@ -281,13 +281,6 @@ public class PropiedadService {
 
 		DecimalFormat df2 = new DecimalFormat( "#,###,###,##0.00" );
 
-		String dd2dec = "Venta: " + df2.format(propiedad.getOfrecimientoVenta().getPrecio().getMonto()) + 
-				propiedad.getOfrecimientoVenta().getPrecio().getMoneda() + 
-				"\nAlquiler" + df2.format(propiedad.getOfrecimientoAlquiler().getPrecio().getMonto()) + 
-				propiedad.getOfrecimientoAlquiler().getPrecio().getMoneda();
-
-		fichaPropiedad.setPrecio(dd2dec);
-
 		fichaPropiedad.setProvincia(propiedad.getLocalidad().getProvincia().getNombre());
 		fichaPropiedad.setLocalidad(propiedad.getLocalidad().getNombre());
 		fichaPropiedad.setMetrosCuadrados("");
@@ -308,7 +301,42 @@ public class PropiedadService {
 		fichaPropiedad.setDepartamento(propiedad.getDpto().toString());
 		fichaPropiedad.setLat(propiedad.getLat());
 		fichaPropiedad.setLong(propiedad.getLon());
-		fichas.add(fichaPropiedad);
+
+		//Precio de alquiler o venta / Sin precio (Consultar precio)
+		String dd2dec = "Precio Sugerido";
+		if (propiedad.getOfrecimientoVenta().isHabilitada() ||
+				propiedad.getOfrecimientoAlquiler().isHabilitada()) {
+			if (propiedad.getOfrecimientoVenta().isHabilitada()) {
+				dd2dec += "\nVenta: "
+						+ df2.format(propiedad.getOfrecimientoVenta().getPrecio().getMonto())
+						+ " " + propiedad.getOfrecimientoVenta().getPrecio().getMoneda();
+//Venta
+				fichaPropiedad.setVenta(propiedad.getOfrecimientoVenta().isHabilitada());
+				fichaPropiedad.setComisionComprador(propiedad.getOfrecimientoVenta().getComisionComprador());
+				fichaPropiedad.setComisionVendedor(propiedad.getOfrecimientoVenta().getComisionVendedor());
+				//fichaPropiedad.setPrecioVenta(propiedad.getOfrecimientoVenta().getPrecio().getMonto());
+				//-------------------
+
+			}
+			if (propiedad.getOfrecimientoAlquiler().isHabilitada()) {
+				dd2dec += "\nAlquiler: "
+						+ df2.format(propiedad.getOfrecimientoAlquiler().getPrecio().getMonto())
+						+ " " + propiedad.getOfrecimientoAlquiler().getPrecio().getMoneda();
+				//Alquiler
+				fichaPropiedad.setCantidadMeses(propiedad.getOfrecimientoAlquiler().getCantidadMeses());
+				fichaPropiedad.setOtrosGastos(propiedad.getOfrecimientoAlquiler().getOtrosGastos().getMonto());
+				fichaPropiedad.setIntervaloActualizacion(propiedad.getOfrecimientoAlquiler().getIntervaloActualizacion());
+				fichaPropiedad.setPorcentajeSellado(propiedad.getOfrecimientoAlquiler().getPorcentajeSellado());
+
+			}
+		}
+		else
+		{
+			dd2dec = "\n¡ Consultar !";
+		}
+		fichaPropiedad.setPrecio(dd2dec);
+
+			fichas.add(fichaPropiedad);
 
 		return fichas;
 	}

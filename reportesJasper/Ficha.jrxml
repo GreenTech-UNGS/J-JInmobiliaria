@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FichaPropiedad" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="282e9adc-4b6e-480b-9607-d7e92ecc59f3">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="net.sf.jasperreports.components.map.key" value="AIzaSyCrOMZ1Ch9aCR1tdgcRV8W7ju-fTEkssEo"/>
@@ -7,17 +7,14 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="tipoPropiedad" class="java.lang.String">
-		<fieldDescription><![CDATA[tipoPropiedad]]></fieldDescription>
+	<field name="intervaloActualizacion" class="java.lang.Integer">
+		<fieldDescription><![CDATA[intervaloActualizacion]]></fieldDescription>
 	</field>
-	<field name="piso" class="java.lang.String">
-		<fieldDescription><![CDATA[piso]]></fieldDescription>
+	<field name="procentajeActualizacion" class="java.lang.Double">
+		<fieldDescription><![CDATA[procentajeActualizacion]]></fieldDescription>
 	</field>
-	<field name="calle" class="java.lang.String">
-		<fieldDescription><![CDATA[calle]]></fieldDescription>
-	</field>
-	<field name="direccion" class="java.lang.String">
-		<fieldDescription><![CDATA[direccion]]></fieldDescription>
+	<field name="porcentajeSellado" class="java.lang.Double">
+		<fieldDescription><![CDATA[porcentajeSellado]]></fieldDescription>
 	</field>
 	<field name="provincia" class="java.lang.String">
 		<fieldDescription><![CDATA[provincia]]></fieldDescription>
@@ -28,11 +25,53 @@
 	<field name="precio" class="java.lang.String">
 		<fieldDescription><![CDATA[precio]]></fieldDescription>
 	</field>
+	<field name="acumulativo" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[acumulativo]]></fieldDescription>
+	</field>
+	<field name="localidad" class="java.lang.String">
+		<fieldDescription><![CDATA[localidad]]></fieldDescription>
+	</field>
+	<field name="cantidadMeses" class="java.lang.Integer">
+		<fieldDescription><![CDATA[cantidadMeses]]></fieldDescription>
+	</field>
+	<field name="metrosCuadrados" class="java.lang.String">
+		<fieldDescription><![CDATA[metrosCuadrados]]></fieldDescription>
+	</field>
+	<field name="lat" class="java.lang.Double">
+		<fieldDescription><![CDATA[lat]]></fieldDescription>
+	</field>
+	<field name="tipoPropiedad" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoPropiedad]]></fieldDescription>
+	</field>
+	<field name="piso" class="java.lang.String">
+		<fieldDescription><![CDATA[piso]]></fieldDescription>
+	</field>
+	<field name="venta" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[venta]]></fieldDescription>
+	</field>
+	<field name="comisionComprador" class="java.lang.Float">
+		<fieldDescription><![CDATA[comisionComprador]]></fieldDescription>
+	</field>
+	<field name="calle" class="java.lang.String">
+		<fieldDescription><![CDATA[calle]]></fieldDescription>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[direccion]]></fieldDescription>
+	</field>
+	<field name="printPrecio" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[printPrecio]]></fieldDescription>
+	</field>
 	<field name="cantidadDeAmbientes" class="java.lang.String">
 		<fieldDescription><![CDATA[cantidadDeAmbientes]]></fieldDescription>
 	</field>
 	<field name="foto" class="java.lang.String">
 		<fieldDescription><![CDATA[foto]]></fieldDescription>
+	</field>
+	<field name="comisionVendedor" class="java.lang.Float">
+		<fieldDescription><![CDATA[comisionVendedor]]></fieldDescription>
+	</field>
+	<field name="alquiler" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[alquiler]]></fieldDescription>
 	</field>
 	<field name="otrosDatos" class="java.lang.String">
 		<fieldDescription><![CDATA[otrosDatos]]></fieldDescription>
@@ -43,14 +82,11 @@
 	<field name="departamento" class="java.lang.String">
 		<fieldDescription><![CDATA[departamento]]></fieldDescription>
 	</field>
-	<field name="localidad" class="java.lang.String">
-		<fieldDescription><![CDATA[localidad]]></fieldDescription>
+	<field name="precioVenta" class="java.lang.String">
+		<fieldDescription><![CDATA[precioVenta]]></fieldDescription>
 	</field>
-	<field name="metrosCuadrados" class="java.lang.String">
-		<fieldDescription><![CDATA[metrosCuadrados]]></fieldDescription>
-	</field>
-	<field name="lat" class="java.lang.Double">
-		<fieldDescription><![CDATA[lat]]></fieldDescription>
+	<field name="otrosGastos" class="java.lang.Double">
+		<fieldDescription><![CDATA[otrosGastos]]></fieldDescription>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -93,16 +129,16 @@
 		<band height="3" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="599" splitType="Stretch">
+		<band height="543" splitType="Stretch">
 			<image>
-				<reportElement positionType="FixRelativeToBottom" x="27" y="90" width="500" height="300" uuid="c3da93a0-c550-4800-a30f-3719701a23b5">
+				<reportElement positionType="FixRelativeToBottom" x="27" y="91" width="500" height="300" uuid="c3da93a0-c550-4800-a30f-3719701a23b5">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<imageExpression><![CDATA[$F{foto}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="0" y="390" width="280" height="80" uuid="e28d986d-4a95-4488-9b32-5da0965622a4"/>
+				<reportElement x="0" y="391" width="280" height="80" uuid="e28d986d-4a95-4488-9b32-5da0965622a4"/>
 				<textFieldExpression><![CDATA[$F{observaciones}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -134,25 +170,28 @@
 				<textFieldExpression><![CDATA[$F{provincia}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="413" y="11" width="140" height="30" uuid="7312897c-2349-4d31-92de-4ed4dc319916"/>
-				<textElement>
+				<reportElement x="326" y="0" width="233" height="64" uuid="7312897c-2349-4d31-92de-4ed4dc319916"/>
+				<textElement textAlignment="Center">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="314" y="12" width="96" height="18" uuid="94b1faf6-650f-4db8-a660-c2f7abf75316"/>
-				<textElement>
-					<font fontName="Arial" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Precio Sugerido]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="415" y="46" width="100" height="30" uuid="8ef1c266-2c72-466d-b46f-a99bfb580591"/>
+				<reportElement x="415" y="76" width="100" height="12" uuid="8ef1c266-2c72-466d-b46f-a99bfb580591">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{metrosCuadrados}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="515" y="46" width="40" height="18" uuid="09589d4f-24fd-4cc6-8521-cd4118efd32e"/>
+				<reportElement x="515" y="76" width="40" height="12" uuid="09589d4f-24fd-4cc6-8521-cd4118efd32e">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
 				<text><![CDATA[m2]]></text>
 			</staticText>
 			<textField>
@@ -160,13 +199,80 @@
 				<textFieldExpression><![CDATA[$F{departamento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="282" y="390" width="273" height="79" uuid="95fa51a2-60c6-42f6-87d4-9f5cf85a667b"/>
+				<reportElement x="282" y="391" width="273" height="80" uuid="95fa51a2-60c6-42f6-87d4-9f5cf85a667b">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
 				<textFieldExpression><![CDATA[$F{otrosDatos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="330" y="40" width="70" height="21" uuid="ce1cf7f0-f212-4935-b2a3-3d5a33ca6dea"/>
+				<reportElement x="330" y="76" width="70" height="12" uuid="ce1cf7f0-f212-4935-b2a3-3d5a33ca6dea"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{cantidadDeAmbientes}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="382" y="505" width="116" height="14" uuid="a736672b-28ef-4071-a382-1b4667a8bfff">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{procentajeActualizacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="276" y="504" width="100" height="14" uuid="d2d279d0-9151-477f-9f25-b093d4348712">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[% de Actualización:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="505" width="125" height="14" uuid="6b5ba483-4dfd-41e5-b7ce-ce3374218454"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Intervalo de Actualización]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="134" y="504" width="100" height="14" uuid="5c39a6fd-74de-4439-8422-bdc634edcd33"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{intervaloActualizacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="483" width="100" height="14" uuid="bfd1a538-a4d1-419d-8db8-9eeaf84170fd"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Otros Gastos]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="382" y="481" width="116" height="14" uuid="af9aa0f2-fb16-4fe3-b341-7919afbe85eb"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{porcentajeSellado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="133" y="483" width="100" height="14" uuid="19333b30-e88a-4b9c-93d0-587484a9364a">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{otrosGastos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="276" y="481" width="100" height="14" uuid="7dff9dbd-a86e-4cf9-beef-aa0890728281"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[% de Sellado:]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>

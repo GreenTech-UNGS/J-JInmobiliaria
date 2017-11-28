@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ficha" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9ced2cea-8287-447f-b7a1-3c69a565f08c">
 	<property name="net.sf.jasperreports.components.map.key" value="AIzaSyA7sJaFRpCt-LE11Un27YDELbi4cXUtgDc"/>
 	<property name="net.sf.jasperreports.components.map.version" value="3.0"/>
@@ -7,17 +7,14 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="tipoPropiedad" class="java.lang.String">
-		<fieldDescription><![CDATA[tipoPropiedad]]></fieldDescription>
+	<field name="intervaloActualizacion" class="java.lang.Integer">
+		<fieldDescription><![CDATA[intervaloActualizacion]]></fieldDescription>
 	</field>
-	<field name="piso" class="java.lang.String">
-		<fieldDescription><![CDATA[piso]]></fieldDescription>
+	<field name="procentajeActualizacion" class="java.lang.Double">
+		<fieldDescription><![CDATA[procentajeActualizacion]]></fieldDescription>
 	</field>
-	<field name="calle" class="java.lang.String">
-		<fieldDescription><![CDATA[calle]]></fieldDescription>
-	</field>
-	<field name="direccion" class="java.lang.String">
-		<fieldDescription><![CDATA[direccion]]></fieldDescription>
+	<field name="porcentajeSellado" class="java.lang.Double">
+		<fieldDescription><![CDATA[porcentajeSellado]]></fieldDescription>
 	</field>
 	<field name="provincia" class="java.lang.String">
 		<fieldDescription><![CDATA[provincia]]></fieldDescription>
@@ -28,11 +25,53 @@
 	<field name="precio" class="java.lang.String">
 		<fieldDescription><![CDATA[precio]]></fieldDescription>
 	</field>
+	<field name="acumulativo" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[acumulativo]]></fieldDescription>
+	</field>
+	<field name="localidad" class="java.lang.String">
+		<fieldDescription><![CDATA[localidad]]></fieldDescription>
+	</field>
+	<field name="cantidadMeses" class="java.lang.Integer">
+		<fieldDescription><![CDATA[cantidadMeses]]></fieldDescription>
+	</field>
+	<field name="metrosCuadrados" class="java.lang.String">
+		<fieldDescription><![CDATA[metrosCuadrados]]></fieldDescription>
+	</field>
+	<field name="lat" class="java.lang.Double">
+		<fieldDescription><![CDATA[lat]]></fieldDescription>
+	</field>
+	<field name="tipoPropiedad" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoPropiedad]]></fieldDescription>
+	</field>
+	<field name="piso" class="java.lang.String">
+		<fieldDescription><![CDATA[piso]]></fieldDescription>
+	</field>
+	<field name="venta" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[venta]]></fieldDescription>
+	</field>
+	<field name="comisionComprador" class="java.lang.Float">
+		<fieldDescription><![CDATA[comisionComprador]]></fieldDescription>
+	</field>
+	<field name="calle" class="java.lang.String">
+		<fieldDescription><![CDATA[calle]]></fieldDescription>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[direccion]]></fieldDescription>
+	</field>
+	<field name="printPrecio" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[printPrecio]]></fieldDescription>
+	</field>
 	<field name="cantidadDeAmbientes" class="java.lang.String">
 		<fieldDescription><![CDATA[cantidadDeAmbientes]]></fieldDescription>
 	</field>
 	<field name="foto" class="java.lang.String">
 		<fieldDescription><![CDATA[foto]]></fieldDescription>
+	</field>
+	<field name="comisionVendedor" class="java.lang.Float">
+		<fieldDescription><![CDATA[comisionVendedor]]></fieldDescription>
+	</field>
+	<field name="alquiler" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[alquiler]]></fieldDescription>
 	</field>
 	<field name="otrosDatos" class="java.lang.String">
 		<fieldDescription><![CDATA[otrosDatos]]></fieldDescription>
@@ -43,14 +82,11 @@
 	<field name="departamento" class="java.lang.String">
 		<fieldDescription><![CDATA[departamento]]></fieldDescription>
 	</field>
-	<field name="localidad" class="java.lang.String">
-		<fieldDescription><![CDATA[localidad]]></fieldDescription>
+	<field name="precioVenta" class="java.lang.String">
+		<fieldDescription><![CDATA[precioVenta]]></fieldDescription>
 	</field>
-	<field name="metrosCuadrados" class="java.lang.String">
-		<fieldDescription><![CDATA[metrosCuadrados]]></fieldDescription>
-	</field>
-	<field name="lat" class="java.lang.Double">
-		<fieldDescription><![CDATA[lat]]></fieldDescription>
+	<field name="otrosGastos" class="java.lang.Double">
+		<fieldDescription><![CDATA[otrosGastos]]></fieldDescription>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -110,7 +146,7 @@
 				<textFieldExpression><![CDATA[$F{cantidadDeAmbientes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="380" y="36" width="174" height="30" uuid="f66e8add-10cd-4eff-b5db-4fad09894ed7"/>
+				<reportElement x="360" y="4" width="194" height="70" uuid="f66e8add-10cd-4eff-b5db-4fad09894ed7"/>
 				<textElement>
 					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
@@ -144,13 +180,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{metrosCuadrados}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="380" y="10" width="170" height="18" uuid="2eb5d009-834d-4d5d-92f6-4cad87cc4532"/>
-				<textElement textAlignment="Center">
-					<font fontName="Arial" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Precio Sugerido]]></text>
-			</staticText>
 			<textField>
 				<reportElement x="190" y="64" width="90" height="20" uuid="4c255bdf-05f5-4351-893b-bde081f4052f"/>
 				<textFieldExpression><![CDATA[$F{departamento}]]></textFieldExpression>

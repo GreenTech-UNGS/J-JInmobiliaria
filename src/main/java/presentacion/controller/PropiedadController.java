@@ -10,26 +10,17 @@ import model.LogicaNegocioException;
 import model.PropiedadService;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
-import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 import persistencia.dao.iface.LocalizationDao.MapPoint;
 import presentacion.combo.LocalidadComboBoxModel;
 import presentacion.combo.ProvinciaComboBoxModel;
-import presentacion.main.controller.PropiedadesPanelController;
-import presentacion.main.vista.PropiedadesPanel;
 import presentacion.reportes.ReporteFichaDePropiedad;
 import presentacion.validators.MessageShow;
 import presentacion.validators.PropiedadFormValidator;
 import presentacion.vista.PropiedadForm;
 
-import java.awt.Dialog;
+import java.awt.*;
 import java.util.List;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 public class PropiedadController {
 	
@@ -418,8 +409,10 @@ public class PropiedadController {
 		setEnabled(false);
 		actualizaMapaConCoord();
 		binder.fillFields();
-		view.getTfPropietario().setText(currentPropiedad.getPropietario().getPersona().getTipoCred().toString() + " " +
-										currentPropiedad.getPropietario().getPersona().getCredencial());
+		view.getTfPropietario().setText(currentPropiedad.getPropietario()
+										.getPersona().getNombre()+ " " +
+										currentPropiedad.getPropietario()
+												.getPersona().getApellido());
 		if(currentPropiedad.getInmobiliaria()!=null)
 			view.getTfInmobiliaria().setText(currentPropiedad.getInmobiliaria().getCUIT());
 		
