@@ -159,6 +159,7 @@ public class ContratoAlquilerController {
 
 	public void setModeNew() {
 		
+		view.setTitle("Agregar contrato de alquiler");
 		view.getTfIdPropiedad().setText("");
 		view.getTfIdPropiedad().setText("");
 		view.getBtnLupaPropiedad().setEnabled(true);
@@ -175,13 +176,14 @@ public class ContratoAlquilerController {
 	}
 	
 	public void setModeEdit(ContratoAlquiler c){
+		view.setTitle("Ver contrato de alquier");
 		currentContrato = c;
 		mapper.fillFields(c);
 		setEnabled(false);
 	}
 
 	public void editarContrato(ContratoAlquiler contrato){
-		view.setTitle("Editar Contrato");
+		view.setTitle("Editar Contrato de alquier");
 		view.getBtnRenovarContrato().setVisible(false);
 		view.getBtnBorrador().setVisible(true);
 		view.getBtnGuardarContrato().setVisible(true);
@@ -205,6 +207,7 @@ public class ContratoAlquilerController {
 	
 	public void setRenovarMode(ContratoAlquiler c){
 		
+		view.setTitle("Renovar contrato de alquier");
 		view.getBtnLupaPropiedad().setEnabled(false);
 		view.getBtnLupaCliente().setEnabled(false);
 		
