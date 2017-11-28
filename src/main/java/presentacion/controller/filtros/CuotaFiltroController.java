@@ -25,6 +25,7 @@ public class CuotaFiltroController {
 		wasOkPressed = false;
 		
 		view.getBtnAceptar().addActionListener(e -> aceptar());
+		view.getBtnCancelar().addActionListener(e-> cancelar());
 		
 	}
 	
@@ -32,7 +33,10 @@ public class CuotaFiltroController {
 		wasOkPressed = true;
 		view.setVisible(false);
 	}
-	
+
+	private void cancelar(){
+		view.setVisible(false);
+	}
 	public void setModeNew(){
 		
 		view.getDesdeAnio().setYear(YearMonth.now().getYear());
