@@ -16,6 +16,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import entities.Cita;
+import entities.Cliente;
 import entities.Localidad;
 import entities.PersonaBasica;
 import entities.Propiedad;
@@ -57,6 +58,7 @@ public class CitaController {
 	private Cita currentCita;
 	
 	private final Coordinate centerOfMap = new Coordinate(50.064191736659104, 8.96484375);
+	@Inject private ElegirClienteController elegirCliente;
 	
 	@Inject
 	private CitaController(CitaForm view) {
@@ -67,6 +69,7 @@ public class CitaController {
 		this.view.getBtnDesdePropiedad().addActionListener(e -> desdePropiedad());
 		this.view.getBtnActualizar().addActionListener(e -> actualizaMapa());
 		this.view.getBtnVerPropiedad().addActionListener(e -> verPropiedad());
+		this.view.getBtnBuscarCliente().addActionListener(e -> elegirCliente());
 				
 	}
 
@@ -121,6 +124,16 @@ public class CitaController {
 		}
 		
 	}
+	
+	private void elegirCliente(){
+		
+		elegirCliente.showView();
+		Cliente cliente = elegirCliente.getCliente();
+		if (cliente != null){
+			view.getTfCliente().setText(cliente.getPersona().getNombre() + " " + cliente.getPersona().getApellido());
+			currentCita.setCliente(cliente);
+			}
+		}
 	
 	private void actualizaMapa() {
 
@@ -209,9 +222,5 @@ public class CitaController {
 		view.getComboModelLocalidad().actualize(localidades);
 		
 	}
-
-
-
-	
 
 }

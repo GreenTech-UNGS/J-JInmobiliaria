@@ -14,6 +14,7 @@ import com.google.inject.Singleton;
 
 import entities.AvisoNotificacion;
 import entities.Cita;
+import entities.Cliente;
 import entities.Localidad;
 import entities.TipoCita;
 import presentacion.vista.CitaForm;
@@ -40,7 +41,7 @@ public class CitaFormMapper implements Mapper<Cita>{
 		String calle = convierteString(view.getTfCalle().getText());
 		String altura = convierteString(view.getTfAltura().getText());
 		Localidad localidad = view.getComboModelLocalidad().getSelected();
-		
+				
 		String notas = convierteString(view.getTaNotas().getText());
 		
 		t.setAltura(altura);
@@ -75,6 +76,10 @@ public class CitaFormMapper implements Mapper<Cita>{
 			view.getComboModelProvincia().setSelected(t.getLocalidad().getProvincia());
 		
 		view.getTaNotas().setText(t.getDescripcion());
+		
+		Cliente cliente = t.getCliente();
+		if(cliente != null)
+			view.getTfCliente().setText(cliente.getPersona().getNombre() + " " + cliente.getPersona().getApellido());
 		
 		view.revalidate();
 		

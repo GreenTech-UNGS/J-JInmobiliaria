@@ -14,6 +14,7 @@ import presentacion.combo.UnidadTiempoComboBoxModel;
 import java.util.Date;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
@@ -31,6 +32,7 @@ import javax.swing.JSeparator;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -71,6 +73,8 @@ public class CitaForm extends JDialog{
 	
 	private JTextField tfIdentificador;
 	private JButton btnVerPropiedad;
+	private JTextField tfCliente;
+	private JButton btnBuscarCliente;
 	
 	@Inject
 	public CitaForm() {
@@ -162,7 +166,7 @@ public class CitaForm extends JDialog{
 		tfAltura.setColumns(10);
 		
 		btnDesdePropiedad = new JButton("Desde propiedad");
-		btnDesdePropiedad.setBounds(111, 231, 156, 15);
+		btnDesdePropiedad.setBounds(111, 227, 156, 19);
 		getContentPane().add(btnDesdePropiedad);
 		
 		JLabel lblMotivo = new JLabel("Motivo: ");
@@ -204,7 +208,7 @@ public class CitaForm extends JDialog{
 		lblHoras.setBounds(507, 102, 55, 14);
 		getContentPane().add(lblHoras);
 		
-		JLabel lblNotas = new JLabel("Notas:");
+		JLabel lblNotas = new JLabel("Descripcion:");
 		lblNotas.setFont(new Font("Dialog", Font.PLAIN, 11));
 		lblNotas.setBounds(575, 49, 46, 14);
 		getContentPane().add(lblNotas);
@@ -288,13 +292,26 @@ public class CitaForm extends JDialog{
 		
 		tfIdentificador = new JTextField();
 		tfIdentificador.setColumns(10);
-		tfIdentificador.setBounds(315, 227, 114, 19);
+		tfIdentificador.setBounds(315, 227, 55, 19);
 		getContentPane().add(tfIdentificador);
 		tfIdentificador.isEditable();
 		
 		btnVerPropiedad = new JButton("Ver propiedad");
-		btnVerPropiedad.setBounds(441, 231, 156, 15);
+		btnVerPropiedad.setBounds(382, 227, 156, 19);
 		getContentPane().add(btnVerPropiedad);
+		
+		tfCliente = new JTextField();
+		tfCliente.setBounds(610, 227, 98, 19);
+		getContentPane().add(tfCliente);
+		tfCliente.setColumns(10);
+		tfCliente.setEditable(false);
+		
+		btnBuscarCliente = new JButton("");
+		btnBuscarCliente.setBounds(710, 227, 27, 20);		
+		Image imgLup = new ImageIcon(this.getClass().getResource("/buscar.png")).getImage();
+		btnBuscarCliente.setIcon(new ImageIcon(imgLup));
+		getContentPane().add(btnBuscarCliente);
+
 		
 	}
 
@@ -404,5 +421,13 @@ public class CitaForm extends JDialog{
 
 	public JButton getBtnVerPropiedad() {
 		return btnVerPropiedad;
+	}
+
+	public JTextField getTfCliente() {
+		return tfCliente;
+	}
+
+	public JButton getBtnBuscarCliente() {
+		return btnBuscarCliente;
 	}
 }
