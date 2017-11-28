@@ -50,15 +50,16 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		t.getPersona().setApellido(apellido);
 		t.getPersona().setCredencial(credencial);
 		t.getPersona().setEmail(email);
-		t.getPreferencia().setMetrosCuadradosDesde(Integer.parseInt(metrosCuadradosDesde));
-		t.getPreferencia().setMetrosCuadradosHasta(Integer.parseInt(metrosCuadradosHasta));
-		t.getPreferencia().setCantidadAmbientesDesde(Integer.parseInt(ambientesDesde));
-		t.getPreferencia().setCantidadAmbientesHasta(Integer.parseInt(ambientesHasta));
-		t.getPreferencia().setPrecioVentaDesde(Integer.parseInt(precioDesdeVenta));
-		t.getPreferencia().setPrecioVentaHasta(Integer.parseInt(precioHastaVenta));
-		t.getPreferencia().setPrecioAlquilerDesde(Integer.parseInt(precioDesdeAlquiler));
-		t.getPreferencia().setPrecioAlquilerHasta(Integer.parseInt(precioHastaAlquiler));
 
+		t.getPreferencia().setMetrosCuadradosDesde(getIntegerValue(metrosCuadradosDesde));
+		t.getPreferencia().setMetrosCuadradosDesde(getIntegerValue(metrosCuadradosDesde));
+		t.getPreferencia().setMetrosCuadradosHasta(getIntegerValue(metrosCuadradosHasta));
+		t.getPreferencia().setCantidadAmbientesDesde(getIntegerValue(ambientesDesde));
+		t.getPreferencia().setCantidadAmbientesHasta(getIntegerValue(ambientesHasta));
+		t.getPreferencia().setPrecioVentaDesde(getIntegerValue(precioDesdeVenta));
+		t.getPreferencia().setPrecioVentaHasta(getIntegerValue(precioHastaVenta));
+		t.getPreferencia().setPrecioAlquilerDesde(getIntegerValue(precioDesdeAlquiler));
+		t.getPreferencia().setPrecioAlquilerHasta(getIntegerValue(precioHastaAlquiler));
 		
 		t.getPersona().setTipoCred(tipoCred);
 		t.getPreferencia().setTipoOfrecimiento(tipoOfrec);	
@@ -97,15 +98,15 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		view.getTfApellido().setText(apellido);
 		view.getTfCredencial().setText(credencial);
 		view.getTfEmail().setText(email);
-		view.getTfDesdeMetros().setText(metrosCuadradosDesde);
-		view.getTfHastaMetros().setText(metrosCuadradosHasta);
-		view.getTfDesdeAmbientes().setText(ambientesDesde);
-		view.getTfHastaAmbientes().setText(ambientesHasta);
-		view.getTfDesdePrecioVenta().setText(precioDesdeVenta);
-		view.getTfHastaPrecioVenta().setText(precioHastaVenta);
-		view.getTfDesdePrecioAlquiler().setText(precioDesdeAlquiler);
-		view.getTfHastaPrecioAlquiler().setText(precioHastaAlquiler);
-		
+//		view.getTfDesdeMetros().setText(metrosCuadradosDesde);
+//		view.getTfHastaMetros().setText(metrosCuadradosHasta);
+//		view.getTfDesdeAmbientes().setText(ambientesDesde);
+//		view.getTfHastaAmbientes().setText(ambientesHasta);
+//		view.getTfDesdePrecioVenta().setText(precioDesdeVenta);
+//		view.getTfHastaPrecioVenta().setText(precioHastaVenta);
+//		view.getTfDesdePrecioAlquiler().setText(precioDesdeAlquiler);
+//		view.getTfHastaPrecioAlquiler().setText(precioHastaAlquiler);
+//		
 		view.getCbCredencial().setSelectedItem(tipoCred);
 		view.getCbTipoOfrec().setSelectedItem(String.valueOf(tipoOfrec));
 		view.getCbMonedaVenta().setSelectedItem(String.valueOf(monedaVenta));
@@ -114,6 +115,16 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 //		if(localidad != null){
 //			view.getCbProvincia().setSelectedItem(String.valueOf(localidad.getProvincia()));
 //		}
+	}
+
+	public Integer getIntegerValue(String s){
+		
+		try{
+			Integer i = Integer.parseInt(s);
+			return i;
+		} catch(Exception e){
+			return null;
+		}
 	}
 
 }
