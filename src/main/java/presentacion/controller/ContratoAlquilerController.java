@@ -225,7 +225,6 @@ public class ContratoAlquilerController {
 		this.view.getBtnBorrador().setVisible(bool);
 		this.view.getBtnCancelarContrato().setVisible(bool);
 		this.view.getBtnGuardarContrato().setVisible(bool);
-		this.view.getBtnRenovarContrato().setVisible(bool);
 		this.view.getBtnLupaCliente().setVisible(bool);
 		this.view.getBtnLupaPropiedad().setVisible(bool);
 		
