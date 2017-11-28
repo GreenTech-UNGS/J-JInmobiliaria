@@ -1,15 +1,10 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import org.joda.time.DateTime;
-import org.joda.time.Instant;
 import org.joda.time.LocalDate;
-import org.joda.time.Period;
 import org.joda.time.YearMonth;
 
 import com.google.inject.Inject;
@@ -28,10 +23,8 @@ import entities.EstadoProp;
 import entities.HistoriaEstadoContrato;
 import entities.HistoriaEstadoCuota;
 import entities.HistoriaEstadoProp;
-import entities.Ingreso;
 import entities.InteresPunitorioCuota;
 import entities.Moneda;
-import entities.OfrecimientoAlquiler;
 import entities.Precio;
 import entities.Propiedad;
 import entities.Reserva;

@@ -109,7 +109,7 @@ public class ContratosAlquilerTabController {
 		if(selected >= 0){
 			ContratoAlquiler seleccionado = (ContratoAlquiler) contratosTable.getRow(selected);
 			
-			contratoAlqController.setModeEdit(seleccionado);
+			contratoAlqController.setModeView(seleccionado);
 			contratoAlqController.showView();
 		}
 	}

@@ -1,6 +1,5 @@
 package presentacion.controller;
 
-import java.awt.Component;
 import java.util.Arrays;
 
 import org.joda.time.DateTime;
@@ -18,7 +17,6 @@ import entities.Propiedad;
 import entities.TipoContratoAlquiler;
 import model.ContratoService;
 import model.LogicaNegocioException;
-import model.ReservaService;
 import presentacion.mappers.ContratoAlquilerFormMapper;
 import presentacion.validators.ContratoAlquilerFormValidator;
 import presentacion.validators.MessageShow;
@@ -32,6 +30,7 @@ public class ContratoAlquilerController {
 	@Inject private ElegirClienteController eligeCliente;
 	@Inject private ElegirPropiedadController elegirPropiedadController;
 	@Inject private ContratoAlquilerFormMapper mapper;
+	@Inject private VerCuotasContratoController verCuotasController;
 	
 	private ContratoAlquiler currentContrato;
 	@Inject private ContratoAlquilerFormValidator contratoAlquilerValidator;
@@ -50,7 +49,7 @@ public class ContratoAlquilerController {
 		view.getBtnRenovarContrato().addActionListener(e -> renovarContrato());
 		view.getBtnBorrador().addActionListener(e -> guardarEnBorrador());
 		view.getComboTipoContrato().addActionListener(e -> setearMeses());
-
+		view.getBtnVerCuotas().addActionListener(e -> verCuotas());
 		fillCombos();
 		
 	}
@@ -101,6 +100,12 @@ public class ContratoAlquilerController {
 		view.getSpinnerActualizaContrato().setValue(o.getIntervaloActualizacion());
 		view.getSpinnerPorcenajeActualiza().setValue(o.getProcentajeActualizacion());
 		view.getChckbxAcumulativoActualiza().setSelected(o.isAcumulativo());
+		view.getBtnVerCuotas().addActionListener(e -> verCuotas());
+	}
+	
+	private void verCuotas(){
+		verCuotasController.setModeView(currentContrato);
+		verCuotasController.showView();
 	}
 	
 	private void guardaContratoDefinitivo() {
@@ -168,6 +173,7 @@ public class ContratoAlquilerController {
 		view.getBtnGuardarContrato().setVisible(true);
 		view.getBtnCancelarContrato().setVisible(true);
 		view.getBtnRenovarContrato().setVisible(false);
+		view.getBtnVerCuotas().setVisible(false);
 		
 		currentContrato = contratoService.getNewContratoAlquiler();
 		mapper.fillFields(currentContrato);
@@ -175,11 +181,12 @@ public class ContratoAlquilerController {
 		
 	}
 	
-	public void setModeEdit(ContratoAlquiler c){
+	public void setModeView(ContratoAlquiler c){
 		view.setTitle("Ver contrato de alquier");
 		currentContrato = c;
 		mapper.fillFields(c);
 		setEnabled(false);
+		view.getBtnVerCuotas().setVisible(true);
 	}
 
 	public void editarContrato(ContratoAlquiler contrato){
@@ -188,6 +195,7 @@ public class ContratoAlquilerController {
 		view.getBtnBorrador().setVisible(true);
 		view.getBtnGuardarContrato().setVisible(true);
 		view.getBtnCancelarContrato().setVisible(true);
+		view.getBtnVerCuotas().setVisible(false);
 		fillCombos();
 
 		currentContrato = contrato;
@@ -215,6 +223,7 @@ public class ContratoAlquilerController {
 		view.getBtnCancelarContrato().setVisible(false);
 		view.getBtnRenovarContrato().setVisible(true);
 		view.getBtnBorrador().setVisible(false);
+		view.getBtnVerCuotas().setVisible(false);
 		
 		currentContrato = contratoService.getActualizacionOf(c);
 		

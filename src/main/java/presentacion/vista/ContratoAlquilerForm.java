@@ -69,6 +69,7 @@ public class ContratoAlquilerForm extends JDialog {
 	*/
 	private TipoContratoAlqComboBoxModel comboTipoContratoModel;
 	private MonedaComboBoxModel monedaComboModel;
+	private JButton btnVerCuotas;
 	
 	
 	public ContratoAlquilerForm() {
@@ -411,6 +412,11 @@ public class ContratoAlquilerForm extends JDialog {
 		inicioDate = new JDateChooser();
 		inicioDate.setBounds(480, 144, 114, 20);
 		agregarContrato.add(inicioDate);
+		
+		btnVerCuotas = new JButton("Ver cuotas");
+		btnVerCuotas.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnVerCuotas.setBounds(507, 7, 89, 23);
+		agregarContrato.add(btnVerCuotas);
 
 	}
 
@@ -584,7 +590,9 @@ public class ContratoAlquilerForm extends JDialog {
 	public JComboBox<String> getComboTipoContrato() {
 		return comboTipoContrato;
 	}
-	
-	
 
+
+	public JButton getBtnVerCuotas() {
+		return btnVerCuotas;
+	}
 }
