@@ -55,7 +55,7 @@ public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
 		Period intimacionPeriod = Period.days(Integer.parseInt(intimacionDiasStr));
 		Period vencimientoPeriod = Period.months(Integer.parseInt(vencimientoMesesStr));
 
-		DateTime inicio = new DateTime( view.getInicio().getDate()).plusMonths(1);
+		DateTime inicio = new DateTime( view.getInicio().getDate());
 //		Propiedad propiedad = view.getTfIdPropiedad();
 
 		t.setIdentificador(identificador);
@@ -113,9 +113,6 @@ public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
 		int intimacionDias = t.getAvisoIntimacion().getPeriodo().getDays();
 		int vencimientoMeses = t.getAvisoProxVencer().getPeriodo().getMonths();
 		
-		int anio = t.getPrimerAnioMes().getYear();
-		int mes = t.getPrimerAnioMes().getMonthOfYear() - 1;
-		
 		String propiedad = t.getPropiedad() == null ? "":t.getPropiedad().getIdentificador();
 		view.getTfIdPropiedad().setText(propiedad);
 
@@ -147,7 +144,7 @@ public class ContratoAlquilerFormMapper implements Mapper<ContratoAlquiler>{
 		view.getSpinnerIntimacionEmail().setValue(intimacionDias);
 		view.getSpinnerVencimientoEmail().setValue(vencimientoMeses);
 
-		view.getInicio().setDate(DateTime.now().toDate());
+		view.getInicio().setDate(t.getInicio().toDate());
 
 	}
 	

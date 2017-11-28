@@ -17,6 +17,8 @@ import java.util.List;
 public class MovimientoCajaService {
 
 	@Inject private OfrecimientoService ofrecimientoService;
+	@Inject private PagosCobrosService pagosService;
+	@Inject CuotaService cuotaService;
 	
 	IngresoDao ingresoDao;
 	EgresoDao egresoDao;
@@ -104,19 +106,17 @@ public class MovimientoCajaService {
 		ofrecimientoTrucho.setPrecio(c.getCuotaMensual());
 		ofrecimientoTrucho.setProcentajeActualizacion(c.getDatoActualizacion().getPorcentaje());
 		
-		Precio valor = null;
-		try {
-			valor = ofrecimientoService.getPrecioParaEntrar(ofrecimientoTrucho);
-		} catch (LogicaNegocioException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Precio comision = ofrecimientoService.getComisionOf(ofrecimientoTrucho);
 		
 		Ingreso valorIngreso = new Ingreso();
 		valorIngreso.setFecha(DateTime.now());
-		valorIngreso.setDetalle("Pago del monto para entrar del contrato " + c.getIdentificador());
-		valorIngreso.setMonto(valor);
+		valorIngreso.setDetalle("Comision del contrato " + c.getIdentificador());
+		valorIngreso.setMonto(comision);
 		ingresoDao.save(valorIngreso);
+		
+		
+		CuotaAlquiler primera = cuotaService.getcuotasOf(c).get(0);
+		pagosService.generarCobroAlquiler(primera, DateTime.now());
 		
 	}
 	

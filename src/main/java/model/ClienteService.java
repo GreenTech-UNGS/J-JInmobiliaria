@@ -38,6 +38,7 @@ public class ClienteService {
 	public Cliente getNewClienteFrom(Persona p) {
 		Cliente toRet = new Cliente();
 		toRet.setHabilitado(true);
+		toRet.setCalificacion(CalificacionCliente.C);
 		toRet.setPersona(p);
 		
 		return toRet;

@@ -51,7 +51,7 @@ public class PagosCobrosService {
 
 		InteresPunitorioCuota interes = cuotaService.getInteresOf(cuota);
 		if(interes != null)
-			monto += cuotaService.getInteresOf(cuota).getMonto().getMonto();
+			monto += interes.getMonto().getMonto();
 		
 		double ingresoMonto = monto * (cuota.getContrato().getGastosAdmin() / 100.0);
 		p.setMonto(ingresoMonto);

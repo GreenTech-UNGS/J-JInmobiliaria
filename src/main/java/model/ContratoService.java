@@ -115,8 +115,7 @@ public class ContratoService {
 		}
 		return true;
 	}
-	
-	
+		
 	private void creaCuotas(ContratoAlquiler c) {
 		
 		int cantCuotas = c.getCantMeses();
@@ -156,7 +155,8 @@ public class ContratoService {
 			
 			cuotaDao.save(nuevaCuota);
 			cuotaDao.saveInteres(interes);
-		}	
+		}
+		
 	}
 	
 	public ContratoAlquiler getNewContratoAlquiler() {
@@ -183,7 +183,7 @@ public class ContratoService {
 		
 		toRet.getEstados().add(nuevo);
 		
-		toRet.setInicio( DateTime.now().plusMonths(1));
+		toRet.setInicio(DateTime.now().plusMonths(1));
 		
 		return toRet;
 	}
@@ -235,7 +235,6 @@ public class ContratoService {
 		return contratoDao.getAll();
 	}
 	
-
 	public EstadoContrato getEstadoOf(Contrato c) {
 		
 		List<HistoriaEstadoContrato> estados = c.getEstados();
@@ -247,7 +246,6 @@ public class ContratoService {
 		
 	}
 	
-
 	public List<ContratoVenta> getContratosVenta(){
 		
 		return contratoDao.getAllVenta();
