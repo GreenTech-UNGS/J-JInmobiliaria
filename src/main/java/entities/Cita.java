@@ -43,6 +43,9 @@ public class Cita {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<NotificacionCita> avisos;
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private Cliente cliente;
 
 	
 	public Cita() {
@@ -156,6 +159,14 @@ public class Cita {
 
 	public void setAsistente(Usuario asistente) {
 		this.asistente = asistente;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 	
