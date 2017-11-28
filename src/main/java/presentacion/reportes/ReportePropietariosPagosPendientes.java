@@ -1,4 +1,10 @@
 package presentacion.reportes;
+import dto.PendientesPropietariosDTO;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -6,24 +12,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import dto.PendientesPropietariosDTO;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
-
 public class ReportePropietariosPagosPendientes {
 
     private JasperReport reporte;
     private JasperViewer reporteViewer;
     private JasperPrint	reporteLleno;
 
-    private final static String jasperTemplate = "reportesJasper"+File.separatorChar+"PropietariosPagosPendientes.jrxml";
-    private final static String reporteLocation = "reportesJasper"+File.separatorChar+"PropietariosPagosPendientes.jasper";
+    private final static String jasperTemplate = "reportesJasper"+File.separatorChar+"propietariosPagosPendientes.jrxml";
+    private final static String reporteLocation = "reportesJasper"+File.separatorChar+"propietariosPagosPendientes.jasper";
 
     //Recibe la lista de PropietariosPagosPendientes para armar el reporte
     public ReportePropietariosPagosPendientes(List<PendientesPropietariosDTO> pendientesPropietarios){

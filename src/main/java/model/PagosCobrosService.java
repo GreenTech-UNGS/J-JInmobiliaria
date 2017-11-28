@@ -199,12 +199,8 @@ public class PagosCobrosService {
 			return dto;
 		}).sorted((p1, p2) -> p1.getPropietarioStr().compareTo(p2.getPropietarioStr()))
 				.collect(Collectors.toList());
-		
-		
-		
+
 		return toRet;
-		
-		
 	}
 
 }

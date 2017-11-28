@@ -88,7 +88,7 @@ public class PagosPanelController {
 		if (select!=-1){
 			PagoPropietario p = pagopropTable.getRow(select);
 			
-			if(msgShw.showYesNoMessage("¿Desea registrar el pago al propietario?", "Resgistrar Pago")) {
+			if(msgShw.showYesNoMessage("ï¿½Desea registrar el pago al propietario?", "Resgistrar Pago")) {
 				pagoCobroService.registrarpagoPropietario(p);
 				actualize();
 			}			
@@ -143,7 +143,6 @@ public class PagosPanelController {
 	private void generaReportePropietarios() {
 		List<PendientesPropietariosDTO> dtos = pagoCobroService.pagosPendientesReporte();
 		ReportePropietariosPagosPendientes reporte = new ReportePropietariosPagosPendientes(dtos);
-		
 		reporte.mostrar();
 		
 	}
