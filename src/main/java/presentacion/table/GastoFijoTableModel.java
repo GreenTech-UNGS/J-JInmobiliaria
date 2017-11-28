@@ -8,6 +8,7 @@ public class GastoFijoTableModel extends BaseTableModel<GastoFijo>{
 
 		super.addColumn("Nombre", false, 300);
 		super.addColumn("Monto", false, 300);
+		super.addColumn("Dia Vto.", false, 300);
 		super.addColumn("Descripcion", false, 300);
 	}
 	
@@ -17,6 +18,7 @@ public class GastoFijoTableModel extends BaseTableModel<GastoFijo>{
 		Object[] toRet = {
 				t.getNombre(),
 				t.getMonto(),
+				t.getDia(),
 				t.getDescripcion()
 				
 		};
