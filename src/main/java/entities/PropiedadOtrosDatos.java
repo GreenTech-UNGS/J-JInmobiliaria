@@ -24,9 +24,9 @@ public class PropiedadOtrosDatos {
 	@Enumerated(EnumType.ORDINAL)
 	private TipoPropiedad tipo;
 	
-	private int cantidadAmbientes;
-	private int metrosCuadradosCubiertos;
-	private int metrosCuadradosLote;
+	private Integer cantidadAmbientes;
+	private Integer metrosCuadradosCubiertos;
+	private Integer metrosCuadradosLote;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Habitacion> habitaciones;
@@ -45,7 +45,7 @@ public class PropiedadOtrosDatos {
 		this.tipo = tipo;
 	}
 
-	public int getCantidadAmbientes() {
+	public Integer getCantidadAmbientes() {
 		return cantidadAmbientes;
 	}
 
@@ -53,7 +53,7 @@ public class PropiedadOtrosDatos {
 		this.cantidadAmbientes = cantidadAmbientes;
 	}
 
-	public int getMetrosCuadradosCubiertos() {
+	public Integer getMetrosCuadradosCubiertos() {
 		return metrosCuadradosCubiertos;
 	}
 
@@ -61,7 +61,7 @@ public class PropiedadOtrosDatos {
 		this.metrosCuadradosCubiertos = metrosCuadradosCubiertos;
 	}
 
-	public int getMetrosCuadradosLote() {
+	public Integer getMetrosCuadradosLote() {
 		return metrosCuadradosLote;
 	}
 

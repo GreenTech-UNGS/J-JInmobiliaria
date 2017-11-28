@@ -25,14 +25,14 @@ public class Preferencia {
 	@Enumerated(EnumType.ORDINAL)
 	private TipoOfrecimiento tipoOfrecimiento;
 
-	private int metrosCuadradosDesde;
-	private int metrosCuadradosHasta;
-	private int cantidadAmbientesDesde;
-	private int cantidadAmbientesHasta;
-	private int precioVentaDesde;
-	private int precioVentaHasta;
-	private int precioAlquilerDesde;
-	private int precioAlquilerHasta;
+	private Integer metrosCuadradosDesde;
+	private Integer metrosCuadradosHasta;
+	private Integer cantidadAmbientesDesde;
+	private Integer cantidadAmbientesHasta;
+	private Integer precioVentaDesde;
+	private Integer precioVentaHasta;
+	private Integer precioAlquilerDesde;
+	private Integer precioAlquilerHasta;
 	private Moneda monedaVenta;
 	private Moneda monedaAlquiler;
 	
@@ -64,67 +64,67 @@ public class Preferencia {
 		this.tipoOfrecimiento = tipoOfrecimiento;
 	}
 
-	public int getMetrosCuadradosDesde() {
+	public Integer getMetrosCuadradosDesde() {
 		return metrosCuadradosDesde;
 	}
 
-	public int getMetrosCuadradosHasta() {
+	public Integer getMetrosCuadradosHasta() {
 		return metrosCuadradosHasta;
 	}
 
-	public int getCantidadAmbientesDesde() {
+	public Integer getCantidadAmbientesDesde() {
 		return cantidadAmbientesDesde;
 	}
 
-	public int getCantidadAmbientesHasta() {
+	public Integer getCantidadAmbientesHasta() {
 		return cantidadAmbientesHasta;
 	}
 
-	public void setMetrosCuadradosDesde(int metrosCuadradosDesde) {
+	public void setMetrosCuadradosDesde(Integer metrosCuadradosDesde) {
 		this.metrosCuadradosDesde = metrosCuadradosDesde;
 	}
 
-	public void setMetrosCuadradosHasta(int metrosCuadradosHasta) {
+	public void setMetrosCuadradosHasta(Integer metrosCuadradosHasta) {
 		this.metrosCuadradosHasta = metrosCuadradosHasta;
 	}
 
-	public void setCantidadAmbientesDesde(int cantidadAmbientesDesde) {
+	public void setCantidadAmbientesDesde(Integer cantidadAmbientesDesde) {
 		this.cantidadAmbientesDesde = cantidadAmbientesDesde;
 	}
 
-	public void setCantidadAmbientesHasta(int cantidadAmbientesHasta) {
+	public void setCantidadAmbientesHasta(Integer cantidadAmbientesHasta) {
 		this.cantidadAmbientesHasta = cantidadAmbientesHasta;
 	}
 	
-	public double getPrecioVentaDesde() {
+	public Integer getPrecioVentaDesde() {
 		return precioVentaDesde;
 	}
 
-	public void setPrecioVentaDesde(int precioVentaDesde) {
+	public void setPrecioVentaDesde(Integer precioVentaDesde) {
 		this.precioVentaDesde = precioVentaDesde;
 	}
 
-	public double getPrecioVentaHasta() {
+	public Integer getPrecioVentaHasta() {
 		return precioVentaHasta;
 	}
 
-	public void setPrecioVentaHasta(int precioVentaHasta) {
+	public void setPrecioVentaHasta(Integer precioVentaHasta) {
 		this.precioVentaHasta = precioVentaHasta;
 	}
 
-	public int getPrecioAlquilerDesde() {
+	public Integer getPrecioAlquilerDesde() {
 		return precioAlquilerDesde;
 	}
 
-	public void setPrecioAlquilerDesde(int precioAlquilerDesde) {
+	public void setPrecioAlquilerDesde(Integer precioAlquilerDesde) {
 		this.precioAlquilerDesde = precioAlquilerDesde;
 	}
 
-	public int getPrecioAlquilerHasta() {
+	public Integer getPrecioAlquilerHasta() {
 		return precioAlquilerHasta;
 	}
 
-	public void setPrecioAlquilerHasta(int precioAlquilerHasta) {
+	public void setPrecioAlquilerHasta(Integer precioAlquilerHasta) {
 		this.precioAlquilerHasta = precioAlquilerHasta;
 	}
 
