@@ -182,8 +182,8 @@ public class InteresadoController {
 		view.getBtnGuardarCambios().setVisible(true);
 		
 		currentInteresado = i;
-		fillCombos();
-		fillTables();
+//		fillCombos();
+//		fillTables();
 		interesadoMapper.fillFields(i);
 	}
 
