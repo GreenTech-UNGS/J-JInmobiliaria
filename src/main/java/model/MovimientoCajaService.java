@@ -96,6 +96,14 @@ public class MovimientoCajaService {
 	
 	public void creaIngresos(ContratoAlquiler c) {
 		
+		creaComision(c);
+		
+		CuotaAlquiler primera = cuotaService.getcuotasOf(c).get(0);
+		pagosService.generarCobroAlquiler(primera, DateTime.now());
+		
+	}
+
+	public void creaComision(ContratoAlquiler c) {
 		OfrecimientoAlquiler ofrecimientoTrucho = new OfrecimientoAlquiler();
 		ofrecimientoTrucho.setAcumulativo(c.getDatoActualizacion().isAcumulativo());
 		ofrecimientoTrucho.setCantidadMeses(c.getCantMeses());
@@ -113,10 +121,6 @@ public class MovimientoCajaService {
 		valorIngreso.setDetalle("Comision del contrato " + c.getIdentificador());
 		valorIngreso.setMonto(comision);
 		ingresoDao.save(valorIngreso);
-		
-		
-		CuotaAlquiler primera = cuotaService.getcuotasOf(c).get(0);
-		pagosService.generarCobroAlquiler(primera, DateTime.now());
 		
 	}
 	

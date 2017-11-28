@@ -2,6 +2,8 @@ package presentacion.validators;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -31,6 +33,16 @@ public class MessageShow {
 	public boolean showYesNoMessage(String msg, String title) {
 
 		return JOptionPane.showConfirmDialog(null, msg, title, JOptionPane.OK_CANCEL_OPTION) == 0;
+	}
+	
+	public Integer showInputMessageInt(String title, int max, int min) {
+		JSpinner spinner = new JSpinner(new SpinnerNumberModel(min, min, max, 1));
+		int opcion = JOptionPane.showConfirmDialog(null, spinner, title, JOptionPane.OK_CANCEL_OPTION);
+		
+		if(opcion != 0)
+			return null;
+		
+		return (int) spinner.getValue();
 	}
 	
 }

@@ -39,6 +39,7 @@ public class ContratosAlquilerTabController {
 		this.view = view;
 		
 		this.view.getBtnRenovar().addActionListener(e -> renovarContrato());
+		this.view.getBtnExtenderContrato().addActionListener(e -> extenderContrato());
 		this.view.getBtnCancelarContrato().addActionListener(e -> cancelarContrato());
 		
 		this.view.getBtnAgregarContratoAlq().addActionListener(e -> agregarContratoAlq());
@@ -61,6 +62,23 @@ public class ContratosAlquilerTabController {
 			
 			this.contratoAlqController.setRenovarMode(seleccion);
 			fillTableContratosAlquiler();
+		}
+	}
+	
+	private void extenderContrato() {
+		if(this.view.getTablaContratoAlquiler().getSelectedRow()!=-1){
+			ContratoAlquiler seleccion = (ContratoAlquiler)contratosTable.getRow(this.view.getTablaContratoAlquiler().getSelectedRow());
+			
+			Integer meses = msgShw.showInputMessageInt("Meses de extension", Integer.MAX_VALUE, 1);
+			if(meses != null) {
+				try {
+					contratoService.extenderContrato(seleccion, meses);
+				} catch (LogicaNegocioException e) {
+					msgShw.showErrorMessage(e.getMessage(), "Error");
+				}
+				fillTableContratosAlquiler();
+			}
+			
 		}
 	}
 	

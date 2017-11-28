@@ -390,7 +390,7 @@ public class ContratoAlquilerForm extends JDialog {
 		
 		btnRenovarContrato = new JButton("Renovar contrato");
 		btnRenovarContrato.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnRenovarContrato.setBounds(249, 629, 128, 30);
+		btnRenovarContrato.setBounds(259, 629, 128, 30);
 		agregarContrato.add(btnRenovarContrato);
 		btnRenovarContrato.setVisible(false);
 		

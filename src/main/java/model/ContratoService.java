@@ -80,7 +80,7 @@ public class ContratoService {
 		propiedad.getEstados().add(estado);
 		propiedad.getOfrecimientoAlquiler().setHabilitada(false);
 		
-		creaCuotas(c);
+		creaCuotas(c,c.getCantMeses(), c.getCuotaMensual(), c.getPrimerAnioMes());
 		cajaService.creaIngresos(c);
 		
 		propiedadDao.save(propiedad);
@@ -109,13 +109,12 @@ public class ContratoService {
 		return true;
 	}
 		
-	private void creaCuotas(ContratoAlquiler c) {
+	private void creaCuotas(ContratoAlquiler c, int cantCuotas, Precio precioInicial, YearMonth primerAnioMes) {
 		
-		int cantCuotas = c.getCantMeses();
-		double montoInicial = c.getCuotaMensual().getMonto();
-		double monto = c.getCuotaMensual().getMonto();
-		Moneda m = c.getCuotaMensual().getMoneda();
-		YearMonth nextMonth = c.getPrimerAnioMes();
+		double montoInicial = precioInicial.getMonto();
+		Moneda m = precioInicial.getMoneda();
+		double monto = montoInicial;
+		YearMonth nextMonth = primerAnioMes;
 		
 		for(int i = 1; i <= cantCuotas; i++) {
 			
@@ -351,5 +350,42 @@ public class ContratoService {
 
 	public List<ContratoAlquiler> getcontratosAlquilerBy(ContratoAlquilerFiltro filtro) {
 		return contratoDao.getAllBy(filtro);
+	}
+
+	public void extenderContrato(ContratoAlquiler contrato, int meses) throws LogicaNegocioException {
+		
+		if(getEstadoOf(contrato) == EstadoContrato.CANCELADO)
+			throw new LogicaNegocioException("No se puede extender un contrato cancelado");
+		
+		
+		YearMonth primerAnioMes = contrato.getPrimerAnioMes().plusMonths(contrato.getCantMeses());
+		contrato.setCantMeses(contrato.getCantMeses() + meses);
+		
+		System.out.println(contrato.getCantMeses() + 1 + " " +primerAnioMes.toString() + " " + contrato.getPrimerAnioMes().toString());
+		
+		creaCuotas(contrato, meses, getPrecioUltimaCuota(contrato), primerAnioMes);
+		contratoDao.save(contrato);
+		
+		cajaService.creaComision(contrato);
+		
+		
+	}
+	
+	private Precio getPrecioUltimaCuota(ContratoAlquiler contrato) {
+		double monto = contrato.getCuotaMensual().getMonto();
+		Moneda m = contrato.getCuotaMensual().getMoneda();
+		int cantMeses = contrato.getCantMeses();
+		int intervaloActualizacion = contrato.getDatoActualizacion().getActualizacionMeses();
+		
+		double porcentaje = contrato.getDatoActualizacion().getPorcentaje() / 100.0;
+		int cantActualizacones = (cantMeses/intervaloActualizacion) - 1;
+		boolean isAcumualtivo = contrato.getDatoActualizacion().isAcumulativo();
+		
+		if(isAcumualtivo)
+			monto = monto + (monto * Math.pow((1 + porcentaje), cantActualizacones));
+		else
+			monto = monto + (monto * porcentaje * cantActualizacones);
+	
+		return new Precio(monto, m);
 	}
 }

@@ -22,6 +22,7 @@ public class ContratosAlquilerTab extends JPanel{
 	private JButton btnRenovar;
 	private JButton btnCancelarContrato;
 	private JButton btnEditarContrato;
+	private JButton btnExtenderContrato;
 
 	@Inject
 	private ContratosAlquilerTab() {
@@ -53,6 +54,9 @@ public class ContratosAlquilerTab extends JPanel{
         
         btnRenovar = new JButton("Renovar contrato");
         panel_2.add(btnRenovar);
+        
+        btnExtenderContrato = new JButton("Extender Contrato");
+        panel_2.add(btnExtenderContrato);
         
         btnCancelarContrato = new JButton("Cancelar contrato");
         panel_2.add(btnCancelarContrato);
@@ -87,6 +91,10 @@ public class ContratosAlquilerTab extends JPanel{
 
 	public JButton getBtnEditarContrato() {
 		return btnEditarContrato;
+	}
+
+	public JButton getBtnExtenderContrato() {
+		return btnExtenderContrato;
 	}
 
 
