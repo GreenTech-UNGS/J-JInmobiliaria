@@ -39,11 +39,11 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		
 		TipoCredencial tipoCred = TipoCredencial.valueOf((String) view.getCbCredencial().getSelectedItem());
 		TipoOfrecimiento tipoOfrec = view.getComboModelOfrecimiento().getSelected();
-		Moneda monedaVenta = view.getComboModelMonedaVenta().getSelected();
-		Moneda monedaAlquiler = view.getComboModelMonedaAlquiler().getSelected();
+		Moneda monedaVenta = Moneda.valueOf((String) view.getCbMonedaVenta().getSelectedItem());
+		Moneda monedaAlquiler = Moneda.valueOf((String) view.getCbMonedaAlquiler().getSelectedItem());
 
 		Localidad localidad = view.getComboModelLocalidad().getSelected();
-		Provincia provincia = view.getComboModelProvincia().getSelected();
+//		Provincia provincia = TipoOfrecimiento.valueOf((String) view.getCbTipoOfrec().getSelectedItem());
 		
 		
 		t.getPersona().setNombre(nombre);
@@ -98,23 +98,30 @@ public class InteresadoFormMapper implements Mapper<Interesado>{
 		view.getTfApellido().setText(apellido);
 		view.getTfCredencial().setText(credencial);
 		view.getTfEmail().setText(email);
-//		view.getTfDesdeMetros().setText(metrosCuadradosDesde);
-//		view.getTfHastaMetros().setText(metrosCuadradosHasta);
-//		view.getTfDesdeAmbientes().setText(ambientesDesde);
-//		view.getTfHastaAmbientes().setText(ambientesHasta);
-//		view.getTfDesdePrecioVenta().setText(precioDesdeVenta);
-//		view.getTfHastaPrecioVenta().setText(precioHastaVenta);
-//		view.getTfDesdePrecioAlquiler().setText(precioDesdeAlquiler);
-//		view.getTfHastaPrecioAlquiler().setText(precioHastaAlquiler);
-//		
+		view.getTfDesdeMetros().setText(metrosCuadradosDesde);
+		view.getTfHastaMetros().setText(metrosCuadradosHasta);
+		view.getTfDesdeAmbientes().setText(ambientesDesde);
+		view.getTfHastaAmbientes().setText(ambientesHasta);
+		view.getTfDesdePrecioVenta().setText(precioDesdeVenta);
+		view.getTfHastaPrecioVenta().setText(precioHastaVenta);
+		view.getTfDesdePrecioAlquiler().setText(precioDesdeAlquiler);
+		view.getTfHastaPrecioAlquiler().setText(precioHastaAlquiler);
+		
+//		view.getCbCredencial().setSelectedItem(tipoCred);
+//		view.getComboModelOfrecimiento().setSelected((tipoOfrec));
+//		view.getComboModelMonedaVenta().setSelectedItem((monedaVenta));
+//		view.getComboModelMonedaAlquiler().setSelected(monedaAlquiler);	
 		view.getCbCredencial().setSelectedItem(tipoCred);
-		view.getCbTipoOfrec().setSelectedItem(String.valueOf(tipoOfrec));
-		view.getCbMonedaVenta().setSelectedItem(String.valueOf(monedaVenta));
-		view.getCbMonedaAlquiler().setSelectedItem(String.valueOf(monedaAlquiler));
-		view.getCbLocalidad().setSelectedItem(String.valueOf(localidad));
-//		if(localidad != null){
-//			view.getCbProvincia().setSelectedItem(String.valueOf(localidad.getProvincia()));
-//		}
+		view.getComboModelOfrecimiento().setSelected(tipoOfrec);
+		view.getCbTipoOfrec().setSelectedItem(tipoOfrec.toString());
+		System.out.println(view.getComboModelOfrecimiento().getSelected());
+		view.getComboModelMonedaVenta().setSelectedItem((monedaVenta));
+		view.getCbMonedaAlquiler().setSelectedItem(monedaAlquiler);		
+		if(localidad != null){
+			view.getComboModelProvincia().setSelected(localidad.getProvincia());
+		}
+		view.getComboModelLocalidad().setSelected(localidad);
+
 	}
 
 	public Integer getIntegerValue(String s){
