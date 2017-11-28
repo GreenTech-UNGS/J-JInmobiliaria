@@ -61,6 +61,8 @@ public class PropiedadForm extends JFrame{
 	private JButton btnSiguiente;
 	private JPanel panelOfrecimientos;
 	private JButton btnAtras;
+	private JButton btnRemoverPropietario;
+	private JButton btnRemoverInmobiliaria;
 
 	@Inject
 	private PropiedadForm(PrecontratoAlquilerForm alquilerOfrecimiento, PrecontratoVentaForm ventaOfrecimiento) {
@@ -74,12 +76,15 @@ public class PropiedadForm extends JFrame{
 		Image imgLup = new ImageIcon(this.getClass().getResource("/buscar.png")).getImage();
 		getContentPane().setLayout(null);
 		
+		Image imgRemover = new ImageIcon(this.getClass().getResource("/cancelar.png")).getImage();
+		
 		AgregarPropiedad = new JPanel();
 		AgregarPropiedad.setBounds(0, 0, 695, 575);
 		getContentPane().add(AgregarPropiedad);
 		AgregarPropiedad.setForeground(new Color(204, 0, 0));
 		AgregarPropiedad.setBorder(new EmptyBorder(5, 5, 5, 5));
 		AgregarPropiedad.setLayout(null);
+		AgregarPropiedad.setVisible(true);
 		
 		JLabel lblPropierario = new JLabel("Propietario:");
 		lblPropierario.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -291,7 +296,18 @@ public class PropiedadForm extends JFrame{
 						btnVerGaleria.setFont(new Font("Dialog", Font.PLAIN, 11));
 						btnVerGaleria.setBounds(596, 15, 89, 20);
 						AgregarPropiedad.add(btnVerGaleria);
+						
+						btnRemoverPropietario = new JButton("");
+						btnRemoverPropietario.setBounds(436, 49, 22, 20);
+						btnRemoverPropietario.setIcon(new ImageIcon(imgRemover));
+						AgregarPropiedad.add(btnRemoverPropietario);
+						
+						btnRemoverInmobiliaria = new JButton("");
+						btnRemoverInmobiliaria.setBounds(671, 53, 22, 20);
+						btnRemoverInmobiliaria.setIcon(new ImageIcon(imgRemover));
+						AgregarPropiedad.add(btnRemoverInmobiliaria);
 						lblReservada.setVisible(false);
+						AgregarPropiedad.setVisible(true);
 
 		
 		panelOfrecimientos = new JPanel();
@@ -300,6 +316,7 @@ public class PropiedadForm extends JFrame{
 		panelOfrecimientos.setLayout(null);
 		panelOfrecimientos.add(alquilerOfrecimiento);
 		panelOfrecimientos.add(ventaOfrecimiento);
+		panelOfrecimientos.setVisible(true);
 		
 		JLabel lblVenta = new JLabel("Venta");
 		lblVenta.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -543,6 +560,13 @@ public class PropiedadForm extends JFrame{
 	public JButton getBtnAtras() {
 		return btnAtras;
 	}
-	
+
+	public JButton getBtnRemoverPropietario() {
+		return btnRemoverPropietario;
+	}
+
+	public JButton getBtnRemoverInmobiliaria() {
+		return btnRemoverInmobiliaria;
+	}
 	
 }

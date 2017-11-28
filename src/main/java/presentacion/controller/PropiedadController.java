@@ -96,6 +96,8 @@ public class PropiedadController {
 		view.getBtnImprimirFichaVisita().addActionListener(e -> generaReporteFichaPropiedad("FichaPropiedad"));
 		view.getBtnSiguiente().addActionListener(e -> cambiaPestania());
 		view.getBtnAtras().addActionListener(e -> panelAnterior());
+		view.getBtnRemoverInmobiliaria().addActionListener(e -> removerInmobiliaria());
+		view.getBtnRemoverPropietario().addActionListener(e -> removerPropietario());
 
 		view.getBtnVerGaleria().addActionListener(e -> muestraGaleria());
 		
@@ -104,6 +106,14 @@ public class PropiedadController {
 		this.view.getComboProvincia().setModel(provCombo);
 		this.view.getComboLocalidad().setModel(localidadCombo);
 		
+	}
+	
+	private void removerInmobiliaria(){
+		view.getTfInmobiliaria().setText("");
+	}
+	
+	private void removerPropietario(){
+		view.getTfPropietario().setText("");
 	}
 
 	private void cambiaPestania() {
@@ -282,6 +292,8 @@ public class PropiedadController {
 		view.getAgregarPropiedad().setVisible(true);
 		view.getBtnSiguiente().setVisible(true);
 		view.setModalExclusionType(Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
+		view.getBtnRemoverInmobiliaria().setVisible(false);
+		view.getBtnRemoverPropietario().setVisible(false);
 		
 		ofrecimientoAlquiler.setEditMode(p.getOfrecimientoAlquiler());
 		ofrecimientoVenta.setEditMode(p.getOfrecimientoVenta());
@@ -303,6 +315,8 @@ public class PropiedadController {
 		view.getBtnVerHistorial().setVisible(true);
 		view.getBtnImprimirFicha().setVisible(true);
 		view.getBtnImprimirFichaVisita().setVisible(true);
+		view.getBtnRemoverInmobiliaria().setVisible(true);
+		view.getBtnRemoverPropietario().setVisible(true);
 
 		
 		currentPropiedad = p;
@@ -328,6 +342,10 @@ public class PropiedadController {
 			
 			if(!ofrecimientoAlquiler.isSelected() && !ofrecimientoVenta.isSelected()){
 				msgShw.showErrorMessage("Error", "Debe seleccionar un tipo de ofrecimiento para guardar como disponible.");
+				return;
+			}
+			if (view.getTfPropietario().getText().equals("") && view.getTfInmobiliaria().getText().equals("")){
+				msgShw.showErrorMessage("Se debe ingresar un propietario o inmobiliaria", "Error");
 				return;
 			}
 			try {
@@ -393,7 +411,8 @@ public class PropiedadController {
 		view.getBtnImprimirFicha().setVisible(false);
 		view.getBtnImprimirFichaVisita().setVisible(false);
 		view.getBtnSiguiente().setVisible(true);
-		
+		view.getBtnRemoverInmobiliaria().setVisible(true);
+		view.getBtnRemoverPropietario().setVisible(true);
 		restartMapa();
 		//actualizeSellado();
 	}
@@ -425,6 +444,9 @@ public class PropiedadController {
 		view.getBtnImprimirFicha().setVisible(true);
 		view.getBtnImprimirFichaVisita().setVisible(true);
 		view.getBtnSiguiente().setVisible(false);
+		view.getBtnRemoverInmobiliaria().setVisible(false);
+		view.getBtnRemoverPropietario().setVisible(false);
+		view.getPanelOfrecimientos().setVisible(true);
 	}
 
 	public void showView(){
@@ -432,6 +454,7 @@ public class PropiedadController {
 		
 		view.getBtnAtras().setVisible(false);
 		view.getPanelOfrecimientos().setVisible(false);
+		view.getAgregarPropiedad().setVisible(true);
 		view.getBtnGuardarDisponible().setVisible(false);
 		view.setVisible(true);
 	}

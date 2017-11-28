@@ -58,9 +58,6 @@ public class PropiedadService {
 		if(existePropiedadConIdentificador(p))
 			throw new LogicaNegocioException("Ya existe una propiedad con el identificador ingresado");
 
-		if(p.getPropietario() == null)
-			throw new LogicaNegocioException("La propiedad debe tener un propietario");
-
 		HistoriaEstadoProp historia = new HistoriaEstadoProp();
 		historia.setEstado(EstadoProp.DISPONIBLE);
 		historia.setFecha(DateTime.now());
