@@ -26,6 +26,7 @@ import model.CitaService;
 import model.LocalidadService;
 import model.LocalizationService;
 import model.LogicaNegocioException;
+import model.PropiedadService;
 import model.UsuarioService;
 import persistencia.dao.iface.LocalizationDao.MapPoint;
 import presentacion.mappers.CitaFormMapper;
@@ -48,6 +49,9 @@ public class CitaController {
 	
 	@Inject private ElegirPropiedadController elegirPropiedad;
 	
+	@Inject private PropiedadService propiedadService;
+	@Inject private PropiedadController propiedadController;
+	
 	@Inject private MessageShow msgShw;
 	
 	private Cita currentCita;
@@ -62,9 +66,8 @@ public class CitaController {
 		this.view.getBtnAceptar().addActionListener(e -> agregarCita());
 		this.view.getBtnDesdePropiedad().addActionListener(e -> desdePropiedad());
 		this.view.getBtnActualizar().addActionListener(e -> actualizaMapa());
-		
-		
-		
+		this.view.getBtnVerPropiedad().addActionListener(e -> verPropiedad());
+				
 	}
 
 	private void agregarCita() {
@@ -97,12 +100,24 @@ public class CitaController {
 		Propiedad p = elegirPropiedad.getPropiedad();
 		
 		if(p != null) {
+			view.getTfIdentificador().setText(p.getIdentificador());
 			view.getTfCalle().setText(p.getCalle());
 			view.getTfAltura().setText(p.getAltura());
 			view.getComboModelLocalidad().setSelected(p.getLocalidad());
 			view.getComboModelProvincia().setSelected(p.getLocalidad().getProvincia());
 			
 			actualizaMapa();
+		}
+		
+	}
+	
+	private void verPropiedad() {
+		
+		Propiedad p = propiedadService.getByIdentificador(view.getTfIdentificador().getText());
+		
+		if(p != null) {
+			propiedadController.viewPropiedad(p);
+			propiedadController.showView();
 		}
 		
 	}
