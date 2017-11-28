@@ -12,6 +12,7 @@ public interface PropiedadDao extends Dao<Propiedad>{
 	
 	public void actualizePropiedad(Propiedad toActualize);
 	boolean existePropiedadConIdentificador(int IdExcluir, String identificador);
+	public Propiedad getByIdentificador(String identificador);
 	public List<Propiedad> getAllByLocalidad(Localidad localidad);
 	public List<Propiedad> getAllByFiltro(PropiedadFiltro filtro);
 	public List<TipoHabitacion> getAllTipoHabitacion();

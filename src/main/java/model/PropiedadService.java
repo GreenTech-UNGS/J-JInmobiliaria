@@ -41,6 +41,12 @@ public class PropiedadService {
 		return propiedadDao.getAllTipoHabitacion();
 	}
 	
+	public Propiedad getByIdentificador(String identificador) {
+		
+		
+		return propiedadDao.getByIdentificador(identificador);
+	}
+	
 	public boolean existePropiedadConIdentificador(Propiedad t) {
 		
 		

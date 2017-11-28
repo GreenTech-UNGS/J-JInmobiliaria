@@ -57,6 +57,22 @@ public class PropiedadDaoHibernate extends DaoHibernate<Propiedad> implements Pr
 		
 	}
 	
+	@Override
+	public Propiedad getByIdentificador(String identificador) {
+		
+		initTransaction();
+		
+		Criteria q = sesion.createCriteria(Propiedad.class).
+				add(Restrictions.eq("identificador", identificador));
+		
+		Propiedad toRet = (Propiedad) q.list().get(0);
+		
+		finishTransaction();
+		
+		return toRet;
+		
+	}
+	
 	public void actualizePropiedad(Propiedad toActualize) {
 		initTransaction();
 		sesion.saveOrUpdate(toActualize);
