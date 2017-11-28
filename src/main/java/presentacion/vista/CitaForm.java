@@ -69,6 +69,9 @@ public class CitaForm extends JDialog{
 	private UnidadTiempoComboBoxModel unidadComboModel;
 	private UnidadTiempoComboBoxModel unidadComboModel2;
 	
+	private JTextField tfIdentificador;
+	private JButton btnVerPropiedad;
+	
 	@Inject
 	public CitaForm() {
 		setTitle("Crear Cita");
@@ -283,6 +286,16 @@ public class CitaForm extends JDialog{
 		comboTiempoCorto.setModel(unidadCorta);
 		comboTiempoLargo.setModel(unidadLarga);
 		
+		tfIdentificador = new JTextField();
+		tfIdentificador.setColumns(10);
+		tfIdentificador.setBounds(315, 227, 114, 19);
+		getContentPane().add(tfIdentificador);
+		tfIdentificador.isEditable();
+		
+		btnVerPropiedad = new JButton("Ver propiedad");
+		btnVerPropiedad.setBounds(441, 231, 156, 15);
+		getContentPane().add(btnVerPropiedad);
+		
 	}
 
 	public JDateChooser getDateChooser() {
@@ -383,5 +396,13 @@ public class CitaForm extends JDialog{
 
 	public JComboBox<String> getComboTiempoCorto() {
 		return comboTiempoCorto;
+	}
+	
+	public JTextField getTfIdentificador() {
+		return tfIdentificador;
+	}
+
+	public JButton getBtnVerPropiedad() {
+		return btnVerPropiedad;
 	}
 }

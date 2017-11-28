@@ -10,6 +10,7 @@ import model.LogicaNegocioException;
 import model.PropiedadService;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
+import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 import persistencia.dao.iface.LocalizationDao.MapPoint;
 import presentacion.combo.LocalidadComboBoxModel;
@@ -21,7 +22,14 @@ import presentacion.validators.MessageShow;
 import presentacion.validators.PropiedadFormValidator;
 import presentacion.vista.PropiedadForm;
 
+import java.awt.Dialog;
 import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class PropiedadController {
 	
@@ -265,6 +273,33 @@ public class PropiedadController {
 		
 	}
 
+	public void viewPropiedad(Propiedad p){
+
+		isEdit = true;
+		this.provCombo.setSelected(p.getLocalidad().getProvincia());
+		//fillCombos();
+		
+		view.setTitle("Detalle de Propiedad");
+		view.getBtnCancelar().setVisible(false);
+		view.getBtnGuardarDisponible().setVisible(false);
+		view.getBtnVerHistorial().setVisible(false);
+		view.getBtnImprimirFicha().setVisible(false);
+		view.getBtnImprimirFichaVisita().setVisible(false);
+		view.getBtnGuardarDisponible().setEnabled(false);
+		view.getBtnBorrador().setEnabled(false);
+		currentPropiedad = p;
+		view.getAgregarPropiedad().setVisible(true);
+		view.getBtnSiguiente().setVisible(true);
+		view.setModalExclusionType(Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
+		
+		ofrecimientoAlquiler.setEditMode(p.getOfrecimientoAlquiler());
+		ofrecimientoVenta.setEditMode(p.getOfrecimientoVenta());
+		
+		binder.setObjective(currentPropiedad);
+		binder.fillFields();
+		
+	}
+	
 	public void editPropiedad(Propiedad p){
 
 		isEdit = true;
@@ -274,10 +309,13 @@ public class PropiedadController {
 		view.setTitle("Editar Propiedad");
 		view.getBtnCancelar().setVisible(true);
 		view.getBtnGuardarDisponible().setVisible(true);
-		view.getBtnVerHistorial().setVisible(false);
-		view.getBtnImprimirFicha().setVisible(false);
-		view.getBtnImprimirFichaVisita().setVisible(false);
+		view.getBtnVerHistorial().setVisible(true);
+		view.getBtnImprimirFicha().setVisible(true);
+		view.getBtnImprimirFichaVisita().setVisible(true);
+
+		
 		currentPropiedad = p;
+		
 		view.getAgregarPropiedad().setVisible(true);
 		view.getBtnSiguiente().setVisible(true);
 		
