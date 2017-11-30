@@ -7,6 +7,6 @@ set dataBaseDump=%4
 
 set sqlQuery="USE inmobiliaria;SOURCE %dataBaseDump%;"
 
-set sqlPath="C:\Program Files\MySQL\MySQL Server 5.7\bin\
+set sqlPath="C:\%programfiles(x86)%\MySQL\MySQL Server 5.5\bin\
 
 %sqlPath%mysql.exe" -u %user% --password=%password% -h %ip% --execute=%sqlQuery%
