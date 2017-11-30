@@ -67,7 +67,7 @@ public class InteresadoController {
 		view.getBtnCancelar().addActionListener(e -> this.view.setVisible(false));
 		view.getCbProvincia().addActionListener(e -> cambiaLocalidades());
 		view.getBtnGuardarCambios().addActionListener(e -> guardarCambiosCurrentInteresado());
-	
+		
 		
 	}
 
@@ -102,10 +102,6 @@ public class InteresadoController {
 	}
 	
 	private void fillCombos() {
-		
-		this.view.getCbCredencial().setModel(tipoCredencialModel);
-		tipoCredencialModel.clearAndActualize(Arrays.asList(TipoCredencial.values()));
-		AutoCompleteDecorator.decorate(view.getCbCredencial());
 
 		view.getComboModelOfrecimiento().clearAndActualize(Arrays.asList(TipoOfrecimiento.values()));
 
@@ -138,7 +134,7 @@ public class InteresadoController {
 	public void showView(){
 
 		fillTables();
-		fillCombos();
+//		fillCombos();
 		view.setVisible(true);
 	}
 	
@@ -180,9 +176,9 @@ public class InteresadoController {
 		view.setTitle("Editar interesado");
 		view.getBtnGuardar().setVisible(false);
 		view.getBtnGuardarCambios().setVisible(true);
-		
+		fillCombos();
 		currentInteresado = i;
-//		fillCombos();
+		
 //		fillTables();
 		interesadoMapper.fillFields(i);
 	}

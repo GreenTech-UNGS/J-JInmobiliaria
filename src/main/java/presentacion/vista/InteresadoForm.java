@@ -26,8 +26,6 @@ import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class InteresadoForm extends JDialog{
-
-	private JTextField tfCredencial;
 	private JTextField tfNombre;
 	private JTextField tfApellido;
 	private JTextField tfEmail;
@@ -42,7 +40,6 @@ public class InteresadoForm extends JDialog{
 	private JButton btnBorrarTelefono;
 	private JButton btnGuardar;
 	private JButton btnCancelar;
-	private JComboBox<String> cbCredencial;
 	private JComboBox<String> cbLocalidad;
 	private JComboBox<String> cbTipoOfrec;
 	private JComboBox<String> cbProvincia;
@@ -72,10 +69,6 @@ public class InteresadoForm extends JDialog{
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		
-		cbCredencial = new JComboBox();
-		cbCredencial.setBounds(237, 69, 67, 20);
-		getContentPane().add(cbCredencial);
-		
 		JLabel lblDatosPersonales = new JLabel("Datos personales");
 		lblDatosPersonales.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblDatosPersonales.setBounds(30, 31, 104, 14);
@@ -84,11 +77,6 @@ public class InteresadoForm extends JDialog{
 		JSeparator separator = new JSeparator();
 		separator.setBounds(30, 56, 405, 2);
 		getContentPane().add(separator);
-		
-		tfCredencial = new JTextField();
-		tfCredencial.setBounds(314, 69, 124, 20);
-		getContentPane().add(tfCredencial);
-		tfCredencial.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -102,7 +90,7 @@ public class InteresadoForm extends JDialog{
 		
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblEmail.setBounds(237, 94, 46, 14);
+		lblEmail.setBounds(237, 69, 46, 14);
 		getContentPane().add(lblEmail);
 		
 		tfNombre = new JTextField();
@@ -116,7 +104,7 @@ public class InteresadoForm extends JDialog{
 		tfApellido.setColumns(10);
 		
 		tfEmail = new JTextField();
-		tfEmail.setBounds(314, 91, 124, 20);
+		tfEmail.setBounds(300, 69, 124, 20);
 		getContentPane().add(tfEmail);
 		tfEmail.setColumns(10);
 		
@@ -169,7 +157,7 @@ public class InteresadoForm extends JDialog{
 		getContentPane().add(lblMetros);
 		
 		tfDesdeMetros = new JTextField();
-		tfDesdeMetros.setBounds(108, 337, 109, 20);
+		tfDesdeMetros.setBounds(108, 337, 98, 20);
 		getContentPane().add(tfDesdeMetros);
 		tfDesdeMetros.setColumns(10);
 		
@@ -180,7 +168,7 @@ public class InteresadoForm extends JDialog{
 		
 		tfDesdeAmbientes = new JTextField();
 		tfDesdeAmbientes.setColumns(10);
-		tfDesdeAmbientes.setBounds(324, 337, 114, 20);
+		tfDesdeAmbientes.setBounds(324, 337, 100, 20);
 		getContentPane().add(tfDesdeAmbientes);
 		
 		JLabel lblTipo = new JLabel("Tipo:");
@@ -282,12 +270,12 @@ public class InteresadoForm extends JDialog{
 		getContentPane().add(lblDesdeAmbientes);
 		
 		tfHastaAmbientes = new JTextField();
-		tfHastaAmbientes.setBounds(324, 362, 114, 20);
+		tfHastaAmbientes.setBounds(324, 362, 100, 20);
 		getContentPane().add(tfHastaAmbientes);
 		tfHastaAmbientes.setColumns(10);
 		
 		tfHastaMetros = new JTextField();
-		tfHastaMetros.setBounds(108, 362, 109, 20);
+		tfHastaMetros.setBounds(108, 362, 98, 20);
 		getContentPane().add(tfHastaMetros);
 		tfHastaMetros.setColumns(10);
 
@@ -364,22 +352,6 @@ public class InteresadoForm extends JDialog{
 
 	public void setTableTel(JTable tableTel) {
 		this.tableTel = tableTel;
-	}
-
-	public JComboBox getCbCredencial() {
-		return cbCredencial;
-	}
-
-	public void setCbCredencial(JComboBox cbCredencial) {
-		this.cbCredencial = cbCredencial;
-	}
-
-	public JTextField getTfCredencial() {
-		return tfCredencial;
-	}
-
-	public void setTfCredencial(JTextField tfCredencial) {
-		this.tfCredencial = tfCredencial;
 	}
 
 	public JTextField getTfNombre() {

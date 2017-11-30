@@ -19,7 +19,6 @@ public class InteresadoFormValidator implements ValidatorNew {
 	@Override
 	public boolean isValid() {
 		return hasMedioContacto()
-				&& isCredencialValid() 
 				&& isEmailValid()
 				&& isNombreValid()
 				&& isApellidoValid();
@@ -30,8 +29,6 @@ public class InteresadoFormValidator implements ValidatorNew {
 		String toRet = "Error en los siguientes campos: ";
 		if(!hasMedioContacto())
 			toRet += "\n- Debe ingresar al menos un mail o un telefono";
-		if(!isCredencialValid())
-			toRet += "\n- La credencial no es valida";
 		if(!isEmailValid())
 			toRet += "\n- El email no es valido";
 		if(!isNombreValid())
@@ -40,25 +37,6 @@ public class InteresadoFormValidator implements ValidatorNew {
 			toRet += "\n- El apellido no es valido";
 		
 		return toRet;
-	}
-	
-	private boolean isCredencialValid(){
-		
-		TipoCredencial tipoCred = TipoCredencial.valueOf((String)view.getCbCredencial().getSelectedItem());
-		String credencial = view.getTfCredencial().getText();
-		
-		if(credencial == null || credencial.equals(""))
-			return true;
-		
-		if(tipoCred == TipoCredencial.DNI)
-			if(credencial == null || (!credencial.matches(Regex.DNI()) && !credencial.matches(Regex.OnlyNumbersDNI())))
-				return false;
-
-		if(tipoCred == TipoCredencial.CUIT)
-			if(credencial == null || (!credencial.matches(Regex.CUIT()) && !credencial.matches(Regex.onlyNumbersCUIT())))
-				return false;
-			
-		return true;
 	}
 	
 	private boolean isEmailValid(){
