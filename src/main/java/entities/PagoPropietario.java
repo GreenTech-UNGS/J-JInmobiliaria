@@ -30,6 +30,9 @@ public class PagoPropietario {
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private Propietario propietario;
 	
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private Inmobiliaria inmobiliaria;
+	
 	@Enumerated(EnumType.ORDINAL)
 	private EstadoPago estado;
 	
@@ -78,6 +81,14 @@ public class PagoPropietario {
 
 	public void setContrato(Contrato contrato) {
 		this.contrato = contrato;
+	}
+
+	public Inmobiliaria getInmobiliaria() {
+		return inmobiliaria;
+	}
+
+	public void setInmobiliaria(Inmobiliaria inmobiliaria) {
+		this.inmobiliaria = inmobiliaria;
 	}
 
 

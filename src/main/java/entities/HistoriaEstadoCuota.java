@@ -19,18 +19,17 @@ public class HistoriaEstadoCuota {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID;
 
-	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	private DateTime fecha;
+	private long fecha;
 	
 	@Enumerated(EnumType.ORDINAL)
 	private EstadoCuota estado;
 
 	public DateTime getFecha() {
-		return fecha;
+		return new DateTime(fecha);
 	}
 
 	public void setFecha(DateTime fecha) {
-		this.fecha = fecha;
+		this.fecha = fecha.getMillis();
 	}
 
 	public EstadoCuota getEstado() {

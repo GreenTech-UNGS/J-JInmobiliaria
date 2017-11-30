@@ -59,14 +59,10 @@ public class InmobiliariaFormMapper implements Mapper<Inmobiliaria>{
 		view.getTfDepto().setText(depto);
 		view.getTfEmail().setText(email);
 
-//		view.getComboModelLocalidad().setSelected(t.getLocalidad());
-		
-		view.getComboModelLocalidad().setSelected(t.getLocalidad());
 		if(t.getLocalidad() != null)
 			view.getComboModelProvincia().setSelected(t.getLocalidad().getProvincia());
-//		view.getCbLocalidad().setSelectedItem(t.getLocalidad());
-//		view.getCbProvincia().setSelectedItem(t.getLocalidad().getProvincia());
-//		view.getCbLocalidad().getModel().setSelectedItem(t.getLocalidad());
+		view.getComboModelLocalidad().setSelected(t.getLocalidad());
+
 		
 	}
 

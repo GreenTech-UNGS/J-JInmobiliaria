@@ -74,6 +74,9 @@ public class PagosCobrosService {
 		double monto = cuota.getMonto().getMonto();
 		InteresPunitorioCuota interes = cuotaService.getInteresOf(cuota);
 		
+		Propietario propietario = cuota.getContrato().getPropiedad().getPropietario();
+		Inmobiliaria inmobiliaria = cuota.getContrato().getPropiedad().getInmobiliaria();
+		
 		if(interes != null)
 			monto += interes.getMonto().getMonto();
 		
@@ -85,7 +88,8 @@ public class PagosCobrosService {
 		nuevoPago.setContrato(cuota.getContrato());
 		nuevoPago.setEstado(EstadoPago.PENDIENTE);
 		nuevoPago.setMonto(p);
-		nuevoPago.setPropietario(cuota.getContrato().getPropiedad().getPropietario());
+		nuevoPago.setPropietario(propietario);
+		nuevoPago.setInmobiliaria(inmobiliaria);
 		
 		propietarioDao.generaPago(nuevoPago);
 		

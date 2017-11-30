@@ -413,6 +413,7 @@ public class PropiedadController {
 		view.getBtnSiguiente().setVisible(true);
 		view.getBtnRemoverInmobiliaria().setVisible(true);
 		view.getBtnRemoverPropietario().setVisible(true);
+		view.getBtnVerHistorial().setVisible(false);
 		restartMapa();
 		//actualizeSellado();
 	}
@@ -469,7 +470,6 @@ public class PropiedadController {
 		view.getTaDescPubl().setEditable(bool);
 		view.getTaDescPriv().setEditable(bool);
 		view.getBtnCancelar().setVisible(bool);
-		view.getBtnVerHistorial().setVisible(!bool);
 		view.getBtnLupita().setVisible(bool);	
 		view.getBtnActualizar().setVisible(bool);
 		view.getBotonLupitaInmobiliaria().setVisible(bool);

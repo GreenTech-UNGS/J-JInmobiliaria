@@ -163,7 +163,7 @@ public class PropiedadesPanelController {
 		elegirInteresadoController.showViewPropiedad(propiedad);
 		Interesado interesado = elegirInteresadoController.getInteresado();
 		
-		if(propiedad != null) {
+		if(propiedad != null && interesado != null) {
 			interesadoController.editarInteresado(interesado);
 			interesadoController.showView();
 		}
