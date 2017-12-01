@@ -19,6 +19,7 @@ import entities.HistoriaEstadoContrato;
 import entities.HistoriaEstadoCuota;
 import entities.InteresPunitorioCuota;
 import misc.ActualizadorModule;
+import misc.ProdModule;
 import model.ContratoService;
 import model.CuotaService;
 import model.LogicaNegocioException;
@@ -35,7 +36,7 @@ public class ActualizadorCuotas {
     	DateTimeZone.setDefault(DateTimeZone.UTC);
     	TimeZone.setDefault(TimeZone.getTimeZone("UTC"));  
 		
-		injector = Guice.createInjector(new ActualizadorModule());
+		injector = Guice.createInjector(new ProdModule());
 		
 		cuotaService = injector.getInstance(CuotaService.class);
 		contratoService = injector.getInstance(ContratoService.class);

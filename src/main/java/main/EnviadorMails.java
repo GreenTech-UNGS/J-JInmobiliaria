@@ -21,6 +21,7 @@ import entities.Cita;
 import entities.NotificacionCita;
 import entities.NotificacionCita.TipoNotificacion;
 import misc.EnviadorMailsModule;
+import misc.ProdModule;
 import model.CitaService;
 import model.MailSenderService;
 import model.NotificacionesService;
@@ -54,7 +55,7 @@ public class EnviadorMails {
     	DateTimeZone.setDefault(DateTimeZone.UTC);
     	TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 		
-		injector = Guice.createInjector(new EnviadorMailsModule());
+		injector = Guice.createInjector(new ProdModule());
 		
 		Thread t = new Thread(() -> {
 			try {
